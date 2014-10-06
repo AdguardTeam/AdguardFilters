@@ -2,65 +2,13 @@
 ! Rules which are restricted to one or more domains.
 ! This section contain any type of rule grouped by domain.
 !
-! Dangerous rules (maybe we should make them more strict or move them to annoyances?)
-!
-! timer.od.ua - rigth side
-timer.od.ua##a[onclick^="_gaq.push(['_trackEvent', 'Click', 'Banne', 'position"]
-! http://forum.adguard.com/showthread.php?2759
-hornews.ru##.banner-wide > a.low_banner
 ! http://forum.adguard.com/showthread.php?2760
+! Site is not popular. Leaving these rules here for a while.
 ||magmetall.ru/img/shkola_2014.jpg
 ||magmetall.ru/img/gleb_2014.jpg
 ||magmetall.ru/img/abon_2014s.jpg
 ||magmetall.ru/img/magopc.jpg
 ||magmetall.ru/img/hornews.jpg
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/63
-@@||clients.cdnet.tv/flashbroadcast.php^$jsinject,elemhide
-!
-||local.com.ua/banner/
-local.com.ua##img[width="469"][height="60"]
-local.com.ua###branding
-local.com.ua##div[style="position:relative; width: 468px; height: 60px;"]
-! health.mail.ru - ads of drugs(top and bottom)
-health.mail.ru##.br-kanefron
-health.mail.ru##.br-kanefron-btm
-! http://www.yaplakal.com/forum44/topic894652.html - click on link to other site, then in next page commit jump to external link, 
-! and new extraneous window will opens(except target link)
-alpha.yaplakal.com#%#window.open = function() {};
-! Return of the branding
-||css.joyreactor.cc/css/moible.css
-! http://forum.adguard.com/showthread.php?2743
-goodgame.ru###adouter
-! http://forum.adguard.com/showthread.php?2746
-vitasite.ru##.banner468x60
-vitasite.ru##.banners-center-container
-vitasite.ru##.banner150x150
-vitasite.ru##.banner234x60
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/81
-||video.videonow.ru^$domain=igromania.ru
-igromania.ru###clickZoneBrand
-igromania.ru#$#body > .out_out { background: url('http://cft2.igromania.ru/bitrix/templates/igromania/img/body_bgr1.png')!important; background-color: #111B32!important; background-position: left top!important; background-repeat: repeat!important; }
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/58
-/trumedia*$domain=goha.ru
-goha.ru###full-brand-footer>div[style*="width: 100%; height: 100%;"]
-goha.ru#$##full-brand { background: url('/dummy.jpg')!important; }
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/80 Antiblock
-druweb.ru##body+div[style*="width:100%; height:100%; z-index:99999999;"]
-! http://forum.adguard.com/showthread.php?2737
-||dreamprogs.net/uploads/download-and-play.gif
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/78
-! replace for rutube.ru##article[data-category="promo"]
-rutube.ru##article.fat.promo[data-category="promo"]
-!!! http://forum.adguard.com/showthread.php?2725
-! popup
-ruspicbox.ru#%#function setTimeout() {};
-ruspicbox.ru##a[href^="http://play.zzima.com/seven/?ref="]
-ruspicbox.ru$$script[tag-content="how_many_ads"][max-length="1500"]
-!!!
-dreamprogs.net##.advfrm1
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/66
-avtoed.com##.noty_modal
-avtoed.com##ul[id="noty_top_layout_container"]
 !!! http://forum.ru-board.com/topic.cgi?forum=5&topic=31105&start=1260#2
 !||gamebomb.ru/oct.jpg - наверное лучше вариант gamebomb.ru##a[onclick*="_gaq.push(['_trackEvent', 'Branding',"]
 gamebomb.ru##a[onclick*="_gaq.push(['_trackEvent', 'Branding',"]
@@ -70,12 +18,7 @@ gamebomb.ru#$#.site-max-width {padding-top: 0px!important;}
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/64 мутные сайты. Может и не стоит держать для них фильтры.
 vmatruk.com##object[id="videobaner"]
 vmatruk.ru##object[data*="/videobaner.swf"][width="180"]
-!!
-letitbit.net##.block-header
-letitbit.net##.block-start-earn
-letitbit.net##.text-info
-letitbit.net##.jwplayer
-letitbit.net##.site_header
+!
 ! для капчи при заходе с не российских IP - через несколько секунд символы прячутся наложением картинки -> можно убрать.
 ! правило добавил в Annoyances
 !!
