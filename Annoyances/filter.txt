@@ -65,7 +65,6 @@ opennet.ru##form[method="get"] td[valign="TOP"][align="RIGHT"][width="130"][bgco
 ||нашбийск.рф/images/banners/logo%20gdt1.jpg
 нашбийск.рф##.banner2
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/393#issuecomment-77358450
-! maybe better move this to annoyances?
 vseverske.info##div.place.top > a > img
 vseverske.info##.left_column div[class^="place left_"]
 vseverske.info##.right_column div[class^="place right_"]
@@ -144,19 +143,9 @@ knifeclub.com.ua##table[border="0"][align="center"][height="71"]
 knifeclub.com.ua##table[border="0"][align="center"][height="80"][width="340"]
 ! http://forum.adguard.com/newreply.php?do=postreply&t=3043 Empty space on top
 myshared.ru###s_top
-!!!---!!! fishki.net ads(like posts)
-!fishki.net#%#AG_onLoad(function() { $('img[data-subscribe="subscribe_link_543769"]').closest('div[id^="post-"]').remove(); });
-fishki.net#%#AG_onLoad(function() { $('a[data-subscribe*="_543769"]').closest('div[id^="post-"]').remove(); });
-!!!---!!!
-!
-!!!---!!! yaplakal.com ads(like posts)
-yaplakal.com#%#AG_onLoad(function() { var footers = $('b.icon-user>a[href="http://www.yaplakal.com/members/member1438.html"]').closest('tr'); $(footers).each(function() { $(this).prev().remove(); $(this).prev().remove(); $(this).remove(); }); });
-yap.ru#%#AG_onLoad(function() { var footers = $('b.icon-user>a[href="http://yap.ru/members/member1438.html"]').closest('tr'); $(footers).each(function() { $(this).prev().remove(); $(this).prev().remove(); $(this).remove(); }); });
-!!!---!!!
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/164
 free-torrents.org##noindex > center > div[style="border: 2px solid red;"]
 free-torrents.org##a[href*="https://webtransfer-finance.com/?"]
-!
 ! http://forum.adguard.com/showthread.php?2760
 ! Site is not popular. Leaving these rules here for a while.
 ||magmetall.ru/img/shkola_2014.jpg
@@ -178,6 +167,7 @@ ukrrele.com#%#document.onmousedown = function() {};
 vmatruk.com##object[id="videobaner"]
 vmatruk.ru##object[data*="/videobaner.swf"][width="180"]
 ! forumodua.com - top of page
+forumodua.com###notices
 forumodua.com##.body_wrapper > div > table[width="100%"] > tbody > tr > td[valign="top"]
 !
 45.ru,93.ru,86.ru,56.ru,164.ru,mgorsk.ru,62.ru,48.ru,kbs.ru,26.ru,tolyatty.ru,178.ru,89.ru,proizhevsk.ru,51.ru,irkutsk.ru,sochi1.ru,70.ru,provoronezh.ru,71.ru,154.ru,sterlitamak1.ru,ekat.ru,42.ru,43.ru,14.ru,68.ru,75.ru,35.ru,omsk1.ru,53.ru,60.ru,29.ru,76.ru,116.ru,v1.ru,ufa1.ru,161.ru,74.ru,72.ru,63.ru,59.ru###popup_container
@@ -196,10 +186,6 @@ zerx.tv##a[href*="/torrent/"][style="color:white"]
 !
 ! forumodua.com - notices, requests for donations, some ads
 forumodua.com###notices
-!
-!============================================
-!=============Questionable rules=============
-!============================================
 ! http://forum.adguard.com/showthread.php?2045
 ||yarportal.ru/zagl.gif
 ! http://pirat-pic.ru/
@@ -217,15 +203,17 @@ newsfiber.com$$div[tag-content="adsbygoogle"][parent-elements="div"]
 ! для капчи при заходе с не российских IP - через несколько секунд символы прячутся наложением картинки -> можно убрать.
 letitbit.net##img[class="mcmp_postrol_img"]
 !
+!--- ads like posts ---
+fishki.net#%#AG_onLoad(function() { $('a[data-subscribe*="_543769"]').closest('div[id^="post-"]').remove(); });
+yaplakal.com#%#AG_onLoad(function() { var footers = $('b.icon-user>a[href="http://www.yaplakal.com/members/member1438.html"]').closest('tr'); $(footers).each(function() { $(this).prev().remove(); $(this).prev().remove(); $(this).remove(); }); });
+yap.ru#%#AG_onLoad(function() { var footers = $('b.icon-user>a[href="http://yap.ru/members/member1438.html"]').closest('tr'); $(footers).each(function() { $(this).prev().remove(); $(this).prev().remove(); $(this).remove(); }); });
+!----------------------
 !============================================
 !=============CSS fixes======================
 !============================================
-!----RU----
-!
-!---EN---
-!
 !---Turkish---
 ! [TR] filmkorku.org - removed branded backgroung, backgroung color change to more contrast
 filmkorku.org#$#html body {background-image: url('/')!important; background-color: #3c0f10!important;}
 ! 720pizle.com - replace background to original
 720pizle.com#$#body {background:url("http://720pizle.com/images/film/body-bg.png")!important; repeat 0 0 #D2D2D2;!important;}
+!
