@@ -1,3 +1,3 @@
-# Adguard Ad Blocking filters repo
+# Adguard Ad Blocking Filters
 
 Description is to be written.
