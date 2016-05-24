@@ -1,0 +1,48 @@
+!
+! Section contains rules for specific websites
+!
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1921
+konachan.net##iframe[src^="https://tbib.org/"]
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1920
+apfelpage.de##.a4promo_ad
+konachan.net##iframe[src^="https://tbib.org/"]
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1918
+zhidao.baidu.com##div[class^="mm-content-box kmb5707e0 wm-"]
+||entry.baidu.com/rp/home?
+! http://forum.adguard.com/showthread.php?10163
+opensubtitles.org##iframe[width="160"][height="700"]
+||ads*.opensubtitles.org^
+! Ads in Moscow subway
+login.wi-fi.ru###branding
+vmet.ro,wi-fi.ru###fullscreenBanner
+wi-fi.ru##.b-banner-full
+wi-fi.ru##.b-banner-middle
+wi-fi.ru##.b-bnr
+wi-fi.ru##.vb
+wi-fi.ru,vmet.ro#video-b
+||login.wi-fi.ru^$script,third-party
+||static.wi-fi.ru/brandings/rb/
+||static0.wi-fi.ru/static/000/ios/index.html
+||vmet.ro^$third-party
+||wi-fi.ru/ad_video/
+||wi-fi.ru^$script,third-party
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/955 [popups]
+||ac.tvas-c.pw^$popup,domain=thevideo.me
+||letitrun.htmlhubing.xyz^$popup,domain=thevideo.me
+||overhaps.com^$popup,domain=thevideo.me
+||static.htmlhubing.xyz^$popup,domain=thevideo.me
+||static.servingit.co^$popup,domain=thevideo.me
+||tc.tvas-c.pw^$popup,domain=thevideo.me
+||tradeadexchange.com^$popup,domain=thevideo.me
+||venturead.com^$popup,domain=thevideo.me
+||wwp.tvas-c.pw^$popup,domain=thevideo.me
+! brb.to,cxz.to,fs.to
+brb.to,cxz.to,fs.to##a[data-proxied^="//core.adproxy2.com/click?"]
+brb.to,cxz.to,fs.to##div[class*="universal_ads"]
+! http://forum.adguard.com/showthread.php?5125 (the slider on the main page will be broket, but there is not other way to block fullscrean ad)
+||gamer.ru/alarmalarm/js/
+! http://forum.adguard.com/showthread.php?7471
+! We should add $subdocument modifier to block iframes from loading on Safari
+||sports.ru/desktop/special/$subdocument,domain=sports.ru
+! We should also hide that iframe because blocking by URL won't remove the whitespace
+m.sports.ru##iframe[src^="http://www.sports.ru/desktop/special/"]
