@@ -56,7 +56,7 @@ IGNORE = ("CC-BY-SA.txt", "easytest.txt", "GPL.txt", "MPL.txt", "filter.txt", "e
           "enhancedstats-addon.txt", "fanboy-tracking", "firefox-regional", "other")
 
 # List all Adblock Plus options (excepting domain, which is handled separately), as of version 1.3.9
-KNOWNOPTIONS = ("document", "elemhide", "generichide", "genericblock",
+KNOWNOPTIONS = ("document", "elemhide", "generichide", "genericblock", "protobuf",
                 "font", "image", "match-case", "object", "media", 
                 "object-subrequest", "popup", "script",
                 "stylesheet", "subdocument", "third-party", "xmlhttprequest", 
@@ -202,6 +202,8 @@ def fopsort (filename):
             minlength = 5
             curentline = line[:-1]
             linelength = len(curentline)
+            if linelength == 0:
+                continue
             if (linelength < minlength and curentline[0] != "!"):
                 minlinetext = re.sub("^\s+|\n|\r|\s+$", '', curentline)
                 print("***Warning***: The line length \"{minlinetext}\" is less than {minlength} ".format(minlinetext = minlinetext, minlength = minlength))
