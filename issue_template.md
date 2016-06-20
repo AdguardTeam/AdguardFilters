@@ -1,16 +1,30 @@
 **Description**:
 
 **Current behaviour**: Tell us what happens
+Screenshot: use the following code
+```
+<details>
+![](http://somehosting.com/adg_on.jpg)
+</details>
+```
 
 **Expected behaviour**: Tell us what should happen instead
+Screenshot:
+```
+<details>
+![](http://somehosting.com/adg_off.jpg)
+</details>
+```
 
 **Steps to reproduce the problem**:
 
-1.
-2.
-3.
+* 
+*  
+*  
 
 **Adguard version**:
+
+**Filters list**:
 
 **Operating system**:
 
