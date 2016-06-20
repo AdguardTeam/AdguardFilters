@@ -1,6 +1,7 @@
 **Description**:
 
 **Current behaviour**: Tell us what happens
+
 Screenshot: use the following code
 ```
 <details>
@@ -9,6 +10,7 @@ Screenshot: use the following code
 ```
 
 **Expected behaviour**: Tell us what should happen instead
+
 Screenshot:
 ```
 <details>
