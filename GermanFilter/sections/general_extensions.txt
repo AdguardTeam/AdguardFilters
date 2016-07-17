@@ -1,6 +1,9 @@
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
+! https://forum.adguard.com/index.php?threads/11961/
+spiegel.de#%#function replaceTextContent(elem) { $(elem).contents().filter(function () { return this.nodeType === 3; }).replaceWith(function () { var obfuscatedText = this.data; var deobfuscatedText = ""; for (var i = 0; i < obfuscatedText.length; i++) { var charValue = obfuscatedText.charCodeAt(i); if (charValue == 177) { deobfuscatedText += '&'; } else if (charValue == 178) { deobfuscatedText += '!'; } else if (charValue == 180) { deobfuscatedText += ';'; } else if (charValue == 181) { deobfuscatedText += '='; } else if (charValue == 32) { deobfuscatedText += ' '; } else if (charValue > 33) { deobfuscatedText += String.fromCharCode(charValue - 1); } } return deobfuscatedText; }).end().filter(function () { return this.nodeType === 1 && !$(this).hasClass("text-link-int") && !$(this).hasClass("text-link-ext") && !$(this).hasClass("lp-text-link-int") && !$(this).hasClass("lp-text-link-ext") && !$(this).hasClass("spCelink"); }).each(function () { replaceTextContent(this); }); };
+spiegel.de#%#AG_onLoad(function() { $('p.obfuscated').each(function (index, elem) { replaceTextContent(elem); $(elem).removeClass("obfuscated").addClass("deobfuscated"); }); $('div.obfuscated-content').each(function (index, elem) { $(elem).removeClass("obfuscated-content").addClass("deobfuscated-content"); }); });
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1788
 myvideo.de,prosieben.de,prosiebenmaxx.de,sat1.de,kabeleins.de,sat1gold.de,sixx.de#%#Object.defineProperty(window, 'SIMAD', { get: function() { return function() { }; } });
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1411
