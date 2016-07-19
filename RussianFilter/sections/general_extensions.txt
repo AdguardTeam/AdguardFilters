@@ -32,7 +32,8 @@ s4galaxy.ru,3dnews.ru,lenovo-smart.ru#%#Object.defineProperty(window, 'SocialMar
 !
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/279
 e.mail.ru#%#(function() { var d = document.documentElement; var appendChild = d.appendChild; d.appendChild = function(n) { appendChild.apply(d, arguments); if (n.contentWindow) { n.contentWindow.WebSocket = undefined; } } })();
-! fs.to - removing of the banner which display to registered users
+! fs.to - removing ads
+fs.to#%#AG_onLoad(function(){$(document).ajaxComplete(function(){ window.AG_removeElementBySelector('div[class="b-iframe-player-wrap"] ~ div'); })})
 fs.to#%#AG_onLoad(function() { window.AG_removeElementBySelector('div[id][class][style="width: 100%; height: 100%;"]'); });
 ! https://forum.adguard.com/index.php?threads/10932/
 imgchilibum.ru#%#window.open = function() {};
@@ -207,6 +208,8 @@ hdkinoteatr.com#%#Object.defineProperty(window, 'iframe_adv_enabled', { get: fun
 !-----------------------
 !------- CSS -----------
 !-----------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/2479
+swefilm.tv#$#a[href^="data:text/html;base64"] { position: absolute!important; top: -2000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2541
 livelib.ru#$#.header > div[class$="underact-context"] { position: absolute!important; top: -2000px!important; }
 ! bigmir.net - удаление брендированного фона, отступа сверху
