@@ -4,7 +4,7 @@
 !### TEMPORARY ###
 ! Отключаем MutationObserver для предотвращения удаления стилей
 news.mail.ru,hi-tech.mail.ru#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
-4pda.ru#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
+4pda.ru#%#Object.defineProperty(window, 'MutationObserver', { get: function() { return {}; } });
 fs.to#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
 ! Яндекс Музыка
 music.yandex.ru,music.yandex.ua,music.yandex.kz#%#document.addEventListener("DOMNodeInserted",function(a){/.*?(payment\-show|ad[sv](\-block)?).*?/.test(a.relatedNode.className)&&a.relatedNode.remove()},!0);
