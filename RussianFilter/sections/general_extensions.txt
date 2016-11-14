@@ -4,8 +4,7 @@
 !### TEMPORARY ###
 ! Отключаем MutationObserver для предотвращения удаления стилей
 news.mail.ru,hi-tech.mail.ru#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
-4pda.ru#%#Object.defineProperty(window, 'MutationObserver', { get: function() { return {}; } });
-4pda.ru#%#AG_onLoad(function() { AG_removeElementBySelector('a[title="Dishonored"]'); });
+4pda.ru#%#if (typeof MutationObserver !== 'undefined') { MutationObserver.prototype.observe = function() {}; MutationObserver.prototype.observe.toString = function() { return "function observe() { [native code] }"; } };
 fs.to#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
 ! Яндекс Музыка
 music.yandex.ru,music.yandex.ua,music.yandex.kz#%#AG_onLoad(function(){$('.smalladv,.ads-block__no-ads').remove()})
