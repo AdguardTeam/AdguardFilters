@@ -1,36 +1,55 @@
-**Description**:
+[//]: # (***You can leave the strings with "[//]:" They will not be added to the issue text)
+[//]: # (***Строки, которые начинаются с "[//]:" можно не удалять. Они не будут видны)
 
-**Current behaviour**: Tell us what happens
+***Description***:
+* **Current behaviour**: 
 
-Screenshot: use the following code
-```
-<details>
-![](http://somehosting.com/adg_on.jpg)
-</details>
-```
-
-**Expected behaviour**: Tell us what should happen instead
+[//]: # (Tell us what happens)
+[//]: # (Опишите проблему)
 
 Screenshot:
-```
+
+[//]: # (use the following code. Replace exciting URL by your)
+[//]: # (используйте данный код. Замените существующий адрес адресом вашего скриншота)
 <details>
-![](http://somehosting.com/adg_off.jpg)
+
+![image](http://somehosting.com/adg_on.jpg)
 </details>
-```
 
-**Steps to reproduce the problem**:
+* **Expected behaviour**: 
 
-* 
-*  
-*  
+[//]: # (Tell us what should happen instead)
+[//]: # (Опишите ожидаемый результат)
 
-**Adguard version**:
+Screenshot:
+<details>
 
-**Filters list**:
+![image](http://somehosting.com/adg_off.jpg)
+</details>
 
-**Operating system**:
+***Steps to reproduce the problem***:
 
-**Browser**:
+[//]: # (Describe, how to reproduce the issue)
+[//]: # (Перечислите шаги для воспроизведения проблемы)
+
+***System configuration***
+
+Information | value
+--- | ---
+Operating system: | 
+Browser: | 
+Adguard version: | 
+Adguard driver (Windows): | WFP or TDI
+Adguard mode (Android): | VPN or proxy(manual/auto)
+Filtering quality (Android): | High-quality / high-speed / simplified
+Simplified filters(iOS) | On / Off
+Adguard DNS: | None / Default / Family Protection
+Adguard filters: | 
+
+[//]: # (***Filters list - comma separated list, or filter names outside the table)
+[//]: # (***Список фильтров - названия через запятую, или список вне таблицы)
+
+Ticket ID(if exists): 
 
 [//]: # (This template is for problem reports, for other type of reports edit it accordingly)
 [//]: # (If this is a crash report, include the crashlog with https://gist.github.com/)
