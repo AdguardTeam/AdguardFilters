@@ -44,6 +44,7 @@ Adguard mode (Android): | VPN or proxy(manual/auto)
 Filtering quality (Android): | High-quality / high-speed / simplified
 Simplified filters(iOS) | On / Off
 Adguard DNS: | None / Default / Family Protection
+Stealth mode options(Windows) | 
 Adguard filters: | 
 
 [//]: # (***Filters list - comma separated list, or filter names outside the table)
