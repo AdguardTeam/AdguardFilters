@@ -36,12 +36,13 @@ Screenshot:
 
 Information | value
 --- | ---
-Operating system: | 
+Operating system: | Windows / Mac OS / Android / Linux
 Browser: | 
 Adguard version: | 
-Adguard driver (Windows): | WFP or TDI
-Adguard mode (Android): | VPN or proxy(manual/auto)
+Adguard driver (Windows): | WFP / TDI
+Adguard mode (Android): | VPN / Proxy(manual/auto)
 Filtering quality (Android): | High-quality / high-speed / simplified
+HTTPS filtering (Android): |  On (Default/Blacklist mode) / Off
 Simplified filters(iOS) | On / Off
 Adguard DNS: | None / Default / Family Protection
 Stealth mode options(Windows) | 
