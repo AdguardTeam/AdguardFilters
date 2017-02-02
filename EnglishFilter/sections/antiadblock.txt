@@ -16,7 +16,7 @@ arabloads.net#%#(function() { var sto = window.setTimeout, re = /\.bab_elementid
 !
 !--- antiblock.org ---
 ! https://forum.adguard.com/index.php?threads/resolved-ag_antiantiblock.19151/
-abcast.net#%#var baseCreateElement = document.createElement.bind(document); document.createElement = function(name) { var el = baseCreateElement(name); if(name != 'span') { return el; } else { Object.defineProperty(el, 'innerHTML', { set: function(text) { if(/^(<a id="[^"]*"><\/a>)*$/.test(text)) { throw new Error(); } return text; }, get: function() { return el.innerHTML; } }); return el; }};
+abcast.net#%#var baseCreateElement = document.createElement.bind(document); document.createElement = function(name) { var el = baseCreateElement(name); if(name != 'span') { return el; } else { Object.defineProperty(el, 'innerHTML', { set: function(text) { if(/^(<a id="[^"]*"><\/a>)*$/.test(text)) { throw new Error(); } Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML').set.call(el, text); }, get: function() { return el.innerHTML; } }); return el; }};
 !--- InstartLogic ---
 ! abd
 baltimoresun.com,boston.com,calgarysun.com,capitalgazette.com,carrollcountytimes.com,celebslam.com,celebuzz.com,chicagotribune.com,courant.com,dailypress.com,deathandtaxesmag.com,edmontonsun.com,gamerevolution.com,geek.com,gofugyourself.com,hearthhead.com,ign.com,infinitiev.com,lolking.net,mcall.com,mmo-champion.com,nasdaq.com,orlandosentinel.com,pcmag.com,ranker.com,sandiegouniontribune.com,saveur.com,sherdog.com,spin.com,sporcle.com,stereogum.com,sun-sentinel.com,thefrisky.com,thesuperficial.com,timeanddate.com,tmn.today,torontosun.com,twincities.com,vancouversun.com,vibe.com$$script[tag-content="===typeof I10C"][min-length="20000"][max-length="32768"]
