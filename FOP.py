@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>."""
-# FOP version number
+# FOP version number [12.02.2017]
 VERSION = 3.8
 
 # Import the key modules
@@ -62,10 +62,10 @@ IGNORE = (
 
 # List all Adblock Plus options (excepting domain, which is handled separately), as of version 1.3.9
 KNOWNOPTIONS = ("document", "elemhide", "generichide", "genericblock",
-                "font", "image", "match-case", "object", "media",
-                "object-subrequest", "popup", "script",
+                "font", "image", "match-case", "object", "media", "protobuf", 
+                "object-subrequest", "popup", "script", "websocket", "ther",
                 "stylesheet", "subdocument", "third-party", "xmlhttprequest",
-                "mp4", "urlblock", "empty", "jsinject", "content")
+                "mp4", "urlblock", "empty", "jsinject", "content", "important")
 
 # List the supported revision control system commands
 REPODEF = collections.namedtuple("repodef",
@@ -293,9 +293,12 @@ def filtertidy(filterin):
             elif option.strip("~") not in KNOWNOPTIONS:
                 isReplace = len([i for i in optionlist if "replace=" in i]) > 0
                 isProtoBuf =len([i for i in optionlist if "protobuf=" in i]) > 0
-                if (isReplace or isProtoBuf):
+                isApp =len([i for i in optionlist if "app=" in i]) > 0
+                if (isReplace or isProtoBuf or isApp):
                     if (isReplace):
                         optionlist = optionsplit.group(2).replace("_", "-").split(",")
+                    if (isApp):
+                        optionlist = optionsplit.group(2).split(",")
                 else:
                     print(
                         "Warning: The option \"{option}\" used on the filter \"{problemfilter}\" is not recognised by FOP".format(

@@ -4,43 +4,43 @@
 ! com.devexpert.weather https://github.com/AdguardTeam/AdguardFilters/issues/3865
 ! apptornado ads, when Google/FB ads are blocked
 @@||googleads.g.doubleclick.net/mads/static/mad/sdk/native/*/sdk-core-v40-impl.js$app=com.devexpert.weather
-||googleads.g.doubleclick.net/mads/gma?carrier=$replace=/\<script\>[\s\S]*\<\/script\>/,important,app=com.devexpert.weather
+||googleads.g.doubleclick.net/mads/gma?carrier=$app=com.devexpert.weather,important,replace=/\<script\>[\s\S]*\<\/script\>/
 !
 ! Blocking of Facebook ads
+||graph.facebook.com^$app=com.devexpert.weather
+||graph.facebook.com^$app=com.eterno
 ||graph.facebook.com^$app=com.hornet.android
 ||graph.facebook.com^$app=com.jrtstudio.AnotherMusicPlayer
-||graph.facebook.com^$app=ferp.android
-||graph.facebook.com^$app=io.casper.android
-||graph.facebook.com^$app=com.popularapp.thirtydayfitnesschallenge
-||graph.facebook.com^$app=com.mxtech.videoplayer.ad
-||graph.facebook.com^$app=com.eterno
-||graph.facebook.com^$app=com.devexpert.weather
-||graph.facebook.com^$app=com.musixmatch.android.lyrify
-||graph.facebook.com^$app=com.sonyericsson.trackid
 ||graph.facebook.com^$app=com.ketchapp.donttouchthespikes
 ||graph.facebook.com^$app=com.laurencedawson.reddit_sync
 ||graph.facebook.com^$app=com.mobilefootie.wc2010
 ||graph.facebook.com^$app=com.mobilesrepublic.appy
 ||graph.facebook.com^$app=com.mobilesrepublic.appygeek
-||graph.facebook.com^$app=fr.meteo
+||graph.facebook.com^$app=com.musixmatch.android.lyrify
+||graph.facebook.com^$app=com.mxtech.videoplayer.ad
+||graph.facebook.com^$app=com.popularapp.thirtydayfitnesschallenge
+||graph.facebook.com^$app=com.sonyericsson.trackid
 ||graph.facebook.com^$app=com.xda.labs.play
+||graph.facebook.com^$app=ferp.android
+||graph.facebook.com^$app=fr.meteo
+||graph.facebook.com^$app=io.casper.android
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4184
 ||apis.tapatalk.com/api/user/info/$replace=/"ads":/"bbb":/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4161
-||baidu.com/setting/grobal_strategy?p=com.adslib.mobovee$app=cn.xender
 ||api.mobojoy.baidu.com/strategy/api/v1/rule/get?p=com.adslib.mobovee$app=cn.xender
+||baidu.com/setting/grobal_strategy?p=com.adslib.mobovee$app=cn.xender
 ! com.sofoot app
 @@||engine.widespace.com/map/provisioning?appId=com.sofoot$app=com.sofoot
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3933
 ! Yandex apps
-||banners.mobile.yandex.net^
 ||banners-slb.mobile.yandex.net^
+||banners.mobile.yandex.net^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3533
 @@||rutube.ru/api/play/options/$app=ru.rutube.app|ru.rutube.RutubeKids,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3738
-||crosspromo*.qplaze.com^$app=com.nomoc.wolfonfarm
 ||crosspromo*.qplaze.com/PushCampaignXMLOut.php
+||crosspromo*.qplaze.com^$app=com.nomoc.wolfonfarm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3717
 @@||ups.ksmobile.net^$app=com.cleanmaster.security
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3634
@@ -54,7 +54,7 @@
 ! https://github.com/AdguardTeam/AdguardForAndroid/issues/569
 ||alxanosoft.com/rk/$empty
 ! Dailyhunt
-||api-news.dailyhunt.in/api/*/content?$replace=/externalAd/_externalAd/
+||api-news.dailyhunt.in/api/*/content?$replace=/externalAd/-externalAd/
 ! sport1.mobile.android.apps
 ||assets.sport1.de/imagix/filter2/jpeg/_set=dyn_size_no_crop/imagix/
 ! Gumtree app
@@ -108,22 +108,22 @@
 ||config.sdk.scopely.io/*/android/ads_config.json
 ||s3.amazonaws.com/promos.withbuddies.com/prod/ads/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2253
+||onceux.unicornmedia.com/now/ads/vmap/*&UMADPARAMcsid=imdb.us.android$important,replace=/(<vmap:VMAP[\s\S]*?>)[\s\S]*<\/vmap:VMAP>/\$1<\/vmap:VMAP>/
 ||onceux.unicornmedia.com/now/ads/vmap/*&UMADPARAMcsid=imdb.us.android$replace=/(<vmap:VMAP[\s\S]*?>)[\s\S]*<\/vmap:VMAP>/\$1<\/vmap:VMAP>/
-||onceux.unicornmedia.com/now/ads/vmap/*&UMADPARAMcsid=imdb.us.android$replace=/(<vmap:VMAP[\s\S]*?>)[\s\S]*<\/vmap:VMAP>/\$1<\/vmap:VMAP>/,important
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/2191
 @@||googleads.g.doubleclick.net/mads/gma?*&_package_name=com.nextradiotv.bfmbusiness
 @@||googleads.g.doubleclick.net/mads/gma?request_id=*&_package_name=com.nextradiotv.bfmbusiness
 ! Start: YT app
 ! https://github.com/AdguardTeam/AdguardForAndroid/issues/573
 ! https://github.com/AdguardTeam/AdguardForAndroid/issues/621
-||googleapis.com/youtubei/v1/player$protobuf=48841103|63112829|23|25
-||googleapis.com/youtubei/v1/player$protobuf=48841103|63112829|23|25,important
+||googleapis.com/youtubei/v1/browse?$important,protobuf=62887855|49413586|51621377
 ||googleapis.com/youtubei/v1/browse?$protobuf=62887855|49413586|51621377
-||googleapis.com/youtubei/v1/browse?$protobuf=62887855|49413586|51621377,important
+||googleapis.com/youtubei/v1/next?$important,protobuf=55514441|62960614|65002523|105649908|82182324|99845384
 ||googleapis.com/youtubei/v1/next?$protobuf=55514441|62960614|65002523|105649908|82182324|99845384
-||googleapis.com/youtubei/v1/next?$protobuf=55514441|62960614|65002523|105649908|82182324|99845384,important
+||googleapis.com/youtubei/v1/player$important,protobuf=48841103|63112829|23|25
+||googleapis.com/youtubei/v1/player$protobuf=48841103|63112829|23|25
+||googleapis.com/youtubei/v1/search?$important,protobuf=73920376
 ||googleapis.com/youtubei/v1/search?$protobuf=73920376
-||googleapis.com/youtubei/v1/search?$protobuf=73920376,important
 ! End: YT app
 ! https://forum.adguard.com/index.php?threads/10132/
 ||api.live.daum.net/*/ad/
