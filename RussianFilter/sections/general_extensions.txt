@@ -6,7 +6,7 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3840
 ! news.mail.ru,hi-tech.mail.ru#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
 4pda.ru#%#if (typeof MutationObserver !== 'undefined') { MutationObserver.prototype.observe = function() {}; MutationObserver.prototype.observe.toString = function() { return "function observe() { [native code] }"; } };
-fs.to#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
+!fs.to#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
 ! Яндекс Музыка
 music.yandex.ru,music.yandex.ua,music.yandex.kz#%#AG_onLoad(function(){$('.smalladv,.ads-block__no-ads').remove()})
 music.yandex.ru,music.yandex.ua,music.yandex.kz#%#document.addEventListener("DOMNodeInserted",function(a){/.*?(payment\-show|ad[sv](\-block)?).*?/.test(a.relatedNode.className)&&a.relatedNode.remove()},!0);
@@ -121,10 +121,6 @@ vk.com#%#AG_onLoad(function(){window.icoNode = document.querySelector('head>link
 imgchilibum.ru#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2607
 tapochek.net#%#document.cookie = "super_popunder = 1";
-! fs.to - removing ads
-fs.to#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('div[id][style="display: table-cell;"] > div[class$="-universalsmall"]'); $(document).ajaxComplete(function(){ AG_removeElementBySelector('div[id][style="display: table-cell;"] > div[class$="-universalsmall"]'); }) }, 2500); });
-fs.to#%#AG_onLoad(function(){$(document).ajaxComplete(function(){ AG_removeElementBySelector('div[class="b-iframe-player-wrap"] ~ div'); })})
-fs.to#%#AG_onLoad(function() { AG_removeElementBySelector('div[id][class][style="width: 100%; height: 100%;"]'); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2262
 zhizninauka.info#%#Object.defineProperty(window, 'clickunderRun', { get: function() { return {}; } });
 ! https://forum.adguard.com/index.php?threads/10644/
@@ -508,8 +504,6 @@ lets-play.tv#$##branding {padding-top: 0px!important; }
 ! new-rutor.org - удаление отступа сверху
 new-rutor.org#$#body { padding: 0 0 0!important; }
 !
-fs.to#$#[class*="-universalsmall"] { height: 0px!important; }
-fs.to#$#[class*="-fsverticalsmall"] { height: 0px!important; }
 ! ok.ru - ads in right column
 ok.ru#$##hook_Block_StickyBannerContainer { position: absolute!important; left: -3000px!important; }
 ok.ru#$#.dialogWrapperBanner * { height: 0px!important; }
@@ -565,10 +559,6 @@ unionpeer.org#$#html > body { padding-top: 0px!important; }
 dom-filmov.ru#$#div[id="wrapper"][style] { margin-top:0px!important; }
 ! poiskvps.ru
 poiskvps.ru#$#object[width="728"][height="90"] { height: 0px!important; }
-! fs - удаление отступа сверху
-fs.to,brb.to,cxz.to#$#.m-content_type_player { min-height:0px!important; }
-! fs - баннеры в плеере
-cxz.to,fs.to,brb.to#$#.b-aplayer-teasers { max-height: 0px!important; visibility: hidden!important; }
 ! tnt-online.ru - исправление отступа сверху
 tnt-online.ru#$##all { margin: 15px auto!important; }
 ! espreso.tv - отступ от баннера
@@ -869,10 +859,6 @@ freerutor.com$$style[tag-content="padding: 250px 0px 0px !important"][max-length
 picstraff.ru,diakov.net,ogosex.ru,zodiac-game.info,only-tv.org,hdrezka.me,lostfilmonline.ru,nice-film.ru,kino-filmi.net,kino-serial.net,bobfilm1.net,libtor.net,hdrezka.me,kinogo.co,omaske.ru$$script[tag-content="document.write("<sc"+"ript type='text/javascript' src='//"][max-length="180"]
 ! http://forum.adguard.com/showthread.php?9236
 ixbt.com$$style[tag-content="/* BRANDING */"][max-length="600"]
-! fs.to
-fs.to,brb.to$$script[tag-content="body-branding"][max-length="8000"]
-fs.to,brb.to$$script[wildcard="*(function(){var _*String.fromCharCode*p=parseInt*"][max-length="6000"]
-fs.to,brb.to$$script[tag-content="document.getElementsByTagName('style')"][max-length="200"]
 ! gamer-info.com - remove branding
 gamer-info.com$$style[tag-content="/* Branding */"][max-length="600"]
 ! http://forum.adguard.com/showthread.php?8438
