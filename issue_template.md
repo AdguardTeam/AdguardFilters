@@ -7,24 +7,20 @@
 [//]: # (Tell us what happens)
 [//]: # (Опишите проблему)
 
-Screenshot:
+[//]: # (use the following code. Replace exciting URL by your. Also, you can paste image from clipboard. It will be automatically loaded.)
+[//]: # (используйте данный код. Замените существующий адрес адресом вашего скриншота. Также изображение можено вставить из бефера обмена. Оно будет автоматически загружено. )
+<details><summary>Screenshot:</summary>
 
-[//]: # (use the following code. Replace exciting URL by your)
-[//]: # (используйте данный код. Замените существующий адрес адресом вашего скриншота)
-<details>
-
-![image](http://somehosting.com/adg_on.jpg)
+![image](%url_of_screenshot%)
 </details>
 
 * **Expected behaviour**: 
 
 [//]: # (Tell us what should happen instead)
 [//]: # (Опишите ожидаемый результат)
+<details><summary>Screenshot:</summary>
 
-Screenshot:
-<details>
-
-![image](http://somehosting.com/adg_off.jpg)
+![image](%url_of_screenshot%)
 </details>
 
 ***Steps to reproduce the problem***:
@@ -47,11 +43,10 @@ Simplified filters(iOS) | On / Off
 Adguard DNS: | None / Default / Family Protection
 Stealth mode options(Windows) | 
 Adguard filters: | 
+Ticket ID (if exists): | 
 
 [//]: # (***Filters list - comma separated list, or filter names outside the table)
 [//]: # (***Список фильтров - названия через запятую, или список вне таблицы)
-
-Ticket ID(if exists): 
 
 [//]: # (This template is for problem reports, for other type of reports edit it accordingly)
 [//]: # (If this is a crash report, include the crashlog with https://gist.github.com/)
