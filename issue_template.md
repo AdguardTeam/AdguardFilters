@@ -32,19 +32,19 @@
 
 [//]: # (Please enter the correct values for your case to the table below)
 
-Information | Value
---- | ---
-Operating system: | ?
-Browser: | ?
-AdGuard version: | ?
-Filters enabled: | ?
-AdGuard mode (Android only): | VPN / Proxy (manual/auto)
-Filtering quality (Android only): | High-quality / High-speed / Simplified
-HTTPS filtering (Android only): |  On (Default/Blacklist mode) / Off
-Simplified filters (iOS only) | On / Off
-AdGuard DNS: | None / Default / Family Protection
+Information                         | Value
+---                                 | ---
+Operating system:                   | ?
+Browser:                            | ?
+AdGuard version:                    | ?
+Filters enabled:                    | ?
+AdGuard mode (Android only):        | VPN / Proxy (manual/auto)
+Filtering quality (Android only):   | High-quality / High-speed / Simplified
+HTTPS filtering (Android only):     |  On (Default/Blacklist mode) / Off
+Simplified filters (iOS only)       | On / Off
+AdGuard DNS:                        | None / Default / Family Protection
 Stealth mode options (Windows only) | ?
-Helpdesk ID (if exists): | ?
+Helpdesk ID (if exists):            | ?
 
 [//]: # (This template is meant for missed ad/false positive reports, for other type of reports edit it accordingly)
 [//]: # (If this is a crash report, include the crashlog with https://gist.github.com/)
