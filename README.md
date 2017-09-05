@@ -1,31 +1,36 @@
-# Adguard Ad Blocking Filters
+# AdGuard Filters
 
 ### Introduction
 
-This is a place where we create filters for Adguard. Every filter represents a set of rules in text format which are used by Adguard to filter advertising content (such as banners, pop-ups etc.). Rules specific for a particular Internet segment (English filter, Russian filter etc.) or serving a specific purpose (Social media filter, Spyware filter etc.) are collected into one list - filter - and can be enabled/disabled all at once. 
+This is the place where we create filters for AdGuard. Every filter represents a set of rules in text format which are used by AdGuard apps and programs to filter advertising and privacy-threatening content (such as banners, pop-ups, trackers etc.). Rules specific for a particular Internet segment (German filter, Russian filter etc.), or serving a specific purpose (Social media filter, Spyware filter etc.) are combined into one list - filter - and can be enabled/disabled all at once.
 
-Filters are constantly updated. This repository lets anyone draw our attention to anything from a missed ad to a false positive, thus helping us to modify our filters, make them better and keep up-to-date.
+Our filters are being constantly updated. This repository lets anyone draw our attention to anything from a missed ad to a false positive, thus helping us to modify our filters, make them better and keep up-to-date.
 
-Here you can find links to active Adguard forum threads devoted to [missed ads](https://forum.adguard.com/index.php?forums/missed-ads.67/) and [false positives](https://forum.adguard.com/index.php?forums/false-positives.68/).
+To submit a report, proceed [here](https://github.com/AdguardTeam/AdguardFilters/issues) (please, read the [submission rules](https://github.com/AdguardTeam/AdguardFilters#how-to-report-a-missed-adfalse-positive) below first).
 
 ### Syntax
 
-Filters are designed for use in all Adguard products, but can also be used in Adblock Plus. However, note that the syntax of Adguard filtering rules is more advanced than in ABP. Therefore, part of the rules will not work in ABP.
+These filters are designed for use in all AdGuard products, but can also be used in Adblock Plus and other ad blockers. However, note that the syntax of AdGuard filtering rules is more advanced than in ABP. Therefore, part of the rules will not work there.
 
-You can find a manual for filtering rules creation syntax at [this link](https://adguard.com/filterrules.html).
+If you are interested in creating your own rules, you can find a syntax manual at [this link](https://kb.adguard.com/general/how-to-create-your-own-ad-filters).
 
 ### How to report a missed ad/false positive
 
-1. Please, create a new issue for each new website.
-2. Title of the issue should contain website’s address where a problem was detected, and preferably a short description - OS(Win, MacOS, iOS, Android) and type of problem.
-For example: 
-  - **site.com** - popup upon clicking anywhere [Windows] or
+1. Do a quick search to see if this issue has already been reported.
+2. Please, create a new issue for each new website.
+3. The title should contain the address of the website where the problem was detected, and preferably a short description - OS prefix ([Win], [MacOS], [iOS], [Android]) and the type of the problem.
+Examples of a good issue title: 
+  - [Windows] **example.com** - popup upon clicking anywhere *or*
   - [Android] **The App** - banner in the main menu
-3. The message should contain:
+4. There will be a template in the message body, asking you to provide the following information:
   - a screenshot of an unblocked ad or detailed description of where this ad is placed;
-  - a direct link to the website; 
-  - list of enabled filters.
+  - a direct link to the page; 
+  - list of enabled filters;
+  - some of your AdGuard settings;
+  - your system details.
 
-### Adguard filter policy
+The more information you provide, the better are chances that we'll be able to pinpoint and fix the problem.  
+  
+### AdGuard filter policy
 
-Our filter policy is available [here](https://blog.adguard.com/en/adguard-news/adguard-filter-policy.html).
+Our filter policy is available [here](https://kb.adguard.com/en/general/adguard-filter-policy).
