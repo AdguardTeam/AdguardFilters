@@ -12,7 +12,7 @@ To submit a report, proceed [here](https://github.com/AdguardTeam/AdguardFilters
 
 These filters are designed for use in all AdGuard products, but can also be used in Adblock Plus and other ad blockers. However, note that the syntax of AdGuard filtering rules is more advanced than in ABP. Therefore, part of the rules will not work there.
 
-If you are interested in creating your own rules, you can find a syntax manual at [this link](https://adguard.com/filterrules.html).
+If you are interested in creating your own rules, you can find a syntax manual at [this link](https://kb.adguard.com/general/how-to-create-your-own-ad-filters).
 
 ### How to report a missed ad/false positive
 
