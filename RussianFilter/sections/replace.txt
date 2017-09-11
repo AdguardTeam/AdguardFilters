@@ -2,17 +2,17 @@
 ! The content replacement rules
 !
 ! https://forum.adguard.com/index.php?threads/24255/
-||upornoflv.tv^$important,replace=/"advertising":{.*?}/
+||upornoflv.tv^$important,~script,~stylesheet,~xmlhttprequest,replace=/"advertising":{.*?}/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5988
 ||franecki.net/assets/vendor/*.xml^$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://forum.adguard.com/index.php?threads/23743/
-://goodgame.ru/|$important,replace=/^{[\s\S]+"duration":\s\d\d}/{}/
+://goodgame.ru/|$important,~script,~stylesheet,~xmlhttprequest,replace=/^{[\s\S]+"duration":\s\d\d}/{}/
 ! https://forum.adguard.com/index.php?threads/22933/
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
 ! Yandex Mail - block hidden ads
 ||an.yandex.ru/meta/$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
 ! Yandex Pogoda
-://yandex.*/pogoda/*/|$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
+://yandex.*/pogoda/*/|$important,~script,~stylesheet,~xmlhttprequest,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
 ! Yandex Radio and Music ads
 ||music.yandex.ru/api/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
 ||radio.yandex.ru/api/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
