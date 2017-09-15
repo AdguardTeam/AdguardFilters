@@ -9,14 +9,17 @@
 ://goodgame.ru/|$important,~script,~stylesheet,~xmlhttprequest,replace=/^{[\s\S]+"duration":\s\d\d}/{}/
 ! https://forum.adguard.com/index.php?threads/22933/
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
+! 
+! Yandex TV
+://tv.yandex.*/$important,script,~stylesheet,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru|tv.yandex.ua
 ! Yandex Mail - block hidden ads
 ||an.yandex.ru/meta/$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
 ! Yandex Pogoda
-://yandex.*/pogoda/*/|$important,~script,~stylesheet,~xmlhttprequest,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
+://yandex.*/pogoda/*/|$important,~stylesheet,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
 ! Yandex Radio and Music ads
-||music.yandex.ru/api/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
-||radio.yandex.ru/api/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
-||awaps.yandex.ru/*.xml$domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||music.yandex.ru/api/$important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
+||radio.yandex.ru/api/$important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
+||awaps.yandex.ru/*.xml$domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! For example, radiovanya.ru
 ||bs-meta.yandex.ru/meta/*?rnd=$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! e.mail.ru - ads
