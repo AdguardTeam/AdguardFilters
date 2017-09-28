@@ -2,28 +2,28 @@
 ! The content replacement rules
 !
 ! https://forum.adguard.com/index.php?threads/14311/
-||kakprosto.ru/*/*/*/$important,script,~stylesheet,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,domain=kakprosto.ru
+||kakprosto.ru/*/*/*/$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important,script,~stylesheet,domain=kakprosto.ru
 ! https://forum.adguard.com/index.php?threads/24255/
-||upornoflv.tv^$important,~script,~stylesheet,~xmlhttprequest,replace=/"advertising":{.*?}/
+||upornoflv.tv^$replace=/"advertising":\{.*?\}/,important,~script,~stylesheet,~xmlhttprequest
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5988
 ||franecki.net/assets/vendor/*.xml^$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://forum.adguard.com/index.php?threads/23743/
-://goodgame.ru/|$important,~script,~stylesheet,~xmlhttprequest,replace=/^{[\s\S]+"duration":\s\d\d}/{}/
+://goodgame.ru/|$replace=/^\{[\s\S]+"duration":\s\d\d\}/{}/,important,~script,~stylesheet,~xmlhttprequest
 ! https://forum.adguard.com/index.php?threads/22933/
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6901
 ||dni.ru/static/js/main.js$important,replace=/window.location.href\s=\s\'\/anrdr\';/
 ! Yandex TV
-://tv.yandex.*/$important,script,~stylesheet,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru|tv.yandex.ua
+://tv.yandex.*/$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important,script,~stylesheet,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru|tv.yandex.ua
 ! Yandex Mail
 ||mail.yandex.*&uid=*&login=$replace=/"show_advertisement":true/"show_advertisement":false/
 ! Yandex Pogoda
-://yandex.*/pogoda/*/|$important,~stylesheet,replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important
+://yandex.*/pogoda/*/|$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,~stylesheet,important
 ! Yandex Radio and Music ads
-||music.yandex.ru/api/$important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
-||radio.yandex.ru/api/$important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
-||awaps.yandex.ru/*.xml$domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,~stylesheet,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||music.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
+||radio.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
+||awaps.yandex.ru/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,~stylesheet
 ! For example, radiovanya.ru
 ||bs-meta.yandex.ru/meta/*?rnd=$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! e.mail.ru - ads
