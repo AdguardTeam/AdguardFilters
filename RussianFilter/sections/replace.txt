@@ -6,14 +6,14 @@
 ! https://forum.adguard.com/index.php?threads/24255/
 ||upornoflv.tv^$replace=/"advertising":\{.*?\}/,important,~script,~stylesheet,~xmlhttprequest
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5988
-||franecki.net/assets/vendor/*.xml^$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||franecki.net/assets/vendor/*.xml^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! https://forum.adguard.com/index.php?threads/23743/
 ://goodgame.ru/|$replace=/^\{[\s\S]+"duration":\s\d\d\}/{}/,important,~script,~stylesheet,~xmlhttprequest
 ! https://forum.adguard.com/index.php?threads/22933/
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6901
-||dni.ru/static/js/main.js$important,replace=/window.location.href\s=\s\'\/anrdr\';/
+||dni.ru/static/js/main.js$replace=/window.location.href\s=\s\'\/anrdr\';/,important
 ! Yandex TV
 ://tv.yandex.*/$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,important,script,~stylesheet,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru|tv.yandex.ua
 ! Yandex Mail
@@ -25,16 +25,16 @@
 ||radio.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
 ||awaps.yandex.ru/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,~stylesheet
 ! For example, radiovanya.ru
-||bs-meta.yandex.ru/meta/*?rnd=$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||bs-meta.yandex.ru/meta/*?rnd=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! e.mail.ru - ads
-||e.mail.ru/api/v1$important,replace=/\{\"status\"\:200\,\"body\"\:\{.*\}/{\"status\"\:200\,\"body\"\:{}}/
+||e.mail.ru/api/v1$replace=/\{\"status\"\:200\,\"body\"\:\{.*\}/{\"status\"\:200\,\"body\"\:{}}/,important
 ! unionpeer.com - удаление отступа сверху
 ||unionpeer.com/cache/template.css^$replace=/;padding: 200px 0px 0px !important;/;padding: 0px 0px 0px !important;/
 ! Clickunder in HDGO players
-://*.*.ru/video/*/*/$important,replace=/scr\.src = 'http:\/\/[a-z0-9]+\.[a-z0-9]+\.[a-z]+\/[a-z0-9]+\.js';\n/
-/video/*/?ref=$important,replace=/scr\.src = 'http:\/\/[a-z0-9]+\.[a-z0-9]+\.[a-z]+\/[a-z0-9]+\.js';\n/
+://*.*.ru/video/*/*/$replace=/scr\.src = 'http:\/\/[a-z0-9]+\.[a-z0-9]+\.[a-z]+\/[a-z0-9]+\.js';\n/,important
+/video/*/?ref=$replace=/scr\.src = 'http:\/\/[a-z0-9]+\.[a-z0-9]+\.[a-z]+\/[a-z0-9]+\.js';\n/,important
 ! https://forum.adguard.com/index.php?threads/20004/
-||share-serials.net/video.php$important,replace=/showadv110\(\);/createPlayer\(\);/
+||share-serials.net/video.php$replace=/showadv110\(\);/createPlayer\(\);/,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3515
 ||videoframe.blue^$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
 ! https://forum.adguard.com/index.php?threads/16577/
@@ -43,57 +43,57 @@
 ||moviki.ru/videos/$replace=/adv_pre_duration:(.|)'\d\d'\,/adv_pre_duration: '1'\,/i
 ||moviki.ru/videos/$replace=/adv_pre_duration:(.|)'\d\d'\,/adv_pre_duration: '1'\,/i,important
 ! https://forum.adguard.com/index.php?threads/18245/
-||goodgame.ru/*.php?script=*vastInlineBannerTypeHtml$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||goodgame.ru/*.php?script=*vastInlineBannerTypeHtml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||goodgame.ru/*.php?script=*vastInlineBannerTypeHtml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! ivi.ru ads
 ||api.ivi.ru/light/?$replace=/"files":[\s\S]*"mraid_file_url"/"files": []\, "mraid_file_url"/
 ||api.ivi.ru/light/?$replace=/"files":[\s\S]*"mraid_file_url"/"files": []\, "mraid_file_url"/,important
 ! ||api.ivi.ru/light/?r=$replace=/\"third_party_adv_xml_link\": .*?\,/"third_party_adv_xml_link": null\,/
 ! ||api.ivi.ru/light/?r=$replace=/\"third_party_adv_xml_link\": .*?\,/"third_party_adv_xml_link": null\,/,important
-||get.5visions.com/creative/*.xml$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||get.5visions.com/creative/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||get.5visions.com/creative/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-||v.adfox.ru/*/getCodeTest?pp=*www.ivi.ru$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||v.adfox.ru/*/getCodeTest?pp=*www.ivi.ru$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||v.adfox.ru/*/getCodeTest?pp=*www.ivi.ru$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-||v.adfox.ru/*/getCode?pp=*&dl=$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||v.adfox.ru/*/getCode?pp=*&dl=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||v.adfox.ru/*/getCode?pp=*&dl=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! mail.ru video ads
-||ad.mail.ru/vast/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||ad.mail.ru/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||ad.mail.ru/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! hdrezka.me - удаление отступа сверху
 ||hdrezka.me/templates/hdrezka/css/style.css$replace=/active-brand\.pp\{padding-top:250px/active-brand.pp{padding-top:0px/
 ! https://forum.adguard.com/index.php?threads/15975/
-||inv-nets.admixer.net/dsp.aspx?$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3205
-||rtb.meta.ua/sport/get_vast.cgi$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://forum.adguard.com/index.php?threads/14794/
-||ok.ru/videoembed/$important,replace=/promoMetadata/pormoMetadata/
+||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/,important
 ||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/
 ! https://forum.adguard.com/index.php?threads/9567/
 ||s.4pda.to/*.css$replace=/background:\s*[#\(\)\,\w]+\s+url\(\s*(http:)?\/\/s\.4pda\.to\/\w+\.jpg[\?\/\.\*\|:\w]*\s*\)/background: #e6e7e9/
 ||s.4pda.to/*.css$replace=/background:\s*[#\(\)\,\w]+\s+url\(\s*(http:)?\/\/s\.4pda\.to\/\w+\.jpg[\?\/\.\*\|:\w]*\s*\)/background: #e6e7e9/,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/615
-||api.tree.tv/getreklama?$important,replace=/\[([\s\S])+]/[]
+||api.tree.tv/getreklama?$replace=/\[([\s\S])+]/[],important
 ||api.tree.tv/getreklama?$replace=/\[([\s\S])+]/[]
 ! rutube.ru
-||out.pladform.ru/getVast$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||out.pladform.ru/getVast$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||out.pladform.ru/getVast$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-||rutube.ru/api/play/options/$important,replace=/("advert")[\s\S]*("stat")/\$2/,domain=rutube.ru
+||rutube.ru/api/play/options/$replace=/("advert")[\s\S]*("stat")/\$2/,domain=rutube.ru,important
 ||rutube.ru/api/play/options/$replace=/("advert")[\s\S]*("stat")/\$2/,domain=rutube.ru
-||solution.weborama.fr/fcgi-bin/dispatch.fcgi$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=rutube.ru
+||solution.weborama.fr/fcgi-bin/dispatch.fcgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=rutube.ru,important
 ||solution.weborama.fr/fcgi-bin/dispatch.fcgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=rutube.ru
 ! telezombi.ru - cut the text ad in the video player
-||clients.cdnet.tv/flashplayer/fileinstruction2.php$important,replace=/(<advert[\s\S]*?>)[\s\S]*<\/advert>/\$1<\/advert>/
+||clients.cdnet.tv/flashplayer/fileinstruction2.php$replace=/(<advert[\s\S]*?>)[\s\S]*<\/advert>/\$1<\/advert>/,important
 ||clients.cdnet.tv/flashplayer/fileinstruction2.php$replace=/(<advert[\s\S]*?>)[\s\S]*<\/advert>/\$1<\/advert>/
 !
 !||a*.dot*.org/f*h.js$replace=/FJCaller/FJCaller2/
 ||a*.dot*.org/f*h.js$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 !||a*.dot*.org/f*h.js$replace=/FJCaller/FJCaller2/,important
-||a*.dot*.org/f*h.js$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||a*.dot*.org/f*h.js$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/2178
-||api.vk.com/api.php$important,replace=/(<ads[\s\S]*?>)[\s\S]*<\/ads>/\$1<\/ads>/
+||api.vk.com/api.php$replace=/(<ads[\s\S]*?>)[\s\S]*<\/ads>/\$1<\/ads>/,important
 ||api.vk.com/api.php$replace=/(<ads[\s\S]*?>)[\s\S]*<\/ads>/\$1<\/ads>/
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/2197
-||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$important,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
