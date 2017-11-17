@@ -16,7 +16,11 @@ If you are interested in creating your own rules, you can find a syntax manual a
 
 ### How to report a missed ad/false positive
 
-1. Do a quick search to see if this issue has already been reported.
+We have launched a special web tool to report any filter-related problems with AdGuard: missed ads, false positives, anti-adblock scripts etc. Using it is much easier than manually filling out the form on GitHub with plain text, and in the end a bot will create a new issue in this repository anyway (you will get a link to it, of course). Please try it out: [AdGuard web reporting tool](https://reports.adguard.com/new_issue.html)
+
+Alternatively, you can create a new issue the old-fashioned way. To do so, follow this step-by-step instruction:
+
+1. Do a quick search to see if this issue has already been reported: https://github.com/AdguardTeam/AdguardFilters/issues/
 2. Please, create a new issue for each new website.
 3. The title should contain the address of the website where the problem was detected, and preferably a short description - OS prefix ([Win], [MacOS], [iOS], [Android]) and the type of the problem.
 Examples of a good issue title: 
