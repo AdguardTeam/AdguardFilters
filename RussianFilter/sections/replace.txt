@@ -32,20 +32,7 @@
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6901
 ||dni.ru/static/js/main.js$replace=/window.location.href\s=\s\'\/anrdr\';/,important
-! Yandex TV
 !
-! Yandex Mail
-||mail.yandex.*/*/*-*-*-*-$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,script,important,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
-! Yandex Pogoda
-://yandex.*/pogoda/*/$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,~stylesheet,important
-!+ PLATFORM(android)
-://yandex.*/pogoda/*$replace=/Ya\[([0-9]{10\,15})\]\([\s\S]*\)\$/,~stylesheet,important
-! Yandex Radio and Music ads
-||music.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz
-||radio.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua
-||awaps.yandex.ru/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|radio.yandex.ua|music.yandex.ru|music.yandex.ua|music.yandex.by|music.yandex.kz,important,~stylesheet
-! For example, radiovanya.ru
-||bs-meta.yandex.ru/meta/*?rnd=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! e.mail.ru - ads
 ||e.mail.ru/api/v1$replace=/\{\"status\"\:200\,\"body\"\:\{.*\}/{\"status\"\:200\,\"body\"\:{}}/,important
 ! unionpeer.com - удаление отступа сверху
@@ -118,7 +105,3 @@
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/2197
 ||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-!
-||yastatic.net/*/_/*.js$replace=/this.isAdBlocked=!0/this.isAdBlocked=!1/,script
-! hi
-bender/_bender*.js$script,replace=/this\.removeShadowBlockers\(\);/true; return;/
