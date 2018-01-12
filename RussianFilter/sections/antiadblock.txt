@@ -374,7 +374,17 @@ minigames.mail.ru##.container > div[class]:not([id]) > div[style]:not(:first-chi
 !*****
 !
 ! Yandex ads replacement
-ohotniki.ru$$script[tag-content=".AdvManager.render"][max-length="8000"]
+! new(12.01.18)
+! ad reinjection
+!+ NOT_PLATFORM(windows,mac,android)
+ohotniki.ru,mk.ru#%#AG_abortInlineScript(/Ya\.[A-Za-z0-9]{8,}\.AdvManager/, 'getElementsByTagName', document);
+! double loadind on the first visit
+!+ NOT_PLATFORM(windows,mac,android)
+ohotniki.ru#%#document.cookie = "muid_ready=true";
+!+ NOT_PLATFORM(windows,mac,android)
+mk.ru#%#document.cookie = "mknews_ready=true";
+!old
+mk.ru,ohotniki.ru$$script[tag-content=".AdvManager.render"][max-length="8000"]
 drive2.ru$$script[tag-content="static-mon.yandex.net/static/main.js"][max-length="1100"]
 ohotniki.ru,kakprosto.ru,drive2.ru$$script[tag-content="window.Ya.adfoxCode"][max-length="1800"]
 drive2.ru,drive2.com#%#AG_abortInlineScript(/window.Ya.adfoxCode.create/, 'Ya');
