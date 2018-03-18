@@ -31,6 +31,9 @@ s4galaxy.ru,3dnews.ru,lenovo-smart.ru#%#Object.defineProperty(window, 'SocialMar
 ! Block web-sockets in old versions of Chrome (older then 47)
 nnm-club.tv,rustorka.com,pise4ka.net,nnm-club.me,nnm-club.ws,nnmclub.to,onlainfilm.ucoz.ua,rutor.is,baskino.club,rutor.info,nnm.me,korzik.net,seasonvar.ru,rsload.net,nnm-club.me,nnmclub.to,rustorka.com,auto.mail.ru,horo.mail.ru,realty.mail.ru,health.mail.ru,afisha.mail.ru,cloud.mail.ru,otvet.mail.ru,pogoda.mail.ru,sport.mail.ru,tv.mail.ru,torg.mail.ru,cars.mail.ru,hi-tech.mail.ru,free-torrent.org,free-torrents.org,ukrinform.ru,radikal.ru,trackeroc.ru,trackerock.ru#%#window.WebSocket = undefined;
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/13272
+fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('body').unbind('click').removeAttr("body").css("cursor","default"); }); });
+fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('html').unbind('click'); }); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11836
 maxiii.net#%#AG_abortInlineScript(/PopunderShown/, 'doPopunder');
 ! tehnot.com - удаление кликабельности фона
@@ -80,8 +83,6 @@ moonwalk.cc#%#window.WebSocket = undefined;
 wvpbs.net#%#Object.defineProperty(window, 'PopunderShown', { get: function() { return true; } });
 ! https://forum.adguard.com/index.php?threads/24719/
 hi-tech.mail.ru#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('div[class*="rb-video-widget"]'); },1000); });
-! https://forum.adguard.com/index.php?threads/24341/
-fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('html').unbind('click'); }); });
 ! https://forum.adguard.com/index.php?threads/24201/
 macdigger.ru#%#AG_onLoad(function() { for (var key in window) { if (key.indexOf('funnyIsInit') == 0) { window[key] = true; } }; });
 ! https://forum.adguard.com/index.php?threads/14791/
@@ -204,9 +205,6 @@ pro-tv.net#%#AG_onLoad(function() { $('#adFrame').remove(); $('#adTimerBlock').r
 ! https://forum.adguard.com/index.php?threads/9663/
 ! dfiles.ru - mobile redirect
 dfiles.ru#%#AG_onLoad(function() { $.cookie("guest_skip_weboffer", 1); });
-! https://forum.adguard.com/index.php?threads/9918/
-! fastpic.ru - удаление кликабельности фона, исправление курсора
-fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('body').unbind('click').removeAttr("body").css("cursor","default"); }); });
 ! https://forum.adguard.com/index.php?threads/9958/
 yap.ru,yaplakal.com#%#AG_onLoad(function() { window.vbm = function() {}; });
 ! https://forum.adguard.com/index.php?threads/9960/
@@ -316,6 +314,12 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !------- CSS -----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/13272
+fastpic.ru#$##bright { display: none!important; }
+fastpic.ru#$#body { background: #ffffff!important; }
+fastpic.ru#$##bcontent { margin-top:0px!important; background-color: #ffffff!important; }
+fastpic.ru#$##footer { background-color: #ffffff!important; }
+fastpic.ru#$##picContainer { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13101
 kinogo-hit.com#$#.contener { padding-top: 0!important; }
 ! gameinside.ua - удаление брендированного фона
@@ -552,8 +556,6 @@ aniplay.tv#$#.ap2-main-header { height: auto!important; }
 ! dota2.ru - удаление брендированного фона, отступа сверху
 ! vashdosug.ru - удаление отступа сверху
 vashdosug.ru#$#body.branded { margin-top: -200px!important; }
-! fastpic.ru - удаление отступа сверху
-fastpic.ru#$##content { top: auto!important; }
 ! https://forum.adguard.com/index.php?threads/23380/
 online-life.club#$#iframe#iframe { height: 740px!important; }
 ! https://forum.adguard.com/index.php?threads/21741/
@@ -966,12 +968,6 @@ zerx.co#$#.tophead-wrapper {margin-bottom: 30px!important;}
 ! volnorez.com - исправление вёрстки при блокировке рекламы
 volnorez.com#$#body {margin-top: 50px!important;}
 volnorez.com#$##fsheadercontainer {top: 0px!important;}
-! https://forum.adguard.com/index.php?threads/9918/
-fastpic.ru#$#html { background: none!important; cursor: default!important; }
-! fastpic.ru - удаление брендированного фона, отступа сверху
-fastpic.ru#$#body { background: #ffffff!important; }
-fastpic.ru#$##content { margin-top:0px!important; }
-fastpic.ru#$##mainContainer { margin-top:0px!important; }
 ! hi-fi.ru - исправление ширины форума
 hi-fi.ru#$#body > div.main > div.forum {width: auto!important;}
 ! select.by - удаление отступа сверху, исправление ширины
@@ -1216,8 +1212,6 @@ www.ukr.net$$div[tag-content="collectCommercialData"][max-length="28000"]
 seasonvar.ru$$style[tag-content="body { padding: 300px"][max-length="200"]
 ! MarketGid ads(for app)
 unn.com.ua$$script[tag-content="mg_ws"][max-length="1600"]
-! https://forum.adguard.com/index.php?threads/19582/
-fastpic.ru$$script[tag-content="{(function(){eval(a)})(b)}function"][max-length="1550"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4012
 aces.gg$$script[tag-content="$('#alert').on('click'"][max-length="250"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3585
