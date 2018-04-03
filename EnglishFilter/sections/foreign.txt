@@ -2490,11 +2490,14 @@ expressen.se##div[id*="_randomContainer"]
 @@||videoplaza.tv/creatives/assets*.mp4^$domain=expressen.se
 !---Anti-Adblock---
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/10327
-@@||aftonbladet.se/hyper-assets/app.$domain=aftonbladet.se
-@@||aftonbladet.se/hyper-assets/preload.$domain=aftonbladet.se
-||aftonbladet.se/hyper-assets/$domain=aftonbladet.se
+! https://github.com/AdguardTeam/AdguardFilters/issues/14028
+aftonbladet.se##[id^="abAdArea"]
+||se-aftonbladet.videoplaza.tv/proxy/distributor/$domain=aftonbladet.se,important
 ||aftonbladet.ooul.tv/nocache/se-aftonbladet/aab/aftonbladet_config.js$empty,domain=aftonbladet.se
+!+ NOT_PLATFORM(windows, mac, android)
+aftonbladet.se#%#(function(){var b=XMLHttpRequest.prototype.open,c=/ib\.adnxs\.com/i;XMLHttpRequest.prototype.open=function(d,a){if("POST"===d&&c.test(a))this.send=function(){return null},this.setRequestHeader=function(){return null},console.log("AG has blocked request: ",a);else return b.apply(this,arguments)}})();
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
+@@||ib.adnxs.com/ut/v3$domain=aftonbladet.se
 ! https://forum.adguard.com/index.php?threads/aftonbladet-se-anti-adblock.26830/
 aftonbladet.se#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links {display:block!important;}
 !+ PLATFORM(ios, ext_android_cb)
