@@ -2,14 +2,6 @@
 !------- JS ------------
 !-----------------------
 !
-!### TEMPORARY ###
-! Отключаем MutationObserver для предотвращения удаления стилей (не актуально)
-! https://github.com/AdguardTeam/AdguardFilters/issues/3840
-! news.mail.ru,hi-tech.mail.ru#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
-4pda.ru#%#if (typeof MutationObserver !== 'undefined') { MutationObserver.prototype.observe = function() {}; MutationObserver.prototype.observe.toString = function() { return "function observe() { [native code] }"; } };
-!fs.to#%#window.MutationObserver = function() { this.observe = function() {}; this.disconnect = function() {}; };
-!#################
-!
 !--- [START] Fixing AdFox constant page load ---
 ! Удаление iframe от баннера, иначе страница вечно грузится
 argumenti.ru#%#AG_onLoad(function() { AG_removeElementBySelector('iframe[id^="_adm_"]'); });
@@ -158,11 +150,6 @@ hronika.info#%#Object.defineProperty(window, 'NMimgIdPath', { get: function() { 
 politeka.net#%#window.atob = function() {};
 ! https://forum.adguard.com/index.php?threads/16833/
 game-fresh.com#%#document.cookie = "clickunder=1";
-! 4pda.ru - remove padding at the top
-4pda.ru#%#AG_onLoad(function() { $('img[src*=".gif"][width="1"][height="1"]').closest('article[class="post"]').remove(); });
-! https://forum.adguard.com/index.php?threads/16639/
-4pda.ru#%#AG_onLoad(function() { AG_removeElementBySelector('body > div[id^="r"] > div[class^="r"] > div[class^="r"] > div[class^="r"] > a[rel="nofollow"]'); });
-4pda.ru#%#AG_onLoad(function() { AG_removeElementBySelector('body > div[id^="r"] > div[class^="r"] > div[class^="r"] > div[class^="r"] > iframe[src^="http://s.4pda.to/"]'); });
 ! kinozal.me,kinozal.tv - break WS loader script
 kinozal.me,kinozal.tv,share-serials.net,zserials.tv#%#window.Worker = function() { this.postMessage = function() {} };
 ! kinopoisk.ru - удаление фонового изображения
@@ -1251,12 +1238,8 @@ anidub-online.ru$$script[tag-content="+bname+brrand"][max-length="1200"]
 4pda.ru$$style[tag-content="background-image:url(//s.4pda.to/"][max-length="170"]
 ! 4pda.ru - removing top padding on the main page
 4pda.ru$$img[id="r"][src="data:image/gif;"][parent-elements="section"][parent-search-level="6"]
-4pda.ru$$img[src=".gif"][width="1"][height="1"][parent-elements="section"][parent-search-level="5"]
 ! 4pda.ru - removing ads in sidebar
 4pda.ru$$div[style="position: absolute; left: 0px; top: 0px; visibility: hidden;"][parent-elements="div"]
-4pda.ru$$iframe[src="http://s.4pda.to/"][style="width:240px;height:400px;"][parent-elements="div"]
-4pda.ru$$img[src="http://s.4pda.to/"][height="400"][alt=""][title=""][border="0"][parent-elements="div"]
-4pda.ru$$img[src="http://s.4pda.to/"][height="300"][alt=""][title=""][border="0"][parent-elements="div"]
 4pda.ru$$h2[tag-content="AppPromo"][parent-elements="div"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2573
 megatrack.info$$script[tag-content="teasernet_blockid"][max-length="120"]
