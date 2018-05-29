@@ -59,6 +59,9 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 ! 
+! https://github.com/AdguardTeam/AdguardFilters/issues/16740
+!+ NOT_PLATFORM(windows, mac, android)
+doviz.com#%#AG_onLoad(function() { setTimeout(function() { if(typeof player.pause != 'undefined') { player.pause(); } }, 3000); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15410
 reklamlar.my-debrid.net#%#AG_onLoad(function() { setTimeout(function() { saniye = 10; }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14682
@@ -208,6 +211,7 @@ twgreatdaily.com$$script[tag-content="indexOf|css|fn|this|attr|unselectable|cons
 !##############################
 ! 
 ! Disable autoplay
+||static.doviz.com/js/common.*.js$replace=/autoPlay:true/autoPlay:false/,domain=doviz.com
 ||focus.de$replace=/autoPlay:[\s\S]*\,autoStickiness/autoPlay:false\,autoStickiness/,important,~script,~stylesheet,~xmlhttprequest
 ||oe24.at$replace=/"autostart":"true"/"autostart":"false"/,important,~script,~stylesheet,~xmlhttprequest
 ||huffingtonpost.de$replace=/autoplay=true/autoplay=false/,important,~script,~stylesheet,~xmlhttprequest
