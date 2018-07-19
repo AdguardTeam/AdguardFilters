@@ -19,8 +19,9 @@
 ||mystreans.com/live/live*.html$replace=/<\/title>/<\/title><style>#bannerfloat\,#close1\,#closeAdButton2 { display: none; }<\/style>\,/i,important
 ! uplynk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19875
-||uplynk.com/*.m3u8$replace=/#UPLYNK-SEGMENT.*?\\,ad[\s\S]+?#UPLYNK-SEGMENT/#UPLYNK-SEGMENT/,domain=investigationdiscovery.com|6abc.com
+||uplynk.com/*.m3u8$replace=/#UPLYNK-SEGMENT: \S*\\,ad\s[\s\S]+?((#UPLYNK-SEGMENT: \S+\\,segment)|(#EXT-X-ENDLIST))/\$1/,domain=6abc.com|fox.com|investigationdiscovery.com
 ||api.discovery.com/v*/streaming/video/$replace=/\{"ads":\{"breaks":[\s\S]*?"playURL":/{"playURL":/,domain=investigationdiscovery.com
+||content.uplynk.com/preplay/*.json?$replace=/("ads": {"breaks": \[)[\s\S]*?(\]\}\\, "prefix":)/\$1\$2/,domain=fox.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17406
 ||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=funimation.com,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16198
