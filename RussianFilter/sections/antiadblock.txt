@@ -762,9 +762,6 @@ spravkus.com$$script[tag-content="function detectAdblock"][max-length="9000"]
 ! ad reinjection
 !+ NOT_PLATFORM(windows,mac,android)
 ohotniki.ru,mk.ru#%#AG_abortInlineScript(/Ya\.[A-Za-z0-9]{8,}\.AdvManager/, 'getElementsByTagName', document);
-!+ NOT_PLATFORM(windows,mac,android)
-gorodrabot.ru#%#AG_abortInlineScript(/Ya\.[A-Za-z0-9]{6,}\.insertInto/, 'getElementsByTagName', document);
-||cdn.gorodrabot.ru/js/DetectYv2.js
 ! double loadind on the first visit
 !+ NOT_PLATFORM(windows,mac,android)
 ohotniki.ru#%#document.cookie = "muid_ready=true";
@@ -1278,7 +1275,7 @@ satsis.ru##.adb
 !
 !
 ! START: Yandex
-! another domains: auto.ru, drive2.ru, fb.ru, syl.ru, avito.ru
+! another domains: auto.ru, drive2.ru, fb.ru, syl.ru, avito.ru, gorodrabot.ru
 !
 ! For all Yandex domains(Safari only)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12213#issuecomment-372037152
@@ -1496,6 +1493,17 @@ avito.ru#@##yandex_ad
 avito.ru#@#.adbanner
 !+ NOT_PLATFORM(windows,mac,android)
 avito.ru#@#div[id^="yandex_ad"]
+!
+! gorodrabot.ru
+||gorodrabot.ru/*/*/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"html":.*)|(^.*"blockId":\s*"R-A-.*"adFilter":[\s\S]+)//,script,other,important
+!+ NOT_PLATFORM(windows,mac,android)
+@@||an.yandex.ru/system/context.js$domain=gorodrabot.ru
+!+ NOT_PLATFORM(windows,mac,android)
+@@||an.yandex.ru/resource/context_static_r_*.js$domain=gorodrabot.ru
+!+ NOT_PLATFORM(windows,mac,android)
+@@||gorodrabot.ru^$generichide
+!+ NOT_PLATFORM(windows,mac,android)
+@@||an.yandex.ru/jserr/1$domain=gorodrabot.ru
 !
 ! END: Yandex
 !
