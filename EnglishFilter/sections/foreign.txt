@@ -3062,13 +3062,20 @@ joujizz.com##.video-top-wrap > .sb
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/2273
 @@||wnioski.mpips.gov.pl^$extension,elemhide,jsinject
 ! End
+! https://github.com/AdguardTeam/AdguardFilters/issues/22079
+!#if (adguard_ext_firefox || adguard_ext_opera || adguard_app_ios || adguard_ext_android_cb)
+@@||samnaprawiam.com^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=samnaprawiam.com
+@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=samnaprawiam.com
+samnaprawiam.com##.adsbygoogle
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22013
 @@||adservice.google.pl/adsid/integrator.js$domain=vod.tvp.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21246
 wp.pl#%#Object.defineProperty(window, 'prebidConfig', { get: function() { return true; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20305
 skript.pl#%#AG_abortInlineScript(/adblocka/, 'document.addEventListener');
-!#if (!adguard_app_windows || !adguard_app_mac || !adguard_app_android || !adguard_ext_chromium || !adguard_ext_safari)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_safari)
 skript.pl#$#.adsbygoogle { height:10px!important; }
 skript.pl#@#.adsbygoogle
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=skript.pl
