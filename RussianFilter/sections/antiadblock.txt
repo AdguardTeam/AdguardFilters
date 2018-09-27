@@ -132,13 +132,6 @@ fishki.net$$script[wildcard="*document.getElementsByTagName*ins();*adblock*"][ma
 @@||freepiks.ru^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14492
 @@||money-pic.ru^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/15125
-!+ NOT_PLATFORM(windows, mac, android)
-@@||businessman.ru^$generichide
-!+ NOT_PLATFORM(windows, mac, android)
-@@||yastatic.net/pcode/adfox/loader.js$domain=businessman.ru
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/system/context.js$domain=businessman.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14820
 !+ NOT_PLATFORM(windows, mac, android)
 @@||horoscopes.rambler.ru^$generichide
@@ -691,61 +684,9 @@ ok.ru$$div[data-config="secretCmd"]
 @@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru,script,other
 !+ NOT_PLATFORM(windows,mac,android)
 @@||ad.mail.ru/adq/*&callback=$domain=ok.ru
-
 !*
 !*****
 !
-! Yandex ads replacement
-! https://github.com/AdguardTeam/AdguardFilters/issues/11521
-@@||mk.ru^$generichide
-@@||an.yandex.ru/system/context.js$domain=mk.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/12065
-||static-mon.yandex.net/static/main.js?pid=$replace=/[\s\S]+/this.init=function(){}/,domain=drive2.ru|kakprosto.ru|sdamgia.ru|baby.ru|rambler.ru
-!+ NOT_PLATFORM(windows,mac,android)
-spravkus.com#%#AG_abortInlineScript(/./, 'detectAdblock');
-spravkus.com$$script[tag-content="function detectAdblock"][max-length="9000"]
-! new(12.01.18)
-! ad reinjection
-!+ NOT_PLATFORM(windows,mac,android)
-ohotniki.ru,mk.ru#%#AG_abortInlineScript(/Ya\.[A-Za-z0-9]{8,}\.AdvManager/, 'getElementsByTagName', document);
-! double loadind on the first visit
-!+ NOT_PLATFORM(windows,mac,android)
-ohotniki.ru#%#document.cookie = "muid_ready=true";
-!+ NOT_PLATFORM(windows,mac,android)
-mk.ru#%#document.cookie = "mknews_ready=true";
-!
-gorodrabot.ru$$script[tag-content="Ya.Direct.insertInto"][max-length="1200"]
-||vz.ru/vengine.js$replace=/VZ.initAn\(\);/,important
-!+ NOT_PLATFORM(windows,mac,android)
-vz.ru#%#AG_defineProperty('VZ.initAn', {value: undefined});
-vz.ru$$script[tag-content="yandex_rtb"][max-length="1500"]
-baby.ru,tsargrad.tv,vz.ru$$script[tag-content="window.Ya.adfoxCode"][max-length="1800"]
-vz.ru$$script[tag-content="document.write('<iframe src"][max-length="1500"]
-!
-glav.su,oko-planet.su,gismeteo.ru,pikabu.ru,nkj.ru,it-tehnik.ru,tsargrad.tv,mk.ru,ohotniki.ru$$script[tag-content=".AdvManager.render"][max-length="8000"]
-drive2.ru$$script[tag-content="static-mon.yandex.net/static/main.js"][max-length="1100"]
-pikabu.ru,drive2.ru$$script[tag-content="window.Ya.headerBidding"][max-length="4000"]
-ohotniki.ru,kakprosto.ru,drive2.ru$$script[tag-content="window.Ya.adfoxCode"][max-length="1800"]
-e1.ru,vz.ru,avtovzglyad.ru#%#(function() { var ce = document.createElement; Document.prototype.createElement = function(tag) { if (tag === 'YATAG') { throw null; } return ce.call(this, tag); }})();
-minigames.mail.ru,fishki.net#%#var empty = { get: function() { return []; }, set: function() {} }; Object.defineProperties(window, { yandex_context_callbacks: empty, yandexContextAsyncCallbacks: empty, yandexContextSyncCallbacks: empty });
-vz.ru,avtovzglyad.ru$$script[tag-content="window.Ya.adfoxCode.create"][max-length="1000"]
-kakprosto.ru$$script[tag-content="yaVideoInit"][max-length="3000"]
-sdamgia.ru,vz.ru,otzovik.com,dni.ru,kakprosto.ru$$script[wildcard="*AdvManager.render*createElement*s.src*"][max-length="3500"]
-!+ NOT_PLATFORM(windows,mac,android)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=otzovik.com
-!+ NOT_PLATFORM(windows,mac,android)
-@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=otzovik.com
-! https://forum.adguard.com/index.php?threads/26507/
-@@||num-link.ru/js/fuckadblock.js
-! https://forum.adguard.com/index.php?threads/25876/
-! Yandex ads replacement
-@@||24smi.org/static/js/ads.js
-! https://forum.adguard.com/index.php?threads/24362/
-! Yandex ads replacement
-!+ NOT_PLATFORM(windows,mac,android)
-@@||otzovik.com^$generichide
-!+ NOT_PLATFORM(windows,mac,android)
-@@||an.yandex.ru/system/context.js$domain=otzovik.com
 ! https://forum.adguard.com/index.php?threads/14753/
 moskvatv.org#@#.afs_ads
 ! https://forum.adguard.com/index.php?threads/14699/
@@ -1204,8 +1145,8 @@ satsis.ru##.adb
 ||polismed.ru/js/check.js
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22287
-! Yandex ads replacement
-24smi.org,auto.ru,avito.ru,businessman.ru,drive2.com,drive2.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.ru,gorodrabot.ru,infoniac.ru,kakprosto.ru,kinopoisk.ru,mathb-ege.sdamgia.ru,otzovik.com,pikabu.ru,razlozhi.ru,syl.ru#%#Element.prototype.attachShadow = function(){};
+! Yandex ads replacement (shadow root)
+! 24smi.org,auto.ru,avito.ru,businessman.ru,drive2.com,drive2.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.ru,gorodrabot.ru,infoniac.ru,kakprosto.ru,kinopoisk.ru,mathb-ege.sdamgia.ru,otzovik.com,pikabu.ru,razlozhi.ru,syl.ru#%#Element.prototype.attachShadow = function(){};
 !
 ! START: Yandex
 ! another domains: auto.ru, drive2.ru, fb.ru, syl.ru, avito.ru, gorodrabot.ru, kinopoisk.ru
@@ -1241,7 +1182,6 @@ satsis.ru##.adb
 !#endif
 ! for the case of using RU AdList
 yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua$$style[tag-content="{position:relative;width:calc"]
-yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua$$script[tag-content="html /deep/ style"][max-length="400"]
 !
 ! Yandex search
 @@//yandex.*/yandsearch?clid=$generichide
@@ -1252,7 +1192,10 @@ yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua$$scri
 ! another replace rule(14.06.2018)
 ! $replace=/if\(p.serverEncodeEnabled\(r.config.fn\)\)return/if\(p.serverEncodeEnabled\(r.config.fn\)\)return;/,script,important
 ||static-mon.yandex.net/static/main.js?pid=$replace=/[\s\S]+/this.init=function(){}/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
-||static-mon.yandex.net/static/main.js?pid=$replace=/[\s\S]+/this.init=function(){}/,domain=kinopoisk.ru
+||static-mon.yandex.net/static/main.js?pid=$replace=/[\s\S]+/this.init=function(){}/,domain=kinopoisk.ru|drive2.ru|kakprosto.ru|sdamgia.ru|baby.ru|rambler.ru
+! 27.09.18
+yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#(function() { var proxied = window.XMLHttpRequest.prototype.open; window.XMLHttpRequest.prototype.open = function() { if (arguments[1] && arguments[1].indexOf("static-mon.yandex.net/static/main.js") > 0) { this.send = function() {}; return; } return proxied.apply(this, [].slice.call(arguments)); }; })();
+24smi.org,auto.ru,avito.ru,avtovzglyad.ru,baby.ru,businessman.ru,dni.ru,drive2.com,drive2.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.kz,gismeteo.md,gismeteo.ua,gismeteo.by,gismeteo.ru,glav.su,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,pikabu.ru,rambler.ru,razlozhi.ru,sdamgia.ru,syl.ru,tsargrad.tv,vz.ru#%#(function() { var proxied = window.XMLHttpRequest.prototype.open; window.XMLHttpRequest.prototype.open = function() { if (arguments[1] && arguments[1].indexOf("static-mon.yandex.net/static/main.js") > 0) { this.send = function() {}; return; } return proxied.apply(this, [].slice.call(arguments)); }; })();
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 !+ NOT_PLATFORM(windows, mac, android)
 @@||awaps.yandex.net/data/lib/awcalciframe.js$domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru|yandex.ua|yastatic.net
@@ -1350,122 +1293,29 @@ tv.yandex.by,tv.yandex.kz,tv.yandex.ru,tv.yandex.ua$$script[tag-content="adblock
 !
 ! Kinopoisk
 www.kinopoisk.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||an.yandex.ru/meta/*^target-ref=$domain=kinopoisk.ru
-@@||an.yandex.ru/mapuid/yandex/?redir-setuniq=1$domain=kinopoisk.ru
-@@||an.yandex.ru/jstracer^$domain=kinopoisk.ru
-@@||kinopoisk.ru^$generichide
-@@||an.yandex.ru/system/context.js$domain=kinopoisk.ru
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=kinopoisk.ru
-@@||yastatic.net/pcode/adfox/loader.js$domain=kinopoisk.ru
-@@||mc.yandex.ru/metrika/watch.js$domain=kinopoisk.ru
-@@||an.yandex.ru/jserr/1$domain=kinopoisk.ru
-@@||an.yandex.ru/mapuid/yandex/|$domain=kinopoisk.ru
-!#endif
 !
 ! avito.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18260
 ||avito.ru/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||yastatic.net/pcode/adfox/loader.js$domain=avito.ru
-@@||an.yandex.ru/system/context.js$domain=avito.ru
-avito.ru#@#.text-ad
-avito.ru#@#.sponsoredlinks
-avito.ru#@#.sideads
-avito.ru#@#.reklama
-avito.ru#@#.pub_728x90
-avito.ru#@#.pub_300x250m
-avito.ru#@#.pagead
-avito.ru#@#.bannerad
-avito.ru#@#.b-banner
-avito.ru#@#.b-adv
-avito.ru#@##yandex_ad
-avito.ru#@#.adbanner
-avito.ru#@#div[id^="yandex_ad"]
-!#endif
 !
 ! gorodrabot.ru
 ||gorodrabot.ru/*/*/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||an.yandex.ru/system/context.js$domain=gorodrabot.ru
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=gorodrabot.ru
-@@||gorodrabot.ru^$generichide
-@@||an.yandex.ru/jserr/1$domain=gorodrabot.ru
-!#endif
 !
 ! fb.ru, syl.ru
 ||fb.ru/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
 ||syl.ru/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||an.yandex.ru/meta/*?target-ref=$domain=fb.ru|syl.ru
-@@||an.yandex.ru/meta/*?redir-setuniq=1$domain=fb.ru|syl.ru
-@@||fb.ru^$generichide
-@@||syl.ru^$generichide
-@@||an.yandex.ru/jstracer|$domain=fb.ru
-@@||an.yandex.ru/system/context.js$domain=fb.ru|syl.ru
-@@||yastatic.net/pcode/adfox/loader.js$domain=fb.ru|syl.ru
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=fb.ru|syl.ru
-@@||syl.ru/misc/js/global/ads.js
-!#endif
 !
 ! auto.ru
 ||auto.ru/*/*-*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||auto.ru^$generichide
-@@||an.yandex.ru/jserr/*$domain=auto.ru
-@@||an.yandex.ru/jstracer|$domain=auto.ru
-@@||an.yandex.ru/mapuid/ya/|$domain=auto.ru
-@@||an.yandex.ru/meta/*?redir-setuniq=1$domain=auto.ru
-@@||an.yandex.ru/meta/*?target-ref=$domain=auto.ru
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=auto.ru
-@@||an.yandex.ru/system/context.js$domain=auto.ru
-@@||mc.yandex.ru/metrika/watch.js$domain=auto.ru
-@@||yastatic.net/pcode/adfox/loader.js$domain=auto.ru
-!#endif
 !
 ! kakprosto.ru
 ||kakprosto.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||kakprosto.ru^$generichide
-@@||an.yandex.ru/system/context.js$domain=kakprosto.ru
-@@||yastatic.net/pcode/adfox/header-bidding.js$domain=kakprosto.ru
-!#endif
-!
-! gismeteo.by,gismeteo.ru,echo.msk.ru
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-gismeteo.by,gismeteo.ru,echo.msk.ru#@##yandex_ad
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.adbanner
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.b-adv
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.b-banner
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.bannerad
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.pagead
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.pub_300x250m
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.pub_728x90
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.reklama
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.sideads
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.sponsoredlinks
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#.text-ad
-gismeteo.by,gismeteo.ru,echo.msk.ru#@#div[id^="yandex_ad"]
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=gismeteo.by|gismeteo.ru|echo.msk.ru
-@@||an.yandex.ru/system/context.js$domain=gismeteo.by|gismeteo.ru|echo.msk.ru
-echo.msk.ru##[style*="width: 970px; height: 90px;"]
-!#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12262
 ||drive2.*/*/*/*/*/*/$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important,domain=drive2.ru|drive2.com
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-@@||drive2.ru^$generichide
-@@||an.yandex.ru/mapuid/yandex/|$domain=drive2.ru
-@@||an.yandex.ru/jstracer|$domain=drive2.ru
-@@||an.yandex.ru/system/context.js$domain=drive2.ru
-@@||an.yandex.ru/mapuid/yandex/?redir-setuniq=1$domain=drive2.ru
-@@||an.yandex.ru/resource/context_static_r_*.js$domain=drive2.ru
-@@||an.yandex.ru/mapuid/ya/|$domain=drive2.ru
-!#endif
 !
 !
 ||24smi.org/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
-||businessman.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
 ||businessman.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
 ||e1.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
 ||echo.msk.ru/*/*/*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)//,script,other,important
