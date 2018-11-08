@@ -387,6 +387,17 @@ j.gs#@##bottom
 !*****
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/24937
+smallseotools.com$$script[tag-content="isAdBlockActive||adblock"]
+!+ NOT_PLATFORM(windows, mac, android)
+smallseotools.com#%#AG_abortInlineScript(/isAdBlockActive/, '$');
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=smallseotools.com
+@@/js/adframe.js$domain=smallseotools.com
+smallseotools.com#@#.adsbygoogle
+smallseotools.com#$#.adsbygoogle { height: 0px!important; }
+!#endif
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24722
 @@||mega-debrid.eu/JS/advertisement.js
 mega-debrid.eu#%#window.Advertisement = 1;
