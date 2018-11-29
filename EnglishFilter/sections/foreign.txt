@@ -3468,13 +3468,22 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
+filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6000"]
+filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
 @@||filmweb.pl^$generichide
+filmweb.pl#@#.adv_container
+filmweb.pl#@#[class$="-ads"]
 filmweb.pl#@##pasekup
 filmweb.pl#@##flashcontent3
 filmweb.pl#@##skyBanner
 ||filmweb.pl/adbchk?v=
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||go.eu.bbelements.com/please/code|$domain=filmweb.pl,empty,important
+||cz.search.etargetnet.com/|$domain=filmweb.pl,empty,important
+||sk.adocean.pl/files/js/ado.js|$domain=filmweb.pl,empty,important
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7471
 @@||kresy.pl/wp-content/themes/*/js/adframe.js
 kresy.pl#%#Object.defineProperty(window,'adblockDisabled',{value:true});
