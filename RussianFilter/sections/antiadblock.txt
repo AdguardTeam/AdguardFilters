@@ -671,7 +671,6 @@ dk24.ru#@##ads1
 !*****
 !* mail.ru - anti-adblock ads
 ! Main page
-://e.mail.ru^$replace=/\,\s(honeypo.+\s*(=|:)\s*\").+/\, \$1not_today"/,important
 @@://mail.ru/$generichide
 !
 ! otvet.mail.ru - anti-adblock ads
@@ -681,15 +680,17 @@ dk24.ru#@##ads1
 ! horo.mail.ru - anti-adblock ads
 @@||horo.mail.ru^$genericblock
 !
-!+ PLATFORM(ext_opera, ext_ff)
-@@||e.mail.ru^$generichide,jsinject
-!+ NOT_PLATFORM(ext_opera, ext_ff)
-@@||e.mail.ru^$generichide
-!
 !mail.ru#%#Object.defineProperty(Object.prototype, 'restoreVisibility', { get: function() { return { hpConfig: {} }; }, set: function() {} });
 @@||an.yandex.ru/system/context.js$domain=cloud.mail.ru
 e.mail.ru#@#.b-ad_text
 e.mail.ru#@#.b-slot_banner
+://e.mail.ru^$replace=/\,\s(honeypo.+\s*(=|:)\s*\").+/\, \$1not_today"/,important
+!+ NOT_PLATFORM(windows,mac,android)
+@@||ad.mail.ru/adp/$domain=e.mail.ru
+!+ PLATFORM(ext_opera, ext_ff)
+@@||e.mail.ru^$generichide,jsinject
+!+ NOT_PLATFORM(ext_opera, ext_ff)
+@@||e.mail.ru^$generichide
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17347
 @@||ad.mail.ru/adp/?q*_SITEID$domain=mail.ru|sportmail.ru
