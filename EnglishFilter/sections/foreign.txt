@@ -3165,6 +3165,7 @@ vg.no###ad-topboard
 !------------------------------ Persian ------------------------------
 !---------------------------------------------------------------------
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+soft98.ir/templates/soft98_default/js/jquery$replace=/\|antibot\|(\|)?[\s\S]*\|main\|/\|antibot\|\$1body\|main\|/
 ||*.cf^$domain=soft98.ir,image
 ||*.ml^$domain=soft98.ir,image
 soft98.ir###adx-special > div.adx__inner
@@ -3174,15 +3175,17 @@ soft98.ir##.row > div[-ext-has='.special-list']
 soft98.ir##.card-body > div[-ext-has='a[href]:not([href*="soft98.ir"]):not([href^="/"])[rel="nofollow"][target="_blank"]']
 soft98.ir#$#[id^="sidebar"][id*="sticky"] > section { display:none!important; }
 !#endif
-soft98.ir#%#AG_onLoad(function() { AG_removeElementBySelector('a[class][target="_blank"][rel="nofollow"][title]:not([href*=".soft98.ir"]):not([class*="linkdoni"]):not([class*="download"]), #adx-special > div.adx__inner'); });
-!+ NOT_PLATFORM(windows, mac, android)
+!#if (!adguard_app_windows || !adguard_app_mac || !adguard_app_android)
+soft98.ir#%#document.querySelectorAll1 = document.querySelectorAll;
+soft98.ir#%#var AG_each = function(selector, fn) { if (!document.querySelectorAll1) return; var elements = document.querySelectorAll1(selector); for (var i = 0; i < elements.length; i++) { fn(elements[i]); }; };
+soft98.ir#%#AG_onLoad(function(){AG_each('a[target="_blank"][rel="nofollow"]:not([href*=".soft98.ir"]):not([class*="linkdoni"]):not([class*="download"])',function(el){el.removeAttribute('href');})});
+soft98.ir#%#AG_onLoad(function(){AG_each('a[target="_blank"][rel="nofollow"]:not([href*=".soft98.ir"]):not([class*="linkdoni"]):not([class*="download"]) img',function(el){el.removeAttribute('src');})});
 soft98.ir#$#body img[src*=".ml"] { display: block!important; visibility: hidden!important; height: 0!important; width: 0!important; }
 !soft98.ir#$##logo__wrap #logo + div > div[id*="-header"]:has(img[src*=".ml"]) { max-height: 0!important; visibility: hidden!important; }
 !soft98.ir#$##dle-content > div.mb-4[id*="fullstory"]:has([class*="-link"] > [class*="-image"]) { max-height: 0!important; }
 !soft98.ir#$#body > #content-top ~ .container[id*="-special"]:has(img[src*=".ml"]) { max-height: 0!important; visibility: hidden!important; }
 ! soft98.ir#$#body > #content-top + .container[id*="-wide"]:has(img[src*=".ml"]) { max-height: 0!important; visibility: hidden!important; }
-!+ PLATFORM(windows, android, mac)
-soft98.ir/templates/soft98_default/js/jquery$replace=/\|antibot\|(\|)?[\s\S]*\|main\|download/\|antibot\|\$1body\|main\|download/
+!#endif
 soft98.ir##a[rel="nofollow"][title][href][target="_blank"]:not([class])
 languagedownload.ir###content > article[id^="post-"].type-sticky.status-publish
 languagedownload.ir###content > article[id^="post-"] > .entry-summary > div[data-post-id].insert-page
