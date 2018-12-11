@@ -1,6 +1,8 @@
 !
 ! Extended CSS rules
 !
+! lordfilm.tv - удаление отступа сверху
+lordfilm.tv#$#.wrap:has(> div) { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18436
 vesti-ua.net##.last_news_widget:has(> noindex > div#psh_wrp)
 vesti-ua.net##.mid_col > section.mblock:has(> div.related_news_block > ins.adsbygoogle)
@@ -143,6 +145,8 @@ gismeteo.ru##div:has(> div > div[data-type="default"] > div > a[href*="type=news
 avito.ru##.catalog > div > div.breadcrumbs~div:has(> div[id][class] > div[class])
 avito.ru##.l-content > div.catalog-counts+div[class*=" "]:has(> div#template_ldr_top)
 !
+sport-express.ru##.mywidget__content > div.mywidget__row > div.mywidget__col:has(>a.mywidget__link_advert)
+cheatground.ru##a[href^="https://ad.admitad.com/"]:has(> img)
 odds.ru##body:has(> a) > .br-branding
 pornov.online##.thumbnails > li:has(.thumbnail > a[href^="/asd/"])
 survarium.pro##body > survarium-stats > sense:has(>ins.adsbygoogle)
@@ -291,7 +295,13 @@ news.mail.ru##.p-fixed-panel > div.box.margin_bottom_20[-ext-has="div.p-spring >
 !
 sportmail.ru##.p-fixed-panel > div.box.margin_bottom_20:has(div.p-spring > div.p-spring__preview > a.p-spring__preview-link)
 ! ok.ru - рекламные посты
-!ok.ru#$#div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(> div[data-type*="Banner_"]) { zoom: 3%!important; }
+!+ PLATFORM(windows,mac,android)
+ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(> div[data-type*="Banner_"])
+!+ NOT_PLATFORM(windows,mac,android)
+!ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(> div[data-type*="Banner_"]) div[data-module="OKVideo"]
+!+ NOT_PLATFORM(windows,mac,android)
+!ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(> div[data-type*="Banner_"]) div[data-type="LinkBanner_navigate"]
+
 !
 ! END: Mail.Ru
 !
