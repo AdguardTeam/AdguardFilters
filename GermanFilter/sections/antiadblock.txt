@@ -1,5 +1,5 @@
 !
-! These rules are against anti-adblock scripts
+! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 !--- Prevent AdFender detection ---
 !+ NOT_OPTIMIZED
@@ -103,6 +103,9 @@
 @@||yagiay.com^
 @@||isondled.net^
 @@||uobsoe.com^
+@@||ads.golem.de/sdcv.js
+!+ PLATFORM(ext_ff, ext_opera, ext_safari, ios, ext_android_cb)
+@@||golem.de/*/*/*.jpg$image
 !+ PLATFORM(ext_opera, ext_safari, ios, ext_android_cb)
 @@||images.mein-mmo.de/magazin^$image,domain=mein-mmo.de
 ! JS rules
@@ -117,6 +120,7 @@ mein-mmo.de,cinema.de,news38.de,waz.de,futurezone.de,wr.de,areamobile.de,wallstr
 moviepilot.de$$script[tag-content=".uabpInject = true;"][min-length="90000"][max-length="100000"]
 !! elemhide exclusions (change daily)
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_opera || ext_ublock)
+golem.de#@##iqadtile4gol
 @@||4fansites.de^$generichide 
 @@||4players.de^$generichide 
 @@||9monate.de^$generichide 
@@ -337,8 +341,15 @@ motorsport-total.com#@#.werbeblock
 wallstreet-online.de#@#.ad
 ! Taboola - probably Plista
 t-online.de#%#AG_abortInlineScript(/DTLS\/SCTP/, 'setTimeout');
+!
+!--- Sourcepoint ---
+urbia.de#%#!function(){function b(){}function a(a){return{get:function(){return a},set:b}}function c(a){a(!1)}AG_defineProperty('_sp_.config.content_control_callback',a(b)),AG_defineProperty('_sp_.config.spid_control_callback',a(b)),AG_defineProperty('_sp_.config.vid_control_callback',a(b)),AG_defineProperty('_sp_.config.disableBlockerStyleSheets',a(!1)),AG_defineProperty('_sp_.checkState',a(c)),AG_defineProperty('_sp_.isAdBlocking',a(c)),AG_defineProperty('_sp_.isAdblocking',a(c)),AG_defineProperty('_sp_.isContentBlockerPresent',a(c)),AG_defineProperty('_sp_.getSafeUri',a(function(a){return a})),AG_defineProperty('_sp_.pageChange',a(b)),AG_defineProperty('_sp_.setupSmartBeacons',a(b)),AG_defineProperty('_sp_.msg.startMsg',a(b)),document.addEventListener('sp.blocking',function(a){a.stopImmediatePropagation(),a=document.createEvent('Event'),a.initEvent('sp.not_blocking',!0,!1),this.dispatchEvent(a)})}();
+urbia.de#@#.plainAd
+!
 !----------------------------------
 !
+! t-online.de - ad reinject
+@@||stats.t-online.de/js/ads.js
 ! t-online.de - glomex video player ad - backup domain if ads are blocked
 ! ||*.mp4$domain=player.glomex.com,mp4,important
 !+ PLATFORM(windows, mac, android)
@@ -394,11 +405,6 @@ shoop.de#@#.adbanner
 @@||mediamarkt.de^$genericblock
 !+ PLATFORM(ios)
 @@||saturn.de^$genericblock
-! golem.de ad reinjection
-golem.de#@##iqadtile4gol
-@@||ads.golem.de/sdcv.js
-!+ PLATFORM(ext_opera, ext_safari, ios, ext_android_cb)
-@@||golem.de/*/*/*.jpg$image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18062
 blaulichtreport-saarland.de#@#.an-advert-banner
 blaulichtreport-saarland.de#@##adsense
