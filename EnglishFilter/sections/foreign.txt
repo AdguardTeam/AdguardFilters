@@ -2870,6 +2870,9 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/23346
+||innorame.com^$third-party
+thebigdata.co.kr##div[id^="mobitree"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27999
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||caskers.tistory.com^$generichide
@@ -3206,6 +3209,8 @@ vesti.lv##.banner
 !------------------------------ Lithuanian ---------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/27498
+skelbiu.lt#@#DIV.content
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27038
 filmux.org##div[id*="ScriptRoot"]
 @@||ufonaut.000webhostapp.com/advertisement.js$domain=filmux.org
@@ -3407,6 +3412,11 @@ mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwne
 ! ---------------------------
 ! adquesto
 mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#AG_abortInlineScript(/adBlock/, 'parseInt');
+! seciki.pl - incorrect blocking
+seciki.pl#@#iframe[width="100%"][height="60"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/28173
+scypion.pl#@#.adsbygoogle
+scypion.pl#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28059
 @@||satkurier.pl/frontEnd/js/ads.js
 satkurier.pl#%#window.canRunAds = true;
@@ -3473,6 +3483,8 @@ speedtest.pl#$#.adsbygoogle { position: absolute!important; left: -3000px!import
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26074
 mgsm.pl###left-con > .row > .columns > div[style="display: block; height: 330px; text-align:center;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26011
+money.pl##div[class^="sc-"]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
+money.pl###app > div[data-reactroot] > div[class]:matches-css(background-image: /^url\(https:\/\/v\.wpimg\.pl\/MjAxOTAxLhopJyI7Lx00WG4cJic1Vz4eIAwmN24aKkQxFig=\)/)
 money.pl###app > div[data-reactroot] > div[class]:matches-css(background-image: /^url\(https:\/\/www\.money\.pl\/static\/bg\.png\)/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25329
 chomikuj.pl###InboxTable > tbody > tr > td.dataCell > p.spons
@@ -3497,7 +3509,6 @@ tv.wp.pl#$#.AdUnit.adBanner.adsbox.adsinfo.mixadvert { display: block!important;
 ||sascdn.com/video/controller.js$domain=eskago.pl,important
 @@||cdnjs.cloudflare.com/ajax/libs/blockadblock/3.2.1/blockadblock.js$domain=eskago.pl
 @@||cdn.rawgit.com/sitexw/FuckAdBlock/*/fuckadblock.js$domain=eskago.pl
-@@||eskago.pl/ad/banner/_adsense_/_adserver/_adview_.ad.json$domain=eskago.pl
 ! eskago.pl#%#Object.defineProperty(window, 'adBlockDetected', { get: function() { return adBlockUndetected; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24095
 infor.pl##.reklama > div[style^="text-align: right; color: gray;"]
@@ -3511,7 +3522,7 @@ kreskowkazone.pl#@#.myTestAd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23702
 dziennik.pl##.widget-list-ul > .infeed1
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23704
-||i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png
+! ||i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png
 money.pl##article[data-testid="article-main"] + aside[data-testid="article-aside"] > .iQjREM
 wykop.pl##a[href^="https://www.wykop.pl/adverts"]
 ||wykop.pl/adverts^
@@ -3607,7 +3618,7 @@ allegro.pl##div[data-box-name*="carousel_ads"]
 dobreprogramy.pl#%#AG_defineProperty('WP.gaf.loadAndRunBunch', { get: function() { return function() {}; }, set: function() {} });
 dobreprogramy.pl#%#AG_abortInlineScript(/window\.open\('https:\/\/ad\.doubleclick\.net\//, '$');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14009
-filmweb.pl#%#Object.defineProperty(window, 'sas', { get: function() { return; }, set:function() { throw null; } });
+filmweb.pl#%#Object.defineProperty(window, 'sas', { get: function() { return { cmd: { push: function() {} } }; }, set: function() {} });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13641
 animezone.pl#@#.myTestAd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13426
@@ -3716,7 +3727,7 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
-filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6000"]
+filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6500"]
 filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
@@ -4194,6 +4205,8 @@ topsinhalamp3.com###sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !---------------------------------------------------------------------
 !------------------------------ Taiwan -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/28209
+easylife.tw##.popup_bottom_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27822
 ||news.99k.tw/open/open*.php
 news.99k.tw##.entry-content > table[align="left"][style="width:360px"]
@@ -4329,6 +4342,11 @@ mm-cg.com##.TW_UTtoy
 !---------------------------------------------------------------------
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/28171
+flix-anime.com##.player-container > .kosana-container
+@@||cdn.jsdelivr.net/npm/fuckadblock@3.2.1/fuckadblock.min.js$domain=flix-anime.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||flix-anime.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26526
 anime-i.com##.ads-300-150
 anime-i.com##.ads-1000-100
