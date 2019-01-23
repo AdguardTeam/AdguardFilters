@@ -155,12 +155,15 @@ cndf92.blogspot.com#@#.adsBox
 @@.js?ad=banner*_adsense_*.json$domain=pokyun.tv
 @@||c.amazon-adsystem.com/bao-csm/aps-comm/aps_csm.js$domain=pokyun.tv
 pokyun.tv#@#.afs_ads
-!+ PLATFORM(windows, mac, android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||an.facebook.com/v*/instream/vast.xml?*pokyun.tv$empty,important,domain=pokyun.tv
-!+ NOT_PLATFORM(windows, mac, android)
+||ima3vpaid.appspot.com/?adTagUrl=$empty,important,domain=pokyun.tv
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+@@||ima3vpaid.appspot.com/?adTagUrl=$domain=pokyun.tv
 @@||an.facebook.com/v*/instream/vast.xml?*pokyun.tv$domain=pokyun.tv
-!+ NOT_PLATFORM(windows, mac, android)
 ||scontent-*.xx.fbcdn.net/v/*.mp4?$media,domain=pokyun.tv
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28145
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25954
 @@||visioncloud.ga/js/$~third-party,script
