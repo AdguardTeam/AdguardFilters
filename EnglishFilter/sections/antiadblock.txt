@@ -3514,6 +3514,7 @@ video-static.tunnl.com#%#window.canRunAds = true;
 @@||mylink.st^$generichide
 ! https://forum.adguard.com/index.php?threads/bigspeeds-com-anti-ad-block.25908/
 @@||bigspeeds.com/ajax/advertisement.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/29250
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28149
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27757
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27255
@@ -3523,11 +3524,15 @@ video-static.tunnl.com#%#window.canRunAds = true;
 ! https://forum.adguard.com/index.php?threads/reevown-com.25899/
 @@||reevown.com^$~third-party,script,xmlhttprequest
 reevown.com#%#Object.defineProperty(window, 'isok', { value: true });
+||google-analytics.com/analytics.js$empty,important,domain=reevown.com
 ||pagead2.googlesyndication.com/pub-config/*/ca-pub-*.js$empty,important,domain=reevown.com
 @@||reevown.com^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=reevown.com
 @@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=reevown.com
-reevown.com#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
+reevown.com#$#.adsbygoogle { height: 20px!important; }
+reevown.com##.adsbygoogle > ins[id^="aswift_"]
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||google-analytics.com/analytics.js$domain=reevown.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pub-config/*/ca-pub-*.js$domain=reevown.com
 ! https://forum.adguard.com/index.php?threads/www-televisionparatodos-tv-anti-adblock.25891/
