@@ -3849,11 +3849,11 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
 filmweb.pl#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.ws__wrapper'); }, 300); });
-filmweb.pl#$#.ws__wrapper { position: absolute!important; left: -9999px!important; height: 0!important; z-index: -9999!important; }
 filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6500"]
 filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
+||filmweb.pl/adbchk?v=
 @@||filmweb.pl^$generichide
 filmweb.pl#@#.ws__wrapper
 filmweb.pl#@#.adv_container
@@ -3861,7 +3861,10 @@ filmweb.pl#@#[class$="-ads"]
 filmweb.pl#@##pasekup
 filmweb.pl#@##flashcontent3
 filmweb.pl#@##skyBanner
-||filmweb.pl/adbchk?v=
+!+ NOT_PLATFORM(ext_ff, ext_ublock)
+filmweb.pl#$#.ws__wrapper { position: absolute!important; left: -9999px!important; height: 0!important; z-index: -9999!important; }
+!+ NOT_PLATFORM(ext_ublock)
+www.filmweb.pl#@#.ws__wrapper
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||go.eu.bbelements.com/please/code|$domain=filmweb.pl,empty,important
 ||cz.search.etargetnet.com/|$domain=filmweb.pl,empty,important
