@@ -3844,10 +3844,11 @@ portel.pl#$#iframe[src*="/R1"][src$=".html"][style*="display:block !important;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7218
 auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada.pl,przegladsportowy.pl,vod.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/document\.body\.getAttribute\("abp"\)/.test(a.toString()))return b(a,c)};})();
 @@||komputerswiat.pl^$generichide
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
+filmweb.pl#%#AG_abortInlineScript(/newAdblockBoardDisplayed/, 'decodeURIComponent');
 filmweb.pl#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.ws__wrapper'); }, 300); });
 filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6500"]
 filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
@@ -3861,8 +3862,10 @@ filmweb.pl#@#[class$="-ads"]
 filmweb.pl#@##pasekup
 filmweb.pl#@##flashcontent3
 filmweb.pl#@##skyBanner
-!+ NOT_PLATFORM(ext_ff, ext_ublock)
-filmweb.pl#$#.ws__wrapper { position: absolute!important; left: -9999px!important; height: 0!important; z-index: -9999!important; }
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari)
+filmweb.pl#@#body .ws__wrapper
+!+ NOT_PLATFORM(ext_ublock)
+filmweb.pl#$#.ws__wrapper { visibility: hidden!important; }
 !+ NOT_PLATFORM(ext_ublock)
 www.filmweb.pl#@#.ws__wrapper
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
