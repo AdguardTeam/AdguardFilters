@@ -711,6 +711,9 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 !---------------------------------------------------------------------
 !------------------------------ Chinese ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/28382
+tw.bid.yahoo.com###livePromote
+||s.yimg.com/ma/auc/common/js/ext_y_straas_shell_*.js$domain=tw.bid.yahoo.com
 ! https://forum.adguard.com/index.php?threads/youku-com-v-qq-com.30749/
 ||vali.*.cibntv.net^*.mp4?$mp4,domain=youku.com,important
 !+ PLATFORM(ext_chromium, ext_opera, ios, ext_safari, ext_android_cb)
@@ -724,6 +727,9 @@ tw.yahoo.com##.travelads
 @@||91wii.com/source/plugin/unadblock/adjs_pic_cpc_cpm_cpa_guanggao_gg_ads_250x250.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27580
 ||js.meitulu.com/css/*showgg.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/27164
+techbang.com##.post-side > .related-article
+techbang.com##.article > #post-additional
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26597
 discuss.com.hk###gamepage_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26174
@@ -732,10 +738,14 @@ discuss.com.hk###gamepage_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25356
 @@||i.y.qq.com/*/playsong.html
 ! https://github.com/uBlockOrigin/uAssets/issues/4306
-t66y.com#%#AG_onLoad(function() { window.readS = function() {}; });
-t66y.com#%#Object.defineProperty(window, 'spinit', { get: function() { return function(){}; } });
+! https://github.com/AdguardTeam/AdguardFilters/issues/27007
+t66y.com#%#AG_onLoad(function() { window.r1eadS = function() {}; });
+t66y.com#$#.sptable_do_not_remove { position: absolute!important; left: -3000px!important; } 
+! t66y.com#%#Object.defineProperty(window, 'spinit', { get: function() { return function(){}; } });
+!+ PLATFORM(windows, mac, android, ext_ff, ext_opera, ext_chromium)
 t66y.com##.sptable_do_not_remove
-t66y.com##.tips.black
+!+ PLATFORM(windows, mac, android, ext_ff, ext_opera, ext_chromium)
+t66y.com##.tips
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24754
 ||coolpc.com.tw/home/img/right2.html
 coolpc.com.tw##body > span[id="Psu"][style^="position: absolute;"]
@@ -1200,6 +1210,15 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
+! https://forum.adguard.com/index.php?threads/www-sport-cz.30895/
+sport.cz$$script[tag-content="adbDetect=new function"][max-length="6000"]
+sport.cz#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
+sport.cz###adArticleSign
+sport.cz##div[id^="next-articles-"] > div[class][data-number]
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+sport.cz###page .x2-are:not([id])
+/sport.cz\/[-_a-zA-Z0-9]{20,}\/[-_a-zA-Z0-9]{3,}\/[-_a-zA-Z0-9]{20,}./$image,domain=sport.cz
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28905
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=nova.cz
 !+ NOT_PLATFORM(windows, mac, android)
@@ -1472,6 +1491,10 @@ cez.cz#$#body { background: #333!important; }
 !---------------------------------------------------------------------
 !------------------------------ Danish -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29017
+dagensbyggeri.dk###megaboard-top-container
+dagensbyggeri.dk#$#.ads { display: block!important; }
+@@||dagensbyggeri.dk/assets/templates/dagensbyggeri/gfx/ads.png
 ! https://forum.adguard.com/index.php?threads/ekstrabladet-dk.29696/
 finans.dk##.baPosition
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21470
@@ -1782,6 +1805,7 @@ mobilarena.hu###right > div[class*=" "] > [style^="width: calc("][style*="height
 mobilarena.hu##div[itemprop="articleBody"] > [class]:has(> [style^="width: calc("][style*="height: calc("])
 mobilarena.hu###right > div[class*=" "]:has(> [style^="width: calc("][style*="height: calc("][onclick*="/kapcsolodas.php?"])
 !
+dvtk.eu##a[href^="/advertise/href/"]
 m.cartoonnetwork.hu##.header-leaderboard-ad-tagline
 haszon.hu##.bannergroup
 haszon.hu##.pushdownbanner
@@ -2917,6 +2941,9 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29547
+mangashow2.me##.banner[onclick]
+||mangashow2.me/img/banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29331
 @@||lover.ne.kr^$generichide
 lover.ne.kr##.adsbygoogle
@@ -3844,14 +3871,18 @@ portel.pl#$#iframe[src*="/R1"][src$=".html"][style*="display:block !important;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7218
 auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada.pl,przegladsportowy.pl,vod.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/document\.body\.getAttribute\("abp"\)/.test(a.toString()))return b(a,c)};})();
 @@||komputerswiat.pl^$generichide
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
+filmweb.pl#%#AG_abortInlineScript(/newAdblockBoardDisplayed/, 'Date');
+filmweb.pl$$script[tag-content="newAdblockBoardDisplayed"][min-length="10000"][max-length="50000"]
+filmweb.pl#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.ws__wrapper'); }, 300); });
 filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6500"]
 filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
+||filmweb.pl/adbchk?v=
 @@||filmweb.pl^$generichide
 filmweb.pl#@#.ws__wrapper
 filmweb.pl#@#.adv_container
@@ -3859,7 +3890,9 @@ filmweb.pl#@#[class$="-ads"]
 filmweb.pl#@##pasekup
 filmweb.pl#@##flashcontent3
 filmweb.pl#@##skyBanner
-||filmweb.pl/adbchk?v=
+filmweb.pl#@#body .ws__wrapper
+filmweb.pl#$#.ws__wrapper { visibility: hidden!important; }
+www.filmweb.pl#@#.ws__wrapper
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||go.eu.bbelements.com/please/code|$domain=filmweb.pl,empty,important
 ||cz.search.etargetnet.com/|$domain=filmweb.pl,empty,important
@@ -4330,6 +4363,10 @@ topsinhalamp3.com###sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !---------------------------------------------------------------------
 !------------------------------ Taiwan -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29572
+news.ltn.com.tw##.list > li[id^="apxzone_"]
+news.ltn.com.tw##.list > li[id^="newest-native"]
+news.ltn.com.tw##.list > li[id^="newspaper-native"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28527
 maplestage.com##div[class*="-page-module__ad728Holder___"]
 maplestage.com##div[class*="-page-module__right"] > div > div[style="margin-bottom:20px;padding:16px 10px;box-sizing:border-box;width:100%;background-color:#eee;border:1px solid #ddd;text-align:center;"]:first-child:not([class]):not([id])
@@ -4618,6 +4655,12 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29558
+khoai.tv#@#.afs_ads
+||khoai.tv/assets/popup.js
+||data.videonow.ru/?profile_id=$domain=khoai.tv
+||delivery.vungtv.com/vungtv/fc.php?script=apVideo:vast$domain=khoai.tv
+khoai.tv#%#Object.defineProperty(window, 'SmartPopunder', { get: function() { return; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28369
 anime47.com#%#Object.defineProperty(window, 'BB', { get: function() { return { getVASTUrl: function() {} }; } });
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari)
