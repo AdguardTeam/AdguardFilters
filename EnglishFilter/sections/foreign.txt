@@ -729,6 +729,9 @@ tw.yahoo.com##.travelads
 ||js.meitulu.com/css/*showgg.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26948
 qq.com##div[class^=ad-type-]
+! https://github.com/AdguardTeam/AdguardFilters/issues/27480
+mamibuy.com.tw##.layui-layer
+mamibuy.com.tw##.layui-layer-shade
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27164
 techbang.com##.post-side > .related-article
 techbang.com##.article > #post-additional
@@ -1217,6 +1220,11 @@ sport.cz$$script[tag-content="adbDetect=new function"][max-length="6000"]
 sport.cz#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
 sport.cz###adArticleSign
 sport.cz##div[id^="next-articles-"] > div[class][data-number]
+sport.cz###adCommercialBackground:not([style*="background-image:"])
+sport.cz##iframe[src^="//c.imedia.cz/context?url="]
+||c.imedia.cz/context?url=$domain=sport.cz
+sport.cz#%#Object.defineProperty(window, 'timelineAds', { get: function() { return; } });
+||i.imedia.cz/json|$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=sport.cz
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 sport.cz###page .x2-are:not([id])
 /sport.cz\/[-_a-zA-Z0-9]{20,}\/[-_a-zA-Z0-9]{3,}\/[-_a-zA-Z0-9]{20,}./$image,domain=sport.cz
@@ -1707,6 +1715,9 @@ autopapa.ge##.top-rek
 !---------------------------------------------------------------------
 !------------------------------ Greek --------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29642
+olympiakos.live#@#.afs_ads 
+!
 ||oipeirates.tv/prts.nln.php^
 ||militaire.gr/banners^
 militaire.gr##.td-header-sp-recs
@@ -1736,6 +1747,9 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/28110
+!+ NOT_OPTIMIZED
+szifon.com##.afterpost-a
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28705
 jobinfo.hu##.advertiser-paper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28486
@@ -1857,7 +1871,6 @@ mmonline.hu##.container > .panel[-ext-has='div.panel-body[id^="banner"] + .panel
 ||szifon.com/wp-content/uploads/*/*_banner_
 szifon.com###secondary > aside[id^="text-"]:not(#text-6)
 szifon.com##div[class^="top-"][class*="fixed"]
-szifon.com##.afterpost-a
 gamechannel.hu##.post-bottom > .jobbra ~ p
 ||play247.hu/listaapi.php^$third-party
 gamechannel.hu##.entry > .cikk_zona
@@ -2943,6 +2956,14 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/27954
+hiyobi.me##div[class][style] > div[style="width:100%;height:100%;text-align:center"]
+hiyobi.me##body > div[class][style]:has(> div[style="width:100%;height:100%;text-align:center"] > a[href] > img[width="100%"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/29564
+newtoki2.net#$#body { overflow: visible!important; }
+newtoki2.net#$#.modal-backdrop { display: none!important; }
+newtoki2.net#$##adModal { display: none!important; }
+newtoki2.net#%#AG_abortInlineScript(/\('#adModal'\)\.modal\('show'\)/, 'jQuery');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29547
 mangashow2.me##.banner[onclick]
 ||mangashow2.me/img/banner/
@@ -3529,6 +3550,10 @@ fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.p
 ! ---------------------------
 ! adquesto
 mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#AG_abortInlineScript(/adBlock/, 'parseInt');
+! https://github.com/AdguardTeam/AdguardFilters/issues/29592
+@@||static.webshark.pl/adserver/*/main_script.js?advertise_check=1
+docer.pl#%#window.ads_unblocked = !0;
+docer.pl#$?#iframe#doublebillboard-1 { width: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29296
 !+ PLATFORM(ext_ff)
 @@||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$domain=open.fm|pilot.wp.pl
@@ -3877,8 +3902,8 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
 ! https://forum.adguard.com/index.php?threads/adblock-detection-filmweb-pl-mac.26801/
-filmweb.pl#%#AG_abortInlineScript(/newAdblockBoardDisplayed/, 'Date');
-filmweb.pl$$script[tag-content="newAdblockBoardDisplayed"][min-length="10000"][max-length="50000"]
+filmweb.pl#%#AG_abortInlineScript(/adblockDisplayInformation\.toggleInformation/, 'Date');
+filmweb.pl$$script[tag-content="adblockDisplayInformation.toggleInformation"][min-length="10000"][max-length="50000"]
 filmweb.pl#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.ws__wrapper'); }, 300); });
 filmweb.pl$$script[tag-content="adbDetect=new function"][max-length="6500"]
 filmweb.pl#%#AG_abortInlineScript(/adbDetect/, 'Math.random');
@@ -4365,9 +4390,15 @@ topsinhalamp3.com###sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !---------------------------------------------------------------------
 !------------------------------ Taiwan -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/29611
+food.ltn.com.tw##.popular300 > li[id^="compass-fit-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29572
 news.ltn.com.tw##.list > li[id^="apxzone_"]
 news.ltn.com.tw##.list > li[id^="newest-native"]
+news.ltn.com.tw##.list > li[id^="newspaper-native"]
+news.ltn.com.tw##.whitecon > .related > li:has(> .ltn_ad)
+news.ltn.com.tw#$#.whitecon > .related[data-desc="相關新聞"] > li:nth-child(5) { margin-right: 0!important; margin-left: 20px!important; }
+ltn.com.tw##.Slider > li.L1ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28527
 maplestage.com##div[class*="-page-module__ad728Holder___"]
 maplestage.com##div[class*="-page-module__right"] > div > div[style="margin-bottom:20px;padding:16px 10px;box-sizing:border-box;width:100%;background-color:#eee;border:1px solid #ddd;text-align:center;"]:first-child:not([class]):not([id])
