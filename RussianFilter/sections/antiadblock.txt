@@ -804,7 +804,8 @@ my.mail.ru#@#div[id^="yandex_ad"]
 ! ok.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19112
 ok.ru#@#.banner350
-||ok.ru^$~script,~stylesheet,~xmlhttprequest,~third-party,replace=/\,\"OK\/banners\/.+?\"//,important
+||ok.ru^$~script,~stylesheet,~xmlhttprequest,~image,~other,replace=/\,\"OK\/banners\/.+?\"//,important
+||ok.ru/res/js/*.js$replace=/OK\/banners\/blockDetect//
 ok.ru$$div[data-config="secretCmd"]
 !+ NOT_PLATFORM(windows,mac,android)
 @@||ad.mail.ru/adq/?callback=$domain=ok.ru,script,other
@@ -1269,20 +1270,13 @@ satsis.ru##.adb
 ||polismed.ru/js/check.js
 !
 !
-! For all Yandex domains(Safari only)
-! https://github.com/AdguardTeam/AdguardFilters/issues/12213#issuecomment-372037152
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-!@@||yandex.by^$generichide
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-!@@||yandex.kz^$generichide
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-!@@||yandex.ru^$generichide
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-!@@||yandex.ua^$generichide
 $cookie=/blcrm|bltsr|^from\$|^los\$/,domain=24smi.org|auto.ru|avito.ru|avtovzglyad.ru|baby.ru|businessman.ru|dni.ru|drive2.com|drive2.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gismeteo.ua|glav.su|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|kinopoisk.ru|liveinternet.ru|mathb-ege.sdamgia.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|pikabu.ru|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|tsargrad.tv|vz.ru
 $cookie=/blcrm|bltsr|^from\$|^los\$/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
 $cookie=/BgeeyNoBJuyII|YvUVZgzQ|^adequate\$|^telecommunications\$/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
-||kino*oisk.ru^$cookie=/kpunk/
+||kinopoisk.ru^$cookie=/kpunk/
+24smi.org,auto.ru,avito.ru,avtovzglyad.ru,baby.ru,businessman.ru,dni.ru,drive2.com,drive2.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gismeteo.ua,glav.su,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,pikabu.ru,rambler.ru,razlozhi.ru,sdamgia.ru,syl.ru,tsargrad.tv,vz.ru#%#AG_removeCookie('/blcrm|bltsr|^from\$|^los\$/');
+yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#AG_removeCookie('/blcrm|bltsr|^from\$|^los\$/');
+kinopoisk.ru#%#AG_removeCookie('/kpunk/');
 !
 ! Yandex main page
 @@||awaps.yandex.net/*_.htm&link$domain=yandex.ru
