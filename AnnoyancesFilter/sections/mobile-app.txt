@@ -2,6 +2,9 @@
 !######### Banners of mobile apps for the sites ########
 !#######################################################
 !
+! Suppressing PWA "Add To Home screen" annoyances
+$$link[rel="manifest"]
+!
 /wp-content/plugins/ioimedia-app-banner/*
 /js/jquery.smartbanner.js
 ||2app.lk^$third-party
@@ -23,10 +26,12 @@ shazam.com##.shz-frame-apps-banner
 !+ NOT_PLATFORM(ios, ext_android_cb)
 reddit.com##.XPromoPill
 !
+actionnetwork.com##.main-promo
+actionnetwork.com###branch-amp-journey
 thescore.com##div[class^="GetTheApp__fullScreenContainerScrolldown--"]
 thescore.com##div[class^="Header__headerContainer--" ] > span > div[class^="GetTheAppModal__"]
 gmx.net##.mod-installprompt
-41nbc.com,bcsnnation.com##body #smartbanner.shown
+wxxv25.com,41nbc.com,bcsnnation.com##body #smartbanner.shown
 telemundo20.com,telemundo31.com,telemundo40.com,telemundo47.com,telemundo48elpaso.com,telemundo49.com,telemundo51.com,telemundo62.com,telemundoareadelabahia.com,telemundoarizona.com,telemundochicago.com,telemundodallas.com,telemundodenver.com,telemundohouston.com,telemundolasvegas.com,telemundosanantonio.com,telemundowashingtondc.com,telemundopr.com,telemundonuevainglaterra.com,nbcbayarea.com,nbclosangeles.com,nbcsandiego.com,nbcconnecticut.com,nbcwashington.com,nbcmiami.com,nbcchicago.com,nbcphiladelphia.com,nbcdfw.com,nbcnewyork.com###appIntercept
 allegro.pl##.main-wrapper > div[data-box-name="MobileAppBanner - RWD"]
 allegro.pl##.main-wrapper > div[data-box-name^="Mobile app banner for"]
@@ -387,6 +392,11 @@ rt.com###offers
 !
 ! CSS
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/24616
+linkedin.com#$#.no-scroll { overflow:visible!important; }
+linkedin.com#$#.modal-container { display:none!important; }
+linkedin.com#$#.shared-modal-open { overflow:visible!important; }
+!
 bigbasket.com#$#.smart-banner .mdl-layout__drawer-button { top: 0!important; }
 bigbasket.com#$#smart-banner { display: none!important; }
 !
@@ -448,6 +458,10 @@ kicker.de#$##ovContentScroller { padding-top: 0!important; }
 m.ulmart.ru#$#.smartbanner { display: none!important; }
 m.ulmart.ru#$#.smartbanner_show .snap-content, .smartbanner_show .snap-drawers { top: 0!important; }
 !
+teb.com.tr#$#.navbar-header { margin-top: 0!important; }
+teb.com.tr#$#html { margin-top: 0!important; }
+teb.com.tr#$##smartbanner.ios { display: none!important; }
+!
 beru.ru##.mobile-applications-promo
 jn.pt#$##smartbanner ~ header[role="banner"].t-header[style="margin-top: 78px;"] { margin-top: 0!important; }
 zalando.pl#$#html { margin-top: 0!important; }
@@ -482,7 +496,8 @@ tripadvisor.co.uk,tripadvisor.jp,tripadvisor.com.br#$##PAGE_CONTAINER.smartbanne
 !
 ! JS
 !
-wtva.com,wktv.com,actionnewsnow.com#%#document.cookie = "smartbanner-closed=true; path=/;";
+mmajunkie.com#%#document.cookie="sb-closed=true; path=/;";
+kq2.com,kdrv.com,wfft.com,wtva.com,wktv.com,actionnewsnow.com#%#document.cookie = "smartbanner-closed=true; path=/;";
 wiwo.de#%#document.cookie = "appInstall=true";
 m.nhaccuatui.com#%#document.cookie = "isCloseSmartAppBanner=true";
 m.standaard.be#%#document.cookie = "sb-closed=true";
@@ -505,10 +520,12 @@ rozetka.com.ua#%#document.cookie = "hide_popup_banner=true";
 !
 ! Fixing broken buttons
 @@/js/jquery.smartbanner.js$domain=m.halkbank.com.tr|intime.ua|avic.ua|mirage.ru|speedtest.net|energy.de|hermesworld.com|lekvapteke.ru|mcdonalds.com.tr|yalispor.com.tr
+! https://github.com/AdguardTeam/AdguardFilters/issues/28574
+teb.com.tr#@##smartbanner.ios
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25422
-!+ PLATFORM(ios)
+!+ PLATFORM(ios, ext_android_cb)
 kicker.de#@##smartbanner.ios
-!+ PLATFORM(ext_android_cb)
+!+ PLATFORM(ios, ext_android_cb)
 kicker.de#@##smartbanner.android
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8564
 !+ PLATFORM(ios, ext_android_cb)

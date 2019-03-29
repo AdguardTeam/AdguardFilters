@@ -801,6 +801,8 @@ dk24.ru#@##ads1
 @@||horo.mail.ru^$genericblock
 !
 @@||an.yandex.ru/system/context.js$domain=cloud.mail.ru
+!
+://e.mail.ru/$~script,~stylesheet,~xmlhttprequest,replace=/baits:\s".+?.split/baits: "#not_today".split/,important
 e.mail.ru#@#.b-ad_text
 e.mail.ru#@#.b-slot_banner
 !e.mail.ru#$#.b-layout__col > div > div > div#leftcol-banners div.trg-b-list__item * { opacity: 0.01!important; pointer-events: none!important; height: 2px!important; }
@@ -808,13 +810,17 @@ e.mail.ru#@#.b-slot_banner
 e.mail.ru#$#.b-datalist__head__item > div.b-rb { opacity: 0.01!important; pointer-events: none!important; height: 2px!important;}
 !+ PLATFORM(windows, mac, android)
 e.mail.ru#$#.trg-b-banner div :not(.mailru-visibility-check-counter) { opacity: 0.01!important; pointer-events: none!important; height: 2px!important; }
-! ://e.mail.ru^$replace=/\,\s(honeypo.+\s*(=|:)\s*\").+/\, \$1not_today"/,important
 !+ NOT_PLATFORM(windows,mac,android)
 @@||ad.mail.ru/adp/$domain=e.mail.ru
 !+ PLATFORM(ext_opera, ext_ff)
 @@||e.mail.ru^$generichide,jsinject
-!+ NOT_PLATFORM(ext_opera, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android)
 @@||e.mail.ru^$generichide
+!
+! octavius.mail.ru
+||octavius.mail.ru/sota?buildVersion=$replace=/("baits":").*?("\,\s*"css")/\$1#not_today\$2/
+!+ NOT_PLATFORM(windows,mac,android)
+@@||octavius.mail.ru^$generichide
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17347
 @@||ad.mail.ru/adp/?q*_SITEID$domain=mail.ru|sportmail.ru
@@ -832,8 +838,11 @@ my.mail.ru#@#div[id^="yandex_ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19112
 ok.ru#@#.banner350
 ok.ru#%#AG_abortOnPropertyWrite('mailruEnabled');
+!+ NOT_PLATFORM(ext_ff)
 ||ok.ru/dk?cmd=$replace=/.*\"body\":\{\"direct\":\{\"ads\":.{3000\,}//
+!+ NOT_PLATFORM(ext_ff)
 ||ok.ru/res/js/*.js$replace=/\"OK\/banners/\"OK\/banners__\//
+!+ NOT_PLATFORM(ext_ff)
 ||www.ok.ru/res/js/*.js$replace=/kBlockDetect\"\,/kBlockDetect__\"\,/
 !+ NOT_PLATFORM(windows,mac,android)
 !@@||ad.mail.ru/adq/?callback=$domain=ok.ru,script,other
