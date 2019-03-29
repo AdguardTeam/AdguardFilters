@@ -1,6 +1,8 @@
 !
 ! The content replacement rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/29629
+||my.mail.ru/*?xemail=*&ajax_call=$replace=/.+\"direct\":\{\"ads\"\:.+\$//,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25040
 ://rustorka.*/forum/$~script,replace=/(ads_script.onload = function\(\) {)[\s\S]*var website[\s\S]*?}/\$1}/,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27033
@@ -25,8 +27,6 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26893
 ! it breaks embed players. For custom filter only
 !.torrentstream.*/get?_*=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-! https://forum.adguard.com/index.php?threads/29916/
-||ad.mail.ru^$domain=mail.ru,replace=/"html"/"html_"/,important
 ! hi-tech.mail.ru
 ||hi-tech.mail.ru/*/js/cmpld/web/common.js$replace=/^mimic_.+//,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8588
@@ -57,8 +57,6 @@ pornoflv.tv^$replace=/"advertising":\{.*?\}/,important,~script,~stylesheet,~xmlh
 ||franecki.net/assets/vendor/*.xml^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! https://forum.adguard.com/index.php?threads/22933/
 ||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
-! e.mail.ru - ads
-||e.mail.ru/api/v1$replace=/\{\"status\"\:200\,\"body\"\:\{.*\}/{\"status\"\:200\,\"body\"\:{}}/,important
 ! unionpeer.com - удаление отступа сверху
 ||unionpeer.com/cache/template.css^$replace=/;padding: 200px 0px 0px !important;/;padding: 0px 0px 0px !important;/
 ! https://forum.adguard.com/index.php?threads/20004/
