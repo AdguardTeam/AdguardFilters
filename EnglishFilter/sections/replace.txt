@@ -25,15 +25,19 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16677
 ||7plus.com.au/js/app.*.js$replace=/t\.sevenCatalog\.adChoice="ssaibeacon"/t\.sevenCatalog\.adChoice="csai"/,domain=7plus.com.au
 ! uplynk
+! https://github.com/AdguardTeam/AdguardFilters/issues/30806
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20290
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20995
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20435
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19875
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-||uplynk.com/*.m3u8$replace=/#UPLYNK-SEGMENT: \S*\\,ad\s[\s\S]+?((#UPLYNK-SEGMENT: \S+\\,segment)|(#EXT-X-ENDLIST))/\$1/,domain=6abc.com|discovery.com|fox.com|investigationdiscovery.com|sciencechannel.com|motortrend.com|tlc.com
+||uplynk.com/*.m3u8$replace=/#UPLYNK-SEGMENT: \S*\\,ad\s[\s\S]+?((#UPLYNK-SEGMENT: \S+\\,segment)|(#EXT-X-ENDLIST))/\$1/,domain=6abc.com|abc7chicago.com|discovery.com|fox.com|investigationdiscovery.com|sciencechannel.com|motortrend.com|tlc.com
 ||api.discovery.com/v*/streaming/video/$replace=/\{"ads":\{"breaks":[\s\S]*?"playURL":/{"playURL":/,domain=discovery.com|investigationdiscovery.com|sciencechannel.com|motortrend.com|tlc.com
 ||content.uplynk.com/preplay/*.json?$replace=/("ads": {"breaks": \[)[\s\S]*?(\]\}\\, "prefix":)/\$1\$2/,domain=fox.com
+||content.uplynk.com/api/*/preplay/*.json?$replace=/("ads": {"breaks": \[)[\s\S]*?(\]\}\\, "prefix":)/\$1\$2/,domain=abc7chicago.com
 !#endif
+! abc.go.com - ads
+||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=abc.go.com,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17406
 ||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=funimation.com,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16198
@@ -77,7 +81,8 @@ dnvod.tv/_player/*/ckplayer.js$replace=/cpt\+='skipads.swf\,0\,0\,0\,0\,2\,0\|';
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4607
 ||goal.com/static/js?files=$replace=/taboolaSlide:\d\d/taboolaSlide:99/,important
 ! https://forum.adguard.com/index.php?threads/macworld-idg-se.19682/
-://widgets.spklw.com/v1/data/?*&widget-id=$replace=/(?:(?:(?<=\[)|\G)\{(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?"type"\:"ad"(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?\}(?:\,|(?=\]))|\,\{(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?"type"\:"ad"(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?\}(?=[\,\]]))//g
+! ://widgets.spklw.com/v1/data/?*&widget-id=$replace=/(?:(?:(?<=\[)|\G)\{(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?"type"\:"ad"(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?\}(?:\,|(?=\]))|\,\{(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?"type"\:"ad"(?:[^\{\}]|\{(?:[^\{\}]|\{[^\{\}]*?\})*?\})*?\}(?=[\,\]]))//g
+://widgets.spklw.com/v1/data/?*&widget-id=$replace=/(?<=\[)(\{"image":\{"url":"[\s\S]*?"type":"ad"[\s\S]*?\,"service_version":"[\s\S]*?"\}(\,)?)+|(\,)?\{"image":\{"url":"[\s\S]*?"type":"ad"[\s\S]*?\,"service_version":"[\s\S]*?"\}//
 ! https://forum.adguard.com/index.php?threads/ads-www-radiotunes-com.19634/
 ://api.audioaddict.com/v1/radiotunes/track_history/channel/*.json|$replace=/(?:(?:(?<=\[)|\G)\{"ad":[\s\S]*?"type":"advertisement"\}(?:\,|(?=\]))|\,\{"ad":[\s\S]*?"type":"advertisement"\}(?=[\,\]]))//g,xmlhttprequest
 ! https://forum.adguard.com/index.php?threads/19620/
