@@ -176,6 +176,8 @@ adsrt.me#%#window.open = function() {};
 ftopx.com#%#AG_abortInlineScript(/'popping'/, 'loadTool');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28391 (added 05.02.2019, updated 13.02.2019)
 facebook.com,facebookcorewwwi.onion#%#(function() { var observer=new MutationObserver(hide);observer.observe(document,{childList:!0,subtree:!0});function hide(){var e=document.querySelectorAll('div[id^="substream_"] div[id^="hyperfeed_story_id"]');e.forEach(function(e){var i=e.__FB_STORE;if(i){var t=i["data-ft"];if(t!==void 0&&(!0===t.includes('"is_sponsored":1')||!0===t.includes('"ei":')&&!1===t.includes('"page_id":"'))){e.style="display:none!important;";}}})} })();
+! facebook.com -  hides sponsored ads on marketplace
+facebook.com,facebookcorewwwi.onion#%#(function(){ var observer=new MutationObserver(hide);observer.observe(document,{childList:!0,subtree:!0});function hide(){var e=document.querySelectorAll('div[data-testid="marketplace_home_feed"] > div > div > div[class] > div[class] > div > div[class]');e.forEach(function(e){var i=e.outerHTML;if(i){if(i!==void 0&&(!0===i.includes('/ads/about/'))){e.style="display:none!important;"}}})} })();
 ! https://forum.adguard.com/index.php?threads/up-4-net.30856/
 up-4.net#%#AG_onLoad(function() { setTimeout(function() { var a=document.querySelectorAll("#downloadButton > a"); a.forEach(function(b){b.removeAttribute("onclick")}); }, 300); });
 ! https://forum.adguard.com/index.php?threads/uploadbuzz-org.29866
