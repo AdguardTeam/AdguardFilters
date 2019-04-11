@@ -4170,19 +4170,22 @@ www.wp.pl##[class^="_"] > div > div[style^="display: block; min-height: 0px;"]
 www.wp.pl##[class^="_"] > [class^="_"] > [class^="_"] > a[href][target="_blank"] > img
 www.wp.pl##[class^="_"] > [class^="_"] > [class^="_"] > a[href][target="_blank"] + span
 www.wp.pl##a[href^="http://direct.money.pl/landing-page/callcenter/"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/32398
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20613
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15353
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11323
-shinden.pl#%#AG_onLoad(function() { AG_removeElementBySelector('.ads'); });
-shinden.pl#%#(function(){var b=window.setInterval;window.setInterval=function(a,c){if(!/h\[b\d/.test(a.toString()))return b(a,c)}.bind(window)})();
 ! shinden.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/fL\(\);/.test(a.toString()))return b(a,c)};})();
 ! shinden.pl#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/\|\|\(''\+ga\)/.test(a)){ _st(a,b);}};
 ! shinden.pl#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/addBlockDetected/.test(a)){ _st(a,b);}};
+shinden.pl#%#Object.defineProperty(window, 'Criteo', { get: function() { return { DisplayAcceptableAdIfAdblocked: function() {} }; } });
+shinden.pl#%#AG_onLoad(function() { AG_removeElementBySelector('.ads'); });
+shinden.pl#%#(function(){var b=window.setInterval;window.setInterval=function(a,c){if(!/h\[b\d/.test(a.toString()))return b(a,c)}.bind(window)})();
 shinden.pl#%#Object.defineProperty(window, 'PopAds', { get: function() { return; } });
 shinden.pl#%#window.iFrameResize = function() {};
 shinden.pl#%#window.sas_noad = true;
 shinden.pl#%#window.rtb_header_loaded = true;
 shinden.pl#%#window.shinden_ads = 1;
+shinden.pl##.takie-tam
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff)
 ||smartadserver.com/ac$domain=shinden.pl,empty,important
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
@@ -4191,6 +4194,8 @@ shinden.pl#%#window.shinden_ads = 1;
 ||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=shinden.pl,empty,important
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff)
 ||ced-ns.sascdn.com/diff/templates/js/overslide/sas-overslide-*.js$domain=shinden.pl,empty,important
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
+@@||static.criteo.net/js/ld/publishertag.js$domain=shinden.pl
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
 @@||rtbnowads.com/publisher/header|$domain=shinden.pl
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_edge)
