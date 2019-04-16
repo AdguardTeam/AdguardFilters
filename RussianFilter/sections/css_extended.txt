@@ -143,7 +143,7 @@ spcs.me##div:matches-css(border-bottom-color: rgb(204, 202, 202))
 !
 pikabu.ru##.stories-feed > div.stories-feed__container > .story:has(> div > div.story__pin)
 pikabu.ru##.stories-feed > div.stories-feed__container > .story:has(> div.story__main script:contains((callAdblock))
-pikabu.ru##.stories-feed > div.stories-feed__container > .story:has(a[href*="/information/"][href*="?from=ad_unit"])
+pikabu.ru##.stories-feed > div.stories-feed__container > .story:has(a[href$="?from=ad_unit"])
 !old.pikabu.ru##.inner_wrap div.story:has(> div > i.story__pin-o)
 !old.pikabu.ru##.inner_wrap div.story:has(div.story__header-additional-wrapper:contains(/ads|реклама/|рекламный\sпост|ртнeрcкий\sпост/))
 !
@@ -158,9 +158,14 @@ xatab-repack.net##.colum_left > div#dle-content ~ div:has(> div[class^="rekbloc"
 xatab-repack.net###dle-content > div:has(> div[class^="rekbloc"])
 xatab-repack.net#$#html:has(> body) { background: #ffffff!important; }
 !
-youla.ru##section[data-test-component="Board"] div:has(> a[rel="noopener noreferrer"] > figure[data-test-component="AdvertisementCard"])
+grinkod.spb.ru##td[width="210"] > center > table[width="180"]:has(center > b > font:contains(Реклама))
+grinkod.spb.ru##.wrapper > aside:has(> div#banner1)
+segodnya.ua##.homepage-content > div.block:has(> div.b-ads)
+e-news.su###dle-content > div[class="side-block decor related"]:has(> div.side-b-t:contains(Реклама))
+levashove.ru##aside[id="secondary"] > section.widget_text:has(> h3 > span:contains(Реклама))
 gazeta.ua##.container div.w:has(> div[id^="adpartner-"])
 gazeta.ua##.container div.w:has(> div[id*="ScriptRootC"])
+andro-news.com##.widget:has(> div > .av-block)
 life-reactor.com##.sidebar_inner > div:matches-css(height:6000px)
 rp5.by,rp5.kz,rp5.ru,rp5.ua###content > div:first-child + div > div:first-child:has(> div:empty) + div:not([class]):not([id="FheaderContent"]):not([id^="extreme"])
 ucrazy.ru###crazy-content > div.box[-ext-has='div.box-container a[href="http://ucrazy.ru/advert/"]']
@@ -171,6 +176,7 @@ epidemz.co###left > div.left_block_mini:has(> div#ajax > div.hockey)
 freetorrmd.org###main-content > .middle-block:has(div:contains(Orbitum))
 apptractor.ru##.widget_text:has(> div > h4 > span:contains(Реклама))
 prjaga.ru###right > div#right_nav > h3:contains(Реклама)
+ubr.ua##span:contains(Новости партнеров)
 allowwonder.com##.textwidget:has(> div > span > a[href^="http://tooligram.com"])
 allowwonder.com##.widget_text:has(> h4 > span:contains(Рекомендуем))
 sergeistrelec.ru###right > div.bl0[-ext-has="> div > div > div:contains(/реклама/)"]
@@ -214,6 +220,7 @@ dimnovyn.com##.right > section.side_block:contains(/Новости\sпартне
 journal-plaza.net##.rightside div.block.bnavi[-ext-has="h3.dtitle:contains(Интернет магазины)"]
 journal-plaza.net##.rightside div.block.elite[-ext-has="h3.dtitle:contains(Реклама)"]
 olkino.com##.rside_block:has(> div:contains(/Реклама|Рекламное место/))
+acomics.ru###contentSide > div > div:has(> #yandex_ad)
 seosprint.net##.sbtitle[-ext-contains="Это может быть интересно"]
 sobesednik.ru##.section.widget-content:has(> nav > div > p:contains(Новости партнеров))
 rg-mechanics.org##.shortstory:has(> div.tags > a[href^="https://ad.admitad.com/"])
@@ -264,6 +271,7 @@ kg-portal.ru#$#body > div.ten_topbar+div[class]:has(> style~a[id^="ten_frontrow_
 kinobi.club#$#body[-ext-has="> div"] { padding-top: 0!important; }
 kinobos.com#$#body[-ext-has="> div"] { padding-top: 0!important; }
 kinocoin.online#$#body:has(> div) { padding-top: 0!important; }
+windows-phone.su##div:has(> #ad-fix)
 kerch.fm##li.slick-slide[-ext-contains="На правах рекламы"]
 youhack.ru##ol#messageList.messageList > li.message[-ext-has="div.mobyaza[onclick][style]"]
 benzin-price.ru##p > strong:contains(реклама:)
@@ -307,12 +315,25 @@ tracker.0day.kiev.ua##td[valign="top"] > table[style^="margin-bottom: 20px"][-ex
 ! START: Mail.Ru
 !
 ! Лента на главной
-mail.ru#$#.feed-generic__container > div.grid__container > div#feed-generic-container > div > div > div > div[style="margin-left: 20px; margin-bottom: 20px;"]:has(div[class*="_isAdvert_"]) { remove: true; }
+mail.ru###feed-generic-container > div[style] > div > div > div[style*="width: 305px; height: 300px;"]:has(> div > div > a[href^="http://t.mail.ru/redir/"])
 !
 auto.mail.ru##div[class*="sticky-springs__item"]:has(> div.box > div > div[class="spring min-height_400"])
 auto.mail.ru##div[class*="sticky-springs__item"]:has(div.spring > div.rb_loaded)
 !
-! e.mail.ru
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+e.mail.ru#$?#.trg-b-promo-img { remove: true; }
+e.mail.ru#$?#.trg-b-promo-bg { remove: true; }
+e.mail.ru#$?#.trg-b-all-in-link { remove: true; }
+e.mail.ru#$?#.trg-b-list__item.trg-b-banner { remove: true; }
+e.mail.ru#$?#.trg-b-contact { remove: true; }
+e.mail.ru#$?#.trg-v-banner__vid { remove: true; }
+e.mail.ru#$?#.trg-v-banner > * { remove: true; }
+e.mail.ru#$?#.trg-b-img-wrap { remove: true; }
+e.mail.ru#$?#.trg-b-info-all-block { remove: true; }
+e.mail.ru#$?#.trg-b-item__info-adv { remove: true; }
+e.mail.ru#$?#.trg-b-item__info { remove: true; }
+!#endif
+
 !
 health.mail.ru##.sticky-springs__item:has(> div.rb)
 health.mail.ru##.trg-b-all-in-link:has(> img)
@@ -321,17 +342,23 @@ health.mail.ru##div[class="cols cols_margin cols_percent"] > div.cols__wrapper >
 kino.mail.ru##.cols__wrapper > div.cols__column_sidebar > div.cols__inner > div.js-springs__item:has(> div[class^="box box_block rb_"])
 kino.mail.ru##.sticky-springs > div.js-springs__group > div.js-springs__item:has(> div[class^="box box_block rb_"])
 !
-
+!+ NOT_PLATFORM(windows,mac,android)
+octavius.mail.ru#$?#.mimic-block { remove: true; }
 ! в играх
 my.mail.ru##.app-wrapper > div[style*="width:"]:has(> div.mm_right_block_media-promo)
 !
 news.mail.ru##.p-fixed-panel > div.box.margin_bottom_20[-ext-has="div.p-spring > div.p-spring__preview > a.p-spring__preview-link"]
 news.mail.ru##div[class="cols cols_margin cols_percent"] > div.cols__wrapper > div.cols__column > div.cols__inner > div:has(> span.cell > a.newsitem__title[href^="https://t.mail.ru/redir/"])
 !
+otvet.mail.ru#$?#div[class^="adv-slot-"] { remove: true; }
+!
+tv.mail.ru#$?#div[data-view^="SlotView"][data-adq-id] { remove: true; }
+tv.mail.ru#$?#.js-popup_banner { remove: true; }
+!
 sportmail.ru##.p-fixed-panel > div.box.margin_bottom_20:has(div.p-spring > div.p-spring__preview > a.p-spring__preview-link)
 ! ok.ru - рекламные посты
 !+ PLATFORM(windows,mac,android)
-!ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(a[href^="http://t.mail.ru/redir/"])
+ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(div.feed_label:contains(Реклама))
 !+ PLATFORM(windows,mac,android)
 !ok.ru##div[class="feed h-mod"][data-seen-params*="skipVisible\":"]:has(div[data-type])
 !
