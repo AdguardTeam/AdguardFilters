@@ -14,10 +14,12 @@ ddl-warez.to#%#document.cookie = "ddlpop=1"; document.cookie = "ddlpop2=1";
 ! mimikama.at kaspersky ad
 mimikama.at#%#window.open = function() {};
 mimikama.at#%#Object.defineProperty(window, 'td_ad_background_click_link', { get: function() { return; } });
+! https://github.com/AdguardTeam/AdguardFilters/issues/33849
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30443
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28684
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18172
-bs.to#%#AG_abortInlineScript(/null\).*?;Array\[/, 'Math.random');
+bs.to#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/Object\[/.test(a.toString()))return b(a,c)};})();
+bs.to#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /rotumal\.com|ecpms\.net|megdexchange\.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! saarbruecker-zeitung.de - ad text
 saarbruecker-zeitung.de#%#AG_onLoad(function() { setTimeout(function() { document.querySelector(".content > aside > .module-list").innerHTML = document.querySelector(".content > aside > .module-list").innerHTML.replace("ANZEIGE",""); }, 300); });
 ! pcwelt.de - ad in top slider
@@ -193,9 +195,10 @@ freenet.de#$##frnMain { min-height: 0!important; }
 !--------------------------------------!
 !------- Content filtering rules ------!
 !--------------------------------------!
+! https://github.com/AdguardTeam/AdguardFilters/issues/33849
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30443
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28684
-bs.to$$script[tag-content=";if(!Object[_"][min-length="6000"][max-length="10000"]
+bs.to$$script[tag-content="Object["][min-length="4000"][max-length="10000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2193
 tagesanzeiger.ch$$div[class="teaserEditorialContent"][tag-content="Werbung"]
 tagesanzeiger.ch$$div[class="teaserEditorialContent"][tag-content="Sponsored Content"]
