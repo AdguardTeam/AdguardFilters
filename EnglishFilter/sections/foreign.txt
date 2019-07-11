@@ -780,6 +780,9 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 !---------------------------------------------------------------------
 !------------------------------ Chinese ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/26330
+||acs.youku.com/*.youku.play.$replace=/("ad":{).+"(\}\,"playlog")/\$1\$2/
+@@||cibntv.net/youku/*.mp4?$domain=v.youku.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36120
 gz.bendibao.com##.content_r_ad300
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36092
@@ -1423,6 +1426,8 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/36614
+||bombuj.tv/adblock/fuckadblock2.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35615
 ||www.csfd.cz/film/*/videa/|$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35240
@@ -2018,6 +2023,8 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/36397
+itcafe.hu##div[class$="responsive-300px-600px"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35734
 port.hu#@#.advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33668
@@ -3424,7 +3431,7 @@ mtoon10.com##a[href^="https://www.mtoon10.com/bbs/link.php?bo_table=banner"]
 blog.naver.com###ssp-adpost
 ||ssl.pstatic.net/tveta/libs/ssp/res/r.html$domain=blog.naver.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32344
-manamoa6.net,manamoa4.net,manamoa3.net,manamoa2.net,manamoa.net##.ad-banner-widget
+manamoa10.net,manamoa9.net,manamoa8.net,manamoa6.net,manamoa4.net,manamoa3.net,manamoa2.net,manamoa.net##.ad-banner-widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32375
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||pd-retro-tv.tistory.com^$generichide
@@ -4118,6 +4125,8 @@ jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,j
 ! adquesto
 innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#AG_abortInlineScript(/adBlock/, 'parseInt');
 ||request.dqst.pl/v*/$xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/35364
+naekranie.pl#%#AG_abortInlineScript(/loadData/, '$');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36126
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||xboxforum.pl^$generichide
@@ -4555,7 +4564,8 @@ www.wp.pl#$#body { overflow: visible!important; }
 ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) .===.(\}))/\$2\$3\$4\$6/,script
 ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) .===.(\}))/\$4\$5\$6\$8/,script
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
-www.wp.pl##div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
+! www.wp.pl##div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
+www.wp.pl##div[class^="sc-"]:has(> img[src="https://v.wpimg.pl/a2YvYmcuTlM4FC9eTA5DRntMewQKV00QLFRjT0xAV0ptQ3YETQIRHCkadgxMHE5BLRF2HQgTTlA-WCkDBFcc"])
 wp.pl##[class^="_"]:has(>img[src*=".wp.pl"])
 wiadomosci.wp.pl,turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl##div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
 ||i.wp.pl/a/i/stg/wpjslib-nojq.js$domain=dobreprogramy.pl
@@ -5083,10 +5093,13 @@ aftonbladet.se#%#(function(){var b=XMLHttpRequest.prototype.open,c=/ib\.adnxs\.c
 aftonbladet.se#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links {display:block!important;}
 !+ PLATFORM(ios, ext_android_cb)
 @@||aftonbladet.se^$generichide
-!
-@@||adtech.de/dt/common/DAC.js$domain=ekstrabladet.dk
+! https://github.com/AdguardTeam/AdguardFilters/issues/36632
+ekstrabladet.dk#%#AG_setConstant('apntag.requests', 'noopFunc');
 ekstrabladet.dk#@##ad_container
+@@||adtech.de/dt/common/DAC.js$domain=ekstrabladet.dk
 @@||politiken.dk/static/content/js/ads.js$domain=ekstrabladet.dk
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
+@@||acdn.adnxs.com/ast/ast.js$domain=ekstrabladet.dk
 !
 @@||nowvideo.sx/banner.php
 ||login.di.se/assets/adblk.js
@@ -5302,6 +5315,13 @@ mm-cg.com##.TW_UTtoy
 !---------------------------------------------------------------------
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/35415
+doonungdee.online###floatleft
+doonungdee.online###floatright
+doonungdee.online##.ads-responsive
+/pic-ads/*$domain=doonungdee.online
+||publish.iptvz.net^$domain=doonungdee.online
+!
 ballzaa.com##.banner-box
 ||bp.blogspot.com^$image,domain=nontonmovie33.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28171
