@@ -1,6 +1,19 @@
 !
 ! Section contains list of the rules for content blockers
-! It will be used by AdGuard for Android and AdGuard for iOS/Safari
+! It will be used by AdGuard Content Blocker and AdGuard for iOS/Safari
+!
+!###################### Temporary ######################
+! until AG for iOS v3.1 release with !#safari_cb_affinity pre-processor directive support
+!
+! *** START: Antiadblock ***
+! https://github.com/AdguardTeam/AdguardFilters/issues/36644
+!+ PLATFORM(ios)
+@@||nu.nl/static/js/advertising.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/35661
+!+ PLATFORM(ios)
+@@/static/js/ads.min.js$domain=thehindu.com
+! **** END: Antiadblock ****
+!#######################################################
 !
 ! *** CAUTION: all rules are wrapped by AG directive. Don't remove it, and don't add another directives***
 !
@@ -23,18 +36,6 @@
 !#######################################################
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
-!
-!*****
-!*** TEMPORARY: until AG for iOS v3.1 release with !#safari_cb_affinity pre-processor directive support
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/36644
-!+ PLATFORM(ios)
-@@||nu.nl/static/js/advertising.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/35661
-!+ PLATFORM(ios)
-@@/static/js/ads.min.js$domain=thehindu.com
-!***
-!******
 !
 ! BlockAdBlock, which requires some URL exclusions (for AG without JS rules)
 ! START: BlockAdBlock(no JS)
