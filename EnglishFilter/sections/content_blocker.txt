@@ -1,6 +1,19 @@
 !
 ! Section contains list of the rules for content blockers
-! It will be used by AdGuard for Android and AdGuard for iOS/Safari
+! It will be used by AdGuard Content Blocker and AdGuard for iOS/Safari
+!
+!###################### Temporary ######################
+! until AG for iOS v3.1 release with !#safari_cb_affinity pre-processor directive support
+!
+! *** START: Antiadblock ***
+! https://github.com/AdguardTeam/AdguardFilters/issues/36644
+!+ PLATFORM(ios)
+@@||nu.nl/static/js/advertising.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/35661
+!+ PLATFORM(ios)
+@@/static/js/ads.min.js$domain=thehindu.com
+! **** END: Antiadblock ****
+!#######################################################
 !
 ! *** CAUTION: all rules are wrapped by AG directive. Don't remove it, and don't add another directives***
 !
@@ -23,18 +36,6 @@
 !#######################################################
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
-!
-!*****
-!*** TEMPORARY: until AG for iOS v3.1 release with !#safari_cb_affinity pre-processor directive support
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/36644
-!+ PLATFORM(ios)
-@@||nu.nl/static/js/advertising.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/35661
-!+ PLATFORM(ios)
-@@/static/js/ads.min.js$domain=thehindu.com
-!***
-!******
 !
 ! BlockAdBlock, which requires some URL exclusions (for AG without JS rules)
 ! START: BlockAdBlock(no JS)
@@ -166,7 +167,7 @@
 @@||bolgegundem.com/s/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36088
 @@||piratedhub.com^$generichide
-! https://forum.adguard.com/index.php?threads/31395/
+! ! https://github.com/AdguardTeam/AdguardFilters/issues/35046
 @@||rp5.by^$generichide
 @@||rp5.kz^$generichide
 @@||rp5.ru^$generichide
@@ -174,6 +175,8 @@
 rp5.by,rp5.kz,rp5.ru,rp5.ua#@#.adsbygoogle
 rp5.by,rp5.kz,rp5.ru,rp5.ua#@#.adslot_1
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rp5.by|rp5.kz|rp5.ru|rp5.ua
+@@||m.rp5.*/mobile/scripts/adtop.js$domain=m.rp5.ru|m.rp5.ua|m.rp5.by|m.rp5.kz
+@@||m.rp5.*/mobile/scripts/adblocker.js$domain=m.rp5.ru|m.rp5.ua|m.rp5.by|m.rp5.kz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34414
 @@||tagblatt.ch^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32068
@@ -695,7 +698,6 @@ ad4msan.com#@##adsense
 wikimovies.ru##body > noindex
 !
 @@||jsc.marketgid.com/*/seasonvar.ru.*.js
-@@||rootmedia.ws/js/lib.js
 tree.tv,comedy-film.net,free-torrent.org,free-torrents.org,onlyf.ws,torrentino.me##body > :not(div)
 rutorgames.org##body > noindex
 nnm-club.tv,nnm-club.me,nnmclub.to##.leftnav > center > noindex
