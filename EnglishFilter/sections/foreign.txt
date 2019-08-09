@@ -1543,23 +1543,26 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
-! https://github.com/AdguardTeam/AdguardFilters/issues/37329
-cnews.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{6,10}$/');
-cnews.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-cnews.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
+! adbDetect
+aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz#%#Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});
+! novinky.cz requires different rule, because rule above breaks video player
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+novinky.cz#%#!function(){if(location.pathname.indexOf("/iframe/player")===-1){Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});}}();
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+karaoketexty.cz#%#AG_abortInlineScript(/adbDetect/, 'Math', true);
+karaoketexty.cz,sport.cz,super.cz,tiscali.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
+aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,novinky.cz,zive.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
+auto.cz$$script[tag-content="abortCurrentInlineScript"][max-length="7000"]
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36614
 ||bombuj.tv/adblock/fuckadblock2.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35615
 ||www.csfd.cz/film/*/videa/|$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35240
 karaoketexty.cz##.ad_large_square
-karaoketexty.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-karaoketexty.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-karaoketexty.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33238
-aktuality.sk#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-aktuality.sk#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-aktuality.sk$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 sport.aktuality.sk##.rs-advertisement
 sport.aktuality.sk##.nike-box-promo-banner
 sport.aktuality.sk###page-container > div[style="position:relative;"]:not([class]):not([id]) > div[style^="width:"] > iframe[id^="etarget_"]
@@ -1571,8 +1574,6 @@ freefilm.to##.adxvOverNew
 freefilm.to##a[id^="advOverVideo"]
 ! https://forum.adguard.com/index.php?threads/http-www-auto-cz.31112
 @@||auto.cz/js/base-cz/advert.js
-auto.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-auto.cz$$script[tag-content="abortCurrentInlineScript"][max-length="7000"]
 auto.cz##.ads
 auto.cz##.adv
 auto.cz###column > .container[style="width: auto; position: relative; height: 620px;"]
@@ -1584,10 +1585,6 @@ fightclubnews.cz#$#body.td-ad-background-link #td-outer-wrap { cursor: auto!impo
 fightclubnews.cz#%#Object.defineProperty(window, 'td_ad_background_click_link', { get: function() { return ""; } });
 ||ticketportal.cz/Event/$popup,domain=fightclubnews.cz
 ! https://forum.adguard.com/index.php?threads/www-sport-cz.30895/
-sport.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-sport.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-sport.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 sport.cz###adArticleSign
 sport.cz##div[id^="next-articles-"] > div[class][data-number]
 sport.cz###adCommercialBackground:not([style*="background-image:"])
@@ -1624,9 +1621,6 @@ e15.cz##.ads
 e15.cz#$#body { background-image:none!important; }
 e15.cz###topSite
 e15.cz###brandingCreativeWrapper
-e15.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-e15.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-e15.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24191
 vtm.zive.cz##.box-cex
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23207
@@ -1640,9 +1634,6 @@ najserialy.co##body > a[href^="https://goo.gl/"].mojatv
 nikee.net##td[valign="Top"] > div[style^=" font-family: Verdana; font-size:"] > div[style*="background-color:"]:contains(Reklama)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22168
 tiscali.cz##.box-offer
-tiscali.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-tiscali.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-tiscali.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20752
 eurozpravy.cz##.ad_aside
 eurozpravy.cz##.ad_etarget
@@ -1677,8 +1668,6 @@ freefilm.sk##div[class^="reklama"]
 freefilm.sk##a[title="Spustiť"]
 freefilm.sk##.adxvOverNew
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19573
-zive.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-zive.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 zive.cz##.ads
 zive.cz#$#.sky-wrapper { min-height: 10px!important;}
 @@||zive.cz/Client.Scripts/advertisment.js
@@ -1690,23 +1679,11 @@ mobilmania.cz#$#.sky-wrapper { min-height: 50px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17020
 aktualne.cz###kulublu-mulu
 aktualne.cz##.rtx-burn12 + div[class][id]
-aktualne.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-aktualne.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-aktualne.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 !+ PLATFORM(windows, mac, android)
 /aktualne.cz\/[-_a-zA-Z0-9]{20,}/$domain=aktualne.cz,image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16537
 ||prima-vod-prep.ssl.cdn.cra.cz/vod_Prima^$media
 iprima.cz##.vjs-ad-link
-! https://github.com/AdguardTeam/AdguardFilters/issues/16347
-centrum.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-centrum.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-centrum.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/16207
-super.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-super.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-super.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12347
 cs-dopravak.cz##.col.span-3[id^="yui_"] > .sqs-block[data-block-type="5"]
 cs-dopravak.cz##.col.span-3[id^="yui_"] > .sqs-block > .sqs-block-content > p:contains(Banner)
@@ -1747,9 +1724,6 @@ blesk.cz##.ads
 blesk.cz##div[class^="stickyContentBottom_"]
 blesk.cz##div[id^="ads-"]
 blesk.cz###mimibazar-block
-blesk.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-blesk.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-blesk.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 blesk.cz###article div[class*="etext"][class*="_"]:not([id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9023
 !+ PLATFORM(ios, ext_android_cb)
@@ -1757,9 +1731,6 @@ blesk.cz###article div[class*="etext"][class*="_"]:not([id])
 !+ PLATFORM(ios, ext_android_cb)
 bombuj.eu###reklamacasino
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7873
-novinky.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-novinky.cz#%#//scriptlet("abort-on-property-read", "HTMLIFrameElement.prototype.contentWindow")
-novinky.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 novinky.cz#%#//scriptlet("abort-on-property-read", "AdBlockTest")
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6880
