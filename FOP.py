@@ -63,7 +63,7 @@ IGNORE = (
 # List all Adblock Plus options (excepting domain, which is handled separately), as of version 1.3.9
 KNOWNOPTIONS = ("document", "elemhide", "generichide", "genericblock",
                 "font", "image", "match-case", "object", "media", "protobuf", 
-                "object-subrequest", "popup", "script", "websocket", "ther",
+                "popup", "script", "websocket", "other",
                 "stylesheet", "subdocument", "third-party", "xmlhttprequest",
                 "mp4", "urlblock", "empty", "jsinject", "content", "important")
 
