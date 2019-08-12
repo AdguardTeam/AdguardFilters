@@ -36,6 +36,9 @@ video.gjirafa.com#%#AG_defineProperty('originVideo.requestA.Id', { value: "0" })
 !---------------------------------------------------------------------
 !------------------------------ Arabian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/37579
+nabmovie.com#%#window.open=function(){};
+nabmovie.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37514
 @@||okanime.com/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35921
@@ -528,6 +531,9 @@ infocity.az##a[href="http://ganja.marathon.az/"]
 ||code.adsgarden.com/js/adsgarden.js
 az.baku.ws##iframe[src^="http://ad.adriver.ru/"]
 az.baku.ws##iframe[src^="https://ad.adriver.ru/"]
+mp3.run.az###dle-content > .full > .sect
+mp3.run.az##center > a[href][rel="nofollow"] > img
+||alan.az/ads-$domain=mp3.run.az
 mp3.run.az##.ortarek
 mp3.run.az###dle-content > .embedkod
 mp3.run.az###maincont > div > .mpblok
@@ -789,12 +795,19 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 !---------------------------------------------------------------------
 !------------------------------ Chinese ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/34930
+.gif$third-party,domain=yasem5.com
+yasem5.com###cdaas-rand
+yasem5.com##a[href*="yasem5.com/go"][target="_blank"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33593
 kkphm.com,haohaiyo.cc,51kkp.club##a[href*="kkpmh.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33851
 flyblog.cc##.pixnavbar__top-bar__main-sites
 flyblog.cc###links > div[id] > div.hslice:not(#search):not(#counter):not(#category):not(#calendar):not([id*="-article"]):not(#latest-comment)
 flyblog.cc#?#.article-body > div[style]:has(> div[style] > div[id] > ins.adsbyfalcon)
+! https://github.com/AdguardTeam/AdguardFilters/issues/34470
+maxfoodfun.com#?#.article-body > div[style]:has(> div[style] > div[id] > ins.adsbyfalcon)
+maxfoodfun.com###links > div[id] > div.hslice:not(#search):not(#qrcode):not(#category):not([id*="-article"]):not(#latest-comment)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37960
 58b.tv##.listri > .ad
 58b.tv##.closead
@@ -807,6 +820,21 @@ flyblog.cc#?#.article-body > div[style]:has(> div[style] > div[id] > ins.adsbyfa
 58b.tv#$#.playmar > .playr { visibility: hidden!important; }
 58b.tv#$##banner { display: none!important; }
 58b.tv#$##video_player { display: block!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/34903
+||104.167.70.98^$domain=chuzuche8.com
+chuzuche8.com##body > h4 > font[color="red"][size="6"]
+chuzuche8.com#?#body > font:contains(function)
+chuzuche8.com#?##container > font[color] > font[color] > div[style]:has(> table[width] > tbody > tr > th > a[href][target="_blank"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/34905
+xxxsm.vip##.ad280x165
+xxxsm.vip##a[href="ilupian8.html"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/34901
+||alicdn.com^$image,domain=hg6384.com-www.6u7u.com
+||sinaimg.cn^$image,domain=hg6384.com-www.6u7u.com
+hg6384.com-www.6u7u.com##.advert
+! https://github.com/AdguardTeam/AdguardFilters/issues/34906
+/uploads/*/*-860x250*.gif$domain=aipa551.com|aipa552.com
+aipa551.com,aipa552.com##a[href*="theporndude.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33601
 lsj2017.com##.wrap > .top_box
 ||107.175.181.58^$domain=lsj2017.com
@@ -1544,23 +1572,26 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
-! https://github.com/AdguardTeam/AdguardFilters/issues/37329
-cnews.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{6,10}$/');
-cnews.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-cnews.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
+! adbDetect
+extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});
+! novinky.cz requires different rule, because rule above breaks video player
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+novinky.cz#%#!function(){if(location.pathname.indexOf("/iframe/player")===-1){Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});}}();
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+karaoketexty.cz#%#AG_abortInlineScript(/adbDetect/, 'Math', true);
+karaoketexty.cz,sport.cz,super.cz,tiscali.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
+extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,novinky.cz,zive.cz$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
+auto.cz$$script[tag-content="abortCurrentInlineScript"][max-length="7000"]
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36614
 ||bombuj.tv/adblock/fuckadblock2.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35615
 ||www.csfd.cz/film/*/videa/|$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35240
 karaoketexty.cz##.ad_large_square
-karaoketexty.cz#%#AG_removeCookie('/^adb$|adb\.key/');
-karaoketexty.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-karaoketexty.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33238
-aktuality.sk#%#AG_removeCookie('/^adb$|adb\.key/');
-aktuality.sk#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-aktuality.sk$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 sport.aktuality.sk##.rs-advertisement
 sport.aktuality.sk##.nike-box-promo-banner
 sport.aktuality.sk###page-container > div[style="position:relative;"]:not([class]):not([id]) > div[style^="width:"] > iframe[id^="etarget_"]
@@ -1572,8 +1603,6 @@ freefilm.to##.adxvOverNew
 freefilm.to##a[id^="advOverVideo"]
 ! https://forum.adguard.com/index.php?threads/http-www-auto-cz.31112
 @@||auto.cz/js/base-cz/advert.js
-auto.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-auto.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 auto.cz##.ads
 auto.cz##.adv
 auto.cz###column > .container[style="width: auto; position: relative; height: 620px;"]
@@ -1585,9 +1614,6 @@ fightclubnews.cz#$#body.td-ad-background-link #td-outer-wrap { cursor: auto!impo
 fightclubnews.cz#%#Object.defineProperty(window, 'td_ad_background_click_link', { get: function() { return ""; } });
 ||ticketportal.cz/Event/$popup,domain=fightclubnews.cz
 ! https://forum.adguard.com/index.php?threads/www-sport-cz.30895/
-sport.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,10}$/');
-sport.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
-sport.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
 sport.cz###adArticleSign
 sport.cz##div[id^="next-articles-"] > div[class][data-number]
 sport.cz###adCommercialBackground:not([style*="background-image:"])
@@ -1623,9 +1649,7 @@ e15.cz##.ads
 ||e14.cz/*/*branding$image
 e15.cz#$#body { background-image:none!important; }
 e15.cz###topSite
-e15.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
 e15.cz###brandingCreativeWrapper
-e15.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24191
 vtm.zive.cz##.box-cex
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23207
@@ -1639,8 +1663,6 @@ najserialy.co##body > a[href^="https://goo.gl/"].mojatv
 nikee.net##td[valign="Top"] > div[style^=" font-family: Verdana; font-size:"] > div[style*="background-color:"]:contains(Reklama)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22168
 tiscali.cz##.box-offer
-tiscali.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-tiscali.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20752
 eurozpravy.cz##.ad_aside
 eurozpravy.cz##.ad_etarget
@@ -1675,8 +1697,6 @@ freefilm.sk##div[class^="reklama"]
 freefilm.sk##a[title="Spustiť"]
 freefilm.sk##.adxvOverNew
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19573
-zive.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-zive.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 zive.cz##.ads
 zive.cz#$#.sky-wrapper { min-height: 10px!important;}
 @@||zive.cz/Client.Scripts/advertisment.js
@@ -1688,26 +1708,16 @@ mobilmania.cz#$#.sky-wrapper { min-height: 50px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17020
 aktualne.cz###kulublu-mulu
 aktualne.cz##.rtx-burn12 + div[class][id]
-aktualne.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-aktualne.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 !+ PLATFORM(windows, mac, android)
 /aktualne.cz\/[-_a-zA-Z0-9]{20,}/$domain=aktualne.cz,image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16537
 ||prima-vod-prep.ssl.cdn.cra.cz/vod_Prima^$media
 iprima.cz##.vjs-ad-link
-! https://github.com/AdguardTeam/AdguardFilters/issues/16347
-centrum.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-centrum.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/16207
-super.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-super.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12347
 cs-dopravak.cz##.col.span-3[id^="yui_"] > .sqs-block[data-block-type="5"]
 cs-dopravak.cz##.col.span-3[id^="yui_"] > .sqs-block > .sqs-block-content > p:contains(Banner)
 cs-dopravak.cz###sidebar .col[id^="yui_"] > .sqs-block[data-block-type="5"]
 cs-dopravak.cz###sidebar .col[id^="yui_"] > .sqs-block > .sqs-block-content > p > strong:contains(Reklama)
-! https://github.com/AdguardTeam/AdguardFilters/issues/12191
-novinky.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11791
 @@||static.cz.prg.cmestatic.com/static/cz/shared/js/advert.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33226
@@ -1729,11 +1739,7 @@ aktualne.cz##.pravy > div[class]:not(.clearfix):not([data-ec-list]):not(.plonkov
 peugeotclub.eu#@#.reklama
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31512
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11203
-mobilmania.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{6,10}$/');
-idnes.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{6,10}$/');
 idnes.cz##table[id^="r-leaderboard"].s_branding
-mobilmania.cz,idnes.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-mobilmania.cz,idnes.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10776
 @@||img.blesk.cz/js/base-cz/advert.js
 @@||img.blesk.cz/static/data/blesk/reklama/advertisment.js
@@ -1742,8 +1748,6 @@ blesk.cz##.ads
 blesk.cz##div[class^="stickyContentBottom_"]
 blesk.cz##div[id^="ads-"]
 blesk.cz###mimibazar-block
-blesk.cz#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
-blesk.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 blesk.cz###article div[class*="etext"][class*="_"]:not([id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9023
 !+ PLATFORM(ios, ext_android_cb)
@@ -1751,7 +1755,6 @@ blesk.cz###article div[class*="etext"][class*="_"]:not([id])
 !+ PLATFORM(ios, ext_android_cb)
 bombuj.eu###reklamacasino
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7873
-novinky.cz$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
 novinky.cz#%#//scriptlet("abort-on-property-read", "AdBlockTest")
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6880
@@ -2158,6 +2161,7 @@ patrika.com##.google-ads-full
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37929
+gyorietokc.hu##.hirek-tamogato
 ||gyorietokc.hu/uploads/banner/
 ||gyorietokc.hu/images/partnerek/kiemelt/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35357
@@ -2587,6 +2591,11 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/38275
+moviekeren.com##.bnr
+moviekeren.com###ads_player_inside > .Dvr-300
+moviekeren.com#$##ads_player_inside { display: none!important; }
+moviekeren.com#$#.TPlayer.on::after { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37211
 layarkaca21.red#$#.mfp-bg { display: none!important; }
 layarkaca21.red#$#.mfp-wrap { display: none!important; }
@@ -2607,12 +2616,12 @@ dunia21.cc###overlay-pop
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35552
 bagilagi.com#%#AG_onLoad(function() { var el=document.querySelector('img[id="showlink"]'); if(el) el.click(); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35789
-filmbioskop21.id##.ban_empat
-filmbioskop21.id#$#body { overflow: visible!important; }
-filmbioskop21.id#$##myModalSingle { display: none!important; }
-||filmbioskop21.id/img/closeX.png
-filmbioskop21.id##.navbar-brand
-filmbioskop21.id##.inner-wrap > div[id^="previewBox"]
+filmbioskop21.me##.ban_empat
+filmbioskop21.me#$#body { overflow: visible!important; }
+filmbioskop21.me#$##myModalSingle { display: none!important; }
+||filmbioskop21.me/img/closeX.png
+filmbioskop21.me##.navbar-brand
+filmbioskop21.me##.inner-wrap > div[id^="previewBox"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35087
 ||kotanopan.com/wp-content/uploads/*/*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34775
@@ -2704,12 +2713,12 @@ dunia21.net###bsquare
 ||dunia21.net/assets/top-*.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36332
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20634
-indoxx1.stream#%#AG_abortInlineScript(/=function\(str,vocabulary\)/, 'Math');
+indoxx1.center#%#AG_abortInlineScript(/=function\(str,vocabulary\)/, 'Math');
 ||img.akubebas.com/images/pencetpoker-
-indoxx1.stream##div[id^="home-bnner"]
-indoxx1.stream##div[id^="player-side-"] > a
-indoxx1.stream###content-embed > .jwseed[onclick]
-indoxx1.stream#%#AG_onLoad(function(){ var a=document.getElementById('content-embed');if(a){var b=new MutationObserver(function c(){var d=document.querySelector('#content-embed > a[href][target="_blank"]'),e=document.querySelector('#content-embed #tv-play-btn');d&&(b.disconnect(),d.removeAttribute('href'),e&&e.click())});b.observe(document,{childList:!0,subtree:!0});setTimeout(function(){b.disconnect()},1e4) } });
+indoxx1.center##div[id^="home-bnner"]
+indoxx1.center##div[id^="player-side-"] > a
+indoxx1.center###content-embed > .jwseed[onclick]
+indoxx1.center#%#AG_onLoad(function(){ var a=document.getElementById('content-embed');if(a){var b=new MutationObserver(function c(){var d=document.querySelector('#content-embed > a[href][target="_blank"]'),e=document.querySelector('#content-embed #tv-play-btn');d&&(b.disconnect(),d.removeAttribute('href'),e&&e.click())});b.observe(document,{childList:!0,subtree:!0});setTimeout(function(){b.disconnect()},3e4) } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19738
 @@||idfl.me/fancyboxidfl2/jquery.js
 ||idfl.me/fancyboxidfl2^
@@ -3562,6 +3571,10 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/38131
+lifelonglearning.kr#$#.adsbygoogle { position: absolute!important; left: -10000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/38045
+cafe.naver.com###cafe-intro
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37504
 tgd.kr###header-top-notice
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37747
@@ -4004,6 +4017,7 @@ delfi.ee#@#.adbanner
 delfi.ee#@#.bottomAdvert
 delfi.ee###ab-top-bar
 !
+delfi.lt#%#AG_abortOnPropertyRead('_dlf.ab');
 delfi.lt#%#AG_setConstant('__dabd', 'noopFunc');
 delfi.lt###al-infoblock
 delfi.lt###al-580x150
@@ -4232,6 +4246,10 @@ vg.no###ad-topboard
 !---------------------------------------------------------------------
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33352
 downloadly.ir##iframe[src^="https://beta.kaprila.com/a/show.php"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/38063
+soft98.ir##.a1dx-link
+soft98.ir###adx-specials
+soft98.ir###sidebar > section:has(> div > a.a1dx-link)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37023
 soft98.ir##[class^="adx"]
 ||kaprila.com/a/show.js
@@ -4248,7 +4266,7 @@ zoomit.ir#$#body > .hotMenu[style="top: auto;"] { top: 0!important; }
 zoomit.ir#$#body > nav.is-sticky[style="top: 130px;"] { top: 0!important; }
 zoomit.ir#%#document.cookie = "BnShowNum=4; path=/;";
 ! soft98.ir
-soft98.ir#$#[id^="sidebar"][id*="sticky"] > section { opacity: 0!important; pointer-events: none!important; }
+soft98.ir#$#[id^="sidebar"][id*="stick"] > section { opacity: 0!important; pointer-events: none!important; }
 soft98.ir#$#a.adx-link { opacity: 0!important; pointer-events: none!important; }
 soft98.ir#$#.d-js2-none { display: none!important; }
 soft98.ir#$#.d-js2-block { display: block!important; }
@@ -4730,8 +4748,6 @@ www.wp.pl##[class*="AdvSlotWithPlaceholder__"]:has(>img[class^="AdvPlaceholder"]
 ~www.wp.pl,wp.pl##[class^="_"] > [class^="_"][class*=" _"]:has(>[class^="_"] > [class*="_"] > a[href] > [style*="background-image: url("])
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
 ~www.wp.pl,wp.pl##div[class*=" "]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
-!+ PLATFORM(windows, mac, android)
-www.wp.pl###newsfeed-player-column[class^="_3"] > div[class^="sc-"]:has(a[href^="https://ssl.hurra.com"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13103
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||skmedix.pl^$generichide
@@ -4795,7 +4811,8 @@ www.wp.pl#$#body { overflow: visible!important; }
 ! www.wp.pl##div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
 www.wp.pl##div[class^="sc-"]:has(> img[src="https://v.wpimg.pl/a2YvYmcuTlM4FC9eTA5DRntMewQKV00QLFRjT0xAV0ptQ3YETQIRHCkadgxMHE5BLRF2HQgTTlA-WCkDBFcc"])
 wp.pl##[class^="_"]:has(>img[src*=".wp.pl"])
-wiadomosci.wp.pl,turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl##div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
+turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl#?#div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
+wiadomosci.wp.pl#?#div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="Qaqwqwrqw"]:empty)
 ||i.wp.pl/a/i/stg/wpjslib-nojq.js$domain=dobreprogramy.pl
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
 ||v.wpimg.pl^$media,mp4,domain=dobreprogramy.pl|medycyna24.pl|money.pl|wp.pl
@@ -4828,6 +4845,8 @@ portel.pl#$#iframe[src*="/R1"][src$=".html"][style*="display:block !important;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7218
 auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada.pl,przegladsportowy.pl,vod.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/document\.body\.getAttribute\("abp"\)/.test(a.toString()))return b(a,c)};})();
 @@||komputerswiat.pl^$generichide
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||onet.pl^$generichide
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||businessinsider.com.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15134
@@ -4835,8 +4854,7 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 filmweb.pl#%#AG_abortInlineScript(/adblockDisplayInformation\.toggleInformation/, 'document.querySelector');
 filmweb.pl$$script[tag-content="adblockDisplayInformation.toggleInformation"][min-length="8000"][max-length="50000"]
 filmweb.pl#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.ws__wrapper'); }, 300); });
-filmweb.pl$$script[tag-content="Element.prototype,""shadowRoot"""][max-length="7000"]
-filmweb.pl#%#Object.defineProperty(Object.prototype, 'skipMe', { get: function(){ throw null; }, set: function(){ throw null; }});
+filmweb.pl$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
 ||filmweb.pl/adbchk?v=
@@ -4889,12 +4907,8 @@ anyfiles.pl#%#Object.defineProperty(window, 'launchOpenWindow', { get: function(
 ! https://github.com/MajkiIT/polish-ads-filter/issues/3175
 naszemiasto.pl#%#window.adBlockTest = true;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5669
-www.wp.pl##[class^="_"] > div[style^="display: block; min-height: 0px;"]
+www.wp.pl#?#aside > div[data-st-area="Pogoda"] + div[class^="sc-"]:has(a[href^="https://koszykrd.wp.pl?product_url="])
 www.wp.pl##[id^="sgwp_screening_"]
-www.wp.pl###glonews > div[style^="display: block; min-height: 0px;"]
-www.wp.pl##[class^="_"] > div > div[style^="display: block; min-height: 0px;"]
-www.wp.pl##[class^="_"] > [class^="_"] > [class^="_"] > a[href][target="_blank"] > img
-www.wp.pl##[class^="_"] > [class^="_"] > [class^="_"] > a[href][target="_blank"] + span
 www.wp.pl##a[href^="http://direct.money.pl/landing-page/callcenter/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32398
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20613
@@ -5709,6 +5723,9 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/38159
+||affiliate.k4.tinhte.vn^
+tinhte.vn##.TinhteMods_AffiliateWidget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36260
 ftios.vn##.ftd4-maybest
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36902
