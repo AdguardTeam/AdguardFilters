@@ -8,6 +8,11 @@ ferr-um.ucoz.ru,stalker-mods.clan.su,helpsetup.ru#%#(function(b){Object.definePr
 .com/resources/draw_script.js$third-party
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/38133
+@@||ua-vast.vertamedia.com/?content_page_url=$domain=dobre.stb.ua
+@@||static.vertamedia.com/static/jsvpaid.js$domain=dobre.stb.ua
+@@||ua-vast.vertamedia.com/?aid=$domain=dobre.stb.ua
+@@||static.adtelligent.com/static/jsvpaid.js$domain=dobre.stb.ua
 ! rbc.ru - fixing error (pt. 2 Another rules are in Base filter)
 autonews.ru,rbc.ru,sportrbc.ru#$#.banner__filmstrip { position: absolute!important; left: -3000px!important; }
 autonews.ru,rbc.ru,sportrbc.ru#$#.banner { position: absolute!important; left: -3000px!important; }
@@ -23,8 +28,6 @@ autonews.ru,rbc.ru,sportrbc.ru#@#.banner__container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37543
 cheatground.ru$$script[wildcard="*try {var *requestAnimationFrame*"][max-length="12000"]
 cheatground.ru#%#//scriptlet("set-constant", "_0x3a91", "undefined")
-! https://forum.adguard.com/index.php?threads/31570/
-drive2.ru#%#//scriptlet("set-constant", "Object.prototype.AdfoxProxyCallbacksManager", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37433
 @@||kp.ru/js/adriver.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37319
@@ -39,6 +42,8 @@ drive2.ru#%#//scriptlet("set-constant", "Object.prototype.AdfoxProxyCallbacksMan
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34869
 hacking-games.ru##.adbd-filter
 hacking-games.ru##body aside.adbd-popup
+! https://github.com/AdguardTeam/AdguardFilters/issues/34689
+@@||giveaway.su/ad.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32890
 @@||forums.rusmedserv.com/ad/banner/_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35399
@@ -1336,7 +1341,13 @@ kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Ya.Direct")
 kinopoisk.ru#%#//scriptlet("set-constant", "only_branding_adv", "trueFunc")
 !
 24smi.org#%#//scriptlet("set-constant", "Object.prototype.AdvManager", "undefined")
+!
 drive2.ru#%#//scriptlet("set-constant", "Object.prototype.initYaDirect", "undefined")
+drive2.ru#%#//scriptlet("set-constant", "Object.prototype.AdfoxProxyCallbacksManager", "undefined")
+!+ PLATFORM(windows, mac)
+drive2.ru#%#AG_setConstant('Object.prototype.AdfoxProxyCallbacksManager', 'undefined');
+!+ PLATFORM(windows, mac)
+drive2.ru#%#AG_setConstant('Object.prototype.initYaDirect', 'undefined');
 !
 ! Yandex main page
 @@||awaps.yandex.net/*_.htm&link$domain=yandex.ru
@@ -1405,12 +1416,6 @@ news.yandex.by,news.yandex.com,news.yandex.fr,news.yandex.kz,news.yandex.ru,news
 afisha.yandex.by,afisha.yandex.kz,afisha.yandex.ru,afisha.yandex.ua#%#//scriptlet("set-constant", "Object.prototype.Ya.Afisha.AfishaProfit.render", "undefined")
 !
 ! Yandex.Maps
-!
-! for the case of using RU AdList
-!+ NOT_PLATFORM(ext_ff)
-://yandex.*/maps/$replace=/\,"adverts":\[.+?]}/\,"adverts":\[]\}/,important
-! https://yandex.ru/maps/org/moskovskiy_kreml/1023322799/
-yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua$$a[href="https://direct.yandex."][parent-elements="div"][parent-search-level="1"][max-length="11000"]
 !
 ! Yandex.Mail
 ||mail.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,important,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
