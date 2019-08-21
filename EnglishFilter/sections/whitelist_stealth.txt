@@ -5,10 +5,11 @@
 ! remove after ext 3.0 release
 @@||accounts.google.com^$stealth
 @@||content.googleapis.com/cryptauth$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38586
 ! https://forum.adguard.com/index.php?threads/1fichier-com.32832/
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1391 [Stealth Mode - DNT]
-!+ PLATFORM(ext_ff)
-@@||1fichier.com^$stealth
+!+ PLATFORM(ext_chromium, ext_ff, ext_opera)
+@@||1fichier.com/?$stealth,~stylesheet,~image,~script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32757 [Stealth Mode - Block third-party Authorization header]
 @@||cf.talpa.digital/spaces^$stealth
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/2074 [Stealth Mode - Strip URLs from tracking parameters]
@@ -24,10 +25,20 @@
 @@||adidas.pl/*&gclid=$stealth
 !#########################################
 !
+! store.playstation.com - broken agegate [Stealth Mode - Referrer]
+@@||store.playstation.com/html/webIframeRedirect.html?requestId$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38583 [Stealth Mode - Referrer]
+@@||googleapis.com/youtube/*/search?key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38163 [Stealth Mode - Referrer]
+@@||maps.googleapis.com/maps/api/$stealth,domain=offerup.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38230 [Stealth Mode - Referrer]
 @@||kastream.biz/embed*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38013 [Stealth Mode - Referrer]
+@@||iframe.twainmarky.online^$stealth,domain=yonjatv8.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37591 [Stealth Mode - Referrer]
 @@||moonwalk.cc/*/iframe$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38088 [Stealth Mode - Referrer]
+@@||player.starlight.digital^$stealth
 ! gmx.net - error 403 when clicking on link on redirector [Stealth Mode - Referrer]
 @@||deref-gmx.net/mail/client/*/dereferrer/?redirectUrl=$stealth
 ! https://forum.adguard.com/index.php?threads/webtoons-com-comment-error.34212 [Stealth Mode - Referrer]
