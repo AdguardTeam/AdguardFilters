@@ -7,7 +7,33 @@ ferr-um.ucoz.ru,stalker-mods.clan.su,helpsetup.ru#%#(function(b){Object.definePr
 ! AdBlocksBuilder
 .com/resources/draw_script.js$third-party
 !
+! AdRegain
+vargr.ru,electric-house.ru,trialkeys.ru#%#AG_abortOnPropertyWrite(`adregain_wall`)
+vargr.ru,electric-house.ru,trialkeys.ru#%#AG_abortOnPropertyRead(`ad_nodes`)
+! sometimes second part of script is loaded in another JS
+||electric-house.ru/forum/script_electric_min.js
+!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=electric-house.ru|trialkeys.ru|vargr.ru
+vargr.ru,electric-house.ru,trialkeys.ru#@#.AdSense
+vargr.ru,electric-house.ru,trialkeys.ru#@#iframe[width="728"][height="90"]
+vargr.ru,electric-house.ru,trialkeys.ru#@#img[width="728"][height="90"]
+!#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/38868
+@@||minecft.ru/advertisement.js$domain=happy-hack.ru
+! seedoff.innal.top and seedoff2.innal.top
+zannn.top,innal.top$$script[tag-content="document.write(unescape("]
+zannn.top,innal.top#%#//scriptlet("prevent-setTimeout", "checkCookie", "5000")
+@@/Pop-under.js$domain=zannn.top|innal.top
+! https://github.com/AdguardTeam/AdguardFilters/issues/38088
+!+ PLATFORM(ext_chromium, ext_edge)
+ictv.ua#%#AG_abortOnPropertyRead('STRICT_ADBLOCK');
+!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||ua-vast.vertamedia.com/?content_page_url=$domain=ictv.ua
+@@||static.vertamedia.com/static/jsvpaid.js$domain=ictv.ua
+@@||ua-vast.vertamedia.com/?aid=$domain=ictv.ua
+@@||static.adtelligent.com/static/jsvpaid.js$domain=ictv.ua
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38133
 @@||ua-vast.vertamedia.com/?content_page_url=$domain=dobre.stb.ua
 @@||static.vertamedia.com/static/jsvpaid.js$domain=dobre.stb.ua
@@ -23,6 +49,16 @@ autonews.ru,rbc.ru,sportrbc.ru#@#.banner__container
 @@||content.rbc.medialand.ru/*/ads.gif$domain=autonews.ru|rbc.ru|sportrbc.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37922
 @@||ddnk.advertur.ru/*/loader.js$domain=slomal-telefon.ru
+! https://forum.adguard.com/index.php?threads/https-od-news-com.34353/
+od-news.com#@##adsense
+! https://github.com/AdguardTeam/AdguardFilters/issues/37527
+sebeadmin.ru#%#AG_abortInlineScript('script', 'document.createElement');
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari)
+@@||ddnk.advertur.ru/v1/s/loader.js$domain=sebeadmin.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/35125
+pornobomba.cc#@#.ads-iframe
+!+ NOT_PLATFORM(windows, mac, android)
+@@||pornobomba.cc/player/player_ads.html$domain=pornobomba.cc
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37660
 @@||green-way.com.ua/themes/greenway/assets/javascript/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37543
@@ -111,14 +147,6 @@ salik.biz#@#.AdSense
 @@||debilizator.tv/static/js/videojs/*/videojs-contrib-ads.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31296
 ||rusfishing.ru/forum/js/siropu/am/core.min.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/30673
-trialkeys.ru#%#AG_abortOnPropertyWrite(`adregain_wall`, true)
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=trialkeys.ru
-trialkeys.ru#@#.AdSense
-trialkeys.ru#@#iframe[width="728"][height="90"]
-trialkeys.ru#@#img[width="728"][height="90"]
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30646
 @@||video.khl.ru/advertisment/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30987
@@ -670,6 +698,7 @@ gismeteo.by,gismeteo.ru$$div[tag-content="Yandex.RTB"][max-length="3900"]
 quto.ru,rns.online,championat.com,gazeta.ru,lenta.ru,rambler.ru$$script[tag-content="bannerType"][min-length="120000"][max-length="250000"]
 !+ NOT_PLATFORM(windows, mac, android)
 quto.ru,rns.online,championat.com,gazeta.ru,lenta.ru,rambler.ru#%#//scriptlet("set-constant", "Object.prototype.renderBanner", "undefined")
+gazeta.ru#%#//scriptlet("abort-current-inline-script", "window.fetch", "/var linkCollect/")
 ! quto.ru,rns.online,championat.com,gazeta.ru,lenta.ru,rambler.ru
 !championat.com,gazeta.ru,quto.ru,rambler.ru,rns.online#%#//scriptlet('abort-current-inline-script', 'Object.prototype.mCkeM', 'getRandomPrefix')
 !rambler.ru,lenta.ru#%#//scriptlet('abort-current-inline-script', 'Object.prototype.nxzGJ', 'getRandomPrefix')
@@ -867,6 +896,10 @@ deti.mail.ru,kino.mail.ru,auto.mail.ru,sportmail.ru#%#AG_abortInlineScript(/bgsh
 ||ok.ru/res/js/*.js$replace=/\"OK\/banners/\"OK\/banners__\//
 !+ NOT_PLATFORM(ext_ff)
 ||www.ok.ru/res/js/*.js$replace=/kBlockDetect\"\,/kBlockDetect__\"\,/
+!
+ok.ru#%#//scriptlet("set-constant", "Object.prototype.getAds", "undefined")
+!+ PLATFORM(windows, mac, android)
+!ok.ru#%#Object.defineProperty(Object.prototype, 'getAds', { get: function() { return; } });
 !*
 !*****
 !
@@ -1095,8 +1128,6 @@ anidub.com$$script[tag-content="$('head>style').remove();"]
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=50na50.net
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/923
 @@||hdserials.tv/upload/banners/banner.jpg
-! cnews.ru - message in articles
-cnews.ru##body > div[id] > div[id]:not([id^="cnComment"])
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/895
 manshet.ru###k788
 !
@@ -1224,6 +1255,8 @@ lostfilmonline.tv#%#function setTimeout() {};
 @@/*0x$xmlhttprequest,other,domain=1kinobig.ru|31.220.0.145|37.220.36.15|720hd.club|allhit.org|alpha.kiniska.com|anilibria.tv|anpopcorn.com|apollocdn.cc|best-serials.ru|bestkino.su|bighd.net|blackoctopus.cc|bobfilm.club|boevikcdn.ru|capricornus.cc|cdnapponline.com|cdnts.info|cdnvideonl.com|cinema-24.online|coolstory.cc|creativportal.ru|dugkino.ru|duralenta.ru|ettochno.ru|ex-fs.net|film-online.org|film-online.space|filmonline.online|filmtybe.pl|fortulo.org|gogafilm.me|hd.films-online.cc|hdgo.cx|hdkino.biz|hdkinogohit.net|hdkinoteatr.com|hdlava.me|hdnow.biz|hdrezka.pro|hdrezka2.me|herotowe.org|hiex.ru|hostapi.ru|hydrus.cc|icinemax.net|ikinogo.net|inspij.org|ivi-ru.xyz|ivvi.online|jugugemanevan.online|kapnob.ru|kino-kingdom.com|kino-nada.net|kino-strah.ru|kinobay.club|kinoboom.net|kinofani.ru|kinogid.me|kinogo-720.club|kinogo-hd-720.net|kinogo-hq.ru|kinogo-net-hd.ru|kinogo-smotret.com|kinogo.com.ua|kinogo.site|kinogoco.club|kinoleto.com|kinoleto.info|kinolist.org|kinoliza.net|kinoljap.ru|kinolution.com|kinomoove.com|kinoogo.ru|kinopirat.club|kinopleer.info|kinoprofi.club|kinoprofi.today|kinoprofi.tv|kinored.club|kinorom.com|kinosklad.net|kinosky.net|kinospy.net|kinovod.org|kinozz.net|kodik.biz|kodik.cc|kodik.name|korean-films.net|kwestru.org|lastfilms.org|mir-kino.net|moonwalk.cc|moonwalk.center|movie-on.ru|mrukni.org|muvix.org|new-serials.net|new-serials.ru|newfilms.online|onlinemix.org|oseodaguerord.online|pandastream.cc|polnyj-film.net|previewer.cc|profilms.top|rudaily.ru|seria-z.net|serialtime.net|serpens.nl|servkino.ru|showfilm.club|smotri-online.me|staticnlcdn.com|streamguard.cc|streamguard.xyz|streamstorm.online|the-cinema.tv|theserials.ru|turboserial.net|tvepisodeswatch.net|tvfru.org|tvfru.ru|tvseason.net|tvserial-online.biz|ua-cinema.com|video.kinoshca.ru|videobob.ru|wifilm.ru|yallaneliera.com|zfilm-hd.club|zhd.life|zserials.me|zyx.watch|zzonlinepleer.info
 ! cdnapponline.com - `window.video_balancer`, `adv: {"adb_vast"`,`c_path: '728x90-'`
 @@||aquelosc.com/adframewrapper.
+@@||bielati.com^$other,xmlhttprequest
+@@||seidoum.com^$other,xmlhttprequest
 @@||lymocommy.com^$other,xmlhttprequest
 @@||aquelosc.com^$other,xmlhttprequest
 @@||kirangaje.com^$other,xmlhttprequest
@@ -1334,20 +1367,25 @@ music.yandex.ru,music.yandex.ua,music.yandex.by,music.yandex.kz#@%#AG_removeCook
 yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#//scriptlet("remove-cookie", "/JPIqApiY|BgeeyNoBJuyII|YvUVZgzQ|^adequate\$|^telecommunications\$|RMHqSzrMeR|yw_cmpr_prm|^computer|pcssspb|substantial\$|HgGedof|mcBaGDt/")
 ||yandex.$cookie=/JPIqApiY|yw_cmpr_prm|computer|pcssspb|substantial|HgGedof|mcBaGDt/
 !
+kinopoisk.ru#%#//scriptlet("set-constant", "KP.config.adfoxEnabled", "false")
+kinopoisk.ru#%#//scriptlet("set-constant", "only_branding_adv", "trueFunc")
+!+ PLATFORM(windows, mac, android)
+kinopoisk.ru#%#AG_setConstant('KP.config.adfoxEnabled', 'false');
 !+ PLATFORM(windows, mac, android)
 kinopoisk.ru#%#AG_setConstant('only_branding_adv', 'trueFunc');
-kinopoisk.ru#%#//scriptlet("set-constant", "KP.config.adfoxEnabled", "false")
-kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Ya.Direct")
-kinopoisk.ru#%#//scriptlet("set-constant", "only_branding_adv", "trueFunc")
 !
 24smi.org#%#//scriptlet("set-constant", "Object.prototype.AdvManager", "undefined")
 !
-drive2.ru#%#//scriptlet("set-constant", "Object.prototype.initYaDirect", "undefined")
-drive2.ru#%#//scriptlet("set-constant", "Object.prototype.AdfoxProxyCallbacksManager", "undefined")
+drive2.ru#%#//scriptlet("set-constant", "Object.prototype._bannerOptions", "undefined")
+!+ PLATFORM(windows, mac, android)
+drive2.ru#%#Object.defineProperty(Object.prototype, '_bannerOptions', { get: function() { return; } });
+!
+! *** these rules break the site ***
+! https://github.com/AdguardTeam/AdguardFilters/issues/38424#issuecomment-520508199
 !+ PLATFORM(windows, mac)
-drive2.ru#%#AG_setConstant('Object.prototype.AdfoxProxyCallbacksManager', 'undefined');
+!drive2.ru#%#AG_setConstant('Object.prototype.AdfoxProxyCallbacksManager', 'undefined');
 !+ PLATFORM(windows, mac)
-drive2.ru#%#AG_setConstant('Object.prototype.initYaDirect', 'undefined');
+!drive2.ru#%#AG_setConstant('Object.prototype.initYaDirect', 'undefined');
 !
 ! Yandex main page
 @@||awaps.yandex.net/*_.htm&link$domain=yandex.ru
@@ -1434,6 +1472,7 @@ tv.yandex.by,tv.yandex.kz,tv.yandex.ru,tv.yandex.ua$$script[tag-content="adblock
 ! Yandex.Realty
 !
 ! Yandex.Zen
+zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua#%#//scriptlet("abort-on-property-read", "Ya._detect_adblock_")
 !
 liveinternet.ru#%#Element.prototype.attachShadow = function(){};
 !

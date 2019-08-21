@@ -2,8 +2,12 @@
 !######### CSS tweaks #########
 !##############################
 !
+! stylebook.de - removing white space at top
+stylebook.de#$#div.container[role="page"] > div.container[role="page"] { padding: 0px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36897
 beeg.com#$#.i-footer { margin: 0px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/34901
+hg6384.com-www.6u7u.com#$#body > div.g-head { background: #15253a!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35541
 adorofilmesdeterror.com#$##downloadlink { display: block!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35452
@@ -77,16 +81,21 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/38600
+ihls.pro#%#(function(){var c=window.setInterval;window.setInterval=function(a,b){return 1E3===b&&/#pleasewait/.test(a.toString())&&(b*=.01),c.apply(this,arguments)}.bind(window);window.addEventListener("DOMContentLoaded",function(){setTimeout(function(){var a=document.querySelector('a[href^="https://ihls.stream/public/"].redirect');a&&a.click()},300)})})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/38558
+boost.ink#%#(function(){var b=new MutationObserver(function(){var a=document.querySelector('script[src="/assets/js/main.js"][lol]');if(a){var c=a.getAttribute("lol");c&&setTimeout(function(){window.location=atob(c)},500)}});b.observe(document,{childList:!0,subtree:!0})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38274
 k2nblog.com#%#!function(){if(-1<location.pathname.indexOf("/linkdl.htm")){var b64dest=location.href.split("linkdl.html?url=");if(b64dest&&b64dest[1]){location=atob(b64dest[1]);}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34644
 onet.pl#%#AG_onLoad(function() { if(window.location.href.indexOf("onet.pl/?utm_source=") != -1){var el = document.querySelector('.nitroModule a[href][onclick*="Nitro_clickmore"][onclick*="czytaj_wiecej"]'); if(el){el.click();} } });
+! https://github.com/AdguardTeam/AdguardFilters/issues/38542
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37849
-up-to-down.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/up-to-down\.net\/\d+\//)){var a=document.body.textContent.match(/(?<=window\.location\.href = \(")[\s\S]*?(?="\);)/);if(a)location=a;}});
+up-to-down.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/up-to-down\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33295
 ultimedia.com#%#AG_defineProperty('dtkPlayer.infos.autoplay', {value: "no"});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36619
-direct-link.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/direct-link\.net\/\d+\//)){var a=document.body.textContent.match(/(?<=window\.location\.href = \(")[\s\S]*?(?="\);)/);if(a)location=a;}});
+direct-link.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/direct-link\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35608
 hulblog.com#%#!function(){if(-1<location.pathname.indexOf("/viewlink.html")){var b64dest=location.href.split("viewlink.html?url=");if(b64dest&&b64dest[1]){location=atob(b64dest[1]);}}}();
 url.hulblog.com#%#AG_onLoad(function(){if(window.location.href.match(/url\.hulblog.com\/[a-zA-Z\d]+$/)){var a=document.body.textContent.match(/clearInterval\(counter\);[\s\S]*?"href='([\s\S]*?)'/);if(a&&a[1])location=a[1];}});
@@ -106,7 +115,7 @@ win10.vn#%#AG_setConstant('fiveSecs', '0');
 xterca.net#%#(function(){var f=/^\d$/;try{var g,h=!0;Object.defineProperty(window,"ysmm",{configurable:!1,set:function(d){if(h){h=!1;try{if("string"===typeof d){var c="",e="",a;for(a=0;a<d.length;a++)0===a%2?c+=d.charAt(a):e=d.charAt(a)+e;var b=(c+e).split("");for(a=0;a<b.length;a++)if(f.test(b[a]))for(c=a+1;c<b.length;c++)if(f.test(b[c])){var k=parseInt(b[a],10)^parseInt(b[c],10);10>k&&(b[a]=k.toString());a=c;break}b=b.join("");var l=window.atob(b).slice(16,-16);window.stop();window.onbeforeunload=null;window.location.href= l}}catch(m){}}g=d},get:function(){return g}})}catch(d){window.console.error("Failed to set up Adfly bypasser!")}})();
 gloyah.net#%#(function(){var f=/^\d$/;try{var g,h=!0;Object.defineProperty(window,"ysmm",{configurable:!1,set:function(d){if(h){h=!1;try{if("string"===typeof d){var c="",e="",a;for(a=0;a<d.length;a++)0===a%2?c+=d.charAt(a):e=d.charAt(a)+e;var b=(c+e).split("");for(a=0;a<b.length;a++)if(f.test(b[a]))for(c=a+1;c<b.length;c++)if(f.test(b[c])){var k=parseInt(b[a],10)^parseInt(b[c],10);10>k&&(b[a]=k.toString());a=c;break}b=b.join("");var l=window.atob(b).slice(16,-16);window.stop();window.onbeforeunload=null;window.location.href= l}}catch(m){}}g=d},get:function(){return g}})}catch(d){window.console.error("Failed to set up Adfly bypasser!")}})();
 ! link-to.net - skip timer
-link-to.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/link-to\.net\/\d+\//)){var a=document.body.textContent.match(/(?<=window\.location\.href = \(")[\s\S]*?(?="\);)/);if(a)location=a;}});
+link-to.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/link-to\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32710
 pandora.com.tr#%#AG_onLoad(function() { setTimeout(function() { var link1=document.getElementById("urunDetayKapak"); var link2=document.getElementById("urun-detay"); if(link1 || link2){link1.ondragstart=function(){return!0},link1.oncontextmenu=function(){return!0},link1.onselectstart=function(){return!0},link2.ondragstart=function(){return!0},link2.oncontextmenu=function(){return!0},link2.onselectstart=function(){return!0},$("#urunDetayKapak").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"),$(".urunAciklama").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"); } }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31050
