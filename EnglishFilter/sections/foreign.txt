@@ -1228,7 +1228,8 @@ aotu43.com##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22801
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14731
 iqiyi.com#%#AG_defineProperty('mars.video.triggerAdblockCBK', { get: function() { return function() {}; }, set: function() {} });
-||iqiyi.com/show2?e=*=_jqjsp_show_mars$replace=/(_jqjsp_show_mars\(\{)[\s\S]*(\}\);)/\$1});/,important,domain=iqiyi.com
+||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
+iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
 /videos/other^$domain=iqiyi.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14444
 av01.tv###overlay-advertising
@@ -1577,7 +1578,7 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! adbDetect
 extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#AG_removeCookie('/^adb$|adb\.key|^[a-z]{5,11}$/');
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android)
 extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});
 ! novinky.cz requires different rule, because rule above breaks video player
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
@@ -2095,6 +2096,11 @@ radiocockpit.fr#%#function setTimeout() {};
 !---------------------------------------------------------------------
 !------------------------------ Georgian -----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/39640
+movie.ge##.rss_container
+! https://github.com/AdguardTeam/AdguardFilters/issues/38983
+||geo.saitebi.ge/ads/getLink
+||bit.ly^$domain=geo.saitebi.ge
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38984
 geocanabis.com##.ipsLayout_right > div[class^="ipsSideBlock clearfix __"]:has(> a > img[src^="https://geocanabis.com/banner-"])
 ||geocanabis.com/banner
@@ -4829,6 +4835,7 @@ www.wp.pl#$#body { overflow: visible!important; }
 ! ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|(return) r===v)/\$2\$3\$4 false/,script
 ! ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$2\$3\$4 false\$5/,script
 ! ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$4\$5\$6 false\$7/,script
+||pudelek.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
 ||dynacrems.wp.pl/staticad/$replace=/.+//,important
 ||dobreprogramy.pl/cdn/*assets/js/wpjslib-sgap.js$replace=/(display:\\s\*)none(\\s\*!important)/\$1\$2/,important
 ||std.wpcdn.pl/wpjslib/wpjslib-nojq.js$replace=/((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) .===.(\}))/\$2\$3\$4\$6/,script
@@ -4917,18 +4924,25 @@ niezalezna.pl#%#Object.defineProperty(window,'adonisHash',{get:function(){},set:
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7139
 ||static.elektroda.pl/html5/mitronik*/desktop/index.html
 ||static.elektroda.pl/html5/mitronik*/mobile/index.html
-elektroda.pl##.the-list > li[class^="clearfix "] > a[href][target="_blank"][onclick^="ga('send', 'event', 'Navibox', 'Click', '"]
-elektroda.pl##.the-list > li[class^="clearfix "]:has(> a[href][target="_blank"][onclick^="ga('send', 'event', 'Navibox', 'Click', '"])
-elektroda.pl##.the-post-list > ul >li[class^="clearfix "] > a[href][target="_blank"][onclick^="ga('send', 'event',"][onclick*="'Banner"]
-elektroda.pl##.the-post-list > ul >li[class^="clearfix "]:has(> a[href][target="_blank"][onclick^="ga('send', 'event',"][onclick*="'Banner"])
-elektroda.pl##a[href][target="_blank"].words-cp > picture
-! elektroda.pl##.row > div[class]:contains(Proszę, dodaj wyjątek elektroda.pl do Adblock.)[-ext-has=">br"]
-elektroda.pl##a.button_open[href="/rtvforum/companyabout.php"]:contains(Reklama)
-elektroda.pl##.the-content > div[class] > div:has(>a[href="http://www.biall.com.pl/sklep.html"][target="_blank"])
-elektroda.pl##.the-content > div[class] > div:has(>form[action="https://www.tme.eu/pl/katalog/"][target="_blank"])
-elektroda.pl##.the-content > div[class] > div:has(>a[href][target="_blank"][onclick^="ga('send', 'event', 'Patrons', 'Click Button'"])
-elektroda.pl##.the-post-list > ul > [class^="clearfix "][-ext-has='>[id^="div-gpt-ad"]']
-elektroda.pl##.the-list > li[class^="clearfix "][-ext-has='>[id^="div-gpt-ad"]']
+||elektroda.pl/js/main/welcome.js
+elektroda.pl###WelcomeAdContainer
+elektroda.pl###WelcomeAdContainer + #overlay
+elektroda.pl##.the-category > .section-patrons
+elektroda.pl##body > #main > .content-wrap > .container  > .hidden-cookie-info + section[class] > a[href]:not([href^="https://www.elektroda.pl/"]) > picture > img
+elektroda.pl#?#a.button_open[href="/rtvforum/companyabout.php"]:contains(Zamieść Reklamę)
+elektroda.pl##.the-list > li[class^="clearfix "] > a[href][target="_blank"][onclick*="'Navibox', 'Click', '"]
+elektroda.pl#?#.the-list > li[class^="clearfix "]:has(> a[href][target="_blank"][onclick*="'Navibox', 'Click', '"])
+elektroda.pl#?#.the-content > div[class] > div:has(>form[action^="https://www.tme.eu/pl/katalog/"][target="_blank"])
+elektroda.pl#?#.the-content > div[class] > div:has(>a[href][target="_blank"][onclick*="'Patron', 'Click Button'"])
+elektroda.pl#?#.the-content > div[class] > div:has(>a[href^="http://www.biall.com.pl/sklep.html"][target="_blank"])
+elektroda.pl##.the-post-list > ul > li[class^="clearfix "] > a[href][target="_blank"][onclick*="'Banner"]
+elektroda.pl#?#.the-post-list > ul > li[class^="clearfix "]:has(> a[href][target="_blank"][onclick*="'Banner"])
+elektroda.pl#?#.the-post-list > ul > [class^="clearfix "]:has(>[id^="div-gpt-ad"])
+elektroda.pl##.sidebar-wrap > .row > .widgets > .boombox-content > a[href][target="_blank"][onclick*="'Navibox', 'Click', '"]
+elektroda.pl###forumlist > .forumlist-wrap > .clearfix > a[href]:not([href^="https://www.elektroda.pl/"]) > picture > source[media^="(min-width:"] + img
+elektroda.pl##.position-relative > .sec-b > a[href]:not([href^="https://www.elektroda.pl/"]) > picture > source[media^="(min-width:"] + img
+elektroda.pl#?#.topic-lists > li[id] > .topic-box > .position-relative:has(> .sec-b > div[id^="div-gpt-ad"])
+elektroda.pl#?#.topic-lists > li[id] > .topic-box > .position-relative:has(> .sec-b > div > ins.adsbygoogle)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6630
 iiv.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links {display:block!important;}
 !+ PLATFORM(ios, ext_android_cb)
@@ -5757,6 +5771,8 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/38288
+yan.vn###playable_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38692
 /wp-content/uploads/*/*.js$domain=44car.site
 44car.site#@##adsense
