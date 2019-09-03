@@ -5832,10 +5832,18 @@ receive-sms-online.info#@#.adsbygoogle
 @@||sdwnet.me^$generichide
 ! https://forum.adguard.com/index.php?threads/22293/
 arconaitv.me#@#.afs_ads
+! https://github.com/AdguardTeam/AdguardFilters/issues/39813
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5269
-!+ NOT_PLATFORM(windows, mac, android)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 wowtoken.info#@#.adsbygoogle
+wowtoken.info#$#.adsbygoogle { height: 51px!important; }
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=wowtoken.info
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||wowtoken.info/js/main.js$replace=/fail\(\);/window;/
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=wowtoken.info
+wowtoken.info#%#!function(){var rnd = Math.random().toString(36).substr(2,8); Object.defineProperty(window, 'adsbygoogle', { get: function() { return { loaded: true, push: function() { return rnd; } }; } }); }();
+!#endif
 ! https://forum.adguard.com/index.php?threads/22255/
 @@||common-static.vooxe.com/player/js/ads.js
 ||storesurprise.com^$third-party
