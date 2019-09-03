@@ -759,6 +759,8 @@ olke.az#$#.wrapper { top: 0!important; }
 !---------------------------------------------------------------------
 !------------------------------ Belgian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/39799
+@@||videoplayer.persgroep.be/v*/player/ad_smartads_.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27989
 @@||medialaancdn.be^$generichide
 @@||v.fwmrm.net/ad/g/1$domain=medialaancdn.be
@@ -1225,9 +1227,12 @@ aotu43.com##.ads
 88files.net#%#window.open = function() {};
 ||sinaimg.cn^$domain=88files.net
 ||dioimg.net^$domain=88files.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/38910
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22801
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14731
-iqiyi.com#%#AG_defineProperty('mars.video.triggerAdblockCBK', { get: function() { return function() {}; }, set: function() {} });
+iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.blackscreenDuration", "1")
+!+ PLATFORM(ext_chromium, ext_opera, ext_edge)
+iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
 ||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
 iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
 /videos/other^$domain=iqiyi.com
@@ -1589,6 +1594,11 @@ aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,extra.cz,id
 aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,extra.cz,idnes.cz,karaoketexty.cz,mobilmania.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz$$script[wildcard="*.name)throw *=""ABP"",*"][max-length="7000"]
 auto.cz$$script[tag-content="abortCurrentInlineScript"][max-length="7000"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/39754
+volvo-club.cz#$##obalovydiv { display: block!important; }
+volvo-club.cz#%#//scriptlet("abort-on-property-read", "gaFailedToLoad")
+!+ PLATFORM(windows, mac, android)
+volvo-club.cz#%#AG_abortOnPropertyRead('gaFailedToLoad');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38683
 auto.cz##body > video[id^="vided-"][src^="data:video/webm"]
 auto.cz#?#.right-col > #sticky-wrapper:has( > div[id^="sticky-banner-"])
@@ -2606,6 +2616,9 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/39559
+idalponse.blogspot.com#@##adcontent
+idalponse.blogspot.com##.showadblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39489
 ||layarxxi21.com^$image,domain=mvdown21.com
 ||topikhot.com^$image,domain=mvdown21.com
@@ -3722,10 +3735,10 @@ hiyobi.me##div[class][style] > div[style="width:100%;height:100%;text-align:cent
 hiyobi.me##body > div[class][style]:has(> div[style="width:100%;height:100%;text-align:center"] > a[href] > img[width="100%"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31818
 ||newtoki*.*/data/banner/
-newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$#body { overflow: visible!important; padding-right: 0!important; }
-newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$#.modal-backdrop { display: none!important; }
-newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$##adModal { display: none!important; }
-newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#%#AG_abortInlineScript(/\('#adModal'\)\.modal\('show'\)/, 'jQuery');
+newtoki24.net,newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$#body { overflow: visible!important; padding-right: 0!important; }
+newtoki24.net,newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$#.modal-backdrop { display: none!important; }
+newtoki24.net,newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#$##adModal { display: none!important; }
+newtoki24.net,newtoki23.com,newtoki23.net,newtoki8.com,newtoki7.net,newtoki4.net,newtoki2.net#%#AG_abortInlineScript(/\('#adModal'\)\.modal\('show'\)/, 'jQuery');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29331
 @@||lover.ne.kr^$generichide
 lover.ne.kr##.adsbygoogle
@@ -4375,6 +4388,10 @@ wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,and
 ! adquesto
 wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#AG_abortInlineScript(/adBlock/, 'parseInt');
 ||request.dqst.pl/v*/$xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/39840
+@@||signs.pl/_css/adserver.css
+signs.pl##div[id^="adibadi"]
+||signs.pl/signlink/RL300/$image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39427
 dziennik.pl,forsal.pl,gazetaprawna.pl##.adCaptionContainer
 forsal.pl,gazetaprawna.pl#?#div[id^="miejsce"] > div[style*="text-align: center; color: grey; font-size: 10px;"]:contains(/^Reklama$/)
@@ -5279,6 +5296,8 @@ jh333.pw##.e3lan
 !---------------------------------------------------------------------
 !------------------------------ Swedish ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/39696
+nyafilmer.to#%#AG_abortOnPropertyRead('jopperJs');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37540
 @@||happypancake.se/static/show_ads.js
 @@||googletagmanager.com/gtm.js$domain=happypancake.se
@@ -5329,11 +5348,13 @@ sydsvenskan.se##.burt-native-unit.teaser
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10796
 @@||acdn.adnxs.com/ast/ast.js$domain=svd.se
 !
-nyafilmer.com,nyafilmer.bz##a[href^="/"][href*=".html"][target="_blank"]
+nyafilmer.to##.headerSpace
+||nyafilmer.to/wp-content/themes/*/js/jopper.js
+nyafilmer.to,nyafilmer.com,nyafilmer.bz##a[href^="/"][href*=".html"][target="_blank"]
 dn.se##.sponsored-teaser
 ||nyafilmer.com/wp-content/themes/keremiya1/js/license.*.js
 nyafilmer.com##a[href^="/go.html"]
-nyafilmer.com##.bigbg
+nyafilmer.to,nyafilmer.com##.bigbg
 nyafilmer.com#$##header-wrapper { margin-bottom: 0!important; }
 nyafilmer.com##.footer-sticky-inner
 nyafilmer.com#$##rk-content { display:none!important; }
