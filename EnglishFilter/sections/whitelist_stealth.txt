@@ -5,10 +5,11 @@
 ! remove after ext 3.0 release
 @@||accounts.google.com^$stealth
 @@||content.googleapis.com/cryptauth$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38586
 ! https://forum.adguard.com/index.php?threads/1fichier-com.32832/
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1391 [Stealth Mode - DNT]
-!+ PLATFORM(ext_ff)
-@@||1fichier.com^$stealth
+!+ PLATFORM(ext_chromium, ext_ff, ext_opera)
+@@||1fichier.com/?$stealth,~stylesheet,~image,~script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32757 [Stealth Mode - Block third-party Authorization header]
 @@||cf.talpa.digital/spaces^$stealth
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/2074 [Stealth Mode - Strip URLs from tracking parameters]
@@ -24,6 +25,63 @@
 @@||adidas.pl/*&gclid=$stealth
 !#########################################
 !
+! https://forum.adguard.com/index.php?threads/issue-with-mycanal-fr.34924/  [Stealth Mode - Block third-party Authorization header]
+@@||secure-gen-hapi.canal-plus.com/conso/view$stealth
+@@||secure-gen-hapi.canal-plus.com/conso/playset^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39728 [Stealth Mode - Strip URLs from tracking parameters]
+!+ PLATFORM(android)
+@@||likemore-go.imgsmail.ru^$stealth,domain=tut.by
+! https://github.com/AdguardTeam/AdguardFilters/issues/39822 [Stealth Mode - Referrer]
+@@||1plus1.ua^$stealth,domain=1plus1.ua
+! https://github.com/AdguardTeam/AdguardFilters/issues/39776 [Stealth Mode - Referrer]
+@@||ilrestodelcarlino.it/*/video/*?embed$stealth
+@@||ads.viralize.tv/display/$stealth,domain=ilrestodelcarlino.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/38910 [Stealth Mode - Referrer]
+@@/dash?tvid=$stealth,domain=iqiyi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/39650 [Stealth Mode - Referrer]
+@@||login.vk.com/?act=openapi$domain=220vk.com,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39669 [Stealth Mode - Referrer]
+@@||ndisk*.cizgifilmlerizle.com/getvid?$stealth
+! bethesda.net - patch notes not opening [Stealth Mode - Block third-party Authorization header]
+@@||cdn.contentful.com/spaces^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39373 [Stealth Mode - Referrer]
+@@||youtube.googleapis.com/embed^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39103 [Stealth Mode - Referrer]
+@@||stream365.live/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39069 [Stealth Mode - Referrer]
+@@||cdn-pics.pornhd.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39071 [Stealth Mode - Referrer]
+@@||pictogo.net^$stealth,third-party
+! store.playstation.com - broken agegate [Stealth Mode - Referrer]
+@@||store.playstation.com/html/webIframeRedirect.html?requestId$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38583 [Stealth Mode - Referrer]
+@@||googleapis.com/youtube/*/search?key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38163 [Stealth Mode - Referrer]
+@@||maps.googleapis.com/maps/api/$stealth,domain=offerup.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/38230 [Stealth Mode - Referrer]
+@@||kastream.biz/embed*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38013 [Stealth Mode - Referrer]
+@@||iframe.twainmarky.online^$stealth,domain=yonjatv8.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/37591 [Stealth Mode - Referrer]
+@@||moonwalk.cc/*/iframe$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38088 [Stealth Mode - Referrer]
+@@||player.starlight.digital^$stealth
+! gmx.net - error 403 when clicking on link on redirector [Stealth Mode - Referrer]
+@@||deref-gmx.net/mail/client/*/dereferrer/?redirectUrl=$stealth
+! https://forum.adguard.com/index.php?threads/webtoons-com-comment-error.34212 [Stealth Mode - Referrer]
+@@||global.apis.naver.com/commentBox/cbox/web_neo_list_jsonp.json$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34644 [Stealth Mode - Strip URLs from tracking parameters]
+@@||onet.pl/?utm_source=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34068 [Stealth Mode - Referrer]
+@@||cdntvnet.com/*.php$stealth,domain=hochu.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/37463 [Stealth Mode - Referrer]
+@@||id.zaloapp.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37799 [Stealth Mode - Referrer]
+@@||cdn*.jianshu.io^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37551 [Stealth Mode - Referrer]
+@@||ymcdn.site/check.php?callback=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37446 [Stealth Mode - WebRTC]
+@@||web.skype.com^$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37489 [Stealth Mode - WebRTC]
 @@||homeagents.online^$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37251 [Stealth Mode - Referrer]
@@ -45,7 +103,7 @@
 @@||movie.kinoche.ru^$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36677 [Stealth Mode - IP hiding]
 @@||50.7.92.82^$stealth
-! https://github.com/AdguardTeam/AdguardFilters/issues/36048 [ Stealth Mode - Block third-party Authorization header]
+! https://github.com/AdguardTeam/AdguardFilters/issues/36048 [Stealth Mode - Block third-party Authorization header]
 @@||api.pinger.com$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36278 [Stealth Mode - Referrer]
 @@||rykoeb.com/remote_control.php^$stealth
@@ -106,6 +164,8 @@
 @@||vlscppe.microsoft.com/fp/tags.js$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34201 [Stealth Mode - Referrer]
 @@||trollvid.net/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38345 [Stealth Mode - Referrer]
+@@||player.akubebas.com/?$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33933 [Stealth Mode - Referrer]
 @@||akubebas.com/?*token=$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33905 [Stealth Mode - Referrer]
