@@ -15,7 +15,7 @@ We are proud to say that AdGuard Filters are among the most actively developed c
 
 ## AdGuard Filters Policy
 
-Our filter policy is available [here](https://kb.adguard.com/en/general/adguard-filter-policy).
+Our filter policy is available [here](https://kb.adguard.com/general/adguard-filter-policy).
 
 ## Contributing to AdGuard
 
@@ -29,8 +29,8 @@ To submit a report, please use this [reporting tool](https://agrd.io/report).
 
 You will find a lot of open issues, each one referencing a problem with some website — a missed ad, a false positive etc. — choose any one and suggest your own rules in comments. AdGuard filter engineers will review your suggestions, and if they find them correct, your rules will be added to AdGuard filters.
 
-Here is the [official documentation](https://kb.adguard.com/en/general/how-to-create-your-own-ad-filters) on AdGuard filtering rules syntax. You'll need to read it before you'll be able to create your own filtering rules.
+Here is the [official documentation](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) on AdGuard filtering rules syntax. You'll need to read it before you'll be able to create your own filtering rules.
 
 ### Other ways to contribute
 
-Here is [a dedicated page](https://adguard.com/en/contribute.html) for people willing to contribute to AdGuard.
+Here is [a dedicated page](https://adguard.com/contribute.html) for people willing to contribute to AdGuard.
