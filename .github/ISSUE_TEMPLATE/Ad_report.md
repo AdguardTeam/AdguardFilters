@@ -1,3 +1,8 @@
+---
+name: Issue report
+about: Report an issue with AdGuard Filters
+---
+
 [//]: # (***You can delete or ignore strings starting with "[//]:" They will not be visible either way.)
 
 ***Description***:
