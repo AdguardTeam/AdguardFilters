@@ -1946,6 +1946,8 @@ cez.cz#$#body { background: #333!important; }
 !---------------------------------------------------------------------
 !------------------------------ Danish -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/41558
+jyllands-posten.dk##.bpTopPlacement
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29017
 dagensbyggeri.dk###megaboard-top-container
 dagensbyggeri.dk#$#.ads { display: block!important; }
@@ -2047,6 +2049,9 @@ kava.ee##.kava_ad_chilli
 aamulehti.fi##.parade-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34139
 is.fi###kumppaneiden-tarjoukset
+! https://github.com/AdguardTeam/AdguardFilters/issues/41461
+@@||pakkotoisto.com/js/siropu/am/ads.min.js$domain=pakkotoisto.com
+pakkotoisto.com##.samBannerUnit
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34214
 iltalehti.fi##.parade-ad-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34619
@@ -2700,6 +2705,10 @@ indoxxi.today##.jquery-modal.blocker
 indoxxi.today###ffbp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41132
 lebahkaca.com##p > a[rel="nofollow noopener noreferrer"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/40401#issuecomment-536183740
+mangacanblog.com###topbar
+mangacanblog.com#%#window.open = function() {};
+mangacanblog.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41144
 sukamovie.mobi##div[id^="floating_ads_"]
 sukamovie.mobi###banner-tengah
@@ -3763,11 +3772,23 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40700
+manhwa-manga.bid###custom_html-45
+manhwa-manga.bid###custom_html-43
+manhwa-manga.bid###custom_html-41
+manhwa-manga.bid###custom_html-37
+manhwa-manga.bid#?#div[id^="custom_html-"]:has(div.custom-html-widget > div:empty)
+manhwa-manga.bid#?#div[id^="custom_html-"]:has(div.custom-html-widget:empty)
+manhwa-manga.bid#?#.widget:has(div[id^="rn_ad_native"])
+manhwa-manga.bid$$script[tag-content="atOptions"]
 manhwa-manga.bid#?#div[id^="custom_html-"]:has(> div.custom-html-widget > script[src])
 manhwa-manga.bid#?#div[id^="custom_html-"]:has(> div.custom-html-widget > [id*="ScriptRoot"])
 manhwa-manga.bid#?#div[id^="ai_widget-"]:has(> div.code-block > script[onerror])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40952
 koreaminecraft.net##.ka-red > p > a[href][target="_blank"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/41495
+/banner/*.gif$domain=torrentbe.net
+torrentbe.net###banner_top_list_wrap
+torrentbe.net##.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40544
 ||i.imgur.com^$domain=marumaru.name|avpop1.com|avpop2.com|avpop3.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40808
@@ -4224,6 +4245,9 @@ mlbpark.donga.com##div[class^="ad_con"]
 !---------------------------------------------------------------------
 !------------------------------ Latvian ------------------------------
 !---------------------------------------------------------------------
+! Temporary - https://github.com/AdguardTeam/CoreLibs/issues/1147
+! https://github.com/AdguardTeam/AdguardFilters/issues/41420#issuecomment-537387922
+cosmopolitan.lt,moteris.lt,panele.lt,manonamai.lt,tavovaikas.lt,delfi.lt#@?#a[href="javascript:void(-1);":-abp-has(a[title="[x] Uždaryti"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30887
 balticlivecam.com##.vjs-poster
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34539
@@ -4233,10 +4257,16 @@ delfi.ee#@#.adbanner
 delfi.ee#@#.bottomAdvert
 delfi.ee###ab-top-bar
 !
-delfi.lt#%#AG_abortOnPropertyRead('_dlf.ab');
-delfi.lt#%#//scriptlet("abort-on-property-read", "_dlf.ab")
-delfi.lt#%#AG_setConstant('__dabd', 'noopFunc');
-delfi.lt#%#//scriptlet("set-constant", "__dabd", "noopFunc")
+! delfi.lt#%#AG_setConstant('__dabd', 'noopFunc');
+! delfi.lt#%#//scriptlet("set-constant", "__dabd", "noopFunc")
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+delfi.lt#%#//scriptlet("set-constant", "_dlf._ab", "noopFunc")
+delfi.lt#%#//scriptlet("prevent-setTimeout", "#header-top-banner")
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+delfi.lt#%#AG_setConstant('_dlf._ab', 'noopFunc');
+delfi.lt#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/"#header-top-banner"/.test(a.toString()))return b(a,c)};})();
+!#endif
 delfi.lt###al-infoblock
 delfi.lt###al-580x150
 ||alio.lt^$domain=delfi.lt
@@ -4296,6 +4326,9 @@ vesti.lv##.banner
 !---------------------------------------------------------------------
 !------------------------------ Lithuanian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/41493
+tv3.lt#?##sidebar > div.custom-div:contains(REKLAMA)
+||v.fwmrm.net/ad/g/1?$domain=tvplay.tv3.lt,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40491
 filmux.org#@#.myTestAd
 ! https://forum.adguard.com/index.php?threads/missed-ads-on-www-delfi-lt.33213/
@@ -4573,6 +4606,8 @@ wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,and
 ! adquesto
 wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#AG_abortInlineScript(/adBlock/, 'parseInt');
 ||request.dqst.pl/v*/$xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/41428
+portalspozywczy.pl##body > .box-1
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41490
 mgsm.pl###left-con > .row > .columns > div[style="height: 336px;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41250
@@ -6033,6 +6068,8 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/41591
+@@||aquabird.vn/js/Siropu/AM/ads.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40962
 @@||win10.vn/wp-content/plugins/dh-anti-adblocker/assets/js/showads.js
 win10.vn#%#AG_setConstant('canRunAds', 'true');
