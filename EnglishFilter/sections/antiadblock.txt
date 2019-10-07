@@ -443,10 +443,16 @@ falkirkherald.co.uk#@#.text_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41759
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=faucetcrypto.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41688
-!+ NOT_PLATFORM(windows, mac, android)
+gounlimited.to###adbd
+@@||gounlimited.to/ads/pop.js|
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+gounlimited.to#%#//scriptlet("set-constant", "xads", "false")
 gounlimited.to#%#//scriptlet("set-constant", "_p", "1")
-!+ PLATFORM(windows, mac, android)
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+gounlimited.to#%#AG_setConstant('xads', 'false');
 gounlimited.to#%#AG_setConstant('_p', '1');
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41660
 @@||assets-ads.3dtuning.com/ad?
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41630
