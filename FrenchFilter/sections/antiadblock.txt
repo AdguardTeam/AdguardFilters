@@ -66,14 +66,21 @@ jtrouver.com#$#.adsbygoogle { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33441
 !+ PLATFORM(ext_ff, ext_opera, ext_edge, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||annuaire-ebook.com^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/41909
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35186
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33412
+||dpm.zebestof.com/*/tag.js$empty,important,domain=linternaute.com
+||amazon-adsystem.com/*/apstag.js$empty,important,domain=linternaute.com
+||cdn.adsafeprotected.com/iasPET.*.js$empty,important,domain=linternaute.com
 ||kweb.r66net.com/getlink|$empty,important,domain=linternaute.com
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=linternaute.com
 @@||googletagmanager.com/gtm.js$domain=linternaute.com
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=linternaute.com|p.ccmbg.com
 @@||player.ooyala.com/static/v*/stable/*/ad-plugin/google_ima.min.js$domain=linternaute.com|p.ccmbg.com
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||dpm.zebestof.com/*/tag.js$domain=linternaute.com
+@@||amazon-adsystem.com/*/apstag.js$domain=linternaute.com
+@@||cdn.adsafeprotected.com/iasPET.*.js$domain=linternaute.com
 @@||kweb.r66net.com/getlink|$domain=linternaute.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linternaute.com
 !#endif
@@ -161,8 +168,16 @@ ultimate-catch.eu#%#AG_abortInlineScript(/adback/, 'document.getElementById');
 @@||cas.criteo.com/delivery/ajs.php^$domain=ultimate-catch.eu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19451
 tf1.fr#$#.ads.ad.adsbox.ad-placement.carbon-ads { display: block!important; }
-!+ PLATFORM(ios, ext_android_cb)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+prod-player.tf1.fr,tf1.fr#@#.ads
+prod-player.tf1.fr,tf1.fr#@#.ad
+prod-player.tf1.fr,tf1.fr#@#.adsbox
+prod-player.tf1.fr,tf1.fr#@#.ad-placement
+prod-player.tf1.fr,tf1.fr#@#.carbon-ads
+! not working in Safari because of a bug
+! https://github.com/AdguardTeam/AdguardForiOS/issues/1253
 @@||tf1.fr^$generichide
+!#endif
 ! https://forum.adguard.com/index.php?threads/chat-nrj-fr.28809/
 @@||chat.nrj.fr/Scripts/Lib/adsbygoogle.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15586
@@ -193,10 +208,6 @@ journaldugeek.com#%#window.google_tag_manager = function() {};
 @@||eurosport.fr^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10449
 @@||jzrputtbut.net/about:blank
-! https://github.com/AdguardTeam/AdguardFilters/issues/10077
-tf1.fr#%#AG_onLoad(function() { window.ADBlock.enable = true; });
-@@||static.mytf1.tf1.fr/assets/js/build/lib/ads_scripts/adscript.js
-@@||static.mytf1.tf1.fr/assets/js/build/lib/ads_scripts/adframe.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9961
 nrj-play.fr#@#.ad-zone
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9960

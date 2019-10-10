@@ -16,14 +16,16 @@ vargr.ru,electric-house.ru,trialkeys.ru#@#iframe[width="728"][height="90"]
 vargr.ru,electric-house.ru,trialkeys.ru#@#img[width="728"][height="90"]
 !#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/40885
+||vgtimes.ru^$~script,~stylesheet,~xmlhttprequest,replace=/(var adbl_class\s*=\s*\')[A-Za-z0-9\s]*(\';)/\$1\$2/
+vgtimes.ru#%#//scriptlet("set-constant", "adbl_class", "")
+!+ PLATFORM(ios, ext_android_cb)
+!#safari_cb_affinity(general)
+@@||vgtimes.ru^$generichide
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40153
 @@||farsihd.info/player/js/adblock.js
 @@||tehranvd.biz/player/js/adblock.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/40885
-vgtimes.ru#%#//scriptlet("set-constant", "brandload", "noopFunc")
-vgtimes.ru#$#html > div.adsbygoogle.adsbox.banner { display: block !important; }
-!+ NOT_PLATFORM(windows, mac, android)
-vgtimes.ru#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40688
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=studme.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40478
@@ -140,9 +142,6 @@ bowandtie.ru#$#.adsbygoogle { height: 1px!important; }
 sostav.ru###rek_blocker
 ! soskidkami.ru
 ||soskidkami.ru/s/b3cee0.js
-https://github.com/AdguardTeam/AdguardFilters/issues/37283
-vgtimes.ru#$#.adsbox#adfox_ { display: block!important; }
-vgtimes.ru#%#AG_setConstant('adBlockEnabled', 'false');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36576
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gnatkovsky.com.ua
 gnatkovsky.com.ua#@#.adsbygoogle
@@ -400,7 +399,9 @@ flymer.ru#$#.ad-home { position: absolute!important; left: -3000px!important; }
 !
 ppt.ru##div[id^="A"][style="height: 0px; display: block;"]
 !
-pravda.com.ua,epravda.com.ua,ppt.ru,vsetv.com,gagadget.com,censor.net.ua,gismeteo.ua,okino.ua,dengi.ua,etextlib.ru,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "undefined")
+gismeteo.ua$$script[tag-content="zmctrack"]
+!+ NOT_PLATFORM(windows, mac, android)
+strana.ua,sinoptik.ua,pravda.com.ua,epravda.com.ua,ppt.ru,vsetv.com,gagadget.com,censor.net.ua,gismeteo.ua,okino.ua,dengi.ua,etextlib.ru,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
 ! 26.12.2018
 $$script[wildcard="!function*;try{*proxy*floor*"][min-length="8000"][max-length="10000"]
 ! 12.11.2018
@@ -430,7 +431,7 @@ opnevmonii.ru,bodytrain.ru,vvinograd.ru,zemlyaki.name,felomena.com#%#AG_abortInl
 !+ NOT_PLATFORM(windows, mac, android)
 fishki.net#%#//scriptlet('abort-current-inline-script', 'Object.prototype.run')
 !+ NOT_PLATFORM(windows, mac, android)
-zaxid.net,simpsonsua.com.ua,tabfilm.ru,kurs.com.ru,isport.ua,lostfilm-online.org,strana.ua,telegraf.in.ua,24tv.ua,ria-m.tv,kaztorka.org,segodnya.ua,allboxing.ru#%#AG_abortInlineScript(/!function\(\)/, 'String.fromCharCode');
+zaxid.net,simpsonsua.com.ua,tabfilm.ru,kurs.com.ru,isport.ua,lostfilm-online.org,telegraf.in.ua,24tv.ua,ria-m.tv,kaztorka.org,segodnya.ua,allboxing.ru#%#AG_abortInlineScript(/!function\(\)/, 'String.fromCharCode');
 !+ NOT_PLATFORM(windows, mac, android)1
 dengi.ua,kino-hd720.net,kinoskala.net,mirknig.su,112.ua,kinopad.net,vsetv.com,kp.ua,kino-fs.ucoz.net,ex-fs.net,sinoptik.com.ru,hvylya.net#%#AG_abortInlineScript(/\/\*[0-9a-f]{40}\*\//, 'String.fromCharCode');
 !+ NOT_PLATFORM(windows, mac, android)
@@ -686,10 +687,6 @@ aqa.ru#@#div[id^="google_ads_iframe_"]
 aqa.ru#@#div[id^="div-gpt-ad"]
 ! https://forum.adguard.com/index.php?threads/20317/
 @@||free-download.su/styles/js/advert.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/2241
-! admitad ad block checker
-@@||ad.admitad.com/3rd-party/advert.js
-@@||ad.admitad.com/3rd-party/*/cookie/?f=CookieChecker.remoteTest
 !
 ! free-torrents.org - fixing Adguard Assistant
 game-torrent.info,free-torrent.org,free-torrents.org#%#Object.defineProperty(window, 'antiadblock', { get: function() { return; } });
@@ -1266,7 +1263,7 @@ lostfilmonline.tv#%#function setTimeout() {};
 @@/sec/*/hls/*$domain=mastarti.com
 |https://$script,third-party,xmlhttprequest,domain=mastarti.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18606
-@@/*0x$xmlhttprequest,other,domain=1kinobig.ru|31.220.0.145|37.220.36.15|720hd.club|allhit.org|alpha.kiniska.com|anilibria.tv|anpopcorn.com|apollocdn.cc|best-serials.ru|bestkino.su|bighd.net|blackoctopus.cc|bobfilm.club|boevikcdn.ru|capricornus.cc|cdnapponline.com|cdnts.info|cdnvideonl.com|cinema-24.online|coolstory.cc|creativportal.ru|dugkino.ru|duralenta.ru|ettochno.ru|ex-fs.net|film-online.org|film-online.space|filmonline.online|filmtybe.pl|fortulo.org|gogafilm.me|hd.films-online.cc|hdgo.cx|hdkino.biz|hdkinogohit.net|hdkinoteatr.com|hdlava.me|hdnow.biz|hdrezka.pro|hdrezka2.me|herotowe.org|hiex.ru|hostapi.ru|hydrus.cc|icinemax.net|ikinogo.net|inspij.org|ivi-ru.xyz|ivvi.online|jugugemanevan.online|kapnob.ru|kino-kingdom.com|kino-nada.net|kino-strah.ru|kinobay.club|kinoboom.net|kinofani.ru|kinogid.me|kinogo-720.club|kinogo-hd-720.net|kinogo-hq.ru|kinogo-net-hd.ru|kinogo-smotret.com|kinogo.com.ua|kinogo.site|kinogoco.club|kinoleto.com|kinoleto.info|kinolist.org|kinoliza.net|kinoljap.ru|kinolution.com|kinomoove.com|kinoogo.ru|kinopirat.club|kinopleer.info|kinoprofi.club|kinoprofi.today|kinoprofi.tv|kinored.club|kinorom.com|kinosklad.net|kinosky.net|kinospy.net|kinovod.org|kinozz.net|kodik.biz|kodik.cc|kodik.name|korean-films.net|kwestru.org|lastfilms.org|mir-kino.net|moonwalk.cc|moonwalk.center|movie-on.ru|mrukni.org|muvix.org|new-serials.net|new-serials.ru|newfilms.online|onlinemix.org|oseodaguerord.online|pandastream.cc|polnyj-film.net|previewer.cc|profilms.top|rudaily.ru|seria-z.net|serialtime.net|serpens.nl|servkino.ru|showfilm.club|smotri-online.me|staticnlcdn.com|streamguard.cc|streamguard.xyz|streamstorm.online|the-cinema.tv|theserials.ru|turboserial.net|tvepisodeswatch.net|tvfru.org|tvfru.ru|tvseason.net|tvserial-online.biz|ua-cinema.com|video.kinoshca.ru|videobob.ru|wifilm.ru|yallaneliera.com|zfilm-hd.club|zhd.life|zserials.me|zyx.watch|zzonlinepleer.info
+@@/*0x$xmlhttprequest,other,domain=1kinobig.ru|31.220.0.145|37.220.36.15|720hd.club|allhit.org|alpha.kiniska.com|anilibria.tv|anpopcorn.com|apollocdn.cc|best-serials.ru|bestkino.su|bighd.net|blackoctopus.cc|bobfilm.club|boevikcdn.ru|capricornus.cc|cdnapponline.com|cdnts.info|cdnvideonl.com|cinema-24.online|coolstory.cc|creativportal.ru|dugkino.ru|duralenta.ru|ettochno.ru|ex-fs.net|film-online.org|film-online.space|filmonline.online|filmtybe.pl|fortulo.org|gogafilm.me|hd.films-online.cc|hdgo.cx|hdkino.biz|hdkinogohit.net|hdkinoteatr.com|hdlava.me|hdnow.biz|hdrezka.pro|hdrezka2.me|herotowe.org|hiex.ru|hostapi.ru|hydrus.cc|icinemax.net|ikinogo.net|inspij.org|ivi-ru.xyz|ivvi.online|jugugemanevan.online|kapnob.ru|kino-kingdom.com|kino-nada.net|kino-strah.ru|kinobay.club|kinoboom.net|kinofani.ru|kinogid.me|kinogo-720.club|kinogo-hd-720.net|kinogo-hq.ru|kinogo-net-hd.ru|kinogo-smotret.com|kinogo.com.ua|kinogo.site|kinogoco.club|kinoleto.com|kinoleto.info|kinolist.org|kinoliza.net|kinoljap.ru|kinolution.com|kinomoove.com|kinoogo.ru|kinopirat.club|kinopleer.info|kinoprofi.club|kinoprofi.today|kinoprofi.tv|kinored.club|kinorom.com|kinosklad.net|kinosky.net|kinospy.net|kinovod.org|kinozz.net|kodik.biz|kodik.cc|korean-films.net|kwestru.org|lastfilms.org|mir-kino.net|moonwalk.cc|moonwalk.center|movie-on.ru|mrukni.org|muvix.org|new-serials.net|new-serials.ru|newfilms.online|onlinemix.org|oseodaguerord.online|pandastream.cc|polnyj-film.net|previewer.cc|profilms.top|rudaily.ru|seria-z.net|serialtime.net|serpens.nl|servkino.ru|showfilm.club|smotri-online.me|staticnlcdn.com|streamguard.cc|streamguard.xyz|streamstorm.online|the-cinema.tv|theserials.ru|turboserial.net|tvepisodeswatch.net|tvfru.org|tvfru.ru|tvseason.net|tvserial-online.biz|ua-cinema.com|video.kinoshca.ru|videobob.ru|wifilm.ru|yallaneliera.com|zfilm-hd.club|zhd.life|zserials.me|zyx.watch|zzonlinepleer.info
 ! cdnapponline.com - `window.video_balancer`, `adv: {"adb_vast"`,`c_path: '728x90-'`
 @@||zahiniv.com^$other,xmlhttprequest
 @@||nuriato.com^$other,xmlhttprequest
@@ -1398,10 +1395,11 @@ kinopoisk.ru#%#AG_setConstant('only_branding_adv', 'trueFunc');
 drive2.ru#%#//scriptlet("set-constant", "Object.prototype._bannerOptions", "undefined")
 kakprosto.ru,drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.RtbBlockRenderAd')
 kakprosto.ru,drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.AdvManagerInit')
-kakprosto.ru,drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.AdvManagerLoaderRender')
-
+echo.msk.ru,kakprosto.ru,drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.AdvManagerLoaderRender')
 !+ PLATFORM(windows, mac, android)
 drive2.ru#%#Object.defineProperty(Object.prototype, '_bannerOptions', { get: function() { return; } });
+||echo.msk.ru^$replace=/AdvManager\.render/AdvManager._render/
+echo.msk.ru$$script[tag-content="DisplayAcceptableAdIfAdblocked"]
 !
 avtovzglyad.ru#%#Object.defineProperty(Object.prototype, 'initYaDirect', { get: function(){ throw null; }, set: function(){ throw null; }});
 avtovzglyad.ru#%#//scriptlet("set-constant", "Object.prototype.initYaDirect", "undefined")
