@@ -18,6 +18,11 @@ kttc.ru#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelec
 ! SocialMart banner
 s4galaxy.ru,3dnews.ru,lenovo-smart.ru#%#Object.defineProperty(window, 'SocialMartDocumentHelper', { get: function() { return function SocialMartDocumentHelper(){} } });
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/42271
+33porno.com#%#//scriptlet("prevent-window-open")
+! vesti.ua - ad scripts
+vesti.ua#%#//scriptlet("abort-current-inline-script", "document.getElementById", "MIXADV")
+vesti.ua#%#//scriptlet("abort-on-property-read", "createAds")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41410
 audioboo.ru,kinosvit.tv,nntt.org,rus-media.org,rutor.in,rutracker.in,wow-show.ru#%#//scriptlet("prevent-addEventListener", "load", "PopSettings")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41269
@@ -63,6 +68,7 @@ cbn.com.ua#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 news.dks.com.ua,golos.te.ua,procherk.info,cheline.com.ua,4mama.ua,ogo.ua,rusjev.net,fakty.ua,fainaidea.com,unn.com.ua#%#AG_abortInlineScript(/загрузка/, 'document.createElement');
 cbn.com.ua#%#AG_abortInlineScript(/n4p/, 'document.createElement');
 ! nnmclub.to - directadvert.ru script
+nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.tv,nnm-club.me,nnmclub.to#%#//scriptlet("set-constant", "ololo_ololosha_directadvert", "")
 nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.tv,nnm-club.me,nnmclub.to#%#AG_abortInlineScript(/ololo/, 'String.fromCharCode');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34867
 stratege.ru#%#//scriptlet("abort-current-inline-script", "window.open")
@@ -126,7 +132,8 @@ idwl.cn#%#AG_abortInlineScript(/C.removeAttribute\("id"\)/, 'String');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14335
 sberometer.ru#%#AG_abortInlineScript(/place_rvn/, 'document.addEventListener');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13010
-spcs.me#%#Object.defineProperty(window, 'mobiads_loader', { get: function() { return function(){}; } });
+! https://github.com/AdguardTeam/AdguardFilters/issues/42288
+gdespaces.com,spcs.me#%#Object.defineProperty(window, 'mobiads_loader', { get: function() { return function(){}; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13272
 fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('body').unbind('click').removeAttr("body").css("cursor","default"); }); });
 fastpic.ru#%#AG_onLoad(function() { $(function() { jQuery('html').unbind('click'); }); });
@@ -371,8 +378,12 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !-----------------------
 !------- CSS -----------
 !-----------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42271
+33porno.com#$#body { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42099
 bobsoccer.ru#$#body > .content-background { padding-top: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/42175
+medsprava.com.ua#$#body { margin-top: 40px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41640
 semestr.ru#$#.well-google { position: absolute!important; left: -3000px!important; }
 ! 101.ru - удаление отступа сверху
@@ -846,9 +857,6 @@ hideip.me#$#[id^="numbanner"] { position: absolute!important; left: -3000px!impo
 hideip.me#$#.region-highlighted > div.block-block:first-child > div.content > center { position: absolute!important; left: -3000px!important; }
 hideip.me#$#a[href="/advertising"] { pointer-events: none!important; }
 hideip.me#$##highlighted span[id^="numlink"] { position: absolute!important; left: -3000px!important; }
-! lostfilm.tv - удаление брендированного фона, отступа сверху
-lostfilm.tv#$#body { background-image: none!important; }
-lostfilm.tv#$#a[onclick*=".php?a="] > * { position: absolute!important; left: -3000px!important; }
 ! musico.ru - удаление брендированного фона, отступа сверху
 musico.ru#$#.internal_wrap { margin-top: 0!important; background: #fff!important; }
 ! mobiltelefon.ru - удаление отступа сверху
@@ -946,21 +954,21 @@ news.rambler.ru#$#.j-cemetery__item.cemetery__item.partner { position: absolute!
 news.rambler.ru#$#.aside-banners__banner-static { position: absolute!important; left: -3000px!important; display: block!important; }
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5500
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 klerk.ru#$#.recommended-content { position: absolute!important; left: -3000px!important; }
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 klerk.ru#$#.flex-wrapper > div[class="universal-block-wrapper"][style^="height: 100%;"] { position: absolute!important; left: -3000px!important; }
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 klerk.ru#$#iframe[style^="height: 90px; width: 100%;"] { position: absolute!important; left: -3000px!important; }
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 klerk.ru#$#iframe[width="300"][height="600"]:not([src]) { position: absolute!important; left: -3000px!important; }
 !
 ! nnmclub - ads (for Firefox)
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 nnm-club.tv,nnmclub.to,nnm-club.me#$#iframe[width="970"][height="90"] { position: absolute!important; left: -3000px!important; }
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 nnm-club.tv,nnmclub.to,nnm-club.me#$#td#logo > center { position: absolute!important; left: -3000px!important; }
-!+ PLATFORM(ext_ff, ext_opera, ext_ublock)
+!+ PLATFORM(ext_ff, ext_opera)
 nnm-club.tv,nnmclub.to,nnm-club.me#$#iframe[width="240"][height="400"] { position: absolute!important; left: -3000px!important; }
 !
 ! ivi-video.com - show skip button
@@ -1292,8 +1300,6 @@ ua.tribuna.com,by.tribuna.com#$#body[class] > div#branding-layout { background: 
 sports.ru,ua.tribuna.com,by.tribuna.com#$##branding-layout > div[style*="width:100%;height:100%;cursor:pointer"] { z-index: -99!important; }
 sports.ru#$##branding-layout { background: #a7a7a7!important; margin-top: 96px!important; }
 sports.ru#$#body[class] > div#branding-layout { background: #a7a7a7!important; }
-!+ PLATFORM(ext_ublock)
-sports.ru#$#.columns-layout__right > a[target="_blank"] > img { position: absolute!important; left: -3000px!important; }
 !
 ! kinobar.kz - удаление отступа сверху
 kinobar.kz#$#body {padding-top: 0px!important}
