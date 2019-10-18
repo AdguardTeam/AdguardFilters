@@ -1,7 +1,9 @@
 !---------------------------------------------------------------------
 !------------------------------ Albanian -----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42498
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34502
+filma24.cc#$?#iframe[srcdoc*="frameElement.code.pop"] { remove: true; }
 filma24.cc###vidad
 filma24.cc#$?##vidad { remove: true; }
 filma24.cc##.widgets > .widget > .textwidget > center > a[href][target="_blank"] > img
@@ -823,6 +825,10 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42425
 javporn.best#@#.afs_ads
 ||javporn.best/asset/default/player/plugins/vast-*.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/42481
+!#safari_cb_affinity(privacy)
+@@||cloudflare.com/ajax/libs/fingerprintjs2/*/fingerprint2.min.js$domain=nfmovies.com
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42421
 dashishipin.com##.banner_iframe
 @@||cdn.jsdelivr.net/gh/dashidev/static@master/js/ads.js$domain=dashishipin.com
@@ -1637,6 +1643,10 @@ macapp.so#$##m2 { height: 5px!important; }
 !---------------------------------------------------------------------
 !------------------------------ Croatian -----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42483
+jutarnji.hr##.lidl.products
+jutarnji.hr##.feroterm.products
+jutarnji.hr##.promo_heading_fix img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29090
 eprevodilac.com##.oglasi_sredina
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24734
@@ -1674,6 +1684,10 @@ ahaonline.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.c
 ahaonline.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,extra.cz,idnes.cz,karaoketexty.cz,mobilmania.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz$$script[wildcard="*.name)throw *=""ABP"",*"][max-length="7000"]
 auto.cz$$script[tag-content="abortCurrentInlineScript"][max-length="7000"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/42496
+cdr.cz,diit.cz#$#html > body { background-image: none!important; padding-top: 0!important; }
+||diit.cz/sites/default/files/_cdr_branding/branding.jpg
+||cdr.cz/sites/default/files/_cdr_branding/branding.jpg
 ! centrum.cz - ads
 !+ NOT_PLATFORM(windows, mac, android)
 centrum.cz#%#//scriptlet("set-constant", "Object.prototype.fetchAds", "noopFunc")
@@ -2253,6 +2267,13 @@ autopapa.ge##.top-rek
 !---------------------------------------------------------------------
 !------------------------------ Greek --------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42521
+newsthessaloniki.gr##.adace-slideup-slot-wrap
+@@||newsthessaloniki.gr/wp-content/*/adblock-detector/advertisement.js
+!+ NOT_PLATFORM(windows, mac, android)
+newsthessaloniki.gr#%#//scriptlet("set-constant", "jQuery.adblock", "false")
+!+ PLATFORM(windows, mac, android)
+newsthessaloniki.gr#%#AG_setConstant('jQuery.adblock', 'false');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39991
 @@||xiaomi-miui.gr/*/advertisement.js
 xiaomi-miui.gr#%#AG_setConstant('$easyadvtblock', 'false');
@@ -2739,6 +2760,16 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42555
+!+ NOT_PLATFORM(windows, mac, android)
+layarkaca21indo.net#%#//scriptlet("abort-current-inline-script", "$", "#idmuvi-popup")
+!+ PLATFORM(windows, mac, android)
+layarkaca21indo.net#%#AG_abortInlineScript(/#idmuvi-popup/, '$');
+! https://github.com/AdguardTeam/AdguardFilters/issues/42513
+tribunnews.com###adspop
+tribunnews.com###wideskyscraper
+!
+telset.id##.footer_sticky
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40700
 @@.bid$image,domain=manhwa-manga.bid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42312
@@ -3297,6 +3328,9 @@ insidemarketing.it##.homeBannerMax
 insidemarketing.it#%#//scriptlet("set-constant", "adblock", "false")
 !+ PLATFORM(windows, mac, android)
 insidemarketing.it#%#AG_setConstant('adblock', 'false');
+! https://github.com/AdguardTeam/AdguardFilters/issues/42488
+gdr-online.com##.adv_barra_alto
+gdr-online.com##body > div[align="center"][style*="margin-top:6px;"][style*="align: center !IMPORTANT;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41807
 hwupgrade.it##.gb-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41946
@@ -4820,7 +4854,7 @@ www.wp.pl#%#//scriptlet("set-constant", "Object.prototype.bodyCode", "noopFunc")
 ~www.wp.pl,pudelek.pl,wp.pl#%#//scriptlet("set-constant", "Object.prototype.advViewability", "undefined")
 abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,biztok.pl,bloog.pl,dobreprogramy.pl,dzieci.pl,easygo.pl,echirurgia.pl,fotoblogia.pl,gadzetomania.pl,hotmoney.pl,interaktywnie.com,inwestycje.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kantory.pl,kazimierzdolny.pl,komediowo.pl,komorkomania.pl,mazury.com,mojeauto.pl,mojeosiedle.pl,money.pl,nasygnale.pl,niewiarygodne.pl,nocowanie.pl,odkrywcy.pl,open.fm,parenting.pl,pudelek.tv,pytamy.pl,sfora.pl,snobka.pl,tlen.pl,totalmoney.pl,wakacje.pl,wawalove.pl,www.wp.pl,wp.tv,wrzuta.pl#%#//scriptlet("set-constant", "Object.prototype.bodies", "true")
 turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl,wiadomosci.wp.pl#?#div[class*="-"] > div[class*="-"][class*=" "]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
-opinie.wp.pl#?#div[class^="ycipk-"][class*=" "]:has(> img[src^="https://v.wpimg.pl/"][src$="="][alt^="ycipk-"])
+turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl,opinie.wp.pl#?#div[class^="ycipk-"][class*=" "]:has(> img[src^="https://v.wpimg.pl/"][src$="="][alt^="ycipk-"])
 pudelek.pl#?#[class*="-"] > div[class*="-"][class*=" "]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
 o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#@#.pub_300x250
 o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#@#.text_ads
@@ -5253,7 +5287,7 @@ wiadomosci.wp.pl#?#div[class*="-"][class*=" "]:has(>div[class]:first-child:empty
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
 ||oas.wpcdn.pl/*.mp4$media,mp4,domain=dobreprogramy.pl|medycyna24.pl|money.pl|o2.pl|pudelek.pl|wp.pl
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
-||v.wpimg.pl^$media,mp4,domain=pudelek.pl|dobreprogramy.pl|medycyna24.pl|money.pl|wp.pl
+||v.wpimg.pl^$media,mp4,domain=o2.pl|pudelek.pl|dobreprogramy.pl|medycyna24.pl|money.pl|wp.pl
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
 sportowefakty.wp.pl#?#div:not([class]):not([id]):has(> div[class] > div[class*=" "] > div:not([class]):not([id]):contains(/^REKLAMA$/))
 sportowefakty.wp.pl#?#.teasers > div[class=" display"]:has(> div[class] > div[class] > div:not([class]):not([id]) > div:not([class]):not([id]):contains(/^REKLAMA$/))
@@ -5829,6 +5863,9 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !---------------------------------------------------------------------
 !------------------------------ Taiwan -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/42461
+@@||web-static.linetv.tw/public/scripts/ads.js
+linetv.tw#%#AG_setConstant('canRunAds', 'true');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33598
 forusex.com##a[href^="http://redheartnext.com"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34625
@@ -6197,6 +6234,12 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41591
 @@||aquabird.vn/js/Siropu/AM/ads.min.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/42486
+!+ NOT_PLATFORM(windows, mac, android)
+tiengnga.net#%#//scriptlet("abort-on-property-read", "XF.samAdBlockAction")
+!+ PLATFORM(windows, mac, android)
+tiengnga.net#%#AG_abortOnPropertyRead('XF.samAdBlockAction');
+@@||tiengnga.net/js/siropu/am/ads.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40962
 @@||win10.vn/wp-content/plugins/dh-anti-adblocker/assets/js/showads.js
 win10.vn#%#AG_setConstant('canRunAds', 'true');
