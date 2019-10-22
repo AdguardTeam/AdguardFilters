@@ -165,6 +165,13 @@ xxxstreams.org,24animeporn.com,3dhentaicomics.com,3dpornpics.pro,3dsex.pics,3dse
 ! END: Popular clickunders
 !**********************************
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/42723
+!+ NOT_PLATFORM(windows, mac, android)
+vivads.net#%#//scriptlet("abort-on-property-read", "SmartPopunder")
+vivads.net#%#//scriptlet("prevent-window-open")
+!+ PLATFORM(windows, mac, android)
+vivads.net#%#AG_abortOnPropertyRead('SmartPopunder');
+vivads.net#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42413
 spankbang.com#%#//scriptlet("prevent-setTimeout", "/document.location.assign/")
 spankbang.com#%#document.cookie = "bbm_pp_desktop=1";
