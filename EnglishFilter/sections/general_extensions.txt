@@ -170,6 +170,11 @@ xxxstreams.org,24animeporn.com,3dhentaicomics.com,3dpornpics.pro,3dsex.pics,3dse
 ! END: Popular clickunders
 !**********************************
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/43252
+!+ NOT_PLATFORM(windows, mac, android)
+pornlib.com#%#//scriptlet("prevent-window-open", "1", "about:blank")
+!+ PLATFORM(windows, mac, android)
+pornlib.com#%#(function() { var open_ = window.open; var w_open = window.open, regex = /about:blank/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! adshell.net - popups
 h5.adshell.net#%#//scriptlet("prevent-window-open")
 h5.adshell.net#%#window.open = function() {};
