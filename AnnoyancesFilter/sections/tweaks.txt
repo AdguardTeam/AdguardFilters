@@ -97,6 +97,13 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/43338
+qladanier.com#%#!function(){if(-1<window.location.href.indexOf("?url=")){var a=location.href.split("?url=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
+! https://github.com/AdguardTeam/AdguardFilters/issues/43273
+!+ NOT_PLATFORM(windows, mac, android)
+coolrom.com.au#%#//scriptlet("adjust-setTimeout", "download()")
+!+ PLATFORM(windows, mac, android)
+coolrom.com.au#%#(function(){var c=window.setTimeout;window.setTimeout=function(f,g){return g===1e3&&/download\(\)/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43166
 shrte.life#%#!function(){if(-1<window.location.href.indexOf("/#")){var a=location.href.split("/#");if(a&&a[1])try{window.location=atob(atob(a[1]))}catch(b){}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43131
@@ -341,7 +348,7 @@ portalwrc.pl#%#window.addEventListener("contextmenu",function(a){a.stopPropagati
 portalwrc.pl#%#AG_abortOnPropertyRead('disableSelection');
 portalwrc.pl#%#AG_abortInlineScript(/document\.body\.oncopy/, 'addEvent');
 wrixy.com#%#AG_onLoad(function() { setTimeout(function() { document.body.oncontextmenu = document.body.ondragstart = document.body.onselectstart = document.body.onkeydown = function() { return true; }; }, 300); });
-newtoki24.net,newtoki23.com#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
+newtoki30.net,newtoki24.net,newtoki23.com#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 shield-project.ru#%#//scriptlet("abort-on-property-write", "document.oncontextmenu")
 hjkhgyss.tistory.com,maniac-game.tistory.com#%#AG_onLoad(function() { document.oncontextmenu = document.ondragstart = document.onselectstart = function() { return true; }; });
 teachios.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = null; });
