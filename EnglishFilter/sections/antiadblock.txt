@@ -2724,11 +2724,17 @@ receive-sms-online.info$$script[wildcard="*document.getElementsByTagName*AdBlock
 popsci.com#$#.tp-backdrop { display: none!important; }
 popsci.com#$#.tp-modal { display: none!important; }
 popsci.com#$#body.tp-modal-open { overflow: visible!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/43671
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31497
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25591
 @@||extremereportbot.com/ads.js
 @@||extremereportbot.com/adframe.js
-extremereportbot.com#%#Object.defineProperty(window, 'adblock', { value: false });
+!+ NOT_PLATFORM(windows, mac, android)
+extremereportbot.com#%#//scriptlet("prevent-setTimeout", "doABW")
+!+ PLATFORM(windows, mac, android)
+extremereportbot.com#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/doABW/.test(a.toString()))return b(a,c)};})();
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=extremereportbot.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25962
 @@||crstoday.com/wp-content/themes/bmc-core/library/js/showads.js$domain=crstoday.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25746
