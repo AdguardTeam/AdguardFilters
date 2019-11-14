@@ -1,6 +1,14 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44025
+!+ NOT_PLATFORM(windows, mac, android)
+vidtekno.com#%#//scriptlet("abort-on-property-read", "adblockmesaj")
+!+ PLATFORM(windows, mac, android)
+vidtekno.com#%#AG_abortOnPropertyRead('adblockmesaj');
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=vidtekno.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=vidtekno.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44024
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=kanalmaras.com
