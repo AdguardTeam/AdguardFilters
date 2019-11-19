@@ -1,6 +1,12 @@
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
+! https://github.com/AdguardTeam/AdguardFilters/issues/44237
+redirdx.in#%#document.cookie = "tronador=aproved; path=/";
+!+ NOT_PLATFORM(windows, mac, android)
+redirdx.in#%#//scriptlet("prevent-window-open", "1", "redirdx.in/go/")
+!+ PLATFORM(windows, mac, android)
+redirdx.in#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /redirdx\.in\/go\//; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43603#issuecomment-553749336
 hentaihd.xyz#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector('div.fluid_initial_play'); if(el) el.click(); }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42704
