@@ -437,6 +437,14 @@ hdzog.com,sss.xxx#@#.adver
 !END: Popups - LocalStorage element abPopLastCall
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44295
+mac-torrent-download.net#%#document.cookie = "glx_pp_=1; path=/";
+!+ NOT_PLATFORM(windows, mac, android)
+mac-torrent-download.net#%#//scriptlet("set-constant", "glxopen", "noopFunc")
+!+ PLATFORM(windows, mac, android)
+mac-torrent-download.net#%#AG_setConstant('glxopen', 'noopFunc');
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari)
+@@||cataspboa.site/*/*$script,domain=mac-torrent-download.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44314
 @@||geekrar.com/wp-content/*/js/ads-*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44157
