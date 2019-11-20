@@ -2874,6 +2874,14 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/44251
+fb21.tv##div[id^="previewBox"]
+fb21.tv#$##myModalSingle { display: none!important; }
+fb21.tv#$#body.modal-open { overflow: visible!important; padding-right: 0!important; }
+!+ NOT_PLATFORM(windows, mac, android)
+fb21.tv#%#//scriptlet("adjust-setInterval", "countdown")
+!+ PLATFORM(windows, mac, android)
+fb21.tv#%#(function(){var c=window.setInterval;window.setInterval=function(f,g){return g===1e3&&/countdown/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44243
 shopee.co.id#?#.shopee-search-item-result__items > .shopee-search-item-result__item:has(> div > a[data-sqe="link"] > div[class^="_"] > div[class^="_"] > div[class^="_"] > div[data-sqe="ad"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44153
