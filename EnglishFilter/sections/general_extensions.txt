@@ -187,6 +187,11 @@ xxxstreams.org,24animeporn.com,3dhentaicomics.com,3dpornpics.pro,3dsex.pics,3dse
 !**********************************
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44654
+!+ NOT_PLATFORM(windows, mac, android)
+streamsforu.com#%#//scriptlet("adjust-setInterval", "timerLayerAdLine", "", "0.01")
+!+ PLATFORM(windows, mac, android)
+streamsforu.com#%#(function(){var c=window.setInterval;window.setInterval=function(f,g){return g===1e3&&/timerLayerAdLine/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44686
 lightnovelworld.com#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelectorAll(".adsbox"); if(el) { el.forEach(function(el) { el.remove(); }); }  }, 1000); });
 ! bcvc.live - popups
