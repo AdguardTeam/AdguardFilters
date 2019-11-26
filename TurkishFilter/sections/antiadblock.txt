@@ -1,6 +1,12 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44479
+@@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=turkanime.net
+!+ NOT_PLATFORM(windows, mac, android)
+turkanime.net#%#//scriptlet("prevent-setTimeout", "hasAdsBlocked")
+!+ PLATFORM(windows, mac, android)
+turkanime.net#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/hasAdsBlocked/.test(a.toString()))return b(a,c)};})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44025
 !+ NOT_PLATFORM(windows, mac, android)
 vidtekno.com#%#//scriptlet("abort-on-property-read", "adblockmesaj")
