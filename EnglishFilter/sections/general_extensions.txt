@@ -191,6 +191,11 @@ xxxstreams.org,24animeporn.com,3dhentaicomics.com,3dpornpics.pro,3dsex.pics,3dse
 !**********************************
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44864
+!+ NOT_PLATFORM(windows, mac, android)
+bit-url.com#%#//scriptlet("prevent-eval-if", "__PPU_CHECK")
+!+ PLATFORM(windows, mac, android)
+bit-url.com#%#(function() { var _eval = window.eval; window.eval = function(a) { if ( a.toString().indexOf('__PPU_CHECK') === -1 ) { _eval(a); return; } }; })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44791
 !+ NOT_PLATFORM(windows, mac, android)
 ac-mo.com#%#//scriptlet("abort-on-property-read", "PopUP")
