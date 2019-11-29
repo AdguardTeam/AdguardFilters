@@ -575,10 +575,7 @@ beeng.net#%#//scriptlet("prevent-window-open")
 beeng.net#%#window.open = function() { };
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37856
 xhamster10.com,xhamster.desi,xhamster.one,xhamster.com#%#document.cookie = "ts_popunder=1;max-age=24000;domain=.xhamster.com;path=/";
-!+ NOT_PLATFORM(windows, mac, android)
-xhamster10.com,xhamster.desi,xhamster.one,xhamster.com#%#//scriptlet("abort-on-property-read", "wil-popunder")
-!+ PLATFORM(windows, mac, android)
-xhamster10.com,xhamster.desi,xhamster.one,xhamster.com#%#AG_abortOnPropertyRead('wil-popunder');
+xhamster10.com,xhamster.desi,xhamster.one,xhamster.com#%#AG_abortOnPropertyRead('dataPopUnder');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38558
 easyexploits.com#%#AG_abortOnPropertyRead('S9tt');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38547
@@ -800,8 +797,6 @@ file-up.org#%#AG_onLoad(function() { var el = document.querySelector('.container
 drakula.top#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /about:blank/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33665
 empflix.com#%#AG_abortOnPropertyRead('ads.pop_url');
-! https://github.com/AdguardTeam/AdguardFilters/issues/33728
-xhamster.desi#%#AG_abortOnPropertyRead('dataPopUnder');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33624
 hpjav.tv#%#AG_setConstant('NativeAd', 'noopFunc');
 ! fc.lc - popups
@@ -887,8 +882,6 @@ kastream.biz#%#window.open = function() {};
 fileflares.com#%#(function(){var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"click"!=a&&-1==b.toString().indexOf('bi()')&&c(a,b,d,e)}.bind(document);})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15133
 link.tl#%#AG_onLoad(function() { setTimeout(function() {if(window.location.href.indexOf("/i/") != -1) { document.querySelector(" .skip > a").click(); }}, 300); }); 
-! https://github.com/AdguardTeam/AdguardFilters/issues/30366
-xhamster.one#%#AG_abortOnPropertyRead('dataPopUnder');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31439
 arabseed.tv#%#Object.defineProperty(Object.prototype, 'Focm', { get: function(){ throw null; }, set: function(){ throw null; }});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27252
