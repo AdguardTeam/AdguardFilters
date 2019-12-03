@@ -1,6 +1,15 @@
 !
 !######### Annoying elements (not ads)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/45328
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+komputerswiat.pl,onet.pl#%#//scriptlet("set-constant", "floatingPlayer", "noopFunc")
+onet.pl#%#//scriptlet("set-constant", "FloatingVideoPlayer", "noopFunc")
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+komputerswiat.pl,onet.pl#%#AG_setConstant('floatingPlayer', 'noopFunc');
+onet.pl#%#AG_setConstant('FloatingVideoPlayer', 'noopFunc');
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45289
 kp.ru#?#article > div.text:has(> div.tgContainer > a[href="https://t-do.ru/truekpru"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44911
