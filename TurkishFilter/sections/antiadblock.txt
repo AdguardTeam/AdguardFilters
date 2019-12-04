@@ -3,20 +3,17 @@
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44479
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=turkanime.net
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-turkanime.net#%#//scriptlet("set-constant", "AdblockKontrol", "falseFunc")
+turkanime.net#%#AG_defineProperty('AdblockKontrol', {value: function(){ return false; }});
+!+ NOT_PLATFORM(windows, mac, android)
 turkanime.net#%#//scriptlet("prevent-setTimeout", "hasAdsBlocked")
-!#endif
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-turkanime.net#%#AG_setConstant('AdblockKontrol', 'falseFunc');
+!+ PLATFORM(windows, mac, android)
 turkanime.net#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/hasAdsBlocked/.test(a.toString()))return b(a,c)};})();
-!#endif
-!#if (!adguard_ext_edge && !adguard_ext_safari && !adguard_app_ios && !adguard_ext_android_cb)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium)
 ||server.cpmstar.com/view.aspx?$empty,important,domain=turkanime.net
 ||server.cpmstar.com/cached/*.js$empty,important,domain=turkanime.net
 ||ssl.cdne.cpmstar.com/cached/*.js$empty,important,domain=turkanime.net
 !#endif
-!#if (adguard_ext_edge || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
 @@||server.cpmstar.com/view.aspx?$domain=turkanime.net
 @@||server.cpmstar.com/cached/*.js$domain=turkanime.net
 @@||ssl.cdne.cpmstar.com/cached/*.js$domain=turkanime.net
