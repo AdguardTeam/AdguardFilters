@@ -378,6 +378,12 @@ hclips.com#@#.adholder2
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=streetdir.com|roaddir.com
 @@||tycoon.adspirit.net/adview.php^$domain=streetdir.com|roaddir.com
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/45447
+@@||wstream.video/ads2.js
+!+ NOT_PLATFORM(windows, mac, android)
+wstream.video#%#//scriptlet("prevent-setTimeout", "/document\.getElementById\([\s\S]*?\)\.style\.display/")
+!+ PLATFORM(windows, mac, android)
+wstream.video#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/document\.getElementById\([\s\S]*?\)\.style\.display/.test(a.toString()))return b(a,c)};})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45442
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/*/fuckadblock.min.js$domain=televisiongratishd.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45436
