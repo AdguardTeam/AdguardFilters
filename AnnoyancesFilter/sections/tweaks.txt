@@ -114,6 +114,11 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/45486
+!+ NOT_PLATFORM(windows, mac, android)
+katfile.com#%#//scriptlet("adjust-setTimeout", "#freebtn", "", "0.02")
+!+ PLATFORM(windows, mac, android)
+katfile.com#%#(function(){var c=window.setTimeout;window.setTimeout=function(f,g){return g===1e3&&/#freebtn/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45436
 newsteez.com,spechly.com#%#AG_onLoad(function(){var a=document.querySelector(".wpsafe-bottom > #shrtxyz > form[action*='/?safelink_redirect=']");if(a&&(a=a.action.split("?safelink_redirect="))&&a[1])try{window.location=decodeURIComponent(a[1])}catch(b){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45347
