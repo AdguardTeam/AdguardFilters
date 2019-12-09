@@ -5,14 +5,16 @@
 ! turkanime.net#%#AG_defineProperty('AdblockKontrol', {value: function(){ return false; }});
 ! it seems that they changed it again and now instead of "AdblockKontrol" there is "_0x160799"; also seems that setting "adblock" cookie to "1" like #%#document.cookie = "adblock=1; path=/"; works, but I guess they will change it too
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=turkanime.net
-!+ NOT_PLATFORM(windows, mac, android)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 turkanime.net#%#//scriptlet("prevent-setTimeout", "hasAdsBlocked")
-!+ PLATFORM(windows, mac, android)
-turkanime.net#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/hasAdsBlocked/.test(a.toString()))return b(a,c)};})();
-!+ NOT_PLATFORM(windows, mac, android)
+@@||ssl.cdne.cpmstar.com/cached/zonemasters/lib/prebid/prebid_*.js$domain=turkanime.net
 @@||ssl.cdne.cpmstar.com/cached/creatives/*/300x250.v3.jpg$xmlhttprequest,domain=turkanime.net
-!+ PLATFORM(windows, mac, android)
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+turkanime.net#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/hasAdsBlocked/.test(a.toString()))return b(a,c)};})();
+||ssl.cdne.cpmstar.com/cached/zonemasters/lib/prebid/prebid_*.js$empty,important,domain=turkanime.net
 ||ssl.cdne.cpmstar.com/cached/creatives/$image,xmlhttprequest,empty,important,domain=turkanime.net
+!#endif
 ! @@||server.cpmstar.com/view.aspx?poolid=$domain=turkanime.net
 ! @@||server.cpmstar.com/cached/js/lib.js$domain=turkanime.net
 ! @@||server.cpmstar.com/cached/zonefiles/*_turkanime.js$domain=turkanime.net
