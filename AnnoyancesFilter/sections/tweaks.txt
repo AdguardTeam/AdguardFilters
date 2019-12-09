@@ -114,6 +114,11 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! newsjizz.in - skip timer
+!+ NOT_PLATFORM(windows, mac, android)
+newsjizz.in#%#//scriptlet("adjust-setInterval", "counter", "", "0.02")
+!+ PLATFORM(windows, mac, android)
+newsjizz.in#%#(function(){var c=window.setInterval;window.setInterval=function(f,g){return g===1e3&&/counter/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45486
 !+ NOT_PLATFORM(windows, mac, android)
 katfile.com#%#//scriptlet("adjust-setTimeout", "#freebtn", "", "0.02")
