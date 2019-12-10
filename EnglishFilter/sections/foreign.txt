@@ -4917,14 +4917,16 @@ delfi.ee###ab-top-bar
 !
 ! delfi.lt#%#AG_setConstant('__dabd', 'noopFunc');
 ! delfi.lt#%#//scriptlet("set-constant", "__dabd", "noopFunc")
+! delfi.lt#%#AG_setConstant('_dlf._ab', 'noopFunc');
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-delfi.lt#%#//scriptlet("set-constant", "_dlf._ab", "noopFunc")
-delfi.lt#%#//scriptlet("prevent-setTimeout", "#header-top-banner")
+delfi.lt#%#//scriptlet("prevent-setTimeout", "Banner")
 !#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-delfi.lt#%#AG_setConstant('_dlf._ab', 'noopFunc');
-delfi.lt#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/"#header-top-banner"/.test(a.toString()))return b(a,c)};})();
+delfi.lt#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/Banner/.test(a.toString()))return b(a,c)};})();
 !#endif
+delfi.lt#@#.banner
+delfi.lt#@#.revolut-juosta
+delfi.lt#$#.revolut-juosta { position: absolute!important; left: -3000px!important; }
 delfi.lt###al-infoblock
 delfi.lt###al-580x150
 ||alio.lt^$domain=delfi.lt
