@@ -3639,6 +3639,11 @@ krucil.net##img[width="900"][height="50"]
 !---------------------------------------------------------------------
 !------------------------------ Hebrew -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/45799
+!+ NOT_PLATFORM(windows, mac, android)
+themarker.com#%#//scriptlet("prevent-addEventListener", "load", "hblocked?returnTo")
+!+ PLATFORM(windows, mac, android)
+themarker.com#%#(function(){var b=window.addEventListener;window.addEventListener=function(c,a,d){if(a&&-1==a.toString().indexOf("hblocked?returnTo"))return b(c,a,d)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45669
 @@||admedia.com/images/cross_channel_arrows.png$domain=weather2day.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42344
