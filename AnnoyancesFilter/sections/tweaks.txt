@@ -2,6 +2,8 @@
 !######### CSS tweaks #########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/45873
+tinder.com#$#div[class*="NetHeight(100%,82px)"] { height: 100%!important; }
 ! focus.de - removing double border at end of article
 focus.de#$##teaserRss { border-top: 0px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45235
@@ -236,7 +238,7 @@ cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#(function(){v
 linkvertise.com,link-to.net#%#!function(){if(-1<window.location.href.indexOf("dynamic?r=")){var a=location.href.split("?r=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 link-to.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/link-to\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
 ! Based on Universal Bypass
-linkvertise.com,link-to.net#%#!function(){ var xhr=new XMLHttpRequest;xhr.onload=function(){var a=JSON.parse(xhr.responseText);a&&a.data&&a.data.link&&(window.location=a.data.link.target)};xhr.open("GET","https://linkvertise.net/api/v1/redirect/link/static"+location.pathname);xhr.send(); }();
+linkvertise.com#%#(function(){var c=window.setInterval;window.setInterval=function(b,a){return 1E3===a&&/number/.test(b.toString())&&(a*=.01),c.apply(this,arguments)}.bind(window);window.videojs={getAllPlayers:function(){return[{on:function(b,a){return a()},controlBar:{progressControl:{disable:function(){}}},pause:function(){},play:function(){}}]}};AG_setConstant("Notification.permission","false");AG_onLoad(function(){var b=document.body,a=document.createElement("div");b&&(b.appendChild(a),a.setAttribute("id","ogxzi8ZzrLy8S4zhUwyc3jPMlXi1h91bA0bASIiZtyT6cOTlX78HtEyXTK0WUGCY3CO8E4hBYI02ZD9mr7jit7R1YqPdkllJ")); (new MutationObserver(function(){var a=document.querySelector(".todo-block .todo"),b=document.querySelectorAll(".todo-block .todo");a&&(b.forEach(function(a){a.click()}),setTimeout(function(){document.querySelectorAll(".modal.show .web-close-btn").forEach(function(a){a.click()})},100),setTimeout(function(){var a=document.querySelector(".todo-wrapper div[class='col-xl-6'] > .btn.d-none");a&&a.click()},100),setTimeout(function(){var a=document.querySelector(".no-gutters .btn.countdown-btn");a&&a.click()}, 500))})).observe(document,{childList:!0,subtree:!0})})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32710
 pandora.com.tr#%#AG_onLoad(function() { setTimeout(function() { var link1=document.getElementById("urunDetayKapak"); var link2=document.getElementById("urun-detay"); if(link1 || link2){link1.ondragstart=function(){return!0},link1.oncontextmenu=function(){return!0},link1.onselectstart=function(){return!0},link2.ondragstart=function(){return!0},link2.oncontextmenu=function(){return!0},link2.onselectstart=function(){return!0},$("#urunDetayKapak").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"),$(".urunAciklama").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"); } }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31050
@@ -362,6 +364,7 @@ catekno.com#$#img { -webkit-touch-callout: default!important; -webkit-user-selec
 e-marineeducation.com#%#//scriptlet('abort-on-property-read', 'disableSelection')
 !+ PLATFORM(windows, mac, android)
 e-marineeducation.com#%#AG_abortOnPropertyRead('disableSelection');
+kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga.xyz#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 poisonous-raspberry-fields.blogspot.com#%#AG_onLoad(function(){var a=document.getElementsByTagName("body")[0];a&&(a.removeAttribute("onmousedown"),a.removeAttribute("onselectstart"),a.removeAttribute("ondragstart"));a=document.querySelectorAll(".post-body[ondragstart][onmousedown][onselectstart]");for(var b=0;b<a.length;b++)a[b].removeAttribute("onmousedown"),a[b].removeAttribute("onselectstart"),a[b].removeAttribute("ondragstart")});

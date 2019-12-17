@@ -118,8 +118,17 @@ helpsetup.ru$$script[tag-content="adBlockFunction"][max-length="1600"]
 @@||mc.yandex.ru/metrika/tag.js$domain=helpsetup.ru
 @@||an.yandex.ru/system/context.js$domain=helpsetup.ru
 !#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/45837
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+pronpic.org$$script[tag-content="ad_nodes"][max-length="1000"]
+pronpic.org#%#AG_onLoad(function() { $(".adblock_lock").remove(); $("#small_img").click(function() { document.location=location.href + '/1/';}); });
+!#endif
+!+ NOT_PLATFORM(windows, mac, android)
+pronpic.org#$##vO5STmSLgNAkebzSluI8coxpDgsG97g { height: 1px!important; }
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/46017
+||ufcrussian.ru/wp-content/themes/*/js/customscript.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43485
 @@||doefiratv.net/assets/js/dfp.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43430
@@ -473,7 +482,7 @@ flymer.ru#$#.ad-home { position: absolute!important; left: -3000px!important; }
 !
 gismeteo.ua$$script[tag-content="zmctrack"]
 !+ NOT_PLATFORM(windows, mac, android)
-smak.ua,inforesist.org,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,vesti.ua,beauty.ua,obozrevatel.com,vgorode.ua,strana.ua,sinoptik.ua,pravda.com.ua,epravda.com.ua,gagadget.com,censor.net.ua,gismeteo.ua,okino.ua,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
+ukr.net,smak.ua,inforesist.org,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,vesti.ua,beauty.ua,obozrevatel.com,vgorode.ua,strana.ua,sinoptik.ua,pravda.com.ua,epravda.com.ua,gagadget.com,censor.net.ua,gismeteo.ua,okino.ua,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
 !+ NOT_PLATFORM(windows, mac, android)
 segodnya.ua,enovosty.com,internetua.com#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "noopFunc")
 ! 26.12.2018
@@ -506,6 +515,8 @@ wss://s.zmctrack.net/
 ! If it is necessary, make this rule domain specific 
 !+ PLATFORM(windows, mac, android)
 !@@://s.zmctrack.net/z|$third-party
+!+ PLATFORM(windows, mac, android)
+@@://s.zmctrack.net/z|$domain=ukr.net
 !.zmctrack.net^$~websocket,replace=/.+//,important
 ||s.zmctrack.net^$domain=korrespondent.net|tochka.net,important
 !
@@ -1453,15 +1464,15 @@ sdamgia.ru#%#AG_abortOnPropertyRead('Ya.Direct');
 !
 ! START: Yandex
 !
-$cookie=/blcrm|bltsr|^specific\$|HgGedof|adequate|technical|qgZTpupNMGJBM|substantial|instruction|telecommunications|pronunciation|involved|adequateing/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
+$cookie=/blcrm|bltsr|^specific\$|mcBaGDt|HgGedof|adequate|technical|qgZTpupNMGJBM|ancQTZw|instruction|telecommunications|pronunciation|involved|adequateing/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
 !
-auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gismeteo.ua,glav.su,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,pikabu.ru,rambler.ru,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#AG_removeCookie('/blcrm|bltsr|^specific\$|HgGedof|adequate|technical|qgZTpupNMGJBM|substantial|instruction|telecommunications|pronunciation|involved|adequateing/');
-$cookie=/blcrm|bltsr|^specific\$|HgGedof|adequate|technical|qgZTpupNMGJBM|substantial|instruction|telecommunications|pronunciation|involved|adequateing/,domain=auto.ru|avito.ru|baby.ru|businessman.ru|dni.rue1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gismeteo.ua|glav.su|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|kinopoisk.ru|liveinternet.ru|mathb-ege.sdamgia.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|pikabu.ru|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru|drive2.ru
+auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gismeteo.ua,glav.su,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,pikabu.ru,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#AG_removeCookie('/blcrm|bltsr|^specific\$|mcBaGDt|HgGedof|adequate|technical|qgZTpupNMGJBM|ancQTZw|instruction|telecommunications|pronunciation|involved|adequateing/');
+$cookie=/blcrm|bltsr|^specific\$|mcBaGDt|HgGedof|adequate|technical|qgZTpupNMGJBM|ancQTZw|instruction|telecommunications|pronunciation|involved|adequateing/,domain=auto.ru|avito.ru|baby.ru|businessman.ru|dni.rue1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gismeteo.ua|glav.su|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|kinopoisk.ru|liveinternet.ru|mathb-ege.sdamgia.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|pikabu.ru|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru|drive2.ru
 $cookie=/^los\$/,domain=auto.ru
 ! zen.yandex.ru - broken resources
-~passport.yandex.ru,~zen.yandex.ru,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#AG_removeCookie('/blcrm|bltsr|^specific\$|HgGedof|adequate|technical|qgZTpupNMGJBM|substantial|instruction|telecommunications|pronunciation|involved|adequateing/');
+~passport.yandex.ru,~zen.yandex.ru,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#AG_removeCookie('/blcrm|bltsr|^specific\$|mcBaGDt|HgGedof|adequate|technical|qgZTpupNMGJBM|ancQTZw|instruction|telecommunications|pronunciation|involved|adequateing/');
 !
-||kinopoisk.ru^$cookie=/determine|sophisticated\$/
+||kinopoisk.ru^$cookie=/determine|introductory\$/
 !
 24smi.org,sdamgia.ru,kakprosto.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.RtbRender')
 echo.msk.ru,kakprosto.ru,drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.AdvManagerLoaderRender')
