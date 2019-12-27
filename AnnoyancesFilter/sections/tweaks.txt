@@ -118,6 +118,13 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/46442
+!+ PLATFORM(ext_ff, ext_opera)
+rysafe.blogspot.com#%#//scriptlet("set-constant", "safelink.counter", "0")
+!+ NOT_PLATFORM(ext_ff, ext_opera)
+rysafe.blogspot.com#%#AG_setConstant('safelink.counter', '0');
+rysafe.blogspot.com#%#AG_setConstant('safelink.click2x', 'false');
+rysafe.blogspot.com#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector('.result > a[href^="http"]'); if(el) { location = el.href; } }, 2000); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46530
 !+ NOT_PLATFORM(windows, mac, android)
 sfile.mobi#%#//scriptlet("adjust-setInterval", "downloadButton", "", "0.02")
