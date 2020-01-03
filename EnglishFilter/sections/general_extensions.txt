@@ -226,8 +226,10 @@ mystream.to#%#//scriptlet("abort-on-property-read", "doSecondPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46615
 imagevenue.com#%#AG_onLoad(function() { var e = document.querySelector('a[title="Continue to your image"]'); if (e) e.click(); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46569
-nyafilmer.ga#%#//scriptlet("abort-current-inline-script", "jopperJs", "newTab")
-nyafilmer.ga#%#AG_abortInlineScript(/newTab/, 'jopperJs');
+!+ NOT_PLATFORM(windows, mac, android)
+nyafilmer.lol#%#//scriptlet("abort-current-inline-script", "jopperJs", "newTab")
+!+ PLATFORM(windows, mac, android)
+nyafilmer.lol#%#AG_abortInlineScript(/newTab/, 'jopperJs');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46574
 !+ NOT_PLATFORM(windows, mac, android)
 linksbuddy.com#%#//scriptlet("prevent-window-open")
