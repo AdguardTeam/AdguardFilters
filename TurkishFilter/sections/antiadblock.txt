@@ -1,6 +1,13 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/47098
+||mordefter.com/ad_killer/handler.js
+mordefter.com#%#AG_abortInlineScript(/ad_killer/, 'addEventListener');
+!+ PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=mordefter.com
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mordefter.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47101
 messletters.com#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47103
