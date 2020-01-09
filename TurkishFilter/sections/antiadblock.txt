@@ -1,6 +1,53 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/47230
+gecbunlari.com#@##adcontent
+! https://github.com/AdguardTeam/AdguardFilters/issues/47117
+sonaktuel.com#@##adcontent
+! https://github.com/AdguardTeam/AdguardFilters/issues/47119
+muglaweather.com#@##adcontent
+! https://github.com/AdguardTeam/AdguardFilters/issues/47159
+filmyuvam.com#%#//scriptlet("abort-current-inline-script", "BlockerBanner", "kontrol")
+!+ PLATFORM(ios, ext_android_cb)
+@@||filmyuvam.com^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/47184
+@@||veterinerhekimleri.com/wp-content/plugins/*/includes/adblock-detector/advertisement.js
+veterinerhekimleri.com#%#//scriptlet("set-constant", "jQuery.adblock", "false")
+! https://github.com/AdguardTeam/AdguardFilters/issues/47109
+oyunlarskor.com##.wgAdBlockMessage
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=oyunlarskor.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/47116
+oyuncukuru.org#@##adcontent
+! https://github.com/AdguardTeam/AdguardFilters/issues/47107
+fontyukle.net#@#.reklam
+fontyukle.net#$#.reklam { display: block!important; height: 1px!important; }
+fontyukle.net#$#.reklam_alani { display: none!important; }
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/show_ads.js$domain=fontyukle.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/47115
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=tokoyun.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/47098
+||mordefter.com/ad_killer/handler.js
+mordefter.com#%#AG_abortInlineScript(/ad_killer/, 'addEventListener');
+!+ PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$empty,important,domain=mordefter.com
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mordefter.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/47101
+messletters.com#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
+! https://github.com/AdguardTeam/AdguardFilters/issues/47103
+1ahaber.com##body > div[id^="ai-adb-"][style^="position: fixed; top:"][style*="z-index: 9999"]
+1ahaber.com#%#//scriptlet("set-constant", "ai_adb_detected", "noopFunc")
+! https://github.com/AdguardTeam/AdguardFilters/issues/47084
+isgfrm.com##.wutime-adblock
+@@||isgfrm.com/js/wutime_adblock/ads.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/47087
+@@||klavyeanaliz.org/*/adblock.js
+klavyeanaliz.org#%#//scriptlet("set-constant", "adblock", "false")
+! https://github.com/AdguardTeam/AdguardFilters/issues/46778
+turkeycrack.com##body > div[id^="ai-adb-"][style^="position: fixed; top:"][style*="z-index: 9999"]
+turkeycrack.com#%#//scriptlet("set-constant", "ai_adb_detected", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46317
 cadcamsektoru.com#$#.rek1 { height: 1px!important; }
 cadcamsektoru.com#$#.reklam_kontrol { height: 1px!important; }
@@ -17,7 +64,7 @@ tr.petitchef.com#%#AG_setConstant('canRunAds', '1');
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myjest.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44479
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=turkanime.net
-turkanime.net#%#AG_onLoad(function(){document.querySelectorAll("div#sponsored").forEach(function(b){var a=document.createElement("iframe"); b.appendChild(a)})});
+turkanime.net#%#AG_onLoad(function(){document.querySelectorAll("div#sponsored").forEach(function(b){var a=document.createElement("iframe");a.style="border-width: 0px;";b.appendChild(a)});document.querySelectorAll("div#sponsored iframe").forEach(function(b){var a=document.createElement("img");b.contentWindow.document.body.appendChild(a)})});
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||cpmstar.com/cached/*.jpg$empty,important,domain=turkanime.net
 ! turkanime.net#%#AG_onLoad(function(){setInterval(function(){if(-1!=document.cookie.indexOf("adblock"))for(var b=document.cookie.split(";"),a=0;a<b.length;a++){var c=b[a].split("=")[0],d=b[a].split("=")[1];"adblock"===c&&"0"===d&&(AG_removeCookie("adblock"),document.cookie="adblock=1; path=/")}},1000)});
@@ -55,7 +102,10 @@ vidtekno.com#%#AG_abortOnPropertyRead('adblockmesaj');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43703
 filmonerileri.org,sosyofo.com#@##adcontent
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43123
-@@||osxinfo.net/js/wutime_adblock/ads.js
+@@||osxinfo.net/js/*/adscript.js
+osxinfo.net#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display:block!important; }
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||osxinfo.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41730
 hknkr.com#@##adcontent
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39358
@@ -262,9 +312,6 @@ fmhikayeleri.com#@#.an-advert-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19581
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||hdturk.de^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/19218
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||dizired.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19428
 @@||forum.miuiturkiye.net/js/*advertising
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19029
