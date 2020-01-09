@@ -1,6 +1,12 @@
 !
 !######### Annoying elements (not ads)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/46766
+||player.anyclip.com^$domain=thewindowsclub.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/46788
+adbull.site##.col-sm-4
+! https://github.com/AdguardTeam/AdguardFilters/issues/46661
+pikabu.ru#?#.stories-feed > div.stories-feed__container > article ~ section:has(> div.lightbulbs__welcome)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46551
 ||i2.kidstaff.com.ua/info-1-5.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46392
@@ -17,14 +23,9 @@ weather.com##main > aside > div[id^="rail-Donation-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45351
 blog.mercedes-benz-passion.com###cb-bg-to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45328
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-komputerswiat.pl,onet.pl#%#//scriptlet("set-constant", "floatingPlayer", "noopFunc")
+komputerswiat.pl#%#//scriptlet("set-constant", "floatingPlayer.isFloatingEnabled", "false")
+onet.pl#%#//scriptlet("set-constant", "floatingPlayer", "noopFunc")
 onet.pl#%#//scriptlet("set-constant", "FloatingVideoPlayer", "noopFunc")
-!#endif
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-komputerswiat.pl,onet.pl#%#AG_setConstant('floatingPlayer', 'noopFunc');
-onet.pl#%#AG_setConstant('FloatingVideoPlayer', 'noopFunc');
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45633
 go99tech.com##.banner
 go99tech.com##.text-left
@@ -1229,6 +1230,12 @@ slate.com,businessinsider.de,fastcompany.com,heise.de,history.com,itprotoday.com
 ! ##.cta-component-full-width
 bournemouthecho.co.uk,eveningtimes.co.uk,greenocktelegraph.co.uk,heraldscotland.com,swindonadvertiser.co.uk,wiltshiretimes.co.uk##.cta-component-full-width
 !
+cuisineactuelle.fr##.newsletterBlock
+gamesrepacks.com###nksub-overlay-wrapper
+gamesrepacks.com###nksub_sidebar
+gamesrepacks.com##.nksub_tab
+portativ.ua##.page-account-subscribe-block
+portativ.ua##.yt-channel-container
 vc.ru,dtf.ru,tjournal.ru##.email_subscribe
 gurmeajanda.com##.leadinModal
 pluggedin.com##div[data-pi-newsletter]
@@ -1237,6 +1244,9 @@ serveradmin.ru#?#.theiaStickySidebar > div.widget:has(> div.widget-container > d
 postnauka.ru##[class*="subscribe"]
 postnauka.ru#?#enroll:contains(/Подпишитесь|Подпишись/)
 postnauka.ru#?#[class*="sub"]:contains(Подписаться)
+rg.ru##.b-telegram
+online.1c.ru#$#body { overflow: visible!important; }
+online.1c.ru#$#.fancybox-overlay { display: none!important; }
 tomshardware.com##.newsletter-signup
 azcentral.com##.newsletter-signup-condensed-module
 zerohedge.com###sidebar-form
@@ -1356,7 +1366,7 @@ livesport.ws##.ads-fullstory
 telegraaf.nl##.Col .Newsletter__body
 ||cbn.com.ua/wp-content/uploads/2019/06/20061924.jpg
 m.timesofindia.com##.newsletter_wdgt
-netpeak.net##.post-subscribe
+simpleflying.com,netpeak.net##.post-subscribe
 designoptimal.com##.widget_email-subscribers-form
 oknamedia.ru##.social-media-and-subscription-buttons
 nn.by##.social-subscriptions
@@ -2121,7 +2131,7 @@ mybroadband.co.za#?##main > .single-side > .side-box[-ext-has='.whatsapp-button'
 fly-phone.ru##main > section[class="widget"]
 marketingland.com#?#.panel:has(> .panel-body > p:contains(Sign up for our NEW daily brief.))
 mediasat.info#?#.widget:has(> h4 > span:contains(ПОДПИСКА))
-mvideo.ru#?#footer > div:has(> .section > .footer-subscribe)
+mvideo.ru#?#footer > div:has(> .section > .footer-sign-up)
 navalny.com#?#.b-right-col__item:has(> .b-subscribe)
 nickles.de#?#div:has(> #nickles_subscribe)
 masterpaiki.ru#?##secondary .widget-title:contains(Новые статьи на почту)
@@ -2178,6 +2188,9 @@ worldometers.info#?#div:matches-css(border:3px):has(> div > div > div > iframe[s
 ##.sosyal
 ##.td_block_social_counter
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/46696
+! social-locker
+yasir252.com#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector(".onp-sl-content");if("function"===typeof jQuery&&"object"===typeof bizpanda.lockerOptions&&a)try{a=0;for(var c=Object.keys(bizpanda.lockerOptions);a<c.length;a++){var d=c[a];if(d.includes("onpLock")){var b=bizpanda.lockerOptions[d];b&&jQuery.ajax({url:b.ajaxUrl,method:"post",data:{lockerId:b.lockerId,action:"opanda_loader",hash:b.contentHash},success:function(a){var b=jQuery(".onp-sl-content"),c=jQuery(".onp-sl-social-locker"); b.append(a);b.css("display","block");c.css("display","none")}})}}}catch(e){}},1E3)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12100
 !+ PLATFORM(ios, ext_android_cb)
 @@||windowstechblog.nl/wp-content/plugins/sociallocker-next-premium/bizpanda/assets/
