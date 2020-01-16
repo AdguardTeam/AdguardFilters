@@ -2,6 +2,10 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/46986
+sdamgia.ru#%#document.cookie = "adb=0";
+! https://github.com/AdguardTeam/AdguardFilters/issues/47805
+linedia.ru#%#//scriptlet("abort-current-inline-script", "$", "dwpopup")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45414
 tochka.net#%#//scriptlet("abort-current-inline-script", "Math", "var f,e,r,n,i")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42947
@@ -17,11 +21,8 @@ sportbar.biz,sportbox.ws,goool7.ws,sport-24tv.ru,365lives.net,sportboom.pro,spor
 alterera.org#%#//scriptlet("abort-current-inline-script", "document.referrer", "google")
 !+ PLATFORM(windows, mac, android)
 alterera.org#%#AG_abortInlineScript(/google/, 'document.referrer');
-! kinosvit.tv - popups
-!+ NOT_PLATFORM(windows, mac, android)
-kinosvit.tv#%#//scriptlet("abort-on-property-read", "ads_script")
-!+ PLATFORM(windows, mac, android)
-kinosvit.tv#%#AG_abortOnPropertyRead('ads_script');
+! popups - `ads_script`
+kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44512
 !+ NOT_PLATFORM(windows, mac, android)
 porno-incest.net#%#//scriptlet("prevent-window-open")
@@ -399,6 +400,12 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !-----------------------
 !------- CSS -----------
 !-----------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/46776#issuecomment-572733402
+ain.ua#$##subbody { top: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/47142
+amedia.online#$#.main-box > header.top { margin-bottom: 0!important; }
+! linedia.ru - удаление отступа сверху
+linedia.ru#$#.dwwrapper { margin-top: 0 !important; }
 ! ua.news - удаление брендированного фона, отступа сверху
 ua.news#$#body { background-image: none !important; padding-top: 0 !important; background-color: #ffffff !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47039
@@ -893,7 +900,7 @@ hd720kino.ru#$#.center.main { margin-top: auto!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7979
 actualtraffic.ru#$#body { background: none!important; }
 ! 24video - удаление брендированного фона, отступа сверху
-24video.ws,24video.guru,24video.sexy,24video.adult,24video.in,24video.top#$#body { background-image: none!important; padding-top: 0!important; }
+24video.vip,24video.ws,24video.guru,24video.sexy,24video.adult,24video.in,24video.top#$#body { background-image: none!important; padding-top: 0!important; }
 ! http://forum.ru-board.com/topic.cgi?forum=5&topic=49172&start=3060#21
 kinoafisha.info#$#.popup-illumination { display: none!important; }
 kinoafisha.info#$#body { background: #0c0109!important; overflow: visible!important; }
@@ -1168,7 +1175,6 @@ tracktor.tv#$#.pagebg { padding-top: 10px!important; }
 i2hard.ru#$#body { padding-top: 0!important; }
 i2hard.ru#$#.main-wrap > main { margin-top: 0!important; }
 ! anitokyo.tv - удаление брендированного фона, отступа сверху
-anitokyo.tv#$#div[class^="header_bg"] { background: none!important; }
 anitokyo.tv#$#body { background: #e4f1f6!important; }
 anitokyo.tv#$#body > div#wrapper { padding-top: 0!important; }
 anitokyo.tv#$#body > div#wrapper > header { padding: 0!important; margin: 0px 0 0 0!important; }
@@ -1522,7 +1528,7 @@ $$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-
 ! hochu.ua - удаление брендированного фона
 hochu.ua$$style[tag-content=".brand-"][max-length="900"]
 ! 'window.RESOURCE_' ad script
-socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
+7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
 $$script[tag-content="window.RESOURCE_"][max-length="100"]
 upraznenia.ru$$script[tag-content="window.RESOURCE_"][max-length="27000"]
 ! htapop
