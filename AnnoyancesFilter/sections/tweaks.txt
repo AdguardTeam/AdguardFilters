@@ -128,6 +128,12 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/47826
+notmekani.com#%#//scriptlet("adjust-setInterval", "#pleasewait", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/47640
+mastercoria.com#%#//scriptlet("adjust-setInterval", "countdown", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/47574
+kstarmp3.com#%#AG_onLoad(function(){document.querySelectorAll('.entry-content a[href^="https://ouo.press/"][href*="%2Fhttp"]').forEach(function(a){var b="http"+decodeURIComponent(a.getAttribute("href")).split("/http")[1];a.setAttribute("href",b)});document.querySelectorAll('.entry-content a[href^="https://ouo.press/"]:not([href*="%2Fhttp"])').forEach(function(a){var b=decodeURIComponent(a.getAttribute("href")).split("?s=");a.setAttribute("href",b[1])})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47357
 1ink.cc#%#AG_onLoad(function() { var el = document.querySelector('#countingbtn'); if(el) el.click(); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47028#issuecomment-571357678
@@ -406,6 +412,7 @@ toptech360.com,devicespecifications.com,apkinstaller.com,androidmtk.com,serial-k
 e-marineeducation.com#%#//scriptlet('abort-on-property-read', 'disableSelection')
 !+ PLATFORM(windows, mac, android)
 e-marineeducation.com#%#AG_abortOnPropertyRead('disableSelection');
+semi168.net,semi168.club#%#//scriptlet("abort-current-inline-script", "document.oncontextmenu")
 mangaku.in#%#AG_abortInlineScript(/contextmenu/, '$');
 kurosave.com#%#//scriptlet("abort-on-property-read", "mousehandler")
 audio-sound-premium.com#%#//scriptlet("abort-on-property-read", "disableSelection")
@@ -419,7 +426,7 @@ terbit21.online#%#//scriptlet("abort-on-property-read", "disableSelection")
 terbit21.online#%#AG_onLoad(function() { document.ondragstart = document.oncontextmenu = function() { return true; }; });
 kawanfilm21.online#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 kawanfilm21.online#%#AG_onLoad(function() { document.onmousedown = document.onmouseup = document.onselectstart = function() { return true; }; });
-ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
+switchworld.tistory.com,ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga4.bid#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga3.bid#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga.xyz#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
