@@ -4,8 +4,6 @@
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47805
 linedia.ru#%#//scriptlet("abort-current-inline-script", "$", "dwpopup")
-! https://github.com/AdguardTeam/AdguardFilters/issues/47059
-kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("set-constant", "ads_script", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45414
 tochka.net#%#//scriptlet("abort-current-inline-script", "Math", "var f,e,r,n,i")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42947
@@ -21,11 +19,8 @@ sportbar.biz,sportbox.ws,goool7.ws,sport-24tv.ru,365lives.net,sportboom.pro,spor
 alterera.org#%#//scriptlet("abort-current-inline-script", "document.referrer", "google")
 !+ PLATFORM(windows, mac, android)
 alterera.org#%#AG_abortInlineScript(/google/, 'document.referrer');
-! kinosvit.tv - popups
-!+ NOT_PLATFORM(windows, mac, android)
-kinosvit.tv#%#//scriptlet("abort-on-property-read", "ads_script")
-!+ PLATFORM(windows, mac, android)
-kinosvit.tv#%#AG_abortOnPropertyRead('ads_script');
+! popups - `ads_script`
+kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44512
 !+ NOT_PLATFORM(windows, mac, android)
 porno-incest.net#%#//scriptlet("prevent-window-open")
