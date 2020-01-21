@@ -1,6 +1,13 @@
 !
 ! Exception rules that fix different issues caused by blocking trackers
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/48216
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@://www.fedex.com/Tracking?
+@@||amazon.*/gp/r.html?
+@@/track?*&ref=$~script,~xmlhttprequest,~other,~image
+@@/track_click?$~script,~xmlhttprequest,~other,~image
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48215
 @@||google-analytics.com/gtm/js?id=$domain=15min.lt
 @@||google-analytics.com/analytics.js$domain=15min.lt
