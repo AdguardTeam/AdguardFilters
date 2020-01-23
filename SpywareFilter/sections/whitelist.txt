@@ -1,6 +1,26 @@
 !
 ! Exception rules that fix different issues caused by blocking trackers
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/48385
+@@||dw.cbsi.com/anonc.js$domain=cbs.com
+@@||googletagmanager.com/gtag/js$domain=nbc.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/48235
+@@||jssdkcdns.mparticle.com/js/v*/*/mparticle.js$domain=cwtv.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/48216
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@://www.fedex.com/Tracking?
+@@||amazon.*/gp/r.html?
+@@/track?*&ref=$~script,~xmlhttprequest,~other,~image
+@@/track_click?$~script,~xmlhttprequest,~other,~image
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/48215
+@@||google-analytics.com/gtm/js?id=$domain=15min.lt
+@@||google-analytics.com/analytics.js$domain=15min.lt
+! https://github.com/AdguardTeam/AdguardFilters/issues/48066
+@@||t2.hulu.com/*/adinteraction^$domain=player.hulu.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/48010
+@@||google-analytics.com/gtm/js?id=$domain=joblo.com
+@@||google-analytics.com/analytics.js$domain=joblo.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47131
 @@||cdn.petametrics.com/*.js$domain=lanacion.com.ar
 @@||query1.petametrics.com/*&sdk=bc-jsonp$domain=lanacion.com.ar
@@ -947,11 +967,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7364
 !+ PLATFORM(ios, ext_safari)
 @@||google-analytics.com/ga.js$domain=nu.nl
-! https://forum.adguard.com/index.php?threads/26644/
-@@||engageya.com/rec-api/getrecs.json$domain=donanimhaber.com
-@@||widget.engageya.com/engageya_loader.js^$domain=donanimhaber.com
-@@||images*.engageya.com^$domain=donanimhaber.com
-@@||engageya.com/gas-api/click.json^$domain=donanimhaber.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7406
 @@||googletagmanager.com/gtm.js$domain=20min.ch
 ! https://forum.adguard.com/index.php?threads/tr-beinsports-com.26593/

@@ -128,6 +128,9 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/48248
+bkksnews.xyz#%#//scriptlet("adjust-setInterval", "wpsafe-generate", "", "0.02")
+bkksnews.xyz#%#AG_onLoad(function() {var el=document.querySelector("#wpsafe-link > a[href]");if(el){var elHref=el.href,dest=elHref.split("?safelink_redirect=");if(dest&&dest[1])try{window.location=decodeURIComponent(dest[1])}catch(b){}};});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47826
 notmekani.com#%#//scriptlet("adjust-setInterval", "#pleasewait", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47640
@@ -281,9 +284,9 @@ surfsees.com#%#AG_setConstant('count', '0');
 win10.vn#%#AG_setConstant('fiveSecs', '0');
 ! adfly - https://forum.adguard.com/index.php?threads/skip-bloatware-malware-pages-from-malicious-adv-based-url-shorteners.32735
 !+ NOT_PLATFORM(windows, mac, android)
-gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#//scriptlet("prevent-adfly")
+scuseami.net,gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#//scriptlet("prevent-adfly")
 !+ PLATFORM(windows, mac, android)
-gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#(function(){var f=/^\d$/;try{var g,h=!0;Object.defineProperty(window,"ysmm",{configurable:!1,set:function(d){if(h){h=!1;try{if("string"===typeof d){var c="",e="",a;for(a=0;a<d.length;a++)0===a%2?c+=d.charAt(a):e=d.charAt(a)+e;var b=(c+e).split("");for(a=0;a<b.length;a++)if(f.test(b[a]))for(c=a+1;c<b.length;c++)if(f.test(b[c])){var k=parseInt(b[a],10)^parseInt(b[c],10);10>k&&(b[a]=k.toString());a=c;break}b=b.join("");var l=window.atob(b).slice(16,-16);window.stop();window.onbeforeunload=null;window.location.href= l}}catch(m){}}g=d},get:function(){return g}})}catch(d){window.console.error("Failed to set up Adfly bypasser!")}})();
+scuseami.net,gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#(function(){var f=/^\d$/;try{var g,h=!0;Object.defineProperty(window,"ysmm",{configurable:!1,set:function(d){if(h){h=!1;try{if("string"===typeof d){var c="",e="",a;for(a=0;a<d.length;a++)0===a%2?c+=d.charAt(a):e=d.charAt(a)+e;var b=(c+e).split("");for(a=0;a<b.length;a++)if(f.test(b[a]))for(c=a+1;c<b.length;c++)if(f.test(b[c])){var k=parseInt(b[a],10)^parseInt(b[c],10);10>k&&(b[a]=k.toString());a=c;break}b=b.join("");var l=window.atob(b).slice(16,-16);window.stop();window.onbeforeunload=null;window.location.href= l}}catch(m){}}g=d},get:function(){return g}})}catch(d){window.console.error("Failed to set up Adfly bypasser!")}})();
 ! link-to.net - skip timer
 linkvertise.com,link-to.net#%#!function(){if(-1<window.location.href.indexOf("dynamic?r=")){var a=location.href.split("?r=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 link-to.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/link-to\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
@@ -398,6 +401,7 @@ imslp.org#%#AG_onLoad(function(){var b=document.getElementById("sm_dl_wait");if(
 ||cdn.web.tv/asset/javascripts/smothScroll.min.js
 ||serialuk.net/js/copyright.js
 !--- CSS ---
+amp.n-tv.de#$#.wrapper-page { min-height: calc(100%) !important; }
 irisbuddies.ml#$#html > body { -webkit-touch-callout: default!important; -moz-user-select: text!important; -webkit-user-select: text!important; -ms-user-select: text!important; -o-user-select: text!important; user-select: text!important; -khtml-user-select: text!important; }
 tmofans.com#$#.element { -moz-user-select: text!important; -webkit-user-select: text!important; -ms-user-select: text!important; -o-user-select: text!important; user-select: text!important; -khtml-user-select: text!important; }
 siyasetcafe.com#$#body.body-prevent { -webkit-touch-callout: default!important; -moz-user-select: text!important; -webkit-user-select: text!important; -ms-user-select: text!important; -o-user-select: text!important; user-select: text!important; -khtml-user-select: text!important; }
@@ -426,8 +430,8 @@ terbit21.online#%#//scriptlet("abort-on-property-read", "disableSelection")
 terbit21.online#%#AG_onLoad(function() { document.ondragstart = document.oncontextmenu = function() { return true; }; });
 kawanfilm21.online#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 kawanfilm21.online#%#AG_onLoad(function() { document.onmousedown = document.onmouseup = document.onselectstart = function() { return true; }; });
-switchworld.tistory.com,ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
-manhwa-manga5.bid,manhwa-manga4.bid#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
+gugomah.tistory.com,switchworld.tistory.com,ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
+manhwa-manga6.bid,manhwa-manga5.bid,manhwa-manga4.bid#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga3.bid#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga.xyz#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
