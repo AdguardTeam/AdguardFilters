@@ -19,6 +19,7 @@ tomshardware.com#@#[style*="animation:"]
 @@||ats.megapbx.ru^$elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/CoreLibs/issues/1229
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46501
+!+ NOT_OPTIMIZED
 @@144.43.243.208$network
 ! https://github.com/AdguardTeam/PopupBlocker/issues/200
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46309
@@ -184,6 +185,18 @@ copypastecharacter.com#$##contents { visibility: visible!important; }
 !#########################################
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/48713
+@@||akacdn.ru/*/subtitle/*.vtt$domain=mcloud.to
+! https://github.com/AdguardTeam/AdguardFilters/issues/47889
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+|https://$script,third-party,xmlhttprequest,domain=xmovies8.es|xmovies8.ru|xmovies8.tv,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/46960#issuecomment-578081007
+@@||cbsistatic.com/fly/js/libs/ads/bidbarrel-*.optanon.js$domain=cnet.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/48326
+@@/assets/js/adsbygoogle.js$~third-party,domain=9to5google.com|9to5mac.com|9to5toys.com|dronedj.com|electrek.co
+@@||ww.9to5mac.com^$csp
+@@||ww.9to5google.com^$csp
+@@||ww.electrek.co^$csp
 ! rickandmorty.com - fixing video player
 @@||manifest.auditude.com/auditude/*.m3u8?$domain=rickandmorty.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48194
@@ -1058,9 +1071,11 @@ speed4up.com#@#.adstop
 speed4up.com#@#.adsTop
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44342
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25103
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pubads.g.doubleclick.net/gampad/ads?*nhl_*video&*&output=xml_vmap*&url=https%3A%2F%2Fwww.nhl.com
 @@||static.adsafeprotected.com/vans-adapter-google-ima.js$domain=nhl.com
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=nhl.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24573
 @@||hdvid.tv/js/jquery.min.js
 @@||hdvid.tv/js/jquery.cookie.js
