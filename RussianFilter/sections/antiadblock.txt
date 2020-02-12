@@ -509,14 +509,10 @@ flymer.ru#$#.ad-home { position: absolute!important; left: -3000px!important; }
 !
 ukr.net$$script[tag-content="|zmc|loader|"][max-length="25000"]
 gismeteo.ua$$script[tag-content="zmctrack"]
-!+ NOT_PLATFORM(windows, mac, android)
-ubr.ua,obyava.ua,newsyou.info,socportal.info,~mail.ukr.net,ukr.net,smak.ua,inforesist.org,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,vesti.ua,beauty.ua,obozrevatel.com,vgorode.ua,strana.ua,sinoptik.ua,epravda.com.ua,gagadget.com,censor.net.ua,gismeteo.ua,okino.ua,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
-!+ NOT_PLATFORM(windows, mac, android)
-segodnya.ua,enovosty.com,internetua.com#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "noopFunc")
-!+ NOT_PLATFORM(windows, mac, android)
-pravda.com.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "trueFunc")
-!+ NOT_PLATFORM(windows, mac, android)
-4mama.ua,besplatka.ua#%#//scriptlet("abort-current-inline-script", "Math.floor", "zmc")
+!#if (!adguard_app_mac && !adguard_app_windows && !adguard_app_android)
+ubr.ua,obyava.ua,newsyou.info,socportal.info,~mail.ukr.net,ukr.net,smak.ua,inforesist.org,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,vesti.ua,beauty.ua,obozrevatel.com,vgorode.ua,strana.ua,sinoptik.ua,epravda.com.ua,gagadget.com,censor.net.ua,okino.ua,etextlib.ru,glavcom.ua,kinoafisha.ua,forumodua.com,real-vin.com,hvylya.net,kp.ua,sinoptik.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
+segodnya.ua,enovosty.com,internetua.com,4mama.ua,tochka.net,besplatka.ua,pravda.com.ua,gismeteo.ua#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")
+!#endif
 ! 26.12.2018
 $$script[wildcard="!function*;try{*proxy*floor*"][min-length="8000"][max-length="10000"]
 ! 12.11.2018
@@ -550,7 +546,7 @@ wss://s.zmctrack.net/
 !+ PLATFORM(windows, mac, android)
 @@://s.zmctrack.net/z|$domain=ukr.net
 !.zmctrack.net^$~websocket,replace=/.+//,important
-||s.zmctrack.net^$domain=korrespondent.net|tochka.net|besplatka.ua|4mama.ua,important
+||s.zmctrack.net^$domain=korrespondent.net,important
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42824
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_chromium)
