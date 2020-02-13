@@ -511,7 +511,8 @@ ukr.net$$script[tag-content="|zmc|loader|"][max-length="25000"]
 gismeteo.ua$$script[tag-content="zmctrack"]
 !#if (!adguard_app_mac && !adguard_app_windows && !adguard_app_android)
 ! 12.02.2020
-forumodua.com,newsua.one,vsetv.com,textreferat.com,tv.ua,vgorode.ua,tivix.co,football24.ua,kinozal.tv,liga.net,bigmir.net,inforesist.org,vsetv.com,liga.net,sinoptik.ua,segodnya.ua,enovosty.com,internetua.com,4mama.ua,tochka.net,besplatka.ua,pravda.com.ua,gismeteo.ua#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")
+! '#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")'
+mama.ua,woman.ua,autoua.net,forumodua.com,newsua.one,vsetv.com,textreferat.com,tv.ua,vgorode.ua,tivix.co,football24.ua,kinozal.tv,liga.net,bigmir.net,inforesist.org,vsetv.com,liga.net,sinoptik.ua,segodnya.ua,enovosty.com,internetua.com,4mama.ua,tochka.net,besplatka.ua,pravda.com.ua,gismeteo.ua#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")
 !
 ubr.ua,obyava.ua,newsyou.info,socportal.info,~mail.ukr.net,ukr.net,smak.ua,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,vesti.ua,beauty.ua,obozrevatel.com,strana.ua,sinoptik.ua,epravda.com.ua,gagadget.com,censor.net.ua,okino.ua,etextlib.ru,glavcom.ua,kinoafisha.ua,real-vin.com,hvylya.net,kp.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
 !#endif
@@ -549,14 +550,6 @@ wss://s.zmctrack.net/
 @@://s.zmctrack.net/z|$domain=ukr.net
 !.zmctrack.net^$~websocket,replace=/.+//,important
 ||s.zmctrack.net^$domain=korrespondent.net,important
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/42824
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_chromium)
-@@||mama.ua^$generichide
-@@||woman.ua^$generichide
-@@||autoua.net^$generichide
-||x.magnet.kiev.ua/*/delivery/$empty,important,domain=mama.ua|woman.ua|autoua.net
-!#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38545
 @@://s.zmctrack.net/z|$domain=fishki.net,~script
@@ -1499,6 +1492,12 @@ $cookie=/^los\$/,domain=auto.ru
 ! makes kinopoisk.ru redirect to sso.kinopoisk.ru and back endlessly
 ! ||kinopoisk.ru^$cookie=/consultant|introductory|knowledge|transfer|technology|workplace/
 !
+! gismeteo domains: gismeteo.ru,gismeteo.by,gismeteo.pl,gismeteo.lt,gismeteo.md,gismeteo.kz
+gismeteo.ru,gismeteo.by,gismeteo.md,gismeteo.kz#%#//scriptlet("abort-on-property-read", "Object.prototype.loadRtb")
+gismeteo.by#%#//scriptlet("abort-on-property-write", "yaads")
+!
+livejournal.com#%#//scriptlet("set-constant", "Object.prototype.Adf", "undefined")
+otzovik.com#%#AG_defineProperty('Ya.loaderVer', { value: undefined});
 otzovik.com#%#//scriptlet("abort-on-property-read", "Object.prototype.adUsageStorageVars")
 24smi.org#%#//scriptlet("set-constant", "Object.prototype.createAdvList", "undefined")
 24smi.org#%#//scriptlet("set-constant", "Object.prototype.createAdContainer", "undefined")
