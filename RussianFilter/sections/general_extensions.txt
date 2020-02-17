@@ -2,6 +2,10 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/49446
+zloekino.ru#%#//scriptlet("prevent-window-open", "1", "stargate")
+! https://github.com/AdguardTeam/AdguardFilters/issues/49364
+1tv.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.disableSeek")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49307
 svadba.expert#%#//scriptlet("abort-on-property-read", "rbConfig")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49110
@@ -16,8 +20,6 @@ ogastrite.ru#%#//scriptlet("abort-current-inline-script", "document.write", "/sc
 sdamgia.ru#%#document.cookie = "adb=0";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47805
 linedia.ru#%#//scriptlet("abort-current-inline-script", "$", "dwpopup")
-! https://github.com/AdguardTeam/AdguardFilters/issues/45414
-tochka.net#%#//scriptlet("abort-current-inline-script", "Math", "var f,e,r,n,i")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42947
 vk.com#%#//scriptlet("set-constant", "noAdsAtAll", "true")
 ! life.ru - ads
@@ -32,7 +34,7 @@ alterera.org#%#//scriptlet("abort-current-inline-script", "document.referrer", "
 !+ PLATFORM(windows, mac, android)
 alterera.org#%#AG_abortInlineScript(/google/, 'document.referrer');
 ! popups - `ads_script`
-rustorka.com,rustorka.net,kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
+sht.at.ua,rustorka.com,rustorka.net,kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44512
 !+ NOT_PLATFORM(windows, mac, android)
 porno-incest.net#%#//scriptlet("prevent-window-open")
@@ -411,6 +413,16 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !-----------------------
 !------- CSS -----------
 !-----------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/49448
+censor.net.ua#$#body > header { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/49961
+prostobank.ua#$#body > div.out-on { padding-top: 0!important; }
+! booking ads on biletyplus.ru
+biletyplus.ru#%#//scriptlet("prevent-addEventListener", "fetch", "isShouldCached")
+biletyplus.ru#$##IM_target_overlay { display: none!important; }
+biletyplus.ru#$#body { overflow: visible!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/49703
+gameguru.ru#$#div[id^="banner"] { visibility: hidden!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49502
 chipmaker.ru#$#.ipsList_reset > li[data-blocktitle="Custom Text"] { visibility: hidden!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49225
@@ -791,8 +803,6 @@ kinorezka.net#$#.container { padding-top: 0!important; }
 playzona.org#$#.have-brand .wrap { margin-top: 0!important; }
 ! https://forum.adguard.com/index.php?threads/28791/
 qmusic.me#$#.wrapper { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/16796
-kino-hd1080.ru#$#body { padding: 0 0 0!important; }
 ! kino-hd720.net - удаление отступа сверху
 kino-hd720.net#$#body { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16690
@@ -1549,12 +1559,12 @@ echo.msk.ru$$script[tag-content="iadfox"][max-length="600"]
 ! forum.fonarevka.ru
 forum.fonarevka.ru$$script[wildcard="*_0x*atob*"][max-length="1100"]
 ! Block mixadvert ads when DNS blocking is enabled
-03info.com,3h.kz,7day.com.ua,7dniv.info,adbkanvas.com,adbkanvas.in,adrianpicardi.com,agrimpasa.com,alau.kz,alhajribookshop.com.sa,all-mp3-base.ru,allday2.com,arest.online,asn.in.ua,autonews.ua,autosvit.com.ua,avtoregistrator.in.ua,baursak.ru,beauty-health.com.ua,bigcineman.net,bilimsite.kz,budukursi.in.ua,bukpravda.cv.ua,business-money.stream,champlife13.club,chel-uchkollektor.ru,cloudzoom.cloud,comedyportal.net,comportal.com.ua,dabiaoti.com,dariasanatoriy.com,dcd12.com.au,detizdorov.ru,diagnoz.net.ua,diapazon.kz,dkfishbd.com,dnepr.news,dtkt.com.ua,dv-gazeta.info,e-news.pro,e-news.su,economics-prorok.com,eleon-online.biz,fabitur.ru,facebook-ua.info,fbp.kz,fin.zakon.kz,fizruk4.biz,flask10.site,football-analitik.com,footballfans.com.ua,forkplayer.tv,ghall.com.ua,gigmovie.ru,glianec.com.ua,golos.biz.ua,golos.ua,golosua.org,grebenka.com,grusha.ua,hdfilmys.ru,howeverlife.ru,hoztom.ru,hvylya.net,ibaskino.ru,idei-dekoru.com,infasoft.com,inmuse.info,ipukr.com,itechua.com,ivanovy.info,jizn.net.ua,jungle-2.ru,katushka.top,kazbron.com,khersondaily.com,kievtime.com,kinobanda.ucoz.net,kinolook.su,kinosafe.net,kontrakty.ua,kopirkin.com.ua,kriminalukraine.com.ua,lastv.me,latcorboard.info,likar.net.ua,likekolert.club,litmisto.org.ua,log-mail.ru,loto.zakon.kz,meta.ua,method-alfa.ru,mgk.zp.ua,mhub.top,mil.in.ua,mix-advert.com,mixadvert.com,mobileshopua.biz,mobileshopua.store,mobileshopua.tech,molbuk.ua,molodezhka6.ru,motorglobe.org,movi-club.ru,mp3karm.ru,mr-kotel.ru,music-mp3files.ru,muzz.site,mybestmus.ru,myledi.pp.ua,nadbugom.in.ua,neskuchno-news.com,new-bobfilm.club,new-bobfilm.net,new-bobfilm.ru,new-bobfilm.site,new-kinobar.ucoz.net,new-kinokrad.club,new-kinokrad.net,new-kinokrad.online,new-kinoprofi.club,new-kinoprofi.org,newkinokrad.net,newkinokrad.ru,newkinoprofi.club,news-front.info,news247.com.ua,newsboard.com.ua,newscor.net,newsmax.com.ua,nina-teleckaya.narod.ru,novonews.net,novosti-ua.com,novynar.info,np.pl.ua,nua.in.ua,obukhiv.info,okhtyrka.net,olbas88.party,olbas88.stream,olbas88.win,olobass.club,omskbird.tv,on.kz,online-music-base.ru,oqiga.kz,osp-ua.info,ostrov2.info,panorama.if.ua,patrioty.org.ua,pidru4nik.com,pkzsk.info,podkola.net,pokazz.net,polit-portal.info,polit.media,politerno.com.ua,politik.org.ua,poradumo.pp.ua,profhome.co.uk,proglaza.ru,prostonews.com,prosvit.net.ua,provce.ck.ua,qazbrand.info,qmp3.cc,rada5.com,realukraine.net,redpicmusic.ru,referatikz.ru,reporter-ua.com,ria-m.tv,rodnikdostavka.ru,rumer13.men,rumer13.science,rumer13.stream,s-pok.com,sabaq.kz,samoe-pokupaemoe.com.ua,saryagashcity.com,scribble.su,seele-token.pro,segodnya.biz,seo-kursy.com,shop.guru.ua,sinoptik.com.ru,sinoptik.ua,slots777usa.com,snaua.info,sobytiya.crimea.ua,sobytiya.info,sobytiya.net,solnechno3.win,solnechno4.win,solnechno5.win,sorokanews.ru,soskin.info,startface.net,studcon.org,sud.ua,sunpower.dp.ua,svidok.online,svidok.ua,svitiv.com.ua,tas-ix.tv,tavriya.ks.ua,together-work.biz,tomat.rv.ua,toys-angel.ru,transkarpatia.net,trest.org,trident-ua.info,tsenzura.ru,tuchkatvsport.com,turcoffee.in.ua,turizmworld.ru,tushkan-tv.net,tvgid.ua,ua.sinoptik.ua,uafinance.net,ufh400-1.com,uhf400-otz.com,ukr.life,ukr.net,ukrainci.com.ua,ukrlit.net,ukrmir.info,ukurier.gov.uauk,unpp.com.ua,ura-inform.com,uselogicpower.ru,utronews.com,uzhgorod.in,vader22.site,vchaspik.ua,velvimusic.ru,verge.zp.ua,versii.if.ua,vesti.in.ua,viamaxx.ru,video-dom2.ucoz.net,vinigret.net,vip-rm.info,vipsound.kz,vk-kp.info,vlasti.net,vlet.info,vlio.ru,vnx.su,volnorez.com.ua,vrbox-video.ru,vseseriipodryad.ru,vybery.online,watchhd.online,web-logic.tech,xn--80aeaj2aesddcjte.news,xx3.kz,zakon.kz,zarlit.com,zharar.com,zhinka.net.ua,zrada.today,zz.te.ua$$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-length="1500"][max-length="2200"]
+03info.com,3h.kz,7day.com.ua,7dniv.info,adbkanvas.com,adbkanvas.in,adrianpicardi.com,agrimpasa.com,alau.kz,alhajribookshop.com.sa,all-mp3-base.ru,arest.online,asn.in.ua,autonews.ua,autosvit.com.ua,avtoregistrator.in.ua,baursak.ru,beauty-health.com.ua,bigcineman.net,bilimsite.kz,budukursi.in.ua,bukpravda.cv.ua,business-money.stream,champlife13.club,chel-uchkollektor.ru,cloudzoom.cloud,comedyportal.net,comportal.com.ua,dabiaoti.com,dariasanatoriy.com,dcd12.com.au,detizdorov.ru,diagnoz.net.ua,diapazon.kz,dkfishbd.com,dnepr.news,dtkt.com.ua,dv-gazeta.info,e-news.pro,e-news.su,economics-prorok.com,eleon-online.biz,fabitur.ru,facebook-ua.info,fbp.kz,fin.zakon.kz,fizruk4.biz,flask10.site,football-analitik.com,footballfans.com.ua,forkplayer.tv,ghall.com.ua,gigmovie.ru,glianec.com.ua,golos.biz.ua,golos.ua,golosua.org,grebenka.com,grusha.ua,hdfilmys.ru,howeverlife.ru,hoztom.ru,hvylya.net,ibaskino.ru,idei-dekoru.com,infasoft.com,inmuse.info,ipukr.com,itechua.com,ivanovy.info,jizn.net.ua,jungle-2.ru,katushka.top,kazbron.com,khersondaily.com,kievtime.com,kinobanda.ucoz.net,kinolook.su,kinosafe.net,kontrakty.ua,kopirkin.com.ua,kriminalukraine.com.ua,lastv.me,latcorboard.info,likar.net.ua,likekolert.club,litmisto.org.ua,log-mail.ru,loto.zakon.kz,meta.ua,method-alfa.ru,mgk.zp.ua,mhub.top,mil.in.ua,mix-advert.com,mixadvert.com,mobileshopua.biz,mobileshopua.store,mobileshopua.tech,molbuk.ua,molodezhka6.ru,motorglobe.org,movi-club.ru,mp3karm.ru,mr-kotel.ru,music-mp3files.ru,muzz.site,mybestmus.ru,myledi.pp.ua,nadbugom.in.ua,neskuchno-news.com,new-bobfilm.club,new-bobfilm.net,new-bobfilm.ru,new-bobfilm.site,new-kinobar.ucoz.net,new-kinokrad.club,new-kinokrad.net,new-kinokrad.online,new-kinoprofi.club,new-kinoprofi.org,newkinokrad.net,newkinokrad.ru,newkinoprofi.club,news-front.info,news247.com.ua,newsboard.com.ua,newscor.net,newsmax.com.ua,nina-teleckaya.narod.ru,novonews.net,novosti-ua.com,novynar.info,np.pl.ua,nua.in.ua,obukhiv.info,okhtyrka.net,olbas88.party,olbas88.stream,olbas88.win,olobass.club,omskbird.tv,on.kz,online-music-base.ru,oqiga.kz,osp-ua.info,ostrov2.info,panorama.if.ua,patrioty.org.ua,pidru4nik.com,pkzsk.info,podkola.net,pokazz.net,polit-portal.info,polit.media,politerno.com.ua,politik.org.ua,poradumo.pp.ua,profhome.co.uk,proglaza.ru,prostonews.com,prosvit.net.ua,provce.ck.ua,qazbrand.info,qmp3.cc,rada5.com,realukraine.net,redpicmusic.ru,referatikz.ru,reporter-ua.com,ria-m.tv,rodnikdostavka.ru,rumer13.men,rumer13.science,rumer13.stream,s-pok.com,sabaq.kz,samoe-pokupaemoe.com.ua,saryagashcity.com,scribble.su,seele-token.pro,segodnya.biz,seo-kursy.com,shop.guru.ua,sinoptik.ua,slots777usa.com,snaua.info,sobytiya.crimea.ua,sobytiya.info,sobytiya.net,solnechno3.win,solnechno4.win,solnechno5.win,sorokanews.ru,soskin.info,startface.net,studcon.org,sud.ua,sunpower.dp.ua,svidok.online,svidok.ua,svitiv.com.ua,tas-ix.tv,tavriya.ks.ua,together-work.biz,tomat.rv.ua,toys-angel.ru,transkarpatia.net,trest.org,trident-ua.info,tsenzura.ru,tuchkatvsport.com,turcoffee.in.ua,turizmworld.ru,tvgid.ua,ua.sinoptik.ua,uafinance.net,ufh400-1.com,uhf400-otz.com,ukr.life,ukr.net,ukrainci.com.ua,ukrlit.net,ukrmir.info,ukurier.gov.uauk,unpp.com.ua,ura-inform.com,uselogicpower.ru,utronews.com,uzhgorod.in,vader22.site,vchaspik.ua,velvimusic.ru,verge.zp.ua,versii.if.ua,vesti.in.ua,viamaxx.ru,video-dom2.ucoz.net,vinigret.net,vip-rm.info,vipsound.kz,vk-kp.info,vlasti.net,vlet.info,vlio.ru,vnx.su,volnorez.com.ua,vrbox-video.ru,vseseriipodryad.ru,vybery.online,watchhd.online,web-logic.tech,xn--80aeaj2aesddcjte.news,xx3.kz,zakon.kz,zarlit.com,zharar.com,zhinka.net.ua,zrada.today,zz.te.ua$$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-length="1500"][max-length="2200"]
 $$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-length="1500"][max-length="2200"]
 ! hochu.ua - удаление брендированного фона
 hochu.ua$$style[tag-content=".brand-"][max-length="900"]
 ! 'window.RESOURCE_' ad script
-vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
+fakty.ua,vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
 $$script[tag-content="window.RESOURCE_"][max-length="100"]
 upraznenia.ru$$script[tag-content="window.RESOURCE_"][max-length="27000"]
 ! htapop
