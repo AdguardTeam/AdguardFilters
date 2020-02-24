@@ -6643,13 +6643,17 @@ teletoonplus.pl##iframe#nctop
 ||services.*.pl/belka/$domain=teletoonplus.pl
 !+ PLATFORM(windows, mac, android, ext_ff)
 ||redcdn.pl/*Adserver/*.mp4$media,empty,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/50364
+! https://github.com/AdguardTeam/AdguardFilters/issues/49821
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21639
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11428
 ! https://forum.adguard.com/index.php?threads/10376/
 ||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=player.pl|miniminiplus.pl|teletoonplus.pl|tvnturbo.pl|tvn24.pl|tvn.pl,important
 @@||tvn.hit.gemius.pl/*redataredir?url=*tvn.adocean.pl*ad.xml$domain=player.pl|teletoonplus.pl
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+||tvn.adocean.pl/*ad.xml$xmlhttprequest,redirect=noopvast-2.0,domain=tvn24.pl
 !+ NOT_PLATFORM(ext_ublock)
-@@||tvn.adocean.pl/*ad.xml$xmlhttprequest,domain=player.pl|tvn24.pl
+@@||tvn.adocean.pl/*ad.xml$xmlhttprequest,domain=player.pl
 @@||redcdn.pl/*/TVN-Adserver/*.mp4$xmlhttprequest,domain=miniminiplus.pl|teletoonplus.pl|tvnturbo.pl|tvn.pl
 @@||cdntvn.pl/adscript.js$domain=player.pl
 ||dcs.redcdn.pl/dcs/o2/TVN-Adserver/*_www.mp4$mp4,domain=player.pl
