@@ -2,6 +2,15 @@
 !######### CSS tweaks #########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/50148
+lnk.news#$##skip_form { display: block!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/50093
+myotto.online#$##makingdifferenttimer { display: block!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/50101
+url.topadnetworks.net#$##codeBox { display: block!important; }
+url.topadnetworks.net#$#.box-main > .banner-captcha ~ h1 { display: none!important; }
+url.topadnetworks.net#$#.box-main > .banner-captcha ~ h2 { display: none!important; }
+url.topadnetworks.net#$#.box-main > .banner-captcha ~ a[href][target="_blank"] { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48741
 ixbt.com#$#.b-footer > div.block__describe { height: 100px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47483
@@ -130,6 +139,25 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/50154
+wallpaperplay.com#%#//scriptlet("adjust-setInterval", "#download_menu", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/50150
+apkmos.com#%#//scriptlet("adjust-setInterval", "downloadButton", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/50148
+lnk.news#%#AG_onLoad(function() { if(typeof goToUrl === "function") { goToUrl(); } });
+! https://github.com/AdguardTeam/AdguardFilters/issues/50105
+sammobile.com#%#//scriptlet("adjust-setInterval", "showDownloadButton", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/50104
+bomurl.com#%#//scriptlet("adjust-setInterval", "download_link", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/50097
+mboost.me#%#AG_onLoad(function(){var a=document.querySelector("#__NEXT_DATA__");if(a)try{location=JSON.parse(a.textContent).props.initialProps.pageProps.data.targeturl}catch(b){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/50103
+go.geghost.com#%#//scriptlet("adjust-setInterval", "onLoop", "", "0.02")
+go.geghost.com#%#AG_onLoad(function(){var a=document.body.textContent.match(/top\.location = '(https?:\/\/[\s\S]*?)'/);if(a&&a[1])try{location=a[1]}catch(b){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/50093
+myotto.online#%#AG_onLoad(function(){var a=document.querySelector("#makingdifferenttimer > a[href]");if(a)try{location=a.href}catch(b){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/49922
+baixarsoftware.com#%#AG_onLoad(function(){var a=document.querySelector("#link a[href]#box_shared_page_download_button");if(a)try{window.location=a.href}catch(b){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49717
 videouroki.net#%#//scriptlet("adjust-setTimeout", "/action-downloadFile?")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49713
@@ -182,7 +210,7 @@ sfile.mobi#%#//scriptlet("adjust-setInterval", "downloadButton", "", "0.02")
 !+ PLATFORM(windows, mac, android)
 sfile.mobi#%#(function(){var c=window.setInterval;window.setInterval=function(f,g){return g===1e3&&/downloadButton/.test(f.toString())&&(g*=0.01),c.apply(this,arguments)}.bind(window)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46090
-tech.dutchycorp.space#%#AG_onLoad(function() { var el = document.querySelector('#cl1 a[href]'); if(el) { window.location = el.href; } });
+dutchycorp.ovh,tech.dutchycorp.space#%#AG_onLoad(function() { var el = document.querySelector('#cl1 a[href]'); if(el) { window.location = el.href; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46072
 infotekno.net#%#!function(){if(-1<window.location.href.indexOf("?url=")){var a=location.href.split("?url=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 ! reyna-anime.com
@@ -240,7 +268,7 @@ trucnet.net#%#AG_onLoad(function() { var el=document.querySelector('a[href].btn.
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41708
 mtbcut.net#%#AG_onLoad(function() { var el = document.querySelector('a[href].wp-block-button__link'); if(window.location.href.indexOf("/?p=") != -1 && el) { el.click(); } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41369
-blog.omgmusik.com,blog.omglyrics.com,punasfc.blogspot.com,sflinkmu.blogspot.com,seputarandroid05.blogspot.com,media-blue.blogspot.com,eleventhlevelinteractive.com,apkmaghrab.tk,aice-coffee.blogspot.com#%#AG_onLoad(function(){setTimeout(function(){if("function"===typeof convertstr&&"function"===typeof aesCrypto.decrypt&&-1<window.location.href.indexOf("html#?o="))try{window.location=aesCrypto.decrypt(convertstr($.urlParam("o")),convertstr("root"))}catch(a){}},300)});
+citgratis.com,blog.omgmusik.com,blog.omglyrics.com,punasfc.blogspot.com,sflinkmu.blogspot.com,seputarandroid05.blogspot.com,media-blue.blogspot.com,eleventhlevelinteractive.com,apkmaghrab.tk,aice-coffee.blogspot.com#%#AG_onLoad(function(){setTimeout(function(){if("function"===typeof convertstr&&"function"===typeof aesCrypto.decrypt&&-1<window.location.href.indexOf("html#?o="))try{window.location=aesCrypto.decrypt(convertstr($.urlParam("o")),convertstr("root"))}catch(a){}},300)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41346
 safelinku.icu#%#!function(){if(-1<window.location.href.indexOf("?url=")){var a=location.href.split("?url=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41288
@@ -301,10 +329,7 @@ surfsees.com#%#AG_setConstant('count', '0');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34918
 win10.vn#%#AG_setConstant('fiveSecs', '0');
 ! adfly - https://forum.adguard.com/index.php?threads/skip-bloatware-malware-pages-from-malicious-adv-based-url-shorteners.32735
-!+ NOT_PLATFORM(windows, mac, android)
-scuseami.net,gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#//scriptlet("prevent-adfly")
-!+ PLATFORM(windows, mac, android)
-scuseami.net,gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#(function(){var f=/^\d$/;try{var g,h=!0;Object.defineProperty(window,"ysmm",{configurable:!1,set:function(d){if(h){h=!1;try{if("string"===typeof d){var c="",e="",a;for(a=0;a<d.length;a++)0===a%2?c+=d.charAt(a):e=d.charAt(a)+e;var b=(c+e).split("");for(a=0;a<b.length;a++)if(f.test(b[a]))for(c=a+1;c<b.length;c++)if(f.test(b[c])){var k=parseInt(b[a],10)^parseInt(b[c],10);10>k&&(b[a]=k.toString());a=c;break}b=b.join("");var l=window.atob(b).slice(16,-16);window.stop();window.onbeforeunload=null;window.location.href= l}}catch(m){}}g=d},get:function(){return g}})}catch(d){window.console.error("Failed to set up Adfly bypasser!")}})();
+gatustox.net,scuseami.net,gusimp.net,cowner.net,larati.net,rd.consoletarget.com,xterca.net,gloyah.net#%#//scriptlet("prevent-adfly")
 ! link-to.net - skip timer
 linkvertise.com,link-to.net#%#!function(){if(-1<window.location.href.indexOf("dynamic?r=")){var a=location.href.split("?r=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 link-to.net#%#AG_onLoad(function(){if(window.location.href.match(/https?:\/\/link-to\.net\/\d+\//)){var a=document.body.textContent.match(/window\.location\.href = \("([\s\S]*?)"\);/);if(a&&a[1])location=a[1];}});
@@ -450,7 +475,7 @@ terbit21.online#%#AG_onLoad(function() { document.ondragstart = document.onconte
 kawanfilm21.online#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 kawanfilm21.online#%#AG_onLoad(function() { document.onmousedown = document.onmouseup = document.onselectstart = function() { return true; }; });
 gugomah.tistory.com,switchworld.tistory.com,ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
-manhwa-manga8.bid,manhwa-manga7.bid,manhwa-manga6.bid,manhwa-manga5.bid,manhwa-manga4.bid,manhwa-manga3.bid,manhwa-manga.xyz,manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
+manhwa-manga9.bid,manhwa-manga8.bid,manhwa-manga7.bid,manhwa-manga6.bid,manhwa-manga5.bid,manhwa-manga4.bid,manhwa-manga3.bid,manhwa-manga.xyz,manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 poisonous-raspberry-fields.blogspot.com#%#AG_onLoad(function(){var a=document.getElementsByTagName("body")[0];a&&(a.removeAttribute("onmousedown"),a.removeAttribute("onselectstart"),a.removeAttribute("ondragstart"));a=document.querySelectorAll(".post-body[ondragstart][onmousedown][onselectstart]");for(var b=0;b<a.length;b++)a[b].removeAttribute("onmousedown"),a[b].removeAttribute("onselectstart"),a[b].removeAttribute("ondragstart")});
 wattpad.com#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0); window.addEventListener("copy",function(a){a.stopPropagation()},!0);
 kanalmaras.com#%#AG_onLoad(function() { document.body.ondragstart = document.body.onselectstart = document.body.oncontextmenu = function() { return true; }; });
@@ -485,7 +510,7 @@ portalwrc.pl#%#window.addEventListener("contextmenu",function(a){a.stopPropagati
 portalwrc.pl#%#AG_abortOnPropertyRead('disableSelection');
 portalwrc.pl#%#AG_abortInlineScript(/document\.body\.oncopy/, 'addEvent');
 wrixy.com#%#AG_onLoad(function() { setTimeout(function() { document.body.oncontextmenu = document.body.ondragstart = document.body.onselectstart = document.body.onkeydown = function() { return true; }; }, 300); });
-newtoki30.net,newtoki24.net#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
+newtoki51.com#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 shield-project.ru#%#//scriptlet("abort-on-property-write", "document.oncontextmenu")
 hjkhgyss.tistory.com,maniac-game.tistory.com#%#AG_onLoad(function() { document.oncontextmenu = document.ondragstart = document.onselectstart = function() { return true; }; });
 teachios.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = null; });
