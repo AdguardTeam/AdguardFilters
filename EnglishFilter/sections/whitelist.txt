@@ -4,6 +4,12 @@
 !#########################################
 ! START: Temporary
 !
+! docs.google.com - prevent possible filtering issues
+! TODO: remove these strings 06.03.2020, if docs.google.com will works fine
+!@@||docs.google.com/document$elemhide,jsinject,content
+!@@||docs.google.com/spreadsheets$elemhide,jsinject,content
+!@@||docs.google.com/presentation$elemhide,jsinject,content
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50059
 ! https://github.com/AdguardTeam/PopupBlocker/issues/206
 @@||microsoft.com/*/default.aspx$extension
@@ -188,6 +194,23 @@ copypastecharacter.com#$##contents { visibility: visible!important; }
 !#########################################
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/50515
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js$domain=kissanime.ru
+@@||multi.idocdn.com/guest$domain=kissanime.ru
+@@||iamcdn.net/players/app.ads.js$domain=kissanime.ru
+@@||iamcdn.net/players/player.min.css$domain=kissanime.ru
+@@||iamcdn.net/players/ads.js$domain=kissanime.ru
+@@.xyz/v2/*/playlist.m3u8$domain=kissanime.ru
+@@||iamcdn.net/players/jwplayer/8.4.2/plugins/related.js$domain=kissanime.ru
+@@||iamcdn.net/players/jwplayer/jwplayer.v8.custom.min.js$domain=kissanime.ru
+@@||iamcdn.net/players/jwplayer/8.4.2/jwplayer.core.controls.html5.js$domain=kissanime.ru
+@@||kissanime.ru/Scripts/jwplayer/jwplayer.js$domain=kissanime.ru
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/50141
+@@||cdn.staticdata.site/js/loadjsV*.min.js$domain=vipstand.se
+! https://github.com/AdguardTeam/AdguardFilters/issues/50175
+@@||verticalscope-com.videoplayerhub.com/galleryplayer.js$domain=forums.watchuseek.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49812
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||cd.adition.com/assets/adition/*/*.mp4$domain=orf.at
@@ -241,8 +264,9 @@ fastjobs.sg#@#.adbox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47889
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 |https://$script,third-party,xmlhttprequest,domain=xmovies8.es|xmovies8.ru|xmovies8.tv,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/50517
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46960#issuecomment-578081007
-@@||cbsistatic.com/fly/js/libs/ads/bidbarrel-*.optanon.js$domain=cnet.com
+@@||cbsistatic.com/fly/js/libs/ads/bidbarrel-*.js$domain=cnet.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48326
 @@/assets/js/adsbygoogle.js$~third-party,domain=9to5google.com|9to5mac.com|9to5toys.com|dronedj.com|electrek.co
 @@||dronedj.com^$csp
@@ -1395,10 +1419,6 @@ colourlovers.com#@#[style*="background-image:"]
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=dallasnews.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16472
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=androidrepublic.org
-! docs.google.com - prevent possible filtering issues
-@@||docs.google.com/document$elemhide,jsinject,content
-@@||docs.google.com/spreadsheets$elemhide,jsinject,content
-@@||docs.google.com/presentation$elemhide,jsinject,content
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16390
 @@||mellowads.com^$domain=mellowads.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16136
