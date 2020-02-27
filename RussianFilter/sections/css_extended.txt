@@ -1,6 +1,9 @@
 !
 ! Extended CSS rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/49815
+aroundprague.cz#$?#body > div.promote__modal__root { display: none !important; }
+aroundprague.cz#$?#body { overflow: visible !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49421
 ferra.ru#$?#.content-background div.ad-site-billboard ~ div:has(> article > div[style^="margin-top"]) { margin-bottom: -80px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47191
@@ -99,7 +102,7 @@ quicksave.su#?#.main-catalog > .catalog-item[-ext-has='.adsbygoogle']
 ! Правый столбец, сверху
 !
 ! отступ под меню
-! 4pda.ru#?#body:not([style^="min-width:"]) article > article:matches-css(height: /^12(5|6).\d*px/)
+4pda.ru#$?#body[itemscope]:not([style^="min-width:"]) *:not(div)[style*="background-image:"] > *:not(div):matches-css(height:125px) { remove: true; }
 !
 !4pda.ru#$?#body > *:not(div) > * > div:has(> *) > *:not(div):not(iframe):not(a):not(b):not(table):not(img):not(textarea):not(input):not(br):not(h3):not(p) { background-image: none!important; background: #e6e7e9!important; }
 !
@@ -247,12 +250,6 @@ xatab-repack.net#?##dle-content > div[class="imagetext"]:has( > div > a:contains
 mirnov.ru#?##mainbody > div#lsidebar > div[class$="module"]:has(> div[class$="moduletitle"]:contains(/Актуально|Новости\sФинам|СМИ2|MarketGid|Гнездо.ру|Интересные\sновости/))
 mirnov.ru#?##wrapper > div#sidebar > div[class$="module"]:has(> div[class$="moduletitle"]:contains(/Актуально|Новости\sФинам|СМИ2|MarketGid|Гнездо.ру|Интересные\sновости/))
 !
-!nnm-club.lib,nnm-club.me,nnm-club.tv,nnmclub.to#?#td[width="80%"] > table[class="pline"]:has(> tbody > tr > td > span > b:contains(/Reklama|Associate/)) + br
-!nnm-club.lib,nnm-club.me,nnm-club.tv,nnmclub.to#?#td[width="80%"] > table[class="pline"]:has(> tbody > tr > td > span > b:contains(/Reklama|Associate/))
-!
-nnm-club.lib,nnm-club.me,nnm-club.tv,nnmclub.to#?#td[width="80%"] > table[class="pline"]:has(> tbody > tr > td.pcatHead > h2 > a[href^="viewtopic.php?t=1356296"])
-nnm-club.lib,nnm-club.me,nnm-club.tv,nnmclub.to#?#td[width="80%"] > table[class="pline"]:has(> tbody > tr > td.pcatHead > h2 > a[href^="viewtopic.php?t=1356296"]) + br
-!
 footballhd-news.com#?#div[id="dle-content"] > div.lastnewscat:has(> div[id*="ScriptRootC"])
 footballhd-news.com#?#div[id="dle-content"] > div.lastnewscat:has(> .adsbygoogle)
 !
@@ -310,10 +307,19 @@ vesti-ua.net#?#.full-story > section:has(> div.hblock > noindex > div[id^="MIXAD
 rsute.ru#?#.full-story > noindex > div.hblock:has(> h4 ~ script)
 rsute.ru#?#.full-story > noindex > div.hblock:has(> div[style] > ins.adsbygoogle)
 !
+otzyvy.by#?#center > div[align="center"][style]:has(> div.direct)
+otzyvy.by#?##review_frm > table.form > tbody > tr:has(> td[align="center"] > center > table.blue)
 ! for zmctrack
-besplatka.ua#$?#body > iframe[name]:not([class]):not([id]):not([src]) { remove: true; }
+inforesist.org,vesti.ua,gismeteo.ua#$?#body > iframe:not([class]):not([id]):not([src]) { remove: true; }
+segodnya.ua,vgorode.ua,besplatka.ua#$?#body iframe[name]:not([class]):not([id]):not([src]) { remove: true; }
 pravda.com.ua,sinoptik.ua#$?#head > iframe[name^="_"]:not([class]):not([id]):not([src]) { remove: true; }
 !
+myfilology.ru#?#.sidebar-block-item:has(> a[href="https://vk.com/kotohaus"])
+myfilology.ru#?#.sidebar-block-item > div:has(> div[class="yandex_allnews"])
+myfilology.ru#?#.sidebar-list:contains(Например, реклама)
+pingvin.pro#$?#.ated-articles > div.popularreviewscats-home:last-child { remove: true; }
+pingvin.pro#?#.row div.card-blog:has(> div.googleadsvertical)
+soft.mydiv.net#?#.page__content-container > div > div[style]:contains(Реклама)
 tva.in.ua#?#.theiaStickySidebar > div.widget:has(> div.widget-container > div.textwidget > ins.adsbygoogle)
 tele.ru#?#.sidebar > div.widget:has(div[id^="gnezdo_ru_"])
 fayloobmennik.cloud#?#div[class^="block_download"] > div[class^="block_share"]:has(div[align="center"] > h3:contains(Реклама))
@@ -692,6 +698,7 @@ zaycev.online#$?#.content[-ext-has="> div"] { margin-top: 0!important; }
 forums.overclockers.ru#?##pagecontent > table.tablebg:has(> tbody > tr > td.profile_username > b.postauthor:contains(Реклама)):has(> tbody > tr > td.profile:contains(Партнер))
 overclockers.ru#$?#.material-inline-an { remove: true; }
 overclockers.ru#$?#.material-other-feed { remove: true; }
+overclockers.ru#?#.grid > div.container-block + div.column > div.grid:has(> div.container-block > div[id^="yandex_rtb"])
 overclockers.ru#?#.five.column > div.grid >div.container-block:has(> ins[data-revive-zoneid])
 overclockers.ru#?#.five.column > div.right-content-wrap > div.container-block:has(> div > ins)
 overclockers.ru#?#.five.column > div.right-content-wrap > div.container-block:has(> ins)
@@ -723,6 +730,7 @@ auto.mail.ru#?#div[class*="sticky-springs__item"]:has(div.spring > div.rb_loaded
 dom.mail.ru#?#.sticky-springs__item > div.box:has(div[id^="trg-b-"])
 !
 ! e.mail.ru
+e.mail.ru#$?##addressbook_page_view > div.b-datalist > div.b-datalist__head { remove: true; }
 !
 go.mail.ru#?##js-topBlock > section > div[class$="_pto"]:has( > div)
 go.mail.ru#?##js-bottomBlock > section > div[class$="_mtb"]:has( > div)
