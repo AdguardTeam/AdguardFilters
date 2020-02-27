@@ -2,6 +2,8 @@
 !######### CSS tweaks #########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/50492
+adfoc.us#$##showSkip { display: block!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50328
 midiavip.com#$##portal[style] { display: block!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50148
@@ -141,6 +143,10 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/50492
+adfoc.us#%#AG_onLoad(function(){var a=document.querySelector("#showSkip > a[href].skip");if(a)try{window.location=a.href}catch(b){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/50560
+go.giga74.com#%#AG_onLoad(function(){var a=document.querySelector('center > a[href*="/go/?site="][href$="=="]#download');if(a)try{location=a.href}catch(b){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50328
 ! Based on Universal Bypass
 midiavip.com#%#AG_onLoad(function(){if(document.querySelector(".unlock-step-link.getlink[disabled]")){var a=document.querySelectorAll("form#formID");document.querySelectorAll("input[name='urlopen']").forEach(function(a){a.value=location.origin+"/url2.php"});for(var b=0;b<a.length;b++)fetch("/url2.php",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:(new URLSearchParams(new FormData(a[b]))).toString()}).then(function(){fetch(location.href).then(function(a){return a.text()}).then(function(a){try{location= /&u=([^']+)/.exec(a)[1]}catch(d){}})})}if(a=document.querySelector('.unlock-step-link.getlink[onclick*="&u=http"]')){a=a.getAttribute("onclick");try{location=/&u=([^']+)/.exec(a)[1]}catch(c){}}});
@@ -489,7 +495,7 @@ terbit21.online#%#AG_onLoad(function() { document.ondragstart = document.onconte
 kawanfilm21.online#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0);
 kawanfilm21.online#%#AG_onLoad(function() { document.onmousedown = document.onmouseup = document.onselectstart = function() { return true; }; });
 gugomah.tistory.com,switchworld.tistory.com,ykage.tistory.com,kindmaster.tistory.com,stock79.tistory.com#%#AG_onLoad(function() { document.ondragstart = document.onselectstart = document.oncontextmenu = function() { return true; }; });
-manhwa-manga9.bid,manhwa-manga8.bid,manhwa-manga7.bid,manhwa-manga6.bid,manhwa-manga5.bid,manhwa-manga4.bid,manhwa-manga3.bid,manhwa-manga.xyz,manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
+manhwa-manga10.bid,manhwa-manga9.bid,manhwa-manga8.bid,manhwa-manga7.bid,manhwa-manga6.bid,manhwa-manga5.bid,manhwa-manga4.bid,manhwa-manga3.bid,manhwa-manga.xyz,manhwa-manga.icu#%#AG_onLoad(function() { document.ondragstart = document.onmousedown = document.onselectstart = document.oncontextmenu = function() { return true; }; });
 poisonous-raspberry-fields.blogspot.com#%#AG_onLoad(function(){var a=document.getElementsByTagName("body")[0];a&&(a.removeAttribute("onmousedown"),a.removeAttribute("onselectstart"),a.removeAttribute("ondragstart"));a=document.querySelectorAll(".post-body[ondragstart][onmousedown][onselectstart]");for(var b=0;b<a.length;b++)a[b].removeAttribute("onmousedown"),a[b].removeAttribute("onselectstart"),a[b].removeAttribute("ondragstart")});
 wattpad.com#%#window.addEventListener("contextmenu",function(a){a.stopPropagation()},!0); window.addEventListener("copy",function(a){a.stopPropagation()},!0);
 kanalmaras.com#%#AG_onLoad(function() { document.body.ondragstart = document.body.onselectstart = document.body.oncontextmenu = function() { return true; }; });
