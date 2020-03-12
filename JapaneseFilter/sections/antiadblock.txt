@@ -1,6 +1,16 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/51076
+fe-siken.com,sc-siken.com#%#//scriptlet("prevent-setTimeout", "ad", "3000")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+fe-siken.com,sc-siken.com#@#.adsbygoogle
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=fe-siken.com|sc-siken.com
+@@||googletagservices.com/tag/js/gpt.js$domain=fe-siken.com|sc-siken.com
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=fe-siken.com|sc-siken.com
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/50977
+server-setting.info#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49015
 gendai.ismedia.jp#$#.fc-ab-root { display: none !important; }
 gendai.ismedia.jp#$#body { overflow: visible !important; }
@@ -35,13 +45,6 @@ itpassportsiken.com#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35721
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||teachios.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/34365
-fe-siken.com#$?#.adsbygoogle { remove: true; }
-fe-siken.com#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/'opacity:\.05/.test(a.toString()))return b(a,c)};})();
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-fe-siken.com#@#.adsbygoogle
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=fe-siken.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33968
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||xn--f9jh4f4b4993b66s.tokyo^$generichide
