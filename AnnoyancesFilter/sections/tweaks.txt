@@ -145,6 +145,10 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/51342
+acortalo.live#%#AG_onLoad(function(){if("string"===typeof link&&link.startsWith("http"))try{location=link}catch(a){}});
+acortalo.org#%#AG_onLoad(function(){"function"===typeof fetch&&fetch("/inc/funciones.js",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"}}).then(function(a){return a.text()}).then(function(a){if(/var key = "([\S]*?)";/.test(a))try{var b=a.match(/var key = "([\S]*?)";/),c="key="+JSON.stringify(b[1])+"&link="+link;fetch("/ajax",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:c}).then(function(a){return a.text()}).then(function(a){location= a})}catch(d){}})});
+acortalo.xyz#%#AG_onLoad(function(){"function"===typeof fetch&&fetch("/inc/funciones.js",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"}}).then(function(a){return a.text()}).then(function(a){if(/var key = "([\S]*?)";/.test(a))try{var b=a.match(/var key = "([\S]*?)";/),c="key="+JSON.stringify(b[1])+"&link="+link;fetch("/data",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:c}).then(function(a){return a.text()}).then(function(a){location= a})}catch(d){}})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51340
 urlpay.net#%#//scriptlet("adjust-setInterval", "timer", "", "0.02")
 urlpay.net#%#!function(){if(-1<window.location.href.indexOf("/?go=")){var a=location.href.split("?go=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
