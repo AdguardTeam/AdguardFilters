@@ -825,10 +825,14 @@ olke.az#$#.wrapper { top: 0!important; }
 !---------------------------------------------------------------------
 !------------------------------ Bulgarian ----------------------------
 !---------------------------------------------------------------------
-! https://github.com/AdguardTeam/AdguardFilters/issues/47821
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/51510
 ||adsy.mail.bg^
 ||mail.bg/images/brandings/
 mail.bg##.branding_content_link
+mail.bg###main-billboard-spacer
+!+ PLATFORM(windows, mac, android)
+@@||mail.bg/message/$xmlhttprequest,other,jsinject,elemhide,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46407
 @@||filmisub.com/templates/filmisub/js/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44372
@@ -1139,10 +1143,12 @@ sex8.cc##.a_oscar1
 sex8.cc##.fnwehjnc12
 sex8.cc##.j-oscar
 sex8.cc##.gd-list
+! https://github.com/AdguardTeam/AdguardFilters/issues/51858
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45000
 ||huanqiu.com/statics/*/dist/js/detected_block.js
 huanqiu.com##.r-hqNext-ad
 huanqiu.com##.aa_250
+world.huanqiu.com##.ad_bot
 world.huanqiu.com##.ad_txt
 world.huanqiu.com##.img_flow.ad_all
 world.huanqiu.com##div[class^="ad_t"]
@@ -1226,15 +1232,15 @@ xgan.cn##.bottom_fixed
 xgan.cn##.container center > a[target="_blank"] > img
 xgan.cn##a[href^="https://www.jspp9.xyz"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46061#issuecomment-601842012
-t66y.com#%#AG_onLoad(function() { r8aeadS = function() {}; });
-t66y.com#%#AG_onLoad(function() { r2aeadS = function() {}; });
-t66y.com#%#AG_onLoad(function() { r7aeadS = function() {}; });
-t66y.com#%#AG_onLoad(function() { r6aeadS = function() {}; });
-t66y.com$$script[tag-content="adhtml"][max-length="2100"]
-!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_opera)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_edge)
+t66y.com$$script[tag-content="adhtml"][max-length="10000"]
+t66y.com#%#//scriptlet("abort-current-inline-script", "$", "ADBlock")
+t66y.com#%#AG_onLoad(function(){$("img[data-src]").each(function() {0 < $(this).attr("data-src").indexOf("sinaimg") && $(this).attr("data-src", $(this).attr("data-src").replace(/https:/, "http:"));$(this).attr("src", $(this).attr("data-src"));$(this).css("cursor", "pointer");$(this).click(function() {window.open("http://www.viidii.info/?action=image&url=" + encodeURIComponent($(this).attr("data-link")) + "&src=" + encodeURIComponent($(this).attr("src")));return !1})});$("img[data-sss]").each(function() {0 < $(this).attr("data-sss").indexOf("sinaimg") && $(this).attr("data-sss", $(this).attr("data-sss").replace(/https:/, "http:"));$(this).attr("src", $(this).attr("data-sss"));$(this).css("cursor", "pointer");$(this).click(function() {window.open("http://www.viidii.info/?action=image&url=" + encodeURIComponent($(this).attr("data-link")) + "&src=" + encodeURIComponent($(this).attr("src")));return !1})})});
 t66y.com##.tips
 t66y.com##.sptable_do_not_remove
 !#endif
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_edge)
+t66y.com#$?#.sptable_do_not_remove { visibility: hidden !important; }
 ||alicdn.com^$domain=t66y.com
 ||dioimg.net^$domain=t66y.com
 ||sinaimg.cn^$domain=t66y.com
@@ -2165,6 +2171,11 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/52052
+@@||sledujserialy.to/theme/js/popunder.js
+sledujserialy.to#%#//scriptlet("abort-current-inline-script", "$", "(document.getElementById('")
+sledujserialy.to##.w-episode-source > div[id][style^="position: absolute; top: 0"]:not([class])
+||sledujserialy.to/theme/json/episode.ad.php?adlink=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50421
 ||imedia.cz^$domain=televizeseznam.cz
 ||i.imedia.cz/json|$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=televizeseznam.cz
@@ -3378,9 +3389,10 @@ bhaskar.com#%#var canABP = true;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51657
 oploverz.in##div[id^="glx-"][id$="-container"][style^="display: grid;"]
 oploverz.in#%#//scriptlet("abort-on-property-read", "Object.prototype.Focm")
+! https://github.com/AdguardTeam/AdguardFilters/issues/52102
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51614
 tokopedia.com##div[data-testid="topadsCPMWrapper"]
-tokopedia.com#?#div[data-testid="divSRPContentProducts"] > div[class^="css-"] > a[data-testid="lnkProductContainer"]:has(> div[data-testid="divProductWrapper"] > div[class^="css-"] > div[class^="css-"] > div[class^="css-"] > img[alt="topads icon"])
+tokopedia.com#?#div[class^="css-"] > a[data-testid="lnkProductContainer"]:has(> div[data-testid="divProductWrapper"] > div[class^="css-"] > div[class^="css-"] > div[class^="css-"] > img[alt="topads icon"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51488
 seputarforex.com##.text-right[style*="font-size: 10px;"]
 seputarforex.com##.need-share-button
@@ -4786,8 +4798,8 @@ dap-news.com##.ads
 torrentmax.net##.subject-txt-info > a[href][target="_blank"][style^="text-decoration:"]
 torrentmax.net##.container-line-main-m > .container-top >.container-top-content > a[href][target="_blank"] > img
 torrentmax.net##.container-line-main-m > .container-top >.container-top-main > div[class$="-mode"] > a[href][target="_blank"] > img
-! https://github.com/AdguardTeam/AdguardFilters/issues/51486
-torrentqq21.com##.at-banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/51899
+torrentqq22.com##.at-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51482
 torrevi.me,torrentww.net,u-tofiles.net,u2-file.me,torrentmaps.net,toggiri.org##.banner
 /data/banner/*$domain=torrevi.me|torrentww.net|u-tofiles.net|u2-file.me|torrentmaps.net|toggiri.org
@@ -4814,9 +4826,10 @@ live.joins.com##.sns_area
 e-files.net##.widget-box-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50720
 ||sda.dveamer.com/js/csda.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/52115
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50751
-||img.ppomppu.co.kr/zboard/data3/banner/main/*.jpg$domain=ppomppu.co.kr
-ppomppu.co.kr#?#.main > .left > .topSub-nav:has(> .topSub-nav.off > a[href*="idno=ad&ppomno=&ad_no="][target="_blank"])
+||ppomppu.co.kr/zboard/data3/banner/main/$domain=ppomppu.co.kr
+ppomppu.co.kr#?#.main > .left > .topSub-nav:has(> .topSub-nav.off > a[href][target="_blank"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50392
 kpanews.co.kr#@#.ad_top
 kpanews.co.kr##div[class^="area_ad"]
@@ -5704,6 +5717,7 @@ vg.no##.finn-placeholder
 !+ PLATFORM(windows, mac, android)
 ||no-vg.videoplaza.tv/proxy/distributor/$domain=vgtv.no|vg.no,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7960
+tv2.no#%#//scriptlet("json-prune", "enabled", "testhide")
 tv2.no##.tv2-ad
 *.damoh.tv2.no/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ||hgc-*.svonm.com/www.tv2.no/config.json$replace=/"enabled":\strue\,/"enabled": false\,/i
@@ -5836,6 +5850,11 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/52125
+matzoo.pl#$#.spolecznoscinet { height: 1px!important; }
+matzoo.pl#%#//scriptlet("prevent-setTimeout", "adblock")
+! wirtualnemedia.pl - ads
+wirtualnemedia.pl##.partner-news-wrapper
 ! party.pl - ads
 ||edipresse.pl/script/init.js
 ! nfspolska.pl - ads
@@ -5904,7 +5923,9 @@ pixelpost.pl##.sidebar-inwrap > aside#text-3
 pixelpost.pl##.sidebar-inwrap > aside#text-4
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46488
 mapa-turystyczna.pl##.ts-map-layout__content > .ts-com.ts-com--non-mobile
+! https://github.com/AdguardTeam/AdguardFilters/issues/51944
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46478
+!+ NOT_OPTIMIZED
 ||ssl.images.audycje.tokfm.pl/prodstatic360/img/autopromocja/*.mp3$domain=audycje.tokfm.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46291
 se.pl##div[class^="zpr_inside_"][class*="placement__lazy"]
