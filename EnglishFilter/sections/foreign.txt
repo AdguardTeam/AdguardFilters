@@ -146,10 +146,14 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_edge)
 egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best,vidstream.kim,vidstream.to,vidstream.online#%#(function(){var b=window.open,c=/(cv|click)\.php/;window.open=function(a,d){if("string"===typeof a&&c.test(a))return function(){return!0};b(a,d)}})();
 egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best,vidstream.kim,vidstream.to,vidstream.online#%#AG_onLoad(function(){"function"==typeof fetch&&fetch("/cv.php");setTimeout(function(){var a=document.querySelector(".vjs-tech:not([src])");a&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
-egybest.network,egybest.life#%#(function(){var b=window.open,c=/(cv|click)\.php/;window.open=function(a,d){if("string"===typeof a&&c.test(a))return function(){return!0};b(a,d)}})();
-egybest.network,egybest.life#%#AG_onLoad(function(){"function"==typeof fetch&&fetch("/cv.php");setTimeout(function(){var a=document.querySelector(".vjs-tech:not([src])");a&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
+!#endif
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_edge)
+egybest.*,vidstream.*#%#(function(){var b=window.open,c=/(cv|click)\.php/;window.open=function(a,d){if("string"===typeof a&&c.test(a))return function(){return!0};b(a,d)}})();
+egybest.*,vidstream.*#%#AG_onLoad(function(){"function"==typeof fetch&&fetch("/cv.php");setTimeout(function(){var a=document.querySelector(".vjs-tech:not([src])");a&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30988
 @@||ads.farakav.com/group/*?uid=$domain=video.varzesh3.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30662
@@ -904,6 +908,9 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 ||jiuyuntian3.cn/vs.php?id=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52404
 ||ustv123.com/images/axd.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/52544
+mobile01.com##.ad-adblock
+@@||attach.mobile01.com/image/mod_ad/*$domain=mobile01.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52347
 ||img.virscan.org/images/*/ad_
 virscan.org##div[class^="ad_"]
@@ -1253,7 +1260,7 @@ xgan.cn##a[href^="https://www.jspp9.xyz"]
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_edge)
 t66y.com$$script[tag-content="adhtml"][max-length="10000"]
 t66y.com#%#//scriptlet("abort-current-inline-script", "$", "ADBlock")
-t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i)|hd-data/)&&!a[b].value.match(/:\/\/[\s\S]*?b[^A-Za-z0-9]?l[^A-Za-z0-9]?o[^A-Za-z0-9]?c[^A-Za-z0-9]?k/i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor", "pointer");$(this).click(function(){window.open($(this).attr("src"));return!1})})});
+t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i)|hd-data/)&&!a[b].value.match(/:\/\/x\.ad\//i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor", "pointer");$(this).click(function(){window.open($(this).attr("src"));return!1})})});
 t66y.com##.tips
 t66y.com##.sptable_do_not_remove
 !#endif
@@ -3410,6 +3417,8 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/52687
+xnxx54.info##.entry-content > div.ktz_content-more > p[style] + div[class][id]:not([style])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52595
 ||kxcdn.com/wp-content/uploads/*/*-336x280.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52502
@@ -3422,10 +3431,12 @@ bagas31.info##.socialproff-bottom
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51657
 oploverz.in##div[id^="glx-"][id$="-container"][style^="display: grid;"]
 oploverz.in#%#//scriptlet("abort-on-property-read", "Object.prototype.Focm")
+! https://github.com/AdguardTeam/AdguardFilters/issues/52722
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52102
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51614
 tokopedia.com##div[data-testid="topadsCPMWrapper"]
 tokopedia.com#?#div[class^="css-"] > a[data-testid="lnkProductContainer"]:has(> div[data-testid="divProductWrapper"] > div[class^="css-"] > div[class^="css-"] > div[class^="css-"] > img[alt="topads icon"])
+tokopedia.com#?#div[data-testid="divSRPContentProducts"] > div[class^="css-"]:has(> a[data-testid="lnkProductContainer"] > div[data-testid="divProductWrapper"] > div[class^="css-"] > div[class^="css-"] > div[class^="css-"] > img[alt="topads icon"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51488
 seputarforex.com##.text-right[style*="font-size: 10px;"]
 seputarforex.com##.need-share-button
@@ -4055,10 +4066,11 @@ krucil.net##img[width="900"][height="50"]
 !---------------------------------------------------------------------
 !------------------------------ Hebrew -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/52737
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52497
 ! TEMPORARY until this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/76
 !+ NOT_PLATFORM(ext_ublock)
-themarker.com#@%#//scriptlet('ubo-aeld.js', '', 'clientHeight')
+haaretz.co.il,themarker.com#@%#//scriptlet('ubo-aeld.js', '', 'clientHeight')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48600
 @@||player.ynet.co.il/*/flowplayer.ads.*.ynet.js$domain=ynet.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45799
@@ -5074,8 +5086,6 @@ yazaral11.com##div[id^="sitemap"] > a[href][target="_blank"]
 yazaral11.com###bitme
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38131
 lifelonglearning.kr#$#.adsbygoogle { position: absolute!important; left: -10000px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/37504
-tgd.kr###header-top-notice
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37747
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||hjkhgyss.tistory.com^$generichide
@@ -5899,6 +5909,8 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! tuwroclaw.com - ads leftovers
+tuwroclaw.com##.special-ad
 ! medme.pl - ads leftovers
 medme.pl##p[style^="background: none repeat scroll 0 0 #E3E3E3; color: #A5A5A5; font-family: Tahoma;"]
 ! eluban.pl - ads
