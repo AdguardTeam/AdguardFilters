@@ -528,30 +528,19 @@ flymer.ru#$#.ad-home { position: absolute!important; left: -3000px!important; }
 @@||my-news-portal.ru^$generichide
 !
 ! START: Ads replacement (piguiqproxy.com etc.)
-! скрипт есть, но без рекламы: censor.net.ua,etextlib.ru,internetua.com,kinozal.tv,newsua.one,strana.ua,textreferat.com,vsetv.com
-! test for extensions
+! test for extensions(for example - bagnet.org)
 !+ NOT_PLATFORM(windows, mac, android)
 ||s.zmctrack.net/z|$redirect=google-analytics,important,domain=~sinoptik.ua|~gismeteo.ua
 !
-!#if (!adguard_app_mac && !adguard_app_windows && !adguard_app_android)
+! !#if (!adguard_app_mac && !adguard_app_windows && !adguard_app_android)
+! #%#//scriptlet("set-constant", "String.prototype.charCodeAt", "trueFunc")
+! #%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
+  !#endif
 !
-sinoptik.ua#%#Object.defineProperty(String.prototype, 'charCodeAt', { get: function() { return function() { return true }; }});
-!+ PLATFORM(ext_chromium)
-@@||gismeteo.ua^$generichide,genericblock
-!+ PLATFORM(ext_chromium)
-||gismeteo.ua/assets/flat-ui/min/js/adriver.core.*.ua.js$domain=gismeteo.ua
-! 12.02.2020
-! '#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")'
-newsua.one,vsetv.com,textreferat.com,tivix.co,football24.ua,kinozal.tv,liga.net#%#//scriptlet("abort-on-property-write", "Object.prototype.getAds")
-!
-ringside24.com,nnovosti.info,kolobok.ua,toneto.net,tochka.net,4mama.ua,enovosty.com,ubr.ua,vesti.ua,forumodua.com,inforesist.org,tv.ua,internetua.com#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "trueFunc")
-obyava.ua,newsyou.info,socportal.info,smak.ua,eurointegration.com.ua,facenews.ua,tvgid.ua,bigmir.net,beauty.ua,strana.ua,epravda.com.ua,gagadget.com,censor.net.ua,okino.ua,etextlib.ru,glavcom.ua,real-vin.com,hvylya.net,kp.ua#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "falseFunc")
-!
-!#endif
-!
+liga.net$$script[wildcard="*Xr=""zmc""+""track""*"][max-length="16000"]
 yahooeu.ru,tvgid.ua,rian.com.ua,oklivetv.com,kino-dom.org,hd-dream.ru,guru.ua,chudesa.site,azov-sea.info,animeget.net$$script[wildcard="*(function*String.fromCharCode(parseInt*.substr*"][max-length="10000"]
 ukr.net$$script[tag-content="|zmc|loader|"][max-length="25000"]
-peers.tv,real-vin.com,kp.ua,hvylya.net,glavcom.ua$$script[tag-content="zmctrack"]
+cn.ru,finance.i.ua,glavcom.ua,hvylya.net,kp.ua,love.i.ua,newsone.ua,peers.tv,radio.i.ua,real-vin.com,viks.bz,vsetv.com$$script[tag-content="zmctrack"]
 etextlib.ru,bigmir.net$$script[wildcard="*!function(*""zmctrack""*""mzs""*"][max-length="9500"]
 simpsonsua.com.ua,allboxing.ru$$script[wildcard="*!function(){function*n=Zu+t();Ut[n]=Wt*,Bn=*"][max-length="10000"]
 viks.fm$$script[wildcard="*!function(f,u,n,t,o,r,i)*,mt=*"][max-length="10000"]
@@ -562,34 +551,17 @@ wss://s.zmctrack.net/
 ://s.zmctrack.net^$websocket
 ||zmctrack.net^$third-party
 @@://s.zmctrack.net/z|$xmlhttprequest,third-party
-! If it is necessary, make this rule domain specific 
-!+ PLATFORM(windows, mac, android)
-!@@://s.zmctrack.net/z|$third-party
-!+ PLATFORM(windows, mac, android)
-!@@://s.zmctrack.net/z|$domain=ukr.net
-!.zmctrack.net^$~websocket,replace=/.+//,important
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52734
-!+ PLATFORM(windows, mac, android)
-@@://s.zmctrack.net/z|$domain=fishki.net|finance.i.ua|vsetv.com|cn.ru|viks.bz|peers.tv|newsone.ua|radio.i.ua|love.i.ua,~script
+! !+ PLATFORM(windows, mac, android)
+! @@://s.zmctrack.net/z|$domain=finance.i.ua,vsetv.com|cn.ru|viks.bz|peers.tv|newsone.ua|radio.i.ua|love.i.ua,~script
 !
+4mama.ua,beauty.ua,bigmir.net,enovosty.com,epravda.com.ua,eurointegration.com.ua,facenews.ua,forumodua.com,gagadget.com,gismeteo.ua,glavcom.ua,hvylya.net,internetua.com,kolobok.ua,kp.ua,liga.net,nnovosti.info,obyava.ua,okino.ua,real-vin.com,ringside24.com,sinoptik.ua,smak.ua,strana.ua,tochka.net,toneto.net,tv.ua,tvgid.ua,ubr.ua,vesti.ua#%#(function(){var a=document.currentScript,b=String.prototype.charCodeAt,c=function(){return true;};Object.defineProperty(String.prototype,"charCodeAt",{get:function(){return document.currentScript===a?b:c},set:function(a){}})})();
+! Скрипт есть, но без рекламы
+censor.net.ua,football24.ua,etextlib.ru,kinozal.tv,inforesist.org,newsyou.info,newsua.one,textreferat.com,tivix.co,socportal.info,vsetv.com#%#(function(){var a=document.currentScript,b=String.prototype.charCodeAt,c=function(){return true;};Object.defineProperty(String.prototype,"charCodeAt",{get:function(){return document.currentScript===a?b:c},set:function(a){}})})();
 ! forumodua.com - fixing captcha(broken by scriptlet)
-!@@||forumodua.com/login.php$jsinject
-!@@||forumodua.com/register.php$jsinject
-!
-! gismeteo.ua
-!||criteo.net^$domain=gismeteo.ua
-!||gemius.pl^$domain=gismeteo.ua
-!@@||gaua.hit.gemius.pl/xgemius.js$domain=gismeteo.ua
-gismeteo.ua#$#.column-wrap > div[class="wrap_small __frame"] > div.media_frame { position: absolute!important; left: -3000px!important; }
-gismeteo.ua#$#.media_frame.xby400 { position: absolute!important; left: -3000px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/42824
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_chromium)
-!@@||mama.ua^$generichide
-!@@||woman.ua^$generichide
-!@@||autoua.net^$generichide
-!||x.magnet.kiev.ua/*/delivery/$empty,important,domain=mama.ua|woman.ua|autoua.net
-!#endif
+@@||forumodua.com/login.php$jsinject
+@@||forumodua.com/register.php$jsinject
 !
 ! END: Ads replacement (piguiqproxy.com etc.)
 !
