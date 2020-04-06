@@ -2,15 +2,17 @@
 !------- JS ------------
 !-----------------------
 !
+! playground.ru - clickable background with redirect
+playground.ru#%#//scriptlet("remove-attr", "data-promo-link|data-promo-height|data-promo-color|data-promo-image|data-promo-id", "body")
+! ivi.ru - preroll ads
+!+ NOT_PLATFORM(windows, mac, android)
+ivi.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.getVast")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52138
 oneliketv.com#%#//scriptlet("prevent-window-open", "1", "/\/(tv|twotvs.|thretvs.)\.php/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52136
 hochu.tv,hdreactor.club,hdreactor.su,hdreactor.tv,hdreactor.net#%#//scriptlet("abort-on-property-read", "ABN")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50005
 ddgroupclub.win#%#//scriptlet("abort-current-inline-script", "Math.ceil", "x.charCodeAt")
-! ivi.ru - preroll ads
-!+ NOT_PLATFORM(windows, mac, android)
-ivi.ru#%#//scriptlet("set-constant", "Object.prototype.sendDaAdvGet", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50959
 ati.su#%#//scriptlet("set-constant", "Object.prototype.tryGetAdv", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50821
@@ -422,6 +424,17 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !-----------------------
 !------- CSS -----------
 !-----------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/52901
+online.anidub.com#$#.content > div.speedbar { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/52724
+prostoporno.plus#$#body { padding: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/52621
+kazus.ru#$#.mfp-bg { display: none !important; }
+kazus.ru#$#.mfp-wrap { display: none !important; }
+kazus.ru#$#html { overflow: visible !important; margin-right: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/52469
+restoranoff.ru#$#body { background: none !important; }
+restoranoff.ru#$#body > div.page_container { margin-top: 0 !important; }
 ! horrorzone.ru - removed ads background
 horrorzone.ru#$#body { background: #000 !important; }
 horrorzone.ru#$#body > div.all { margin-top: 0 !important; }
@@ -660,8 +673,8 @@ tut.by#$#body { background: #e6e6e6!important; }
 anidub.com#$#body > div[style*="min-width: 1200px;"]  { background: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32294
 iwantgames.ru#$#.article{ margin-top:0px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/32259
-gidonline.io#$#body { margin-top: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/52692
+gidonline.io#$#body { padding: 0 0 0 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31625
 gtavicecity.ru#$##wrapper-body { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31620
@@ -1541,13 +1554,6 @@ tv.yandex.by,tv.yandex.kz,tv.yandex.ru,tv.yandex.ua#$#.super-banner { pointer-ev
 ! fix: images are not visible if a page was opened and loaded in backgroung in new tab
 zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua#$#.article-image__image_loaded { opacity: 1 !important; }
 !
-! Yandex.Turbo sites
-! https://github.com/AdguardTeam/AdguardFilters/issues/44110
-yandex.ru#$#body[data-bem*="iz.ru"] div[class*="item_type_partner"] { position: absolute!important; left: -3000px!important; }
-yandex.ru#$#body[data-bem*="tsargrad.tv"] div.advert { position: absolute!important; left: -3000px!important; }
-yandex.ru#$#body[data-bem*="news-front"] div.layout__left_sticky { position: absolute!important; left: -3000px!important; }
-yandex.ru#$#body[data-bem*="сезоны-года.рф"] { position: absolute!important; left: -3000px!important; }
-! END: Yandex
 !
 !
 !-----------------------
@@ -1573,7 +1579,7 @@ $$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-
 ! hochu.ua - удаление брендированного фона
 hochu.ua$$style[tag-content=".brand-"][max-length="900"]
 ! 'window.RESOURCE_' ad script
-sumy.ua,syzran-small.ru,severpost.ru,dpchas.com.ua,economics-prorok.com,kontrakty.ua,narodna-pravda.ua,fakty.ua,vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
+yarnews.net,sumy.ua,syzran-small.ru,severpost.ru,dpchas.com.ua,economics-prorok.com,kontrakty.ua,narodna-pravda.ua,fakty.ua,vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
 $$script[tag-content="window.RESOURCE_"][max-length="100"]
 upraznenia.ru$$script[tag-content="window.RESOURCE_"][max-length="27000"]
 ! htapop

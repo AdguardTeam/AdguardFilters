@@ -1,6 +1,14 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/52566
+ad-contents.jp#%#//scriptlet("prevent-addEventListener", "load", "ad blocker")
+!+ NOT_PLATFORM(ext_safari)
+ad-contents.jp#$#.ui-wrapper { display: block !important; }
+!+ NOT_PLATFORM(ext_safari)
+ad-contents.jp#$#.mid-rectangle { display: none !important; }
+!+ PLATFORM(ios, ext_android_cb)
+@@||ad-contents.jp^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51663
 @@||popjav.tv^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51076
