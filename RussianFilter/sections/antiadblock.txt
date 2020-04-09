@@ -483,11 +483,22 @@ gaming.co.ua##body > div[id][class][style*="z-index: 9999"] + div[class][style*=
 @@||helpsetup.ru^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15489
 @@||howdyho.net/media/js/adsbygoogle.js
+!
+! https://forum.adguard.com/index.php?threads/38042/
+fishki.net#%#//scriptlet("abort-on-property-read", "Object.prototype.detect.custom")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||fishki.net^$generichide
+@@||an.yandex.ru/system/context.js$domain=fishki.net
+@@||engine.fishki.net/code?pid=$domain=fishki.net
+fishki.net##a[href^="https://engine.fishki.net/reference?gid="]
+fishki.net##div[class^="__brand_"]
+!#endif
 ! https://github.com/AdguardTeam/adguardfilters/issues/17682
 ! Ads reinjection
+fishki.net$$script[wildcard="*document.getElementsByTagName*ins();*adblock*"][max-length="800"]
 !+ NOT_OPTIMIZED
 @@||fishki.net/js/adv.js
-fishki.net$$script[wildcard="*document.getElementsByTagName*ins();*adblock*"][max-length="800"]
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14812
 @@||freepiks.ru^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14492
@@ -592,7 +603,6 @@ lordfilm.tv,tabfilm.ru,kinocoin.online#%#AG_abortInlineScript(/var/, 'String.fro
 !
 ! `cc-support-script`
 alau.kz#%#AG_abortInlineScript(/addEventListener/, 'String.fromCharCode');
-fishki.net#%#AG_setConstant('ccJugger', 'undefined');
 /^.*\.ru\/[\w\d]{5,12}/$xmlhttprequest,other,third-party,domain=sovsport.ru|trud.ru|politros.com
 sovsport.ru#%#//scriptlet("abort-on-property-write", "__XABStatus")
 !+ NOT_PLATFORM(windows, mac, android)
