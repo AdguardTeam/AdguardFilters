@@ -2,9 +2,12 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/53045
+it-like.ru#%#//scriptlet('remove-attr', 'href', '.post-content > article > div > ul > li > a[href^="https://it-like.ru/link/"][data-wpel-link="external"]')
 ! assiatv.com - popups 
 assiatv.com#%#//scriptlet("prevent-window-open")
-! playground.ru - clickable background with redirect
+! https://github.com/AdguardTeam/AdguardFilters/issues/53112
+playground.ru#%#//scriptlet("prevent-addEventListener", "load", "link")
 playground.ru#%#//scriptlet("remove-attr", "data-promo-link|data-promo-height|data-promo-color|data-promo-image|data-promo-id", "body")
 ! ivi.ru - preroll ads
 !+ NOT_PLATFORM(windows, mac, android)
@@ -129,8 +132,8 @@ generationiron.com#%#AG_setConstant('td_ad_background_click_link', 'undefined');
 sud.ua,newsua.one,tele.ru,pingvin.pro,glavnoe.ua,glavpost.com,enovosty.com,bagnet.org,versii.if.ua,comments.ua,cbn.com.ua,comments.ua,otvetnavse.com,news.dks.com.ua,golos.te.ua,procherk.info,cheline.com.ua,4mama.ua,ogo.ua,rusjev.net,fakty.ua,fainaidea.com,unn.com.ua#%#//scriptlet('abort-current-inline-script', 'document.createElement', '/загрузка/')
 365news.biz,cbn.com.ua#%#AG_abortInlineScript(/n4p/, 'document.createElement');
 ! nnmclub.to - directadvert.ru script
-nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#%#//scriptlet("set-constant", "ololo_ololosha_directadvert", "")
-nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#%#AG_abortInlineScript(/ololo/, 'String.fromCharCode');
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#%#//scriptlet("set-constant", "ololo_ololosha_directadvert", "")
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#%#AG_abortInlineScript(/ololo/, 'String.fromCharCode');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34867
 stratege.ru#%#//scriptlet("abort-current-inline-script", "window.open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34733
@@ -141,7 +144,7 @@ radikal.ru#%#AG_abortOnPropertyRead('run');
 !sbsports.pro#%#AG_setConstant('window.open', 'noopFunc');
 sbsports.pro#%#window.open=function(){};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32589
-nnm-club.lib,nnm-club.me,nnmclub.to#%#AG_abortOnPropertyWrite(`sc_adv_out`, true);
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#%#AG_abortOnPropertyWrite(`sc_adv_out`, true);
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27857
 ! pornovizion.xyz#%#//scriptlet("abort-current-inline-script", "$", "/mediaelementplayer/")
 pornovizion.xyz#%#AG_abortInlineScript(/adsPrerollMediaUrl/, '$');
@@ -426,6 +429,16 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !-----------------------
 !------- CSS -----------
 !-----------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/53275
+grippua.com.ua#$#.page-wrap { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/53174
+vsetor.org#$#body > div.container { margin-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/53108
+smb.ixbt.com#$#.wrapper > div.tm { margin-bottom: 0 !important; }
+! stalkerportaal.ru - download timer
+stalkerportaal.ru#$#table#timer_1 { display: none !important; }
+stalkerportaal.ru#$#div#timer_2 { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52901
 online.anidub.com#$#.content > div.speedbar { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52724
@@ -524,10 +537,10 @@ kg-portal.ru#$?#body > div[class][-ext-has='div[class^="frozen2_"]'] { height: 1
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43591
 animevost-org.com#$#body > div#wrap { margin: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43330
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$#.menu { top: 0!important; }
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$##wrap > div[class^="headbgnew"] { height: 53px!important; }
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$#.menu > ul > li > div.sar { z-index: 9999!important; bottom: -200px!important; }
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$#.menu > ul > li > span.sar { z-index: 9999!important; bottom: -150px!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$#.menu { top: 0!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$##wrap > div[class^="headbgnew"] { height: 53px!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$#.menu > ul > li > div.sar { z-index: 9999!important; bottom: -200px!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$#.menu > ul > li > span.sar { z-index: 9999!important; bottom: -150px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42271
 33porno.com#$#body { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42905
@@ -625,7 +638,7 @@ kinoafisha.ua#$#.bg > .all { margin-top: 0!important; }
 magcity74.ru#$#.bmobile { display: none !important; }
 magcity74.ru#$#body { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30304
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$#div[class^="headbg"] { background: transparent!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$#div[class^="headbg"] { background: transparent!important; }
 ! mma-today.net - удаление отступа сверху
 mma-today.net#$#body { margin-top: 0 !important; }
 ! mediananny.com - удаление брендированного фона, отступа сверху
@@ -968,7 +981,7 @@ hd-720.com#$#body { margin-top: auto!important; }
 ! kinohome.org - удаление отступа сверху
 kinohome.org#$#body { margin-top: auto!important; }
 ! nnm-club - удаление отступа сверху
-nnm-club.lib,nnm-club.me,nnmclub.to#$#body > div.wrap { top: 0!important; }
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#$#body > div.wrap { top: 0!important; }
 ! xuk.ooo,russian-porn.online - удаление брендированного фона, отступа сверху
 xuk.ooo,russian-porn.online#$#body { background-image: none !important; padding-top: 0!important; }
 ! https://forum.adguard.com/index.php?threads/26630/
@@ -1082,11 +1095,11 @@ klerk.ru#$#iframe[width="300"][height="600"]:not([src]) { position: absolute!imp
 !
 ! nnmclub - ads (for Firefox)
 !+ PLATFORM(ext_ff, ext_opera)
-nnmclub.to,nnm-club.me#$#iframe[width="970"][height="90"] { position: absolute!important; left: -3000px!important; }
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#$#iframe[width="970"][height="90"] { position: absolute!important; left: -3000px!important; }
 !+ PLATFORM(ext_ff, ext_opera)
-nnmclub.to,nnm-club.me#$#td#logo > center { position: absolute!important; left: -3000px!important; }
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#$#td#logo > center { position: absolute!important; left: -3000px!important; }
 !+ PLATFORM(ext_ff, ext_opera)
-nnmclub.to,nnm-club.me#$#iframe[width="240"][height="400"] { position: absolute!important; left: -3000px!important; }
+nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnmclub.to#$#iframe[width="240"][height="400"] { position: absolute!important; left: -3000px!important; }
 !
 ! ivi-video.com - show skip button
 ivi-video.com#$##ads_skip { display: block!important; }
@@ -1154,7 +1167,7 @@ gopokemongo.ru,arendator.ru#$#body { overflow: visible!important; }
 ! kirovnet.ru - удаление отступа сверху
 kirovnet.ru#$#.bg_container { padding-top: 10px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1863
-animevost.am,smotret-anime-365.ru,avost.org,animevost.site,animevost.online,animevost.xyz,animevost.net,animevost.in,anime-vost.org,animevost.org,animerost.org,animevost1.org,animevost2.org,animevost3.org,agorov.org#$#.banerTop { position: absolute!important; left: -3000px!important; }
+animevost.am,smotret-anime-365.ru,animevost.site,animevost.online,animevost.net,animevost.org,animerost.org,animevost.am,agorov.org#$#.banerTop { position: absolute!important; left: -3000px!important; }
 ! kino-go.co - удаление брендированного фона, отступа сверху
 kino-go.co#$#body  { background: #2e2e2e!important; padding-top: 0!important; }
 ! seasonvar-hd.net - принудительно делаем плеер видимым
@@ -1581,7 +1594,7 @@ $$script[wildcard="*document.getElementById*mixadvert.com*script.onerror*"][min-
 ! hochu.ua - удаление брендированного фона
 hochu.ua$$style[tag-content=".brand-"][max-length="900"]
 ! 'window.RESOURCE_' ad script
-yarnews.net,sumy.ua,syzran-small.ru,severpost.ru,dpchas.com.ua,economics-prorok.com,kontrakty.ua,narodna-pravda.ua,fakty.ua,vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
+nashbryansk.ru,yarnews.net,sumy.ua,syzran-small.ru,severpost.ru,dpchas.com.ua,economics-prorok.com,kontrakty.ua,narodna-pravda.ua,fakty.ua,vchaspik.ua,golos.ua,ribaku.info,7days-ua.com,rusonline.org,socportal.info,real-vin.com,yerkramas.org,enovosty.com,alau.kz,mogilev.online,altapress.ru,upraznenia.ru,figaro.space,trueinform.ru,prozoro.net.ua,gorlonos.com,racurs.ua,hd1080p.org,moiinstrumenty.ru,dv-gazeta.info,triumph-strategy.ru,nerodiskrasivoitv.ru,superomsk.ru,gazeta.ua,progorod62.ru,ubr.ua,vesti-ukr.com,ovorotah.com,patrioty.org.ua,pravapot.ru,112.ua,donpress.com,ua-independent.com,fainaidea.com,imbyr.ru,astrolibra.com,morekino.me,kak-bit-new.ru,healthynews.ru,magictemple.ru,zakulisi.ru,oster-vip.com.ua,anisima.ru,placeclean.ru,elise.com.ua,3aaa-sp.ru,kinoferma.com,hd1080.info,etcetera.media,sverhestestvennoe.me,opnevmonii.ru,linza.guru,kino-fox.com,bodytrain.ru,mothersguide.ru,turkseason.com,woman365.ru,kriminal.net.ua,nanogah.com,2019god.net,omj.ru,novosti-n.org,podrobnosti.ua,hronika.info,kinorezka.net,avtozakony.ru,pojrem.ru$$script[tag-content="window.RESOURCE_"][max-length="100"]
 $$script[tag-content="window.RESOURCE_"][max-length="100"]
 upraznenia.ru$$script[tag-content="window.RESOURCE_"][max-length="27000"]
 ! htapop
