@@ -888,6 +888,8 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general url ---
 /source/plugin/drk_ledadv/*
 !-------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/54091
+zhidao.baidu.com##div[class^="cms-slide"] > p[class="cms-link-title"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53426
 hmitalk.com##div[class*="-pubadban "]
 hmitalk.com##div[data-adid]
@@ -1278,7 +1280,7 @@ xgan.cn##a[href^="https://www.jspp9.xyz"]
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_edge)
 t66y.com$$script[tag-content="adhtml"][max-length="10000"]
 t66y.com#%#//scriptlet("abort-current-inline-script", "$", "do_not_remove")
-t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|as-data/)&&!a[b].value.match(/:\/\/\d\.?a\.?d\//i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
+t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|(a|o)s-data/)&&!a[b].value.match(/:\/\/\d|[a-z]\.?a\.?d\//i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
 t66y.com##.tips
 t66y.com##.sptable_do_not_remove
 !#endif
@@ -2953,12 +2955,17 @@ totalcar.hu#%#//scriptlet("set-constant", "ADBD.check", "noopFunc")
 ujszo.com#%#//scriptlet("abort-on-property-read", "Drupal.behaviors.adBlockerPopup")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49428
 @@||napi.hu/js/advertisement.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/54337
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49333
 @@||ad.adverticum.net/g3.js$domain=port.hu
 @@||ad.adverticum.net/scripts/goa3/main/*/goa3.js$domain=port.hu
 @@||port.hu/js/ads.min.js
 @@||port.hu/js/advert.min.js
 port.hu#%#//scriptlet("set-constant", "Adserving.hasAdBlocker", "falseFunc")
+port.hu#%#//scriptlet("abort-current-inline-script", "addEventListener", "/\.className[\s\S]*?\.offsetHeight === 0[\s\S]*?\.appendChild/")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||port.hu^$generichide
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46048
 mobilarena.hu#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links.xabrecontainer.partners.spleft.spright.xabre-responsive { display: block!important; }
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -5950,6 +5957,8 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/54282
+transport-publiczny.pl,rynekinfrastruktury.pl,rynek-lotniczy.pl#@#.adBanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54165
 forum.alfaholicy.org##ol > li.restore > center
 forum.alfaholicy.org###sidebar #block_html_3
