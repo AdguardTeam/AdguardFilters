@@ -2973,9 +2973,15 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/55058
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53948
+totalcar.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
+||ad.adverticum.net/g3.js$redirect=nooptext,domain=totalcar.hu
 @@||totalcar.hu/assets/js/adbd/ads.js
-totalcar.hu#%#//scriptlet("set-constant", "ADBD.check", "noopFunc")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||ad.adverticum.net/g3.js$domain=totalcar.hu
+@@||ad.adverticum.net/scripts/goa3/main/*/goa3.js$domain=totalcar.hu
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50811
 ujszo.com#%#//scriptlet("abort-on-property-read", "Drupal.behaviors.adBlockerPopup")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49428
