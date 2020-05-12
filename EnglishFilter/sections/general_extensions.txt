@@ -864,11 +864,9 @@ click-paid.com#%#(function() { var _eval = window.eval; window.eval = function(a
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42845
 pingit.im#%#//scriptlet("prevent-window-open")
 pingit.im#%#window.open=function(){};
+! https://github.com/AdguardTeam/AdguardFilters/issues/55300
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42791
-!+ NOT_PLATFORM(windows, mac, android)
-cshort.org#%#//scriptlet("prevent-window-open", "1", "greatdexchange.com")
-!+ PLATFORM(windows, mac, android)
-cshort.org#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /greatdexchange\.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
+cshort.org#%#//scriptlet("prevent-window-open", "1", "/(greatdexchange|onclickmega)\.com/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42723
 !+ NOT_PLATFORM(windows, mac, android)
 vivads.net#%#//scriptlet("abort-on-property-read", "SmartPopunder")
