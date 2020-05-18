@@ -811,12 +811,15 @@ hausbau-forum.de#%#//scriptlet("set-constant", "adBlockDetected", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45601
 @@||tatort.tube/ads-*x*.js
 @@||googleads.g.doubleclick.net/favicon.ico?ads=$domain=tatort.tube
+! https://github.com/AdguardTeam/AdguardFilters/issues/55549
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44865
 @@||photovoltaikforum.com/*/adsbygoogle.js
-!+ NOT_PLATFORM(windows, mac, android)
 photovoltaikforum.com#%#//scriptlet("set-constant", "adblockDisabled", "true")
-!+ PLATFORM(windows, mac, android)
-photovoltaikforum.com#%#AG_setConstant('adblockDisabled', 'true');
+photovoltaikforum.com#%#//scriptlet("set-constant", "cwAdblockDisabled", "true")
+photovoltaikforum.com#%#//scriptlet("set-constant", "cwAdblockDisabled2", "true")
+photovoltaikforum.com#$#.adsbox.ads { display: block!important; height: 1px!important; }
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||photovoltaikforum.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43738
 ||blog.kwick.de/module/plugins/deblocker^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43165
