@@ -811,12 +811,15 @@ hausbau-forum.de#%#//scriptlet("set-constant", "adBlockDetected", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45601
 @@||tatort.tube/ads-*x*.js
 @@||googleads.g.doubleclick.net/favicon.ico?ads=$domain=tatort.tube
+! https://github.com/AdguardTeam/AdguardFilters/issues/55549
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44865
 @@||photovoltaikforum.com/*/adsbygoogle.js
-!+ NOT_PLATFORM(windows, mac, android)
 photovoltaikforum.com#%#//scriptlet("set-constant", "adblockDisabled", "true")
-!+ PLATFORM(windows, mac, android)
-photovoltaikforum.com#%#AG_setConstant('adblockDisabled', 'true');
+photovoltaikforum.com#%#//scriptlet("set-constant", "cwAdblockDisabled", "true")
+photovoltaikforum.com#%#//scriptlet("set-constant", "cwAdblockDisabled2", "true")
+photovoltaikforum.com#$#.adsbox.ads { display: block!important; height: 1px!important; }
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||photovoltaikforum.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43738
 ||blog.kwick.de/module/plugins/deblocker^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43165
@@ -844,6 +847,7 @@ averio.de#@#.text-ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38360
 deutsche-vogelstimmen.de#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/\]\.bab\(window/.test(a.toString()))return b(a,c)};})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45416
+@@||imagesrv.adition.com/1x1.gif$domain=joyn.de
 @@||securepubads.g.doubleclick.net/pcs/view^$domain=joyn.de
 @@||ad.71i.de/global_js/AppConfig^$domain=joyn.de
 @@||static.*-vod-playout-prod.aws.route71.net/ad-source-fetcher/dist/ad-source-fetcher.min.js$domain=joyn.de
