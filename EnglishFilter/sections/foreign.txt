@@ -29,6 +29,8 @@ video.gjirafa.com#%#AG_defineProperty('originVideo.requestA.Id', { value: "0" })
 !---------------------------------------------------------------------
 !------------------------------ Arabian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/55936
+akwam.net#%#//scriptlet("abort-on-property-read", "ajsPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55107
 ||embed.dugout.com^$third-party
 kooora.com##.dugout
@@ -133,7 +135,7 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
-egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("iframe");a.src=d;a.style.setProperty("display","none","important");a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a.contentWindow,{get:function(a,c){return a[c]}, set:function(a,c,b){a[c]=b}})}})}})();
+egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/\/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("embed");a.src=d;a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a,{get:function(a,c){return a[c]},set:function(a,c,b){a[c]=b}})}})}})();
 egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
 ! These exceptions below are needed, because Popup Blocker causes that video player and links to download video don't work
 @@||egy.best^$extension
@@ -899,6 +901,16 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general hide --
 ##a[href^="https://adm.beimg.com/"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/55577
+teepr.com##div[class^="mid-post-ad-"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/55822
+logi.im#%#//scriptlet("prevent-setTimeout", "ins.adsbygoogle")
+logi.im##body > div[style^="background: black; position: fixed; "][style*="opacity: 0.5; z-index: 1999;"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/55847
+ifvod.tv##vg-pause-ads
+ifvod.tv#%#Object.defineProperty(Object.prototype, 'ShouldPlayAds', { get: function(){ return function() {}; }, set: function(){ return function() {}; }});
+!+ PLATFORM(windows, mac, android, ext_chromium)
+ifvod.tv##vg-player.ng-star-inserted > vg-pause-ads + div.caption.show > .inner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55362
 69story.com##aside#secondary > section[id="text-2"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55280
@@ -2638,6 +2650,8 @@ cez.cz#$#body { background: #333!important; }
 !---------------------------------------------------------------------
 !------------------------------ Danish -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/55721
+ni.dk#@#a[href*=".adform.net/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55472
 @@||borsen.dk/themes/borsen.dk/js/dfp.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54516
@@ -3003,7 +3017,7 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55119
 divany.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
-||ad.adverticum.net/g3.js$redirect=nooptext,domain=divany.hu
+||ad.adverticum.net/g3.js$script,redirect=nooptext,domain=divany.hu
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||ad.adverticum.net/g3.js$domain=divany.hu
 @@||ad.adverticum.net/scripts/goa3/main/*/goa3.js$domain=divany.hu
@@ -3011,7 +3025,7 @@ divany.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55058
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53948
 totalcar.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
-||ad.adverticum.net/g3.js$redirect=nooptext,domain=totalcar.hu
+||ad.adverticum.net/g3.js$script,redirect=nooptext,domain=totalcar.hu
 @@||totalcar.hu/assets/js/adbd/ads.js
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||ad.adverticum.net/g3.js$domain=totalcar.hu
@@ -3509,6 +3523,11 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! kawanfilm21.pro - ads
+||bp.blogspot.com^$image,domain=kawanfilm21.pro
+kawanfilm21.pro#$#.mfp-bg { display: none !important; }
+kawanfilm21.pro#$#.mfp-wrap { display: none !important; }
+kawanfilm21.pro#$#html { overflow: visible !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53475
 xemtvhd.com##iframe[src="xx/top.php"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53408
@@ -4339,6 +4358,8 @@ goalim4you.site###f765
 !---------------------------------------------------------------------
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56070
+romatoday.it#@#.afs_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55312
 @@||ticonsiglio.com/wp-content/*/plugins/ad-ace/includes/adblock-detector/advertisement-*.js
 ticonsiglio.com#%#//scriptlet("set-constant", "jQuery.adblock", "false")
@@ -4967,6 +4988,8 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/55720
+postshare.co.kr##body > div[style^="position:fixed;"][style*="z-index:9999"][style*="background:"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55548
 ||torrentvery2.com/data/zn_banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55328
@@ -6031,17 +6054,17 @@ joujizz.com##.video-top-wrap > .sb
 !
 ! ---------------------------
 ! FuckAdBlock Polish
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_300x250
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_300x250m
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_728x90
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ad
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ad-links
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ads
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.textAd
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ad
-js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ads
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_300x250
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_300x250m
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.pub_728x90
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ad
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ad-links
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text-ads
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.textAd
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ad
+trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ads
 !#endif
 ! ---------------------------
 ! adquesto
@@ -6056,6 +6079,20 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! lublin112.pl - ads leftovers
+lublin112.pl###sidebar > .ad ~ hr
+! portal.nysa.pl - ads
+portal.nysa.pl##.sidebar-inner > .widget-area > aside#media_image-2
+portal.nysa.pl##.sidebar-inner > .widget-area > aside#media_image-3
+! https://github.com/AdguardTeam/AdguardFilters/issues/55879
+jarock.pl##div[class^="a-d-banner"]
+jarock.pl##.old-news > .grid > .news-item.grid-item.a-d 
+jarock.pl##.old-news > .grid > .news-item.grid-item.aserver_slot 
+! https://github.com/AdguardTeam/AdguardFilters/issues/55846
+trojmiasto.pl#%#//scriptlet("abort-on-property-read", "adBlockDetected")
+||trojmiasto.pl/adxmlrpc/json.php?zoneid=*&ifid=bait-&$redirect=noopjs
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||trojmiasto.pl/adxmlrpc/json.php?zoneid=*&ifid=bait-&
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55791
 ||resetoff.pl/static/player/*/vast.js
 resetoff.pl#%#//scriptlet("set-constant", "ads_unblocked", "true")
@@ -6849,7 +6886,7 @@ www.wp.pl#$#body { overflow: visible!important; }
 !+ PLATFORM(ext_ff)
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,domain=~profil.wp.pl
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
-www.wp.pl#?#div[class^="sc-"]:has(> img[src="https://v.wpimg.pl/a2YvYmcuTlM4FC9eTA5DRntMewQKV00QLFRjT0xAV0ptQ3YETQIRHCkadgxMHE5BLRF2HQgTTlA-WCkDBFcc"])
+www.wp.pl#?#div[class^="sc-"]:has(> img[src^="https://v.wpimg.pl/"][role="presentation"][class^="sc-"]:matches-css(position: absolute))
 wp.pl#?#[class^="_"]:has(>img[src*=".wp.pl"])
 ! turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl#?#div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
 dom.wp.pl,facet.wp.pl,film.wp.pl,finanse.wp.pl,gry.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,kuchnia.wp.pl,moto.wp.pl,opinie.wp.pl,tech.wp.pl,teleshow.wp.pl,turystyka.wp.pl,wawalove.wp.pl,wiadomosci.wp.pl,wroclaw.wp.pl#?#div[class*=" "]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt]:empty)
@@ -6870,6 +6907,11 @@ www.wp.pl##a[href^="https://direct.money.pl/landing-page/callcenter/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45978
 abczdrowie.pl#?#.article__textbox:has(> div[class] > div[id^="div-gpt-ad"])
 abczdrowie.pl#?#.article__textbox:matches-css(background-image: /^url\(https:\/\/pytania-abczdrowie\.wp\.pl\/media\/images\/commb\.png/)
+! https://github.com/AdguardTeam/AdguardFilters/issues/56048
+pogoda.wp.pl#?#.grid-container > div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:only-child:empty)
+pogoda.wp.pl#?#.grid-container > div[class^="grid-"] > div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:only-child:empty)
+pogoda.wp.pl#?#.grid-container > div[class^="grid-"] > div[class] > div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:only-child:empty)
+pogoda.wp.pl#?#.grid-container > div[class^="grid-"] > .list > ul > li > div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:only-child:empty)
 ! Glomex video ads - ttv.pl
 ||mdsglvod-a.akamaihd.net/vod/2.0/progressive/*/x.mp4$mp4,domain=ttv.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10825
@@ -6993,6 +7035,8 @@ naszemiasto.pl#%#window.adBlockTest = true;
 ! shinden.pl#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/addBlockDetected/.test(a)){ _st(a,b);}};
 ! shinden.pl#%#Object.defineProperty(window, 'Criteo', { get: function() { return { DisplayAcceptableAdIfAdblocked: function() {} }; } });
 ! shinden.pl#%#(function(){var b=window.setInterval;window.setInterval=function(a,c){if(!/h\[b\d/.test(a.toString()))return b(a,c)}.bind(window)})();
+shinden.pl###spolSticky
+shinden.pl##.spolecznoscinet
 shinden.pl##iframe[src^="https://reklama.shinden.eu/adpeeps.php?"]
 shinden.pl#%#AG_onLoad(function() { AG_removeElementBySelector('.ads'); });
 shinden.pl#%#AG_abortOnPropertyRead('popjs.init');
@@ -7008,6 +7052,7 @@ shinden.pl#%#//scriptlet("abort-on-property-write", "AdservingModule")
 @@||spolecznosci.net/js/modules/*.js$domain=shinden.pl
 @@||a.spolecznosci.net/pet?s=Shinden$domain=shinden.pl
 @@||static.criteo.net/js/ld/publishertag.js$domain=shinden.pl
+||spolecznosci.net/js/modules/sfw.js$important,domain=shinden.pl
 !+ PLATFORM(windows, mac, android)
 ||reklama.shinden.eu/adpeeps.php$redirect=noopframe,domain=shinden.pl
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff)
@@ -7720,6 +7765,23 @@ mm-cg.com##.TW_UTtoy
 !---------------------------------------------------------------------
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/55895
+/images/banners/*$domain=doonungonline.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/55838
+mo9x.com##.adsbtn_right
+! https://github.com/AdguardTeam/AdguardFilters/issues/56008
+||doomovie.sgp*.digitaloceanspaces.com/*.mp4$mp4,domain=doomovie.com
+doomovie.com##.ads-center
+doomovie.com##.go-b-close
+! https://github.com/AdguardTeam/AdguardFilters/issues/55782
+moviefree365.com##.ad_cen
+moviefree365.com##.ad-float
+moviefree365.com##.ad-main-bottom
+moviefree365.com##div[class^="ad_right"]
+moviefree365.com#%#//scriptlet("json-prune", "MU_ads")
+! https://github.com/AdguardTeam/AdguardFilters/issues/55704
+videox24.com##.float-banner
+videox24.com#%#//scriptlet("json-prune", "MU_ads")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55701
 subthaijav.com##.widget-area > .Dvr-300
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55240
@@ -7904,7 +7966,7 @@ animeloli.com##a[href]:not([href^="https://www.animeloli.com"]) > .imgbanner
 doonungdee.online###floatleft
 doonungdee.online###floatright
 doonungdee.online##.ads-responsive
-/pic-ads/*$domain=doonungdee.online
+/pic-ads/*$domain=doonungdee.online|movie285.com
 !
 ballzaa.com##.banner-box
 ||bp.blogspot.com^$image,domain=nontonmovie33.net
@@ -8049,11 +8111,16 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56400
+||game4v.com/*/banner-*.gif
+game4v.com###close-fixedban
+! https://github.com/AdguardTeam/AdguardFilters/issues/55957
+hentaivn.net###over
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54824
 vietjack.com###lightbox_ballon
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54611
 win10.vn#%#//scriptlet("abort-current-inline-script", "eval", "ignielAdBlock")
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=nooptext,domain=win10.vn
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=nooptext,domain=win10.vn
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=win10.vn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53724
