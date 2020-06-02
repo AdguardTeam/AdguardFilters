@@ -135,7 +135,7 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
-egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("iframe");a.src=d;a.style.setProperty("display","none","important");a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a.contentWindow,{get:function(a,c){return a[c]}, set:function(a,c,b){a[c]=b}})}})}})();
+egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/\/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("embed");a.src=d;a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a,{get:function(a,c){return a[c]},set:function(a,c,b){a[c]=b}})}})}})();
 egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
 ! These exceptions below are needed, because Popup Blocker causes that video player and links to download video don't work
 @@||egy.best^$extension
@@ -901,6 +901,14 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general hide --
 ##a[href^="https://adm.beimg.com/"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/56211
+||ac-room.cc/images/ad_
+ac-room.cc##.ad.v-card
+ac-room.cc#?#.waterfall > div.waterfall-box > div.waterfall-item:has(> div.ad)
+! https://github.com/AdguardTeam/AdguardFilters/issues/56212
+||159i.com/sxxd.js
+@@||vvv.aaaf.info/*/playlist.m3u8$domain=159i.com
+@@||vvv.aaaf.info/*.ts$domain=159i.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55577
 teepr.com##div[class^="mid-post-ad-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55822
@@ -3015,6 +3023,12 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56499
+mozinet.me$$iframe[srcdoc="XMLHttpRequest"]
+mozinet.me$$script[wildcard="*document.write*iframe[srcdoc]*"][min-length="4000"][max-length="6000"]
+mozinet.me#$?#iframe[srcdoc*="XMLHttpRequest"] { remove: true; }
+mozinet.me#?#.container_12 > div[style*="min-height: 250px;"]:has(> .adslot_1)
+mozinet.me###advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55119
 divany.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
 ||ad.adverticum.net/g3.js$script,redirect=nooptext,domain=divany.hu
@@ -3523,6 +3537,9 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56515
+anoboy.stream##a[href][rel="sponsored"]
+anoboy.stream##.sidebar > .center > a[href][target="_blank"] > amp-img
 ! kawanfilm21.pro - ads
 ||bp.blogspot.com^$image,domain=kawanfilm21.pro
 kawanfilm21.pro#$#.mfp-bg { display: none !important; }
@@ -5179,13 +5196,13 @@ postpop.tistory.com#$##adblocktestdiv { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44981
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44904
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43222
-||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=json$replace=/(\{"ad":\[\{)[\s\S]*(\}\])/\$1\$2/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-||spotv.dl.cdn.cloudn.co.kr/*.mp4$mp4,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
+||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=json$replace=/(\{"ad":\[\{)[\s\S]*(\}\])/\$1\$2/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+||spotv.dl.cdn.cloudn.co.kr/*.mp4$mp4,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 @@||adserver.rockwell.kakao.com/crossdomain.xml
-@@||adserver.rockwell.kakao.com/adserver/api/v*/vmap$domain=daumcdn.net|kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-@@||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-@@||daumcdn.net/adfit/static/ad.min.js$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
+@@||adserver.rockwell.kakao.com/adserver/api/v*/vmap$domain=daumcdn.net|kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+@@||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+@@||daumcdn.net/adfit/static/ad.min.js$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 ||stream.spongead.com^$third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43002
 ||avsee05.tv/banner/
@@ -6362,10 +6379,7 @@ drogerium.pl#$#body[style="opacity: 0;"] { opacity: 1!important; }
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||s0.2mdn.net/ads/studio/Enabler.js$domain=drogerium.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35364
-!+ NOT_PLATFORM(windows, mac, android)
-naekranie.pl#%#//scriptlet('abort-current-inline-script', '$', '/loadData|halfpage|welcome|screening|placement/')
-!+ PLATFORM(windows, mac, android)
-naekranie.pl#%#AG_abortInlineScript(/loadData|halfpage|welcome|screening|placement/, '$');
+naekranie.pl#%#//scriptlet('abort-current-inline-script', '$', '/loadData|halfpage|welcome|screening|placement|adtitle/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36126
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||xboxforum.pl^$generichide
@@ -6886,7 +6900,7 @@ www.wp.pl#$#body { overflow: visible!important; }
 !+ PLATFORM(ext_ff)
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,domain=~profil.wp.pl
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
-www.wp.pl#?#div[class^="sc-"]:has(> img[src="https://v.wpimg.pl/a2YvYmcuTlM4FC9eTA5DRntMewQKV00QLFRjT0xAV0ptQ3YETQIRHCkadgxMHE5BLRF2HQgTTlA-WCkDBFcc"])
+www.wp.pl#?#div[class^="sc-"]:has(> img[src^="https://v.wpimg.pl/"][role="presentation"][class^="sc-"]:matches-css(position: absolute))
 wp.pl#?#[class^="_"]:has(>img[src*=".wp.pl"])
 ! turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl#?#div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
 dom.wp.pl,facet.wp.pl,film.wp.pl,finanse.wp.pl,gry.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,kuchnia.wp.pl,moto.wp.pl,opinie.wp.pl,tech.wp.pl,teleshow.wp.pl,turystyka.wp.pl,wawalove.wp.pl,wiadomosci.wp.pl,wroclaw.wp.pl#?#div[class*=" "]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt]:empty)
@@ -8111,6 +8125,9 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56400
+||game4v.com/*/banner-*.gif
+game4v.com###close-fixedban
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55957
 hentaivn.net###over
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54824
