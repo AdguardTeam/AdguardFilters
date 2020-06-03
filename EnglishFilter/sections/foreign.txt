@@ -135,7 +135,7 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
-egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("iframe");a.src=d;a.style.setProperty("display","none","important");a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a.contentWindow,{get:function(a,c){return a[c]}, set:function(a,c,b){a[c]=b}})}})}})();
+egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/\/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("embed");a.src=d;a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a,{get:function(a,c){return a[c]},set:function(a,c,b){a[c]=b}})}})}})();
 egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
 ! These exceptions below are needed, because Popup Blocker causes that video player and links to download video don't work
 @@||egy.best^$extension
@@ -411,7 +411,6 @@ wikibit.me##div[id^="adv"]
 turbo.az##.bg-bnr-container
 mp3.feat.az#?#.sidebarfull > .sidebox2:has(>.side-t > div[align="center"] > span:contains(Reklam))
 biznesinfo.az##.tableDefault100percent > tbody > tr:first-child > td[style="overflow:hidden;width: 1000px"]
-feat.az###dle-content > .full-story > div[align="center"] > a[href="http://enhitmp3lerindir.com"]
 ||i.hizliresim.com/1J2pQB.png
 sport7.az##.sidebarbanner
 move.az##.videoreklam
@@ -901,6 +900,17 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general hide --
 ##a[href^="https://adm.beimg.com/"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/56651
+wenxuecity.com##.sidebar > .banners
+wenxuecity.com#%#//scriptlet("set-constant", "adsbygoogle", "noopFunc")
+! https://github.com/AdguardTeam/AdguardFilters/issues/56211
+||ac-room.cc/images/ad_
+ac-room.cc##.ad.v-card
+ac-room.cc#?#.waterfall > div.waterfall-box > div.waterfall-item:has(> div.ad)
+! https://github.com/AdguardTeam/AdguardFilters/issues/56212
+||159i.com/sxxd.js
+@@||vvv.aaaf.info/*/playlist.m3u8$domain=159i.com
+@@||vvv.aaaf.info/*.ts$domain=159i.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55577
 teepr.com##div[class^="mid-post-ad-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55822
@@ -3015,6 +3025,12 @@ patrika.com##.google-ads-full
 !---------------------------------------------------------------------
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56499
+mozinet.me$$iframe[srcdoc="XMLHttpRequest"]
+mozinet.me$$script[wildcard="*document.write*iframe[srcdoc]*"][min-length="4000"][max-length="6000"]
+mozinet.me#$?#iframe[srcdoc*="XMLHttpRequest"] { remove: true; }
+mozinet.me#?#.container_12 > div[style*="min-height: 250px;"]:has(> .adslot_1)
+mozinet.me###advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55119
 divany.hu#%#//scriptlet("set-constant", "ADBD.show", "noopFunc")
 ||ad.adverticum.net/g3.js$script,redirect=nooptext,domain=divany.hu
@@ -3523,6 +3539,9 @@ bhaskar.com#%#var canABP = true;
 !---------------------------------------------------------------------
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56515
+anoboy.stream##a[href][rel="sponsored"]
+anoboy.stream##.sidebar > .center > a[href][target="_blank"] > amp-img
 ! kawanfilm21.pro - ads
 ||bp.blogspot.com^$image,domain=kawanfilm21.pro
 kawanfilm21.pro#$#.mfp-bg { display: none !important; }
@@ -4358,6 +4377,10 @@ goalim4you.site###f765
 !---------------------------------------------------------------------
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56714
+@@||oasjs.kataweb.it/adsetup*.js$domain=huffingtonpost.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/56657
+@@||media.wired.it/static_wired/js/misc/cn-adv.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56070
 romatoday.it#@#.afs_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55312
@@ -4988,6 +5011,17 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/56457
+jootc.com#%#//scriptlet("abort-current-inline-script", "jQuery", "ai_adb")
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||jootc.com/wp-content/plugins/ad-inserter-pro/$domain=jootc.com
+@@||contextual.media.net/dmedianet.js$domain=jootc.com
+@@||jootc.com^$generichide
+!#endif
+!#safari_cb_affinity(privacy)
+@@||google-analytics.com/analytics.js$domain=jootc.com
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55720
 postshare.co.kr##body > div[style^="position:fixed;"][style*="z-index:9999"][style*="background:"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55548
@@ -5179,13 +5213,13 @@ postpop.tistory.com#$##adblocktestdiv { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44981
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44904
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43222
-||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=json$replace=/(\{"ad":\[\{)[\s\S]*(\}\])/\$1\$2/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-||spotv.dl.cdn.cloudn.co.kr/*.mp4$mp4,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
+||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=json$replace=/(\{"ad":\[\{)[\s\S]*(\}\])/\$1\$2/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=*&format=xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+||spotv.dl.cdn.cloudn.co.kr/*.mp4$mp4,domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 @@||adserver.rockwell.kakao.com/crossdomain.xml
-@@||adserver.rockwell.kakao.com/adserver/api/v*/vmap$domain=daumcdn.net|kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-@@||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
-@@||daumcdn.net/adfit/static/ad.min.js$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net
+@@||adserver.rockwell.kakao.com/adserver/api/v*/vmap$domain=daumcdn.net|kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+@@||adserver.rockwell.kakao.com/adserver/api/v*/vast?data=$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
+@@||daumcdn.net/adfit/static/ad.min.js$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 ||stream.spongead.com^$third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43002
 ||avsee05.tv/banner/
@@ -6362,10 +6396,7 @@ drogerium.pl#$#body[style="opacity: 0;"] { opacity: 1!important; }
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||s0.2mdn.net/ads/studio/Enabler.js$domain=drogerium.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35364
-!+ NOT_PLATFORM(windows, mac, android)
-naekranie.pl#%#//scriptlet('abort-current-inline-script', '$', '/loadData|halfpage|welcome|screening|placement/')
-!+ PLATFORM(windows, mac, android)
-naekranie.pl#%#AG_abortInlineScript(/loadData|halfpage|welcome|screening|placement/, '$');
+naekranie.pl#%#//scriptlet('abort-current-inline-script', '$', '/loadData|halfpage|welcome|screening|placement|adtitle/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36126
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||xboxforum.pl^$generichide
@@ -7771,6 +7802,7 @@ mm-cg.com##.TW_UTtoy
 mo9x.com##.adsbtn_right
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56008
 ||doomovie.sgp*.digitaloceanspaces.com/*.mp4$mp4,domain=doomovie.com
+||doomovie.com/storage/go/*.gif$~third-party
 doomovie.com##.ads-center
 doomovie.com##.go-b-close
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55782
