@@ -137,7 +137,7 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
-egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/\/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,b){var d=b[0];if(!0!==e.test(d))return f.apply(g,b);var a=document.createElement("object");a.data=d;a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return new Proxy(a.contentWindow, {get:function(a,c){return a[c]},set:function(a,c,b){a[c]=b}})}})}})();
+egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var e=/\/(click|cv)\.php/;window.open=new Proxy(window.open,{apply:function(f,g,c){var d=c[0];if(!0!==e.test(d))return f.apply(g,c);var a=document.createElement("object");a.data=d;a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return a.contentWindow? new Proxy(a.contentWindow,{get:function(a,b){return a[b]},set:function(a,b,c){a[b]=c}}):new Proxy(a,{get:function(a,b){return!1},set:function(a,b,c){a[b]=!1}})}})}})();
 egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
 ! These exceptions below are needed, because Popup Blocker causes that video player and links to download video don't work
 @@||egy.best^$extension
@@ -902,6 +902,8 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general hide --
 ##a[href^="https://adm.beimg.com/"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/56212
+/tghr.js$domain=159i.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56651
 wenxuecity.com##.sidebar > .banners
 wenxuecity.com#%#//scriptlet("set-constant", "adsbygoogle", "noopFunc")
@@ -1337,7 +1339,7 @@ xgan.cn##a[href^="https://www.jspp9.xyz"]
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_edge)
 t66y.com$$script[tag-content="adhtml"][max-length="10000"]
 t66y.com#%#//scriptlet("abort-current-inline-script", "$", "do_not_remove")
-t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|(a|o|f)s-data/)&&!a[b].value.match(/:\/\/a0\.ad\/bl0ck/i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
+t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|(a|o|f|b)s-data/)&&!a[b].value.match(/:\/\/[\s\S]*?\.ad\/bl0ck/i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
 t66y.com##.tips
 t66y.com##.sptable_do_not_remove
 !#endif
@@ -1614,7 +1616,7 @@ gz.bendibao.com##.content_r_ad300
 @@||s.ip-cdn.com/img/ag.jpg
 ip.cn#$#.container-fluid > div > a[href="#"] > img#tp { position: absolute!important; left: -3000px!important; }
 !
-||buzztoon12.com/data/*.gif
+||buzztoon*.com/data/*.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35258
 ||static.tohomh123.com/js/funasd.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35180
@@ -3601,11 +3603,12 @@ katadata.co.id##.footer_sticky
 128.199.102.111##.happy-inside-player
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48267
 ||bp.blogspot.com^$domain=khalidcompany.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/56958
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54471
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49109
 @@||static.doubleclick.net/instream/ad_status.js$domain=laksa19.github.io
 !+ NOT_PLATFORM(ext_edge, ios, ext_android_cb, ext_safari)
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=laksa19.github.io,empty
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=laksa19.github.io
 !+ PLATFORM(ext_edge, ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=laksa19.github.io
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48650
@@ -4393,6 +4396,8 @@ goalim4you.site###f765
 !---------------------------------------------------------------------
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56993
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=video.lastampa.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56714
 @@||oasjs.kataweb.it/adsetup*.js$domain=huffingtonpost.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56657
@@ -5027,6 +5032,14 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56752
+||coupa.ng^$domain=everdevel.com
+everdevel.com##aside#rightAside > section > p
+everdevel.com###subMenuLeftArea > div[style="clear:both;float:left;width:100%;height:240px;text-align:center"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/56949
+||tkor.one/bann/
+! https://github.com/AdguardTeam/AdguardFilters/issues/56866
+||torrentdia.com/data/zn_banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56754
 ||torrentlike.com/data/zn_banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56457
@@ -5295,10 +5308,10 @@ manamoa.net,manamoa46.net##a[href*="/bbs/board.php?bo_table=ad"]
 ||manamoa*.net/img/banner^
 ||manamoa*.net/thema/Basic/widget/ad-banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38758
-buzztoon.com,buzztoon1.com,buzztoon2.com,buzztoon3.com,buzztoon4.com,buzztoon5.com,buzztoon6.com,buzztoon7.com,buzztoon8.com,buzztoon9.com,buzztoon10.com,buzztoon11.com,buzztoon12.com,buzztoon13.com,buzztoon14.com,buzztoon28.com##div[class^="banner"]
-buzztoon.com,buzztoon1.com,buzztoon2.com,buzztoon3.com,buzztoon4.com,buzztoon5.com,buzztoon6.com,buzztoon7.com,buzztoon8.com,buzztoon9.com,buzztoon10.com,buzztoon11.com,buzztoon12.com,buzztoon13.com,buzztoon14.com,buzztoon28.com###hd_pop
-||i.imgur.com^$domain=buzztoon.com|buzztoon1.com|buzztoon2.com|buzztoon3.com|buzztoon4.com|buzztoon5.com|buzztoon6.com|buzztoon7.com|buzztoon8.com|buzztoon9.com|buzztoon10.com|buzztoon11.com|buzztoon12.com|buzztoon13.com|buzztoon14.com|buzztoon28.com
-/^https:\/\/buzztoon?.+.com\/data\/[A-Za-z0-9_]+.gif/$domain=buzztoon.com|buzztoon1.com|buzztoon2.com|buzztoon3.com|buzztoon4.com|buzztoon5.com|buzztoon6.com|buzztoon7.com|buzztoon8.com|buzztoon9.com|buzztoon10.com|buzztoon11.com|buzztoon12.com|buzztoon13.com|buzztoon14.com|buzztoon28.com
+buzztoon.com,buzztoon1.com,buzztoon2.com,buzztoon3.com,buzztoon4.com,buzztoon5.com,buzztoon6.com,buzztoon7.com,buzztoon8.com,buzztoon9.com,buzztoon10.com,buzztoon11.com,buzztoon12.com,buzztoon13.com,buzztoon50.com,buzztoon28.com##div[class^="banner"]
+buzztoon.com,buzztoon1.com,buzztoon2.com,buzztoon3.com,buzztoon4.com,buzztoon5.com,buzztoon6.com,buzztoon7.com,buzztoon8.com,buzztoon9.com,buzztoon10.com,buzztoon11.com,buzztoon12.com,buzztoon13.com,buzztoon50.com,buzztoon28.com###hd_pop
+||i.imgur.com^$domain=buzztoon.com|buzztoon1.com|buzztoon2.com|buzztoon3.com|buzztoon4.com|buzztoon5.com|buzztoon6.com|buzztoon7.com|buzztoon8.com|buzztoon9.com|buzztoon10.com|buzztoon11.com|buzztoon12.com|buzztoon13.com|buzztoon50.com|buzztoon28.com
+/^https:\/\/buzztoon?.+.com\/data\/[A-Za-z0-9_]+.gif/$domain=buzztoon.com|buzztoon1.com|buzztoon2.com|buzztoon3.com|buzztoon4.com|buzztoon5.com|buzztoon6.com|buzztoon7.com|buzztoon8.com|buzztoon9.com|buzztoon10.com|buzztoon11.com|buzztoon12.com|buzztoon13.com|buzztoon50.com|buzztoon28.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38240
 !+ NOT_OPTIMIZED
 dispatch.co.kr###topAdRoll
@@ -6012,6 +6025,13 @@ vg.no###ad-topboard
 !---------------------------------------------------------------------
 !------------------------------ Persian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56925
+downloadsoftware.ir##.advertisebanner > div[style^="z-index"][style*="position:"] > a[href][target^="_blank "] > img
+||p30afzar.com/ext_files/GiftCard.gif$domain=downloadsoftware.ir
+! https://github.com/AdguardTeam/AdguardFilters/issues/56886
+mobile.ir##div[class="apnl"]
+mobile.ir###bottombanner
+mobile.ir##.apnl.rightverticalapnl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33352
 downloadly.ir##iframe[src^="https://beta.kaprila.com/a/show.php"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42827
@@ -7817,6 +7837,10 @@ mm-cg.com##.TW_UTtoy
 !---------------------------------------------------------------------
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/56919
+toonclub-th.co###bgpopup
+toonclub-th.co###Seriespopup
+toonclub-th.co###ads728x90top
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55895
 /images/banners/*$domain=doonungonline.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55838
