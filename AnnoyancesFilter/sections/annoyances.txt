@@ -1,9 +1,31 @@
 !
 !######### Annoying elements (not ads)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/44749
+! https://github.com/AdguardTeam/AdguardFilters/issues/38910
+! https://github.com/AdguardTeam/AdguardFilters/issues/22801
+! https://github.com/AdguardTeam/AdguardFilters/issues/14731
+iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.parseXML", "noopFunc")
+||data.video.iqiyi.com/videos/other/*$xmlhttprequest,~third-party,badfilter
+!+ NOT_PLATFORM(windows, mac, android)
+iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.blackscreenDuration", "1")
+!+ PLATFORM(windows, mac, android)
+iqiyi.com#%#Object.defineProperty(Object.prototype, 'blackscreenDuration', { value: 1 });
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
+||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
+iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
+!+ PLATFORM(ios)
+@@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
+!+ PLATFORM(ios)
+||t7z.cupid.iqiyi.com^$badfilter
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/57706
+kinogo.by#?##dle-content > div[style]:has(> a[href="https://vk.com/kinogo_by"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57342
 ||download.skype.com/share/skypebuttons/js/skypeCheck.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57232
+vgorode.ua##.chatbot-sec
 vgorode.ua##div[class^="chatbot-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57167
 it-actual.ru##.granicy
@@ -1322,6 +1344,7 @@ health.yandex.ru##.product-start-consultation
 ||zen.yandex.ru/widget-loader$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
 russian.rt.com##.dzen--widget
 regnum.ru##.slot-article-yandex-zen
+amp.championat.com##amp-embed[type="zen"]
 ! Yandex.Metrica
 ! Mobile apps
 disk.yandex.az,disk.yandex.by,disk.yandex.co.il,disk.yandex.com,disk.yandex.com.am,disk.yandex.com.ge,disk.yandex.com.tr,disk.yandex.ee,disk.yandex.fr,disk.yandex.kg,disk.yandex.kz,disk.yandex.lt,disk.yandex.lv,disk.yandex.md,disk.yandex.ru,disk.yandex.tj,disk.yandex.tm,disk.yandex.ua,disk.yandex.uz,yadi.sk##.metrika-app
@@ -1415,6 +1438,13 @@ whathifi.com,futurestud.io,slate.com,businessinsider.de,fastcompany.com,heise.de
 ! ##.cta-component-full-width
 bournemouthecho.co.uk,eveningtimes.co.uk,greenocktelegraph.co.uk,heraldscotland.com,swindonadvertiser.co.uk,wiltshiretimes.co.uk##.cta-component-full-width
 !
+marieclaire.ru##.subscribe
+singaporemotherhood.com##.sgm_subscription_wrapper
+gotoadm.ru###custom_html-4
+liga.net###subscribe-right
+vitiana.com##.bizjournal
+suhorukov.com###block-simplenews-0
+suhorukov.com##a[title="Подписаться на рассылку"]
 vogue.globo.com###subscribe-newsletter
 amp.ura.news##.yandex-zen
 wpolityce.pl##.nu-newsletter
@@ -2398,7 +2428,7 @@ rb.ru##.subscribe-widget
 two-movies.com##.subscribeBlock
 joy.hu##.subscribeForMagazineButton
 26-2.ru##.subscribeInside
-sapo.pt##.subscribeWidget
+expresso.pt,sapo.pt##.subscribeWidget
 biztorg.ru##.subscribeWrap
 kp.ru##.subscribeWrapper
 it-tehnik.ru##.subscribe__big

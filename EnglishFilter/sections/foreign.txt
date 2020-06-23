@@ -905,6 +905,8 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !--- general hide --
 ##a[href^="https://adm.beimg.com/"]
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/57893
+techbang.com##.ad_grey_floor
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57243
 nfmovies.com#@?#div[id]:-abp-has(>img[onclick="openurl()"])
 @@||nfmovies.com/static/side.jpg$xmlhttprequest,domain=nfmovies.com
@@ -1359,7 +1361,7 @@ t66y.com##.sptable_do_not_remove
 !+ PLATFORM(windows, mac, android)
 t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var c=0;c<a.length;c++)if(a[c].name.match("ess-data")){var b=a[c].name;break}}$("img["+b+"]").each(function(){0<$(this).attr(b).indexOf("sinaimg")&&$(this).attr(b,$(this).attr(b).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(b));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src"));return!1})})});
 !+ NOT_PLATFORM(windows, mac, android)
-t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|(a|o|f|b|c|d)s-data/)&&!a[b].value.match(/:\/\/[\s\S]*?a\.?d\/bl0ck.jpg/i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
+t66y.com#%#AG_onLoad(function(){var a=document.querySelector(".tpc_content img");if(a){a=a.attributes;for(var b=0;b<a.length;b++)if(!a[b].name.startsWith("data-link")&&!a[b].name.match(/data-.?(h|i|s)|(a|o|f|b|c|d)s-data/)&&!a[b].value.match(/:\/\/[\s\S]*?a\.?d\/.bl0ck.jpg/i)){var c=a[b].name;break}}$("img["+c+"]").each(function(){0<$(this).attr(c).indexOf("sinaimg")&&$(this).attr(c,$(this).attr(c).replace(/https:/,"http:"));$(this).attr("src",$(this).attr(c));$(this).css("cursor","pointer");$(this).click(function(){window.open($(this).attr("src")); return!1})})});
 !+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_edge)
 t66y.com#$?#.sptable_do_not_remove { visibility: hidden !important; }
 ||alicdn.com^$domain=t66y.com
@@ -1925,22 +1927,6 @@ aotu43.com##.ads
 88files.net#%#window.open = function() {};
 ||sinaimg.cn^$domain=88files.net
 ||dioimg.net^$domain=88files.net
-! https://github.com/AdguardTeam/AdguardFilters/issues/44749
-! https://github.com/AdguardTeam/AdguardFilters/issues/38910
-! https://github.com/AdguardTeam/AdguardFilters/issues/22801
-! https://github.com/AdguardTeam/AdguardFilters/issues/14731
-!+ NOT_PLATFORM(windows, mac, android)
-iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.blackscreenDuration", "1")
-!+ PLATFORM(windows, mac, android)
-iqiyi.com#%#Object.defineProperty(Object.prototype, 'blackscreenDuration', { value: 1 });
-!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
-iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
-||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
-iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
-!+ PLATFORM(ios)
-@@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
-!+ PLATFORM(ios)
-||t7z.cupid.iqiyi.com^$badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14444
 av01.tv###overlay-advertising
 @@||av01.tv/wp-content/themes/wp-script-theme/vendor/*/trigger_video_hls.js
@@ -2254,6 +2240,8 @@ macapp.so#$##m2 { height: 5px!important; }
 !---------------------------------------------------------------------
 !------------------------------ Croatian -----------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/57692
+||bug.hr/ads/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42483
 jutarnji.hr##.lidl.products
 jutarnji.hr##.feroterm.products
@@ -4436,6 +4424,20 @@ goalim4you.site###f765
 !---------------------------------------------------------------------
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/57696
+napolitoday.it#$#.afs_ads.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+napolitoday.it#@#.afs_ads
+napolitoday.it#@#.pub_300x250
+napolitoday.it#@#.pub_300x250m
+napolitoday.it#@#.pub_728x90
+napolitoday.it#@#.text-ad
+napolitoday.it#@#.textAd
+napolitoday.it#@#.text_ad
+napolitoday.it#@#.text_ads
+napolitoday.it#@#.text-ads
+napolitoday.it#@#.text-ad-links
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56993
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=video.lastampa.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56714
@@ -5072,6 +5074,22 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/57751
+@@||ad.smartmediarep.com/crossdomain.xml$domain=programs.sbs.co.kr
+! https://github.com/AdguardTeam/AdguardFilters/issues/57749
+||i.imgur.com^$domain=torrentrg.org,image
+torrentrg.org###hd_pop
+torrentrg.org###banner_top_list_wrap
+torrentrg.org##a[href^="https://www.torrentrg.org/etc/link.php"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/57697
+||ttobogo.net/uploads/banner/
+ttobogo.net##.banners
+! https://github.com/AdguardTeam/AdguardFilters/issues/57631
+||i.imgur.com/*.gif$domain=jujutorrent.com|jujutorrent12.com
+||jujutorrent*.com/data/editor/*/*_*_*.gif
+jujutorrent.com,jujutorrent12.com##.npia-board-gallery
+jujutorrent.com,jujutorrent12.com#?#.widget-index > div.w-box:has(> div.npia-board-gallery)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57105
 etoland.co.kr##aside[class^="fortune_aside"]
 etoland.co.kr###cocoment_main > center > a[target="_blank"] > img
@@ -6193,6 +6211,13 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/57758
+||audiostereo.pl/old/images/baner_
+audiostereo.pl##div[style="margin-bottom: 10px;"] > a[target="_blank"] > img
+! audiostereo.pl anti-adblock
+audiostereo.pl#@#.adsbygoogle
+audiostereo.pl#%#//scriptlet('prevent-setTimeout', 'test.remove')
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57609
 @@||tibiopedia.pl/js/show_ads.js
 tibiopedia.pl#%#//scriptlet("set-constant", "adBlockEnabled", "false")
@@ -6515,8 +6540,9 @@ kinoseans.pl#%#AG_setConstant('count', '0');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55606
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46586
 o2.pl##div[data-testid^="ad-placeholder-"]
-o2.pl#?#div[class^="sc"]:has(> img[src^="https://v.wpimg.pl/"][src$="="]:not([alt]))
-o2.pl#?#div[class][style="width:100%"] > div[class*=" "]:has(> img[data-testid="ad-placeholder-image"])
+o2.pl#?#div[class][style="width:100%"] > div[class*=" "]:has(> img[role="presentation"]:not([src]))
+o2.pl#?#div[class*=" "]:has(> img[src="https://www.o2.pl/f/2/adPlaceholder.png"])
+o2.pl#?#div[class*=" "]:has(> div:not([class]):not([id]) > script:contains(registerPlaceholder))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34112
 poczta.o2.pl#@#body > div[class="pub_300x250 text_ads ad_container"][style] + div[class]:not([id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34282
@@ -7892,6 +7918,8 @@ mm-cg.com##.TW_UTtoy
 !---------------------------------------------------------------------
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/57660
+kapook.com##._popIn_recommend_article_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57139
 .gif$domain=037hdmovie.com
 037hdmovie.com###fix_footer2
@@ -8262,6 +8290,12 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/57705
+fimfast.com#%#AG_onLoad(function() { store.set("preload-popup-2", new Date); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/57612
+||storage.fshare.vn/support/*-300x600-
+fshare.vn##div[class^="quang-cao-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57054
 ||phobolsatv.com/wp-content/uploads/*/ad-
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56400
