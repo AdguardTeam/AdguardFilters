@@ -8,6 +8,10 @@
 !
 ! YouTube ads (for old and new ads)
 ! youtube.com - white screen with skip button
+||youtube.com/*/base.js$replace=/(playerResponse\.adPlacements|playerResponse\.playerAds)/_ad/
+||youtube.com/*/base.js$replace=/(playerAds|adPlacement[a-zA-Z]+)/_da/
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 youtube.com#%#//scriptlet("json-prune", "playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds")
 youtube.com#%#//scriptlet("set-constant", "ytInitialPlayerResponse.adPlacements", "undefined")
+!#endif
 @@||youtube.com/get_video_info
