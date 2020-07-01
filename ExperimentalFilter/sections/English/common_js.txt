@@ -8,10 +8,21 @@
 !
 ! YouTube ads (for old and new ads)
 ! youtube.com - white screen with skip button
-||youtube.com/*/base.js$replace=/(playerResponse\.adPlacements|playerResponse\.playerAds)/_ad/
-||youtube.com/*/base.js$replace=/(playerAds|adPlacement[a-zA-Z]+)/_da/
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-youtube.com#%#//scriptlet("json-prune", "playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds")
-youtube.com#%#//scriptlet("set-constant", "ytInitialPlayerResponse.adPlacements", "undefined")
-!#endif
+! smart JSON override: https://gist.github.com/ameshkov/0c5148f243ffe9d8e40fd9ee11f142f4
+! smartJSONParseOverride('adPlacements', [], /base.js:[0-9]+/);
+! smartJSONParseOverride('playerAds', [], /base.js:[0-9]+/);
+youtube.com#%#(function(){var overrideObject=function(obj,propertyName,overrideValue){for(var key in obj){if(obj.hasOwnProperty(key)&&key===propertyName)obj[key]=overrideValue;if(obj.hasOwnProperty(key)&&typeof obj[key]==="object")overrideObject(obj[key])}};var realParse=JSON.parse;var smartJSONParseOverride=function(propertyName,overrideValue,reStack){JSON.parse=function(text,reviver){var obj=realParse(text,reviver);if(!obj)return obj;var stackTrace=(new Error).stack;if(reStack.test(stackTrace))overrideObject(obj, propertyName,overrideValue);return obj}};smartJSONParseOverride("adPlacements",[],/base.js:[0-9]+/);smartJSONParseOverride("playerAds",[],/base.js:[0-9]+/)})();
+!#if (!adguard_app_ios)
 @@||youtube.com/get_video_info
+!#endif
+
+! These two rules seem to be working okay.
+! Commented out for now in order to test the smart override function
+! ||youtube.com/*/base.js$replace=/(playerResponse\.adPlacements|playerResponse\.playerAds)/_ad/
+! ||youtube.com/*/base.js$replace=/(playerAds|adPlacement[a-zA-Z]+)/_da/
+
+! These two rules commented out - they sometimes lead to broken YT
+! !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+! youtube.com#%#//scriptlet("json-prune", "playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds")
+! youtube.com#%#//scriptlet("set-constant", "ytInitialPlayerResponse.adPlacements", "undefined")
+! !#endif
