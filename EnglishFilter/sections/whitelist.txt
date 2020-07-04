@@ -117,6 +117,10 @@ swatchseries.to##.download_link_sponsored
 ! https://github.com/AdguardTeam/CoreLibs/issues/963
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34925
 @@||google.com/recaptcha/$csp
+! don't add cosmetic rules to recaptcha frame
+@@||google.com/recaptcha/api2/$document
+! For the cases when all third party scripts are blocked on a website
+@@||gstatic.com/recaptcha/$script,stylesheet
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/2784
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31568
 !+ PLATFORM(windows)
@@ -1980,8 +1984,6 @@ readwhere.com#@#.adunit
 veporns.com#@#.video_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19441
 @@||jetpack.wordpress.com/jetpack-comment^$domain=onhax.me
-! Fixing reCaptcha
-@@||recaptcha.net/recaptcha/api.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19103
 @@||v.fwmrm.net/ad/g/1$domain=player.theplatform.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19019
@@ -2105,8 +2107,6 @@ zmorph3d.com#@#.b-header-banner
 @@||escdn.co/hls/$xmlhttprequest,domain=estream.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13731
 @@||vidlox.tv/upload/$domain=vidlox.me
-! For the cases when all thisr party scripts are blocked
-@@||gstatic.com/recaptcha/$script,stylesheet
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13623
 @@||googletagservices.com/tag/js/gpt_mobile.js$domain=www.vulture.com
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=www.vulture.com
@@ -3517,7 +3517,6 @@ amazon.com#@#.a-link-normal[href*="&adId="]
 @@||dailymotion.com/embed^$third-party
 |http://$script,subdocument,third-party,xmlhttprequest,domain=jkanime.net,badfilter
 @@$webrtc,domain=sourceforge.net
-@@||google.com/recaptcha
 @@/beacon.js$domain=ww1.canada.com
 @@/content/tour/banner/*$domain=digitalplayground.com
 @@||adstop.org^
