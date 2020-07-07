@@ -2,6 +2,9 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/58617
+! + $$ rule below
+pornreactor.cc#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", "return localStorage")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57388
 7info.ru#%#//scriptlet("set-constant", "td_ad_background_click_link", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58321
@@ -366,8 +369,6 @@ porno-tour.net#%#(function(){var getElementsByTagName=document.getElementsByTagN
 lostfilmonline.ru#%#Object.defineProperty(window, 'fonfonov', { get: function() { return {}; } });
 ! tfilm.me - удаление отступа сверху
 tfilm.me#%#AG_onLoad(function() { document.getElementById("body").style.paddingTop = "0px"; });
-!
-pornreactor.cc,joyreactor.cc,reactor.cc#%#(function() { var w_open = window.open, regex = /.php?ab=/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1553
 videokub.me#%#document.cookie = "mycp=1";
 ! insider.pro - disable splash screen ad
@@ -1643,6 +1644,8 @@ zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua#$#.articl
 !------- HTML ----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/58617
+pornreactor.cc$$script[onerror="_"][onloaded="_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50723
 ! For Ukrainian users of Yandex.Browser(ads are loaded using proxy)
 zoneofgames.ru$$script[tag-content="an.yandex.ru"][max-length="700"]
