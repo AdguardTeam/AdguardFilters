@@ -3861,15 +3861,17 @@ popsci.com#$#body.tp-modal-open { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31497
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25591
 extremereportbot.com#%#AG_onLoad(function(){document.querySelectorAll("ins.adsbygoogle").forEach(function(a){try{var b=document.createElement("iframe");b.style="width: 0px !important; border: none !important;";a.appendChild(b);var c=a.querySelector("iframe"),d=document.createElement("iframe");c.contentWindow.document.body.appendChild(d)}catch(e){}})});
-extremereportbot.com#%#//scriptlet("set-constant", "ga", "noopFunc")
+!+ PLATFORM(windows, mac, android, ext_chromium, ext_edge)
 extremereportbot.com#%#//scriptlet("set-constant", "adsbygoogle", "undefined")
+extremereportbot.com#%#//scriptlet("set-constant", "ga", "noopFunc")
 @@||extremereportbot.com/ads.js
-!+ NOT_PLATFORM(windows, mac, android)
-extremereportbot.com#%#//scriptlet("prevent-setTimeout", "doABW")
-!+ PLATFORM(windows, mac, android)
-extremereportbot.com#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/doABW/.test(a.toString()))return b(a,c)};})();
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+extremereportbot.com#@#.adsbygoogle
+extremereportbot.com#$#.adsbygoogle { height: 1px!important; }
+@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=extremereportbot.com
+@@||googleads.g.doubleclick.net/pagead/ads$domain=extremereportbot.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=extremereportbot.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25962
 @@||crstoday.com/wp-content/themes/bmc-core/library/js/showads.js$domain=crstoday.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25746
