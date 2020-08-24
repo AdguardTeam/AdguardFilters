@@ -6457,6 +6457,9 @@ motocaina.pl##iframe[src^="/acme/"][src$="index.html"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60690
 cgm.pl##.bsaPopupWrapper
 cgm.pl##.bsaPopupWrapperBg
+! https://github.com/AdguardTeam/AdguardFilters/issues/62007
+polskiedrogi-tv.pl##.rek-wrap
+polskiedrogi-tv.pl##.spc
 ! subiektywnieofinansach.pl - ads
 subiektywnieofinansach.pl##.partner-box
 subiektywnieofinansach.pl##.border-box > .partner
@@ -7315,7 +7318,6 @@ www.wp.pl#$#body { overflow: visible!important; }
 ||parenting.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) [a-zA-Z]===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||parenting.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||o2.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) [a-zA-Z]===[\S]*?(\}))/\$4\$5\$6\$8/,script
-||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||pudelek.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) [a-zA-Z]===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||pudelek.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||dynacrems.wp.pl/staticad/$replace=/.+//,important
@@ -7336,6 +7338,11 @@ www.wp.pl#$#body { overflow: visible!important; }
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,app=~pl.videostar
 !+ PLATFORM(ext_ff)
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,domain=~profil.wp.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/61660
+!+ PLATFORM(ext_ff)
+||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,domain=~poczta.o2.pl
+!+ NOT_PLATFORM(ext_ff)
+||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 !+ PLATFORM(windows, mac, android, ext_ff)
 wp.pl#%#//scriptlet("set-constant", "apstag", "undefined")
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
@@ -7847,16 +7854,8 @@ sydsvenskan.se##.placeholder-native-unit
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56772
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47420
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46569
-nyafilmer.lol##.center iframe#iframe_preview
-||nyafilmer.lol/u_*.js
-nyafilmer.lol##.bigbg
-nyafilmer.lol##.headerSpace
-nyafilmer.lol#$#body { overflow: visible!important; }
-nyafilmer.lol#?#body > div[class]:has(> h1:contains(Adblock))
-nyafilmer.lol#?#body > div[class]:empty:matches-css(position: fixed):matches-css(z-index: /\d+/)
-nyafilmer.lol##a[href][target="_blank"][rel="nofollow"]
-nyafilmer.lol#%#//scriptlet("prevent-window-open")
-nyafilmer.lol$$script[tag-content="shouldFire:function"][max-length="1000"]
+nyafilmer.*##.bigbg
+nyafilmer.*##.headerSpace
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45506
 streamtajm.com##.col-xs-12 > div[style^="background-color: #eee; width:"][style*="overflow: hidden;"]:not([class]):not([id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45408
