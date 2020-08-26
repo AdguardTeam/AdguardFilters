@@ -1,12 +1,7 @@
 !#######################################################
 !######### Banners of mobile apps for the sites ########
 !#######################################################
-!
-! Suppressing PWA "Add To Home screen" annoyance
-! Limit it to mobile versions only
-! causes some issues: https://github.com/AdguardTeam/AdguardForMac/issues/550
-!+ PLATFORM(android, ios)
-~zaycev.net,~xltrax.ee,~hitta.se,~mail.ru,~v7player.wostreaming.net,~facebook.com,~instagram.com,~drive.google.com$$link[rel="manifest"]
+!### HINTS are at the end of file
 !
 /wp-content/plugins/ioimedia-app-banner/*
 /js/jquery.smartbanner.js
@@ -16,25 +11,12 @@
 ##amp-app-banner
 ###smartbanner.ios
 ###smartbanner.windows
-!+ NOT_OPTIMIZED
-~m.thehipstore.co.uk,~teb.com.tr###smartbanner.android
-!
 ##head[prefix~="medium-com:"] ~ body .js-openInAppButton
 ##head[prefix~="medium-com:"] ~ body .js-postActionsBarContent > .js-readNextInteractions
-!
-!+ NOT_PLATFORM(ios, ext_android_cb)
-shazam.com##.shz-frame-apps-banner
-!
 amp-reddit-com.cdn.ampproject.org##.AppSelectorModal__body
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46237
 reddit.com#$#.XPromoPopup { display: none!important; }
 reddit.com#$#body.scroll-disabled { overflow: visible!important; position: static!important; }
-!+ NOT_PLATFORM(ios, ext_android_cb)
-reddit.com##body > div[id="container"] > div[class="App"] > div[class="AppMainPage"] > div[class="NavFrame"] > div[class="XPromoPopup active"]
-!#if (adguard_app_android)
-adme.ru#?##root div.g-recaptcha + div[class] div[class]:has(> a[href^="https://play.google.com/store/apps/details?id=com.adme.android"])
-aura.top#?#.sidebar-nav > li.sidebar-nav-item-small-link:has(> a[href^="https://redirect.appmetrica.yandex.com/serve/"])
-!#endif
 !
 tvr.by##.middle-banner-row
 makeup.com.ua##.pwa-notice
@@ -678,7 +660,6 @@ ciceksepeti.com##body > .smart-banner
 dartworld.shopgate.com,m.alles10euro.de,dodopizza.ru,allo.ua,tempo.co,beymen.com,tvnmeteo.tvn24.pl,outsidetv.com,golfchannel.com,sportsnet.ca,euronews.com,pkobp.pl,tesco.hu,prima.hu,immobilienscout24.de,lcwaikiki.com,m.sigrun-woehr.com,transfermarkt.de,fragfinn.de,hh.ru,eraffe24.de,infranken.de,m.computeruniverse.net,m.emp.de,meduza.io##body .smartbanner
 pixiv.net##dialog.app-dialog-for-first-user
 pinterest.com##div[class^="AppUpsellHeader"]
-m.imdb.com##div[class^="mobile-upsell"]
 youku.com##div[id$="_ykbanner"]
 apkpure.com##div[id^="ad-aegon-"]
 imageban.ru##img[alt="Get it on Google Play"]
@@ -700,45 +681,14 @@ retrip.jp,rtrp.jp#$#header-induction {display: none !important; }
 retrip.jp,rtrp.jp#$##page { padding-top: 0 !important; }
 retrip.jp,rtrp.jp#$#header.ng-scope { height: 45px !important; }
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/62101
-! https://github.com/AdguardTeam/AdguardFilters/issues/59635
-! https://github.com/AdguardTeam/AdguardFilters/issues/58693
-!+ NOT_OPTIMIZED
-eracom.com.tw,nexttv.com.tw#$#.download-tip { display: none!important; }
-!+ NOT_OPTIMIZED
-eracom.com.tw,nexttv.com.tw#%#//scriptlet("remove-attr", "style", ".download-tip ~ .article[style^='padding-top:'][style*='!important;']")
-!
 mobile.reuters.com#$#.header-main { margin-top: 0 !important; }
 mobile.reuters.com#$#nav.section-nav { padding-top: 54px !important; }
 mobile.reuters.com#$#section.search-nav { padding-top: 0 !important; }
 mobile.reuters.com#$##nonEditBannerContainer { display: none !important; }
 !
-!#if (adguard_app_android)
-ozon.ru#$?#.mobile > div.modal-mask:has(> div.modal-wrapper > div.modal-container > div.modal-content h2:contains(OZON ещё лучше в приложении)) { display: none!important; }
-ozon.ru#$#body { overflow: visible!important; }
-ozon.ru#$#html { overflow: visible!important; }
-!#endif
-!
 svyaznoy.ru#%#//scriptlet('remove-class', 'android-banner-on-page')
-!+ NOT_PLATFORM(ios, ext_android_cb)
-svyaznoy.ru###android-banner-container
 !
 ebay.*###gh-appBanner
-!
-!+ NOT_OPTIMIZED
-cameleo.xyz##.SmartBanner
-!+ NOT_OPTIMIZED
-eba.gov.tr##.go-app.mobile_alert
-!+ NOT_OPTIMIZED
-mdpr.jp###app-footer-banner
-!+ NOT_OPTIMIZED
-m.sabah.com.tr##.appButton
-!+ NOT_OPTIMIZED
-carrefoursa.com##.mob-app-redirect
-!+ NOT_OPTIMIZED
-24.hu###stickyMobileNotification
-!+ NOT_OPTIMIZED
-mobi.yahoo.com,delfi.ee,delfi.lt,delfi.lv##.smart-app-banner
 !
 ! CSS
 !
@@ -820,10 +770,6 @@ unian.net#$#.main-column > div > aside { height: 30px!important; }
 zillow.com#$##app-upsell > .fixed-banner { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16641
 givemesport.com#$##gms-editorial > .gms-article-indicator.floating-fixed { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/40738
-! https://github.com/AdguardTeam/AdguardFilters/issues/16526
-!+ NOT_OPTIMIZED
-pestisracok.hu#$##smartbanner { position: absolute!important; left: -4000px!important; }
 !
 aminoapps.com#$?#html:has(> body) { overflow: visible!important; }
 aminoapps.com#$#.overlay { display: none!important; }
@@ -837,11 +783,6 @@ tvrain.ru#$#html.smartbanner-show { margin-top: 0!important; }
 m.tr.beinsports.com#$#body > .android.shown { display: none!important; }
 m.tr.beinsports.com#$#form > header[style="top: 78px;"] { top: 0!important; }
 m.tr.beinsports.com#$#.content_section[style="margin-top: 78px;"] { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/42849
-!+ NOT_OPTIMIZED
-m.sabah.com.tr#$#.smartBann .header { top: 0!important; }
-!+ NOT_OPTIMIZED
-m.sabah.com.tr#$#body { padding-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7860
 sat1.de#$##smartbanner { display: none!important; }
 sat1.de#$#html.mob[style^="margin-top:"] { margin-top: 0!important; }
@@ -867,8 +808,6 @@ kicker.de#$##ovContentScroller { padding-top: 0!important; }
 m.ulmart.ru#$#.smartbanner { display: none!important; }
 m.ulmart.ru#$#.smartbanner_show .snap-content, .smartbanner_show .snap-drawers { top: 0!important; }
 !
-!+ NOT_OPTIMIZED
-teb.com.tr#$#.navbar-header { margin-top: 0!important; }
 teb.com.tr#$#html { margin-top: 0!important; }
 teb.com.tr#$##smartbanner.android { display: none!important; }
 teb.com.tr#$##smartbanner.ios { display: none!important; }
@@ -894,10 +833,6 @@ nostalgie.be,nrj.be#$#.navbar-fixed-top { top: 0!important; }
 nostalgie.be,nrj.be#$##android_box { display: none!important; }
 zalando.ch#$#.z-bit-smartbanner{display:none!important;}
 zalando.ch#$#body.z-bit-smartbanner_offset{margin-top: 0!important; }
-!+ NOT_OPTIMIZED
-rt.com#$#.header.header_top-interval_js { margin-top: 0!important; }
-!+ NOT_OPTIMIZED
-rt.com#$#.layout__header_top-interval_js { height: 50px!important; }
 momondo.de#$##mobile-splash-popup { display: none!important; }
 momondo.de#$##mui-header { display: block!important; }
 momondo.de#$#.flights-section-container { display: block!important; }
@@ -947,6 +882,73 @@ finanzen.net#%#document.cookie="sb-closed=true; path=/;";
 @@/js/jquery.smartbanner.js$domain=fiyatseyir.com|greyhound.com|amalgama-lab.com|m.halkbank.com.tr|intime.ua|avic.ua|mirage.ru|speedtest.net|energy.de|hermesworld.com|lekvapteke.ru|mcdonalds.com.tr|yalispor.com.tr|metroturizm.com.tr|anadolu.edu.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35423
 @@||cdn.bustracker.utrack.com/js/jquery.smartbanner.js
+!
+!
+!--- Rules with Hints
+!
+! Suppressing PWA "Add To Home screen" annoyance
+! Limit it to mobile versions only
+! causes some issues: https://github.com/AdguardTeam/AdguardForMac/issues/550
+!+ PLATFORM(android, ios)
+~zaycev.net,~xltrax.ee,~hitta.se,~mail.ru,~v7player.wostreaming.net,~facebook.com,~instagram.com,~drive.google.com$$link[rel="manifest"]
+!
+!+ NOT_OPTIMIZED
+~m.thehipstore.co.uk,~teb.com.tr###smartbanner.android
+!+ NOT_PLATFORM(ios, ext_android_cb)
+shazam.com##.shz-frame-apps-banner
+!+ NOT_PLATFORM(ios, ext_android_cb)
+reddit.com##body > div[id="container"] > div[class="App"] > div[class="AppMainPage"] > div[class="NavFrame"] > div[class="XPromoPopup active"]
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/62101
+! https://github.com/AdguardTeam/AdguardFilters/issues/59635
+! https://github.com/AdguardTeam/AdguardFilters/issues/58693
+!+ NOT_OPTIMIZED
+eracom.com.tw,nexttv.com.tw#$#.download-tip { display: none!important; }
+!+ NOT_OPTIMIZED
+eracom.com.tw,nexttv.com.tw#%#//scriptlet("remove-attr", "style", ".download-tip ~ .article[style^='padding-top:'][style*='!important;']")
+!+ NOT_PLATFORM(ios, ext_android_cb)
+svyaznoy.ru###android-banner-container
+!+ NOT_OPTIMIZED
+m.imdb.com##div[class^="mobile-upsell"]
+!+ NOT_OPTIMIZED
+cameleo.xyz##.SmartBanner
+!+ NOT_OPTIMIZED
+eba.gov.tr##.go-app.mobile_alert
+!+ NOT_OPTIMIZED
+mdpr.jp###app-footer-banner
+!+ NOT_OPTIMIZED
+m.sabah.com.tr##.appButton
+!+ NOT_OPTIMIZED
+carrefoursa.com##.mob-app-redirect
+!+ NOT_OPTIMIZED
+24.hu###stickyMobileNotification
+!+ NOT_OPTIMIZED
+mobi.yahoo.com,delfi.ee,delfi.lt,delfi.lv##.smart-app-banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/40738
+! https://github.com/AdguardTeam/AdguardFilters/issues/16526
+!+ NOT_OPTIMIZED
+pestisracok.hu#$##smartbanner { position: absolute!important; left: -4000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/42849
+!+ NOT_OPTIMIZED
+m.sabah.com.tr#$#.smartBann .header { top: 0!important; }
+!+ NOT_OPTIMIZED
+m.sabah.com.tr#$#body { padding-top: 0!important; }
+!+ NOT_OPTIMIZED
+teb.com.tr#$#.navbar-header { margin-top: 0!important; }
+!+ NOT_OPTIMIZED
+rt.com#$#.header.header_top-interval_js { margin-top: 0!important; }
+!+ NOT_OPTIMIZED
+rt.com#$#.layout__header_top-interval_js { height: 50px!important; }
+!
+!--- Directive
+!--- Android
+!#if (adguard_app_android)
+adme.ru#?##root div.g-recaptcha + div[class] div[class]:has(> a[href^="https://play.google.com/store/apps/details?id=com.adme.android"])
+aura.top#?#.sidebar-nav > li.sidebar-nav-item-small-link:has(> a[href^="https://redirect.appmetrica.yandex.com/serve/"])
+ozon.ru#$?#.mobile > div.modal-mask:has(> div.modal-wrapper > div.modal-container > div.modal-content h2:contains(OZON ещё лучше в приложении)) { display: none!important; }
+ozon.ru#$#body { overflow: visible!important; }
+ozon.ru#$#html { overflow: visible!important; }
+!#endif
 !
 ! Unhide for iOS and Android CB if top padding cannot be removed
 !#if (adguard_app_ios || adguard_ext_android_cb)
