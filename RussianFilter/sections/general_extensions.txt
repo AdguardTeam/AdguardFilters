@@ -2,12 +2,18 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/62094
+prostoporno.*#%#//scriptlet('prevent-window-open')
+! https://github.com/AdguardTeam/AdguardFilters/issues/62071
+bessporno.me#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61803
 xporno.xxx#%#document.cookie = "pu_count=1";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61143
 naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#document.cookie = "opt_js=opt_js; path=/;";
 ! sc2tv.ru - branding
 sc2tv.ru#%#//scriptlet('remove-class', 'body--brranding', 'peka-app > div.body--brranding')
+! https://github.com/AdguardTeam/AdguardFilters/issues/61999
+sporting360.org,sporting7.pw,08sportbar.online,08sportbar.net,sport24hd.net,sport24hd.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61395
 e1.ru#%#//scriptlet('remove-class', '_branding', 'div[class*="-wrapper"]')
 ! top ad remains in nba section
@@ -203,8 +209,6 @@ senglish.narod.ru#%#(function() { window.open_ = window.open; var w_open = windo
 vesti.uz#%#AG_abortInlineScript(/rtIsWebSocket/, 'document.createElement');
 ! forum.fonarevka.ru - ads
 forum.fonarevka.ru#%#AG_abortInlineScript(/_0x/, 'atob');
-! ExoClick (clickunder or/and ads)
-prostoporno.vip#%#(function(){Object.defineProperty(window, 'ExoLoader', { get: function() { return; } }); var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"getexoloader"!=a&&-1==b.toString().indexOf('loader')&&c(a,b,d,e)}.bind(document);})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26157
 46tv.ru#%#AG_onLoad(function() { window.a = 0; });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23826
@@ -460,6 +464,8 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !------- CSS -----------
 !-----------------------
 !
+! prostoporno - удаление отступа сверху
+prostoporno.*#$##wrapper { padding: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61873
 bizlida.by#$#body { height: unset !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61395
@@ -474,7 +480,7 @@ torrentbay.co#$#.pagecontent { margin-top: 0 !important; }
 anime.anidub.life,online.anidub.com#$#.content > div.speedbar { padding-top: 0 !important; margin: 0 0 !important; }
 anime.anidub.life,online.anidub.com#$##main > div:not([class*="wrap-"]) { visibility: hidden !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59768
-hdrezka.sh,nukinopoisk.com,livekinopoisk.com,betahdrezka.com,cokinopoisk.com,hdrezka-ag.com,hdrezka-online.me,hdrezka.club,hdrezka.cm,hdrezka.co,hdrezka.com.ua,hdrezka.host,hdrezka.lol,hdrezka.name,hdrezka.site,hdrezka.today,hdrezka.tv,hdrezka.website,hdrezkaag.net,hdrezkaweb.com,hdrezkayou.com,instahdrezka.com,myhdrezka.com,rezka.ag,tryhdrezka.com#$#.b-post__rating_table { margin-left: -30px !important; }
+mrhdrezka.com,hdrezka.sh,nukinopoisk.com,livekinopoisk.com,betahdrezka.com,cokinopoisk.com,hdrezka-ag.com,hdrezka-online.me,hdrezka.club,hdrezka.cm,hdrezka.co,hdrezka.com.ua,hdrezka.host,hdrezka.lol,hdrezka.name,hdrezka.site,hdrezka.today,hdrezka.tv,hdrezka.website,hdrezkaag.net,hdrezkaweb.com,hdrezkayou.com,instahdrezka.com,myhdrezka.com,rezka.ag,tryhdrezka.com#$#.b-post__rating_table { margin-left: -30px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59007#issuecomment-661291334
 kp.ru,kp.by,kp.kg,kp.kz,kp.md#$##allrecords > div#t-header + div.t-rec { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59475
@@ -555,8 +561,6 @@ smb.ixbt.com#$#.wrapper > div.tm { margin-bottom: 0 !important; }
 ! stalkerportaal.ru - download timer
 stalkerportaal.ru#$#table#timer_1 { display: none !important; }
 stalkerportaal.ru#$#div#timer_2 { display: block !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/52724
-prostoporno.plus#$#body { padding: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52621
 kazus.ru#$#.mfp-bg { display: none !important; }
 kazus.ru#$#.mfp-wrap { display: none !important; }
@@ -798,7 +802,7 @@ fasttorrent.su#$##container { margin: 64px auto 0 auto!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31445
 hdlava.com#$#body > header { margin-bottom: 30px!important; }
 ! tut.by - удаление брендированного фона
-tut.by#$#body { background: #e6e6e6!important; }
+tutby.*,tut.by#$#body { background: #e6e6e6!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32294
 iwantgames.ru#$#.article{ margin-top:0px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52692
@@ -1243,8 +1247,6 @@ chita.ru#$#body { margin-top: auto!important; padding-top: 0!important; }
 ! minecraft-inside.ru
 minecraft-inside.ru#$#div[style="text-align:center;margin-bottom:20px;margin-top:20px;clear:both;height:90px;"] { position: absolute!important; left: -3000px!important; }
 minecraft-inside.ru#$#div[style="text-align:center;margin-bottom:10px;clear:both;height:600px;"] { position: absolute!important; left: -3000px!important; }
-! prostoporno.club - удаление отступа сверху
-prostoporno.sex,prostoporno.tv,prostoporno.me,prostoporno.net,prostoporno.club,prostoporno.xxx#$#.content_wrapper { margin-top: auto!important; }
 ! sosista.live - удаление отступа сверху
 sosista.live#$#body > div#frame { top: auto!important; }
 ! fototips.ru - удаление отступа сверху
