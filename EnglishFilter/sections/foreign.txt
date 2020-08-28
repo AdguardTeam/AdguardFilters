@@ -4427,6 +4427,17 @@ krucil.net##img[width="900"][height="50"]
 !---------------------------------------------------------------------
 !------------------------------ Hebrew -------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/62416
+||walla.co.il/js/walla.js
+!+ NOT_PLATFORM(ext_ublock)
+walla.co.il#@%#//scriptlet('ubo-aopw.js', 'upManager')
+!+ NOT_PLATFORM(ext_ublock)
+walla.co.il#@%#//scriptlet('ubo-acis.js', 'btoa', 'upManager')
+!+ NOT_PLATFORM(windows, mac, android)
+walla.co.il#%#//scriptlet('abort-on-property-read', 'googletag.defineSlot')
+! For some reason scriptlet doesn't work with apps
+!+ PLATFORM(windows, mac, android)
+walla.co.il#%#AG_abortOnPropertyRead('googletag.defineSlot');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60889
 ynet.co.il##.marketingRecommended
 !+ NOT_PLATFORM(ext_ublock)
