@@ -1,6 +1,15 @@
 !
 ! Extended CSS rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/63236
+pixiv.net#?#div[style^="position: static;"] + div[class] > iframe[name="header"][width]:upward(1)
+pixiv.net#?#div[class^="sc-"] > div[style^="margin:"][style*="font-size:"]:only-child > iframe[name="footer"][width]:only-child:upward(2)
+! https://github.com/AdguardTeam/AdguardFilters/issues/63163
+cointelegraph.com#?#.sidebar > .sidebar__widget:has(> div > div > a[href^="https://cointelegraph.com/advertise"])
+cointelegraph.com#?#.posts-listing__list > .posts-listing__item:has(> div > div > a[href^="javascript:void(0);"][data-link] img)
+cointelegraph.com#?#.post-page__item > div[class]:has(> div > div > a[href^="javascript:void(0);"][data-link] img)
+! https://github.com/AdguardTeam/AdguardFilters/issues/63032
+letsupload.org#?#.mngez_upgradepage > .content > h3:contains(/^Sponsored Content\.$/)
 ! ouo.io - ads
 ouo.io#$?#iframe[name]:not([class]):not([id]):not([src])[style^="display:"] { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62685
@@ -328,8 +337,8 @@ msn.com#$?#li[data-adindex] { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46405
 pornpictureshq.com#?#.masonry_thumbs > div.grid > div.thumb:has(> iframe)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46561
-imdb.com#?##maindetails_sidebar_bottom > div.aux-content-widget-2:has(> span.ab_widget > div.ab_zergnet)
-imdb.com#?##sidebar > div.aux-content-widget-2:has(> span.ab_widget > div.ab_zergnet)
+! imdb.com#?##maindetails_sidebar_bottom > div.aux-content-widget-2:has(> span.ab_widget > div.ab_zergnet)
+imdb.com#?##sidebar > div[class]:has(> span.ab_widget > div.ab_zergnet)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46378
 outlook.live.com#?##app > .ms-Fabric > div[class] > div[class] > div[class]:has(> div > div > div[id^="owaadbar"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46373
@@ -528,7 +537,7 @@ thegatewaypundit.com#?#.page-sidebar > div.thega-widget:has(> div[id^="thega-"] 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37850
 imtranslator.net#?#td:has(div[style="border:0px; margin-top:8px;width:728px;height:90px;"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35520
-multiup.org#?#.panel-body > .row > .col-md-4:has(> .panel > .panel-footer > a[href^="/download-fast/"][namehost="UseNet"])
+multiup.eu,multiup.org#?#.panel-body > .row > .col-md-4:has(> .panel > .panel-footer > a[href^="/download-fast/"][namehost="UseNet"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37324
 xenforo.pk#?#.p-body-sideNavContent > .block:has(> .block-container > .block-body > .adsbygoogle)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50342
@@ -742,22 +751,11 @@ digit.in#?##sidebar > .specs-box[-ext-has='h3:contains(Recommendation and Deals)
 digit.in#?##sidebar > div.newleft-list:has( > ul > li[-ext-has='a[href*="tracker"][onclick*="BTC_Product_Widget_RHS"]'])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21771
 softpedia.com#?#.main > div[class^="container_"] > div[class$="_30 grid_48"]:has(> .dlcls > span.promoted[style])
-! https://github.com/AdguardTeam/AdguardFilters/issues/22410
-! https://github.com/AdguardTeam/AdguardFilters/issues/21090
-! https://forum.adguard.com/index.php?threads/facebook-sponsored-ads-have-started-appearing-again.29880
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='[id^="feed_subtitle_"] > span[class][role=presentation] + span[class]:matches-css(display: none)']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='[id*="feed_subtitle_"] > span[class][role=presentation] + span[class]:matches-css(display: none)']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='[id*="feed_sub"] > span[class][role=presentation] + span[class]:matches-css(display: none)']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='[id*="feed_sub"] > span[class][role=presentation] ~ * ~ span[class]:matches-css(display: none)']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='[id*="feed_sub"] > span[class][id^="u_fetchstream"] span[class]:matches-css(display: none)']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"]:has(div.d_gj-ysfupy > .n_gj-ysddak) --- breaks newsfeed
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21497
 readheroacademia.com#?##main > .chapter_coin > center:has(> h3 > strong:contains(Advertisement))
 readheroacademia.com#?##main > .code-block[style] > center:has(> h3 > strong:contains(Advertisement))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20655
 mylust.com#?#.box > .title:contains(Advertisement)
-! https://github.com/AdguardTeam/AdguardFilters/issues/21090
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"]:has(div._5pcp._5lel span a[href="#"] > div[class])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21268
 filikula.co#?#.idTabs > li[-ext-has='a[href^="#tab-ad"]']
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21149
@@ -939,8 +937,6 @@ websiteoutlook.com#?#.container > .row .clearfix[-ext-has='ins.adsbygoogle']
 putlocker.bet#?#.content-box > .message ~ table[-ext-has='a[href^="/watching/"] > img']
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8819
 putlocker.at#?#.content-box > table[-ext-has='a[href^="http://putlocker.at/play"]']
-! https://github.com/AdguardTeam/AdguardFilters/issues/8124
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id"][-ext-has='a.uiStreamSponsoredLink']
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8402
 pajiba.com#?##burstBox > h2:has(> b:contains(Advertisement))
 pajiba.com#?##burstBox > h2:has(> b:contains(Advertisement)) + hr
@@ -1022,11 +1018,13 @@ smailpro.com#?##home div.caption > div[class]:has(> div > a[target="_blank"] > i
 tube-bunny.com#?#.page-wrapper div[class]:has(> div.title-vis > p > span:contains(Advertisement))
 tube-bunny.com#?#span:contains(Advertisement)
 !
+youngpornvideos.com##.sidebar div[class]:has(> a[href^="https://a.bestcontentoperation.top/"])
 onlinemschool.com#?#div[style*="!important;"]:has(> img)
 thequint.com#?#.container div:has(> div > div > .adunitContainer)
 kiktu.com###secondary > div.widget:has(> div.code-block > script[src^="https://www.highprofitnetwork.com/"])
 alltutorialsworld.com###secondary > aside.widget_text:has(> div.textwidget > ins.adsbygoogle)
 radio.net#?#header ~ div[class]:has(> div[class] > div[id^="RAD_NET_"])
+mamalisa.com#?#.row div[class] > div[style]:contains(Advertisement)
 fapnado.com#?##list_videos_related_videos > center:contains(Advertisement)
 pinkvilla.com#?#div[style]:has(> span:contains(Advertisement))
 pinkvilla.com#?#li:has(> div[style] > span:contains(Advertisement))
@@ -1084,7 +1082,7 @@ footwearnews.com#?#.slick-track > .slick-slide:has(> article > .admz)
 washingtonpost.com#?#main > aside > div:has(> wp-ad)
 zmovs.com#?#.jscroll-inner > div.jscroll-added > div.in-gallery-spot:has(> div[class]:contains(Advertisement))
 stackabuse.com#?#.sidebar > .widget:has(> .ad)
-stackabuse.com#?#.sidebar > .widget-sticky:has(> div > div > a[ga-event-category="Sponsorship"])
+stackabuse.com#?#.sidebar > .widget-sticky:has(> div > div > .ad)
 bluemoongame.com#?#.relative > section:has(> div.section-content > div.row > div.col > div.col-inner > div.box a[rel^="sponsored"])
 petri.com#?#.content_sidebar > div.widget:has(> div.widget_header > h6.title:contains(Sponsors))
 fort-russ.com#?#.wpb_wrapper > div.wpb_single_image:has(> figure.wpb_wrapper > a.vc_box_border_grey)
@@ -1191,10 +1189,7 @@ dailytelegraph.com.au#?#.widget-area-main-content > div.widget_newscorpau_capi_s
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8124
 t.facebook.com,t.facebookcorewwwi.onion#?#div[id^="more_pager_pagelet_"] div[id^="hyperfeed_story_id_"][-ext-has='a[href^="/ads/about"]']
 t.facebook.com,t.facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='a[href^="https://t.facebook.com/ads/about"]']
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='div[id^="feed_subtitle"] > span > a[href="#"] > div[class] > div[class]:not(.timestampContent)']
-! facebook.com#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"]:has(div._5pcp._5lel > span div a[href="#"])
 ! https://forum.adguard.com/index.php?threads/facebook-com.21192/
-! facebook.com,facebookcorewwwi.onion#?#div[id^="substream_"] div[id^="hyperfeed_story_id_"][-ext-has='._5paw > a._3e_2[href^="https://l.facebook.com"]']
 ! facebook.com marketplace item view - ad below initial item
 facebook.com,facebookcorewwwi.onion#?#div[data-testid="marketplace_pdp_component"] div[style^="max-height:"] div[style^="max-height:"] > div[class] > div > div:not([class]):has(> div[class] > div[class] > a[href^="/ads/"])
 ! https://forum.adguard.com/index.php?threads/movieonline-io-fake-button.24728/
@@ -1354,7 +1349,7 @@ hipornvideo.com#?#div[class$="story box"][-ext-has='h3[class$="shead"]:contains(
 ! https://forum.adguard.com/index.php?threads/13796/
 listoffreeware.com#?#div[class$="post excerpt"][-ext-has='ins[class$="adsbygoogle"]']
 ! https://forum.adguard.com/index.php?threads/13760/
-4fuckr.com ##div[class^="box"][style][-ext-has='a:not([href^="/image_"]):not([href^="/video_"]) > img']
+4fuckr.com##div[class^="box"][style][-ext-has='a:not([href^="/image_"]):not([href^="/video_"]) > img']
 ! https://forum.adguard.com/index.php?threads/13471/
 cnn.com#?#div[class^="column zn__column--idx-"][-ext-has='h2[data-analytics$="Paid Partner Content_list-xs_"]']
 ! https://forum.adguard.com/index.php?threads/13479/
