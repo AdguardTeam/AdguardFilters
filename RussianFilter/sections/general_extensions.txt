@@ -141,8 +141,6 @@ porevos.ru#%#AG_abortInlineScript(/substr/, 'String.fromCharCode');
 newsland.com#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", ".*")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42082
 gazeta.ru#%#//scriptlet('abort-on-property-read', 'g_GazetaNoExchange')
-! gazeta.ru - remove branditg from the score table in sport section
-gazeta.ru#%#(function() {var observer = new MutationObserver(hide);observer.observe(document, {childList: !0,subtree: !0});function hide() {const elements = document.getElementsByClassName('betting'); [...elements].forEach((element) => { element.className = element.className.replace(/betting/, ""); });}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42271
 33porno.com#%#//scriptlet("prevent-window-open")
 ! vesti.ua - ad scripts
@@ -470,6 +468,13 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !------- CSS -----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/63582
+! gazeta.ru - убрана реклама олимпа
+gazeta.ru#$#.b_olimpbet_board { background: #000 !important; height: 275px !important; }
+gazeta.ru#$#.b_olimpbet_board  div.b_olimpbet_board-carousel-item { height: 175px !important; }
+gazeta.ru#$#.b_olimpbet_board > div.b_olimpbet_board-footer { height: 20px !important; }
+gazeta.ru#$#.b_olimpbet_board > div.b_olimpbet_board-header { display: none !important; }
+gazeta.ru#$#.bet { display: none !important; }
 ! proagro.com.ua - убран отступ
 proagro.com.ua#$##all > main { margin: 0 15px 0 165px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63437
