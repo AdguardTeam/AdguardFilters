@@ -177,10 +177,8 @@ youtube.com##ytd-search-pyv-renderer
 ! This one might be needed when the page is loaded for the first time
 youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adPlacements', 'undefined')
 youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'playerResponse.adPlacements', 'undefined')
-! Keep multiple rules here to make it readable
-youtube-nocookie.com,youtube.com#%#//scriptlet("json-prune", "[].playerResponse.adPlacements [].playerResponse.playerAds")
-youtube-nocookie.com,youtube.com#%#//scriptlet("json-prune", "playerResponse.adPlacements playerResponse.playerAds")
-youtube-nocookie.com,youtube.com#%#//scriptlet("json-prune", "adPlacements playerAds")
+! Modify YT xhr responses
+youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '[].playerResponse.adPlacements [].playerResponse.playerAds playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds')
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51453
