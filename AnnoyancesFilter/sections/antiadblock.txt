@@ -41,9 +41,12 @@ docviewer.yandex.ru,docviewer.yandex.ua,docviewer.yandex.by,docviewer.yandex.com
 ! kinopoisk.ru - media ads in trailers
 www.kinopoisk.ru##div[class^="toaster-container"]
 www.kinopoisk.ru##div[class^="styles_adBlockWarningRoot"]
-www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.mediaAds")
-www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.createVideoBannerAdLite")
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+yastatic.net#%#//scriptlet("abort-on-property-read", "Object.prototype.adBreakType")
+! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.mediaAds")
+! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.createVideoBannerAdLite")
 www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.Rtb")
+!#endif
 ! otzovik
 otzovik.com#%#//scriptlet('prevent-eval-if', 'xored')
 otzovik.com#%#//scriptlet("abort-on-property-read", "Object.prototype.RtbLoadDone")
@@ -202,9 +205,11 @@ skegnessstandard.co.uk#@#.text-ad-links
 !
 ! General anti-adblock rules
 !@@.com/ads.js|$~third-party,domain=~1ppt.com
+/wp-content/*/javascripts/*.passive_display_adblock.js$~third-party
 @@/js/adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js
 @@.com/js/advertisement.js$~third-party
 ||wp-r.github.io/adsplacer_pro/$third-party
+||wp-r.github.io/*/assets/js/jquery.adsplacer.ab-testing.js
 /wp-content/plugins/adsplacer_pro/assets/js/jquery.adsplacer.adblock.js
 @@/wp-content/themes/wp-mason/static/js/ads.js$~third-party
 /wp-content/plugins/simple-adblock-notice/*
@@ -344,8 +349,12 @@ xdarom.com#%#//scriptlet('prevent-setTimeout', 'mdp-deblocker')
 ! #%#//scriptlet("abort-on-property-read", "mdpDeBlocker")
 ! masihbelajar.com,masihbelajar.com#%#//scriptlet("abort-on-property-read", "mdpDeBlocker")
 !#safari_cb_affinity(general)
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=texture-packs.com|xdarom.com
+@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl_*.js$domain=texture-packs.com
+@@||googleads.g.doubleclick.net/pagead/id|$domain=texture-packs.com
+@@||googleads.g.doubleclick.net/pagead/id?slf_rd=1$domain=texture-packs.com
+!#endif
 !#safari_cb_affinity
 !
 ! 'sidearm-adblock'
@@ -364,7 +373,7 @@ woxikon.de,mavikadin.com,milliyet.com.tr,gizbot.com,lyrics.com,dicionario.priber
 ! #%#//scriptlet('prevent-setTimeout', 'f.parentNode.removeChild(f)', '100')
 rawstory.com,news.goo.ne.jp,haberler.com,sondakika.com,regnradar.se,agazeta.com.br,thehill.com,quotes.net,cnnindonesia.com,newsbomb.gr,interpals.net,boldsky.com,all3dp.com,detik.com,tecnoblog.net,wenxuecity.com,abola.pt,drivespark.com,mykhel.com,careerindia.com,goodreturns.in,oneindia.com,greensboro.com,ynetnews.com,abc.es,abcnyheter.no,accuweather.com,avsforum.com,bellinghamherald.com,blic.rs,blitz.bg,bloomberght.com,bnd.com,brantfordexpositor.ca,business.financialpost.com,canoe.com,cinemablend.com,cnnturk.com,contra.gr,digitaltrends.com,dumpert.nl,dziennikbaltycki.pl,elmundo.es,elnuevoherald.com,elpais.com,esquire.com.gr,expressilustrowany.pl,fredericksburg.com,fresnobee.com,haberturk.com,hnonline.sk,ign.com,index.hr,interia.pl,izismile.com,jetphotos.com,kansascity.com,kentucky.com,klix.ba,kupujemprodajem.com,ladylike.gr,latimes.com,lecturas.com,lifestyle.bg,listenonrepeat.com,maisfutebol.iol.pt,marca.com,marketscreener.com,metropoles.com,money.bg,montrealgazette.com,mtlblog.com,mynet.com,narcity.com,nationalpost.com,news.bg,news247.gr,ni.dk,ntv.com.tr,nwitimes.com,observador.pt,okdiario.com,omaha.com,phonearena.com,polskatimes.pl,poststar.com,sanluisobispo.com,showtv.com.tr,slickdeals.net,sme.sk,snopes.com,sport24.gr,star-telegram.com,startv.com.tr,sunherald.com,tdn.com,theindependent.com,theobserver.ca,theprovince.com,thesouthern.com,thestate.com,tomshw.it,topito.com,topsport.bg,torontosun.com,trib.com,uol.com.br,vancouversun.com,wcfcourier.com,windsorstar.com,ynet.co.il,yourdictionary.com,zonebourse.com#%#//scriptlet('prevent-setTimeout', 'f.parentNode.removeChild(f)', '100')
 !
-kadinlarkulubu.com,pinknews.co.uk,newsru.com,livejournal.com,tecmundo.com.br,rap.ru,abcnyheter.no##body div.fc-ab-root
+zacks.com,kadinlarkulubu.com,pinknews.co.uk,newsru.com,livejournal.com,tecmundo.com.br,rap.ru,abcnyheter.no##body div.fc-ab-root
 !#if (adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 @@||news.goo.ne.jp^$generichide
@@ -376,6 +385,15 @@ kadinlarkulubu.com,pinknews.co.uk,newsru.com,livejournal.com,tecmundo.com.br,rap
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=web2.0calc.com
 !
 !
+amgelescape.com#@#.afs_ads
+mapgenie.io###blobby-left
+timebucks.com#%#//scriptlet("set-constant", "canRunAds", "true")
+moneyguru.co###wrapfabtest
+@@||googleads.g.doubleclick.net/pagead/ads$domain=next-episode.net
+@@||adservice.google.com/adsid/integrator.js$domain=next-episode.net
+@@||googleads.g.doubleclick.net/pagead/ff.js$domain=next-episode.net
+||citynews1130.com/wp-content/themes/samuel/javascripts/grcn.passive_display_adblock.js
+desktophut.com###loading-ad
 websearch.rakuten.co.jp###adblocker-warning-popup
 shinden.pl#%#AG_onLoad(function(){var a=document.querySelectorAll('div[id^="spolecznosci"]');0<a.length&&a.forEach(function(b){b.appendChild(document.createElement("div"))})}); 
 mysnip.xyz##.form-group > b > h3
@@ -907,9 +925,6 @@ fmoviez.org###cookiedata.ann-home.alert
 @@||majorgeeks.com/b/advertisement.js
 mir74.ru###adblock_top_reminder
 hotvideo.fr###disclaimerId
-thedailybeast.com#$#.tp-modal { display: none!important; }
-thedailybeast.com#$#.tp-backdrop { display: none!important; }
-thedailybeast.com#$#body.tp-modal-open { overflow: visible!important; }
 unikampus.net##.jgcabd-container
 tvtropes.org#?#div:matches-css(z-index: 100001)
 luzernerzeitung.ch#$?#iframe:matches-css(z-index: 100001) { display: none!important; }
@@ -2305,6 +2320,7 @@ myfxbook.com#%#//scriptlet("set-constant", "adBlockerDetect", "1")
 ! Common safari_cb_affinity(general)
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
+@@||timebucks.com/publishers/pages/ads.js
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=zeelandnet.nl
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=abcya.com
 @@||tt1069.com/dfp.min.js
