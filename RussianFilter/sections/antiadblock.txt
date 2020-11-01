@@ -577,7 +577,8 @@ flymer.ru#$#.ad-home { position: absolute!important; left: -3000px!important; }
 !
 ! START: Ads replacement (piguiqproxy.com etc.)
 !
-pravda.com.ua,u-news.com.ua,epravda.com.ua,i.ua#%#//scriptlet('abort-on-property-read', 'Object.prototype.ads')
+!+ NOT_PLATFORM(windows, mac, android)
+pravda.com.ua,epravda.com.ua#%#"use strict";if(document.head)throw new Error("Head already exists - make sure to enable instant script injection");var insertedNodes=[],observer=new MutationObserver(function(e){e.forEach(function(e){for(var t=0;t<e.addedNodes.length;t++)e.addedNodes[t].innerText.match(/ShadowRoot.*pravda\.com\.ua|AdnetAttachScript/)&&e.addedNodes[t].remove()})});observer.observe(document.documentElement,{childList:!0,subtree:!0});
 !+ NOT_PLATFORM(windows, mac, android)
 dt.ua,autoua.net,gorod.dp.ua,4mama.ua,beauty.ua,bigmir.net,enovosty.com,epravda.com.ua,eurointegration.com.ua,facenews.ua,gagadget.com,gismeteo.ua,hvylya.net,internetua.com,kolobok.ua,kp.ua,liga.net,nnovosti.info,obyava.ua,okino.ua,real-vin.com,ringside24.com,smak.ua,strana.ua,tochka.net,toneto.net,tv.ua,tvgid.ua,ubr.ua,vesti.ua#%#(function(){var a=document.currentScript,b=String.prototype.charCodeAt,c=function(){return true;};Object.defineProperty(String.prototype,"charCodeAt",{get:function(){return document.currentScript===a?b:c},set:function(a){}})})();
 ! Скрипт есть, но без рекламы:
