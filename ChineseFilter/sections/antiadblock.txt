@@ -1,6 +1,12 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/66937
+pg-wuming.com#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||pg-wuming.com^$generichide
+@@||pg-wuming.com/js/*/adblocker-1.js
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66280
 youneed.win#%#//scriptlet("abort-on-property-read", "daau_app")
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=googlesyndication-adsbygoogle,domain=youneed.win
