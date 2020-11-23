@@ -2,7 +2,9 @@
 ! Extended CSS rules
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66671
-filmwatch.net#?#.content-container > div.video-parts + div[class] > * > [id]:not(div):has(> div[class]:contains(Reklam))
+filmwatch.net#$?#.content-container > div.video-parts + div[class] > div[class]:has(~ *:not(div):contains(Reklam)) { display: none !important; }
+filmwatch.net#$?#.content-container > div.video-parts + div[class] > div[class] ~ *:not(div):contains(Reklam) { display: none !important; }
+filmwatch.net#$?#.content-container > div.video-parts + div[class]:has(> div[class] > iframe[src^="https://filmwatch.net/"]) { display: block !important; }
 !
 vizyonfilmizle.tv#$?#.fancybox-overlay-fixed[-ext-has="> div"] { display: none!important; }
 vizyonfilmizle.tv#$?#.fancybox-lock body[-ext-has="> div"] { overflow: visible!important; }
