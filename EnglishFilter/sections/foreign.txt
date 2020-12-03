@@ -869,6 +869,9 @@ olke.az#$#.wrapper { top: 0!important; }
 !---------------------------------------------------------------------
 !------------------------------ Bulgarian ----------------------------
 !---------------------------------------------------------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/68914
+arenabg.com##div[id^="spot-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64914
 @@||play.nova.bg/prebid-ads.js
 play.nova.bg#%#//scriptlet("set-constant", "_spabia", "true")
@@ -4530,9 +4533,9 @@ walla.co.il##iframe[src^="https://campaigns.yad2.co.il/"]
 ||sheee.co.il/js/walla.js
 ||cdn.behindyou.cf/cdn/walla.js
 /walla.js$third-party,domain=walla.co.il
-sheee.co.il,walla.co.il$$script[wildcard="*try*function*String.fromCharCode*catch*"][min-length="15000"][max-length="90000"]
+sheee.co.il,walla.co.il$$script[wildcard="*try*function*static*string*catch*"][min-length="15000"][max-length="90000"]
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
-sheee.co.il,walla.co.il#$?#head > iframe { remove: true; }
+sheee.co.il,walla.co.il#$?#head  iframe { remove: true; }
 ! walla.co.il#%#//scriptlet('remove-cookie', '/^([a-zA-Z0-9]{40,70}|[a-zA-Z0-9]{8,11})$/')
 sheee.co.il,walla.co.il#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
 ||cm.g.doubleclick.net/pixel?$image,redirect=1x1-transparent.gif,domain=sheee.co.il|walla.co.il
@@ -5430,6 +5433,8 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/68961
+av-jamak.com##.widget-index > div.row:not(.at-row)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68780
 badayak.com#%#//scriptlet('abort-current-inline-script', 'addEventListener', 'google_ad_client')
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
@@ -5681,10 +5686,12 @@ ppomppu.co.kr#?#.main > .left > .topSub-nav:has(> .topSub-nav.off > a[href][targ
 kpanews.co.kr#@#.ad_top
 kpanews.co.kr##div[class^="area_ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62624
-! https://github.com/AdguardTeam/AdguardFilters/issues/52199
+! frequently changed domains
 marumaru.*##.w_banner
+marumaru.*##.bottom-navbar[style="height:60px"]
 ! For Android CB
-marumaru.site##.w_banner
+marumaru.loan##.bottom-navbar[style="height:60px"]
+marumaru.loan##.w_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50380
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=coronaita.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50088
@@ -5750,8 +5757,10 @@ torrenttt02.me###hd_pop
 ||torrenttt02.me/data/file/ad/
 ||torrenttt02.me/thema/Basic/assets/img/banner1.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51439
-avsee07.tv,avsee06.tv##img[width="100%"]
-avsee07.tv,avsee06.tv##img[align][height="100%"]
+! frequently changed domain
+avsee12.tv##img[width="100%"]
+avsee12.tv##img[align][height="100%"]
+||avsee*.tv/banner/
 ! video ad on NaverTV Live
 ||a01-g-naver-vod.pstatic.net^$media,domain=tv.naver.com,redirect=noopmp4-1s
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45933
@@ -5814,8 +5823,6 @@ kakaotv.daum.net,play-tv.kakao.com,tv.kakao.com,media.daum.net,v.daum.net,entert
 @@||videoads.kakao.com/adserver/api/v*/vast?data=$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 @@||daumcdn.net/adfit/static/ad.min.js$domain=kakaotv.daum.net|play-tv.kakao.com|tv.kakao.com|media.daum.net|v.daum.net|entertain.daum.net|gallery.v.daum.net|namu.wiki
 ||stream.spongead.com^$third-party
-! https://github.com/AdguardTeam/AdguardFilters/issues/43002
-||avsee05.tv/banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42987
 jamakav.com##.swipe-carousel
 jamakav.com##a[href*="deloplen.com/afu.php"]
@@ -5846,7 +5853,7 @@ koreaminecraft.net##.ka-red > p > a[href][target="_blank"] > img
 torrentp.com###banner_top_list_wrap
 torrentp.com##.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51650
-||i.imgur.com^$domain=avpop13.com|mtshow1.me|marumaru.site
+||i.imgur.com^$domain=avpop13.com|mtshow1.me
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40808
 search.naver.com##.sp_power
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40342
@@ -5951,9 +5958,6 @@ dcinside.com##iframe[src^="https://ad.pentabox.net/"]
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=1004lucifer.blogspot.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||1004lucifer.blogspot.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/31452
-marumaru01.com##.widget-basic-banner
-||marumaru01.com/data/apms/egg_banner/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31379
 daum.net##.advert_svcbnr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29174
@@ -9699,6 +9703,10 @@ nhaccuatui.com##div[class^="adv_"]
 !---------------------------------------------------------------------
 !------------------------------ Fanboy Annoyances --------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/69090
+! It's caused by Fanboy's Annoyances filter and it's also fixed there, but fix doesn't work with apps
+!+ PLATFORM(windows, mac, android)
+@@||s-cdn.phonearena.com?b=*/back-to-top$stylesheet,script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67672
 !+ PLATFORM(ios, ext_safari)
 @@||phonearena.com/?b=
