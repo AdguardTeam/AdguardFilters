@@ -5259,10 +5259,8 @@ cb01.zone##a[href^="/4k/"] > img
 ||cb01.zone/4k/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43659
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10032
-!+ NOT_PLATFORM(windows, mac, android)
-vvvvid.it#%#//scriptlet("set-constant", "vvvvid.models.PlayerObj.prototype.playAds", "false")
-!+ PLATFORM(windows, mac, android)
-vvvvid.it#%#AG_setConstant('vvvvid.models.PlayerObj.prototype.playAds', 'false');
+vvvvid.it#%#//scriptlet("json-prune", "data.[].vast_url")
+vvvvid.it#%#//scriptlet("set-constant", "vvvvid.models.PlayerObj.prototype.play7Ads", "false")
 ||v.fwmrm.net/ad/g/1?*DiscoveryIntl_BrightcoveJ*&csid=VVVVID_ITALY_*vast$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 @@||v.fwmrm.net/ad/g/1?*DiscoveryIntl_BrightcoveJ*&csid=VVVVID_ITALY_*vast
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=vvvvid.it
@@ -5434,6 +5432,10 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69443
+@@||gp.vrixon.com/adsdk/zum/vrixadsdk.js$domain=pip-player.zum.com
+@@||adf.acrosspf.com/js/acrossadx.js$domain=ytn.co.kr
+||zumads.vrixon.com^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68961
 av-jamak.com##.widget-index > div.row:not(.at-row)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68780
@@ -7176,6 +7178,14 @@ kinoseans.pl#%#AG_setConstant('count', '0');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34228
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||jbzdy.com.pl^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/69501
+! Temporary
+abczdrowie.pl,allani.pl,autokult.pl,dobreprogramy.pl,dobramama.pl,domodi.pl,echirurgia.pl,fotoblogia.pl,gadzetomania.pl,homebook.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kardiolo.pl,komorkomania.pl,luxlux.pl,medycyna24.pl,mixer.pl,money.pl,nerwica.com,nocowanie.pl,o2.pl,open.fm,parenting.pl,pinger.pl,pogodnie.pl,polygamia.pl,pudelek.pl,pudelek.tv,pudelekx.pl,pytamy.pl,samosia.pl,smaczneblogi.pl,smog.pl,snobka.pl,so-magazyn.pl,superauto24.com,testwiedzy.pl,vibez.pl,wp.pl#@%#//scriptlet('ubo-aopr.js', 'wp_consent_color')
+!+ PLATFORM(windows, mac, android)
+@@||www.dobreprogramy.pl^$generichide,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/69362
+polygamia.pl#?#img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"]:upward(1)
+polygamia.pl##.ReactVirtualized__Grid > .ReactVirtualized__Grid__innerScrollContainer > div[data-slot][style^="height:"]:not([data-id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68612
 open.fm##.bnr-con
 open.fm##.listAdvSlot
@@ -7210,8 +7220,6 @@ sportowefakty.wp.pl#@?#body > [class]:not([id]):matches-css(position: fixed):mat
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href]:matches-css-before(content: /^O[\s\S]*?,[\s\S]*?\u200B$/))
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href^="abp:subscribe?location="])
-! Temporary
-abczdrowie.pl,allani.pl,autokult.pl,dobramama.pl,domodi.pl,echirurgia.pl,fotoblogia.pl,gadzetomania.pl,homebook.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kardiolo.pl,komorkomania.pl,luxlux.pl,medycyna24.pl,mixer.pl,money.pl,nerwica.com,nocowanie.pl,o2.pl,open.fm,parenting.pl,pinger.pl,pogodnie.pl,polygamia.pl,pudelek.pl,pudelek.tv,pudelekx.pl,pytamy.pl,samosia.pl,smaczneblogi.pl,smog.pl,snobka.pl,so-magazyn.pl,superauto24.com,testwiedzy.pl,vibez.pl,wp.pl#@%#//scriptlet('ubo-aopr.js', 'wp_consent_color')
 !
 @@||wp.pl/*-FwkqOxhmGz4XCSo7GGYbPhcJKjsYZhs-$script,domain=film.wp.pl|finanse.wp.pl|gwiazdy.wp.pl|kobieta.wp.pl|ksiazki.wp.pl|magazyn.wp.pl|moto.wp.pl|opinie.wp.pl|sportowefakty.wp.pl|tech.wp.pl|wiadomosci.wp.pl
 @@||wp.pl/b3RvQ2h1TVIzFCcBR0pAR3*DtBSkw=$script,domain=film.wp.pl|finanse.wp.pl|gwiazdy.wp.pl|kobieta.wp.pl|ksiazki.wp.pl|magazyn.wp.pl|moto.wp.pl|opinie.wp.pl|tech.wp.pl|wiadomosci.wp.pl
@@ -7233,22 +7241,23 @@ wiadomosci.wp.pl,money.pl,tech.wp.pl,gry.wp.pl#%#AG_onLoad(function(){var a=new 
 wiadomosci.wp.pl,money.pl,tech.wp.pl,gry.wp.pl#%#AG_onLoad(function(){(new MutationObserver(function(){var b=document.querySelectorAll("body > div[class] > div[class]:last-child");0<b.length&&b.forEach(function(a){try{a&&a.textContent.startsWith("REKLAMA: Automatycznie wy\u015bwietlimy artyku\u0142 za")&&a.previousElementSibling&&a.previousElementSibling.innerText.startsWith("Przejd\u017a do artyku\u0142u teraz")&&a.previousElementSibling.click()}catch(c){}})})).observe(document,{childList:!0,subtree:!0})});
 abczdrowie.pl,money.pl,fotoblogia.pl,tv.wp.pl,tech.wp.pl,horoskop.wp.pl,gry.wp.pl,pogoda.wp.pl,o2.pl,sportowefakty.wp.pl,autokult.pl,pudelek.pl#%#!function(){(new MutationObserver(function(){document.querySelectorAll('[class]:not([style*="display: none"])').forEach(function(a){Object.keys(a).forEach(function(b){b.match(/^isAdv$/)&&(a.style="display: none !important;")})})})).observe(document,{childList:!0,subtree:!0})}();
 pogoda.wp.pl,o2.pl,sportowefakty.wp.pl,autokult.pl,pudelek.pl##body > div[class^="_"]> a[href][target="_blank"]:only-child > div[style^="position:"][style*="background-image: url"]
-kobieta.wp.pl,money.pl,tech.wp.pl,gry.wp.pl##div[class^="_"]> a[href][target="_blank"]:only-child > div[style^="position:"][style*="background-image: url"]
+pilot.wp.pl,kobieta.wp.pl,money.pl,tech.wp.pl,gry.wp.pl##div[class^="_"]> a[href][target="_blank"]:only-child > div[style^="position:"][style*="background-image: url"]
 pudelek.pl##div[class^="_"][style^="position: relative;"] > a[href][target="_blank"]:only-child > div[style^="position:"][style*="background-image: url"]
 pogoda.wp.pl#?#.grid-container > .grid-left > .list > ul > li > div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:first-child)
 pogoda.wp.pl#?#.grid-container > .grid-right div[class*=" "]:matches-css(background-image: /^url\(data:image/png;base64,iVBOR/):has(> div:first-child)
 tv.wp.pl#?#div[class*=" "][height]:has(> div:only-child > div > script:contains(slotNumber))
 ~pilot.wp.pl,wp.pl#%#AG_abortOnPropertyRead('prebidConfig.config.aab.allowed');
 dobreprogramy.pl#%#//scriptlet('prevent-setTimeout', 'mark("PrebidDamOpen")')
-dobreprogramy.pl,profil.wp.pl#%#//scriptlet("set-constant", "Object.prototype.loadAndRunBunch", "noopFunc")
+polygamia.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.directOnly")
+profil.wp.pl#%#//scriptlet("set-constant", "Object.prototype.loadAndRunBunch", "noopFunc")
 tech.wp.pl,sportowefakty.wp.pl,kobieta.wp.pl#%#//scriptlet('prevent-setTimeout', '()=>o.open()')
-tech.wp.pl,sportowefakty.wp.pl,kobieta.wp.pl#%#//scriptlet("abort-on-property-read", "Object.prototype.callBids")
+tech.wp.pl,sportowefakty.wp.pl,kobieta.wp.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.callBids")
+www.wp.pl#%#//scriptlet("abort-on-property-read", "__headpayload")
 fitness.wp.pl#%#//scriptlet("abort-current-inline-script", "WP.gaf")
-www.wp.pl,fitness.wp.pl,vibez.pl#%#//scriptlet("abort-on-property-read", "Object.prototype.bodyCode")
-wiadomosci.wp.pl#%#//scriptlet("set-constant", "Object.prototype.loadBunch", "noopFunc")
-www.wp.pl,poczta.o2.pl,poczta.wp.pl,profil.wp.pl,autocentrum.pl,dobreprogramy.pl,echirurgia.pl,kafeteria.pl,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.advViewability", "undefined")
-www.wp.pl,poczta.o2.pl,poczta.wp.pl,profil.wp.pl,autocentrum.pl,dobreprogramy.pl,echirurgia.pl,kafeteria.pl,open.fm,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.gafSlot", "undefined")
-www.wp.pl,poczta.o2.pl,poczta.wp.pl,profil.wp.pl,autocentrum.pl,dobreprogramy.pl,echirurgia.pl,kafeteria.pl,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.rekids", "undefined")
+fitness.wp.pl,vibez.pl#%#//scriptlet("abort-on-property-read", "Object.prototype.bodyCode")
+profil.wp.pl,autocentrum.pl,echirurgia.pl,kafeteria.pl,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.advViewability", "undefined")
+profil.wp.pl,autocentrum.pl,echirurgia.pl,kafeteria.pl,open.fm,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.gafSlot", "undefined")
+profil.wp.pl,autocentrum.pl,echirurgia.pl,kafeteria.pl,snobka.pl#%#//scriptlet("set-constant", "Object.prototype.rekids", "undefined")
 parenting.pl,abczdrowie.pl,wp.pl#%#//scriptlet('prevent-setTimeout', '/getComputedStyle[\s\S]*?style\.display="none"[\s\S]*?styleBlocked[\s\S]*?detected/')
 wp.pl,money.pl,komorkomania.pl,autokult.pl#%#(function(){try{if("undefined"!=typeof localStorage){var b=Date.now();0==Object.keys(localStorage).filter(function(a){return a.startsWith("WPwlbcapp")}).length&&localStorage.setItem("WPwlbcapp"+Math.random().toString(36).substring(7),b)}}catch(a){}})();
 turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl,wiadomosci.wp.pl#?#div[class*="-"] > div[class*="-"][class*=" "]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
@@ -7730,7 +7739,7 @@ money.pl#$#body { overflow: visible!important; }
 ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 !+ PLATFORM(ext_ff)
 ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
-||wp.pl^$replace=/(\.messData=[\s\S]*?\.push\(.\)\,.=\(\)=>)1===.(\,)/\$1{return}\$2/,script
+||wp.pl^$replace=/(\.messData=.;[\s\S]*?.=\(\)=>)1===.(\,)/\$1{return}\$2/,script
 !+ NOT_PLATFORM(ext_ff)
 ||wp.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,app=~pl.videostar
 !+ PLATFORM(ext_ff)
@@ -7741,7 +7750,7 @@ money.pl#$#body { overflow: visible!important; }
 !+ NOT_PLATFORM(ext_ff)
 ||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 !+ PLATFORM(windows, mac, android, ext_ff)
-money.pl,wp.pl#%#//scriptlet("set-constant", "apstag", "undefined")
+||amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,domain=wp.pl|money.pl
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
 www.wp.pl#?#div[class^="sc-"]:has(> img[src^="https://v.wpimg.pl/"][role="presentation"][class^="sc-"]:matches-css(position: absolute))
 wp.pl#?#[class^="_"]:has(>img[src*=".wp.pl"])
