@@ -6935,16 +6935,15 @@ video-static.tunnl.com#%#window.canRunAds = true;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65094
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64935
 ! https://forum.adguard.com/index.php?threads/reevown-com.25899/
-myuploadedpremium.de,reevown.com#%#//scriptlet('prevent-setTimeout', '$("iframe").length')
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=googlesyndication-adsbygoogle,domain=myuploadedpremium.de|reevown.com
-||reevown.com^$replace=/\\$\(window\.atob\('Lm1haW4tY29udGVudA=='\)\)\.html\(window\.atob\('PGNlbnRlcj48aDE\+UGxlYXNlIGRpc2FibGUgeW91ciBhZGJsb2NrZXIgYW5kIHRoYW4gcmVmcmVzaCB0aGUgcGFnZS48L2gxPjxicj5NYXliZSBDVFJMICsgRjUgd2lsbCBoZWxwIHRvbzwvY2VudGVyPg=='\)\);//,important
-!+ PLATFORM(windows, mac, android)
-reevown.com#?#.copyright > .card > .card-body:has(>button.btn[onclick="myreadmore()"])
-! temporary rule
-@@||reevown.com^$generichide
-@@||reevown.com^$~third-party,script,xmlhttprequest
-@@||onepiece-api.de/ad_banner_4free.js
-reevown.com#%#//scriptlet("set-constant", "op_load", "false")
+! https://gist.github.com/AdamWr/d9d16be46fcad6df18306e19637ed6aa#file-myuploadedpremium-js
+myuploadedpremium.de#%#AG_onLoad(function(){var a=new MutationObserver(function(){document.querySelectorAll(".adsbygoogle iframe").forEach(function(b){b.setAttribute("height","11");a.disconnect()})});a.observe(document,{childList:!0,subtree:!0})});
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=googlesyndication-adsbygoogle,domain=myuploadedpremium.de
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myuploadedpremium.de
+@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl_*.js$domain=myuploadedpremium.de
+myuploadedpremium.de#@#.adsbygoogle
+myuploadedpremium.de#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
+!#endif
 ! https://forum.adguard.com/index.php?threads/www-televisionparatodos-tv-anti-adblock.25891/
 latino-webtv.com###adb-enabled
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7006
