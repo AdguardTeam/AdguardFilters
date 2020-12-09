@@ -1917,8 +1917,10 @@ tw.bid.yahoo.com###livePromote
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26318
 ! https://forum.adguard.com/index.php?threads/youku-com-v-qq-com.30749/
 ||acs.youku.com/*/mtop.youku.play.ups.appinfo.get/*/?jsv=$replace=/("ad":\{)[\s\S]*?(\}\,"playlog")/\$1\$2/,important
-||vali*.cp*.ott.cibntv.net/*.mp4?ccode*&duration=$redirect=noopmp4-1s,important,domain=~m.youku.com
-||vali*.*.cibntv.net/*.mp4?$redirect=noopmp4-1s,important,domain=youku.com|~m.youku.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/69044
+! disabled redirects. It seems they are problematic here
+!||vali*.cp*.ott.cibntv.net/*.mp4?ccode*&duration=$redirect=noopmp4-1s,important,domain=~m.youku.com
+!||vali*.*.cibntv.net/*.mp4?$redirect=noopmp4-1s,important,domain=youku.com|~m.youku.com
 youku.com#%#//scriptlet("adjust-setTimeout", "r--", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28334
 finance.sina.cn##.article-sax
@@ -2410,6 +2412,8 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69555
+onlymen.cz#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66823
 expres.cz##body .r-main
 expres.cz##.r-head
@@ -3246,6 +3250,8 @@ patrika.com##.google-ads-full
 !------------------------------ Hungarian ----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69327
+joautok.hu##.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68362
 kuruc.info##div[class*="adzone"]
 kuruc.info##.cikkbanner
@@ -3792,6 +3798,8 @@ bhaskar.com#%#var canABP = true;
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69436
+grid.id##amp-embed[type="outbrain"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68676
 dumetschool.com##.modal-promo-popup
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68343
@@ -4424,7 +4432,6 @@ mangashiro.net##.rm > center > a > img
 kangibay.net#@##banner_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10727
 mangaindo.web.id#@#.an-advert-banner
-mangaindo.web.id#@##adsense
 mangaindo.web.id#@#.an-sponsored
 ! Indonesian telco injecting its ads
 ||cfs1.uzone.id^$third-party
@@ -4432,7 +4439,6 @@ mangaindo.web.id#@#.an-sponsored
 eramuslim.com#@##topAd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9962
 sehatlega.com#@#.an-advert-banner
-sehatlega.com#@##adsense
 sehatlega.com#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9539
 sandrives.blogspot.de,sandrives.blogspot.com,sandrives.blogspot.com.au###HTML8
@@ -4525,7 +4531,13 @@ krucil.net##img[width="900"][height="50"]
 newshaifakrayot.net##.banner_con
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64196
 sdarot.tv##div[class="row nomar"] > div.col-md-12 > a[target="_blank"] > img
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62416
+!Start: walla.co.il
+walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("sdfgh45678", "") } } catch (ex) {} })();
+walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("__leslieData", "") } } catch (ex) {} })();
+walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("__leslie_dynamic", "") } } catch (ex) {} })();
+!
 walla.co.il##iframe[src^="https://campaigns.yad2.co.il/"]
 ||campaigns.yad2.co.il^$domain=walla.co.il
 ||walla.co.il/p.php
@@ -4552,6 +4564,8 @@ sheee.co.il,walla.co.il#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.te
 walla.co.il#@%#//scriptlet('ubo-aopw.js', 'upManager')
 !+ NOT_PLATFORM(ext_ublock)
 walla.co.il#@%#//scriptlet('ubo-acis.js', 'btoa', 'upManager')
+!End: walla.co.il
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60889
 ynet.co.il##.marketingRecommended
 !+ NOT_PLATFORM(ext_ublock)
@@ -4837,7 +4851,6 @@ itascan.info#?#div.col-md-4 > .panel-default:has(> .panel-heading:contains(Pubbl
 @@||oasjs.kataweb.it/adsetup.real.js$domain=video.deejay.it
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=video.deejay.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46079
-plaffo.com#@##adsense
 plaffo.com#@#.an-advert-banner
 plaffo.com#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45089
@@ -5137,7 +5150,6 @@ formiche.net#?##secondary > .widget[-ext-has='a[class^="banner"]']
 formiche.net###text-17
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17608
 ilpuntotecnico.com#@#.an-advert-banner
-ilpuntotecnico.com#@##adsense
 ilpuntotecnico.com#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17496
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=androidaba.com
@@ -5693,8 +5705,8 @@ kpanews.co.kr##div[class^="area_ad"]
 marumaru.*##.w_banner
 marumaru.*##.bottom-navbar[style="height:60px"]
 ! For Android CB
-marumaru.loan##.bottom-navbar[style="height:60px"]
-marumaru.loan##.w_banner
+marumaru.farm##.bottom-navbar[style="height:60px"]
+marumaru.farm##.w_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50380
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=coronaita.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50088
@@ -6047,9 +6059,6 @@ brotoon.com##.board-tail-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26579
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||lifeadori.tistory.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/26475
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||dasffad2590.ramrem.space^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25475
 betanews.heraldcorp.com,betanews.heraldcorp.com:8080###banner_right01
 betanews.heraldcorp.com,betanews.heraldcorp.com:8080###banner_right02
@@ -7159,7 +7168,7 @@ xboxforum.pl##.adsbygoogle
 ddwloclawek.pl,ddtorun.pl##.topLayer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60807
 !+ NOT_OPTIMIZED
-wylecz.to#?#.row div[class][style*="border-bottom:"][style*="max-height:"]:has(> div[style]:contains(REKLAMA))
+wylecz.to#?#.row div[class][style*="border-bottom"][style*="max-height:"] > div[style]:contains(REKLAMА):upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35408
 darkw.pl##.bladbl
 darkw.pl#$#.adsbox { display: block!important; height: 1px!important; position: absolute!important; left: -3000px!important; }
@@ -7723,7 +7732,6 @@ money.pl#$#body { overflow: visible!important; }
 ||open.fm^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
 ||parenting.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||parenting.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
-||o2.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||pudelek.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||pudelek.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||dynacrems.wp.pl/staticad/$replace=/.+//,important
@@ -7735,6 +7743,10 @@ money.pl#$#body { overflow: visible!important; }
 ||wpimg.pl/a/i/stg/wpjslib_*.js$replace=/((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$2\$3\$4\$6/,script
 ||std.wpcdn.pl/wpjslib/wpjslib_*.js$replace=/((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$2\$3\$4\$6/,script
 ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$2\$3\$4\$6/,script
+!+ NOT_PLATFORM(ext_ff)
+||o2.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
+!+ PLATFORM(ext_ff)
+||o2.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 !+ NOT_PLATFORM(ext_ff)
 ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 !+ PLATFORM(ext_ff)
@@ -8203,7 +8215,6 @@ sport.ro###galrightbox > #rightBBox
 sport.ro##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12897
 anime-ro-sub.ro#@#.an-advert-banner
-anime-ro-sub.ro#@##adsense
 anime-ro-sub.ro#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11214
 @@||phenom-network.blogspot.ro^$generichide
@@ -9063,6 +9074,11 @@ brandbuffet.in.th#@#.category-advertorial
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69544
+tvzingvn.net##.balloon-ad-wrap
+tvzingvn.net##a[class^="uniad-"]
+||tvzingvn.net/wp-content/themes/zingtv/js/qc1.js
+tvzingvn.net#%#//scriptlet("prevent-addEventListener", "load", ":'click'")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68860
 truyentranhlh.net###lh-ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67660
@@ -9432,7 +9448,6 @@ tvhay.org#%#AG_abortOnPropertyWrite('tvhay');
 ||p.jwpcdn.com/*/vast.js$important,domain=tvhay.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19694
 itphutran.com#@#.an-advert-banner
-itphutran.com#@##adsense
 itphutran.com#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18600
 @@||phimmedia.tv/templates/themes/phim/js/advertisement.js
@@ -9719,6 +9734,9 @@ nhaccuatui.com##div[class^="adv_"]
 !---------------------------------------------------------------------
 !------------------------------ Fanboy Annoyances --------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/60791#issuecomment-708859023
+!+ PLATFORM(windows, mac, android)
+@@||images-na.ssl-images-amazon.com/images/*/transparent-pixel.$image,domain=amazon.in
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69090
 ! It's caused by Fanboy's Annoyances filter and it's also fixed there, but fix doesn't work with apps
 !+ PLATFORM(windows, mac, android)
