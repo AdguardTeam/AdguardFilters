@@ -1,8 +1,6 @@
 !---------------------------------------------------------------------
 !------------------------------ Albanian -----------------------------
 !---------------------------------------------------------------------
-! https://forum.adguard.com/index.php?threads/36208/
-||joq.al//banners^
 joq-albania.com,joqalbania.com##div[data-adunit]
 joq-albania.com,joqalbania.com##div[class^="adunit-"]
 joq-albania.com,joqalbania.com##.boost-list-container a[href^="https://aa.boostapi.net"]
@@ -30,6 +28,9 @@ video.gjirafa.com#%#AG_defineProperty('originVideo.requestA.Id', { value: "0" })
 !------------------------------ Arabian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/70118
+! Fixes a long delay before video starts
+@@||cdn.cnn.com/ads/adfuel/adfuel-*.min.js$domain=arabic.cnn.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69124
 movs4u.ws#%#//scriptlet("remove-attr", "href", "a[href]#clickfakeplayer")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67613
@@ -81,7 +82,6 @@ kooora.com#?#.cognativex-widget > div[class] > div.cx-topnews-div:has(> div.cx-c
 harmash.com###hsoub_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49712
 arabseed.net##center > a[rel="nofollow"] > img
-arabseed.net##center > a[href][rel="nofollow"] > img
 arabseed.me,arabseed.net#%#//scriptlet("abort-on-property-read", "area51")
 ! orangespotlight.com - antiadblock
 orangespotlight.com#%#//scriptlet("abort-on-property-read", "adBlockDetected")
@@ -119,13 +119,6 @@ nabmovie.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34349
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||mangaorigin.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/33787
-talkshowyoutube.blogspot.com##.ads1_post
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
-@@||talkshowyoutube.blogspot.com^$generichide
-@@.png#$domain=talkshowyoutube.blogspot.com
-talkshowyoutube.blogspot.com##.adsbygoogle
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33571
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||almezoryae.com^$generichide
@@ -368,7 +361,6 @@ sumqayitxeber.com###media_image-2
 axsam.az##.adsbymahimeta
 azadliq.az##img[width="1000"][height="110"]
 ||vebmarket.az/medias/banner/
-satal.az##div[class^="box-banner"]
 qarabazar.az##.left_banner
 birja-in.az##.right_banner
 alsat.az##.reklamsol
@@ -407,7 +399,6 @@ lunar.az#?##dle-content > .fulltitle:has(div[id^="SC_TBlock_"])
 lunar.az##div[class$="areklam"]
 lunar.az##.tabbasliq > ul > .tabx > .tabSelected
 izle.az###mediarek
-kenquru.az##.ads
 ||hizliresimyukle.com/images/2018/02/13/banner-1.jpg
 ||525.az/site/dinamicbanner525_l_qolaz.php
 ||news.lent.az/iframe/*/index.php
@@ -463,7 +454,6 @@ vol.az##.topdareklam
 wikibit.me##div[id^="adv"]
 turbo.az##.bg-bnr-container
 mp3.feat.az#?#.sidebarfull > .sidebox2:has(>.side-t > div[align="center"] > span:contains(Reklam))
-biznesinfo.az##.tableDefault100percent > tbody > tr:first-child > td[style="overflow:hidden;width: 1000px"]
 ||i.hizliresim.com/1J2pQB.png
 sport7.az##.sidebarbanner
 move.az##.videoreklam
@@ -495,16 +485,11 @@ bakupost.az#?#.paper-row.sagdalent > .paper-row-content.small-item-double > .pap
 ||bakupost.az/theme/frontend/y/style/default/images/2017-yeni-satis-sertleri_KVADRAT.jpg
 myvideo.az##.mv_banner_600x100
 myvideo.az###mv_tvbox_banner
-mp3.sun.az#?#td[valign="top"] > .blockmenu[-ext-has='a[href="http://www.liveinternet.ru/click"]']
-||mp3.sun.az/banner/SIZIN_REKLAM.jpg
 ||ikisahil.az/iframe/banner
 ||bakipost.az/590x80.html
 ||azvision.az/qafqaza/qafqazinfo.php$third-party
 ||joy.az/select/index.html
 ||joy.az/templates/Softo/images/xatik.swf
-||film.joy.az/templates/film/images/Maker-4.swf
-film.joy.az#?#[id$="-menu"][-ext-has=">.mavi-text:contains(Reklam)"]
-film.joy.az###body-left > #sol
 daytube.az##.advertise_row
 video.az#?#.section-area > div[style^="height: 100px;"][-ext-has='>script[src*="/ads2.newmedia.az/"]']
 ann.az##.sidebarbanner
@@ -513,9 +498,6 @@ mp3.xodver.az#?#.main_content_info > .main_tittle:contains(Reklam)
 mp3.xodver.az#?#.main_content_info > .main_tittle:contains(Reklam) + .main_in_content
 mp3.xodver.az#?#.main_right_side > .main_tittle:first-child:contains(Reklam)
 mp3.xodver.az#?#.main_right_side > .main_tittle:first-child:contains(Reklam) + .main_in_content
-skrom.net##.post-ban
-skrom.net##.ban-wrap
-skrom.net##.adsbyskyline
 joy.az##iframe[src^="http://move.az/reklam"]
 joy.az###sidebar > .widget:not(.tab_widget):not([id]):not(.clearfix)
 ||avtomobil.az^$popup,domain=take.az
@@ -524,14 +506,12 @@ forgenc.net##div[class*="widget_alx_"]
 ||autonet.az/bannerler
 autonet.az##.banner_slide_first > div#slides
 autonet.az#$#header#header { height: auto!important; max-height: 400px!important; }
-||topxeber.az/banners/
 ||salamnews.org/files/*_645x60_gif_az.gif
 ||medianews.az/ru/e/exp-minval.php$third-party
 minval.az##iframe[src="http://medianews.az/ru/e/exp-minval.php"]
 ||icmal.az/theme/frontend/icmal/style/default/banner/
 publika.az##.adv-horizontal
 ||brifinq.com/images/mynews240x120.gif
-||surf.az/images/cevahirjewelleryreklam.png
 ||azpolitika.info/wp-content/themes/internationalpost-singlepro/ss/
 musavat.com##.banner
 ||minval.az/reklam_iframe*.php
@@ -549,7 +529,6 @@ asanradio.az##.col-md-12 > .panel.panel-info > br
 asanradio.az##.col-md-12 > .panel.panel-info > a[href][target="_blank"] > img
 ||asanradio.az/apa_baner/
 ||fenomen.az/wp-content/uploads/*/wallpaper-ad.jpg
-||ailem.az/upload/reklams/
 ||azvision.az/qafqaza/olke.php^$third-party
 ||olke.az/qaynar.html^$third-party
 elchi.az###featuredContent > div[style^="width:630px; height:130px;"]
@@ -573,7 +552,6 @@ azerbaycan24.com##.ad-inner-wrap
 ||teleqraf.com/publika.php^$third-party
 ||axar.az/publika*.php^$third-party
 ||publika.az/informers/$third-party
-||placeholdit.imgix.net/~text?txtsize=*&txt=Sizin%20reklam%20yeriniz&w=*&h=
 7news.az##iframe#disableIframeBanner
 ||bizimxeber.az/banner
 ||femida.az/baner/rek*.php
@@ -589,18 +567,9 @@ primetime.az###header-top
 ||picshare.ru/uploads/170822/Z489OPvAEY.jpg
 anews.az##div[id^="reklam"]:not(.small-sidebar)
 ||anews.az/theme/frontend/annaz/style/default/banner/
-goldnews.az##div[class^="banner-"]
-||goldnews.az/media/recla/
-||goldnews.az/static/main-base/assets/images/bg_banner.png
-minion.az##.ads
-minion.az##.adslent
-minion.az##.bannerarea
-||minion.az/templates/Default/img/banner.jpg
-||minion.az/templates/Default/img/bannerf.png
 brifinq.com##.header-banners
 brifinq.com##.news-header-adv
 brifinq.com##.article-content > div ~ h3
-politico.az##.bdy > tbody > tr > td > div[style*="height:60px;"]:not([class]):not([id])
 ||metbuat.az/html5_ads/
 ||navigator.az/img/triban_banner/
 navigator.az##body > .list-banner + ul.tags.container
@@ -619,7 +588,6 @@ arenda.az##.center2 > a[href].bann
 ||arenda.az/public/css/img/banner_for_rieltor.gif
 ||arenda.az/ba.html
 ||marja.az/banners/
-||media24.az/banners/
 azpolitika.info##.adsbyskyline
 ||navigator.az/img/bnrimg-
 navigator.az##.ads
@@ -631,7 +599,6 @@ yenicag.az##a[href="http://www.yenicag.az/company/advertising/"] > img
 yenicag.az##.main-content-class > div.main-inner-pad[style="margin-bottom:15px!important;"]
 infocity.az##.mkdf-header-banner-widget
 infocity.az##a[href="http://ganja.marathon.az/"]
-||saygac.az^$domain=mp3yukle.link
 ||code.adsgarden.com/js/adsgarden.js
 az.baku.ws##iframe[src^="http://ad.adriver.ru/"]
 az.baku.ws##iframe[src^="https://ad.adriver.ru/"]
@@ -655,7 +622,6 @@ sportinfo.az##.craiBanner
 ||news.lent.az/lentiframeapasport$subdocument,domain=apasport.az
 ||apa.tv/apatv2sport$subdocument,domain=apasport.az
 ||sportarena.az/banner/
-||media24.az/sportal.php$subdocument,domain=sportarena.az
 ||rekord.az/images/aaafpark.swf
 ||emlak.az/images/banners/
 ||dashinmazemlak.az/images/banner
@@ -669,17 +635,13 @@ bizplus.az##.td_block_widget > a[href^="https://goo.gl/"] > img
 ||goal.az/informer.html
 metbuat.az##.col-sm-8 > [class="wh_box hidden-sm hidden-xs"]
 ||azvision.az/qafqaza/680.php
-turizm.fins.az##.banner
 turizm.fins.az##.header-top
 ||turizm.fins.az/file/banner/
-ceeb.mobi##body > div.content[style="padding: 5px; margin: 0;"]
-||ceeb.mobi/images/banners/
 ||cebhe.info/reklam
 bakipost.az##.news-viewer-item-content > iframe
 ||7news.az/*.html$third-party
 turbo.az##.bg-bnr
 mp3.big.az##.blockreklam
-mp3.big.az##body > a[href="http://unvan.az"][target="_blank"]
 ||big.az/banner/
 ||olke.az/banners/
 ucarliyiq.biz##.popular-posts-widget > a[href="http://son-xeberler.com"]
@@ -698,7 +660,6 @@ olkem.az##.k192.fl.aciksari > .bar.bosluk > .baslik.yesil
 day.az##.bTop
 avtoxeber.az#?#div[class="vc_sidebar sidebar main-sidebar wpb_column vc_column_container"] > .wpb_wrapper > .wpb_widgetised_column > .wpb_wrapper > .widget.momizat-video[-ext-has='.widget-head > .widget-title > span:contains(Reklam)']
 ||avtoxeber.az/banner/
-||skyline.az/static/js/adsbyskyline.js^
 apa.az##.lazyLoadAd_places
 apa.az##.right_side > .row.bb.uni_b
 milli.az##.large-ad-holder
@@ -724,9 +685,6 @@ boss.az##.bnr-top
 ||bizimyol.info/azz_rightads.html
 bizimyol.info##.site > div[style^="width:"][style*="1010px"]:first-of-type
 bizimyol.info##.sagqanad > div[style*="250px;"][style*="300px;"]:nth-of-type(-n+2)
-mp3.ses.az##body > .menu:nth-of-type(6)
-mp3.ses.az##body > .menu:nth-of-type(4)
-mp3.ses.az##body > .menu:nth-child(n+9) > center:first-child
 qafqazinfo.az##a.visible-lg
 ||simvol.az/ads/
 qafqazinfo.az##div[id^="sag-banner-"]
@@ -834,8 +792,6 @@ day.az#$#div#service { margin-top: 50px!important; }
 joy.az#%#document.cookie = "popunder=1";
 ! https://forum.adguard.com/index.php?threads/http-take-az.25344/
 take.az#%#Object.defineProperty(window, 'makePopunder', { get: function() { return {}; } });
-! https://forum.adguard.com/index.php?threads/http-az-surf-az.25310/
-surf.az#$#div[id^="SC_TBlock"] { position: absolute!important; left: -3000px!important; }
 ! https://forum.adguard.com/index.php?threads/25324/
 regionxeberleri.com#@#.adzone
 ! https://forum.adguard.com/index.php?threads/25309/
@@ -1255,11 +1211,6 @@ h5.17k.com#$#html { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47691
 ||abminbuy.com/*.mp4$media,redirect=noopmp4-1s
 abminbuy.com##body > a[rel="nofollow"] > img
-! https://github.com/AdguardTeam/AdguardFilters/issues/47611
-m.52qumao.com#$#iframe.js-video-player { display: block!important; }
-m.52qumao.com#$?#section.baiduIvy { remove: true; }
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-m.52qumao.com##div[id^="sogou_wap_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46970
 ||kt51.com/bjl666.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46971
@@ -1381,12 +1332,6 @@ sigure.tw##.reds
 /db.js?_dc=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44974
 ||ishisetianxia.com/tb.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/44975
-||m.81new.com/scripts/common.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/44971
-||m652a.cn/*/*xhtml?
-||m.805zx.cn/uu.php?
-||m.805zx.cn/*(com?
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44881
 ||m.20mao.com/*/TOP.JS
 ||m.20mao.com/*/BOT.js
@@ -1396,7 +1341,6 @@ sigure.tw##.reds
 ||thcdy.co/baidu2/index_top.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44880
 gugeys.cc##.am-g
-||bbs.alxx520.com/ad/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45024
 !+ NOT_PLATFORM(windows, mac, android)
 javlibrary.com#%#//scriptlet('abort-current-inline-script', 'document.write', '/getCookie[\s\S]*?\("\\x/')
@@ -1442,8 +1386,6 @@ world.huanqiu.com#@#.ad_all
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44763
 ||yp868.com/js/54h/
 yp868.com##iframe[src="/js/loading.html"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/44762
-||jx.yy6080.info/adcms/js/
 ! Ads from alicdn.com
 ||alicdn.com^$image,domain=m.k1k.cc|thcdy.co|27k.cc|1024pa.com|hg6384.com-www.6u7u.com|4080kan.com|dy686.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44894
@@ -1459,7 +1401,6 @@ dyzd1.com##.all960
 avjd014.com##a[href^="http://163qp.xyz"]
 ||avjd014.com/*ad^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44913
-||pic.qlp9.cn/banner^
 ||juzi6.com/js/dp.js
 ||juzi6.com/js/gd.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44925
@@ -1483,9 +1424,6 @@ yasehub.com##.video-thumb > .video-thumb-image[style^="background-image: url('ht
 yasehub.com##.aasdwa
 yasehub.com##.container > div[class] > div#list_asiall > div a[target="_blank"] > img
 yasehub.com##div[style*="position: absolute;"][style*="text-align: center;"][style*="align-items: center;"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/44673
-sese-777.com###videoEdImg
-sese-777.com##.pasuAD
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44823
 getrelax.cc#@#iframe[width="300"][height="250"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44664
@@ -1584,14 +1522,6 @@ javporn.best#@#.afs_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42481
 !#safari_cb_affinity(privacy)
 @@||cloudflare.com/ajax/libs/fingerprintjs2/*/fingerprint2.min.js$domain=nfmovies.com
-!#safari_cb_affinity
-! https://github.com/AdguardTeam/AdguardFilters/issues/42421
-dashishipin.com##.banner_iframe
-@@||cdn.jsdelivr.net/gh/dashidev/static@master/js/ads.js$domain=dashishipin.com
-dashishipin.com#%#AG_setConstant('killads', 'true');
-dashishipin.com#%#//scriptlet("set-constant", "ExoVideoSlider", "noopFunc")
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||a.exosrv.com/video-slider.js$domain=dashishipin.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42202
 85tube.com##.block-album > .table > .opt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41555
@@ -1668,9 +1598,6 @@ hg6384.com-www.6u7u.com##.advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34906
 /uploads/*/*-860x250*.gif$domain=aipa551.com|aipa552.com
 aipa551.com,aipa552.com##a[href*="theporndude.com/"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/33601
-lsj2017.com##.wrap > .top_box
-||107.175.181.58^$domain=lsj2017.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33587
 ||a304.top^$image,domain=hihbt.com
 ||z2x5c8.com^$image,domain=hihbt.com
@@ -1751,8 +1678,6 @@ sutin0831.pixnet.net#$#div[class*="-ad-sidebar-"] { position: absolute!important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37137
 ||zd518.cn/bfq2.html
 /y.js?pid=$domain=zd518.cn
-! https://github.com/AdguardTeam/AdguardFilters/issues/36070
-||atoncengreige.com^$image,domain=icantv.cn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33638
 @@||cdn.rawgit.com/*/lazyload.js$domain=javmost.com
 !
@@ -1792,9 +1717,6 @@ bilibili.to###yytf
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33590
 ddav.org###adv-2
 ||upload.cc/i1/*.gif$domain=ddav.org
-! https://github.com/AdguardTeam/AdguardFilters/issues/33875
-||stp.qiansi.pw^$domain=danmeijia5.com
-||photo.52nvyou.cn^$domain=danmeijia5.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37247
 rjno1.com#%#//scriptlet("prevent-setTimeout", "Goog_Osd_UnloadAdBlock", "4000")
 rjno1.com##div[class*="-a-d1"]
@@ -1822,8 +1744,6 @@ papalah.com#%#AG_abortOnPropertyRead('adBlockDetected');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33061
 xinfcw.com##.dmcenterb
 ||xinfcw.com/js/layer1.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/33273
-bt.cosxcos.xyz##.myakbz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33454
 sese733.info##.fp-player > div[style^="position: absolute;"][style*="overflow: hidden; z-index:"]:not([class])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33458
@@ -1896,8 +1816,6 @@ m.86kl.com#%#AG_abortOnPropertyRead('akumtagcc');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31681
 dmhy.org##div[id$="_ad"] > a[onclick*="'ad'"][target="_blank"]
 dmhy.org##div[id$="_adv"] > a[onclick*="'ad'"][target="_blank"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/31631
-qing.gq##.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31003
 jianshu.com##a[id^="web-note-ad"]
 jianshu.com###note-fixed-ad-container
@@ -1928,8 +1846,6 @@ tw.yahoo.com##.travelads
 @@||91wii.com/source/plugin/unadblock/adjs_pic_cpc_cpm_cpa_guanggao_gg_ads_250x250.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28117
 yam.com##.axdBox
-! https://github.com/AdguardTeam/AdguardFilters/issues/27580
-||js.meitulu.com/css/*showgg.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26948
 qq.com##div[class^=ad-type-]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27480
@@ -1984,8 +1900,6 @@ psnine.com##center[style="overflow:hidden;"] > a > img
 @@||mlbstatic.com/mlb.com/video/config/mlb-vpp-aws^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22108
 ez3c.tw##.ypa-custom2
-! https://github.com/AdguardTeam/AdguardFilters/issues/21502
-||m.fbaix.com^$domain=daocaorenshuwu.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21573
 gameapps.hk##.ad-full-screen
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21423
@@ -2023,9 +1937,9 @@ subhd.com#%#sessionStorage.setItem("hassession", 1);
 ||subhd.com/images/ap/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17446
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17458
-||sinaimg.cn^$domain=avcc.vip|av78.vip
-/home/diyjs$domain=avcc.vip|av78.vip
-av78.vip,avcc.vip##.business
+||sinaimg.cn^$domain=avcc.vip
+/home/diyjs$domain=avcc.vip
+avcc.vip##.business
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17841
 apk.tw##.login_bg > .ad300
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17829
@@ -3163,6 +3077,9 @@ autopapa.ge##.top-rek
 !---------------------------------------------------------------------
 !------------------------------ Greek --------------------------------
 !---------------------------------------------------------------------
+! https://github.com/AdguardTeam/AdguardFilters/issues/69979
+xo.gr###tk_centralBanner
+xo.gr##div[class*="Banner"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60870
 news247.gr##body .ad-widget
 sport24.gr##div[id^="ros-300x250"]
@@ -3251,8 +3168,8 @@ joautok.hu##.banner
 kuruc.info##div[class*="adzone"]
 kuruc.info##.cikkbanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67741
-videa.hu#@#.adBanner
-videa.hu#$##wrapfabtest { height: 1px!important; }
+videakid.hu,videa.hu#@#.adBanner
+videakid.hu,videa.hu#$##wrapfabtest { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65285
 ||dalmatinskiportal.hr/*/baneri/
 dalmatinskiportal.hr##.banner
@@ -4225,7 +4142,6 @@ bagilagi.com#%#AG_onLoad(function() { var el=document.querySelector('img[id="sho
 139.99.120.222##.ban_empat
 139.99.120.222##.inner-wrap > div[id^="previewBox"]
 139.99.120.222##.navbar-brand
-139.99.120.222##.navbar-brand#fbawah
 139.99.120.222##div[id^="previewBox"][style^="position: fixed;"]
 139.99.120.222#$##myModalSingle { display: none!important; }
 139.99.120.222#$#body { overflow: visible!important; }
@@ -4770,7 +4686,8 @@ m2o.it###promo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65627
 @@||occhionotizie.it/wp-content/themes/jannah/assets/js/ad.js
 occhionotizie.it#%#//scriptlet("set-constant", "$tieE3", "true")
-! https://github.com/AdguardTeam/AdguardFilters/issues/65700
+! https://github.com/AdguardTeam/AdguardFilters/issues/69807
+tio.ch#%#(function() { try { if ('undefined' != typeof localStorage) {var date = new Date(); window.localStorage.setItem("adbSkip", date.getTime()); } } catch (ex) {} })();
 @@||tio.ch^$generichide
 @@||ads.*.ch^$xmlhttprequest,other,script,domain=tio.ch
 @@/^https?.*\..*\.ch\/.*\/(ad|adtech|pubblicita|adverts|ad-random|adSponsors|banner-ad|banman|native-ad|advertise|advert1|bg_ads|adengine)\/.*\/.*=.*&/$xmlhttprequest,other,script,domain=tio.ch
@@ -5193,7 +5110,6 @@ hdmotori.it,hdblog.it###banner2_980
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=hdblog.it
 hdblog.it##.compras_items > .item_prod
 hdmotori.it,hdblog.it###banner3_300600
-hdblog.it#@#.ads_block
 hdblog.it#$#.ads_block { min-height:15px!important; width: 15px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14050
 youtg.net#$##jsn-content { padding-top: 110px!important; }
@@ -5436,6 +5352,10 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/69982
+dcinside.com##.adv-group
+! https://github.com/AdguardTeam/AdguardFilters/issues/69935
+||ani365.org/assets/images/banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69813
 @@||daumcdn.net/tistory/*/skin/images/ads.js$domain=shlee0882.tistory.com
 shlee0882.tistory.com#%#//scriptlet("set-constant", "canRunAds", "true")
@@ -5459,7 +5379,6 @@ badayak.com#%#//scriptlet('abort-current-inline-script', 'addEventListener', 'go
 ! https://github.com/List-KR/List-KR/issues/120
 !#if (!adguard_ext_android_cb && !adguard_app_ios)
 ||ssl.pstatic.net/static/m/comic/im/promo/popup_cloud.png
-m.comic.naver.com##body > div#ly_dim > div.bg
 m.comic.naver.com##body > div#ly_dim
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68333
@@ -6337,7 +6256,6 @@ delfi.ee###right
 digileht.epl.delfi.ee##.pagebreak-banner
 delfi.lt##iframe[src*="//track.adform.net/"]
 delfi.lt##iframe[src*="//www.alio.lt/"]
-||alio.lt/info*.html$domain=delfi.lt
 delfi.lt##body > div[style^="position:fixed;"][style*="z-index:9999999"]:not([class]):not([id])
 delfi.lt##.right img[width="300"][height="600"]
 delfi.lt##iframe[src^="https://www.delfi.lt/apps/banners/"]
@@ -6559,7 +6477,6 @@ e24.no##.ad
 @@||advert.vg.no/1v*.js?v=$~third-party
 @@||advertisement.vg.no/1v*.js?v=$~third-party
 vg.no##.ad
-vg.no##.appnexus.ad
 vg.no##.inline-ad-text
 vg.no##.advert
 vg.no##.finn-placeholder
@@ -6715,11 +6632,15 @@ interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulina
 !#endif
 ! ---------------------------
 ! adquesto
-gosc.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wypracowania.pl,otopress.pl,wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#//scriptlet("abort-current-inline-script", "parseInt", "/adBlock/")
+sadeczanin.info,gosc.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wypracowania.pl,otopress.pl,wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#//scriptlet("abort-current-inline-script", "parseInt", "/adBlock/")
 innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "isAdblockActive")
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/70130
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=elle.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/69894
+pwn.pl,translatica.pl###top-banners
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69069
 eska.pl#%#//scriptlet("set-constant", "sas.cmp", "noopFunc")
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -7382,8 +7303,6 @@ docer.pl,doci.pl#%#AG_onLoad(function() { var el=document.body; var ce=document.
 docer.pl#%#window.ads_unblocked = !0;
 docer.pl#$?#iframe#doublebillboard-1 { width: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36229
-!+ NOT_PLATFORM(windows, mac, android)
-@@||googletagservices.com/tag/js/gpt.js$domain=pilot.wp.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34353
 pilot.wp.pl#@#.ads
 pilot.wp.pl#@#body > script + iframe + div:not([id])[class]
@@ -7858,7 +7777,6 @@ filmweb.pl#@##pasekup
 filmweb.pl#@##flashcontent3
 filmweb.pl#@##skyBanner
 filmweb.pl#@#body .ws__wrapper
-www.filmweb.pl#@#.ws__wrapper
 filmweb.pl#$#.ws__wrapper { visibility: hidden!important; }
 filmweb.pl#$#.lightboxNEW:not(.fullscreen)[style] { top: 0!important; }
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
@@ -7885,7 +7803,6 @@ elektroda.pl#%#//scriptlet("abort-on-property-read", "disablePopup")
 elektroda.pl###WelcomeAdContainer
 elektroda.pl###WelcomeAdContainer + #overlay
 elektroda.pl##.the-category > .section-patrons
-elektroda.pl##.widgets a[href^="https://jlcpcb.com/"] > img
 elektroda.pl##a[href="https://itserwis.net/simplivity/"] > img
 elektroda.pl##body > #main > .content-wrap > .container > .container + section[class]:not([class="row"]) > a[href]:not([href^="https://www.elektroda.pl/"])[target="_blank"] > img
 elektroda.pl##body > #main > .content-wrap > .container  > .hidden-cookie-info + section[class] > a[href]:not([href^="https://www.elektroda.pl/"])[target="_blank"] > img
@@ -8931,7 +8848,6 @@ doonungdee.online##.ads-responsive
 /pic-ads/*$domain=doonungdee.online|movie285.com
 !
 ballzaa.com##.banner-box
-||bp.blogspot.com^$image,domain=nontonmovie33.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28171
 flix-anime.com##.player-container > .kosana-container
 @@||cdn.jsdelivr.net/npm/fuckadblock@3.2.1/fuckadblock.min.js$domain=flix-anime.com
@@ -9147,7 +9063,6 @@ hentai18plus.blogspot.com#?#.sidebar > div.widget:has(> div.widget-content > a[h
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||vkool.tv/js/adsvk_v*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58342
-@@||apitvh.net/embed/ads_code_1.js$domain=apitvh.net
 ||apitvh.net/preload^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58028
 ||ppcnt.*/go.php?id=$popup
@@ -9455,7 +9370,6 @@ phimmedia.tv#%#window.adblock = 1;
 phimmedia.tv#%#AG_defineProperty('PM_popup', { get: function() { return function() {}; }, set: function() {}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19239
 ||licklink.net/js/full-page-script.js$script,redirect=noopjs,important
-fcine.net#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18638
 @@||vnurl.net/1/2/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19036
@@ -9734,9 +9648,6 @@ nhaccuatui.com##div[class^="adv_"]
 !---------------------------------------------------------------------
 !------------------------------ Fanboy Annoyances --------------------
 !---------------------------------------------------------------------
-! https://github.com/AdguardTeam/AdguardFilters/issues/69835
-! TEMPORARY
-roblox.com#@#.inline-social
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60791#issuecomment-708859023
 !+ PLATFORM(windows, mac, android)
 @@||images-na.ssl-images-amazon.com/images/*/transparent-pixel.$image,domain=amazon.in
