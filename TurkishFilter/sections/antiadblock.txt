@@ -1,6 +1,16 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/71046
+@@||bolumd.online/templates/*/js/*.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/71042
+fontyukle.net#%#//scriptlet("prevent-setTimeout", "adsbygoogle")
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=fontyukle.net
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=fontyukle.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/70774
+mustafabukulmez.com#@##adcontent
+mustafabukulmez.com#%#//scriptlet("prevent-setTimeout", "0===o.offsetLeft&&0===o.offsetTop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69896
 torrentarsivi.com#@#.adBanner
 torrentarsivi.com###eazy_ad_unblocker_holder
@@ -69,9 +79,8 @@ dovizborsa.com#@#.adBanner
 dovizborsa.com#$#.adBanner { display: block!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52934
 @@||tr.link/cloud_thema/ads.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/52533
-@@||isminiunuttum.com/statistics/adsbygoogle.js
-isminiunuttum.com#%#//scriptlet("abort-current-inline-script", "document.getElementById", "').style.display='")
+! https://github.com/AdguardTeam/AdguardFilters/issues/71045
+isminiunuttum.com###eazy_ad_unblocker_dialog-message
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52501
 sk-ip.tech#%#//scriptlet("abort-current-inline-script", "document.getElementById", "/xx|block/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61693
@@ -150,9 +159,6 @@ mordefter.com#%#AG_abortInlineScript(/ad_killer/, 'addEventListener');
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mordefter.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47101
 messletters.com#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
-! https://github.com/AdguardTeam/AdguardFilters/issues/47103
-1ahaber.com##body > div[id^="ai-adb-"][style^="position: fixed; top:"][style*="z-index: 9999"]
-1ahaber.com#%#//scriptlet("set-constant", "ai_adb_detected", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47084
 isgfrm.com##.wutime-adblock
 @@||isgfrm.com/js/wutime_adblock/ads.js
