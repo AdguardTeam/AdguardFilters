@@ -1,8 +1,12 @@
 !
 ! Extended CSS rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/71557
+015.by#?#.news-grid > div.news-grid__col:not([id]) div[id^="banner-slider-"]:upward(2)
+015.by#?#.news-grid > div.news-grid__col:not([id]) > div.thumbnails[data-bg]:upward(1)
 ! gamebomb.ru - ad background
 gamebomb.ru#$?#body > noscript ~ div[id] > div[id]:has(> div[id="content"]) { background: none !important; }
+gamebomb.ru#?#body > noscript ~ div[id] div#header ~ div[style] ins.adsbygoogle:upward(2)
 ! sports.ru,tribuna.com - clickable background
 sports.ru,tribuna.com#$?#.page-layout:not(:has(> div)) { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67424
@@ -52,6 +56,10 @@ razlozhi.ru#$?#body[class] { margin-right: 0 !important; overflow: visible !impo
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60777
 2gis.*#?#span + a[href^="http://redirect.2gis.com/adv/"]:upward(2)
+! https://github.com/AdguardTeam/AdguardFilters/issues/71482
+astrosfera.ru#?#.grid-box > div.module:has(> div[id^="yandex_rtb_"])
+astrosfera.ru#?#.grid-box > div.module:has(> p > script[src^="//bhghfsa.info"])
+astrosfera.ru#?#.grid-box > div.module:has(> div[id^="gnezdo_ru"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57170
 wmj.ru#?#.swiper-slide-active:has(> div[class] > div[data-render-state] div.text:contains(рекламы))
 wmj.ru#$?#.swiper-container-horizontal > div[style^="transition: transform"] > div[class]:empty { remove: true; }
@@ -144,6 +152,8 @@ vesti-ua.net#?#.mid_col > section.mblock:has(> div.related_news_block > ins.adsb
 quicksave.su#?#.main-catalog > .catalog-item[-ext-has='.adsbygoogle']
 !
 ! 4pda.ru
+! остаток
+4pda.ru#?#.page-nav ~ article[id] > article.post :not(div) + script[style]:upward(2)
 ! фон
 ! !+ NOT_PLATFORM(windows, mac, android)
 !4pda.ru#$?#body > :not([id="ipbwrapper"]):not(td) > :not(td) > div > [class="menu"] ~ :not(td) + [id][class^="r"]    { background-image: none!important; background: #e6e7e9!important; }
@@ -427,13 +437,20 @@ argumenti.ru#?#.online_top > ul > li:has(> p > a[href^="https://news.mirtesen.ru
 coronavirus-monitor.ru#?#.entry-content > div[style]:has(> ins.adsbygoogle)
 coronavirus-monitor.ru#?#.entry-content > center:has(> div[style] > div.mk-ad-container)
 !
+imag.one#?#.sidebar-block:has(> div[id^="yandex_rtb_"])
+imag.one#?#.sidebar-block:has(> script[src^="//s.clickiocdn.com/"])
+sb.by#?#.patron-list img[src^="https://banners.adfox.ru/"]:upward(2)
+rsload.net#?##dle-content > div.short:contains(Godeal24)
+allbasketball.org#?#.col-lg-4 > aside.h-100 > div.block-sidebar-wrapper:has(div[data-adblock])
+datki.net#?#.sidebar > section.widget:has(> div.textwidget > ins.adsbygoogle)
+igrypk.net#?#.vladik > span.nimmmmmm:contains(От партнеров)
+eg.ru#?#div[style].row:has(> div.columns > div.article_znamya)
 vc.ru#?#div[class="feed"][data-feed-more-url^="https://vc.ru/"] div.feed__item:has(> div.content-feed--promo)
 a.pr-cy.ru#?#.box-content > div.analysis-test__wrap:has(> a[href^="https://"][target="_blank"])
 rustxt.ru#?#body > div.container > div.row > div[class]:has(> ins.adsbygoogle)
 2ip.ru#?##content > div[class] a[href="https://krot.io"]:upward(1)
 new-rutor.org#?##content > div[style]:has(> div[id^="advplayer"])
 cryptoworld.su#?##widget-area > div.widget_container:has(> h4 > span:contains(Реклама))
-eg.ru#?#.page-wrapper > div.row:has(> div[class] center > div[id^="adfox_"])
 echo.msk.ru#?##mainsidebar > div.ad.iblock:not(:has(> a[href]))
 golospravdy.eu#?#div[id^="sidebar-widget-"] > div.widget_text:has(> h3.sidebar-header > span:contains(/Тема дня|РЕКЛАМА/i))
 tvtvtv.ru#?#table:has(> tbody > tr > td:contains(/Объявления|Реклама/))
@@ -694,6 +711,7 @@ chita.ru#?##right_column > div.content-container:has(> div.chitaru__wonder)
 nastup.net#?#.l-content > section.color_custom:has(> div > div.offset_small > div.full-width > div.ult-adjust-bottom-margin > div[id^="Info-banner-"]:not([style="top: 0px;"]))
 softportal.com#?#.relap-default-wrapper div[data-relap-max-column-quantity] > div.js-relap__item:has(> div.js-relap__item-inner > a > div.relap-default__item__label:contains(Реклама))
 overclockers.ru#?#div[itemprop="articleBody"] > h4:contains(реклама)
+the-satori.net#?#.code-block-label:contains(Реклама)
 vplate.ru#?#.article > div[style]:has(> ins.adsbygoogle)
 htaccess.net.ru#?#noindex > div:has(> div[align="Right"]:contains(Реклам))
 24tv.ua#$?#.publications-wrapper > div.row > div[class*="partner-block-"] { remove: true; }
