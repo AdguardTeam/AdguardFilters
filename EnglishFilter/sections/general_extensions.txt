@@ -249,6 +249,7 @@ videowood.tv#%#//scriptlet("abort-on-property-read", "LieDetector")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74246
 ! https://gist.github.com/AdamWr/4b51c6b7c2d7bd22ba2e14f5d3ffe0b4
 redirect-ads.com#%#//scriptlet("json-prune", "*", "banner_id")
+! TODO: replace with "prevent-window-open" scriptlet after https://github.com/AdguardTeam/Scriptlets/issues/117
 redirect-ads.com#%#(function(){if("function"===typeof Proxy){var a=/^./,c=function(){var b=document.createElement("iframe");b.src=a;b.style.setProperty("height","1px","important");b.style.setProperty("width","1px","important");b.style.setProperty("position","absolute","important");b.style.setProperty("top","-99999px","important");document.body.appendChild(b);setTimeout(function(){return b.remove()},1E3);return b};window.open=new Proxy(window.open,{apply:function(b,g,e){if(!0!==a.test(e[0]))return b.apply(g,e);b=c.contentWindow;return b=new Proxy(self,{get:function(f,d,h){return"closed"===d?!1:"opener"===d?window:"frameElement"===d?null:"function"===typeof Reflect.get(f,d)?function(){}:f[d]},set:function(){return Reflect.set.apply(Reflect,arguments)}})}})}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73947
 streamsb.net#%#//scriptlet("abort-on-property-read", "DoodPop")
