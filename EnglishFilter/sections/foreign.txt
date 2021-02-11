@@ -2348,6 +2348,13 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/74496
+toyota-club.eu#%#//scriptlet('remove-attr', 'class', 'body > div#obalovydiv')
+toyota-club.eu#@#.reklama
+||google-analytics.com/analytics.js$script,redirect=noopjs,important,domain=toyota-club.eu
+!#safari_cb_affinity(privacy)
+@@||google-analytics.com/analytics.js$domain=toyota-club.eu
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74153
 club-opel.com#%#//scriptlet('remove-attr', 'class', 'body > div#obalovydiv')
 club-opel.com#@#.reklama
@@ -3773,6 +3780,13 @@ bhaskar.com#%#var canABP = true;
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/74322
+blog.aming.info#%#//scriptlet("prevent-window-open")
+blog.aming.info#$#body { visibility: visible !important; }
+blog.aming.info#$##babasbmsgx { display: none !important; }
+||namesilo.com/affiliate/banner_
+blog.aming.info##a[href^="https://cdn.aming.info/"] > img
+blog.aming.info##.post-content center > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73890
 ||vidio.com/embed/*&autoplay=true$domain=bola.net
 bola.net##.slot-native-lg
@@ -5466,27 +5480,13 @@ dap-news.com##.ads
 @@||gmyankee.tistory.com^$generichide
 @@||hjkhgyss.tistory.com^$generichide
 @@||liveinincheon.tistory.com^$generichide
-
-@@||daumcdn.net/*#ad&adv_keywords*impopup$domain=liveinincheon.tistory.com
-@@||daumcdn.net/*#ad&adv_keywords*impopup$domain=hjkhgyss.tistory.com
-@@||daumcdn.net/*#ad&adv_keywords*impopup$domain=maniac-game.tistory.com
-
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=viewingcat.tistory.com
+@@||daumcdn.net/*#ad&adv_keywords*impopup$domain=liveinincheon.tistory.com|hjkhgyss.tistory.com|maniac-game.tistory.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=viewingcat.tistory.com|liveinincheon.tistory.com|ilsangt.tistory.com|moroa.tistory.com
 @@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=viewingcat.tistory.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ilsangt.tistory.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=moroa.tistory.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=liveinincheon.tistory.com
 !#endif
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
-caskers.tistory.com##.adsbygoogle
-plok01234.tistory.com##.adsbygoogle
-jimnong.tistory.com##.adsbygoogle
-dotobi-game.tistory.com##.adsbygoogle
-maniac-game.tistory.com##.adsbygoogle
-jwmx.tistory.com##.adsbygoogle
-viewingcat.tistory.com##.adsbygoogle
-ittopic.tistory.com##.adsbygoogle
-!#endif
+! ##.adsbygoogle
+!+ PLATFORM(ext_ff, ext_opera, ios, ext_safari, ext_android_cb, ext_ublock)
+ittopic.tistory.com,viewingcat.tistory.com,jwmx.tistory.com,maniac-game.tistory.com,dotobi-game.tistory.com,jimnong.tistory.com,plok01234.tistory.com,caskers.tistory.com##.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49652
 emusk.tistory.com#$#div.adsbygoogle { display: block!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53603
@@ -7541,8 +7541,8 @@ money.pl##a[href="https://www.kongres590.pl/"] > img
 pudelek.pl,o2.pl,moneyv.wp.pl,money.pl#?#div[class*="sc-"]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
 wideo.wp.pl#?#img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"]:upward(1)
 money.pl#?#img[src="/static/mny-placeholder.png"]:upward(1)
-money.pl#?##app div[class*=" "]:matches-property("/__reactInternalInstance/.return.memoizedProps.slotNumber"="/\d+/")
-money.pl#?##app > div[class^="sc-"] > div[class]:matches-property("/__reactInternalInstance/.return.memoizedProps.advNumber"="/\d+/")
+moneyv.wp.pl,money.pl#?##app div[class*=" "]:matches-property("/__reactInternalInstance/.return.memoizedProps.slotNumber"="/\d+/")
+moneyv.wp.pl,money.pl#?##app > div[class^="sc-"] > div[class]:matches-property("/__reactInternalInstance/.return.memoizedProps.advNumber"="/\d+/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25329
 chomikuj.pl###InboxTable > tbody > tr > td.dataCell > p.spons
 chomikuj.pl###InboxTable > tbody > tr > td.dataCell + td > a[href*="/lp/"][href*="/?aid="][href*="&utm_campaign=default"]
