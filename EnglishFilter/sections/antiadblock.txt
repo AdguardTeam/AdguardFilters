@@ -1723,7 +1723,13 @@ camarchive.tv#%#//scriptlet("set-constant", "canads", "true")
 megafile.io#%#//scriptlet("set-constant", "replaceContentWithAdBlockerContent", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57302
 @@||world-sms.org/get-ad/step
-! https://github.com/AdguardTeam/AdguardFilters/issues/57204
+! https://github.com/uBlockOrigin/uAssets/issues/7308#issuecomment-778989942
+!+ PLATFORM(mac, windows, android)
+streamtape.com$$script[wildcard="*window*googleAd*"]
+!#if (!adguard_app_mac && !adguard_app_windows && !adguard_app_android)
+streamtape.com#%#//scriptlet("abort-current-inline-script", "document.createElement", "adblock")
+streamtape.com#%#//scriptlet("prevent-setInterval", "adblock", "700")
+!#endif
 @@||streamtape.com/ad.js
 streamtape.com#@#.google-ad
 streamtape.com#%#//scriptlet("set-constant", "googleAd", "true")
