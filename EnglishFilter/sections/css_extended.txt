@@ -1,6 +1,14 @@
 !
 ! Extended CSS rules
 !
+! temporal twitter fix
+twitter.com#?#aside[role="complementary"] div[data-testid="UserCell"]:has(svg + div[dir="auto"] > span:contains(/Promoted|Gesponsert|Promocionado|Sponsorisé|Sponsorizzato|Promowane|Promovido|Реклама|Uitgelicht|Sponsorlu|Promotert|Promoveret|Sponsrad|Mainostettu|Sponzorováno|Promovat|Ajánlott|Προωθημένο|Dipromosikan|Được quảng bá|推廣|推广|推薦|推荐|プロモーション|프로모션 중|ประชาสัมพันธ์|प्रचारित|বিজ্ঞাপিত|تشہیر شدہ|مُروَّج|تبلیغی|מקודם/))
+! https://github.com/AdguardTeam/AdguardFilters/issues/74968
+softpedia.com#?##swipebox-overlay > #swipebox-right:matches-css-before(content: /^Advertisement$/)
+! https://github.com/AdguardTeam/AdguardFilters/issues/74787
+nomics.com#?#.home-dashboard_wrap > .home-dashboard_module-5 > .br2 > div > broadstreet-zone-container:upward(3)
+! https://github.com/AdguardTeam/AdguardFilters/issues/75004
+link.bitmos.co.in#$?##go-popup { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74902
 robot-forum.com#?#.boxContainer > div.box ins.adsbygoogle:upward(.boxContainer)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74495
@@ -10,6 +18,8 @@ lovehug.net#?#center > h5 > font[color="white"]:contains(Advertisement)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73691
 mad4wheels.com#?#.prodotti-grid > .mb-5 > .card > .card-body > a > img[src^="/ads/"]:upward(.mb-5)
 mad4wheels.com#?#.prodotti-grid > .mb-5 > .card  > .card-footer > .pull-right:contains(/^Ads$/):upward(.mb-5)
+! https://github.com/AdguardTeam/AdguardFilters/issues/74335
+linkedin.com#?##main > .ember-view > div > div[data-id^="urn:li:activity:"] > .occludable-update > div[class^="feed-shared-update-"][data-urn] > div > .feed-shared-actor > .app-aware-link > .feed-shared-actor__meta > span.feed-shared-actor__sub-description:last-child:not(:has(>*)):upward(div[data-id^="urn:li:activity:"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73781
 escapegames24.com#?#.sidebar > div.widget:has(> h2:contains(Advertisement))
 escapegames24.com#?#.widget-content > div[align="center"]:has(> font > b:contains(Advertisement))
@@ -311,7 +321,8 @@ windowcleaningforums.co.uk#?#.cWidgetContainer > .ipsList_reset > .ipsWidget_ver
 coursedrive.org#$?#.better-ads-listitemad { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58138
 shootup.io#?#body > div[id$="-wrap"]:has(> div[id^="shootup-io_"])
-! https://github.com/AdguardTeam/AdguardFilters/issues/56769
+! https://github.com/AdguardTeam/AdguardFilters/issues/71040#issuecomment-779924936
+reddit.com#?#div[data-redditstyle] > div[style] > div[data-slot] > div[data-before-content="advertisement"]:upward(div[data-redditstyle])
 reddit.com#?#div[style="margin-left:24px;margin-top:0"][class] > div[class] > div[class^="_"]:not([data-redditstyle]):has(> div[class] div[class] > div[class] > div[data-before-content="advertisement"])
 reddit.com#?#.ListingLayout-outerContainer > div[class] > div[style][class] > div[style][class] > div[class] div[class]:not([data-redditstyle]):has(> div[class] > div[class] > .SidebarAd)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58001
@@ -1249,6 +1260,10 @@ mysexgamer.com#?#.row > div.a-th:has(> div.a-th-inner > div.a-thumb > div.thumb 
 mysexgamer.com#?#.row > div.a-th:has(> div.a-th-inner > div.a-thumb > div.thumb > a[href^="https://fap-titans.com/"])
 mysexgamer.com#?#.alertHolder > div.alert > div.row:has(> div.col-12 > div[style] > a[href^="https://fap-titans.com/"])
 mysexgamer.com#?#.alertHolder > div.alert > div.row:has(> div.col-12 > div[style] > a[href^="https://whentai.com/"])
+!
+forum.mobilism.me#?##pagecontent > table.tablebg > tbody > tr[class^="row"]:has(> td > b:contains(Advertisement [Bot]))
+forum.mobilism.me#?##pagecontent > table.tablebg > tbody > tr[class^="row"]:has(> td.profile td.postdetails:contains(The Advertiser))
+forum.mobilism.me#?##pagecontent > table.tablebg > tbody > tr[class^="row"]:has(> td.profile td.postdetails:contains(The Advertiser)) + tr[class^="row"]
 !
 dloady.com#?#.p-body-sidebar > div[class="block"]:has(h3:contains(Advertisement))
 hotcleaner.com#$?#div[class] > ins.adsbygoogle:upward(1) { remove: true; }
