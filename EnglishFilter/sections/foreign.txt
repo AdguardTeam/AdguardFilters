@@ -3611,7 +3611,7 @@ superiorwallpapers.com#@##banner_ad
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 examsleague.co.in##.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12247 https://github.com/AdguardTeam/AdguardFilters/issues/12246
-userupload.net,tnpdf.com#%#AG_onLoad(function() { setTimeout(function() { document.getElementById("downloadbtn").removeAttribute("disabled"); }, 300); });
+userupload.net,tnpdf.com#%#AG_onLoad(function() { setTimeout(function() { var el = document.getElementById("downloadbtn"); el && el.removeAttribute("disabled"); }, 300); });
 @@||tnpdf.com/assets/js/advertisement.js
 userupload.net#$#.download-btn { display:block!important; }
 userupload.net#$##countdown { display:none!important; }
@@ -3780,6 +3780,12 @@ bhaskar.com#%#var canABP = true;
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/74930
+laksa19.github.io#%#//scriptlet("prevent-setInterval", "chkAds", "2500")
+laksa19.github.io#$#.adsbygoogle { height: 1px !important; }
+laksa19.github.io#@#.adsbygoogle
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=laksa19.github.io
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74675
 nawalakarsa.id#?#.jeg_header > .jeg_bottombar > .container > .jeg_nav_row > .jeg_nav_col > .item_wrap > .jeg_ad:upward(.jeg_bottombar)
 ! ##div[id^="st"][style^="z-index: 9999"]
@@ -6719,6 +6725,10 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/75192
+portal-polski.pl##a[href^="https://webep1.com/"] > img
+portal-polski.pl#$#.hustle_module_id_4 { display: none !important; }
+portal-polski.pl#$#html.hustle-no-scroll[class] { overflow: auto !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74462
 disco-polo.info##.text-center > span[class="font8 text-muted"]
 ||disco-polo.info/uploads/banery/reklama-kup-2021jpg.jpg.webp
@@ -7524,6 +7534,7 @@ meczenazywo.pl,mecze24.pl#%#Object.defineProperty(window, 'aPopunder', { get: fu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26562
 @@||ipla.tv^$generichide
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=ipla.tv
+ipla.tv#%#//scriptlet("json-prune", "result.ads.adserver result.ads.adBlockDetectionEnabled")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57202
 ! anime-odcinki.pl - ads
 anime-odcinki.pl##.region-sidebar-second > .widget_text > .textwidget > center > div[id][style="width:300px;height:250px;"]:empty
@@ -7781,6 +7792,7 @@ money.pl#$#body { overflow: visible!important; }
 ||abczdrowie.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
 ||abczdrowie.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||open.fm^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
+||open.fm^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||parenting.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
 ||parenting.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||pudelek.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|\,.=function\(\))\{return) .===[\S]*?(\}))/\$4\$5\$6\$8/,script
@@ -7815,8 +7827,6 @@ money.pl#$#body { overflow: visible!important; }
 ||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script,domain=~poczta.o2.pl
 !+ NOT_PLATFORM(ext_ff)
 ||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
-!+ PLATFORM(windows, mac, android, ext_ff)
-||amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,domain=wp.pl|money.pl
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
 www.wp.pl#?#div[class^="sc-"]:has(> img[src^="https://v.wpimg.pl/"][role="presentation"][class^="sc-"]:matches-css(position: absolute))
 wp.pl#?#[class^="_"]:has(>img[src*=".wp.pl"])
@@ -7829,6 +7839,8 @@ pilot.wp.pl##.wp-player > .adpause > .plchldr
 ||oas.wpcdn.pl/*.mp4$media,redirect=noopmp4-1s,domain=dobreprogramy.pl|medycyna24.pl|money.pl|o2.pl|pudelek.pl|wp.pl
 ||v.wpimg.pl^$media,redirect=noopmp4-1s,domain=autocentrum.pl|autokult.pl|abczdrowie.pl|gadzetomania.pl|fotoblogia.pl|parenting.pl|komorkomania.pl|o2.pl|pudelek.pl|dobreprogramy.pl|medycyna24.pl|money.pl|wp.pl
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=tv.pudelek.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/75066
+||amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,domain=wp.pl|money.pl|open.fm
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
 sportowefakty.wp.pl#?#div:not([class]):not([id]):has(> div[class] > div[class*=" "] > div:not([class]):not([id]):contains(/^REKLAMA$/))
 sportowefakty.wp.pl#?#.teasers > div[class=" display"]:has(> div[class] > div[class] > div:not([class]):not([id]) > div:not([class]):not([id]):contains(/^REKLAMA$/))
