@@ -47,8 +47,18 @@ realty.yandex.ru##.Offer__taxiBannerContainer
 !-----------------------------------------------
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/75933
+||cloudfront.net/widgets2021/banner/index.html$domain=tvn24.pl
+tvn24.pl##iframe[src$="cloudfront.net/widgets2021/banner/index.html"]
+! self-promo banners on video.fc2.com
+video.fc2.com##.vod_price_off
+||fc2.com/video/img/banner/
+! self-promo ads on iwate-np.co.jp
+iwate-np.co.jp#?#.news-box-article-list > li:has(span.date:contains(広告))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73668
 quizizz.com##.spons-group-right
+! https://github.com/AdguardTeam/AdguardFilters/issues/75802
+myanimelist.net##.footer-mini-banner
 ||cf.quizizz.com/img/super/ads/ads_banner*.png
 ! self-promo texts
 yahoo.co.jp###msthdPrLink
@@ -57,7 +67,7 @@ login.yahoo.co.jp###ads
 ||kakaku.com/script/itemview/RdmReviewAd.js
 kakaku.com#?#.alignC > div.mTop10 > div[style="border:1px solid #ccc;"]:contains(-PR-)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67637#issuecomment-768913292
-kinopoisk.ru#?#div[class$="kinopoisk-media"] iframe.yandex_music:upward(2)
+kinopoisk.ru#?#iframe.yandex_music:upward(div.media-post-embed)
 kinopoisk.ru##.media-page-layout__trailer-promo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72673
 barchart.com##.bc-premier-ads-block
@@ -706,15 +716,33 @@ experts-exchange.com##.interceptBackgroundBlocker
 experts-exchange.com##.adBanner-comment
 experts-exchange.com##.ctaSolutionStickyWrapper
 !
-! Coupon popup on aliexpress.ru, aliexpress.com
-aliexpress.ru,aliexpress.com##iframe[src^="https://campaign.aliexpress.com/"]
-! Working rule, but JS: is.alicdn.com#%#if (typeof localStorage != 'undefined' && localStorage.setItem) { localStorage.setItem('2', '"{\"2USD_coupon_popup\":1}"'); }
-aliexpress.ru,aliexpress.com#$?##newuser-activity-config { remove: true; }
-!
+aliexpress.com,aliexpress.ru##.coupon-poplayer-modal
+skyscanner.ru##a[class^="InlineBrandBanner_link"][target="_blank"]
+eternalhost.net##a[style][href*="eternalhost.net"] > img.overlay-pc
+latimes.com##style + div[class="overlay"]
+101.ru##.flying-banner-wrapper
+crunchyroll.com##.game-banner-wrapper
+lbb.in##.header-banner
+proshop.dk##.site-background-banner
+proshop.dk##a[data-action="campaignClick"][data-position="bottom-left"]
+proshop.dk##.site-top-banner
+m.naver.com##.id_cui_commemoration_banner
+minhaoperadora.com.br##.minha-conteudo
+alibaba.com##a[campaignid][style^="display: block; width: 100%; position: relative; min-height: 120px;"]
+fotor.com#?##unic-gdpr:upward(2)
+forum.miuiturkiye.net###iframeurun
+qq.co.kr,pandalive.co.kr###rightBanner
+flaticon.com###banner-guest
+support.microsoft.com##.m365trial_railbanner
+nzherald.co.nz##.premium-toaster
+mozilla.org##.mzp-c-sticky-promo
+loftblog.ru##.webdev
+cryptocompare.com###big-info-section-top
 bloomberg.com###paywall-banner
 fark.com###abPleaBar
 sibnet.ru##.wink_notification__root
 codepile.net##.cp-ad
+new-gomovies.online##a[href="/user/profile/premium-membership"][target="_blank"]
 rsload.net###dle-content a[href="/tutvce.html"]
 britannica.com##.marketing-INLINE_SUBSCRIPTION
 ||rolo.nocdnrlly.xyz/images/nflbanner.png
@@ -893,7 +921,7 @@ alexfilm.org#$#body { background: #000000!important; }
 factor.academy##.bottom-bnnr__container
 inpost.pl##.app-screen
 autonews.com##.article-recommended
-anilibria.tv##.main > div.content > a[target="_blank"] > img
+anilibria.iss.one,al.sdev.xyz,anilibria.cf,anilib.top,anilibria.tv##.main > div.content > a[target="_blank"] > img
 jokerplayer.net##snackbar
 buhgalter.com.ua#?#.news-list > div.news-list-row:has(> div.news-list-title > h2 > span.news-list-ico-advertising)
 kashi-mo.com##.l-footer > a.wimax_bnr
@@ -985,7 +1013,6 @@ wondershare.com##body > div[id][style*="background-image:"]:not([class])
 befunky.com##div[id^="bfn-plus-dsp"] > a
 befunky.com###socialSharingDiv
 m.slashdot.org##.upper-banner
-anilibria.tv###footer_center
 lampart.ru##.banner_in_catalog_cnt
 xtremetop100.com#?##middleb a[href="#"][rel="nofollow"][-ext-contains="banner place is for sale"]
 pcgames.de#?#.textContainer > p[-ext-has='a[title$="Online-Abo"]']
@@ -1049,7 +1076,7 @@ thinkster.io###carbonhold
 spy-soft.net##.e3lan-top > a[rel="nofollow"] > img
 ||vc.ru/static/special/yota-stratum/
 multiup.eu###overview + #content-page > .alert.alert-success
-filmix.cc,filmix.click,filmix.co,filmix.ltd,filmix.tech,filmix.today,filmix.wiki,filmix.zone##.remove-sda-wrap
+filmix.ac,filmix.cc,filmix.click,filmix.co,filmix.ltd,filmix.tech,filmix.today,filmix.wiki,filmix.zone##.remove-sda-wrap
 dn.se##.js-account-information
 law03.ru##.container > #blfix
 ||news.atv.az/images/top-banner.png

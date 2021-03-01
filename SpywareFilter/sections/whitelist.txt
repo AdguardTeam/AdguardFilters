@@ -4,7 +4,43 @@
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
 ||rover.ebay.$image,object,script,badfilter
 !
-!
+! Unblocking everything on check-in confirmation pages - blocking tracking breaks it
+@@||pobeda.aero/*/check-in/$document
+! https://github.com/AdguardTeam/AdguardFilters/issues/75643
+@@||cdn.optimizely.com/datafiles/*.json$domain=talktalk.co.uk
+! https://github.com/AdguardTeam/AdguardFilters/issues/75675
+||xinnet.com/dcp/javascript/fingerprint2.min.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/75425
+@@||googletagmanager.com/gtag/js$domain=roman.com.tr
+! https://github.com/AdguardTeam/AdguardFilters/issues/75303
+! fix for long page loading
+@@||googletagmanager.com/gtm.js$domain=whatcar.com
+||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=whatcar.com,important
+@@||google-analytics.com/analytics.js$domain=whatcar.com
+||google-analytics.com/analytics.js$script,redirect=google-analytics,domain=whatcar.com,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/75260
+@@||googletagmanager.com/gtm.js$domain=ymobile.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/75194
+||pvtag.yahoo.co.jp^$script,redirect=noopjs,domain=paypayfleamarket.yahoo.co.jp
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pvtag.yahoo.co.jp^$script,domain=paypayfleamarket.yahoo.co.jp
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/75154
+@@||analysys.cn^$domain=analysys.cn
+! https://github.com/AdguardTeam/AdguardFilters/issues/74614
+@@||se.monetate.net/js/*/entry.js$domain=debenhams.com
+@@||se.monetate.net/js/*/custom.js$domain=debenhams.com
+@@||f.monetate.net/trk/$domain=debenhams.com
+! Mitarbeiterangebote.de - Zum Onlineshop button broken
+@@||trf.greatviews.de/cl?$domain=mitarbeiterangebote.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/74275
+||googletagmanager.com/gtag/js$script,other,redirect=googletagmanager-gtm,domain=guardaserie.*
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||googletagmanager.com/gtag/js$domain=guardaserie.ink|guardaserie.kim
+! https://github.com/AdguardTeam/AdguardFilters/issues/74712
+@@||cdn.taboola.com/libtrc/*/loader.js$domain=ilmeteo.it
+@@||cdn.taboola.com/libtrc/impl.*.js$domain=ilmeteo.it
+@@||trc.taboola.com/ilmeteo-*/trc/$domain=ilmeteo.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73794
 @@||gapt.hit.gemius.pl/gplayer.js$domain=radiocomercial.iol.pt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73701
