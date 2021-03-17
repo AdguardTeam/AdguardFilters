@@ -1294,7 +1294,7 @@ buzzorange.com##.ad_small_m
 buzzorange.com###primary > .dfped[id^="all-970x"]
 buzzorange.com###divRelated > .dfped
 buzzorange.com#?#.sidebar > section[id^="text-"]:has(> .textwidget > .dfped)
-buzzorange.com#$#.sidebar > section#text-8[style*="bottom: 240px;"] { position: static!important }
+buzzorange.com#$#.sidebar > section#text-8[style*="bottom: 240px;"] { position: static !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46164
 jiemian.com###ad_header_top
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46025
@@ -2350,6 +2350,14 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/77665
+xtv.cz#%#//scriptlet("prevent-setTimeout", "pgblck")
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xtv.cz
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=xtv.cz
+@@||go.eu.bbelements.com/bb/bb_one2n.js$domain=xtv.cz
+@@||bbcdn.go.eu.bbelements.com/bb/bb_one2n.*.js$domain=xtv.cz
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77609
 renault-club.cz#%#//scriptlet('remove-attr', 'class', 'body > div#obalovydiv')
 renault-club.cz#@#.reklama
@@ -2421,10 +2429,14 @@ mercedesclub.cz#%#//scriptlet("abort-on-property-read", "gaFailedToLoad")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58243
 techbyte.sk##.techb-sticky
 techbyte.sk#%#//scriptlet("abort-current-inline-script", "advads", "campaign")
-! https://github.com/AdguardTeam/AdguardFilters/issues/57078#issuecomment-648457281
-!#if (adguard_app_ios || adguard_ext_android_cb)
+! https://github.com/AdguardTeam/AdguardFilters/issues/77055
+! https://github.com/AdguardTeam/AdguardFilters/issues/70530
+novinky.cz#@%#//scriptlet('ubo-acis.js', 'String.fromCharCode')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||novinky.cz^$generichide
-@@||sk.adocean.pl/files/js/ado.js$domain=novinky.cz
+@@||cdn.performax.cz/ads|$domain=idnes.cz|novinky.cz
+@@||sk.adocean.pl/files/js/ado.js$domain=idnes.cz|novinky.cz
+@@||go.eu.bbelements.com/please/code$domain=idnes.cz|novinky.cz
 novinky.cz##.js-ad > *
 novinky.cz##div[data-e5e-advert] > *
 !#endif
@@ -4842,10 +4854,12 @@ occhionotizie.it#%#//scriptlet("set-constant", "$tieE3", "true")
 tio.ch#%#//scriptlet("prevent-addEventListener", "error", "event.triggered")
 tio.ch#%#(function() { try { if ('undefined' != typeof localStorage) {var date = new Date(); window.localStorage.setItem("adbSkip", date.getTime()); } } catch (ex) {} })();
 @@||tio.ch^$generichide
+@@||ad.*.ch^$xmlhttprequest,other,script,domain=tio.ch
 @@||adv.*.ch^$xmlhttprequest,other,script,domain=tio.ch
 @@||ads.*.ch^$xmlhttprequest,other,script,domain=tio.ch
 @@/^https?.*\..*\.ch\/.*\/(ad|adtech|pubblicita|adverts|ad-random|adSponsors|banner-ad|banman|native-ad|advertise|advert1|bg_ads|adengine|adspot|baseAd|coread)\/.*\/.*=.*&/$xmlhttprequest,other,script,domain=tio.ch
 tio.ch##div[class="randomBox cornice"]
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
 tio.ch##.ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65078
 @@||rockitecn.nohup.it/*/js/*.js$domain=rockit.it
@@ -5478,6 +5492,8 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/77145
+@@||ad.smartmediarep.com/NetInsight/video/$domain=m.mbn.co.kr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76547
 torrentdia3.com,torrentdia2.com,torrentdia.com##.side_bimg
 torrentdia3.com,torrentdia2.com,torrentdia.com##.top_bimg
@@ -7827,6 +7843,8 @@ money.pl#$#body { overflow: visible!important; }
 ! ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$2\$3\$4 false\$5/,script
 ! ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$4\$5\$6 false\$7/,script
 ! ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) .===.(\}))/\$4\$5\$6\$8/,script
+||polygamia.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
+||polygamia.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||vibez.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
 ||vibez.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||abczdrowie.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
@@ -7975,6 +7993,8 @@ filmweb.pl#$#.lightboxNEW:not(.fullscreen)[style] { top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70948
 !+ PLATFORM(ios, ext_android_cb)
 @@||filmweb.pl^$elemhide,important
+!+ PLATFORM(ext_safari)
+@@||filmweb.pl^$generichide,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7471
 ! niezalezna.pl - ads reinjection
 niezalezna.pl#%#Object.defineProperty(window,'adonisHash',{get:function(){},set:function(){throw'Adguard: stopped a script execution.'}});
