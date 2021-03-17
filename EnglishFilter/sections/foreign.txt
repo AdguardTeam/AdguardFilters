@@ -2350,6 +2350,14 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/77665
+xtv.cz#%#//scriptlet("prevent-setTimeout", "pgblck")
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xtv.cz
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=xtv.cz
+@@||go.eu.bbelements.com/bb/bb_one2n.js$domain=xtv.cz
+@@||bbcdn.go.eu.bbelements.com/bb/bb_one2n.*.js$domain=xtv.cz
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77609
 renault-club.cz#%#//scriptlet('remove-attr', 'class', 'body > div#obalovydiv')
 renault-club.cz#@#.reklama
@@ -2421,10 +2429,14 @@ mercedesclub.cz#%#//scriptlet("abort-on-property-read", "gaFailedToLoad")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58243
 techbyte.sk##.techb-sticky
 techbyte.sk#%#//scriptlet("abort-current-inline-script", "advads", "campaign")
-! https://github.com/AdguardTeam/AdguardFilters/issues/57078#issuecomment-648457281
-!#if (adguard_app_ios || adguard_ext_android_cb)
+! https://github.com/AdguardTeam/AdguardFilters/issues/77055
+! https://github.com/AdguardTeam/AdguardFilters/issues/70530
+novinky.cz#@%#//scriptlet('ubo-acis.js', 'String.fromCharCode')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||novinky.cz^$generichide
-@@||sk.adocean.pl/files/js/ado.js$domain=novinky.cz
+@@||cdn.performax.cz/ads|$domain=idnes.cz|novinky.cz
+@@||sk.adocean.pl/files/js/ado.js$domain=idnes.cz|novinky.cz
+@@||go.eu.bbelements.com/please/code$domain=idnes.cz|novinky.cz
 novinky.cz##.js-ad > *
 novinky.cz##div[data-e5e-advert] > *
 !#endif
@@ -5480,6 +5492,8 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/77145
+@@||ad.smartmediarep.com/NetInsight/video/$domain=m.mbn.co.kr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76547
 torrentdia3.com,torrentdia2.com,torrentdia.com##.side_bimg
 torrentdia3.com,torrentdia2.com,torrentdia.com##.top_bimg
