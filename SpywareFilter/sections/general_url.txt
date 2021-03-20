@@ -1,4 +1,10 @@
 !
+! Blocking conversion tracking URLs that are used by WebKit
+! More info: https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/
+! Content blockers can prevent this: https://bugs.webkit.org/show_bug.cgi?id=197183
+!+ NOT_OPTIMIZED
+/.well-known/private-click-measurement
+!
 ! webtrekk
 /wt?p=
 !
@@ -41,7 +47,25 @@
 ! https://github.com/easylist/easylist/issues/5297
 /submission/pageview
 /collect-*/pageview|
+! RD Station
+/lead-tracking.
+/traffic-source-cookie.
+/rdstation-popup.min.js
+/rd-js-integration.min.js
+! Plausible
+/plausible.js
+||plausible.io/js/p.js
+||plausible.io/api/event
+! Umami
+/umami.js
 !
+/exactag_clientside.js
+/stats.php?*event=$image
+/hawkeye.js
+-track-inview.
+/onetag/*
+/astrack.js
+/gv-analytics/*
 /gapro.js
 /img.gif?
 /mtracking.
@@ -90,8 +114,7 @@ _analytics.js?
 /insights-emitter/*
 /log-nt/*
 -unbxdAnalytics.
-/ux_analytics/*
-/ux_analytics_
+||dropbox.com/log/
 /owa.tracker-combined-min.js
 /Web_JS_Stats.
 /mip-stats-cnzz/*
@@ -268,6 +291,7 @@ _analytics.js?
 /player_counter.ashx?
 /plista.js
 /pvcountup.
+/RankingLogging.
 /sayac.html
 /shareCounts.
 /shinystat.
