@@ -1,0 +1,47 @@
+name: Remove 'Resolved' and 'Cannot reproduce' labels on issue reopen
+
+on:
+  issues:
+    types: [reopened]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            var owner = context.repo.owner;
+            var repo = context.repo.repo;
+            var issue_number = context.issue.number;
+
+            var resolvedLabel = 'A: Resolved';
+            var cannotReproduceLabel = 'A: Cannot reproduce';
+
+            var issueLabelsRaw = await github.issues.listLabelsOnIssue({
+              owner,
+              repo,
+              issue_number,
+            });
+
+            var issueLabels = issueLabelsRaw.data
+              .map((el) => el.name);
+
+            if (issueLabels.indexOf(resolvedLabel) > -1) {
+              github.issues.removeLabel({
+                owner,
+                repo,
+                issue_number,
+                name: resolvedLabel,
+              });
+            }
+
+            if (issueLabels.indexOf(cannotReproduceLabel) > -1) {
+              github.issues.removeLabel({
+                owner,
+                repo,
+                issue_number,
+                name: cannotReproduceLabel,
+              });
+            }
