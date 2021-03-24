@@ -2146,18 +2146,15 @@ easyload.io##.force-adblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54722
 @@||coinxfaucet.com/static/ads/popunder.js
 coinxfaucet.com#%#//scriptlet("set-constant", "popunder_ads", "true")
-! https://github.com/AdguardTeam/AdguardFilters/issues/55286
+! https://github.com/AdguardTeam/AdguardFilters/issues/78287
 @@||4snip.pw/*.js$domain=wstream.video
 @@||wstream.video^$generichide
 @@||wstream.video/*.js$~third-party
-wstream.video#%#//scriptlet("set-constant", "e4e4e4", "true")
-wstream.video#%#//scriptlet("set-constant", "efrefr", "true")
-wstream.video#%#//scriptlet("adjust-setTimeout", "#adv", "3000", "0.02")
-wstream.video#$#[id^="adv"] { height: 10px!important; }
-wstream.video#$##ads { height: 4px!important; }
+@@||fastcdn.stream/*.js$domain=wstream.video
+wstream.video#%#//scriptlet("adjust-setTimeout", ".height()", "3000", "0.02")
+wstream.video#%#//scriptlet("remove-attr", "style", "div[id][style='display: none;']")
+wstream.video#$#[id^="ad"] { height: 10px!important; }
 wstream.video#$#body[style*="overflow"] { overflow: visible!important; }
-wstream.video#$?#body > div[id][style]:has(> div[style] > .jwplayer) { display: block!important; }
-wstream.video#$?##container div[id][style*="display:"]:not([style*="table-cell"]):has(.jwplayer) { display: block!important; }
 wstream.video#?##container div[id] > div:not([class]):not([id])> div[id][style]:has(> * > a[href="https://wstream.video/premium.html"])
 wstream.video#?##container div[id] > div:not([class]):not([id])> div[id][style]:has(> center > * > a[href="https://wstream.video/premium.html"])
 wstream.video#?#body > div[id][style]:has(> center > * > a[href="https://wstream.video/premium.html"])
