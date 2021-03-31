@@ -8270,6 +8270,7 @@ tvn.pl#%#//scriptlet("json-prune", "movie.advertising.ad_server movies.*.adverti
 ! Temporary solution until it will possible to fix it via $redirect rule - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1471
 !+ PLATFORM(ext_chromium, ext_opera, ext_edge)
 player.pl#%#!function(){function z(f){var a=function(){for(var a=arguments.length,c=Array(a),b=0;b<a;b++)c[b]=arguments[b];var d=new (window.Function.prototype.bind.apply(g,c)),h=d.open;d.open=function(){for(var a=arguments.length,b=Array(a),e=0;e<a;e++)b[e]=arguments[e];var c=f.apply(void 0,b);"string"===typeof c&&Object.defineProperties(this,{responseText:{configurable:!1,set:function(){},get:function(){return c}},status:{configurable:!1,set:function(){},get:function(){return 200}},statusText:{configurable:!1,set:function(){},get:function(){return"OK"}}});return h.apply(d,b)};return d};try{var g=window.XMLHttpRequest;window.XMLHttpRequest=a}catch(k){}}z(function(f,a){if(/^https?:\/\/tvn\.adocean\.pl\/ad\.xml/.test(a))return'<VAST version="2.0"></VAST>'});}();
+! https://github.com/AdguardTeam/AdguardFilters/issues/78932
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34440
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21435
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7477
@@ -8278,6 +8279,8 @@ player.pl#%#!function(){function z(f){var a=function(){for(var a=arguments.lengt
 @@||redefineadpl.hit.gemius.pl/*redataredir?url=*.hit.stat24.com*ad.xml$domain=polsatnews.pl|polsatsport.pl|twojapogoda.pl
 @@||hit.stat24.com/*ad.xml$xmlhttprequest,other,domain=polsatnews.pl|polsatsport.pl|twojapogoda.pl|geekweek.pl
 ||ipla.hit.stat24.com/*ad.xml$redirect=nooptext,important,domain=~polsatnews.pl|~polsatsport.pl|~twojapogoda.pl
+||polsatnews.pl^$replace=/(\,vast: ?")[\s\S]*?\/ad\.xml\?[\s\S]*?("\,)/\$1\$2/,~script,~stylesheet,~xmlhttprequest,~other
+||polsatsport.pl^$replace=/(\,vast: ?")[\s\S]*?\/ad\.xml\?[\s\S]*?("\,)/\$1\$2/,~script,~stylesheet,~xmlhttprequest,~other
 ||hit.stat24.com/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*?(<Ad id=[\s\S]*?>)[\s\S]*<\/VAST>/\$1\$2<\/Ad><\/VAST>/,important,domain=polsatnews.pl|polsatsport.pl|twojapogoda.pl|geekweek.pl
 !+ NOT_PLATFORM(windows, mac, android, ext_ff, ext_opera, ext_ublock)
 ||ipla.hit.stat24.com/*ad.xml$xmlhttprequest,redirect=noopvast-2.0,important,domain=twojapogoda.pl
