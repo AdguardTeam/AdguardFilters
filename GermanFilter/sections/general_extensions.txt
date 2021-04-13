@@ -2,8 +2,8 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68508
-serienstream.to,s.to#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "decodeURIComponent")
-serienstream.to,s.to#%#//scriptlet('abort-on-property-read', 'k75k67')
+serien.*,anicloud.io,serienstream.to,s.to#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "decodeURIComponent")
+serien.*,anicloud.io,serienstream.to,s.to#%#//scriptlet("abort-on-property-read", "k75k67")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76260
 firmenwissen.de#%#//scriptlet('remove-class', 'async-hide', 'html')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70579
@@ -75,8 +75,8 @@ movie-blog.org#%#Object.defineProperty(window, 'popns', { get: function() { retu
 esslinger-zeitung.de#%#AG_onLoad(function() { document.getElementsByClassName("nfy-mediagal-slider-ad")[0].parentNode.parentNode.remove(); });
 ! https://forum.adguard.com/index.php?threads/18407/
 iload.to#%#Object.defineProperty(window, 'onclick', { get: function() { return; } });
-! https://forum.adguard.com/index.php?threads/13470/
-pcwelt.de#?##sidebar > div[class="box"][-ext-has='span[class$="banner-text"]']
+! https://github.com/AdguardTeam/AdguardFilters/issues/79647
+pcwelt.de#?##sidebarwrap > div.box:has(> div.heading:contains(/Anzeige|Angebot/))
 ! https://forum.adguard.com/index.php?threads/anonymousnews-ru.17404/
 anonymousnews.ru#%#Object.defineProperty(window, 'td_ad_background_click_link', { get: function() { return ""; } });
 ! https://forum.adguard.com/index.php?threads/rp-online-de.17415/
@@ -111,6 +111,8 @@ menshealth.de#%#function google_ad_request_done() {};
 !--------------------------------------!
 !------- CSS fixes --------------------!
 !--------------------------------------!
+! spin.de - reduzing footer size due to hidden ads
+spin.de#$##footer { position: relative !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68373
 chip.de#$#.NewsIndex { --topbanner-height-min: 0 !important; }
 chip.de#$#.Portal { --topbanner-height-min: 0px !important; }
