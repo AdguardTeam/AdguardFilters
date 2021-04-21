@@ -229,6 +229,8 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/80755
+jaanmusic.in#%#//scriptlet("adjust-setInterval", "seconds", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80037
 psdly.com#%#//scriptlet("adjust-setInterval", "counter--", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/pull/79036
@@ -243,8 +245,6 @@ mcrypto.club#%#//scriptlet("adjust-setInterval", "wpsafe-generate", "", "0.02")
 doctor-groups.com,crypto-faucet.xyz#%#//scriptlet("adjust-setInterval", "sec--", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79304
 faucetcrypto.com#%#//scriptlet("adjust-setInterval", "timerText", "", "0.02")
-! https://github.com/AdguardTeam/AdguardFilters/issues/79183
-jaanmusic.in#%#//scriptlet("adjust-setInterval", "download", "5000", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79342
 forex-trnd.com#%#//scriptlet("adjust-setInterval", "#mdtimer", "", "0.02")
 ! adnit-tri.tk - skip timer
@@ -425,7 +425,7 @@ hikarinoakari.com#%#//scriptlet("adjust-setInterval", "count", "", "0.02")
 ! fcc.lc - skip timers
 short.fc-lc.com#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector('#submitbtn'); if(el) { el.click(); } }, 300); });
 ! fclcc.com,articlix.com,fcc.lc#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector("#invisibleCaptchaShortlink"); if(el) { el.classList.remove("disabled"); el.removeAttribute("disabled"); el.click(); } }, 300); });
-fclcc.com,articlix.com,fcc.lc#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector("#surl"),c=function(){var d=jQuery.ajax({url:domain,method:"POST",dataType:"json",data:jQuery("#form12").serialize()});setTimeout(function(){try{var b=d.responseText.split(/https?/)[1];b=b.split('"')[0];b=b.replaceAll("\\","");a.href="https"+b;a.text="Get Link";a.classList.add("btn-success");a.click()}catch(e){console.log("Failed, try again..."),c()}},1E3)};a&&(a.classList.remove("disabled"),c())},500)});
+fclcc.com,articlix.com,fcc.lc#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector("#surl"),c=function(){var d=jQuery.ajax({url:domain,method:"POST",dataType:"json",data:jQuery("#form12").serialize()});setTimeout(function(){try{var b=d.responseText;b=JSON.parse(b);if(b.url&&b.url.startsWith("http"))a.href=b.url,a.text="Get Link",a.classList.add("btn-success"),a.click();else throw Error();}catch(e){console.log("Failed, try again..."),c()}},1E3)};a&&(a.classList.remove("disabled"),c())},500)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59717
 anonymous-links.com#%#//scriptlet("set-constant", "waitSeconds", "0")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70370
@@ -862,7 +862,7 @@ go.giga74.com#%#AG_onLoad(function(){var a=document.querySelector('center > a[hr
 midiavip.com#%#AG_onLoad(function(){if(document.querySelector(".unlock-step-link.getlink[disabled]")){var a=document.querySelectorAll("form#formID");document.querySelectorAll("input[name='urlopen']").forEach(function(a){a.value=location.origin+"/url2.php"});for(var b=0;b<a.length;b++)fetch("/url2.php",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:(new URLSearchParams(new FormData(a[b]))).toString()}).then(function(){fetch(location.href).then(function(a){return a.text()}).then(function(a){try{location= /&u=([^']+)/.exec(a)[1]}catch(d){}})})}if(a=document.querySelector('.unlock-step-link.getlink[onclick*="&u=http"]')){a=a.getAttribute("onclick");try{location=/&u=([^']+)/.exec(a)[1]}catch(c){}}});
 midvip.xyz#%#AG_onLoad(function(){ var el = document.querySelector('.page-content1 button#makingdifferenttimer[onclick*="PathSet()"]'); if(el) el.click(); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77672
-imgviv.xyz,imgsupa.xyz,imglion.xyz,imgkr.xyz,imgtigr.xyz,imglin.xyz,imgkoi.xyz,imageking.xyz,imgweng.xyz,cloudgallery.net,imgair.net#%#//scriptlet("adjust-setInterval", ".timer", "", "0.02")
+imgbird.xyz,imgviv.xyz,imgsupa.xyz,imglion.xyz,imgkr.xyz,imgtigr.xyz,imglin.xyz,imgkoi.xyz,imageking.xyz,imgweng.xyz,cloudgallery.net,imgair.net#%#//scriptlet("adjust-setInterval", ".timer", "", "0.02")
 imgviv.xyz,imgsupa.xyz,imglion.xyz,imgkr.xyz,imgtigr.xyz,imglin.xyz,imgkoi.xyz,imageking.xyz,imgweng.xyz,cloudgallery.net,imgair.net#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector("a[href].url-link");a&&(a.click(),setTimeout(function(){a.click()},50))},500)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50428
 1v.to#%#AG_onLoad(function(){var a=document.querySelector("#oculto > a[href]");if(a)try{window.location=a.href}catch(b){}});
@@ -1158,6 +1158,7 @@ imslp.org#%#AG_onLoad(function(){var b=document.getElementById("sm_dl_wait");if(
 /wp-content/plugins/disable-right-click/*
 /wp-content/plugins/right-click-disable-orignal/*
 !
+||camoero.com/wp-content/themes/luxech/luxech.js
 ||suntory.co.jp/softdrink/craftboss/flash/assets/img/mouse.gif
 ||suntory.co.jp/softdrink/craftboss/flash/assets/js/main.js
 ||tmgrup.com.tr/*/pageProtection.js
@@ -1191,6 +1192,8 @@ chapterupdates.com,babelnovel.com,katzen-fieber.de,xn--80aaxitdbjk.xn--p1ai,topt
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
 quotev.com#$#body #res_area ::selection { background-color: #3297FD!important; }
 !--- JS ----
+globaledu.jp#%#//scriptlet('remove-attr', 'oncontextmenu|onselectstart', 'body')
+globaledu.jp#%#//scriptlet("abort-current-inline-script", "document.oncontextmenu")
 battle-one.com#%#//scriptlet("abort-on-property-read", "document.oncontextmenu")
 battle-one.com#%#//scriptlet("abort-on-property-read", "disableSelection")
 korona.co.jp#%#//scriptlet('remove-attr', 'oncopy|oncontextmenu', 'body')
