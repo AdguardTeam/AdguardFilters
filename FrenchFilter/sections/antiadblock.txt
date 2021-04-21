@@ -42,9 +42,6 @@ cookomix.com#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77931
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
 @@||static.adsafeprotected.com/favicon.ico$domain=tf1.fr
-!
-||tf1.fr/public/*/main_*.js$replace=/(adblock:{checkUrl:e.env.TF1_ADBLOCK_CHECK_URL\|\|"https:\/\/)[a-z.]+(\/")/\$1example.org\$2/
-||tf1.fr/*.html$replace=/("adblock":{"checkUrl":"https:\/\/)[a-z.]+(\/")/\$1example.org\$2/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64033
 cliqueduplateau.com##.oadb-popup-container
 @@||cliqueduplateau.com/wordpress/wp-content/plugins/oboxmedia-ads/assets/ads.js
@@ -168,18 +165,19 @@ jtrouver.com#$#.adsbygoogle { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33441
 !+ PLATFORM(ext_ff, ext_opera, ext_edge, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||annuaire-ebook.com^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/80283
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41909
-! https://github.com/AdguardTeam/AdguardFilters/issues/35186
-! https://github.com/AdguardTeam/AdguardFilters/issues/33412
-||dpm.zebestof.com/*/tag.js$script,redirect=noopjs,important,domain=linternaute.com
-||amazon-adsystem.com/*/apstag.js$script,redirect=noopjs,important,domain=linternaute.com
-||cdn.adsafeprotected.com/iasPET.*.js$script,redirect=noopjs,important,domain=linternaute.com
-||kweb.r66net.com/getlink|$redirect=nooptext,important,domain=linternaute.com
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=linternaute.com
-@@||googletagmanager.com/gtm.js$domain=linternaute.com
+sante.journaldesfemmes.fr,linternaute.com#$#.AdBox.Ligatus.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
+||dpm.zebestof.com/*/tag.js$script,redirect=noopjs,important,domain=linternaute.com|sante.journaldesfemmes.fr
+||amazon-adsystem.com/*/apstag.js$script,redirect=noopjs,important,domain=linternaute.com|sante.journaldesfemmes.fr
+||cdn.adsafeprotected.com/iasPET.*.js$script,redirect=noopjs,important,domain=linternaute.com|sante.journaldesfemmes.fr
+||kweb.r66net.com/getlink|$redirect=nooptext,important,domain=linternaute.com|sante.journaldesfemmes.fr
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=linternaute.com|sante.journaldesfemmes.fr
+@@||googletagmanager.com/gtm.js$domain=linternaute.com|sante.journaldesfemmes.fr
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=linternaute.com|p.ccmbg.com
 @@||player.ooyala.com/static/v*/stable/*/ad-plugin/google_ima.min.js$domain=linternaute.com|p.ccmbg.com
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||linternaute.com^$generichide
 @@||dpm.zebestof.com/*/tag.js$domain=linternaute.com
 @@||amazon-adsystem.com/*/apstag.js$domain=linternaute.com
 @@||cdn.adsafeprotected.com/iasPET.*.js$domain=linternaute.com
@@ -189,8 +187,8 @@ jtrouver.com#$#.adsbygoogle { height: 1px!important; }
 ! https://forum.adguard.com/index.php?threads/15884/
 @@||static.canal-plus.net/resources/adframe.html?adName=$domain=mycanal.fr|canalplus.com
 @@||proxy.ads.canalplus-bo.net/web/*/adserver/info/?asset=$domain=mycanal.fr|canalplus.com
-@@||v.fwmrm.net/ad/g/1?*&vpaid=on;$domain=mycanal.fr|canalplus.com
-||v.fwmrm.net/ad/g/1?*&vpaid=on;$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=mycanal.fr|canalplus.com
+@@||v.fwmrm.net/ad/g/1?*&vpaid=on$domain=mycanal.fr|canalplus.com
+||v.fwmrm.net/ad/g/1?*&vpaid=on$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=mycanal.fr|canalplus.com
 ! https://forum.adguard.com/index.php?threads/m-rtl-be-adguard-mobile.31398/
 @@||service.videoplaza.tv/proxy/bwtest.jpg$domain=rtl.be
 @@||service.videoplaza.tv/proxy/pulse-sdk-html5^$domain=rtl.be
@@ -263,7 +261,9 @@ ultimate-catch.eu#%#AG_abortInlineScript(/adback/, 'document.getElementById');
 @@||static.criteo.net/js/px.js^$domain=ultimate-catch.eu
 !+ PLATFORM(ios, ext_android_cb)
 @@||cas.criteo.com/delivery/ajs.php^$domain=ultimate-catch.eu
-! https://github.com/AdguardTeam/AdguardFilters/issues/19451
+! https://github.com/AdguardTeam/AdguardFilters/issues/77931
+www.tf1.fr#%#//scriptlet('set-constant', '__TF1_CONFIG__.adblock.serverRequest', 'false')
+!
 tf1.fr#$#.ads.ad.adsbox.ad-placement.carbon-ads { display: block!important; }
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 prod-player.tf1.fr,tf1.fr#@#.ads
@@ -343,10 +343,6 @@ observalgerie.com#@#.an-advert-banner
 ! https://forum.adguard.com/index.php?threads/24873/
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||grazia.fr^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/6433
-linternaute.com#$#.AdBox.Ligatus.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||linternaute.com^$generichide
 ! https://forum.adguard.com/index.php?threads/24190/
 @@||telechargementz.tv^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6301
