@@ -8,7 +8,7 @@
 ||indiatimes.com^$cookie=deviceid
 ||coinbase.com^$cookie=coinbase_device_id
 ||rshrt.com^$cookie=app_visitor
-||indiatimes.com^$cookie=/deviceid|lgc_deviceid|_pubcid|ak_bmsc/
+||indiatimes.com^$cookie=/deviceid|lgc_deviceid|ak_bmsc/
 ||producthunt.com^$cookie=/visitor_id|track_code|first_visit/
 ||iltalehti.fi^$cookie=sammio-bsid
 ||smartworld.it^$cookie=__mx_log
@@ -71,6 +71,10 @@ $cookie=kampyle_userid
 ! Collects anonymous data related to the user’s visits to the website(number of visits, average time spent on the website and which pages have been loaded)
 $cookie=external_referer
 $cookie=guest_id
+! Carries out information about how the end user uses the website and any advertising that the end user may have seen before visiting the said website.
+$cookie=personalization_id
+! Twitter is broken when this cookie is blocked - https://github.com/AdguardTeam/AdguardFilters/issues/80677#issuecomment-825625172
+!$cookie=ct0
 !
 ! yahoo.com
 ! Used in the targeting of relevant adverts and content on the Yahoo! platform
@@ -273,6 +277,9 @@ $cookie=adcloud
 $cookie=everest_g_v2
 ! This cookie is used to identify a unique visitor.
 $cookie=/^AMCVS?_.*AdobeOrg/
+! Used to identify return visitors to the same website.
+$cookie=clVisitorId
+$cookie=clRequestId
 !
 ! nbcuniversal.com
 $cookie=adEdition
@@ -398,8 +405,9 @@ $cookie=DSID
 $cookie=IDE
 !
 ! Reblaze
-! This cookie is used to maintain an anonymised unique identifier for session. 
-$cookie=rbzid
+! This cookie is used to maintain an anonymised unique identifier for session.
+! It causes that some websites don't load -  https://github.com/AdguardTeam/AdguardFilters/issues/81164 and https://github.com/AdguardTeam/AdguardFilters/issues/81232
+!$cookie=rbzid
 ! This cookie is used to attribute an unique identifier for session.
 $cookie=rbzsessionid
 !
@@ -441,13 +449,26 @@ $cookie=ss_cvt
 $cookie=ss_cvr
 $cookie=ss_cid
 !
+! Criteo
+! Ads targeting
+$cookie=cto_bundle
+$cookie=cto_bidid
+!
+! Prebid PubCid
+! Analytics, targeting
+$cookie=_pubcid
+$cookie=pbjs-unifiedid
+!
+! BrightFunnel
+! Used to identify unique users and for analytics.
+$cookie=bf_lead
+$cookie=bf_visit
+!
 !
 !
 !------------------------------
 !---- Fixing filtering errors -
 !------------------------------
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/81164
-@@||ebay-kleinanzeigen.de^$cookie=rbzid
 
 
