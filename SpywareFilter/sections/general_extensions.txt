@@ -4,7 +4,11 @@
 ! https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea
 #%#//scriptlet('set-constant', 'Document.prototype.interestCohort', 'undefined')
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/82132
+connect.de#%#//scriptlet("abort-on-property-read", "trConfig")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80625
+tweakers.net#%#//scriptlet('abort-current-inline-script', 'AbStats', 'trackId')
+tweakers.net#%#//scriptlet('abort-on-property-read', 'GlobalSnowplowNamespace')
 tweakers.net#%#//scriptlet('abort-on-property-read', 'WebTrekkClickMap')
 tweakers.net#%#//scriptlet('abort-on-property-read', 'snowplow')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24789
@@ -18,6 +22,8 @@ pioneer.eu#%#//scriptlet('remove-attr', 'onclick', 'a[href][onclick^="trackOutbo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64616	
 !+ PLATFORM(android)	
 www.google.*#%#//scriptlet('remove-attr', 'onmousedown|data-mousedown|ping|data-click', 'a[href][onmousedown], a[href][ping]')	
+! Remove tracking attributes from the search results
+www.google.*#%#//scriptlet('remove-attr', 'ping|data-ved', 'div[id="search"] a[data-ved][ping]')
 !
 !! facebook.com - removing tracking parameter
 !! external links
