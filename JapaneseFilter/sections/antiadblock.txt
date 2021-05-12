@@ -1,9 +1,18 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83022
+ouminews.net#$#.ad_unit.ad-unit.text-ad.text_ad.pub_300x250 { display: block !important; }
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+ouminews.net#@#.ad_unit
+ouminews.net#@#.ad-unit
+ouminews.net#@#.text-ad
+ouminews.net#@#.text_ad
+ouminews.net#@#.pub_300x250
+!#endif
 ! knshow.com anti-adb
 knshow.com#$#.ads { display: block!important;height: 1px!important; }
-!#if (ios, ext_android_cb, ext_safari)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=knshow.com
 knshow.com#@#.adsbygoogle
 !#endif
