@@ -2,6 +2,9 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/81669
+freehat.cc#%#//scriptlet("set-constant", "advFirstClickOpenNewTab", "false")
+freehat.cc#%#document.cookie = "ASD_can_open_adv_in_current_tab=N";
 ! https://forum.adguard.com/index.php?threads/https-agronews-ua.42787/
 agronews.ua#%#//scriptlet("abort-on-property-read", "wpsite_clickable_data")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81631
@@ -111,8 +114,6 @@ hdrabbit.ru#%#//scriptlet("set-constant", "Object.prototype.timeToHoldAds", "0")
 oxax.tv#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55271
 4kfilm.online#%#//scriptlet("remove-class", "have-brand", "div.have-brand")
-! https://github.com/AdguardTeam/AdguardFilters/issues/55453
-rutube.ru#%#//scriptlet("json-prune", "creative", "creative.src")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53045
 it-like.ru#%#//scriptlet('remove-attr', 'href', '.post-content > article > div > ul > li > a[href^="https://it-like.ru/link/"][data-wpel-link="external"]')
 ! assiatv.com - popups 
@@ -515,6 +516,8 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !------- CSS -----------
 !-----------------------
 !
+! beta.myshows.me - top empty space removing
+beta.myshows.me#$#.DefaultLayout-main { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80309
 lordfilm-lord.club#$#.wrap { padding-top: 0 !important; }
 ! sports.ru - for apps. Sometimes banner is not hidden on the main page
@@ -782,7 +785,7 @@ sovetromantica.com#$#.sbrand--back { background-image: none !important; }
 sovetromantica.com#$#.mainContainer { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44207
 ! background is used for ads, so moved from Annoyances filter
-lostfilm.uno,lostfilm.run,lostfilm.tw,lostfilm.tv#$#body { background: #000000!important; }
+lostfilmtv.site,lostfilm.uno,lostfilm.run,lostfilm.tw,lostfilm.tv#$#body { background: #000000!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43591
 animevost-org.com#$#body > div#wrap { margin: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43330
@@ -1815,6 +1818,8 @@ zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua#$#.articl
 !------- HTML ----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/CoreLibs/issues/1442
+novosti-n.org$$script[tag-content="setAttribute('type', 'text')"]
 ! rutracker.org - addition for apps only
 !+ NOT_PLATFORM(ext_ff)
 rutracker.appspot.com,pornolab.biz,pornolab.cc,pornolab.lib,pornolab.net,rutracker.appspot.com,rutracker-org.appspot.com,rutracker.cr,rutracker.lib,rutracker.net,rutracker.nl,rutracker.org$$div[class="bn-topic"]
