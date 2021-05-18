@@ -4,6 +4,8 @@
 !### HINTS are at the end of file
 !
 !### Temporary ###
+! https://github.com/AdguardTeam/AdguardFilters/issues/83145
+amazon.*##div[id^="CardInstance"][class^="_tetris-"]
 ! https://github.com/easylist/easylist/issues/7486
 ||eporner.com/cppb/
 ||eporner.com/dotm/
@@ -178,7 +180,6 @@ gazettetimes.com,missoulian.com,kenoshanews.com,cumberlink.com,trib.com,dailypro
 !
 ! Youtube
 !
-!&pltype=adhost$domain=youtube.com
 youtube.com##ytd-video-masthead-ad-advertiser-info-renderer
 youtube.com##ytm-promoted-sparkles-web-renderer
 youtube.com###__ffYoutube1
@@ -202,12 +203,11 @@ youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'playerResponse.a
 ! smartJSONParseOverride('adPlacements', [], /.*/);
 ! smartJSONParseOverride('playerAds', [], /.*/);
 ! Use this rule until all clients update to 7.5 (currently there are some on old versions)
-!+ NOT_PLATFORM(ext_ff, ext_opera, ext_ublock)
-youtube-nocookie.com,youtube.com#%#(function(){var overrideObject=function(obj,propertyName,overrideValue){if(!obj)return false;var overriden=false;for(var key in obj)if(obj.hasOwnProperty(key)&&key===propertyName){obj[key]=overrideValue;overriden=true}else if(obj.hasOwnProperty(key)&&typeof obj[key]==="object")if(overrideObject(obj[key],propertyName,overrideValue))overriden=true;if(overriden);return overriden};var jsonOverride=function(propertyName,overrideValue){JSON.parse=new Proxy(JSON.parse,{apply:function(){var obj=Reflect.apply.apply(Reflect,arguments);overrideObject(obj,propertyName,overrideValue);return obj}});Response.prototype.json=new Proxy(Response.prototype.json,{apply:function(){var promise=Reflect.apply.apply(Reflect,arguments);return new Promise(function(resolve,reject){promise.then(function(data){overrideObject(data,propertyName,overrideValue);resolve(data)})["catch"](function(error){return reject(error)})})}})};jsonOverride("adPlacements",[]);jsonOverride("playerAds",[])})();
-
+! This rule has been disabled, but may come in useful in the future
+! !+ NOT_PLATFORM(ext_ff, ext_opera, ext_ublock)
+! youtube-nocookie.com,youtube.com#%#(function(){var overrideObject=function(obj,propertyName,overrideValue){if(!obj)return false;var overriden=false;for(var key in obj)if(obj.hasOwnProperty(key)&&key===propertyName){obj[key]=overrideValue;overriden=true}else if(obj.hasOwnProperty(key)&&typeof obj[key]==="object")if(overrideObject(obj[key],propertyName,overrideValue))overriden=true;if(overriden);return overriden};var jsonOverride=function(propertyName,overrideValue){JSON.parse=new Proxy(JSON.parse,{apply:function(){var obj=Reflect.apply.apply(Reflect,arguments);overrideObject(obj,propertyName,overrideValue);return obj}});Response.prototype.json=new Proxy(Response.prototype.json,{apply:function(){var promise=Reflect.apply.apply(Reflect,arguments);return new Promise(function(resolve,reject){promise.then(function(data){overrideObject(data,propertyName,overrideValue);resolve(data)})["catch"](function(error){return reject(error)})})}})};jsonOverride("adPlacements",[]);jsonOverride("playerAds",[])})();
+!
 ! Modify YT xhr responses
-! This rule should replace the JS rule from above when all clients update
-!+ PLATFORM(ext_ff, ext_opera)
 youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds')
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
@@ -221,6 +221,11 @@ youtube.com/get_video_info?*=adunit&
 !
 ! END: Youtube whitescreen fix
 !
+! Fixing a new type of advertising for platforms without support for advanced rules
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+||googlevideo.com/videoplayback*ctier=L
+youtube.com##.html5-video-player.ad-showing .ytp-title
+!#endif
 ! Fixing embedded video player
 ! https://github.com/easylist/easylist/issues/5112
 ! https://github.com/easylist/easylist/commit/3ed65e66e22963dc08a659dce6baa344ff158664
@@ -261,16 +266,34 @@ superfastvideos.xyz,supervideogameshd.com,cricfree.live,cricfree.stream,livestre
 ! ###floatLayer2
 cast4u.tv,euro16.live,footdirect24.com,freesoccer.in,hdcast.info,hdmyt.info,hentai-id.tv,lshstreams.com###floatLayer2
 ! ##.sponsor
-zedporn.com,bigtitslust.com,fpo.xxx,fontyukle.net,porno90.online,pornchimp.com,lolhentai.net,vikiporn.com,its.porn,swiftbysundell.com,uiporn.com,fpo.xxx,fapster.xxx,heroero.com,camwhores.tv,heroero.com,porngem.com,magnetfox.com,sexwebvideo.com,warungbioskop.com,uploadfiles.io,private-shows.net,pornfapr.com,vqporn.com,watchmyexgf.net,alphaporno.com##.sponsor
+lesbian8.com,zedporn.com,bigtitslust.com,fpo.xxx,fontyukle.net,porno90.online,pornchimp.com,lolhentai.net,vikiporn.com,its.porn,swiftbysundell.com,uiporn.com,fpo.xxx,fapster.xxx,heroero.com,camwhores.tv,heroero.com,porngem.com,magnetfox.com,sexwebvideo.com,warungbioskop.com,uploadfiles.io,private-shows.net,pornfapr.com,vqporn.com,watchmyexgf.net,alphaporno.com##.sponsor
 ! ##.spot
 feetporno.com,familyporn.tv,freehardcore.com,webvoyeur.com,moviesand.com,momvids.com,hdzog.com,pornbimbo.com,amateurporn1.com,vqporn.com##.spot
 !
 ! For URL shorteners or simple sites with frequently changed ad servers.
 ! Incorrectly blocked domains can be excluded using regex(synchronize this regexp in all filters)
-/^(?!.*(bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|polyfill.io|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yandex.|yastatic.net|ytimg.com|zencdn.net|player|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com)).*$/$third-party,script,domain=link.ltc24.com|linkebr.com|bitfly.io|go2.surf|adcorto.me|minilinks.in|exe.app|genpassword.top|gplinks.co|miklpro.com|kutt.io|cutlink.link|uplinks.in|rexdlfile.com|downloadhub.ink|skidrowcodex.co|dulinks.co|dulinks.in|adcorto.xyz|shortbled.com|cuturl.in|paidtomoney.com|kissmanga.link|skidrowcodex.net|vvc.vc|illink.net|proshort.gq|ownurl.website|300mbplus.*|hdmovieplus.site|news.techrfour.com|shortzzy.in|shrinkme.in|shorten.sh|gibit.xyz|btcdot.xyz|iir.ai|todaynewspk.win|cut.my.id|ouofly.com|stfly.me|dz4win.com|bolssc.com|genpas.icu|canyoublockit.com|aii.sh|uptoshort.com|gsurl.in|oncehelp.com|adslinkfly.online|extramovies.casa|asianclub.nl|file-up.org|kshow123.net|short.articlix.com|dlapk4all.com|cryptoads.space|profitlink.info|shorthitz.com|putlocker.digital|pimpandhost.com|pornpapa.com|shorthub.co|xxxfiles.com|pornone.com|rawdex.net|hiperdex.com|ask4movie.co|scash.xyz|animekayo.com|animekaizoku.com|xorgasmo.com|mitly.us|xtits.com|vjav.com|japscan.se|birdurls.com|hunstulovers.net|area51deportiva.com|mixdrop.to|allporncomic.com|doramasmp4.com|animepahe.com|1337x.is|savelink.site|free-trx.com|gosexpod.com|kropic.com|kaplog.com|homemoviestube.com|gaybeeg.info|pics4you.net|upornia.com|jprealtime.com|camthots.tv|manganelo.link|zeenite.com|clk.ink|push.bdnewsx.com|iyotvideos.com|toptechtalk.xyz|uptomega.me|tumanga.net|wat32.com|myhdjav.net|tsgtv.net|123movie.show|123movie.*|123moviesfree.*|123unblock.best|123unblock.*|shieldmanga.club|shieldmanga.*|ccurl.net|beinmatch.tv|ytmp3.eu|123movieshd.cloud|123movieshd.*|voxc.org|link.bitmos.co.in|movie8k.*|sports24.*|shortenbuddy.com|mac-torrent-download.net|openloadmov.net|downloadpirate.com|payskip.org|moviesflix.one|themoviesflix.co|hentaitube.online|bestshort.xyz|link1s.*|earnwithshortlink.com|foxseotools.com|manhuascan.com|exe.app|10convert.com|crownimg.com|fc.lc|manganelo.com|mypornstarbook.net|7hitmovies.surf|desitvshows.xyz|kissaway.net|strims.world|srek.net|cpmlink.net|shrinkzzy.link|cookuve.com|bigtitslust.com|sanos.xyz|holymanga.net|links.mflixblog.xyz|skidrowreloaded.com|lovehug.net|pewgame.com|himovies.to|warefree01.com|kissanimes.cc|toonanime.tv|sxyprn.com|anupama.*|shortlinkpay.com|kiryuu.co|blurayufr.com|btcads24.com|forex-trnd.com|wolfstream.tv|tuktukcinema.net|mynewshub.in|mynewsmedia.co|userupload.net|crypto-faucet.xyz|doctor-groups.com|downloadhub.kim|myadultanimes.com|otakudesu.moe|freeadultcomix.com|shrlink.top|mfk-shorter.com|lelscan-vf.co|ruvideos.net|srsone.top|animexin.xyz|otakufr.co|4anime.to|french-stream.lol|jujmanga.com|watchseries.*|ahwaktv.tv|allviids.com|amlijatt.in|fulltube.online|123movies.*|bevru.club|lewdweb.net|shortenmm.cf|fsapi.xyz|flixtv.club|worldcupfootball.me|promo-visits.site|krypto-trend.de|hatsukimanga.com|simplyfaucet.xyz|fzmovies.*|paidthe.site|desiflix.club|tny.so|kiss-anime.ws|1mlsbd.com|knaben.ru|streamtape.com|mangadop.info|dailyuploads.net
+/^(?!.*(bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|polyfill.io|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yandex.|yastatic.net|ytimg.com|zencdn.net|player|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com)).*$/$third-party,script,domain=link.ltc24.com|linkebr.com|bitfly.io|go2.surf|adcorto.me|minilinks.in|exe.app|genpassword.top|gplinks.co|miklpro.com|kutt.io|cutlink.link|uplinks.in|rexdlfile.com|downloadhub.ink|skidrowcodex.co|dulinks.co|dulinks.in|adcorto.xyz|shortbled.com|cuturl.in|paidtomoney.com|kissmanga.link|skidrowcodex.net|vvc.vc|illink.net|proshort.gq|ownurl.website|300mbplus.*|hdmovieplus.site|news.techrfour.com|shortzzy.in|shrinkme.in|shorten.sh|gibit.xyz|btcdot.xyz|iir.ai|todaynewspk.win|cut.my.id|ouofly.com|stfly.me|dz4win.com|bolssc.com|genpas.icu|canyoublockit.com|aii.sh|uptoshort.com|gsurl.in|oncehelp.com|adslinkfly.online|extramovies.casa|asianclub.nl|file-up.org|kshow123.net|short.articlix.com|dlapk4all.com|cryptoads.space|profitlink.info|shorthitz.com|putlocker.digital|pimpandhost.com|pornpapa.com|shorthub.co|xxxfiles.com|pornone.com|rawdex.net|hiperdex.com|ask4movie.co|scash.xyz|animekayo.com|animekaizoku.com|xorgasmo.com|mitly.us|xtits.com|vjav.com|japscan.se|birdurls.com|hunstulovers.net|area51deportiva.com|mixdrop.to|allporncomic.com|doramasmp4.com|animepahe.com|1337x.is|savelink.site|free-trx.com|gosexpod.com|kropic.com|kaplog.com|homemoviestube.com|gaybeeg.info|pics4you.net|upornia.com|jprealtime.com|camthots.tv|manganelo.link|zeenite.com|clk.ink|push.bdnewsx.com|iyotvideos.com|toptechtalk.xyz|uptomega.me|tumanga.net|wat32.com|myhdjav.net|tsgtv.net|123movie.show|123movie.*|123moviesfree.*|123unblock.best|123unblock.*|shieldmanga.club|shieldmanga.*|ccurl.net|beinmatch.tv|ytmp3.eu|123movieshd.cloud|123movieshd.*|voxc.org|link.bitmos.co.in|movie8k.*|sports24.*|shortenbuddy.com|mac-torrent-download.net|openloadmov.net|downloadpirate.com|payskip.org|moviesflix.one|themoviesflix.co|hentaitube.online|bestshort.xyz|link1s.*|earnwithshortlink.com|foxseotools.com|manhuascan.com|exe.app|10convert.com|crownimg.com|fc.lc|manganelo.com|mypornstarbook.net|7hitmovies.surf|desitvshows.xyz|kissaway.net|strims.world|srek.net|cpmlink.net|shrinkzzy.link|cookuve.com|bigtitslust.com|sanos.xyz|holymanga.net|links.mflixblog.xyz|skidrowreloaded.com|lovehug.net|pewgame.com|himovies.to|warefree01.com|kissanimes.cc|toonanime.tv|sxyprn.com|anupama.*|shortlinkpay.com|kiryuu.co|blurayufr.com|btcads24.com|forex-trnd.com|wolfstream.tv|tuktukcinema.net|mynewshub.in|mynewsmedia.co|userupload.net|crypto-faucet.xyz|doctor-groups.com|downloadhub.kim|myadultanimes.com|otakudesu.moe|freeadultcomix.com|shrlink.top|mfk-shorter.com|lelscan-vf.co|ruvideos.net|srsone.top|animexin.xyz|otakufr.co|4anime.to|french-stream.lol|jujmanga.com|watchseries.*|ahwaktv.tv|allviids.com|amlijatt.in|fulltube.online|123movies.*|bevru.club|lewdweb.net|shortenmm.cf|fsapi.xyz|flixtv.club|worldcupfootball.me|promo-visits.site|krypto-trend.de|hatsukimanga.com|simplyfaucet.xyz|fzmovies.*|paidthe.site|desiflix.club|tny.so|kiss-anime.ws|1mlsbd.com|knaben.ru|streamtape.com|mangadop.info|dailyuploads.net|japscan.ws|dramacool.*
 !
 !
 !
+||lesbian8.com/*/frot_lod.js
+||lesbian8.com/*/supc.php
+lesbian8.com##.list-videos > div[class] > span#lotal
+lesbian8.com##.list-videos > div[class] > div.item.pignr
+goal.com##div[class^="layout_banner__"]
+goal.com##aside[class^="layouts_asideContentCommercial__"]
+dramacool.*##.sidebar.mCS-autoHide
+who.is##.home-video-blurb
+movieparadise.org##.fixed-sidebar-blank > #text-8
+||movieparadise.org/wp-content/uploads/*/VPN-banner-2.gif
+notateslaapp.com##.book2 > .release-book
+lawlex.org###media_image-21
+lawlex.org###media_image-22
+||i2.wp.com/lawlex.org/wp-content/uploads/*/*/NISM.jpg
+calculator-online.net##div[class="center"][style^="min-height: 90px"]
+buffstreams.tv##div[class="position-absolute w-100 h-100"]
+b2bhint.com##.adl
+b2bhint.com##.ad-long
 express.co.uk##.taboola-above-article
 ||images.ottplay.com/images/promotions/
 alison.com##.search-top-ad
@@ -727,7 +750,7 @@ katmoviehd4.com##center > div#new > :not([role="button"])
 ||sexe-libre.org/*.php$script,~third-party
 ||sexe-libre.org/rotate/*-1024x200px-
 latesthdmovies.bid##a[href^="https://bit.ly/"] > img[border="0"]
-bigtitslust.com,sexe-libre.org##a[rel$="sponsored"]
+lesbian8.com,bigtitslust.com,sexe-libre.org##a[rel$="sponsored"]
 ||mypornstarbook.net/ads/
 ||i.ibb.co^$image,domain=amongusavatarmaker.com
 ||amazonaws.com/brand/$domain=hltv.org
@@ -755,7 +778,7 @@ elitepvpers.com##.cwcontent
 elitepvpers.com##div[style="display:inline;padding:0;margin:0"] > div[class="smallfont"][style="padding-bottom: 5px;"]
 elitepvpers.com##a[rel="pass nofollow"] > img
 forum.xda-developers.com###sponsor_banner_link
-imgbrd.xyz,imgvivo.xyz,imgfsh.xyz,imgbird.xyz,imgtigr.xyz,imglin.xyz,imgkoi.xyz,imageking.xyz###pbe
+imgsup.xyz,imgfish.xyz,imgbrd.xyz,imgvivo.xyz,imgfsh.xyz,imgbird.xyz,imgtigr.xyz,imglin.xyz,imgkoi.xyz,imageking.xyz###pbe
 daviruzsystems.com###sidebar > .bn-lg-sidebar
 ||daviruzsystems.com/uploads/blocks/block_*.gif
 ||manhuascan.com^*/popads.js
@@ -930,8 +953,8 @@ upload-4ever.com##a[onclick^="window.open("] ~ a[style*="text-align: left;"][sty
 ||banner-api.grouphfm.com/banner/
 ||zoophiliahentai.com/uploads/banners/
 olx.ro,olx.kz,olx.pl,olx.pt,olx.ua,olx.uz,olx.in,olx.com##div[style="min-height: 120px; display: block;"]
-http$third-party,~image,domain=imageking.xyz|imgkoi.xyz|imgair.net|imgko.xyz|imglin.xyz|imgtigr.xyz|imgkr.xyz|imglion.xyz|imgsupa.xyz|imgviv.xyz|imgbird.xyz|imgfsh.xyz|imgtiger.xyz|imgvivo.xyz|imgbrd.xyz
-/h1j.js$domain=imgkr.xyz|imgtigr.xyz|imglin.xyz|imgair.net|imgko.xyz|imageking.xyz|imgkoi.xyz|imglion.xyz|imgsupa.xyz|imgviv.xyz|imgbird.xyz|imgfsh.xyz|imgtiger.xyz|imgvivo.xyz|imgbrd.xyz
+http$third-party,~image,domain=imageking.xyz|imgkoi.xyz|imgair.net|imgko.xyz|imglin.xyz|imgtigr.xyz|imgkr.xyz|imglion.xyz|imgsupa.xyz|imgviv.xyz|imgbird.xyz|imgfsh.xyz|imgtiger.xyz|imgvivo.xyz|imgbrd.xyz|imgfish.xyz|imgsup.xyz
+/h1j.js$domain=imgkr.xyz|imgtigr.xyz|imglin.xyz|imgair.net|imgko.xyz|imageking.xyz|imgkoi.xyz|imglion.xyz|imgsupa.xyz|imgviv.xyz|imgbird.xyz|imgfsh.xyz|imgtiger.xyz|imgvivo.xyz|imgbrd.xyz|imgfish.xyz|imgsup.xyz
 ||moviemaniac.org/asset/bann.js
 nightdreambabe.com##.banner_place
 searchenginereports.net##.ads_boxx
@@ -2297,7 +2320,7 @@ tubeqd.tv##div[style^="height: 250px;overflow: hidden;"]
 indiatoday.in##.inline-story-add
 ||webnovelonline.com/static/media/banner_
 collectionofbestporn.com###lower-ads
-fpo.xxx,enf-cmnf.com,recorded-webcams.com,filtercams.com,thesquarshers.com,bigassporn.tv,camhoes.tv,hdporn.org,porn00.org,keekass.com,fuckit.cc,camwhoresbay.com,vqtube.com,private-shows.net,camwhoreshd.com,fapster.xxx##.block-video > div.table
+lesbian8.com,fpo.xxx,enf-cmnf.com,recorded-webcams.com,filtercams.com,thesquarshers.com,bigassporn.tv,camhoes.tv,hdporn.org,porn00.org,keekass.com,fuckit.cc,camwhoresbay.com,vqtube.com,private-shows.net,camwhoreshd.com,fapster.xxx##.block-video > div.table
 porn00.org##.headline > a[rel="nofollow"]
 /xmoviesforyou.video\/\d+.*.js/$domain=xmoviesforyou.video
 netfapx.com##div[class^="ads-"]
