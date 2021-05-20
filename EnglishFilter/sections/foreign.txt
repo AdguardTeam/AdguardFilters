@@ -8264,13 +8264,20 @@ onet.pl#$#.insertedSlot { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12159
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7218
 auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada.pl,przegladsportowy.pl,vod.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/document\.body\.getAttribute\("abp"\)/.test(a.toString()))return b(a,c)};})();
+komputerswiat.pl#%#//scriptlet('prevent-setTimeout', 'document.body.getAttribute("abp"')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+!#safari_cb_affinity(social)
 @@||komputerswiat.pl^$generichide
+!#safari_cb_affinity
+!#endif
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||onet.pl^$generichide
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||businessinsider.com.pl^$generichide
-!+ PLATFORM(ext_safari)
+!#if (adguard_ext_safari)
 @@||fakt.pl^$generichide,badfilter
+@@||komputerswiat.pl^$generichide,badfilter
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53431
 filmweb.pl#$#body.ws { overflow: visible!important; }
 filmweb.pl#%#//scriptlet("abort-current-inline-script", "addEventListener", "/faBar[\s\S]*?insertAdjacentElement/")
