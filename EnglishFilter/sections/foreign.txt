@@ -9067,14 +9067,12 @@ gamme.com.tw##a[href^="https://www.gamme.com.tw/redirect.php?id="][target="_blan
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15480
 @@||service.4gtv.tv/4gtv/Data/GetAD.ashx
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=4gtv.tv
-||vast.doublemax.net/adserver/vast.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||ads.adaptv.advertising.com/*roll&pageUrl=4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||facebook.com/*/instream/vast.xml?*&pageurl=http*.4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vast*&url=http*.4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||vast.doublemax.net/adserver/vast.xml$redirect=noopvast-2.0
+||ads.adaptv.advertising.com/*roll&pageUrl=4gtv.tv$redirect=noopvast-2.0
+||facebook.com/*/instream/vast.xml?*&pageurl=http*.4gtv.tv$redirect=noopvast-2.0
+||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vast*&url=http*.4gtv.tv$redirect=noopvast-2.0
 ||service.4gtv.tv/4gtv/Data/GetAD.ashx$replace=/((\{[\s\S]*?)"preroll":( )?\[)[\s\S]*\]/\$1]/,important,domain=4gtv.tv
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-||vast.doublemax.net/adserver/vast.xml$redirect=nooptext,important
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
 @@||googleads.g.doubleclick.net/pagead/ads?*&url=http*.4gtv.tv*&output=xml_vast*.4gtv.tv$domain=imasdk.googleapis.com
 !+ PLATFORM(ios, ext_android_cb)
 @@^vast^$domain=4gtv.tv,~script,~image
