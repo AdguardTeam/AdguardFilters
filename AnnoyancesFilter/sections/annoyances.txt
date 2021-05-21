@@ -5,11 +5,18 @@
 !youtube.com#%#//scriptlet("set-constant", "ytInitialPlayerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer.isVisible", "false")
 !youtube.com#%#//scriptlet("set-constant", "ytInitialData.topbar.desktopTopbarRenderer.interstitial.consentBumpRenderer.forceConsent", "false")
 !
-youtube.com,youtube-nocookie.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adPlacements', 'undefined')
-youtube.com,youtube-nocookie.com#%#//scriptlet('set-constant', 'playerResponse.adPlacements', 'undefined')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76987
 youtube.com#%#AG_onLoad(function() {var a = new MutationObserver(function() {if (document.querySelector('yt-upsell-dialog-renderer')) {var b = document.querySelector('.ytd-popup-container[popup-size="UPSELL_DIALOG_RENDERER_POPUP_SIZE_LARGE"] #dismiss-button:not(.dismissed), .upsell-dialog-lightbox .upsell-dialog-dismiss-button button:not(.dismissed)');setTimeout(function() {b&&b.click()}, 3E2)}});a.observe(document, {childList: !0,subtree: !0});setTimeout(function() {a.disconnect()}, 3E3)});
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83115
+klops.ru##.container-telegram
+! https://github.com/AdguardTeam/AdguardFilters/issues/83062
+onliner.by##.news-widget
+! https://github.com/AdguardTeam/AdguardFilters/issues/82749
+@@||api.rnet.plus^$domain=livejournal.com,badfilter
+livejournal.com##.lj-recommended
+! https://github.com/AdguardTeam/AdguardFilters/issues/82998
+movieparadise.org##.sidebar > aside[id^="text-"]:first-child
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82683
 infolaw.co.uk#?#.inside-sidebar h3:contains(Featured services)
 infolaw.co.uk#?#.inside-sidebar h3:contains(Featured services) ~ p
@@ -20,6 +27,8 @@ mag2.com##.in_alm
 mag2.com###text-18
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82274
 techradar.com##.ad-unit + .van_vid_carousel
+! https://github.com/AdguardTeam/AdguardFilters/issues/82282
+699pic.com###landlord
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81352
 centurylink.net##div[id^="sc_"][id*="top"] + div.single-cube_pieces_top-border_topBorder
 centurylink.net##div[class*="Banner"] + div.single-cube_pieces_top-border_topBorder
@@ -1361,7 +1370,8 @@ facebook.com###fbVideoStreamingReactionsTray
 ! "possible friends"
 facebook.com##._5pcr.fbUserPost._4nef._5pcr
 ! "People you may know" at https://www.facebook.com/profile.php
-facebook.com###pagelet_pymk_timeline
+! facebook.com###pagelet_pymk_timeline
+facebook.com#?##ssrb_top_nav_end + div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class]:has(> div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div > div[class] > div[aria-label="People you may know"])
 ! "People you may know" at https://x.facebook.com/profile.php / https://mobile.facebook.com/profile.php / https://touch.facebook.com/profile.php https://m.facebook.com/profile.php
 facebook.com##div._10c_ > div[class="_3n40 _2jl2"][id="u_0_1s"]
 ! "Suggestions for you"
@@ -1372,6 +1382,8 @@ facebook.com,facebookcorewwwi.onion#%#new MutationObserver(function(){document.q
 facebook.com##div[aria-label="Message from Facebook"]
 ! Create room in newsfeed
 facebook.com##div[role="main"] div[data-pagelet="VideoChatHomeUnit"]
+! Suggested groups
+mbasic.facebook.com,m.facebook.com##[data-ft*="quick_promotion_instance_log_data_encoded"]
 !
 ! 44.ua - notification about browser extension
 44.ua##.exp-line
@@ -1830,6 +1842,30 @@ censor.net,fizzicseducation.com.au,fparf.ru,revouninstaller.com,logincasino.com,
 ! ###mc_embed_signup
 honeysanime.com,circuitdigest.com,worldhistory.org,bizreport.com,wristreview.com,kosicednes.sk,tinyprojects.dev,cambio16.com,voxukraine.org,pnas.org,cachevalleydaily.com,bisnis.com,ilpost.it,bsblog.info,alcoparty.com.ua,codastory.com,informazionefiscale.it,kerch.fm,cinemablend.com,prostofinovo.ru,comss.ru,majorgeeks.com,buhgalter.com.ua,providr.com,24tv.ua,babylonbee.com,dexerto.com,football365.com,menrec.com,netdoktor.de,ottawamatters.com,retail-insider.com,walterfootball.com,wweek.com,zozhnik.ru###mc_embed_signup
 !
+scamadviser.com##.newsletter__row
+tut4dl.com##.enews-widget
+thedailybeast.com##.ProductCalloutNewsletterModule
+timesofindia.indiatimes.com#?#.nonAppView > div[class]:has(> div.contentwrapper > button)
+searchenginewatch.com##.ab--subscribe
+nationalreview.com##.aside-newsletter
+nationalreview.com##.inline-newsletter-subscribe
+coursevania.com#?##main div.vc_row:has(> div.wpb_column div.widget_mailchimp)
+lamoda.pl##.min-h-newsletter
+asiaone.com##div[class^="ao-newsletter"]
+novaescola.org.br###formNewsLetter
+aerotelegraph.com##.widget--newsletter
+economictimes.indiatimes.com##.newsBandMiddle
+internet-access-guide.com##.tve_wp_shortcode
+internet-access-guide.com##.inside-right-sidebar > #custom_html-4
+lawlex.org###wp-subscribe
+lawlex.org###singlesubscribe
+nofap.com#?#.elementor-column-gap-default > div.elementor-row:has(form.infusion-form)
+cinestar.de###newsletter-section
+freecourses.site##.subscribe-by-email
+loudtechie.com##.oab
+koinmedya.com###mc4wp_form_widget-2
+securityboulevard.com#?#.theiaStickySidebar > aside.widget:has(> h3.widget-title > span:contains(Subscribe))
+medicalnewstoday.com##article form[novalidate]
 inpoland.net.pl##.entry-content > p.has-pale-cyan-blue-background-color
 elektroauto-news.net#?#section:has(> div.elementor-container > div.elementor-column > div.elementor-widget-wrap > div.elementor-element > div.elementor-widget-container > form[id^="newsletter"])
 bremer-gewuerzhandel.de##.emotion-genussletter-container
@@ -2275,7 +2311,7 @@ urbandictionary.com##.subscribe-panel
 netzwelt.de##.subscribeboard
 gamepro.de#?#body div.container-fluid:has(> div.container div.newsletter-info)
 thueringer-allgemeine.de###piano-newsletter-inline
-subscriptioninsider.com,prontomarketing.com##.gform_widget
+whatsnewinpublishing.com,subscriptioninsider.com,prontomarketing.com##.gform_widget
 canonrumors.com###gform_widget-3
 technopoint.ru,dns-shop.ru##.main-footer__subscription
 xgamers.ru###parent_subscribe
@@ -2656,6 +2692,7 @@ nv.ua##.coronavirus_subscribe
 scmp.com##.content--newsletter
 scambieuropei.info##.footerSearch > a.logo + form[action]
 scambieuropei.info##.box--newsletter
+demandprogress.org##.email-footer
 scambieuropei.info#?##sidebar > .widget:has(> div.textwidget > div[id="mc_embed_signup"] > form[id="mc-embedded-subscribe-form"])
 puzzle-english.com###SubsInrightBar
 complyfoam.com##.klaviyo-form
@@ -2989,7 +3026,7 @@ xelent.ru###footer-feedback
 news-journalonline.com###footer-main-newsletter
 stiefelparadies.de###footer-newsletter
 soft98.ir###footer-subscribe
-caseking.de###footer_newsletter
+actu-environnement.com,caseking.de###footer_newsletter
 igniel.com###ignielNewsletter > .email__
 patch.com###in-article-sub-button
 audiofanzine.com###index-newsletter
@@ -3568,7 +3605,7 @@ extremetech.com##.widget_email_signup
 vertex-academy.com##.widget_knews_widget
 page-online.de##.widget_newsletter
 techsolutiontips.com##.widget_newsletter-pack
-thatoneguy.com.au,fotografwdrodze.pl,sceptr.net##.widget_newsletterwidget
+likegeeks.com,thatoneguy.com.au,fotografwdrodze.pl,sceptr.net##.widget_newsletterwidget
 modelist-konstruktor.com,smopo.ch##.widget_newsletterwidgetminimal
 dealdoktor.de##.widget_tmx-dd-newsletter-widget
 bowandtie.ru,realnyezarabotki.com##.widget_wysija
