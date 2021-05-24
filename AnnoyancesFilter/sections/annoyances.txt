@@ -371,10 +371,14 @@ blog.calltouch.ru##.mainsub > div#blog-subscribe + div.mainsub__rightside
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74116
 iqiyi.com##iqpdiv[data-cupid=container]
 iqiyi.com##div[adid]
+! https://github.com/AdguardTeam/AdguardFilters/issues/79270
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44749
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38910
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22801
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14731
+! m.iqiyi.com#%#//scriptlet("set-constant", "QiyiPlayerLoader.Package.ad.adPlayerId", "") - doesn't work probably due to scriptlet bug
+! m.iqiyi.com#%#AG_defineProperty('QiyiPlayerLoader.Package.ad.adMap', { value: {}, writable: false }); - another working rule, but fixed by a scriptlet
+m.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.adPlayerId", "")
 iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.parseXML", "noopFunc")
 ||data.video.iqiyi.com/videos/other/*$xmlhttprequest,~third-party,badfilter
 !+ NOT_PLATFORM(windows, mac, android)
@@ -385,10 +389,11 @@ iqiyi.com#%#Object.defineProperty(Object.prototype, 'blackscreenDuration', { val
 iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
 ||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
 iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
-!+ PLATFORM(ios)
+!#safari_cb_affinity(general)
 @@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
 !+ PLATFORM(ios)
 ||t7z.cupid.iqiyi.com^$badfilter
+!#safari_cb_affinity
 !
 !+ PLATFORM(ios)
 9to5google.com,9to5mac.com,9to5toys.com,dronedj.com,electrek.co##.newsletter-box
