@@ -27,8 +27,6 @@
 ||ssaimanifest.prod.boltdns.net/playback/once/v*/vmap/hls/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=9now.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44342
 ||pubads.g.doubleclick.net/gampad/ads?*nhl_*video&*&output=xml_vmap*&url=https%3A%2F%2Fwww.nhl.com$replace=/(<vmap:VMAP[\s\S]*?>)[\s\S]*<\/vmap:VMAP>/\$1<\/vmap:VMAP>/
-! https://github.com/AdguardTeam/AdguardFilters/issues/39999
-||pt.ptawe.com/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38235 - fixed incorrect blocking
 ||embed.streamx.live/vast/video.php$replace=/myPlayer\.ima\(options_ima\);//
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25012#issuecomment-487447994
@@ -74,6 +72,7 @@
 ||uplynk.com/*.m3u8$replace=/#UPLYNK-SEGMENT: \S*\\,ad\s[\s\S]+?((#UPLYNK-SEGMENT: \S+\\,segment)|(#EXT-X-ENDLIST))/\$1/,domain=hgtv.com|diynetwork.com|abc11.com|abc7.com|abc7news.com|abc13.com|6abc.com|abc7chicago.com|discovery.com|foodnetwork.com|fox.com|investigationdiscovery.com|sciencechannel.com|motortrend.com|tlc.com|abc7ny.com,important
 ||api.discovery.com/v*/streaming/video/$replace=/(\,"ads":\{)"breaks":[\s\S]*?(\}\,"videoView":)/\$1\$2/,domain=hgtv.com|investigationdiscovery.com
 ||api.discovery.com/v*/streaming/video/$replace=/\{"ads":\{"breaks":[\s\S]*?"playURL":/{"playURL":/,domain=diynetwork.com|discovery.com|foodnetwork.com|sciencechannel.com|motortrend.com|tlc.com
+||content-fox.uplynk.com/preplay/*.json$replace=/("ads": {"breaks": \[)[\s\S]*?(\, "playURL":)/\$1]}\$2/,domain=fox.com
 ||content.uplynk.com/preplay/*.json?$replace=/("ads": {"breaks": \[)[\s\S]*?(\]\}\\, "prefix":)/\$1\$2/,domain=fox.com
 ||content.uplynk.com/api/*/preplay/*.json?$replace=/("ads": {"breaks": \[)[\s\S]*?(\]\}\\, "prefix":)/\$1\$2/,domain=abc7chicago.com|abc7ny.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34915
@@ -94,8 +93,6 @@ dnvod.tv/_player/*/ckplayer.js$replace=/cpt\+='skipads.swf\,0\,0\,0\,0\,2\,0\|';
 ! https://forum.adguard.com/index.php?threads/https-www-nbc-com-this-is-us-video-windows.25463/
 ||manifest.theplatform.com/*/*.m3u8?$replace=/(#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXTINF:.*\n.*nbcuadops-vh.akamaihd.net\/i\/ads\/.*\n)//,important
 ||manifest.theplatform.com/*/*.meta$replace=/#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/#EXT-X-ENDLIST/,important
-! Possible video ads
-||adsafeprotected.com/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7589
 ||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=viasatsport.se,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7240
