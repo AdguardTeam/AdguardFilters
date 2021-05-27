@@ -8,10 +8,22 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76987
 youtube.com#%#AG_onLoad(function() {var a = new MutationObserver(function() {if (document.querySelector('yt-upsell-dialog-renderer')) {var b = document.querySelector('.ytd-popup-container[popup-size="UPSELL_DIALOG_RENDERER_POPUP_SIZE_LARGE"] #dismiss-button:not(.dismissed), .upsell-dialog-lightbox .upsell-dialog-dismiss-button button:not(.dismissed)');setTimeout(function() {b&&b.click()}, 3E2)}});a.observe(document, {childList: !0,subtree: !0});setTimeout(function() {a.disconnect()}, 3E3)});
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/82715#issuecomment-847745704
+google.*#%#(function() { try { if ("undefined" != typeof localStorage) { window.localStorage.setItem("gtButterbarDismissalExpiry", ((new Date).getTime() + 6048E5).toString()) } } catch (ex) {} })();
+! https://github.com/AdguardTeam/AdguardFilters/issues/83731
+reuters.com##div[class^="OldSiteBanner_"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/83480
+nationthailand.com##.banner-special
+! https://github.com/AdguardTeam/AdguardFilters/issues/83361
+liquidweb.com##.knowledgeBase + div[class]
+! https://github.com/AdguardTeam/AdguardFilters/issues/83208
+pln-pskov.ru##.telegramim_button
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83115
 klops.ru##.container-telegram
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83062
 onliner.by##.news-widget
+! https://github.com/AdguardTeam/AdguardFilters/issues/83222
+ask.lecturenotes.in##nav[aria-label*="mailbox"] + div[class]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82749
 @@||api.rnet.plus^$domain=livejournal.com,badfilter
 livejournal.com##.lj-recommended
@@ -20,6 +32,9 @@ movieparadise.org##.sidebar > aside[id^="text-"]:first-child
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82683
 infolaw.co.uk#?#.inside-sidebar h3:contains(Featured services)
 infolaw.co.uk#?#.inside-sidebar h3:contains(Featured services) ~ p
+! reverso.net - annoyances
+context.reverso.net###promotional-bar
+context.reverso.net##.home-banner-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82800
 bream2008.narod.ru###contentBlock > div[style*="line-height:30px; font-size:12px;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82706
@@ -368,10 +383,14 @@ blog.calltouch.ru##.mainsub > div#blog-subscribe + div.mainsub__rightside
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74116
 iqiyi.com##iqpdiv[data-cupid=container]
 iqiyi.com##div[adid]
+! https://github.com/AdguardTeam/AdguardFilters/issues/79270
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44749
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38910
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22801
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14731
+! m.iqiyi.com#%#//scriptlet("set-constant", "QiyiPlayerLoader.Package.ad.adPlayerId", "") - doesn't work probably due to scriptlet bug
+! m.iqiyi.com#%#AG_defineProperty('QiyiPlayerLoader.Package.ad.adMap', { value: {}, writable: false }); - another working rule, but fixed by a scriptlet
+m.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.adPlayerId", "")
 iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.parseXML", "noopFunc")
 ||data.video.iqiyi.com/videos/other/*$xmlhttprequest,~third-party,badfilter
 !+ NOT_PLATFORM(windows, mac, android)
@@ -382,10 +401,11 @@ iqiyi.com#%#Object.defineProperty(Object.prototype, 'blackscreenDuration', { val
 iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
 ||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
 iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templatetype="common_pause"]
-!+ PLATFORM(ios)
+!#safari_cb_affinity(general)
 @@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
 !+ PLATFORM(ios)
 ||t7z.cupid.iqiyi.com^$badfilter
+!#safari_cb_affinity
 !
 !+ PLATFORM(ios)
 9to5google.com,9to5mac.com,9to5toys.com,dronedj.com,electrek.co##.newsletter-box
@@ -1747,6 +1767,11 @@ realty.yandex.by,realty.yandex.kz,realty.yandex.ru,realty.yandex.ua##.popup__und
 ! Mobile apps
 translate.yandex.by,translate.yandex.com,ceviri.yandex.com.tr,translate.yandex.fr,translate.yandex.kz,translate.yandex.ru,translate.yandex.ua##.footer-line_promo
 !
+! Yandex.Video
+yandex.*##body[data-bem*="Яндекс.Видео"] div.serp-list__items > div[data-logger-type][data-counter*="ect_id=R-I-"]
+! Browser ad
+yandex.*###bk-container
+!
 ! Yandex.Zen
 zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua##.app-button
 zen.yandex.by,zen.yandex.com,zen.yandex.kz,zen.yandex.ru,zen.yandex.ua##.call-to-action-bar
@@ -1840,8 +1865,23 @@ bournemouthecho.co.uk,eveningtimes.co.uk,greenocktelegraph.co.uk,heraldscotland.
 ! ##.subscribe
 censor.net,fizzicseducation.com.au,fparf.ru,revouninstaller.com,logincasino.com,borsagundem.com,officelife.media,kod.ru,masterinvest.info,bessarabia.ua,football.kulichki.net,jeotermalhaberler.com,glavcom.ua,hindustantimes.com,hightech.fm,culture.ru,obozrevatel.com,blog.eva.ua,officiel-online.com,wccftech.com,ideanomics.ru,gazetki.by,goldsilver.com,kp.ru,infobus.eu,atorus.ru,castorama.ru,guzellikbulvari.com,marieclaire.ua,mvs.gov.ua,gadgets.ndtv.com,oneplus.com,tickets.ua,woman.ru,elle.ru,marieclaire.ru,europaplus.ru,krossovki.com,belretail.by,thecollegefix.com,femmie.ru,prostofinovo.ru,mauijim.com,netpeak.net,wday.ru,buhgalteria.ru,ellegirl.ru,gameslog.ru,gizmag.com,healthhacks.ru,klerk.ru,menshealth.com,rbc.ru,snce.ru,turizm.ru,wegame.com.ua##.subscribe
 ! ###mc_embed_signup
-honeysanime.com,circuitdigest.com,worldhistory.org,bizreport.com,wristreview.com,kosicednes.sk,tinyprojects.dev,cambio16.com,voxukraine.org,pnas.org,cachevalleydaily.com,bisnis.com,ilpost.it,bsblog.info,alcoparty.com.ua,codastory.com,informazionefiscale.it,kerch.fm,cinemablend.com,prostofinovo.ru,comss.ru,majorgeeks.com,buhgalter.com.ua,providr.com,24tv.ua,babylonbee.com,dexerto.com,football365.com,menrec.com,netdoktor.de,ottawamatters.com,retail-insider.com,walterfootball.com,wweek.com,zozhnik.ru###mc_embed_signup
+mobidea.com,honeysanime.com,circuitdigest.com,worldhistory.org,bizreport.com,wristreview.com,kosicednes.sk,tinyprojects.dev,cambio16.com,voxukraine.org,pnas.org,cachevalleydaily.com,bisnis.com,ilpost.it,bsblog.info,alcoparty.com.ua,codastory.com,informazionefiscale.it,kerch.fm,cinemablend.com,prostofinovo.ru,comss.ru,majorgeeks.com,buhgalter.com.ua,providr.com,24tv.ua,babylonbee.com,dexerto.com,football365.com,menrec.com,netdoktor.de,ottawamatters.com,retail-insider.com,walterfootball.com,wweek.com,zozhnik.ru###mc_embed_signup
 !
+antipub.org##.sidebar .wpcf7
+timesofindia.indiatimes.com##.et_newsletter_widget
+ramsaydiagnostics.ru##.mailing-box_wide
+redditgifts.com#$#.exchanges-notify-form { visibility: hidden !important; }
+morningstar.nl###iSharesSignupWrapperEx
+appsumo.com##.cc-header-form.text-left
+androidauthority.com##div[data-nc="nc-newsletter"]
+coloradonewsline.com##.subContainer
+coloradonewsline.com#?#.td-ss-main-sidebar > aside.widget:has(> div[class] input.sli-input-contact-email)
+liquidweb.com##.subscribe-sidebar-form
+debugbear.com##.monitoring-cta + div[class] > style + div[style^="margin-top:"]
+socialbakers.com##div[data-testid="newsletter-banner"]
+capital.bg###newsletter-box-holder
+thedrive.com##.newsletter-image
+reverso.net##.more-newsletter-subcribe
 scamadviser.com##.newsletter__row
 tut4dl.com##.enews-widget
 thedailybeast.com##.ProductCalloutNewsletterModule
@@ -2398,7 +2438,7 @@ proagro.com.ua##table[style="border:1px solid #d0d0d0;"]
 gazetadopovo.com.br#?#.container > div.c-botao-flutuante:has(> a.btn-flutuante-newsletter)
 gazetadopovo.com.br##.box-promo-newsletter
 gazetadopovo.com.br###end-post > div.c-box-news
-feedspot.com##.fixedBar
+recruitingtools.com,feedspot.com##.fixedBar
 feedspot.com##.et_pb_extra_column_sidebar > div.widget_custom_html
 360tv.ru##amp-img[alt="google_news_image"]
 360tv.ru$$amp-img[alt="google_news_image"]

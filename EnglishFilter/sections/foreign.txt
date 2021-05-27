@@ -1763,7 +1763,7 @@ kobi8.com##.abc
 kobi8.com###fixed-left
 kobi8.com###fixed-right
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26330
-||acs.youku.com/*.youku.play.$replace=/("ad":{).+"(\}\,"playlog")/\$1\$2/
+||acs.youku.com/*.youku.play.$replace=/("ad":{).+"(\}\,"(?:playlog|watermark)")/\$1\$2/
 @@||cibntv.net/youku/*.mp4?$domain=v.youku.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36120
 gz.bendibao.com##.content_r_ad300
@@ -1849,7 +1849,6 @@ weihemenye.com#$##player_div { display: block!important; }
 weihemenye.com#$##player_ad_div { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30701
 ||qq.com/proxyhttp$replace=/ad/_ad/
-!+ NOT_PLATFORM(windows, mac, android)
 v.qq.com#%#//scriptlet('json-prune', 'ad')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35335
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33197
@@ -2386,6 +2385,9 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83263
+||uschovna.cz/branding/?branding=$subdocument,redirect=noopframe
+||cz.mrezadosa.com^$xmlhttprequest,redirect=noopframe,domain=uschovna.cz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82507
 csfd.sk##.box-bannercenter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80547
@@ -3005,6 +3007,8 @@ nordschleswiger.dk##.TopAdvertising-Content-Wrapper
 !------------------------------ Estonian -----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83267
+ilm.pri.ee##.adsense
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77533
 hinnavaatlus.ee##.header-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74049
@@ -3656,6 +3660,8 @@ bb.is$$div[class="banner"]
 !------------------------------ Indian -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83901
+hindikhabarwaala.com##.logo-banner div.pull-right
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80244
 kutchuday.in##.td-banner-wrap-full
 kutchuday.in##.td-post-content > p > img
@@ -3895,6 +3901,8 @@ indiatimes.com##.last8brdiv > div.sponsor_block
 !------------------------------ Indonesian ---------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83472
+cnbcindonesia.com#?##ArtikelTerkaitContainer > .col_mob_4 > .native-ads-d:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83783
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=duit.cc
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=duit.cc,redirect=nooptext,important
@@ -5649,7 +5657,7 @@ g-enews.com##.mad
 ||data.news.zumst.com/alyac/popular/news.json
 121.189.38.123^$network
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81240
-ppss.kr#%#//scriptlet("abort-current-inline-script", "Symbol", "adshield")
+ppss.kr#%#//scriptlet("abort-current-inline-script", "Symbol", "/ad-?shield|;base64,/")
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ppss.kr
 @@||ad.doubleclick.net/ddm/$xmlhttprequest,domain=ppss.kr
@@ -6031,10 +6039,11 @@ kpanews.co.kr##div[class^="area_ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62624
 ! frequently changed domains
 marumaru.*##.w_banner
+!+ NOT_OPTIMIZED
 marumaru.*##.bottom-navbar[style="height:60px"]
 ! For Android CB
-marumaru.watch##.bottom-navbar[style="height:60px"]
-marumaru.watch##.w_banner
+marumaru.cloud,marumaru.watch##.bottom-navbar[style="height:60px"]
+marumaru.cloud,marumaru.watch##.w_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50380
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=coronaita.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50088
@@ -6169,6 +6178,8 @@ manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manh
 manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid#?#div[id^="custom_html-"]:has(> div.custom-html-widget > script[src])
 manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid#?#div[id^="custom_html-"]:has(> div.custom-html-widget > [id*="ScriptRoot"])
 manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid#?#div[id^="ai_widget-"]:has(> div.code-block > script[onerror])
+manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid#?#div[id^="ai_widget-"]:has(> div.code-block > .adsbygoogle)
+manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid#?##main-sidebar > div[id^="ai_widget-"]:has(>div.code-block:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40952
 koreaminecraft.net##.ka-red > p > a[href][target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43185
@@ -6505,6 +6516,12 @@ mlbpark.donga.com##div[class^="ad_con"]
 !------------------------------ Latvian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83438
+nra.lv##.bl-cont-ad
+@@||tv3play.skaties.lv/static/scripts/ima3.js
+||mssl.fwmrm.net/libs/adm/*/LinkTag2.js$script,redirect=noopjs,domain=tv3play.skaties.lv
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||mssl.fwmrm.net/libs/adm/*/LinkTag2.js$domain=tv3play.skaties.lv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77575
 failiem.lv#@#.show_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70785
@@ -6680,6 +6697,10 @@ jurnaltv.md##div[id^="dqBnnRight"]
 !------------------------------ Nepali -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83323
+nepalpress.com##.gam-each-ad
+nepalpress.com##.gam-ad-position-wrap
+nepalpress.com##.is-full-widescreen-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79257
 purbelinews.com##div[class$="-ads"]
 purbelinews.com##aside#secondary
@@ -6971,6 +6992,13 @@ innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "i
 @@||video.onnetwork.tv/adblock_notify.js
 ||request.dqst.pl/v*/$xmlhttprequest
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/83735
+se.pl##.article__placement
+! https://github.com/AdguardTeam/AdguardFilters/issues/83653
+film.org.pl##.pubs
+! https://github.com/AdguardTeam/AdguardFilters/issues/83885
+@@||lpg-forum.pl/ad-blocker.js
+lpg-forum.pl#%#//scriptlet("prevent-setTimeout", "$('#overlay').fadeIn")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83391
 niebezpiecznik.pl#?##sidebar > ul > li[id^="custom_html-"] > h2.widgettitle:contains(/^Reklama$/):upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83216
@@ -7687,7 +7715,7 @@ dobreprogramy.pl#%#//scriptlet('prevent-setTimeout', 'mark("PrebidDamOpen")')
 dobreprogramy.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/mark("PrebidDamOpen")/.test(a.toString()))return b(a,c)};})();
 profil.wp.pl#%#//scriptlet("set-constant", "Object.prototype.loadAndRunBunch", "noopFunc")
 tech.wp.pl,sportowefakty.wp.pl,kobieta.wp.pl#%#//scriptlet('prevent-setTimeout', '()=>o.open()')
-finanse.wp.pl#%#//scriptlet("abort-on-property-read", "Object.prototype.forceDetection")
+wiadomosci.wp.pl,finanse.wp.pl#%#//scriptlet("abort-on-property-read", "Object.prototype.forceDetection")
 dobreprogramy.pl,open.fm,abczdrowie.pl,www.o2.pl,parenting.pl,fotoblogia.pl,gadzetomania.pl,komorkomania.pl,autocentrum.pl,autokult.pl,pudelek.pl,wiadomosci.wp.pl,moto.wp.pl,pogoda.wp.pl,fitness.wp.pl,turystyka.wp.pl,wroclaw.wp.pl,wawalove.wp.pl,opinie.wp.pl,tech.wp.pl,sportowefakty.wp.pl,kobieta.wp.pl,finanse.wp.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.callBids")
 www.wp.pl,moto.wp.pl,horoskop.wp.pl,twojeip.wp.pl,money.pl,polygamia.pl,vibez.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.directOnly")
 ! www.wp.pl#%#//scriptlet("abort-on-property-read", "rekid")
@@ -7704,7 +7732,7 @@ so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp
 so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#@#.text_ads
 so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#$#.pub_300x250 { display: block!important; }
 abczdrowie.pl,so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#$?#html { overflow: visible!important; position: unset!important; }
-abczdrowie.pl,so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#$?#body { overflow: visible!important; position: unset!important; }
+abczdrowie.pl,so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#$?#body { overflow-y: visible!important; position: unset!important; }
 abczdrowie.pl,so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#$?#body > [class]:not(.settings--user) { filter: none!important; }
 so-magazyn.pl,o2.pl,pudelek.pl,wp.pl#$#body > .css-adv.text_ads.ads.adsbygoogle.Adv.advertisement.top-banners#ad-column { display: block!important; }
 so-magazyn.pl,o2.pl,pudelek.pl,wp.pl##[class^="css-"]:not(.css-adv)
@@ -8206,6 +8234,8 @@ money.pl#$#body { overflow: visible!important; }
 !+ NOT_PLATFORM(ext_ff)
 ||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ! www.wp.pl#?#div[class]:has(>div[class]:not([-ext-has=">*"]):first-child:contains(REKLAMA))
+www.wp.pl#$#body > #root { opacity: 1 !important; }
+www.wp.pl#?#div[class*=" "] > img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child:upward(1)
 www.wp.pl#?#div[class^="sc-"]:has(> img[src^="https://v.wpimg.pl/"][role="presentation"][class^="sc-"]:matches-css(position: absolute))
 wp.pl#?#[class^="_"]:has(>img[src*=".wp.pl"])
 ! turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl#?#div[class^="_"][class*=" _"]:has(>div[class]:first-child:empty+img[src*="://v.wpimg.pl/"][alt="WP"]:empty)
@@ -8488,7 +8518,7 @@ abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,biztok.pl,bloog.pl,dobreprogram
 ! abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,biztok.pl,bloog.pl,dobreprogramy.pl,dzieci.pl,easygo.pl,echirurgia.pl,fotoblogia.pl,gadzetomania.pl,hotmoney.pl,interaktywnie.com,inwestycje.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kantory.pl,kazimierzdolny.pl,komediowo.pl,komorkomania.pl,mazury.com,mojeauto.pl,mojeosiedle.pl,money.pl,nasygnale.pl,niewiarygodne.pl,nocowanie.pl,o2.pl,odkrywcy.pl,open.fm,parenting.pl,pudelek.pl,pudelek.tv,pytamy.pl,sfora.pl,snobka.pl,tlen.pl,totalmoney.pl,wakacje.pl,wawalove.pl,wp.pl,wp.tv,wrzuta.pl#%#AG_defineProperty('WP.crux.set', { get: function() { return function() {}; }, set: function() {} });
 ! abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,biztok.pl,bloog.pl,dobreprogramy.pl,dzieci.pl,easygo.pl,fotoblogia.pl,gadzetomania.pl,hotmoney.pl,interaktywnie.com,inwestycje.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kantory.pl,kazimierzdolny.pl,komediowo.pl,komorkomania.pl,mazury.com,mojeauto.pl,mojeosiedle.pl,money.pl,nasygnale.pl,niewiarygodne.pl,nocowanie.pl,o2.pl,odkrywcy.pl,parenting.pl,pudelek.pl,pudelek.tv,pytamy.pl,sfora.pl,snobka.pl,tlen.pl,totalmoney.pl,wawalove.pl,wp.pl,wp.tv,wrzuta.pl#%#(function(b){function c(){"advertisement"!=arguments[0]&&b.apply(window,arguments)}Object.defineProperties(window,{hasSentinel:{get:function(){return function(){return!1}},set:function(){}},hamper:{value:function(a){return a}},addEventListener:{get:function(){return c},set:function(a){b=a}}})})(window.addEventListener);
 ! ~pilot.wp.pl,abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,biztok.pl,bloog.pl,dobreprogramy.pl,dzieci.pl,easygo.pl,fotoblogia.pl,gadzetomania.pl,hotmoney.pl,interaktywnie.com,inwestycje.pl,jejswiat.pl,kafeteria.pl,kafeteria.tv,kantory.pl,kazimierzdolny.pl,komediowo.pl,komorkomania.pl,mazury.com,mojeauto.pl,mojeosiedle.pl,money.pl,nasygnale.pl,niewiarygodne.pl,nocowanie.pl,o2.pl,odkrywcy.pl,parenting.pl,pudelek.pl,pudelek.tv,pytamy.pl,sfora.pl,snobka.pl,tlen.pl,totalmoney.pl,wakacje.pl,wawalove.pl,wp.pl,wp.tv,wrzuta.pl#%#AG_defineProperty('PWA_adbd', {value: 2});
-||rek.www.wp.pl/vad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||rek.www.wp.pl/vad.xml$script,xmlhttprequest,other,redirect=noopvast-2.0,important
 !+ NOT_PLATFORM(ext_ublock)
 ||adv.wp.pl/RM/Box/*.mp4$media,redirect=noopmp4-1s,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3884
@@ -8783,10 +8813,6 @@ sydsvenskan.se##.placeholder-native-unit
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47420
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46569
 ||nyafilmer.vip/u_a4fv7zck.js$badfilter
-nyafilmer.*#$#body { overflow: visible!important; }
-nyafilmer.*#?#body > div[class]:has(> h1:contains(Adblock))
-nyafilmer.*#?#body > div[class]:empty:matches-css(position: fixed):matches-css(z-index: /\d+/)
-nyafilmer1.com,nyafilmer.*#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45506
 streamtajm.com##.col-xs-12 > div[style^="background-color: #eee; width:"][style*="overflow: hidden;"]:not([class]):not([id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45408
@@ -9087,14 +9113,12 @@ gamme.com.tw##a[href^="https://www.gamme.com.tw/redirect.php?id="][target="_blan
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15480
 @@||service.4gtv.tv/4gtv/Data/GetAD.ashx
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=4gtv.tv
-||vast.doublemax.net/adserver/vast.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||ads.adaptv.advertising.com/*roll&pageUrl=4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||facebook.com/*/instream/vast.xml?*&pageurl=http*.4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vast*&url=http*.4gtv.tv$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||vast.doublemax.net/adserver/vast.xml$script,xmlhttprequest,other,redirect=noopvast-2.0
+||ads.adaptv.advertising.com/*roll&pageUrl=4gtv.tv$script,xmlhttprequest,other,redirect=noopvast-2.0
+||facebook.com/*/instream/vast.xml?*&pageurl=http*.4gtv.tv$script,xmlhttprequest,other,redirect=noopvast-2.0
+||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vast*&url=http*.4gtv.tv$script,xmlhttprequest,other,redirect=noopvast-2.0
 ||service.4gtv.tv/4gtv/Data/GetAD.ashx$replace=/((\{[\s\S]*?)"preroll":( )?\[)[\s\S]*\]/\$1]/,important,domain=4gtv.tv
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-||vast.doublemax.net/adserver/vast.xml$redirect=nooptext,important
-!+ NOT_PLATFORM(windows, mac, android)
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||googleads.g.doubleclick.net/pagead/ads?*&url=http*.4gtv.tv*&output=xml_vast*.4gtv.tv$domain=imasdk.googleapis.com
 !+ PLATFORM(ios, ext_android_cb)
 @@^vast^$domain=4gtv.tv,~script,~image
@@ -9156,7 +9180,8 @@ mm-cg.com##.TW_UTtoy
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/83334#issuecomment-843921707
+! https://github.com/AdguardTeam/AdguardFilters/issues/83334#issuecomment-846422844
+||*.bp.blogspot.com^$image,domain=manga168.com
 ||img.manga168.com/images/
 ||humnoi.xyz/images/
 ||imgur.com/*.gif$domain=manga168.com
