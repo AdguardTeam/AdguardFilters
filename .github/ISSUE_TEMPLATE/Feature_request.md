@@ -1,6 +1,10 @@
 ---
 name: Feature request
 about: Suggest an idea for AdGuard Filters
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 ### Prerequisites
