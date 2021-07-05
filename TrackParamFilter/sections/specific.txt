@@ -1,6 +1,28 @@
 !
 ! The rules for specific sites
 !
+!
+! $removeparam=
+! https://github.com/AdguardTeam/AdguardFilters/issues/69722
+||digikey.com^$removeparam=/^mkt_tok/
+||digikey.com^$removeparam=/^utm_cid/
+!
+! Yandex
+! may be merged in regex rule over time
+||yandex.*/news/$removeparam=from
+||yandex.*/news/$removeparam=persistent_id
+||yandex.*/sport/$removeparam=persistent_id
+||yandex.*/news/$removeparam=msid
+||yandex.*/sport/$removeparam=msid
+||yandex.*/news/$removeparam=mlid
+||yandex.*/sport/$removeparam=mlid
+||yandex.*/news/$removeparam=stid
+||yandex.*/sport/$removeparam=stid
+||yandex.*/images/$removeparam=source-serpid
+! Baidu search - statictics
+||www.baidu.com^$removeparam=rsv_pq
+||www.baidu.com^$removeparam=rsv_t
+||www.baidu.com/link?url=$removeparam=eqid
 ! bitrec.com recommendations widget
 ||cod.bitrec.com/topocentras-services/js/recs?$removeparam=visitorId
 ||cod.bitrec.com/topocentras-services/js/recs?$removeparam=externalVisitorId
@@ -117,7 +139,6 @@
 ||shopping.web.de^$removeparam=origin
 ||ad.doubleclick.net/ddm/trackclk/$removeparam=/^dc_trk_/
 ||alza.de/*.htm$removeparam=kampan
-||click.cptrack.de^$removeparam=k
 ||cosse.de^$removeparam=referer
 ||idealo.de/*.html$removeparam=offerKey
 ||idealo.de/*.html$removeparam=offerListId
@@ -162,6 +183,6 @@
 ||marketing.net.idealo-partner.com^$removeparam=etcc_produkt
 !
 ||visit.digidip.net^$removeparam=/^(ppref|ref|pid)=/
-||ad.admitad.com/g/$removeparam=subid
+||ad.admitad.com^$removeparam=/^subid/
 ||mvideo.ru^$removeparam=/^(_requestid|reff)=/
 ||nytimes.com^$removeparam=impression_id
