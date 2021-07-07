@@ -2,6 +2,45 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/87232
+qciss.net#%#//scriptlet("prevent-window-open", "0", "qciss.net")
+! https://github.com/AdguardTeam/AdguardFilters/issues/55847
+ifvod.tv#%#Object.defineProperty(Object.prototype, 'ShouldPlayAds', { get: function(){ return function() {}; }, set: function(){ return function() {}; }});
+! https://github.com/AdguardTeam/AdguardFilters/issues/9156
+dnvod.tv#%#AG_onLoad(function() { window.ckcpt = function() {}; });
+! https://github.com/AdguardTeam/AdguardFilters/issues/13282
+udn.com#%#AG_onLoad(function() { AG_removeElementBySelector('.recommendation-list__holder > div[class="recommendation-list__news area "]:empty'); });
+udn.com#%#AG_onLoad(function() { AG_removeElementBySelector('.recommendation-list__holder > .recommendation-list__news.area.ads'); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/14286
+m.dnvod.tv#%#AG_onLoad(function() { setTimeout(function() { document.getElementById("player").removeAttribute("hidden"); }, 3000); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/15213
+88files.net#%#window.open = function() {};
+! https://github.com/AdguardTeam/AdguardFilters/issues/19010
+subhd.com#%#sessionStorage.setItem("hassession", 1);
+! https://github.com/AdguardTeam/AdguardFilters/issues/23597
+5278.cc#%#AG_onLoad(function() { setTimeout(function() {if(window.location.href.indexOf("agree.php") != -1){ var elements = document.getElementsByTagName("a"); for( i = 0; i < elements.length; i++) { elements[i].removeAttribute("onclick"); }}}, 300); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/23683
+ettoday.net#%#AG_onLoad(function() { setTimeout(function() { AG_removeElementBySelector('.iframe-ad, amp-ad'); }, 1000); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/31004
+m.86kl.com#%#AG_abortOnPropertyRead('akumtagcc');
+! https://github.com/AdguardTeam/AdguardFilters/issues/30701
+v.qq.com#%#//scriptlet('json-prune', 'ad')
+! https://github.com/AdguardTeam/AdguardFilters/issues/33510
+! https://github.com/AdguardTeam/AdguardFilters/issues/33458
+axjbt.com,avcao.cc#%#AG_abortOnPropertyRead('myclick');
+! https://github.com/AdguardTeam/AdguardFilters/issues/45024
+!+ NOT_PLATFORM(windows, mac, android)
+javlibrary.com#%#//scriptlet('abort-current-inline-script', 'document.write', '/getCookie[\s\S]*?\("\\x/')
+!+ PLATFORM(windows, mac, android)
+javlibrary.com#%#AG_abortInlineScript(/getCookie[\s\S]*?\("\\x/, 'document.write');
+! https://github.com/AdguardTeam/AdguardFilters/issues/49041
+myptt.cc#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
+! https://github.com/AdguardTeam/AdguardFilters/issues/48562
+edc1014070.pixnet.net#%#//scriptlet("set-constant", "MM_openBrWindow", "noopFunc")
+! https://github.com/AdguardTeam/AdguardFilters/issues/55233
+wnacg.org#%#//scriptlet("abort-current-inline-script", "document.write", "tips[index]")
+! https://github.com/AdguardTeam/AdguardFilters/issues/74672
+pixnet.net#%#//scriptlet('abort-current-inline-script', 'window.leave')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87033
 freejavbt.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/84970
@@ -27,6 +66,50 @@ nfmovies.com#%#//scriptlet("prevent-setTimeout", "/document\.getElementById[\s\S
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/846
+macapp.so#$##m2 { height: 5px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/3129
+mobile01.com#$#body { overflow: visible!important; }
+mobile01.com#$#.modal-backdrop { display: none!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/9156
+dnvod.tv#$##video[class^="bfq"] > [id] > a[href^="//public.dnvod.tv/c/c"][target="_blank"] { visibility: hidden!important; }
+!
+gamer.com.tw#$##flyRightBox { position: absolute!important; left: -3000px!important; }
+!
+discuss.com.hk#$#iframe[width="728"][height="90"] { position: absolute!important; left: -3000px!important; }
+!
+sina.cn#$#[data-href*="://sax"] { position: absolute!important; left: -3000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/14286
+m.dnvod.tv#$#.top-bar > h3.text-over { display:none!important; }
+m.dnvod.tv#$#.video-box > .video-box { display:none!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/15807
+baidu.com#$##content_left > div[style*="display:block !important;"]:not(.result) { position: absolute!important; left: -4000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/33456
+weihemenye.com#$##player_div { display: block!important; }
+weihemenye.com#$##player_ad_div { display: none!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/36092
+ip.cn#$#.container-fluid > div > a[href="#"] > img#tp { position: absolute!important; left: -3000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/39860
+sutin0831.pixnet.net#$#div[class*="-ad-sidebar-"] { position: absolute!important; left: -3000px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/37960
+58b.tv,8fun.tv#?#.datal.clear:has(> table div[id^="revive_zoneid_"])
+58b.tv#$#.playmar > .playl { visibility: hidden!important; }
+58b.tv#$#.playmar > .playr { visibility: hidden!important; }
+58b.tv#$##banner { display: none!important; }
+58b.tv#$##video_player { display: block!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/53539
+buzzorange.com#$#.sidebar > section#text-8[style*="bottom: 240px;"] { position: static !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/46341
+m.lelekan.com#$#body { padding-top: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/47732
+h5.17k.com#$#body { overflow: visible!important; }
+h5.17k.com#$#html { overflow: visible!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/48953
+duodada.com#$#body { padding-top: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/52840
+haoweichi.com#$#.adsbygoogle { height: 1px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/53723
+v2rayssr.com#$##wrapfabtest { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83713
 51cto.com#$#.top_bg { height: 60px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68621
@@ -39,6 +122,15 @@ apple.com.cn#$#html { margin-top: 0 !important; }
 apple.com.cn#$#main[role="main"] { padding-top: var(--global-nav-main-height) !important; }
 apple.com.cn#$##ac-globalnav { top: 0 !important; }
 apple.com.cn#$#.ac-gn-blur { top: 0 !important; }
+!
+!-----------------------
+!------- HTML ----------
+!-----------------------
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/3129
+mobile01.com$$script[tag-content="$.cookie(""fullscreenad"""][max-length="550"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/55233
+wnacg.org$$script[tag-content="document.write(tips[index]);"][min-length="500"][max-length="1000"]
 !
 !--------------------------------------!
 !------- Content filtering rules ------!
