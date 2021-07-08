@@ -19,6 +19,10 @@ electric-house.ru#@#.adsbygoogle
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/87053
+forums.rusmedserv.com##body > div[id][style="display: block;"]:not([class])
+! https://github.com/AdguardTeam/AdguardFilters/issues/87111
+@@||textovod.com/images/ads.png
 ! https://github.com/AdguardTeam/AdguardFilters/issues/84853
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=wink.rt.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83081
@@ -221,10 +225,6 @@ minecraft20.ru#%#AG_abortInlineScript(/ad_element/, 'document.body.appendChild')
 minecraft20.ru#@#.adsBox
 @@||minecraft20.ru/templates/minecraft/adbd/fuckadblock.js
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/44647
-vgtimes.ru#%#//scriptlet("set-constant", "adblock_background_data", "null")
-!+ PLATFORM(windows, mac, android)
-vgtimes.ru#%#AG_setConstant("adblock_background_data", "undefined");
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40153
 @@||farsihd.info/player/js/adblock.js
 @@||tehranvd.biz/player/js/adblock.js
@@ -315,11 +315,6 @@ yapx.ru#%#AG_removeCookie('adblock_state');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43225
 namobilu.com#@#.adsbygoogle
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=namobilu.com
-! rbc.ru - fixing error (pt. 2 Another rules are in Base filter)
-! changed CSS rules to elemhide [26.09.2019]
-!autonews.ru,rbc.ru,sportrbc.ru#$#.banner__filmstrip { position: absolute!important; left: -3000px!important; }
-!autonews.ru,rbc.ru,sportrbc.ru#$#.banner { position: absolute!important; left: -3000px!important; }
-@@||content.rbc.medialand.ru/*/ads.gif$domain=autonews.ru|rbc.ru|sportrbc.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37922
 @@||ddnk.advertur.ru/*/loader.js$domain=slomal-telefon.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44835
@@ -664,7 +659,7 @@ besplatka.ua,meteo.ua,gismeteo.ua,tv.ua,isport.ua$$script[tag-content="ShadowRoo
 www.ukr.net$$script[wildcard="*,Qn=*+bn+*"][max-length="60000"]
 eurointegration.com.ua,epravda.com.ua,pravda.com.ua$$script[wildcard="*track*banner*"][max-length="22000"]
 dengi.ua,dt.ua,liga.net$$script[wildcard="*Xr=""zmc""+""track""*"][max-length="16000"]
-yahooeu.ru,tvgid.ua,rian.com.ua,oklivetv.com,kino-dom.org,hd-dream.ru,guru.ua,chudesa.site,azov-sea.info,animeget.net$$script[wildcard="*(function*String.fromCharCode(parseInt*.substr*"][max-length="10000"]
+tvgid.ua,yahooeu.ru,tvgid.ua,rian.com.ua,oklivetv.com,kino-dom.org,hd-dream.ru,guru.ua,chudesa.site,azov-sea.info,animeget.net$$script[wildcard="*(function*String.fromCharCode(parseInt*.substr*"][max-length="10000"]
 glianec.com,ostro.org,nashamama.com,bilshe.com,zdorovia.com.ua,i.factor.ua,gismeteo.ua,1777.ru,cn.ru,finance.i.ua,glavcom.ua,hvylya.net,kp.ua,love.i.ua,peers.tv,radio.i.ua,real-vin.com,viks.bz,vsetv.com$$script[tag-content="zmctrack"]
 xittv.net,etextlib.ru,bigmir.net$$script[wildcard="*!function(*""zmctrack""*""mzs""*"][max-length="9500"]
 simpsonsua.com.ua,allboxing.ru$$script[wildcard="*!function(){function*n=Zu+t();Ut[n]=Wt*,Bn=*"][max-length="10000"]
@@ -899,14 +894,19 @@ api.yadoma.tv#@#.ad_content
 hdgo.cx###hdplayer-btn.linkbtn
 hdgo.cx###hdplayer-linktxt.linktxt
 ! rustorka.com
-naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
+/rustorka.\w+\/forum\/(?!login.php)/$removeheader=location
+/torrents-games.top\/forum\/(?!login.php)/$removeheader=location
+/naylo.top\/forum\/(?!login.php)/$removeheader=location
+/rustorka.games-pc.top\/forum\/(?!login.php)/$removeheader=location
+||rustorka.*$cookie=/[0-9a-f]{32}/
+$cookie=opt_js,domain=torrents-games.top|rustorka.games-pc.top|rustorka.top|rustorka.com|rustorka.net|rustorkacom.lib|rustorka.top|naylo.top
+torrents-games.top,rustorka.games-pc.top,rustorka.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet("abort-current-inline-script", "checkCookie", "var _0x")
+!
+tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
-!naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#AG_removeCookie('/^u_count|^st\d+|adblock|gophp/');
-! rustorka.com - fixing first click
-!+ PLATFORM(windows, mac, android)
-naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#Object.defineProperty(window, 'b0', { value: null });
-!+ NOT_PLATFORM(windows, mac, android)
-naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#//scriptlet("set-constant", "window.b0", "null")
+! tapochek.net - fixing first click
+tapochek.net#%#//scriptlet("set-constant", "window.b0", "null")
+!rustorka.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet("set-constant", "window.b0", "null")
 ! drahelas.ru
 drahelas.ru#@#.forumAd
 drahelas.ru#$#.forumAd { height: 1px!important; }
@@ -1183,11 +1183,12 @@ overclockers.ru#@#.material-other-feed
 @@||rotor.overclockers.ru/www/delivery/asyncspc.php?zones=*feed_the_cat$domain=overclockers.ru|~forums.overclockers.ru
 !#endif
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/84348
+! https://github.com/AdguardTeam/AdguardFilters/issues/87125
+$cookie=/[0-9a-f]{32}/,domain=zannn.top|innal.top
 $removeheader=location,domain=zannn.top|innal.top
 zannn.top,innal.top$$script[tag-content="dimisa"]
 zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
-zannn.top,innal.top#%#//scriptlet('abort-on-property-read', '/0x/')
+zannn.top,innal.top#%#//scriptlet("prevent-setTimeout", "tick")
 !+ PLATFORM(ios, ext_android_cb)
 @@||aj*.online^$domain=zannn.top|innal.top,xmlhttprequest,script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3011
@@ -1382,23 +1383,14 @@ manshet.ru###k788
 ! http://forum.adguard.com/showthread.php?7482
 gisher.org#@#.afs_ads
 ! 1tv.ru - anti-adblock message in the player
-||ads.adfox.ru/*/getCode?$xmlhttprequest,redirect=noopvast-3.0,important,domain=static.1tv.ru
-@@||ads.adfox.ru/*/getCode?$xmlhttprequest,domain=static.1tv.ru
-@@||ad.mail.ru/vast/*$domain=static.1tv.ru
-@@||stats.seedr.com/vast?gid=$domain=static.1tv.ru
-@@||ads.adfox.ru/*/getCode?pp=$domain=static.1tv.ru
-||ads.adfox.ru/*/getCode?pp=$xmlhttprequest,redirect=noopvast-3.0,important,domain=static.1tv.ru
 /vast^$xmlhttprequest,redirect=noopvast-3.0,important,domain=static.1tv.ru
-@@||v.adfox.ru/*/getCodeTest?pp=$domain=1tv.ru
+||adfox.ru/*/getCode?$xmlhttprequest,redirect=noopvast-3.0,important,domain=static.1tv.ru
+@@||ads.adfox.ru/*/getCode?$xmlhttprequest,domain=static.1tv.ru
+@@||ads.adfox.ru/*/getCode?pp=$domain=static.1tv.ru
+@@||v.adfox.ru/*/getCode?$domain=static.1tv.ru
 @@||static.1tv.ru/player/config/banner.gif$domain=1tv.ru
-@@||stream.1tv.ru/assets/player-current/ads.js
-@@||static.1tv.ru^$elemhide,content
-@@||static.1tv.ru/player/sanitar/fuckadblock.js$domain=1tv.ru
-@@||static.1tv.ru/player/js/adfox.lpd.js$domain=1tv.ru
-@@||static.1tv.ru/player/current/ads.js
-@@||1tv.ru/iframed/*?rnd=$image,domain=1tv.ru
-@@||static.1tv.ru/player/special/*$domain=1tv.ru
-||admon.pro^$domain=1tv.ru
+@@||stats.seedr.com/vast?gid=$domain=static.1tv.ru
+@@||static.1tv.ru^$content
 ! http://forum.adguard.com/showthread.php?7229
 @@||smotrisport.tv/js/advertising.js
 !
@@ -1552,14 +1544,14 @@ sdamgia.ru$$script[tag-content="adb=1"]
 ! START: Yandex
 !
 ! old cookies: Bismuth|computer|discussion|^specific\$|^engineer|instruction|telecommunications|pronunciation|involved|^adequate
-$cookie=/blcrm|bltsr|zmFQeXtI|computer/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
+$cookie=/blcrm|bltsr|Sulfur|computer/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
 !
-auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#AG_removeCookie('/blcrm|bltsr|zmFQeXtI|computer/');
+auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#AG_removeCookie('/blcrm|bltsr|Sulfur|computer/');
 ! TODO: add domains auto.ru and kinopoisk.ru to the rule below after the next release of AG for macos (current 2.3.2)
-$cookie=/blcrm|bltsr|zmFQeXtI|computer/,domain=baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
+$cookie=/blcrm|bltsr|Sulfur|computer/,domain=baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
 $cookie=/^los\$/,domain=auto.ru
 ! zen.yandex.ru - broken resources
-~passport.yandex.ru,~zen.yandex.ru,yandex.md,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#AG_removeCookie('/blcrm|bltsr|zmFQeXtI|computer/');
+~passport.yandex.ru,~zen.yandex.ru,yandex.md,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#AG_removeCookie('/blcrm|bltsr|Sulfur|computer/');
 !
 ! makes kinopoisk.ru redirect to sso.kinopoisk.ru and back endlessly
 ! ||kinopoisk.ru^$cookie=/consultant|introductory|knowledge|transfer|technology|workplace/
@@ -1684,7 +1676,7 @@ livejournal.com#%#AG_setConstant('begun_new_callbacks', 'undefined');
 !#if (!adguard_ext_firefox)
 ||echo.msk.ru^$replace=/Ya.*\[{"attributes".*"blockId".*//,script
 ||yandex.*/sport/$script,replace=/.*"blockId":\s"[A-Z0-9-]+".*//,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru|yandex.ua
-||kinopoisk.ru/*/*/*-$replace=/Ya.*\[{"attributes".*"blockId".*//,script,domain=www.kinopoisk.ru
+||kinopoisk.ru/*/*/*-$replace=/Ya.*\[{"attributes".*//,script,domain=www.kinopoisk.ru
 ||zen.yandex.ru/*/*/*/*-$replace=/.*"blockId":\s"[A-Z0-9-]+".*//,script,other,xmlhttprequest,domain=yandex.ru
 ||yandex.*/news/*$replace=/.*\[{"adm":{".*:{"imptrackers":.*//,xmlhttprequest,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru|yandex.ua
 //yandex.*/news/*$replace=/^\{\"rtb\":.*//,script,other,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru|yandex.ua

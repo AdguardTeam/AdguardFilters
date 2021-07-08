@@ -2,8 +2,12 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/86359
+sportsx365days.com,sportbarchik88.com#%#//scriptlet('prevent-window-open')
+! https://github.com/AdguardTeam/AdguardFilters/issues/86672
+u.4k-film.cyou#%#//scriptlet('remove-class', 'have-brand', 'body > div.have-brand')
 ! rezka.ag - removed an ad background
-rezkily.com,ezhdrezka.com,akinopoisk.com,hdrezkaonline.com,drhdrezka.com,mrhdrezka.com,hdrezka.sh,ehdrezka.com,nukinopoisk.com,livekinopoisk.com,betahdrezka.com,cokinopoisk.com,hdrezka-ag.com,hdrezka.club,hdrezka.cm,hdrezka.co,hdrezka.com.ua,hdrezka.host,hdrezka.lol,hdrezka.name,hdrezka.site,hdrezka.today,hdrezka.tv,hdrezka.website,hdrezkaag.net,hdrezkaweb.com,hdrezkayou.com,instahdrezka.com,myhdrezka.com,rezka.ag,tryhdrezka.com#%#//scriptlet('remove-class', 'active-brand', 'body')
+rezkery.com,rezkily.com,ezhdrezka.com,akinopoisk.com,hdrezkaonline.com,drhdrezka.com,mrhdrezka.com,hdrezka.sh,ehdrezka.com,nukinopoisk.com,livekinopoisk.com,betahdrezka.com,cokinopoisk.com,hdrezka-ag.com,hdrezka.club,hdrezka.cm,hdrezka.co,hdrezka.com.ua,hdrezka.host,hdrezka.lol,hdrezka.name,hdrezka.site,hdrezka.today,hdrezka.tv,hdrezka.website,hdrezkaag.net,hdrezkaweb.com,hdrezkayou.com,instahdrezka.com,myhdrezka.com,rezka.ag,tryhdrezka.com#%#//scriptlet('remove-class', 'active-brand', 'body')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73390
 l2top.ru#%#//scriptlet('prevent-eval-if', 'ad_signature')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83240
@@ -71,13 +75,6 @@ prostoporno.*#%#//scriptlet('prevent-window-open')
 bessporno.me#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61803
 xporno.xxx#%#document.cookie = "pu_count=1";
-! https://github.com/AdguardTeam/AdguardFilters/issues/58647
-rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet("abort-current-inline-script", "_createClass", "var _typeof=typeof Symbol===")
-rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet('prevent-setTimeout', 'wait_start', '1000')
-! https://github.com/AdguardTeam/AdguardFilters/issues/61143
-naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#document.cookie = "opt_js=opt_js; path=/;";
-! https://github.com/AdguardTeam/AdguardFilters/issues/79063
-naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.com,rustorka.net#%#document.cookie = "opt_js2=opt_js2; path=/;";
 ! sc2tv.ru - branding
 sc2tv.ru#%#//scriptlet('remove-class', 'body--brranding', 'peka-app > div.body--brranding')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61999
@@ -173,6 +170,13 @@ alterera.org#%#//scriptlet("abort-current-inline-script", "document.referrer", "
 alterera.org#%#AG_abortInlineScript(/google/, 'document.referrer');
 ! popups - `ads_script`
 tapochek.net,sht.at.ua,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
+! https://github.com/AdguardTeam/AdguardFilters/issues/58647
+!rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet("abort-current-inline-script", "_createClass", "var _typeof=typeof Symbol===")
+!rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top#%#//scriptlet('prevent-setTimeout', 'wait_start', '1000')
+! https://github.com/AdguardTeam/AdguardFilters/issues/61143
+!naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,tapochek.net#%#document.cookie = "opt_js=opt_js; path=/;";
+! https://github.com/AdguardTeam/AdguardFilters/issues/79063
+!naylo.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.com,rustorka.net#%#document.cookie = "opt_js2=opt_js2; path=/;";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44512
 !+ NOT_PLATFORM(windows, mac, android)
 porno-incest.net#%#//scriptlet("prevent-window-open")
@@ -340,7 +344,7 @@ macdigger.ru#%#AG_onLoad(function() { for (var key in window) { if (key.indexOf(
 ! https://forum.adguard.com/index.php?threads/14791/
 samods.ru#%#Object.defineProperty(window, 'PopShow3', { get: function() { return; } });
 ! https://forum.adguard.com/index.php?threads/23865/
-fainaidea.com#%#AG_onLoad(function() { jQuery(function() { jQuery('body').unbind('click').removeAttr("body").css("cursor","default"); }); });
+fainaidea.com#%#//scriptlet('abort-on-property-read', 'td_ad_background_click_link')
 ! `data:application/pdf;base64` / `executePop` / `postWindowPop`
 uniongang.net,tapochek.net,unionpeer.com#%#Object.defineProperty(window,'wait_start',{get:function(){return Number.MAX_SAFE_INTEGER},set:function(){}});
 ! https://forum.adguard.com/index.php?threads/22623/
@@ -403,12 +407,8 @@ detano.ru#%#Object.defineProperty(window, 'ref', { get: function() { return "www
 46.30.46.35#%#Object.defineProperty(window, 'MTretCKed', { get: function() { return false; } });
 ! https://forum.adguard.com/index.php?threads/14966/
 forum.militarist.ua#%#Object.defineProperty(document, 'write', { get: function() { return {}; } });
-! gamebomb.ru - удаление кликабельности
-gamebomb.ru#%#AG_onLoad(function() { jQuery(function() { jQuery('#content').unbind('click'); }); });
 ! https://forum.adguard.com/index.php?threads/14306/
 small-games.info#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /cityadspix.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
-! https://forum.adguard.com/index.php?threads/14024/
-forums.goha.ru#%#Object.defineProperty(window, 'trumedia', { get: function() { return {}; } });
 ! https://forum.adguard.com/index.php?threads/9356/
 leporno.org#%#Object.defineProperty(document, 'onmouseup', { get: function() { return; } });
 ! uakino.net - откл. преролл
@@ -455,8 +455,6 @@ videokub.me#%#document.cookie = "mycp=1";
 insider.pro#%#Object.defineProperty(window, 'getYesterday', { get: function() { return new Date(); } });
 ! http://forum.adguard.com/showthread.php?8703
 luxpic.ru#%#document.cookie = "clickunder=1";
-! http://forum.adguard.com/showthread.php?8667
-goha.ru#%#Object.defineProperty(window, 'checkVip', { get: function() { return function checkVip(){return true;} } });
 ! rutor - override clickunder
 rutor.info,rutor.is,zerkalo-rutor.org#%#AG_onLoad(function() { window.openNewTab = function() {} });
 ! http://www.yaplakal.com/forum44/topic894652.html - clickunder на странице перехода по ссылке (после клика на любой ссылке)
@@ -522,6 +520,19 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 !------- CSS -----------
 !-----------------------
 !
+! https://forum.adguard.com/index.php?threads/23865/
+fainaidea.com#$#body { cursor: default !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/86974
+teleprogramma.pro#$#.yt-w { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/87067
+hi-fi.ru#$#.page-branded { margin-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/86793
+mp3xa.cc#$#body { margin: 0 auto 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/86199
+vgtimes.ru#$#body { padding-top: 0 !important; background-image: none !important; pointer-events: none !important; }
+vgtimes.ru#$#body > * { pointer-events: auto !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/85493
+abw.by#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85297
 yk.kz#$#body:not(.header_fixed) .sub_menu { margin: 0 auto 0px !important; }
 yk.kz#$#body:not(.header_fixed) header.main { top: 0 !important; }
@@ -534,8 +545,11 @@ av.by#$#.av-branding .page { padding-top: 0 !important; }
 stratege.ru#$##globalcontent { margin-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/84981
 simhost.org#$#.top_bg { height: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/85349#issuecomment-865907244
+goha.ru#$#body { background-color: #efeded !important; }
+goha.ru#$##content-container { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83134
-cq.ru#$#.content.box { margin-top: 0px !important; }
+cq.ru#$#div[class^="cq"][class$="-content box"] { margin-top: 0px !important; }
 ! https://forum.adguard.com/index.php?threads/http-xlib-info-nsfw.43138/
 xlib.info#$#body { background-image: none !important; background-color: #FFFFFF !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80309
@@ -1061,8 +1075,6 @@ kino-coin.online#$##wrapper { margin-top: 0!important; }
 ! prikol.ru - удаление отступа сверху
 prikol.ru#$##container { top: 0!important; }
 prikol.ru#$#body { cursor: default!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/20892
-goha.ru#$##full-brand { background: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20867
 klops.ru#$#.section-news-with-banner > div.content { margin-left: auto!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20285
@@ -1226,7 +1238,6 @@ actualtraffic.ru#$#body { background: none!important; }
 24video.click,24video.net,24video.vip,24video.site,24video.adult,24video.in#$#body { background-image: none!important; padding-top: 0!important; }
 ! http://forum.ru-board.com/topic.cgi?forum=5&topic=49172&start=3060#21
 kinoafisha.info#$#.popup-illumination { display: none!important; }
-kinoafisha.info#$#body { background: #0c0109!important; overflow: visible!important; }
 ! https://forum.adguard.com/index.php?threads/27047/
 hd-720.com#$#body { margin-top: auto!important; }
 ! kinohome.org - удаление отступа сверху
@@ -1674,6 +1685,7 @@ sports.ru#$#.adsbox { position: absolute!important; left: -3000px!important; dis
 ! sports.ru/tribuna.com - удаление брендированного фона, отступа сверху
 sports.ru,ua.tribuna.com,by.tribuna.com#$##branding-layout > div[style*="width:100%;height:100%;cursor:pointer"] { z-index: -99!important; }
 sports.ru,ua.tribuna.com,by.tribuna.com#$#body[class] > div#branding-layout { background: #e5e7e9 !important; margin-top: 0 !important; padding-top: 120px !important; }
+sports.ru#$#body > div.branding-margin { padding-top: 0!important; }
 ! kinobar.kz - удаление отступа сверху
 kinobar.kz#$#body {padding-top: 0px !important; }
 ! firepic.org - удаление брендированного фона, отступа сверху
@@ -1738,11 +1750,6 @@ fast-torrent.ru#$##container { margin-top: 0!important; }
 fast-torrent.ru#$#body { background: none!important;}
 ! newstudio.tv - удаление отступа сверху
 newstudio.tv#$#body {padding-top: 0!important; }
-! gamebomb.ru - удаление фонового изображения, отступа сверху, исправление курсора
-gamebomb.ru#$#body { background-color: #303030!important; }
-gamebomb.ru#$##content.site-max-width { margin-top: 0!important; }
-gamebomb.ru#$#body > div[id^="wrapper"] >div[id] { background: none!important; }
-gamebomb.ru#$##content { cursor: default!important; }
 ! brofilms.ru - удаление отступа сверху
 brofilms.ru#$##header { margin-bottom: 0!important; }
 ! sc2tv.ru - убираем пустоту от баннера
@@ -1996,7 +2003,6 @@ forum.na-svyazi.ru$$td[height="70"][align="center"]
 fotomag.com.ua$$script[tag-content="#promo_rotator"][max-length="4000"]
 fotomag.com.ua$$script[tag-content="show_code"][max-length="500"]
 fresh.org.ua$$a[rel="nofollow"]
-gamebomb.ru$$script[tag-content="checkEventPosition"][max-length="4000"]
 gameboss.ru$$div[class="top10"][tag-content="header-discount"]
 gig-file.com$$div[class="block"][tag-content="реклама"]
 gitaristy.at.ua$$script[tag-content="Banner"]
