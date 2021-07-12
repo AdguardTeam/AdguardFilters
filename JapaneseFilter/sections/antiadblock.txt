@@ -1,6 +1,14 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/88158
+battlecats-db.com#$#body[style="display: none;"] { display: inline!important; }
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=battlecats-db.com
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl_$domain=battlecats-db.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=battlecats-db.com
+battlecats-db.com#@#.adsbygoogle
+!#endif
 ! Admiral hard anti-adb
 nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'admiral')
 ! shopping-now.jp anti-adb
