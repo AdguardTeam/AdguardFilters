@@ -1,6 +1,12 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/88157
+otopark.com#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||otopark.com^$generichide
+@@||otopark.com/*/js/*/*.js?_v=
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88310
 puhutv.com#@#.adsbygoogle
 puhutv.com#%#//scriptlet("set-constant", "adblockEnabled", "false")
