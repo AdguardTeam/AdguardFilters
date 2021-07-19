@@ -2225,8 +2225,12 @@ adslink.pw,solvetube.site###ai-adb-overlay
 mixdrop.to#%#//scriptlet("set-constant", "MDCore.adblock", "0")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61346
 @@||playtube.ws/ad/banner/*.json
-! https://github.com/AdguardTeam/AdguardFilters/issues/61339
-premid.app#%#//scriptlet("prevent-setInterval", ".adsbygoogle")
+! https://github.com/AdguardTeam/AdguardFilters/issues/88501
+premid.app#%#AG_onLoad(function(){(new MutationObserver(function(){document.querySelectorAll(".adsbygoogle:not([data-adsbygoogle-status])").forEach(function(a){var b=document.createElement("div");a.appendChild(b);a.setAttribute("data-adsbygoogle-status","done")})})).observe(document,{childList:!0,subtree:!0})});
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
+premid.app#@#.adsbygoogle
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=premid.app
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61332
 @@||dloady.com/js/*/ad728x90-gmu.js
 dloady.com#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
