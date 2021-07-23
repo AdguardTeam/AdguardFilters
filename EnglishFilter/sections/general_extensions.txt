@@ -3107,7 +3107,7 @@ saavn.com#%#!function(a,b){b=new MutationObserver(function(){a.classList.contain
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5388
 csgoconfigs.com#%#document.cookie = "AD_SHOWN=true";
 ! https://forum.adguard.com/index.php?threads/littlebyte-net.22689/
-littlebyte.net#%#AG_onLoad(function(){AG_each('a[onclick^="getActionContent"]',function(a){a.setAttribute('href','#');})})
+littlebyte.net#%#//scriptlet('remove-attr', 'href', 'a[onclick^="getActionContent"]')
 littlebyte.net#%#//scriptlet('remove-attr', 'target', 'a[onclick^="getActionContent"]')
 ! https://forum.adguard.com/index.php?threads/userscloud-com-android-unsolved.22394/
 userscloud.com#%#//scriptlet("remove-attr", "onclick", "a[href*='usercdn.com'][onclick*='window.open(']")
@@ -3265,7 +3265,8 @@ hdxxx.me#%#Object.defineProperty( window, 'popper', { get: function(){ return {}
 ! https://forum.adguard.com/index.php?threads/hqporner-com-nsfw.16107/
 bemywife.cc#%#window.canRunAds = !0;
 ! https://forum.adguard.com/index.php?threads/telegraph-co-uk.16064/
-telegraph.co.uk#%#var a=document.createElement("div"),b=document.createElement("div");a.id="galleryData";b.className="gallery-settings";b.setAttribute("data-gallery-slides-per-ad","1E9");b.setAttribute("data-gallery-ad-viewability","1E9");a.appendChild(b);AG_onLoad(function(){AG_each(".gallery.component",function(c){c.setAttribute("data-telegraph_image_gallery","#galleryData");c.appendChild(a.cloneNode(!0))})});
+! We need a scriptlet to change/set HTML elements attributes, it's part of this task - https://github.com/AdguardTeam/Scriptlets/issues/106
+telegraph.co.uk#%#AG_onLoad(function(){AG_each(".gallery.component > .gallery-settings[data-gallery-ad-viewability][data-gallery-slides-per-ad]",function(a){a.setAttribute("data-gallery-ad-viewability","1E9");a.setAttribute("data-gallery-slides-per-ad","1E9")})});
 ! https://forum.adguard.com/index.php?threads/resolved-uploading-site.15791/#post-111717
 uploading.site#%#var o=window.open;window.open=function(a){a.indexOf("clicksor.net/cpxcenter")||o(a)};
 ! https://forum.adguard.com/index.php?threads/15795/
