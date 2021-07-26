@@ -48,7 +48,7 @@ AdGuard mode (Android only):           | VPN / Proxy (manual/auto)
 Filtering quality (Android only):      | High-quality / High-speed / Simplified
 HTTPS filtering (Android only):        | On (Default/Blacklist mode) / Off
 Simplified filters (iOS / FilterLists.com only) | On / Off
-AdGuard DNS:                           | None / Default / Family Protection
+AdGuard DNS:                           | None (or Non-filtering) / Default / Family Protection
 Stealth mode options (Windows only)    | ?
 Helpdesk ID (if exists):               | ?
 
