@@ -28,7 +28,7 @@ about: Report an issue with AdGuard Filters
 
 ***Steps to reproduce the problem***:
 
-•••Replace this very line with a step-by-step instruction how to reproduce the issue.•••
+•••Replace this very line with a step-by-step instruction on how to reproduce the issue.•••
 
 ———***System configuration***———
 
