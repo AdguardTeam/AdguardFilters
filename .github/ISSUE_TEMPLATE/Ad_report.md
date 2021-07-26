@@ -5,49 +5,49 @@ about: Report an issue with AdGuard Filters
 
 [//]: # (***You can delete or ignore strings starting with "[//]:" They will not be visible either way.)
 
-***Description***:
+———***Description***:———
 * **Current behaviour**: 
 
-[//]: # (Substitute this line with a description of the problem)
+•••Substitute this very line with a description of the problem.•••
 
-[//]: # (Replace %screenshot_url% below with a link to the screenshot of the problem. Also, you can paste image from clipboard instead. It will be automatically loaded.)
 <details><summary>Screenshot:</summary>
 
-![image](%screenshot_url%)
+•••Replace this very line with a screenshot paste or link.•••
 </details><br/>
 
 * **Expected behaviour**: 
 
-[//]: # (Substitute this line with a description of what should happen normally. If needed, provide a screenshot below, same as above)
+•••Replace this very line with a description of what should happen normally.•••
+
+[//]: # (If needed, provide a screenshot below, same as above)
 
 <details><summary>Screenshot:</summary>
 
-![image](%url_of_screenshot%)
+•••Replace this very line with a screenshot paste or link.•••
 </details><br/>
 
 ***Steps to reproduce the problem***:
 
-[//]: # (Substitute this line with a step-by-step instruction how to reproduce the issue)
+•••Replace this very line with a step-by-step instruction how to reproduce the issue.•••
 
-***System configuration***
+———***System configuration***———
 
 **Filters:**
 
-[//]: # (Substitute this line with the list of your active filters, separated by commas)
+•••Replace this very line with a listing of your active filter(list)s, either by text or screenshot.•••
 
 [//]: # (Please enter the correct values for your case to the table below)
 
 Information                            | Value
 ---                                    | ---
 Operating system:                      | ?
-Operating system version (Android/iOS) | ?
+Operating system version               | ?
 Browser:                               | ?
-AdGuard version:                       | ?
-Filters enabled:                       | ?
+AdGuard/adblocker version:             | ?
 AdGuard mode (Android only):           | VPN / Proxy (manual/auto)
 Filtering quality (Android only):      | High-quality / High-speed / Simplified
 HTTPS filtering (Android only):        | On (Default/Blacklist mode) / Off
-Simplified filters (iOS only)          | On / Off
+Simplified filters (iOS / FilterLists.com only) | On / Off
 AdGuard DNS:                           | None / Default / Family Protection
 Stealth mode options (Windows only)    | ?
 Helpdesk ID (if exists):               | ?
