@@ -20,7 +20,6 @@ imgdew.pw,hentaila.com,fapality.com,720video.me,javbuz.com,bananamovies.net,youw
 teencumpot.com#%#//scriptlet("abort-current-inline-script", "document.dispatchEvent", ".serve(")
 pornhat.com$$script[tag-content="initCustomEvent(""getexoloader"""][min-length="500"][max-length="1000"]
 zetporn.com,freee-porns.com,xxxonxxx.com,3prn.com#%#AG_setConstant('ExoLoader.serve', 'noopFunc');
-shameless.com#%#AG_abortInlineScript(/getexoloader/, '$LAB');
 shameless.com#%#//scriptlet("abort-current-inline-script", "$LAB", "/getexoloader/")
 !
 ! 'PopJSLock'
@@ -1098,7 +1097,7 @@ embedsito.com#%#//scriptlet("json-prune", "player.incomePop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64637
 ettvcentral.com#%#//scriptlet("json-prune", "0.cu")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64396
-kickass.love#%#AG_abortInlineScript(/VPN/, 'document.write');
+kickass.love#%#//scriptlet("abort-current-inline-script", "document.write", "VPN")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64306
 aylink.co#%#//scriptlet('remove-attr', 'data-ppcnt_ads|onclick', '#main[onclick*="mainClick"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64118
@@ -1913,10 +1912,7 @@ bcvc.live#%#//scriptlet("abort-on-property-read", "pop_init")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44643
 livecricket.is#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44332
-!+ NOT_PLATFORM(windows, mac, android)
 playerlunla.com#%#//scriptlet("abort-current-inline-script", "$", "check_av")
-!+ PLATFORM(windows, mac, android)
-playerlunla.com#%#AG_abortInlineScript('check_av', '$');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44273
 !+ NOT_PLATFORM(windows, mac, android)
 ventax.net#%#//scriptlet("set-constant", "PopUP", "noopFunc")
@@ -2020,7 +2016,7 @@ xz2.xyz#%#//scriptlet("prevent-window-open")
 javbangers.com,cambro.tv#%#//scriptlet('abort-current-inline-script', 'document.attachEvent', 'initBCPopunder')
 javbangers.com,cambro.tv$$script[id="BC_P_BONGACAMS_POP"]
 ! https://reddit.com/r/Adguard/comments/de5qoh/how_can_i_keep_a_website_from_redirecting_to/
-bs.to#%#AG_abortInlineScript(/a.href,a.href/, 'Date'); 
+bs.to#%#//scriptlet("abort-current-inline-script", "Date", "a.href,a.href")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41823
 ckk.ai#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41908
@@ -2274,7 +2270,7 @@ fc.lc#%#(function(){var c=document.addEventListener;document.addEventListener=fu
 imgadult.com#%#//scriptlet("abort-on-property-read", "adbctipops")
 imgrock.pw,imgoutlet.pw,imgadult.com#%#(function(){Object.defineProperty(window, 'ExoLoader', { get: function() { return; } }); var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"getexoloader"!=a&&-1==b.toString().indexOf('loader')&&c(a,b,d,e)}.bind(document);})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33357
-wickedsick.tv#%#AG_abortInlineScript(/api\/direct/, 'spot');
+wickedsick.tv#%#//scriptlet("abort-current-inline-script", "spot", "api/direct")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33480
 imgfile.net#%#(function(){var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"mousedown"!=a&&-1==b.toString().indexOf('hasClickListener')&&c(a,b,d,e)}.bind(document);})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31358
@@ -2285,9 +2281,9 @@ nitroflare.com#%#(function(){window.open_=window.open;var c=window.open,d=/./;wi
 ! delete second rule after scriptlets are supported by standalone apps
 czechvideo.org#%#//scriptlet("prevent-window-open")
 ! linkshrink.net mobile website - popups
-linkshrink.net#%#window.open = function() {};
-linkshrink.net#%#AG_abortInlineScript(/ads\.linkshrink\.net/, 'confirm');
-linkshrink.net#%#AG_abortInlineScript(/onpopstate/, 'history.pushState');
+linkshrink.net#%#//scriptlet("prevent-window-open")
+linkshrink.net#%#//scriptlet("abort-current-inline-script", "confirm", "ads.linkshrink.net")
+linkshrink.net#%#//scriptlet("abort-current-inline-script", "history.pushState", "onpopstate")
 ! uii.io - popups
 uii.io#%#(function(){var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"mouseup"!=a&&-1==b.toString().indexOf(`var U="click";var R='_blank';var v="href";`)&&c(a,b,d,e)}.bind(document);})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32697
@@ -2315,7 +2311,7 @@ shrtfly.com#%#AG_onLoad(function() { setTimeout(function() { $("#go-popup").remo
 quora.com#%#(function(){ var observer=new MutationObserver(hide);observer.observe(document,{childList:!0,subtree:!0});function hide(){var e=document.querySelectorAll('span[data-nosnippet] > .q-box');e.forEach(function(e){var i=e.innerText;if(i){if(i!==void 0&&(!0===i.includes('Sponsored')||!0===i.includes('Ad by')||!0===i.includes('Promoted by'))){e.style="display:none!important;"}}})} })();
 quora.com#%#(function(){ var observer=new MutationObserver(hide);observer.observe(document,{childList:!0,subtree:!0});function hide(){var e=document.querySelectorAll('.paged_list_wrapper > .pagedlist_item');e.forEach(function(e){var i=e.innerHTML;if(i){if(i!==void 0&&(!0===i.includes('Hide This Ad<\/span>'))){e.style="display:none!important;"}}})} })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30452
-arcadeprehacks.com#%#AG_abortInlineScript(/#cpmstar/, 'Math.random');
+arcadeprehacks.com#%#//scriptlet("abort-current-inline-script", "Math.random", "#cpmstar")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30266
 tnaflix.com#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30188
@@ -2330,7 +2326,7 @@ mydramaoppa.com#%#AG_defineProperty('dtGonza.playeradstime', {value: -1}); AG_on
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29674
 idtbox.com#%#Object.defineProperty(window, 'mypop', { get: function() { return; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29727
-vidbom.com#%#AG_abortInlineScript(/removeCookie/, 'atob');
+vidbom.com#%#//scriptlet("abort-current-inline-script", "atob", "removeCookie")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29775
 flix555.com#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29773
@@ -2389,7 +2385,7 @@ dvdgayporn.com#%#AG_defineProperty('dtGonza.playeradstime', {value: -1});
 watchcartoonsonline.la#%#//scriptlet("prevent-window-open")
 watchcartoonsonline.la#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25451
-hotpornfile.org#%#AG_abortInlineScript(/getexldr/, 'document.dispatchEvent');
+hotpornfile.org#%#//scriptlet("abort-current-inline-script", "document.dispatchEvent", "getexldr")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27216
 dwindly.io#%#window.open = function() {};
 ! https://forum.adguard.com/index.php?threads/upload4earn-org.30284/
@@ -2436,7 +2432,7 @@ fruithosts.net#%#window.addEventListener("load", function(){ var el = document.g
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24899
 wikifeet.com#%#Object.defineProperty(window, 'NativeAd', { get: function(){ throw null; }, set: function(){ throw null; }});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24807
-czechvideo.org#%#AG_abortInlineScript(/initBCbongacams_popPopunder/, 'document.addEventListener');
+czechvideo.org#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "initBCbongacams_popPopunder")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41797
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24886
 vivo.sx#%#//scriptlet("prevent-addEventListener", "click", "about:blank")
@@ -2458,10 +2454,10 @@ pogo.com#%#AG_defineProperty('pogo.intermission.staticAdIntermissionPeriod', {va
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27743
 oladblock.me,oladblock.xyz,oladblock.services,oload.space,oload.live,oload.club,openload.pw,oload.fun#%#window.open = function() {}; document.cookie = "popcashpuCap=1"; Object.defineProperty(window,'turnoff',{value:true}); Object.defineProperty(window, 'preserve', { get: function() { return true; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23887
-xxxdan.com#%#AG_abortInlineScript(/nasl/, 'document.cookie');
+xxxdan.com#%#//scriptlet("abort-current-inline-script", "document.cookie", "nasl")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23560
-za.gl#%#window.open = function() {};
-za.gl#%#AG_abortInlineScript(/popup/, 'redirect');
+za.gl#%#//scriptlet("prevent-window-open")
+za.gl#%#//scriptlet("abort-current-inline-script", "redirect", "popup")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64754
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29035
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21439
@@ -2509,7 +2505,7 @@ tusfiles.com#%#window.open = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20914
 androidpolice.com#%#AG_onLoad(function() { setTimeout(function() {var el=document.querySelector('.primary > .post-flag-pinned + .post'); if(el) { if(el.classList.contains("sticky") && el.clientHeight == 0) { document.querySelector('.primary > .post-flag-pinned').style.display = "none"; }} }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20861
-theamericanmirror.com#%#AG_abortInlineScript(/Uint8Array/, 'Math.random');
+theamericanmirror.com#%#//scriptlet("abort-current-inline-script", "Math.random", "Uint8Array")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20663
 shortit.pw#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /\.\/out\.php\?/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://forum.adguard.com/index.php?threads/getlink-pw.29175/
