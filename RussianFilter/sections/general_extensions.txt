@@ -168,10 +168,7 @@ tele.ru#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", "/su
 sportbar.biz,sportbox.ws,goool7.ws,sport-24tv.ru,365lives.net,sportboom.pro,sport7boom.com#%#AG_setConstant('window.open', 'noopFunc');
 sportbar.biz,sportbox.ws,goool7.ws,sport-24tv.ru,365lives.net,sportboom.pro,sport7boom.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46096
-!+ NOT_PLATFORM(windows, mac, android)
 alterera.org#%#//scriptlet("abort-current-inline-script", "document.referrer", "google")
-!+ PLATFORM(windows, mac, android)
-alterera.org#%#AG_abortInlineScript(/google/, 'document.referrer');
 ! popups - `ads_script`
 tapochek.net,sht.at.ua,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,kinosvit.tv,kinosvit.net,fanofnfs.3dn.ru#%#//scriptlet("abort-on-property-read", "ads_script")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58647
@@ -192,15 +189,9 @@ fapality.com#%#//scriptlet("prevent-window-open")
 !+ PLATFORM(windows, mac, android)
 fapality.com#%#AG_setConstant('window.open', 'noopFunc');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43382
-!+ NOT_PLATFORM(windows, mac, android)
 moresisek.net#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "/asg_mixed_tabs/")
-!+ PLATFORM(windows, mac, android)
-moresisek.net#%#AG_abortInlineScript(/asg_mixed_tabs/, 'document.addEventListener');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43503
-!+ NOT_PLATFORM(windows, mac, android)
 porevos.ru#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", "/substr/")
-!+ PLATFORM(windows, mac, android)
-porevos.ru#%#AG_abortInlineScript(/substr/, 'String.fromCharCode');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43054
 newsland.com#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", ".*")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42082
@@ -215,7 +206,7 @@ audioboo.ru,kinosvit.tv,nntt.org,rus-media.org,rutor.in,rutracker.in,wow-show.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41269
 imagebam.com#%#AG_onLoad(function() { var el=document.querySelector('a[title="Continue to your image"]'); if(el) el.click(); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41264
-skisport.ru#%#AG_abortInlineScript(/adback_go.php/, 'BX.ready');
+skisport.ru#%#//scriptlet("abort-current-inline-script", "BX.ready", "adback_go.php")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41222
 ruspornvideos.com#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "undefined")
 ruspornvideos.com#%#AG_setConstant('String.prototype.charCodeAt', 'undefined');
@@ -237,7 +228,7 @@ alau.kz,dyvys.info#%#//scriptlet("abort-on-property-write", "td_ad_background_cl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35125
 pornobomba.cc#%#AG_onLoad(function() { showPauseSpot = {}; });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37252
-windowspro.ru#%#AG_abortInlineScript(/browserDetect/, 'document.createElement');
+windowspro.ru#%#//scriptlet("abort-current-inline-script", "document.createElement", "browserDetect")
 ! utarget
 jetvis.ru#%#//scriptlet("abort-on-property-read", "u_global_data")
 narod.ru,at.ua#%#//scriptlet("abort-current-inline-script", "u_global_data")
@@ -263,33 +254,27 @@ radikal.ru#%#//scriptlet("abort-on-property-read", "run")
 !sbsports.pro#%#AG_setConstant('window.open', 'noopFunc');
 sbsports.pro#%#window.open=function(){};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27857
-! pornovizion.xyz#%#//scriptlet("abort-current-inline-script", "$", "/mediaelementplayer/")
-pornovizion.xyz#%#AG_abortInlineScript(/adsPrerollMediaUrl/, '$');
+pornovizion.xyz#%#//scriptlet("abort-current-inline-script", "$", "adsPreroll")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31743
 modsanandroid.ru#%#//scriptlet("abort-on-property-read", "MobiAds")
 ! comments.ua - branding
-comments.ua#%#AG_abortInlineScript(/html_brain_link/, 'document.getElementsByTagName');
+comments.ua#%#//scriptlet("abort-current-inline-script", "document.getElementsByTagName", "html_brain_link")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30527
 7days.ru#%#//scriptlet("abort-on-property-write", "__AABStatus")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29494
 senglish.narod.ru#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /adbetnet|utarget/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! vesti.uz - ads
-vesti.uz#%#AG_abortInlineScript(/rtIsWebSocket/, 'document.createElement');
+vesti.uz#%#//scriptlet("abort-current-inline-script", "document.createElement", "rtIsWebSocket")
 ! forum.fonarevka.ru - ads
-forum.fonarevka.ru#%#AG_abortInlineScript(/_0x/, 'atob');
+forum.fonarevka.ru#%#//scriptlet("abort-current-inline-script", "atob", "_0x")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26157
 46tv.ru#%#AG_onLoad(function() { window.a = 0; });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23826
 hd24.watch#%#window.open = function() {};
-! https://github.com/AdguardTeam/AdguardFilters/issues/23356
-peeroff.net#%#AG_abortInlineScript(/./, 'ads_script');
 ! https://forum.adguard.com/index.php?threads/29400/
 ua-today.com#%#AG_onLoad(function() { setTimeout(function() { jQuery('body').unbind('click'); }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18300
-synthira.ru#%#AG_abortInlineScript(/adsteroid/, 'document.write');
-! MobiAds
-! https://github.com/AdguardTeam/AdguardFilters/issues/60294
-ottrahal.net,waiset.su#%#AG_abortInlineScript(/var\s?[a-z]="[a-zA-Z0-9]+"/, 'String.fromCharCode');
+synthira.ru#%#//scriptlet("abort-current-inline-script", "document.write", "adsteroid")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17463
 recommendedlab.com#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /deloton\.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18465
@@ -305,16 +290,10 @@ gamer-info.com#%#//scriptlet('abort-current-inline-script', '$', '/\$\(\'\.roart
 gamer-info.com#%#(function() { var isSet = false; Object.defineProperty(window, 'vPRinfiniteLoopOfChanges', { get: function() { return isSet ? false : undefined; }, set: function() { isSet = false; } }); })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14922
 milf-hd.org#%#Object.defineProperty(document, 'write', { get: function() { return {}; } });
-! https://github.com/AdguardTeam/AdguardFilters/issues/14516
-free-torrents.org,free-torrent.org#%#AG_abortInlineScript(/VisitWeb/, 'vw_is_show_adv');
-! https://github.com/AdguardTeam/AdguardFilters/issues/14624
-idwl.cn#%#AG_abortInlineScript(/C.removeAttribute\("id"\)/, 'String');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14335
-sberometer.ru#%#AG_abortInlineScript(/place_rvn/, 'document.addEventListener');
+sberometer.ru#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "place_rvn")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42288
 gdespaces.com,spcs.me,spaces.im,spaces-blogs.com,strip2.me#%#//scriptlet("set-constant", "mobiads_loader", "noopFunc")
-! https://github.com/AdguardTeam/AdguardFilters/issues/11836
-maxiii.net#%#AG_abortInlineScript(/PopunderShown/, 'doPopunder');
 ! tehnot.com - удаление кликабельности фона
 tehnot.com#%#AG_onLoad(function() { jQuery(function() { jQuery('body').unbind('click'); }); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12406
@@ -326,15 +305,13 @@ economistua.com#%#Object.defineProperty(window, 'onlyBodyClick', { get: function
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11174
 baskino.me#%#AG_onLoad(function() { $('body').removeClass('branding'); });
 ! marketgid.com V3
-0day.kiev.ua,freerutor.me#%#AG_abortInlineScript(/./, 'MarketGidJSON');
-! https://github.com/AdguardTeam/AdguardFilters/issues/10512
-kinosklad.net#%#AG_abortInlineScript(/./, '_0x446a');
+0day.kiev.ua,freerutor.me#%#//scriptlet("abort-current-inline-script", "MarketGidJSON")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9831
 online-kinopokaz.ru#%#Object.defineProperty(window, '_0x98a8', { get: function() { return; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9395
 canal69.me,doboz.online#%#Object.defineProperty(window, 'PopunderShown', { get: function() { return true; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9168
-ruclip.com#%#AG_abortInlineScript(/decodeURIComponent/, 'atob');
+ruclip.com#%#//scriptlet("abort-current-inline-script", "atob", "decodeURIComponent")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9159
 sexgeiz.info#%#Object.defineProperty(window, 'PopunderShown', { get: function() { return true; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8620
