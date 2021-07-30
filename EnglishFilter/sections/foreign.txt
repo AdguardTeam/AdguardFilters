@@ -1971,13 +1971,10 @@ parapolitika.gr#@#iframe[width="100%"][height="120"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42521
 newsthessaloniki.gr##.adace-slideup-slot-wrap
 @@||newsthessaloniki.gr/wp-content/*/adblock-detector/advertisement.js
-!+ NOT_PLATFORM(windows, mac, android)
 newsthessaloniki.gr#%#//scriptlet("set-constant", "jQuery.adblock", "false")
-!+ PLATFORM(windows, mac, android)
-newsthessaloniki.gr#%#AG_setConstant('jQuery.adblock', 'false');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39991
 @@||xiaomi-miui.gr/*/advertisement.js
-xiaomi-miui.gr#%#AG_setConstant('$easyadvtblock', 'false');
+xiaomi-miui.gr#%#//scriptlet("set-constant", "$easyadvtblock", "false")
 xiaomi-miui.gr#?##content > .tabularBox:has(> div > .teaserBoxContent > .teaserBoxContentList > .teaserBoxContentListItem > a[href^="http://www.mygad.gr/?tracking="])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37707
 olympiakos-livetv.gr#@#.afs_ads
@@ -3028,7 +3025,6 @@ mangashiro.org###teaser1
 mangashiro.co,mangashiro.org##.bixbox > div[style] > a[target="_blank"][rel="Dofollow"] > img
 mangashiro.co##div[id^="teaser"]
 mangashiro.co##.kln
-mangashiro.co#%#AG_setConstant('window.open', 'noopFunc');
 mangashiro.co#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40323
 lk21tv.com##.close-banner
@@ -3815,10 +3811,7 @@ rockit.it##.articolo-body-text-banner
 insidemarketing.it##.bannerG
 insidemarketing.it##.homeBannerMax
 @@||insidemarketing.eu/cdn/lib/js/adsframe.js
-!+ NOT_PLATFORM(windows, mac, android)
 insidemarketing.it#%#//scriptlet("set-constant", "adblock", "false")
-!+ PLATFORM(windows, mac, android)
-insidemarketing.it#%#AG_setConstant('adblock', 'false');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42488
 gdr-online.com##.adv_barra_alto
 gdr-online.com##body > div[align="center"][style*="margin-top:6px;"][style*="align: center !IMPORTANT;"]
@@ -3891,7 +3884,7 @@ dundi.it##.adsbygoogle
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||gamesource.it^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34149
-citynow.it#%#AG_setConstant('advanced_ads_check_adblocker', 'noopFunc');
+citynow.it#%#//scriptlet("set-constant", "advanced_ads_check_adblocker", "noopFunc")
 citynow.it#$#.ad_unit.ad-unit.text-ad.text_ad.pub_300x250 { display: block!important; }
 citynow.it#$#.wrapper.cityn-body-background { padding-top: 0!important; }
 citynow.it##.cityn-sidebar-top-first a[data-bid][href^="https://www.citynow.it/linkout/"][rel="nofollow"] > img
@@ -4486,7 +4479,7 @@ ilsangt.tistory.com#@#.adsense-area
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48056
 gugomah.tistory.com#%#//scriptlet("abort-on-property-read", "checkAds")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34577
-moroa.tistory.com#%#AG_setConstant('adsbygoogle.loaded', 'true');
+moroa.tistory.com#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72172
 new-usedcar.tistory.com##figure[class="imageblock alignCenter"] > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69813
@@ -5300,12 +5293,7 @@ delfi.ee###ab-top-bar
 ! delfi.lt#%#AG_setConstant('__dabd', 'noopFunc');
 ! delfi.lt#%#//scriptlet("set-constant", "__dabd", "noopFunc")
 ! delfi.lt#%#AG_setConstant('_dlf._ab', 'noopFunc');
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 delfi.lt#%#//scriptlet("prevent-setTimeout", "Banner")
-!#endif
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-delfi.lt#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/Banner/.test(a.toString()))return b(a,c)};})();
-!#endif
 delfi.lt#@#.banner
 delfi.lt#@#.revolut-juosta
 delfi.lt#$#.revolut-juosta { position: absolute!important; left: -3000px!important; }
@@ -6347,7 +6335,6 @@ womenshealth.pl##body[onclose="return closeBrowserEvent()"] .col-xs-12 > .col-xs
 rp.pl#?##main_topic_3 > .teaser-parent:has(> .ad)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42379
 dailyweb.pl##.adwse-headerr
-dailyweb.pl#%#AG_setConstant('checkAds', 'noopFunc');
 dailyweb.pl#%#//scriptlet("set-constant", "checkAds", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41674
 m.jbzd.com.pl,m.jbzd.cc,m.jbzdy.cc#@#.mobile-ad
@@ -6417,7 +6404,7 @@ darkw.pl#?#.main > .container > .topic > .topic__row:has(> .topic__user > a[href
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35159
 vorek.pl#$#.ads.adsbox.ad { display: block!important; }
 ! kinoseans.pl - skip timer
-kinoseans.pl#%#AG_setConstant('count', '0');
+kinoseans.pl#%#//scriptlet("set-constant", "count", "0")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33675
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||innpoland.pl^$generichide
@@ -6619,7 +6606,7 @@ metin2tech.eu#@#.adsbygoogle
 metin2tech.eu#$#.adsbygoogle { display: block!important; position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31544
 @@||autocentrum.pl/system/modules/adblock/js/advertisement.js
-autocentrum.pl#%#AG_setConstant('adblockJsFile', 'true');
+autocentrum.pl#%#//scriptlet("set-constant", "adblockJsFile", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31611
 xiaomifans.pl#@#.adsbygoogle
 xiaomifans.pl#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
@@ -7789,7 +7776,7 @@ aftonbladet.se#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.tex
 !+ PLATFORM(ios, ext_android_cb)
 @@||aftonbladet.se^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36632
-ekstrabladet.dk#%#AG_setConstant('apntag.requests', 'noopFunc');
+ekstrabladet.dk#%#//scriptlet("set-constant", "apntag.requests", "noopFunc")
 ekstrabladet.dk#@##ad_container
 @@||adtech.de/dt/common/DAC.js$domain=ekstrabladet.dk
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
@@ -8468,7 +8455,7 @@ bongda.com.vn##.adv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41591
 @@||aquabird.vn/js/Siropu/AM/ads.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40962
-win10.vn#%#AG_setConstant('canRunAds', 'true');
+win10.vn#%#//scriptlet("set-constant", "canRunAds", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42445
 game8.vn#?#article:has(> div.row > div[class] > div.efect > a:not([href^="http://game8.vn/"]))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40994
