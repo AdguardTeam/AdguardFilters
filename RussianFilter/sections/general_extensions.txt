@@ -2,6 +2,10 @@
 !------- JS ------------
 !-----------------------
 !
+! meteocenter.net - infinite loading
+meteocenter.net#%#//scriptlet("abort-current-inline-script", "ar_Tail")
+! https://github.com/AdguardTeam/AdguardFilters/issues/91310
+car.ru#%#//scriptlet("set-constant", "car__idle", "false")
 ! popunder on click
 doramakun.ru#%#//scriptlet("abort-current-inline-script", "document.createElement", "utarget_script")
 ! 80-e.ru ad scripts
@@ -38,7 +42,7 @@ penzainform.ru#$#body { cursor: auto!important; }
 ! fastpic - ad redirect
 fastpic.ru,fastpic.org#%#//scriptlet("abort-on-property-read", "store.get")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73296
-2ip.ru#%#//scriptlet('set-cookie', 'anonymizer_ads', 'true')
+2-ip.online,2ip.io,2ip.ru#%#//scriptlet('set-cookie', 'anonymizer_ads', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73390
 l2top.ru#%#//scriptlet("abort-current-inline-script", "$", "cleanAndEval")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73757
@@ -490,11 +494,16 @@ api.kinomoov.org#%#AG_onLoad(function() { window.flashLayerAdSkipDelay = 1; });
 ! Yandex search
 ! yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua,~afisha.yandex.by,~afisha.yandex.kz,~afisha.yandex.ru,~afisha.yandex.ua,~avia.yandex.by,~avia.yandex.kz,~travel.yandex.ru,~avia.yandex.ua,~bilet.yandex.com.tr,~flights.yandex.com,~disk.yandex.by,~disk.yandex.com,~disk.yandex.com.tr,~disk.yandex.fr,~disk.yandex.kz,~disk.yandex.ru,~disk.yandex.ua,~mail.yandex.by,~mail.yandex.kz,~mail.yandex.ru,~mail.yandex.ua,~mail.yandex.com,~mail.yandex.com.tr,~music.yandex.ru,~music.yandex.ua,~music.yandex.by,~music.yandex.kz,~rabota.yandex.by,~rabota.yandex.kz,~rabota.yandex.ru,~rabota.yandex.ua,~radio.yandex.by,~radio.yandex.kz,~radio.yandex.ru,~radio.yandex.ua,~realty.yandex.by,~realty.yandex.kz,~realty.yandex.ru,~realty.yandex.ua,~tv.yandex.by,~tv.yandex.kz,~tv.yandex.ru,~tv.yandex.ua,~yadi.sk,~zen.yandex.by,~zen.yandex.com,~zen.yandex.kz,~zen.yandex.ru,~zen.yandex.ua,~docviewer.yandex.by,~docviewer.yandex.com,~docviewer.yandex.com.tr,~docviewer.yandex.fr,~docviewer.yandex.kz,~docviewer.yandex.ru,~docviewer.yandex.ua,~rasp.yandex.by,~rasp.yandex.kz,~rasp.yandex.ru,~rasp.yandex.ua#%#AG_onLoad(function() { setTimeout(function() { for(var elements=document.querySelectorAll("div.organic__subtitle > div.label_color_yellow"),i=0;i<elements.length;i+=1){var closestElement=elements[i].closest("li.serp-item");closestElement&&(closestElement.style.display="none"); } }, 300); });
 !
+! Yandex.disk
+disk.yandex.*#%#//scriptlet('remove-class', 'has-fullscreen-banner','.public__root')
+!
 !-----------------------
 !------- CSS -----------
 !-----------------------
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/91014
+1plus1.video#$#._opo_-header.show { top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90723
 utorrentfilmi.com#$#body { padding-top: 0!important; }
 ! https://forum.adguard.com/index.php?threads/44285/
@@ -1701,8 +1710,6 @@ ivi.ru#$#body {background: none!important;}
 ps3hits.ru#$##footer {height: 0!important; }
 ps3hits.ru#$##footer_link {height: 0!important; }
 ps3hits.ru#$##footer {background:none!important;}
-! 5.ua - удаление брендированного фона, восстановление исходного цвета фона
-5.ua#$#body {background:none #F5F5F5!important;}
 ! kinatgames.ru - удаление брендированного фона
 kinatgames.ru#$#body {background-image: none!important;}
 ! filebase.ws - удаление брендированного фона, восстановление исходного цвета фона

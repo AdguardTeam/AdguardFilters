@@ -1,6 +1,9 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/91595
+iyibeslenme.net#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
+iyibeslenme.net#@##adcontent
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89380
 telegramgruplari.com#%#//scriptlet("abort-on-property-read", "detectAdBlock")
 !+ PLATFORM(ios, ext_android_cb)
@@ -212,8 +215,8 @@ cadcamsektoru.com#$#.icerik_reklam { position: absolute!important; left: -3000px
 !+ PLATFORM(ios, ext_android_cb)
 @@||cadcamsektoru.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45840
-tr.petitchef.com#@#.adBanner
-tr.petitchef.com#%#//scriptlet("set-constant", "canRunAds", "1")
+petitchef.com#@#.adBanner
+petitchef.com#%#//scriptlet("set-constant", "canRunAds", "1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45655
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myjest.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44479
@@ -554,17 +557,6 @@ r10.net#%#//scriptlet('abort-on-property-write', 'rInt')
 !
 ! Yandex.Mail
 |mail.yandex.*/*/*-*-*-*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)|(^.*"blockId":.*"dataBase64".*"banner.direct".*)//,script,other,important,domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||mail.yandex.$generichide
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/system/context.js$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/partner-code-bundles/*.js$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/mapuid/tnscounter/?redir-setuniq=1&from=yan_oo-rtb-direct$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/mapuid/tnscounter/?from=yan_oo-rtb-direct$domain=mail.yandex.com.tr
-!
 ! END: Yandex
 !
 !
