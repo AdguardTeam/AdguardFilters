@@ -2,6 +2,12 @@
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/93220
+jkpan.cc#%#//scriptlet("set-constant", "killads", "true")
+jkpan.cc#%#//scriptlet("abort-current-inline-script", "jQuery", "\u")
+jkpan.cc#%#//scriptlet("abort-current-inline-script", "document.writeln", "\u")
+!+ PLATFORM(ios, ext_android_cb)
+@@||pos.baidu.com/*?psi=*adblock$domain=jkpan.cc
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90679
 233tw.com#%#//scriptlet('prevent-setInterval', '发现严重BUG')
 !#if (adguard_app_ios || adguard_ext_android_cb)
