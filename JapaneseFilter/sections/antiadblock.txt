@@ -1,6 +1,15 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/90462
+warui.intaa.net#$#body[style="margin:5%;"] > #content { color:initial!important;text-shadow:none!important; }
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=warui.intaa.net
+warui.intaa.net#@#.adsbygoogle
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/90033
+@@||yoshidakenkou.net^$generichide
+yoshidakenkou.net##.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88158
 battlecats-db.com#$#body[style="display: none;"] { display: inline!important; }
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=battlecats-db.com
@@ -99,14 +108,16 @@ h-ken.net#%#//scriptlet("prevent-setTimeout", "adstir_magnify_loaded")
 goldencocco.jp#%#//scriptlet("set-constant", "adblock", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54025
 mottonoutore.jp#%#//scriptlet("set-constant", "adblock", "false")
-! https://github.com/AdguardTeam/AdguardFilters/issues/53079
+! https://github.com/AdguardTeam/AdguardFilters/issues/93086
+coron.tech#%#AG_onLoad(function(){var a=document.querySelector("#vcwidget"),b=document.createElement("a");a&&a.appendChild(b)});
+!+ PLATFORM(ios, ext_android_cb, ext_safari, ext_ublock)
+@@||ad.jp.ap.valuecommerce.com/servlet/jsbanner?$script,domain=coron.tech
 coron.tech#%#//scriptlet('abort-current-inline-script', 'document.getElementById', 'insertAdjacentHTML')
 connect.coron.tech#%#//scriptlet('prevent-addEventListener', 'load', 'dispatch')
 connect.coron.tech#%#//scriptlet('abort-current-inline-script', 'jQuery', 'decision')
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=coron.tech
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=coron.tech
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||ad.jp.ap.valuecommerce.com/servlet/jsbanner$domain=coron.tech
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=coron.tech
 @@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl_*.js$domain=coron.tech
 coron.tech#@#.adsbygoogle
 !#endif
@@ -156,7 +167,7 @@ gigaho.com$$script[wildcard="*window.onload*document.getElementsByClassName*adsb
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||ronron-blog.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23252
-gadgetdamage.blog.fc2.com#%#AG_onLoad(function() { AG_removeElementBySelector('.adsbygoogle'); });
+gadgetdamage.blog.fc2.com#$?#.adsbygoogle { remove: true; }
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_app_ios || adguard_ext_android_cb)
 gadgetdamage.blog.fc2.com#@#.adsbygoogle
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gadgetdamage.blog.fc2.com

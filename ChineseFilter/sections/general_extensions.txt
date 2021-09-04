@@ -2,6 +2,17 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! popup
+xvideo.cc#%#//scriptlet("set-constant", "poped", "true")
+! https://github.com/AdguardTeam/AdguardFilters/issues/91356
+cocomanga.com#%#//scriptlet("set-constant", "atob", "undefined")
+! https://github.com/uBlockOrigin/uAssets/issues/9650
+msn.cn#%#//scriptlet("json-prune", "*", "list.*.link.ad list.*.link.kicker")
+msn.cn#%#//scriptlet('hide-in-shadow-dom', 'msft-article[id^="native_ad_nativead"]')
+! https://github.com/AdguardTeam/AdguardFilters/issues/32133
+ucptt.com#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /tw\.jav321\.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
+! https://github.com/AdguardTeam/AdguardFilters/issues/34910
+goodav17.com#%#//scriptlet("abort-on-property-read", "popunder")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88386
 ifvod.tv#%#//scriptlet('set-constant', 'Object.prototype.ShouldPlayAds', '0')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87176
@@ -40,7 +51,7 @@ pixnet.net#%#//scriptlet('abort-current-inline-script', 'window.leave')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87033
 freejavbt.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/84970
-zhenbuka2.com,bukaivip.com#%#//scriptlet("adjust-setTimeout", "CloseAd", "", "0.02")
+zhenbuka3.com,zhenbuka2.com,bukaivip.com#%#//scriptlet("adjust-setTimeout", "CloseAd", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81172
 m.biqiugege8.com#%#//scriptlet("set-constant", "lists", "undefined")
 ! popup/popunder
@@ -62,6 +73,13 @@ nfmovies.com#%#//scriptlet("prevent-setTimeout", "/document\.getElementById[\s\S
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/90063
+applefans.today#$#body { overflow: auto !important; }
+applefans.today#$#.tipi-overlay { display: none !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/29572
+news.ltn.com.tw#$#.whitecon > .related[data-desc="相關新聞"] > li:nth-child(5) { margin-right: 0!important; margin-left: 20px!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/13236
+kocpc.com.tw#$##header > nav.floated-navbar { top: 0!important; }
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/846
 macapp.so#$##m2 { height: 5px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3129
@@ -118,6 +136,8 @@ apple.com.cn#$#.ac-gn-blur { top: 0 !important; }
 !------- HTML ----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/34910
+goodav17.com$$script[tag-content="getPopunderCookie"][max-length="2500"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3129
 mobile01.com$$script[tag-content="$.cookie(""fullscreenad"""][max-length="550"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55233

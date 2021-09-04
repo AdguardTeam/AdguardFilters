@@ -1,6 +1,16 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/91595
+iyibeslenme.net#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
+iyibeslenme.net#@##adcontent
+! https://github.com/AdguardTeam/AdguardFilters/issues/89380
+telegramgruplari.com#%#//scriptlet("abort-on-property-read", "detectAdBlock")
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=telegramgruplari.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/88835
+@@||miuitr.info/img/getbanner.cfm
+miuitr.info#%#//scriptlet("set-constant", "adb", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88157
 otopark.com#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -182,7 +192,7 @@ fontyukle.net#$#.reklam_alani { display: none!important; }
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=tokoyun.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47098
 ||mordefter.com/ad_killer/handler.js
-mordefter.com#%#AG_abortInlineScript(/ad_killer/, 'addEventListener');
+mordefter.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "ad_killer")
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=mordefter.com
 !+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_ff, ext_opera)
@@ -205,11 +215,8 @@ cadcamsektoru.com#$#.icerik_reklam { position: absolute!important; left: -3000px
 !+ PLATFORM(ios, ext_android_cb)
 @@||cadcamsektoru.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45840
-tr.petitchef.com#@#.adBanner
-!+ NOT_PLATFORM(windows, mac, android)
-tr.petitchef.com#%#//scriptlet("set-constant", "canRunAds", "1")
-!+ PLATFORM(windows, mac, android)
-tr.petitchef.com#%#AG_setConstant('canRunAds', '1');
+petitchef.com#@#.adBanner
+petitchef.com#%#//scriptlet("set-constant", "canRunAds", "1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45655
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myjest.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44479
@@ -227,10 +234,7 @@ turkanime.net#%#//scriptlet("prevent-setTimeout", "removedItem")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45302
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bunuokusana.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44025
-!+ NOT_PLATFORM(windows, mac, android)
 vidtekno.com#%#//scriptlet("abort-on-property-read", "adblockmesaj")
-!+ PLATFORM(windows, mac, android)
-vidtekno.com#%#AG_abortOnPropertyRead('adblockmesaj');
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=vidtekno.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=vidtekno.com
@@ -259,7 +263,6 @@ wblogy.com#@##adcontent
 ||asyadizileri.net/wp-content/uploads/nuhkes.js
 asyadizileri.net#%#//scriptlet("abort-current-inline-script", "BlockerBanner", "kontrol")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38792
-ipbdestek.com#%#AG_abortOnPropertyWrite('ipsDebug');
 ipbdestek.com#%#//scriptlet("abort-on-property-write", "ipsDebug")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38538
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
@@ -297,13 +300,12 @@ huawei-turkiye.com##.XGT-AdBlock-Govde
 @@.png#$domain=dreamfancy.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34807
 memoryhackers.org$$script[tag-content="adregain_wall"][min-length="3000"][max-length="7000"]
-memoryhackers.org#%#AG_abortOnPropertyWrite('adregain_wall');
-!+ PLATFORM(ext_opera)
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=memoryhackers.org
-!+ PLATFORM(ios, ext_android_cb, ext_safari, ext_ublock)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=memoryhackers.org
-!+ PLATFORM(ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
+memoryhackers.org#%#//scriptlet("abort-on-property-write", "adregain_wall")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
 @@||memoryhackers.org^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ui.memoryhackers.org
+@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl_with_ama_fy2019.js$domain=ui.memoryhackers.org
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34140
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||xbox360torrent.com^$generichide
@@ -490,12 +492,6 @@ guvenlilink.blogspot.com#@##ad
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js^$domain=komplohaber.com
 ! https://forum.adguard.com/index.php?threads/22117/
 cokomik.net#$#.adsmd { height: 1px !important; }
-! http://forum.adguard.com/showthread.php?7046
-mackolik.com$$script[tag-content="if (typeof (AdmostClient)"][max-length="250"]
-mackolik.com,sahadan.com#%#var _amw1 = 1;
-mackolik.com,sahadan.com#%#var AdmostClient = 1;
-mackolik.com,sahadan.com#%#var advertisement_not_blocked = 1;
-mackolik.com,sahadan.com#%#var criteo_medyanet_loaded = 1;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25243
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4146
 !+ PLATFORM(ios, ext_android_cb)
@@ -546,6 +542,12 @@ fox.com.tr###lbads
 @@||merlininkazani.com/js/ads.js
 ! http://forum.adguard.com/showthread.php?9185
 @@||cdn.oyungezer.com.tr/templates/oyungezer/js/adv.js
+! http://forum.adguard.com/showthread.php?7046
+mackolik.com$$script[tag-content="if (typeof (AdmostClient)"][max-length="250"]
+mackolik.com,sahadan.com#%#var _amw1 = 1;
+mackolik.com,sahadan.com#%#var AdmostClient = 1;
+mackolik.com,sahadan.com#%#var advertisement_not_blocked = 1;
+mackolik.com,sahadan.com#%#var criteo_medyanet_loaded = 1;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65929
 r10.net#%#//scriptlet('abort-on-property-read', 'rTargets')
 r10.net#%#//scriptlet('abort-on-property-write', 'rInt')
@@ -555,17 +557,6 @@ r10.net#%#//scriptlet('abort-on-property-write', 'rInt')
 !
 ! Yandex.Mail
 |mail.yandex.*/*/*-*-*-*-$replace=/^.{0\,30}Ya\s*.{0\,7}\[[0-9]+][\s\S]*'\)|(var data = \{"settings":[\s\S]+if\s\(window\.loadAdFoxBundle\)[\s\S]+document\.write[\s\S]+bannerFunction\(\);[\s\S]+\Z)|(\{"common":\{"commonRtbVisibility":)[\s\S]+|^\{.*"common":[\s\S]+"stationaryConnection":[\s\S]+"commonRtbVisibility"[\s\S]+|(^\{"rtb":\s*\{\s*"[A-Za-z]*":.*)|(^.*"blockId":.*"adFilter".*visibilitySettings.*)|(^.*"blockId":.*"dataBase64".*"banner.direct".*)//,script,other,important,domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||mail.yandex.$generichide
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/system/context.js$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/partner-code-bundles/*.js$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/mapuid/tnscounter/?redir-setuniq=1&from=yan_oo-rtb-direct$domain=mail.yandex.com.tr
-!+ NOT_PLATFORM(windows, mac, android)
-@@||an.yandex.ru/mapuid/tnscounter/?from=yan_oo-rtb-direct$domain=mail.yandex.com.tr
-!
 ! END: Yandex
 !
 !

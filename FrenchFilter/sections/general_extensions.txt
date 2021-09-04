@@ -2,6 +2,10 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/91892
+zoneseries.stream#%#//scriptlet("adjust-setTimeout", "#regarder", "7000", "0.02")
+! https://github.com/easylist/listefr/issues/16
+ddl-francais.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76272
 11anim.com#%#//scriptlet("abort-on-property-read", "zoneSett")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73015
@@ -19,14 +23,8 @@ hdss.video#%#AG_defineProperty('dtGonza.playeradstime', {value: -1});
 basketusa.com#%#//scriptlet("abort-on-property-read", "__yget_ad_list")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43099
 lindependant.fr#%#//scriptlet("abort-on-property-read", "_adb")
-! https://github.com/AdguardTeam/AdguardFilters/issues/33479
-streamgeo.net#%#AG_defineProperty('dtGonza.playeradstime', {value: -1});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30968
-actu17.fr#%#AG_abortOnPropertyWrite('td_ad_background_click_link');
-! https://github.com/AdguardTeam/AdguardFilters/issues/25619
-mac4ever.com#%#AG_abortInlineScript(/\(\(false\?"https:":document\.location\.protocol\)\+"\/\/"\+/, 'document.getElementsByTagName');
-! https://github.com/AdguardTeam/AdguardFilters/issues/25407
-laprovence.com#%#AG_abortInlineScript(/\(\(false\?"https:":document\.location\.protocol\)\+"\/\/"\+/, 'document.getElementsByTagName');
+actu17.fr#%#//scriptlet("abort-on-property-write", "td_ad_background_click_link")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13192
 jacquieetmicheltv.net#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/target_url/.test(a)){ _st(a,b);}};
 ! https://forum.adguard.com/index.php?threads/22023/
@@ -38,6 +36,11 @@ generation-nt.com#%#Object.defineProperty(window, 'AdvertBay', { get: function()
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/92958
+forumgaming.fr,forumactif.com#$##page-body div[style*="visibility: visible !important; display: block !important; opacity:"]:not([class]):not([id]) { position: absolute !important; left: -3000px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/91892
+vf-serie.org,vf-film.org#$#.TPlayer.on::after { display: none !important; }
+vf-serie.org,vf-film.org#$##ads_player_inside { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76814
 forum-airguns.com#$#.three-col tr > td > div[style*="visibility: visible !important; display: block !important; opacity:"]:not([class]):not([id]) { position: absolute !important; left: -3000px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74493

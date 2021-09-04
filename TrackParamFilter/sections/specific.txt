@@ -2,6 +2,40 @@
 ! The rules for specific sites
 !
 !
+! iqbroker.com - affiliate(ads) links tracking
+||iqbroker.com^$removeparam=afftrack
+||iqbroker.com^$removeparam=clickid
+||iqbroker.com^$removeparam=aff_model
+! https://github.com/AdguardTeam/AdguardFilters/issues/93072
+! https://github.com/AdguardTeam/AdguardFilters/issues/92383
+! ads_params - it contains information on a which website video iframe is embedded
+||dailymotion.com/embed/video/*?ads_params=*&origin=$removeparam=ads_params
+||dailymotion.com/embed/video/*?ads_params=*&origin=$removeparam=origin
+! https://github.com/AdguardTeam/AdguardFilters/pull/91540
+||wired.co.uk^$removeparam=mbid
+! https://github.com/AdguardTeam/AdguardFilters/issues/91233
+||wikihow.com^$removeparam=?utm_source
+! kohls.com - counter
+||kohls.com^$removeparam=CID
+! instagram.com - share tracking
+||instagram.com^$removeparam=igshid
+! euronews.com - email subscription tracking
+||euronews.com^$removeparam=_ope
+! https://github.com/AdguardTeam/AdguardFilters/issues/90028
+$removeparam=/^curator_clanid/,domain=steampowered.com|steamcommunity.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/89768
+||mediamarkt.com.tr^$removeparam=rbtc
+! https://github.com/AdguardTeam/AdguardFilters/issues/90055
+||t.myvisualiq.net^$removeparam=~red
+! https://github.com/AdguardTeam/AdguardFilters/issues/89556
+||uspoloassn.com^$removeparam=ref
+||arcelik.com.tr^$removeparam=ref
+! https://github.com/AdguardTeam/AdguardFilters/issues/88784
+||express.de^$removeparam=cb
+||ksta.de^$removeparam=cb
+! https://github.com/AdguardTeam/AdguardFilters/issues/88502
+||linkedin.com/authwall?$removeparam=trkInfo
+||linkedin.com/authwall?$removeparam=originalReferer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69722
 ||digikey.com^$removeparam=/^mkt_tok/
 ||digikey.com^$removeparam=/^utm_cid/
@@ -35,6 +69,8 @@
 ||cod.bitrec.com/topocentras-services/js/recs?$removeparam=visitorId
 ||cod.bitrec.com/topocentras-services/js/recs?$removeparam=externalVisitorId
 ||cod.bitrec.com/topocentras-services/js/recs?$removeparam=r
+! https://github.com/AdguardTeam/AdguardFilters/issues/89345
+||play.google.*^$removeparam=referrer
 ! Google Search
 ! https://github.com/AdguardTeam/CoreLibs/issues/1464
 ! Probably a bug
@@ -52,10 +88,6 @@
 ||google.*/search$removeparam=gs_lcp
 !#endif
 !
-! chip.de tracking parameters
-||chip.de/downloads/c1_downloads_*.html$removeparam=t
-||chip.de/downloads/c1_downloads_*.html$removeparam=v
-||chip.de/downloads/c1_downloads_*.html$removeparam=s
 ! eBay tracking parameters
 ||www.ebay.$removeparam=_trkparms
 ||www.ebay.$removeparam=_trksid
@@ -63,14 +95,21 @@
 ||www.ebay.$removeparam=mkrid
 ||www.ebay.$removeparam=campid
 ! Amazon tracking IDs found on several subpages
+! Disabled rules:
+! https://github.com/AdguardTeam/AdguardFilters/issues/88627
+! ||www.amazon.*$removeparam=ref_
+! ||www.amazon.*$removeparam=ie
+!
+! ||www.amazon.*$removeparam=sr - breaks automatic jump to review details
+! ||www.amazon.*$removeparam=s - breaks URLs which include them to sort
+! https://github.com/AdguardTeam/AdguardFilters/issues/89163
+! ||www.amazon.*/message-us$removeparam=origRef
 ||www.amazon.*$removeparam=tag
 ||www.amazon.*$removeparam=creative
 ||www.amazon.*$removeparam=creativeASIN
 ||www.amazon.*$removeparam=camp
 ||www.amazon.*$removeparam=ascsubtag
-||www.amazon.*$removeparam=ref_
 ||www.amazon.*$removeparam=ref
-||www.amazon.*$removeparam=ie
 ||www.amazon.*$removeparam=vt
 ||www.amazon.*$removeparam=refRID
 ||www.amazon.*$removeparam=pd_rd_i
@@ -90,8 +129,6 @@
 ||www.amazon.*$removeparam=field-lbr_brands_browse-bin
 ||www.amazon.*$removeparam=ingress
 ||www.amazon.*$removeparam=visitId
-! ||www.amazon.*$removeparam=sr - breaks automatic jump to review details
-! ||www.amazon.*$removeparam=s - breaks URLs which include them to sort
 ||www.amazon.*$removeparam=rdc
 ||www.amazon.*$removeparam=qid
 ||www.amazon.*$removeparam=dchild
@@ -103,7 +140,6 @@
 ||www.amazon.*/hz/contact-us/csp$removeparam=/Version/
 ||www.amazon.*/hz/contact-us/csp$removeparam=source
 ||www.amazon.*/hz/contact-us/csp$removeparam=from
-||www.amazon.*/message-us$removeparam=origRef
 ||www.amazon.*/message-us$removeparam=muClientName
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83138
 ||app.mi.com/download/*?id=$removeparam=ref
@@ -136,14 +172,26 @@
 ||zerkalo.io^$removeparam=tg
 ||zerkalo.io^$removeparam=vk
 !
+||microsoft.com^$removeparam=tduid
+||microsoft.com^$removeparam=irclickid
+||microsoft.com^$removeparam=ranEAID
+||microsoft.com^$removeparam=ranSiteID
+||microsoft.com^$removeparam=ocid
+$removeparam=epi,domain=microsoft.com|xbox.com
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88163
 ||nbcume.sc.omtrdc.net/id?d_visid_ver=$removeparam=/mcorgid|mid|ts/,domain=nbcdfw.com
 !
-||trendyol.com^$removeparam=_ga
-||trendyol.com^$removeparam=adjust_campaign
+! https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
+$removeparam=dclid
 !
+||trendyol.com^$removeparam=_ga
+||trendyol.com^$removeparam=utm_subaff
+!
+||mag2.com^$removeparam=trflg
 ||dailymail.co.uk^$removeparam=ito
 ||adguard.com^$removeparam=aid
+||hepsiburada.com^$removeparam=wt_af
 ||mioga.de^$removeparam=pl
 ||mioga.de^$removeparam=idealoid
 ||ejoker.de^$removeparam=sPartner
@@ -175,9 +223,6 @@
 ||www.otto.de^$removeparam=AffiliateID
 ||www.otto.de^$removeparam=campid
 ||www.pricezilla.de^$removeparam=bid
-!
-||mediamarkt.de/*.html$removeparam=dclid
-||saturn.de/*.html$removeparam=dclid
 !
 ||boomstore.de*.html$removeparam=campaign
 ||www.alternate.de^$removeparam=campaign
@@ -211,3 +256,6 @@
 ||websearch.rakuten.co.jp/Web?$removeparam=ref
 ||rakuten.co.jp^*&trflg=$removeparam=trflg
 ||search.yahoo.co.jp^$removeparam=fr
+! Daraz & Shop (Samesite)
+||daraz.*$removeparam=/spm=|scm=|from=|keyori=|sugg=|search=|mp=|c=|^abtest|^abbucket|pos=|themeID=|algArgs=|clickTrackInfo=|acm=|item_id=|version=|up_id=|pvid=/
+!

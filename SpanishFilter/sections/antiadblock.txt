@@ -2,8 +2,8 @@
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 ! AdRegain
-tunovelaligera.com#%#AG_abortOnPropertyWrite(`adregain_wall`);
-tunovelaligera.com#%#AG_abortOnPropertyRead(`ad_nodes`);
+tunovelaligera.com#%#//scriptlet("abort-on-property-write", "adregain_wall")
+tunovelaligera.com#%#//scriptlet("abort-on-property-read", "ad_nodes")
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=tunovelaligera.com
 tunovelaligera.com#@#.AdSense
@@ -11,6 +11,35 @@ tunovelaligera.com#@#iframe[width="728"][height="90"]
 tunovelaligera.com#@#img[width="728"][height="90"]
 !#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/92484
+@@||tpc.googlesyndication.com/safeframe/*/html/container.html$domain=muyhistoria.es|marie-claire.es|miarevista.es|muynegociosyeconomia.es|muyinteresante.es
+! https://github.com/AdguardTeam/AdguardFilters/issues/92313
+eletronicabr.com#%#//scriptlet("prevent-setTimeout", "test.offsetHeight")
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+eletronicabr.com#@#.adsbygoogle
+! https://github.com/AdguardTeam/AdguardFilters/issues/90442
+@@||tpc.googlesyndication.com/safeframe/*/html/container.html$domain=serpadres.es
+! https://github.com/AdguardTeam/AdguardFilters/issues/88674
+||static.vocento.com/dab/latest/strategy.js$script,redirect=noopjs,important,domain=elcorreo.com
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||static.vocento.com/dab/latest/strategy.js$domain=elcorreo.com
+elcorreo.com#@#.zoneAds
+elcorreo.com#@#.XEad
+elcorreo.com#@#.yw-ad
+elcorreo.com#@#.yaAds
+elcorreo.com#@#.gl_ad
+elcorreo.com#@#.h_ad
+elcorreo.com#@#.xmlad
+elcorreo.com#@#.pub_300x250
+elcorreo.com#@#.pub_300x250m
+elcorreo.com#@#.pub_728x90
+elcorreo.com#@#.text-ad
+elcorreo.com#@#.textAd
+elcorreo.com#@#.text_ad
+elcorreo.com#@#.text_ads
+elcorreo.com#@#.text-ads
+elcorreo.com#@#.text-ad-links
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88401
 porno-japones.top##div[class^="adde_"]
 ! porno-japones.top - antiadblock
@@ -56,9 +85,9 @@ audiotools.in##div[id^="chp_ads_blocker-"]
 audiotools.in#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'blocker_detector')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79720
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79653
-! From anitube.site and meusanimes.com
-tecnologiaonline.site,muitasreceitas.site,fazendorendaextra.xyz,bellareceitas.com,globalnoticias.online,culinariadochef.net,gameszoom.net,grandnoticias.com#@#.ad-placement
-||fazendorendaextra.xyz/saddan/bitch.js
+! From anitube.site, meusanimes.com, boxfilmes.net
+flashreceitas.com,tudoemprego.online,tecnologiaonline.site,muitasreceitas.site,fazendorendaextra.xyz,bellareceitas.com,globalnoticias.online,culinariadochef.net,gameszoom.net,grandnoticias.com#@#.ad-placement
+/saddan/bitch.js$domain=fazendorendaextra.xy|flashreceitas.com
 ||globalnoticias.online/run/fun.js
 ||gameszoom.net/jayA/djay.js
 ||culinariadochef.net/revoada/boca.js
@@ -281,7 +310,6 @@ eletronicabr.com#$#.adsbygoogle { position: absolute!important; left: -3000px!im
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41215
 @@||file4go.net/ads.js
 file4go.net#%#//scriptlet("set-constant", "Lata", "1")
-file4go.net#%#AG_setConstant('Lata', '1');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39171
 hobba.tv#@##ad-block
 hobba.tv#@##ad-box
@@ -298,9 +326,6 @@ premiumtvchannels.com###divadblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35166
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||estrenosdoramas.net^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/35022
-gntai.xyz#%#AG_setConstant('fuckyouadblock', 'true');
-@@||res.cloudinary.com/*/raw/upload/*/advertisement_*.js$domain=gntai.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34848
 !+ PLATFORM(ext_ff, ext_opera, ext_edge, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||projetomotog.blogspot.com^$generichide
@@ -452,7 +477,7 @@ televall.website#$##ad { position: absolute!important; left: -3000px!important; 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29429
 @@||tvguia.es/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29427
-animeshouse.net#%#AG_abortInlineScript(/;return \{clear:function\(\)\{/, 'document.addEventListener');
+animeshouse.net#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "/;return \{clear:function\(\)\{/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28812
 !+ NOT_PLATFORM(windows, mac, android)
 @@||grupovalltv.net^$generichide
@@ -546,9 +571,6 @@ animeflv.ru#%#window.check_adblock = true;
 sapo.pt#@#.adslot
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22797
 urlcloud.es#@#.adsBox
-! https://github.com/AdguardTeam/AdguardFilters/issues/22559
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||baixarsoftware.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22555
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||bludvfilmes.com^$generichide
@@ -652,8 +674,6 @@ mangahost-br.cc#$##newad { height: 1px!important; }
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mangahost-br.cc
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=mangahost-br.cc
-! https://github.com/AdguardTeam/AdguardFilters/issues/20138
-pelismart.com###adblock_screen
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20092
 !+ PLATFORM(ios, ext_android_cb)
 @@||meutimao.com.br^$generichide
@@ -826,27 +846,24 @@ cobachpl8.milaulas.com#$#.adsbygoogle { height: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16144
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14353
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=mangahosted.com|mangahost1.com
-mangahosted.com,mangahost2.com#$#.ads728x90.ads970x90 { display: block!important; }
-mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "goog_pvsid", "1")
-mangahosted.com,mangahost2.com#%#//scriptlet("abort-current-inline-script", "onload", "google_tag")
-mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "Goog_Osd_UnloadAdBlock", "1")
-mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_osd_loaded", "1")
-mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "stopMan", "false")
-mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_unique_id", "1")
-mangahosted.com,mangahost2.com#%#!function(){window.google_tag_data={gl:{data:{fragment:{}}}};}();
-mangahosted.com#%#AG_setConstant('nztTest', 'false');
-mangahosted.com#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/ads728x90/.test(a.toString()))return b(a,c)};})();
-mangahosted.com,mangahost2.com,mangahost1.com#%#Object.defineProperty(window, 'testDisplay', { value: false });
-mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#AG_abortInlineScript(/ads728x90/, 'jQuery');
-mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com$$script[tag-content="BLOQUEADOR"][max-length="15000"]
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
+mangahost4.com,mangahosted.com,mangahost2.com#$#.ads728x90.ads970x90 { display: block!important; }
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "goog_pvsid", "1")
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("abort-current-inline-script", "onload", "google_tag")
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "Goog_Osd_UnloadAdBlock", "1")
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_osd_loaded", "1")
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "stopMan", "false")
+mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_unique_id", "1")
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "jQuery", "BLOQUEADOR")
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "BLOQUEADOR")
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com$$script[tag-content="BLOQUEADOR"][max-length="15000"]
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||mangahost4.com^$generichide
 @@||mangahosted.com^$generichide
 @@||mangahost2.com^$generichide
 @@||mangahost1.com^$generichide
 @@||mangahostbr.net^$generichide
 @@||mangahostbr.com^$generichide
-!#endif
-!#if (adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=mangahosted.com|mangahost2.com|mangahost1.com|mangahostbr.com|mangahostbr.net
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mangahosted.com|mangahost2.com|mangahost1.com|mangahostbr.com|mangahostbr.net
 !#endif
@@ -910,13 +927,10 @@ mangahost.cc#%#Object.defineProperty(window, 'testDisplay', { value: false });
 @@.png#$domain=goaldirecto.blogspot.com|goaldirecto.blogspot.com.ar
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12323
 @@||latinoweb-tv.com/assets/js/adblocker.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/12204
-||baixarsoftware.com/wp-content/plugins/pause-adblocker^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12127
 chaturbacumgirls.net#@#.an-sponsored
 chaturbacumgirls.net#@#.an-advert-banner
 ! from foreign filter
-@@||comando-filmes.org^$generichide
 @@||minhatec.com/noticiadestaque/adsense.js
 @@||ads.clubedohardware.com.br/
 clubedohardware.com.br##.caixa_topo
@@ -950,8 +964,6 @@ universoformulas.com#%#window.UFads = true;
 @@||atresplayer.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10733
 @@||eestatic.com/assets_js/dyn/adsiframe.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/10097
-@@||static.vocento.com/adbd^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9973
 @@||elconfidencial.com/javascript/v*/class/requireModules/ads/adsbygoogle.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9922
@@ -988,8 +1000,6 @@ letras.mus.br#%#window.canAds = true;
 @@/banner.gif^$~third-party,domain=anitoonstv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7701
 ||okdiario.com/app/*/js/check-blocker.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/7401
-||static.vocento.com/adbd/*/adbd.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7422
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||sharecool.us^$generichide
@@ -1147,8 +1157,6 @@ maisgasolina.com#@#.adsbygoogle
 @@||televalltv.net/js/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10859
 @@||golrojadirecta.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/5656
-||vocento.com/adblock-detector/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5548
 @@||farodevigo.es/servicios/ads/dfp.js^
 farodevigo.es#%#window.pr_okvalida = true;
@@ -1171,9 +1179,6 @@ zonasports.me#%#var baseCreateElement = document.createElement.bind(document); d
 @@||satcesc.com/*/banner.gif
 ! https://forum.adguard.com/index.php?threads/14959/
 forum.outerspace.com.br#@#.adsbygoogle
-! https://forum.adguard.com/index.php?threads/14945/
-||elcorreo.com/*vocento.blockadblocker.js
-@@||elcorreo.com/comun/js/*/adfrm.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3199
 @@||comandofilmes.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3198

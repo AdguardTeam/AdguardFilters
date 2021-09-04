@@ -6,6 +6,12 @@
 pornhub.com,pornhubthbh7ap3u.onion#%#AG_onLoad(function() { if (typeof redirect !== 'function') return; var str = redirect.toString(); var m = str.match(/\'(\/view.*)\'/); if (m.length != 2) return; var link = m[1]; window.location.href = m[1]; });
 !#################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/93574
+liquipedia.net#%#//scriptlet('remove-class', 'mobile-sticky-ad-is-active', 'body')
+! https://github.com/AdguardTeam/AdguardFilters/issues/90236
+popcornnews.ru#%#//scriptlet('remove-in-shadow-dom', '.i-amphtml-unresolved') 
+! https://github.com/AdguardTeam/AdguardFilters/issues/89046
+vivud.com#%#//scriptlet('set-cookie', 'rich_media', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81870
 m.timesofindia.com#%#//scriptlet('hide-in-shadow-dom', '.ad1')
 ! https://forum.adguard.com/index.php?threads/39361/
@@ -54,27 +60,23 @@ m.tnaflix.com#%#//scriptlet("set-constant", "organicPop", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47217
 m.drtuber.com#%#//scriptlet("abort-on-property-read", "mobileAdvPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47108
-youjizz.com#%#AG_setConstant('config.ads.interstitial', 'false');
+youjizz.com#%#//scriptlet("set-constant", "config.ads.interstitial", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45869
 m.nuvid.com#%#//scriptlet("abort-on-property-read", "mobileAdvPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44470
 m.spankbang.com#%#document.cookie = "bbm_pp_mobile=1; path=/";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42640
 pornhd.com#%#document.cookie = "mrpop=1; path=/";
-pornhd.com#%#AG_abortOnPropertyRead('popUnderUrl');
+pornhd.com#%#//scriptlet("abort-on-property-read", "popUnderUrl")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38730
 tube8.com#%#AG_onLoad(function() { if(window.location.href.indexOf("/interstitial/") != -1){ var el = document.querySelector('a[href].continue-to-video');if(el){el.click();} } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30369
 m.hd21.com#%#document.cookie = "adv_show=3";
-m.hd21.com#%#AG_abortOnPropertyRead('mobileAdvPop');
-! https://github.com/AdguardTeam/AdguardFilters/issues/30366
-m.xhamster.one#%#AG_abortOnPropertyRead('Pop');
+m.hd21.com#%#//scriptlet("abort-on-property-read", "mobileAdvPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22801
 iqiyi.com#%#document.cookie = "i18nGuideApp=true";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24463
 hanime.tv#%#document.cookie = "in_m=1";
-! https://github.com/AdguardTeam/AdguardFilters/issues/17500
-motherless.com#%#AG_abortInlineScript(/awentw/, 'Math.floor');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16498
 m.cricbuzz.com#%#AG_onLoad(function() { if(window.location.href.indexOf("/cricbuzz-roadblock/dfp?url=") != -1) { var el = document.querySelector('.cbz-grid-table-fix  > a.btn-default'); if(el) el.click(); } });
 m.cricbuzz.com#%#document.cookie = "us_ads=1"; document.cookie = "in_ads=1"; document.cookie = "pk_ads=1"; document.cookie = "gcc_ads=1"; document.cookie = "gb_ads=1"; document.cookie = "eu_ads=1"; document.cookie = "oc_ads=1";
@@ -83,6 +85,7 @@ m.timesofindia.com#%#Object.defineProperty(window,'trev',{get:function(){return 
 ! estream - popups
 estream.to#%#var d=document.addEventListener;document.addEventListener=function(a,b,c){("mousedown"!=a&&"click"!=a||-1==b.toString().indexOf("['popunder']"))&&d(a,b,c)}.bind(document);
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9324
+! TODO: Change AG_defineProperty to scripltet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
 youjizz.com#%#AG_defineProperty('config.ads.mobilePopunder', {value: false});
 ! https://forum.adguard.com/index.php?threads/20737/
 pornhub.com,pornhubthbh7ap3u.onion#%#Object.defineProperty(window, 'initPopUnderLinks', { get: function() { return function() { }; } });
@@ -106,6 +109,23 @@ sasisa.ru#%#AG_onLoad(function() { window.Umobi = function() {}; });
 !-------CSS---------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/92726
+izi.ua#$#div[class^="ProductFooter__root-"] { height: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/92579
+r7.com#$#body.main-r7mobile { margin-top: 50px !important; }
+r7.com#$#body.main-r7mobile .wrapper-mobile-header { height: 50px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/92273
+miurayoshitaka.hatenablog.com#$#.ad-online-afc { position: absolute !important; left: -3000px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/91552#issuecomment-904292573
+news.mynavi.jp#$#.articleList-along { min-height: 0 !important; }
+news.mynavi.jp#$#.articleList-related-article { min-height: 0 !important; }
+! minor cosmetic issue
+mag.app-liv.jp#$#.p-overlay--upper-ad { bottom: 0!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/90538
+sains.sindonews.com#$#.parallax-non { top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/89046
+vivud.com#$#body.overflow { position: static !important; }
+vivud.com#$#.holder-rich-media { display: none !important; }
 ! m.formel1.de - fix empty space
 m.formel1.de#$##news-share-block-top { top: 0px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83207
@@ -226,6 +246,9 @@ deviantart.com#$#div[class*="dp-ad-"] {height: 0!important; width: 0!important; 
 !
 ! AMP ads in ShadowRoot
 $$amp-ad
+amp.scmp.com$$div[class="inline-advert"]
+amp.scmp.com$$div[class="ad-header-container"]
+amp.scmp.com$$div[class="advert-fly-carpet-container"]
 zn.ua$$div[class="mix_advert_"]
 zoomtventertainment.com$$amp-embed[type="taboola"]
 24tv.ua$$div[class="within-ads"]

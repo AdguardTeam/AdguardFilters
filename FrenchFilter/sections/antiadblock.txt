@@ -11,6 +11,14 @@ capital.fr#@#.plainAd
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/92436
+chat.nrj.fr#%#//scriptlet('prevent-setTimeout', '/AB.html', '4000')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||adv.123multimedia.com/AdConfig.aspx$domain=chat.babel.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/91538
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=tirexo.work
+! https://github.com/easylist/listefr/issues/16
+@@||ddl-francais.com/adv/ads/popunder.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/86084
 @@||wakanim.tv/*/advertisement?idepisode=
 ||wakanim.tv/*/advertisement?idepisode=$xmlhttprequest,redirect=noopvmap-1.0,important
@@ -35,7 +43,9 @@ fourtoutici.pro#%#//scriptlet("prevent-setTimeout", "test.offsetHeight")
 @@||streamonsport.info^$generichide
 ! https://forum.adguard.com/index.php?threads/40753/
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=lecourrier-du-soir.com
+!+ NOT_OPTIMIZED
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=lecourrier-du-soir.com
+!+ NOT_OPTIMIZED
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl_*.js$domain=lecourrier-du-soir.com
 ! https://forum.adguard.com/index.php?threads/41486/
 @@||astatic.ccmbg.com/fc/js/prebid?v=$domain=commentcamarche.net
@@ -118,10 +128,7 @@ impotsurlerevenu.org#$#.adsbygoogle { height: 1px!important; display: block!impo
 @@||radiox.com/*/wp-content/themes/domino-child/js/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43816
 @@||hack-life.net/js/siropu/am/ads.min.js
-!+ NOT_PLATFORM(windows, mac, android)
 hack-life.net#%#//scriptlet("set-constant", "adBlockDetected", "false")
-!+ PLATFORM(windows, mac, android)
-hack-life.net#%#AG_setConstant('adBlockDetected', 'false');
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43364
 ||twch.femina.ch^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41480
@@ -157,7 +164,7 @@ voyageforum.com$$script[tag-content="adsbygoogle"][max-length="3700"]
 !+ PLATFORM(ext_ff, ext_opera, ext_edge, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||hdstreamvf.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34766
-jtrouver.com#%#AG_setConstant('google_jobrunner', 'noopFunc');
+jtrouver.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 jtrouver.com#@#.adsbygoogle
 jtrouver.com#$#.adsbygoogle { height: 1px!important; }
@@ -275,7 +282,7 @@ nordpresse.be#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19723
 @@||jetanime.co/assets/js/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18974
-ultimate-catch.eu#%#AG_abortInlineScript(/adback/, 'document.getElementById');
+ultimate-catch.eu#%#//scriptlet("abort-current-inline-script", "document.getElementById", "adback")
 ||static.criteo.net/js/px.js^$redirect=nooptext,important,domain=ultimate-catch.eu
 ||cas.criteo.com/delivery/ajs.php^$redirect=nooptext,important,domain=ultimate-catch.eu
 !+ PLATFORM(ios, ext_android_cb)
@@ -312,8 +319,8 @@ fsolver.fr#@#.ad-placement
 @@||animedigitalnetwork.fr/templates/adnv2/js/advertising.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11761
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=playtv.fr
-playtv.fr#%#AG_defineProperty('ptv.Data.uniroll', { value: {}, writable: false });
-playtv.fr#%#AG_defineProperty('pmd.Data.uniroll', { value: {}, writable: false });
+playtv.fr#%#//scriptlet("set-constant", "ptv.Data.uniroll", "emptyObj")
+playtv.fr#%#//scriptlet("set-constant", "pmd.Data.uniroll", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11631
 ||audiofanzine.com/hallot^$script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11544
@@ -334,7 +341,7 @@ atlasweb.net#@#.an-sponsored
 k-gen.fr#@#.an-advert-banner
 k-gen.fr#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7704
-liens-telechargement.com#%#AG_abortInlineScript(/Ad Blocker/, 'jQuery');
+liens-telechargement.com#%#//scriptlet("abort-current-inline-script", "jQuery", "Ad Blocker")
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
 @@||liens-telechargement.com^$generichide
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
