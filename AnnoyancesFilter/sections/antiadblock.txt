@@ -56,7 +56,6 @@ yandex.*##body[data-bem*="Яндекс.Картинки"] div[data-bem*="R-I-"]:
 www.kinopoisk.ru##div[class^="toaster-container"]
 www.kinopoisk.ru##div[class^="styles_adBlockWarningRoot"]
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-yastatic.net#%#//scriptlet("abort-on-property-read", "Object.prototype.adBreakType")
 ! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.mediaAds")
 ! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.createVideoBannerAdLite")
 www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.Rtb")
@@ -557,10 +556,12 @@ hgtv.com#@#.showads
 !
 !
 !
+digitalsynopsis.com#@#.ad_slot
+digitalsynopsis.com#$##ad_bait.ad_slot { display: block !important; }
+||copyrightcontent.org/unblocker/
 wg-gesucht.de#@#a[href^="https://pubads.g.doubleclick.net/"]
 ||wg-gesucht.de/js/lib/Abd.lib.*.js
 korsars.pro##div[style="width: 468px; height: 60px;"]
-notebookcheck-hu.com,notebookcheck-tr.com,notebookcheck-ru.com,notebookcheck.*#%#//scriptlet("abort-current-inline-script", "document.getElementById", "ab_cl")
 bluemoon-mcfc.co.uk#%#//scriptlet('prevent-setInterval', '.parentNode.removeChild')
 realclearpolitics.com##.ad-blk-wrapper
 tool.liumingye.cn###pop-container
@@ -829,7 +830,6 @@ moneyguru.co###wrapfabtest
 @@||googleads.g.doubleclick.net/pagead/ff.js$domain=next-episode.net
 ||citynews1130.com/wp-content/themes/samuel/javascripts/grcn.passive_display_adblock.js
 desktophut.com###loading-ad
-websearch.rakuten.co.jp###adblocker-warning-popup
 shinden.pl#%#AG_onLoad(function(){var a=document.querySelectorAll('div[id^="spolecznosci"]');0<a.length&&a.forEach(function(b){b.appendChild(document.createElement("div"))})}); 
 mysnip.xyz##.form-group > b > h3
 ||cdn.concert.io/lib/adblock/sbnation.html
@@ -2301,6 +2301,12 @@ vladan.fr#@#.text_ads
 ||lindenhurstsneads.doyondeville.com^$script,third-party
 ||willseyvillefingerville.polaccafaison.com^$script,third-party
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/93823
+! TODO: remove hint when AdGuard 7.7 will be released
+! Related to this bug - https://github.com/AdguardTeam/Scriptlets/issues/57#issuecomment-697240649
+!+ NOT_PLATFORM(windows, mac, android)
+notebookcheck-hu.com,notebookcheck-tr.com,notebookcheck-ru.com,notebookcheck.*#%#//scriptlet("abort-current-inline-script", "document.getElementById", "ab_cl")
+notebookcheck-hu.com,notebookcheck-tr.com,notebookcheck-ru.com,notebookcheck.*$$script[wildcard="*!document.getElementById*ab_cl*"][min-length="1000"][max-length="1500"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85350
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
@@ -2437,6 +2443,7 @@ forbes.com#$#page-standard[id^="article-container"] { position: unset!important;
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||forbes.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50850
+viki.com#%#//scriptlet("set-constant", "VikiPlayer.prototype.pingAbFactor", "noopFunc")
 !#safari_cb_affinity(general)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=viki.com
 @@||pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1*www.viki.com
