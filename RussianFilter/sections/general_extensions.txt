@@ -137,9 +137,10 @@ oxax.tv#%#//scriptlet('prevent-window-open')
 it-like.ru#%#//scriptlet('remove-attr', 'href', '.post-content > article > div > ul > li > a[href^="https://it-like.ru/link/"][data-wpel-link="external"]')
 ! assiatv.com - popups 
 assiatv.com#%#//scriptlet("prevent-window-open")
+! https://github.com/AdguardTeam/AdguardFilters/issues/92346
 ! ivi.ru - preroll ads
-!+ NOT_PLATFORM(windows, mac, android)
-ivi.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.getVast")
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+ivi.ru#%#//scriptlet('set-constant', 'Object.prototype.daAdvGetItems', 'undefined')
 ! cdnpotok.com player popups
 cdnpotok.com,only-tv.org,oneliketv.com#%#//scriptlet("prevent-window-open", "1", "/\/(tv|twotvs.|thretvs.)\.php/")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52136
@@ -1787,8 +1788,6 @@ animemovie.ru#$#.dem>header{background: none!important;}
 ! kinopoisk.ru
 www.kinopoisk.ru#$#div[class*="kinopoisk-media-container_pending"] { min-height: auto !important; }
 www.kinopoisk.ru#$#div[class^="styles_pending"] { min-height: auto !important; }
-! auto.ru
-mag.auto.ru#$#body.react-page { margin-top: -200px!important; }
 ! go.mail.ru
 go.mail.ru#$#.response___wrapper > #js-topBar > div > div[class*="p"][class*="t"] > style + div { position: absolute!important; left: -3000px!important; }
 go.mail.ru#$#.response___wrapper > #js-bottomBar > div > div[class*="b"][class*="t"] > style + div { position: absolute!important; left: -3000px!important; }
