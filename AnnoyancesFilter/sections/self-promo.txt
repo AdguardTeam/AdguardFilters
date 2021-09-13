@@ -49,6 +49,16 @@ disk.yandex.*##.mail360-banner
 !-----------------------------------------------
 !
 !
+! self-promo only on some articles
+news.goo.ne.jp##.gn-related-pickup
+! links to native-ad articles
+gamewith.jp##.gdb-advertisement-in-article
+gamewith.jp##.gdb-advertisement-in-article_heading
+! https://github.com/AdguardTeam/AdguardFilters/issues/93357
+niebezpiecznik.pl###main .post > div[class^="entry"] > div[style] > div[style] > a[href^="https://niebezpiecznik.pl/"][href*=".php"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/93909
+gofile.io###mainContent > #ads
+gofile.io##a.mr-1[target="_blank"]
 ! promo on mobile
 eigo.plus###widget-fixed-footer
 dic.pixiv.net###d-sp-itemarticle0
@@ -77,7 +87,7 @@ w3schools.com###getdiploma
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91409
 findamasters.com###ads
 findamasters.com###billboard
-findamasters.com##.inSearchAdRow 
+findamasters.com##.inSearchAdRow
 findamasters.com#%#//scriptlet("set-constant", "AdGlare", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91037
 devops.com##.after-entry > section#custom_html-30
@@ -106,15 +116,15 @@ icy-veins.com##div[class^="premium_banners"]
 gomovies-online.cam##body > div[class^="_"] > div[id^="_"]:only-child > style + div[id^="_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88710
 ! Do not search for the word "Deal"
-winfuture.de#?#.topnews > div:has(span:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro/))
+winfuture.de#?#.topnews > div:has(span:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|nur bis[\s\S]*Euro|günstig/))
 winfuture.de#?#.topnews > div:has(a:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro/))
 winfuture.de##.topnews > .clearfix
-winfuture.de#?#div[class^="hp_"] div:has(> .topteaser:contains(/(Anzeige)|wieder lieferbar|Schnäppchen|sale|An(?<!-)Angebot(?!s)gebot|Rabatt/))
+winfuture.de#?#div[class^="hp_"] div:has(> .topteaser:contains(/(Anzeige)|wieder lieferbar|Schnäppchen|sale|An(?<!-)Angebot(?!s)gebot|Rabatt|nur bis[\s\S]*Euro/))
 winfuture.de##div[class^="hp_"] > div > div[style="display: none !important;"] + .clearfix
 winfuture.de#?#.newsTicker > li:has(> a:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)/))
 winfuture.de#?#.topnews > div[class]:has(> h2 > a[href*="/special/"][href*="/angebote/"])
 m.winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,2}\,[0-9]{1,2} Euro|Chance!/))
-m.winfuture.de#?##main > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|Chance!/))
+m.winfuture.de#?##main > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|Chance!|günstig/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88649
 netdoktor.de##.ndcustom_ml-teaser_mylife
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88474
@@ -660,9 +670,8 @@ geoguessr.com#$#.game-usps { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28507
 mayoclinic.org##.mayoad
 ! xhamster.com - cameras in category/movie pages
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##.wid-banner-container
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##[class*="cams-widget"]
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##div[class*="cams-thumb-"]
+hamsterix.cam,xhplanet1.com,xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##[class*="cams-widget"]
+hamsterix.cam,xhplanet1.com,xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##div[class*="cams-thumb-"]
 ||img.stripst.com/*/previews$domain=xhamster.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78407
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36686
@@ -968,6 +977,24 @@ experts-exchange.com##.ctaSolutionStickyWrapper
 theguardian.com##.contributions__adblock
 ||contributions.guardianapis.com^
 !
+partitionwizard.com##.article-top-banner
+bosco.ru###bosco-magazine-banner
+careeraddict.com##.banner-container
+careeraddict.com##.article-card-banner
+||knowledgecity.com/blog/wp-content/uploads/*/KnowledgeCity-Banner-
+||knowledgecity.com/blog/wp-content/uploads/*/FreeCourses-
+support.microsoft.com###rail-banner
+economist.com##._podcast-promo
+economist.com##._newsletter-promo-container
+laleggepertutti.it##div[style*="background-color: #efbb1b;"][style*="padding: 10px;"][style*="color: #000;"]
+observer-reporter.com##.AdCarousel
+webroot.com###main-header div[class^="left-menu-"] > div[id^="media_image-"]
+ancient-origins.net#?#.region > div.block:has(> div.block-inner a[href^="https://shop.ancient-origins.net/"])
+ancient-origins.net#?#.region > div.block:has(> div.block-inner a[href^="https://members.ancient-origins.net/"])
+askiitians.com##img[src^="/resources/images/fourm-img/advertisement"]
+askiitians.com#$#.headerStrip { margin-top: 0!important; }
+askiitians.com#$##stickyBanner { display: none!important; }
+prepscholar.com##.advertisement-widget
 maximonline.ru,woman.ru,parents.ru,vokrugsveta.ru,psychologies.ru,ellegirl.ru,wday.ru,elle.ru,marieclaire.ru##.sticky-block > div.creative
 ||bostonreview.net/sites/default/files/Side_Column_ad
 dlcompare.com##a[alt="dLcompare extension EN"]
@@ -1085,7 +1112,6 @@ betterhelp.com##.sidebar-cta.hidden-xs
 support.microsoft.com##a[id="buyInstallButton"][data-m*="CatNav_cta_Buy Microsoft 365_nav"]
 futurehosting.com##.blog-product
 belta.by##a[href^="https://yandex.ru/news/"]
-zamunda.ch##.clickads
 diskpart.com##.am-promotion-entry
 diskpart.com##.promo-sidebar
 diskpart.com##.promo-rightbox-mini
