@@ -1,9 +1,39 @@
 !
 !
 ! TEMPORARY
+! https://github.com/AdguardTeam/Scriptlets/issues/141#issuecomment-921042595
+! Add redirect rule once Fingerprint2 surrogate script become fully available.
+@@||cloudflare.com/ajax/libs/fingerprintjs2/$script,domain=gamebox.gesoten.com
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
 ||rover.ebay.$image,object,script,badfilter
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94990
+@@||tag.aticdn.net/*/smarttag.js$domain=kicker.de
+! https://gamerch.com/to-arise/ comment form broken
+||gamerch.com/s3-assets/library/js/fingerprint2.min.js$script,redirect=noopjs,important
+@@||gamerch.com/s3-assets/library/js/fingerprint2.min.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/94457
+@@||googletagmanager.com/gtm.js$domain=infoq.com
+||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=infoq.com,important
+@@||google-analytics.com/analytics.js$domain=infoq.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/94577
+!+ PLATFORM(ios, ext_android_cb)
+@@||google-analytics.com/analytics.js$domain=key-hub.eu
+! https://github.com/AdguardTeam/AdguardFilters/issues/94674
+@@||lcs.naver.com/m?u=$domain=smartstore.naver.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/94219
+@@||play.google.com/log?$domain=meet.google.com
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1598352715/232
+!#if (!adguard_app_windows && !adguard_app_mac)
+@@||bwb101.goo.ne.jp/b.js$domain=news.goo.ne.jp
+@@||log000.goo.ne.jp/js/VLTraceDMD.js$domain=news.goo.ne.jp
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/93241
+@@||s.clickiocdn.com/t/*.js$domain=laleggepertutti.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/59236
+@@||s.clickiocdn.com/t/200069/360.js$domain=glav.su
+! https://github.com/AdguardTeam/AdguardFilters/issues/93686
+@@||recs.richrelevance.com/rrserver/p13n_generated.js$domain=bergfreunde.de
 ! https://github.com/AdguardTeam/AdGuardSDNSFilter/issues/743
 ||citiintl.122.2o7.net/b/ss/citiintlemeapolandprod$image,redirect=1x1-transparent.gif,domain=citibankonline.pl
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -15,8 +45,8 @@
 @@||googletagmanager.com/gtag/$domain=usnews.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93262
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91784
-@@||slike.indiatimes.com/feed/stream/*.json$domain=indiatimes.com|timesofindia.com
-@@||tvid.in/sdk/loader.js$domain=indiatimes.com|timesofindia.com
+@@||slike.indiatimes.com/feed/stream/*.json$domain=indiatimes.com|timesofindia.com|timesnownews.com
+@@||tvid.in/sdk/loader.js$domain=indiatimes.com|timesofindia.com|timesnownews.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92390
 @@||seccdn-gl.imrworldwide.com/novms/js/*/*.js$domain=heraldsun.com.au
 @@||cdn-gl.imrworldwide.com/novms/js/*/configs/*.js$domain=heraldsun.com.au
@@ -65,9 +95,6 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90601
 @@||s.btstatic.com/tag.js$domain=sephora.com
 @@||s.thebrighttag.com/tag?site=$domain=sephora.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/90570
-@@||us.confirmit.com^$domain=support.lenovo.com
-@@||survey.us.confirmit.com/wix/*.aspx?__digital_feedback_ctx=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90394
 !+ PLATFORM(ios, ext_safari)
 @@||euronewsgroup.demdex.net/event?d_event=$~third-party
@@ -812,9 +839,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 ! https://forum.adguard.com/index.php?threads/samsung-com.39002/
 @@||assets.adobedtm.com/*-source.min.js$domain=samsung.com
 @@||assets.adobedtm.com/*launch-*.min.js$domain=samsung.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/58157
-!+ PLATFORM(ios, ext_safari)
-@@||statcounter.com^$domain=gs.statcounter.com
 ! liga.net - fixing comments
 @@||googletagmanager.com/gtm.js$domain=liga.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58292
@@ -1895,9 +1919,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||googletagmanager.com/gtm.js$domain=unity3d.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8174
 @@||secure-dcr.imrworldwide.com/novms/js/*/ggcmb*.js$domain=crackle.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/8219
-@@||google-analytics.com/analytics.js$domain=trendyol.com
-@@||googletagmanager.com/gtm.js$domain=trendyol.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8301
 @@||apple.com/metrics/scripts/$domain=locate.apple.com
 ! https://forum.adguard.com/index.php?threads/27592/
@@ -2742,9 +2763,6 @@ mozilla-russia.org#@#img[width="88"][height="31"]
 @@||smetrics.blackberry.com/b/ss/*:jump-page:$image,domain=bbm.com
 @@||songza.com/static/*/songza/systems/$script
 @@||sportsgrid.com/decor/javascript/magnify_stats.js
-@@||statcounter.com/chart.php?$script
-@@||statcounter.com/js/fusioncharts.js
-@@||statcounter.com/msline.swf
 @@||static.atgsvcs.com/js/atgsvcs.js$domain=officedepot.com|shop.lego.com
 @@||static.chartbeat.com/crossdomain.xml
 @@||static.rpxnow.com/js/lib/rpx.js$domain=colbertnation.com|thedailyshow.com
@@ -2978,7 +2996,6 @@ mozilla-russia.org#@#img[width="88"][height="31"]
 ! Polish
 @@||gemius.pl/gstream.js
 @@||kropka.onet.pl^*/onet.js$domain=tvnwarszawa.pl
-@@||stat24.com/crossdomain.xml$domain=ipla.tv
 @@||tablica.pl^*/xtcore.js
 ! Portuguese
 @@||77.91.202.130/js/20050/xiti.js$domain=custojusto.pt
