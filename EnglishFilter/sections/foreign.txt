@@ -1007,6 +1007,8 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 !------------------------------ Bengali ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94823
+bdjobs.com##.single-promo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79261
 ||lastnewsbd.com/proposed.gif
 lastnewsbd.com##.banner
@@ -2415,6 +2417,8 @@ bb.is$$div[class="banner"]
 dinamalar.com###innerleft div[style="text-align:center;"] > div[style^=" color: #"][style*="font-size:"]
 dinamalar.com#$##ablockercheck { display: block !important; }
 dinamalar.com#%#//scriptlet("abort-current-inline-script", "$", ".style.display=")
+dinamalar.com#%#//scriptlet("prevent-setTimeout", ":visible")
+dinamalar.com$$script[wildcard="*document.getElementById*.style.display=*$*"][min-length="200"][max-length="1000"]
 !+ PLATFORM(ios, ext_android_cb)
 @@||dinamalar.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92607
@@ -5875,6 +5879,19 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94999
+yafud.pl#$#body > .adsbygoogle { display: block !important; }
+yafud.pl$$script[tag-content="BlockAdBlock.prototype"][min-length="5000"][max-length="10000"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/95343
+exsites.pl#@##ad-slot
+exsites.pl#$#.adsbox#ad-slot { display: block !important; }
+exsites.pl#%#//scriptlet('prevent-setTimeout', '.offsetHeight')
+exsites.pl##body > div[style^="display: block; box-sizing: border-box; padding:"][style*="font-weight: bold; font-size:"][style*="text-align: center; position: fixed;"][style*="z-index:"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/95377
+forum.android.com.pl##.Welcome-screen
+forum.android.com.pl##.Anchor-ad
+forum.android.com.pl##.Ad-container
+forum.android.com.pl##.Ad--has-placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94676
 investmap.pl###app > div[class^="sc-"] > div[class^="sc-"][height="300px"]
 investmap.pl###app > div[class^="sc-"] > div[class^="sc-"][height="300px"] + div[class^="sc-"] > div[class^="sc-"] > div[class^="sc-"][height="250px"]
@@ -8595,19 +8612,10 @@ dongphym.com##ins[id^="ccadnet"]
 truyenqq.net###left-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85963
 linkneverdie.net$$script[tag-content="DetecAdBlock"][min-length="500"][max-length="3000"]
-linkneverdie.net#%#//scriptlet("abort-current-inline-script", "$", "/_\$_|_0|^\s*var x0/")
-||player.adtcdn.com/prebidlink/$redirect=nooptext,domain=linkneverdie.net
-||tag.gammaplatform.com^$redirect=nooptext,domain=linkneverdie.net
-||get.optad360.io/*/*/plugin.min.js$script,redirect=nooptext,domain=linkneverdie.net
-||certify-js.alexametrics.com/atrk.js$script,redirect=nooptext,domain=linkneverdie.net
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=nooptext,domain=linkneverdie.net
-@@||static.doubleclick.net/instream/ad_status.js$domain=linkneverdie.net
+linkneverdie.net#%#//scriptlet("abort-current-inline-script", "$", "/^\s*var x0|CheckAnti/")
+||pagead2.googlesyndication.com/pagead/show_ads.js?$domain=linkneverdie.net,redirect=nooptext
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||player.adtcdn.com/prebidlink/453056/hb_323303_10647.js$domain=linkneverdie.net
-@@||get.optad360.io/*/*/plugin.min.js$domain=linkneverdie.net
-@@||certify-js.alexametrics.com/atrk.js$domain=linkneverdie.net
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linkneverdie.net
-@@||tag.gammaplatform.com^$domain=linkneverdie.net
+@@||pagead2.googlesyndication.com/pagead/show_ads.js?$domain=linkneverdie.net
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85123
 vcomic.net##.adpia_banner
