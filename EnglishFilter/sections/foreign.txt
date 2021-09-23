@@ -274,8 +274,8 @@ egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,
 ! breaks player: egybest.site,egy.best#%#AG_setConstant('WinMsgHtml', 'noopFunc');
 @@||cdn-static.egybest.net/static/global/js/adblock.js
 ! egybest.asia,egybest.cheap,egybest.ltd,egybest.ninja,egybest.rocks,egybest.name,egybest.bid,egybest.club,egybest.co,egybest.cz,egybest.xyz,egybest.biz,egybest.me,egybest.org,egybest.online,egybest.club,egybest.pw,egybest.com,egybest.site,egy.best#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/new Date\(\)[\s\S]*?WinMsgHtml|_AdBlock|WinMsgHtml\(decodeURIComponent/.test(a.toString()))return b(a,c)};})();
-kame.egybest.kim,egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var g=/^\/(?!api\?call=)[a-zA-Z0-9]{5,20}$/;window.open=new Proxy(window.open,{apply:function(h,k,d){var e=d[0];if(!0!==g.test(e))return h.apply(k,d);var a=document.createElement("object");a.data=e;a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return a.contentWindow?new Proxy(a.contentWindow,{get:function(c,b){return"opener"===b?window:"frameElement"===b?null:c[b]},set:function(c,b,f){c[b]=f}}):new Proxy(a,{get:function(c,b){return"opener"===b?window:"frameElement"===b?null:!1},set:function(c,b,f){c[b]=!1}})}})}})();
-kame.egybest.kim,egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click()},500)});
+kame.egybest.kim,egy.best,egybest.*,vidstream.*#%#(function(){if("function"==typeof Proxy){var c=/^\/(?!api\?call=)[a-zA-Z0-9]{5,20}$/;window.open=new Proxy(window.open,{apply:function(e,k,g){var f=g[0];if(!0!==c.test(f))return e.apply(k,g);e=location.origin;var a=document.createElement("object");location.href.includes("/watch/")||location.href.includes("/vs-mirror/")?a.data=f:a.data=e+"/"+f;a.style.setProperty("height","1px","important");a.style.setProperty("width","1px","important");a.style.setProperty("position","absolute","important");a.style.setProperty("top","-99999px","important");document.body.appendChild(a);setTimeout(function(){return a.remove()},1E4);return a.contentWindow?new Proxy(a.contentWindow,{get:function(d,b){return"opener"===b?window:"frameElement"===b?null:d[b]},set:function(d,b,h){d[b]=h}}):new Proxy(a,{get:function(d,b){return"opener"===b?window:"frameElement"===b?null:!1},set:function(d,b,h){d[b]=!1}})}})}})();
+kame.egybest.kim,egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){setTimeout(function(){var a=document.documentElement;a&&a.click();(a=document.querySelector(".vjs-tech:not([src])"))&&a.click();(a=document.querySelector("p > a.bigbutton._reload"))&&a.click();(a=document.querySelector("body > div.vidplay._reload"))&&a.click()},500)});
 egy.best,egybest.*,vidstream.*#%#AG_onLoad(function(){var a=document.querySelector("script[src^='//creamssicsite.com/']");if(a)try{var b=a.src.split("/")[4];b&&(window["G_"+b+"_API"]={show:function(){},remove:function(){}})}catch(c){}}); 
 ||cdn-static.egybest.*/packed/$badfilter
 ||creamssicsite.com^$redirect=nooptext
@@ -1007,6 +1007,8 @@ kliuki.bg###container > div[style="float:left;"] > div[style]
 !------------------------------ Bengali ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94823
+bdjobs.com##.single-promo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79261
 ||lastnewsbd.com/proposed.gif
 lastnewsbd.com##.banner
@@ -2413,8 +2415,12 @@ bb.is$$div[class="banner"]
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94497
 dinamalar.com###innerleft div[style="text-align:center;"] > div[style^=" color: #"][style*="font-size:"]
-dinamalar.com#@#.ad-placement
-dinamalar.com#%#//scriptlet("abort-current-inline-script", "$", "ablockercheck")
+dinamalar.com#$##ablockercheck { display: block !important; }
+dinamalar.com#%#//scriptlet("abort-current-inline-script", "$", ".style.display=")
+dinamalar.com#%#//scriptlet("prevent-setTimeout", ":visible")
+dinamalar.com$$script[wildcard="*document.getElementById*.style.display=*$*"][min-length="200"][max-length="1000"]
+!+ PLATFORM(ios, ext_android_cb)
+@@||dinamalar.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92607
 vikatan.com##div[class^="styles-m__vs-wrapper"]
 vikatan.com##div[class^="styles-m__header-ad"]
@@ -3453,6 +3459,11 @@ krucil.net##img[width="900"][height="50"]
 !------------------------------ Hebrew -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/95095
+hwzone.co.il#%#//scriptlet("abort-on-property-read", "gothamBatAdblock")
+hwzone.co.il#$#.publicite.text-ad.adsbox { display: block !important; }
+!+ PLATFORM(ios, ext_android_cb)
+@@||hwzone.co.il^$generichide
 ! ashkelonim.co.il - ads
 ashkelonim.co.il##.FloatingAd
 ashkelonim.co.il##.Banner
@@ -5554,6 +5565,13 @@ m.basketnews.lt##div[style^="text-align: center; width: 300px; height: 250px;"]
 m.basketnews.lt##.main_title > div[style="text-align: center;"] > a > img
 15min.lt##.ads
 @@/banners*swf$domain=vma.esec.vu.lt
+!
+!---------------------------------------------------------------------
+!--------------------------- Luxembourgish ---------------------------
+!---------------------------------------------------------------------
+!
+! spellchecker.lu ad
+||reklammen.spellchecker.lu^
 !---------------------------------------------------------------------
 !------------------------------ Malaysian ----------------------------
 !---------------------------------------------------------------------
@@ -5861,13 +5879,27 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94999
+yafud.pl#$#body > .adsbygoogle { display: block !important; }
+yafud.pl$$script[tag-content="BlockAdBlock.prototype"][min-length="5000"][max-length="10000"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/95343
+exsites.pl#@##ad-slot
+exsites.pl#$#.adsbox#ad-slot { display: block !important; }
+exsites.pl#%#//scriptlet('prevent-setTimeout', '.offsetHeight')
+exsites.pl##body > div[style^="display: block; box-sizing: border-box; padding:"][style*="font-weight: bold; font-size:"][style*="text-align: center; position: fixed;"][style*="z-index:"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/95377
+forum.android.com.pl##.Welcome-screen
+forum.android.com.pl##.Anchor-ad
+forum.android.com.pl##.Ad-container
+forum.android.com.pl##.Ad--has-placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94676
 investmap.pl###app > div[class^="sc-"] > div[class^="sc-"][height="300px"]
 investmap.pl###app > div[class^="sc-"] > div[class^="sc-"][height="300px"] + div[class^="sc-"] > div[class^="sc-"] > div[class^="sc-"][height="250px"]
 investmap.pl#?##app > div[class^="sc-"] > div[class^="sc-"][height="300px"] ~ div[class^="sc-"] > div[class^="sc-"] > span[class^="sc-"]:has(> svg + span)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94659
+mojegotowanie.pl##p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
+focus.pl,kobieta.pl,elleman.pl,przyslijprzepis.pl,glamour.pl##.menu-container + p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
 focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.advertising-billboard
-focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.menu-container + p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
 focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.plista_container
 focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##div[id$="-po-calosci-container"]
 focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##div[id^="kopia-"][id$="-container"].widget-content
@@ -6354,11 +6386,12 @@ edziecko.pl#$#html > body[id^="pageTypeId_"] { padding-top: 50px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90230
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76916
 ! Agora
+edziecko.pl###DFP_PREMIUMBOARD
 domiporta.pl##.sponsored_article
 tuba.pl##.ban001_wrap
 sport.pl,gazeta.pl##.bottom_section > .promo-mg
 sport.pl,gazeta.pl##.DFP-premiumBoardReservedPlace
-plotek.pl,domiporta.pl,haps.pl,moto.pl##.banIndexDFP
+edziecko.pl,plotek.pl,domiporta.pl,haps.pl,moto.pl##.banIndexDFP
 plotek.pl,domiporta.pl,haps.pl,edziecko.pl,czterykaty.pl,tuba.pl,moto.pl##div[id^="adsMidboardDivId_"]
 plotek.pl,domiporta.pl,haps.pl,edziecko.pl,czterykaty.pl,tuba.pl,sport.pl,tokfm.pl,moto.pl,gazeta.pl##.ban001_wrapper
 plotek.pl,domiporta.pl,haps.pl,edziecko.pl,czterykaty.pl,tuba.pl,sport.pl,tokfm.pl,moto.pl,gazeta.pl##div[id^="banC"]
@@ -8082,6 +8115,9 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94689
+weimanga.com###wbnn
+||bp.blogspot.com/*.gif$domain=weimanga.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94065
 nanamovies.me##.yan-rek
 nana2play.com#%#//scriptlet("set-constant", "link_ads", "emptyObj")
@@ -8541,6 +8577,10 @@ brandbuffet.in.th#@#.category-advertorial
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/94693
+bilutvx.net##.abp-header
+bilutvx.net##.abp-ballon
+||bilutvx.net/wow/img/*.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94584
 vlxx.sex##.ff-banner
 vlxx.sex##div[class^="fads"]
@@ -8572,19 +8612,10 @@ dongphym.com##ins[id^="ccadnet"]
 truyenqq.net###left-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85963
 linkneverdie.net$$script[tag-content="DetecAdBlock"][min-length="500"][max-length="3000"]
-linkneverdie.net#%#//scriptlet("abort-current-inline-script", "$", "/_\$_|_0|^\s*var x0/")
-||player.adtcdn.com/prebidlink/$redirect=nooptext,domain=linkneverdie.net
-||tag.gammaplatform.com^$redirect=nooptext,domain=linkneverdie.net
-||get.optad360.io/*/*/plugin.min.js$script,redirect=nooptext,domain=linkneverdie.net
-||certify-js.alexametrics.com/atrk.js$script,redirect=nooptext,domain=linkneverdie.net
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=nooptext,domain=linkneverdie.net
-@@||static.doubleclick.net/instream/ad_status.js$domain=linkneverdie.net
+linkneverdie.net#%#//scriptlet("abort-current-inline-script", "$", "/^\s*var x0|CheckAnti/")
+||pagead2.googlesyndication.com/pagead/show_ads.js?$domain=linkneverdie.net,redirect=nooptext
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||player.adtcdn.com/prebidlink/453056/hb_323303_10647.js$domain=linkneverdie.net
-@@||get.optad360.io/*/*/plugin.min.js$domain=linkneverdie.net
-@@||certify-js.alexametrics.com/atrk.js$domain=linkneverdie.net
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linkneverdie.net
-@@||tag.gammaplatform.com^$domain=linkneverdie.net
+@@||pagead2.googlesyndication.com/pagead/show_ads.js?$domain=linkneverdie.net
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85123
 vcomic.net##.adpia_banner
