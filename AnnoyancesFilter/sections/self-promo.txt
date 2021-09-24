@@ -49,6 +49,22 @@ disk.yandex.*##.mail360-banner
 !-----------------------------------------------
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/95027
+moeimg.net###overlay_frame
+! https://github.com/AdguardTeam/AdguardFilters/issues/94805
+auctions.yahoo.co.jp##[data-ylk^="rsec:pr_"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/94803
+travel.co.jp##.pr-area
+! self-promo only on some articles
+news.goo.ne.jp##.gn-related-pickup
+! links to native-ad articles
+gamewith.jp##.gdb-advertisement-in-article
+gamewith.jp##.gdb-advertisement-in-article_heading
+! https://github.com/AdguardTeam/AdguardFilters/issues/93357
+niebezpiecznik.pl###main .post > div[class^="entry"] > div[style] > div[style] > a[href^="https://niebezpiecznik.pl/"][href*=".php"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/93909
+gofile.io###mainContent > #ads
+gofile.io##a.mr-1[target="_blank"]
 ! promo on mobile
 eigo.plus###widget-fixed-footer
 dic.pixiv.net###d-sp-itemarticle0
@@ -77,7 +93,7 @@ w3schools.com###getdiploma
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91409
 findamasters.com###ads
 findamasters.com###billboard
-findamasters.com##.inSearchAdRow 
+findamasters.com##.inSearchAdRow
 findamasters.com#%#//scriptlet("set-constant", "AdGlare", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91037
 devops.com##.after-entry > section#custom_html-30
@@ -106,15 +122,15 @@ icy-veins.com##div[class^="premium_banners"]
 gomovies-online.cam##body > div[class^="_"] > div[id^="_"]:only-child > style + div[id^="_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88710
 ! Do not search for the word "Deal"
-winfuture.de#?#.topnews > div:has(span:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro/))
+winfuture.de#?#.topnews > div:has(span:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|nur bis[\s\S]*Euro|günstig/))
 winfuture.de#?#.topnews > div:has(a:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro/))
 winfuture.de##.topnews > .clearfix
-winfuture.de#?#div[class^="hp_"] div:has(> .topteaser:contains(/(Anzeige)|wieder lieferbar|Schnäppchen|sale|An(?<!-)Angebot(?!s)gebot|Rabatt/))
+winfuture.de#?#div[class^="hp_"] div:has(> .topteaser:contains(/(Anzeige)|wieder lieferbar|Schnäppchen|sale|An(?<!-)Angebot(?!s)gebot|Rabatt|nur bis[\s\S]*Euro/))
 winfuture.de##div[class^="hp_"] > div > div[style="display: none !important;"] + .clearfix
 winfuture.de#?#.newsTicker > li:has(> a:contains(/(Anzeige)|Schnäppchen|sale|(?<!-)Angebot(?!s)/))
 winfuture.de#?#.topnews > div[class]:has(> h2 > a[href*="/special/"][href*="/angebote/"])
 m.winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,2}\,[0-9]{1,2} Euro|Chance!/))
-m.winfuture.de#?##main > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|Chance!/))
+m.winfuture.de#?##main > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|für nur [0-9]{1,} Euro|Chance!|günstig/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88649
 netdoktor.de##.ndcustom_ml-teaser_mylife
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88474
@@ -305,7 +321,12 @@ login.yahoo.co.jp###ads
 ! banner https://kakaku.com/item/J0000034135/?lid=pc_prbox01_pc_J0000034135
 ||kakaku.com/script/itemview/RdmReviewAd.js
 kakaku.com#?#.alignC > div.mTop10 > div[style="border:1px solid #ccc;"]:contains(-PR-)
-! https://github.com/AdguardTeam/AdguardFilters/issues/77368#issuecomment-810495081
+! https://github.com/AdguardTeam/AdguardFilters/issues/94502#issuecomment-920307757
+www.kinopoisk.ru##.kinopoisk-header-featured-menu__item
+www.kinopoisk.ru##a[href="https://hd.kinopoisk.ru/?source=kinopoisk_head_button"]
+www.kinopoisk.ru##.desktop-layout-with-sidebar__header a[href^="https://hd.kinopoisk.ru/film/"]
+www.kinopoisk.ru##div[class^="trailer-promo"]
+www.kinopoisk.ru#?#.desktop-layout-with-sidebar__content > div[class]:has(> div[class] a[kind="plus"])
 www.kinopoisk.ru#$?#header[style*="header-height"] > div[class]:has(> a[href*="kinopoisk_selfpromo"]) { display: none !important; }
 www.kinopoisk.ru#$?#header[style*="header-height"] > div[class]:has(> a[href*="kinopoisk_selfpromo"]) + div[class] { margin-top: 0 !important; }
 ! kinopoisk.ru#?#iframe.yandex_music:upward(div.media-post-embed)
@@ -660,9 +681,8 @@ geoguessr.com#$#.game-usps { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28507
 mayoclinic.org##.mayoad
 ! xhamster.com - cameras in category/movie pages
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##.wid-banner-container
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##[class*="cams-widget"]
-xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##div[class*="cams-thumb-"]
+hamsterix.cam,xhplanet1.com,xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##[class*="cams-widget"]
+hamsterix.cam,xhplanet1.com,xhamster13.*,xhamster4.com,xhamster5.desi,xhamster9.com,xhamster.desi,xhamster.one,xhamster.com##div[class*="cams-thumb-"]
 ||img.stripst.com/*/previews$domain=xhamster.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78407
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36686
@@ -680,8 +700,8 @@ reddit.com#?#div[data-testid="frontpage-sidebar"] > div[class]:has(> div[class][
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28066
 reddit.com##.premium-banner-outer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24799
-allkeyshop.com##.bg-link-left
-allkeyshop.com##.bg-link-right
+cdkeyit.it,allkeyshop.com##.bg-link-left
+cdkeyit.it,allkeyshop.com##.bg-link-right
 ! https://github.com/AdguardTeam/AdguardFilters/issues/27079
 techtalk.gfi.com##.ulp-overlay
 techtalk.gfi.com##.ulp-window-container
@@ -860,8 +880,6 @@ mail.yahoo.com#?#div[style="width:640px;height:360px"][id="video-player"]:upward
 ! new interface 'mail.yahoo.com/d/folders/2'
 mail.yahoo.com#?#div[data-test-id="efv-header"] > div[data-test-id="efv-subheader"]:matches-css(font-size:13px)
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/11061
-kinonews.ru##div[style="width:1010px;margin:0 auto;"] > table[style="width:100%;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10746
 sakh.com##.promo-popup
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10455
@@ -968,6 +986,42 @@ experts-exchange.com##.ctaSolutionStickyWrapper
 theguardian.com##.contributions__adblock
 ||contributions.guardianapis.com^
 !
+imusic-school.com##div[id^="Flap-ad-"]
+clipchamp.com#?#header + article > div[class^="sc-"] > div[class] > div[class] > a[href^="https://app.clipchamp.com/"]:upward(1)
+101.ru##a[href="/ads_disable"]
+buscape.com.br#?#ul[class^="Hits_SearchResultList__"] > li[class^="Hits_SearchResultListItem__"]:has(em[data-analytics-element="sponsored"])
+cloud.mail.ru##div[data-qa-tooltip="promotip"]
+pussyspace.*#?##main-area-box div.mainBox:has(> div > h2:contains(Live Cams))
+techkalture.com##.widget_cream-magazine-author-widget
+autotrader.co.uk##li[data-is-promoted-listing="true"]
+autotrader.co.uk##li[data-is-ymal-listing="true"]
+autotrader.co.uk##li[data-is-featured-listing="true"]
+zerkalo.io##script[src*=".zerkalo.io/api?rev=r0~r0~r0~r0"] + div[class^="news-section-"]
+webfx.com##.seo-checker-sidebar-form
+contentkingapp.com##div[data-testid="onboarding-box"]
+contentkingapp.com##div[data-testid="action-sidebar-box"]
+contentkingapp.com##section[data-testid="start-free-trial"]
+intellipaat.com##.recmnd-cours
+intellipaat.com##.tutorial-cta-wrapper
+zerkalo.io##.b-prmplace
+partitionwizard.com##.article-top-banner
+bosco.ru###bosco-magazine-banner
+careeraddict.com##.banner-container
+careeraddict.com##.article-card-banner
+||knowledgecity.com/blog/wp-content/uploads/*/KnowledgeCity-Banner-
+||knowledgecity.com/blog/wp-content/uploads/*/FreeCourses-
+support.microsoft.com###rail-banner
+economist.com##._podcast-promo
+economist.com##._newsletter-promo-container
+laleggepertutti.it##div[style*="background-color: #efbb1b;"][style*="padding: 10px;"][style*="color: #000;"]
+observer-reporter.com##.AdCarousel
+webroot.com###main-header div[class^="left-menu-"] > div[id^="media_image-"]
+ancient-origins.net#?#.region > div.block:has(> div.block-inner a[href^="https://shop.ancient-origins.net/"])
+ancient-origins.net#?#.region > div.block:has(> div.block-inner a[href^="https://members.ancient-origins.net/"])
+askiitians.com##img[src^="/resources/images/fourm-img/advertisement"]
+askiitians.com#$#.headerStrip { margin-top: 0!important; }
+askiitians.com#$##stickyBanner { display: none!important; }
+prepscholar.com##.advertisement-widget
 maximonline.ru,woman.ru,parents.ru,vokrugsveta.ru,psychologies.ru,ellegirl.ru,wday.ru,elle.ru,marieclaire.ru##.sticky-block > div.creative
 ||bostonreview.net/sites/default/files/Side_Column_ad
 dlcompare.com##a[alt="dLcompare extension EN"]
@@ -1085,7 +1139,6 @@ betterhelp.com##.sidebar-cta.hidden-xs
 support.microsoft.com##a[id="buyInstallButton"][data-m*="CatNav_cta_Buy Microsoft 365_nav"]
 futurehosting.com##.blog-product
 belta.by##a[href^="https://yandex.ru/news/"]
-zamunda.ch##.clickads
 diskpart.com##.am-promotion-entry
 diskpart.com##.promo-sidebar
 diskpart.com##.promo-rightbox-mini
