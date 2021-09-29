@@ -2,6 +2,8 @@
 !-------JS----------
 !-------------------
 !
+! skip in-game ad
+simplegame.jp#%#//scriptlet('adjust-setTimeout', 'simplegameAdCountDown', '1000', '0.02')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94170
 resizer.myct.jp#%#AG_onLoad(function() { var el = document.querySelector('body > div[align="center"]'); if(el) { el.innerHTML = el.innerHTML.replace(/スポンサーリンク/g,''); } });
 ! tokyomotion.net ad initiator
@@ -76,6 +78,11 @@ avgle.com#%#//scriptlet('abort-current-inline-script', '__htapop')
 !-------CSS---------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/95936
+duellinks.doorblog.jp#$#.l-sidebar-b[style^="position: fixed"] { position: static!important; }
+duellinks.doorblog.jp#$#.l-sidebar-b > div.plugin-memo { display: none!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/95707
+mainichi.jp#$?#.is-2col.articlelist > li > div[id^="ad-pc-article"]:upward(1)  { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94576
 news.2chblog.jp#$##sub > div.column-inner > div.column-inner-2 > div.plugin-memo:nth-child(-n+2) { display: none!important; }
 news.2chblog.jp#$##sub > div.column-inner > div.column-inner-2 > div.plugin-memo:last-of-type { display: none!important; }
