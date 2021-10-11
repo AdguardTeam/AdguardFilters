@@ -1,6 +1,17 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/96832
+g-pc.info#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=g-pc.info
+! https://github.com/AdguardTeam/AdguardFilters/issues/87846
+musenboya.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+musenboya.com#@#.adsbygoogle
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=musenboya.com
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$domain=musenboya.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95723
 tabtter.jp#@##googlead
 ! health.joyplot.com anti-adb
@@ -102,7 +113,7 @@ manga1000.com#@#iframe[width="300"][height="250"]
 @@||js.ad-stir.com/js/adstir_magnify.js$domain=h-ken.net
 !#endif
 !+ PLATFORM(android)
-h-ken.net#%#//scriptlet("prevent-setTimeout", "adstir_magnify_loaded")
+h-ken.net#%#//scriptlet("abort-current-inline-script", "onload", "ad")
 ! https://github.com/AdguardTeam/AdguardFilters/pull/61513/
 @@||my0nio.seesaa.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60864
