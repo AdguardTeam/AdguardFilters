@@ -11,6 +11,14 @@ tunovelaligera.com#@#iframe[width="728"][height="90"]
 tunovelaligera.com#@#img[width="728"][height="90"]
 !#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/96912
+! TODO: use "prevent-xhr" scriptlet when it will be available
+! stardeos.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+stardeos.com#%#(function(){var b=XMLHttpRequest.prototype.open,c=/pagead2\.googlesyndication\.com/i;XMLHttpRequest.prototype.open=function(d,a){if("GET"===d&&c.test(a))this.send=function(){return null},this.setRequestHeader=function(){return null},console.log("AG has blocked request: ",a);else return b.apply(this,arguments)}})();
+||stardeos.com/_next/static/chunks/pages/_app-*.js$replace=/https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/\//
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,xmlhttprequest,redirect=nooptext,domain=stardeos.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=stardeos.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94485
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=netmovies.com.br
 netmovies.com.br#%#//scriptlet('prevent-fetch', '/adsbygoogle.js')
