@@ -9,6 +9,7 @@ Please answer the following questions for yourself before submitting an issue. *
 
 - [ ] I checked the documentation and found no answer
 - [ ] I checked to make sure that this issue has not already been filed
+- [ ] This is not a ad/bug report
 
 ### Problem Description
 
