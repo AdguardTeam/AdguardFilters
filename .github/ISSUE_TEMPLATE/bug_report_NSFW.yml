@@ -1,0 +1,254 @@
+name: Bug report (NSFW)
+description: Report an issue with filters (NSFW)
+labels: ["Unsorted", "NSFW"]
+# labels: ["A: Bug", "A: By Design", "A: Cannot reproduce", "A: Closed", "A: In progress", "A: Invalid", "A: Problematic", "A: Rejected", "A: Resolved", "A: Won't fix", "Extra", "Extra (zmc)", "Infrastructure", "N: AdGuard Browser Extension", "N: AdGuard Content Blocker", "N: AdGuard DNS", "N: AdGuard for Android", "N: AdGuard for iOS", "N: AdGuard for Mac", "N: AdGuard for Safari", "N: AdGuard for Windows", "N: Other", "NSFW", "P1: Critical", "P2: High", "P3: Medium", "P4: Low", "T: Ads", "T: Annoyance", "T: Anti Adblock Script", "T: Incorrect Blocking", "T: Popups", "T: Social Widget", "T: Stealth Mode issue", "T: Tracker"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: |
+        To avoid invalid reports, please check and confirm following checkboxes.
+        It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of opening an issue using GitHub directly.
+      options:
+        - label: Filters were updated before reproduced an issue;
+          required: true
+        - label: AdGuard product version is up-to-date;
+          required: true
+        - label: Browser version is up-to-date;
+          required: true
+        - label: If the site or app is broken, disabling AdGuard protection resolves an issue.
+          required: true
+  - type: dropdown
+    id: adguards
+    attributes:
+      label: What product do you use?
+      multiple: true
+      options:
+        - AdGuard Browser Extension
+        - AdGuard Content Blocker
+        - AdGuard DNS
+        - AdGuard for Android
+        - AdGuard for iOS
+        - AdGuard for Mac
+        - AdGuard for Safari
+        - AdGuard for Windows
+        - Other ad blocker
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: AdGuard version
+      description: What version of our software are you running?
+      placeholder: ex. 7.7
+    validations:
+      required: true
+
+  - type: dropdown
+    id: what-happened
+    attributes:
+      label: What type of problem have you encountered?
+      description: If the problem does not fall under any category that is listed here, please contact our tech support - support@adguard.com
+      multiple: true
+      options:
+        - Missed ads or ad leftovers
+        - Website or app doesn't work properly
+        - AdGuard gets detected on a website
+        - Social media buttons — share, like, tweet, etc.
+        - Annoyances — pop-ups, cookie warnings, etc.
+        - Missed analytics or tracker
+        - Dangerous site
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers is used?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+        - Yandex Browser
+        - other(specify in comment below)
+        - the problem is with app, not a site
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers_type
+    attributes:
+      label: Which device is used?
+      multiple: false
+      options:
+        - Desktop
+        - Mobile
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Where did you encounter the problem?
+      description: Please enter address of the page or download link of the affected app.
+      placeholder: ex. https://example.com/
+    validations:
+      required: true
+
+  - type: dropdown
+    id: filters
+    attributes:
+      label: What filters do you have enabled?
+      description: Select enabled filters from the list or enter URLs of any custom filters in comment below.
+      multiple: true
+      options:
+        - ---AdGuard filters---
+        - AdGuard Base filter
+        - AdGuard Mobile Ads filter
+        - AdGuard Dutch filter
+        - AdGuard French filter
+        - AdGuard German filter
+        - AdGuard Japanese filter
+        - AdGuard Russian filter
+        - AdGuard Spanish/Portuguese filter
+        - AdGuard Turkish filter
+        - AdGuard Tracking Protection filter
+        - AdGuard URL Tracking filter
+        - AdGuard Social Media filter
+        - AdGuard Annoyances filter
+        - AdGuard DNS filter
+        - AdGuard Experimental filter
+        - Filter unblocking search ads and self-promotion
+        - ---Third-party filters---
+        - EasyList
+        - ABPindo
+        - Bulgarian list
+        - EasyList China
+        - EasyList Czech and Slovak
+        - EasyList Dutch
+        - EasyList Germany
+        - EasyList Hebrew
+        - EasyList Italy
+        - EasyList Lithuania
+        - Latvian List
+        - Liste AR
+        - Liste FR
+        - ROList
+        - EasyPrivacy
+        - Icelandic ABP List
+        - AdBlockID
+        - Greek AdBlock Filter
+        - Fanboy's Annoyances
+        - Fanboy's Social Blocking List
+        - Web Annoyances Ultralist
+        - Thai Ads Filters
+        - Hungarian filter
+        - Peter Lowe's Blocklist
+        - Xfiles
+        - Adblock Warning Removal List
+        - Online Malicious URL Blocklist
+        - Spam404
+        - RU AdList - Counters
+        - ABPVN List
+        - Fanboy's Enhanced Tracking List
+        - Official Polish filters for AdBlock, uBlock Origin & AdGuard
+        - Polish GDPR-Cookies Filters
+        - Estonian List
+        - ChinaList+EasyList
+        - CJX's Annoyances List
+        - Polish Social Filters
+        - Adblock-Persian list
+        - Fanboy's Swedish
+        - AdGuard Chinese filter
+        - Fanboy's Anti-Facebook List
+        - Fanboy's Vietnamese
+        - List-KR
+        - xinggsf
+        - I don't care about cookies
+        - Fanboy's Spanish\/Portuguese
+        - EasyList Spanish
+        - KAD - Anti-Scam
+        - Adblock List for Finland
+        - ROLIST2
+        - Iranian filter
+        - road-block
+        - Polish Annoyances Filters
+        - Polish Anti Adblock Filters
+        - Fanboy's Anti-thirdparty Fonts
+        - BarbBlock
+        - EasyList Cookie List
+        - NoCoin Filter List
+        - Frellwit's Swedish Filter
+        - YousList
+        - AlleBlock
+        - EasyList Polish
+        - Polish Anti-Annoying Special Supplement
+        - Dandelion Sprout's Nordic Filters
+        - Dandelion Sprout's Annoyances List
+        - Legitimate URL Shortener
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stealth
+    attributes:
+      label: What Stealth Mode options do you have enabled?
+      description: Please mark any of these options if you have them enabled in Stealth Mode
+      multiple: true
+      options:
+        - Hide your search queries
+        - Send Do-Not-Track header
+        - Remove X-Client-Data header from HTTP requests
+        - Self-destruction of first-party cookies
+        - Self-destruction of third-party cookies
+        - Disable cache for third-party requests
+        - Block WebRTC
+        - Block Push API
+        - Block Location API
+        - Hide your Referrer from third-parties (specify in comment below, if used custom value)
+        - Hide your User-Agent (specify in comment below, if used custom value)
+        - Hide your IP address (specify in comment below, if used custom value)
+
+  - type: textarea
+    id: comments
+    attributes:
+      label: Add your comment and screenshots
+      description: |
+        0. DO NOT upload screenshots with sexually explicit material on GitHub directly. Instead, upload it to third-party image hosting and post URL here;
+        1. Please add screenshots of the problem. You can attach images by clicking this area to highlight it and then dragging files in or paste images from clipboard;
+           Use `<details> </details>` tag to hide screenshots under the spoiler; 
+        2. Please describe the issue extensively unless it is absolutely clear from the screenshot what the problem is;
+        You can also indicate any other information that you think the developers should know.
+
+        Warning: Please remove private info before upload screenshots!
+      value: |
+          1. <comment>
+          2. Screenshots
+          <details>
+
+          <!-- paste screenshot here -->
+
+          </details>
+
+
+          <details>
+
+          <!-- paste screenshot here -->
+
+          </details>
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Privacy
+      description: By submitting this issue, you agree that report does not contain private info
+      options:
+        - label: I agree to follow this condition
+          required: true
+
