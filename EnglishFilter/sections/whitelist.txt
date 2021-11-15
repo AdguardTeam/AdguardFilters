@@ -4,6 +4,10 @@
 !#########################################
 ! START: Temporary
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/100060
+! already reported to EL
+@@||geoip.redirect-ads.com/js/$script,~third-party
+@@||geoip.redirect-ads.com^$subdocument,third-party
 ! https://github.com/AdguardTeam/PopupBlocker/issues/253
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99369
 @@||koleje-wielkopolskie.com.pl^$extension
@@ -555,7 +559,6 @@ m.moyareklama.ru#@#.single_ad
 @@||an.yandex.ru/system/adfox.js$domain=minsknews.by
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92155
 @@||api.bbc.com/bbcdotcom/assets/*/script/av/emp/adverts.js
-||api.bbc.com/bbcdotcom/assets/*/script/av/emp/adverts.js$important,script,redirect=noopjs
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90874
 ||down-paradise.com^$popup,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90525
@@ -836,14 +839,8 @@ streamsport.icu#@##Ads
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=timesnownews.com
 @@||pubads.g.doubleclick.net/ssai/event/$xmlhttprequest,domain=timesnownews.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70627
-@@||ads.adthrive.com/sites/*/ads.min.js$domain=mediaite.com
 @@||ads.adthrive.com/core/*/js/adthrive.min.js$domain=mediaite.com
 @@||ads.adthrive.com/core/gdpr/vendor/prebid/prebid.min.js$domain=mediaite.com
-||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=mediaite.com
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=mediaite.com
-@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=mediaite.com
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70581
 ! Fixes not working image gallery
 @@||cbsistatic.com/*/js/compiled/siteAdsBidBarrel.js$domain=gamespot.com
@@ -4155,8 +4152,6 @@ ionomusic.com#@#object[width="300"][height="300"]
 @@/adblock.js^$domain=cbs.com
 ! http://forum.adguard.com/showthread.php?3549
 @@_ad_300.$domain=bleacherreport.com
-! http://forum.adguard.com/showthread.php?3423-www-canalplus-fr
-@@||cdn.videoplaza.tv^$domain=canalplus.fr
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/242
 @@||keep.google.com^$jsinject
 @@||omtrdc.net^$domain=amazon.co.uk|amazon.com
