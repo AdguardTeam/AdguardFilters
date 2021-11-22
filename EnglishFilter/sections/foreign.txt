@@ -3841,7 +3841,9 @@ gizchina.it##.mrf-adv__wrapper
 ||altadefinizioneita.co/it.gif
 altadefinizioneita.co##noindex > center > a[target="_blank"][rel="nofollow"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85205
-gazzetta.it##.bck-adv
+! https://github.com/AdguardTeam/AdguardFilters/issues/100502
+corriere.it,gazzetta.it##.bck-adv
+corriere.it#$#.fxr-between-center > .bck-adv { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85528
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 ||ivg.it/wp-content/plugins/edinet_giornali_swg_plugin/js/ackdet.js
@@ -5550,6 +5552,13 @@ mlbpark.donga.com##div[class^="ad_con"]
 !------------------------------ Latvian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/99686
+cloudycdn.services#%#//scriptlet("json-prune", "source.ads")
+||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=cloudycdn.services
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||1188lv.adocean.pl/*ad.xml$domain=embed.cloudycdn.services
+@@||1188lv.adocean.pl/files/*.mp4$domain=embed.cloudycdn.services
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92122
 vipi.tv###top-banner
 @@||vipi.tv/ads.js
@@ -6059,6 +6068,8 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/99560
+@@||olx.org/ads/offer-eligibility$domain=olx.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99687
 tabletowo.pl##.tabad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100262
@@ -6498,6 +6509,7 @@ darmowa-tv.ws#%#//scriptlet("abort-on-property-read", "daau_app")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81433
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67612
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67039
+interia.pl#$#.section-wz[data-iwa-block="wz-news"] .ad-container { display: block !important; visibility: hidden !important; }
 interia.pl##a[href][target="_blank"][onclick*="&creation="] > img[onload*="onDetected"]
 interia.pl#?#section > div[style^="padding-top: 25px;border-top:"] > a[href][target="_blank"][onclick*="&creation="] > img[onload*="onDetected"]:upward(2)
 interia.pl##.main-sidebar a[href][target="_blank"][onclick*="&creation="]
@@ -6634,8 +6646,6 @@ trojmiasto.pl#%#//scriptlet("abort-on-property-read", "adBlockDetected")
 resetoff.pl#%#//scriptlet("set-constant", "ads_unblocked", "true")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||resetoff.pl/static/js/application/views/advertise/Advertise_view.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/88202
-edziecko.pl#$#html > body[id^="pageTypeId_"] { padding-top: 50px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99424
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90230
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76916
@@ -6646,7 +6656,7 @@ domiporta.pl##.sponsored_article
 tuba.pl##.ban001_wrap
 gazeta.pl##div[id^="DFP-007-CONTENTBOARD"]
 sport.pl,gazeta.pl##.bottom_section > .promo-mg
-sport.pl,gazeta.pl##.DFP-premiumBoardReservedPlace
+edziecko.pl,sport.pl,gazeta.pl##.DFP-premiumBoardReservedPlace
 edziecko.pl,plotek.pl,domiporta.pl,haps.pl,moto.pl##.banIndexDFP
 plotek.pl,domiporta.pl,haps.pl,edziecko.pl,czterykaty.pl,tuba.pl,sport.pl,tokfm.pl,moto.pl,gazeta.pl##div[id^="adsMidboardDivId_"]
 plotek.pl,domiporta.pl,haps.pl,edziecko.pl,czterykaty.pl,tuba.pl,sport.pl,tokfm.pl,moto.pl,gazeta.pl##.ban001_wrapper
