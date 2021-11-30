@@ -7,6 +7,8 @@
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
 ||rover.ebay.$image,object,script,badfilter
 !
+! https://www.reddit.com/r/uBlockOrigin/comments/r4z0zj/how_to_unblock_elements_tweets_blocked_by_jsnofloc/
+@@||googletagmanager.com/gtm.js$script,domain=insideevs.com
 ! https://github.com/uBlockOrigin/uAssets/issues/10629
 ||cxense.com/cx.js$script,redirect=noopjs,domain=nlab.itmedia.co.jp,important
 @@||cxense.com/cx.js$domain=nlab.itmedia.co.jp
@@ -1294,9 +1296,16 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46437
 !+ PLATFORM(ext_safari, ios)
 @@||wfpscripts.webspectator.com/bootstrap/$script,domain=gpfans.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/101200
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46273
-@@||gapl.hit.gemius.pl/gplayer.js$domain=player.antyradio.pl
-@@||hit.gemius.pl/*gemius.js$domain=player.antyradio.pl
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||gemius.pl/gstream.js$script,redirect=noopjs,domain=player.antyradio.pl|player.radiozet.pl|player.chillizet.pl|player.meloradio.pl
+||gapl.hit.gemius.pl/gplayer.js$script,redirect=noopjs,domain=player.antyradio.pl|player.radiozet.pl|player.chillizet.pl|player.meloradio.pl
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+@@||gemius.pl/gstream.js$domain=player.antyradio.pl|player.radiozet.pl|player.chillizet.pl|player.meloradio.pl
+@@||gapl.hit.gemius.pl/gplayer.js$domain=player.antyradio.pl|player.radiozet.pl|player.chillizet.pl|player.meloradio.pl
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46563
 @@||google-analytics.com/analytics.js$domain=dmax.com.tr
 @@||googletagmanager.com/gtm.js^$domain=dmax.com.tr
@@ -3126,7 +3135,6 @@ mozilla-russia.org#@#img[width="88"][height="31"]
 ! Latvian
 @@/webtracking/*$domain=pasts.lv
 ! Polish
-@@||gemius.pl/gstream.js
 @@||kropka.onet.pl^*/onet.js$domain=tvnwarszawa.pl
 @@||tablica.pl^*/xtcore.js
 ! Portuguese
