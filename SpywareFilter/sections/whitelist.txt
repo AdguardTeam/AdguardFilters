@@ -1,12 +1,31 @@
 !
 !
-! TEMPORARY
+!### Temporary ###
 ! https://github.com/AdguardTeam/Scriptlets/issues/141#issuecomment-921042595
 ! Add redirect rule once Fingerprint2 surrogate script become fully available.
 @@||cloudflare.com/ajax/libs/fingerprintjs2/$script,domain=gamebox.gesoten.com
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
 ||rover.ebay.$image,object,script,badfilter
+!#################
 !
+!
+! metrika-yandex - common exceptions for tag.js, watch.js
+! For all platforms. If you add a domain here, you should also report https://github.com/AdguardTeam/Scriptlets/issues
+! https://github.com/AdguardTeam/Scriptlets/issues/163
+! https://github.com/AdguardTeam/Scriptlets/issues/164
+! https://github.com/AdguardTeam/Scriptlets/issues/165
+@@||mc.yandex.ru/metrika/tag.js$domain=coddyschool.com
+@@||mc.yandex.ru/metrika/watch.js$domain=tv.yandex.*|auth.wi-fi.ru
+!
+! For platforms which do not support $redirect rules
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||mc.yandex.ru/metrika/tag.js$domain=7flowers.ru
+!@@||mc.yandex.ru/metrika/watch.js$domain=
+!#endif
+!
+!
+! https://github.com/easylist/easylist/pull/9930
+@@||muumuu-domain.com/common/js/ga_social_tracking.js
 ! cw.com.tw - incorrect blocking - fixing video player (at the bottom)
 ! Example link - https://www.cw.com.tw/article/5119022
 !+ PLATFORM(ios, ext_android_cb)
@@ -48,9 +67,6 @@ cyber.dabamos.de#@#img[width="88"][height="31"]
 pizzakiosk.ee#@#img[width="88"][height="31"]
 ! unbreak https://ozerki.ru/catalog/?q=%D0%BF%D0%B0%D1%80%D0%B0%D1%86%D0%B5%D1%82%D0%B0%D0%BC%D0%BE%D0%BB
 @@||cdn.retailrocket.*/*/tracking.js$domain=ozerki.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/98171
-@@||mc.yandex.ru/metrika/tag.js$domain=7flowers.ru
-||mc.yandex.ru/metrika/tag.js$script,redirect=metrika-yandex-watch,domain=7flowers.ru,important
 ! Vodafone app - error when viewing detail
 @@||dpm.demdex.net^$app=com.appseleration.android.selfcare
 ! ! https://github.com/AdguardTeam/Scriptlets/issues/160
@@ -74,8 +90,6 @@ pizzakiosk.ee#@#img[width="88"][height="31"]
 @@||cdn.mxpnl.com/libs/mixpanel-*-latest.min.js$domain=everydaykoala.com|sportzbonanza.com
 @@||certify-js.alexametrics.com/atrk.js$domain=wallpaperdata.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/97142
-@@||mc.yandex.ru/metrika/watch.js$domain=fotostars.me
 ! welt.de - broken "News aus der Redaktion" https://github.com/AdguardTeam/AdguardFilters/issues/98289
 @@||cdn.taboola.com/libtrc/axelspringer-dieweltprojectberlin/loader.js$domain=welt.de
 @@||cdn.taboola.com/libtrc/impl.*.js$domain=welt.de
@@ -618,8 +632,6 @@ demae-can.com#%#//scriptlet('remove-attr', 'data-trm-action|data-trm-category|da
 @@||google-analytics.com/analytics.js$domain=elektrikmen.com
 ! fix msi reward program join button
 @@||googletagmanager.com/gtm.js$domain=rewards.msi.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/71501
-@@||mc.yandex.ru/metrika/tag.js$domain=stopgame.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72114
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||google-analytics.com/analytics.js$domain=world4.eu
@@ -627,9 +639,6 @@ demae-can.com#%#//scriptlet('remove-attr', 'data-trm-action|data-trm-category|da
 @@||d2.alternativeto.net/dist/*/piwik_*.png
 ! https://github.com/AdguardTeam/AdguardFilters/issues/71401
 @@||mc.yandex.ru/watch/$xmlhttprequest,domain=mtstv.mts.ru
-@@||mc.yandex.ru/metrika/tag.js$domain=mtstv.mts.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/72131
-@@||mc.yandex.ru/metrika/watch.js$domain=stylenews.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/71786
 @@||assets.adobedtm.com/*/satelliteLib-*.js$domain=docs.nvidia.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/71368
@@ -688,9 +697,6 @@ demae-can.com#%#//scriptlet('remove-attr', 'data-trm-action|data-trm-category|da
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69907
 @@||googletagmanager.com/gtag/js?id=$domain=view.epageview.com
 ||googletagmanager.com/gtag/js?id=$script,other,redirect=noopjs,domain=view.epageview.com,important
-! https://github.com/AdguardTeam/AdguardFilters/issues/69890
-||google-analytics.com/analytics.js$script,redirect=google-analytics,domain=naujasis.lrytas.lt,important
-@@||google-analytics.com/analytics.js$domain=naujasis.lrytas.lt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69857
 ||google-analytics.com/analytics.js$script,redirect=google-analytics,domain=chess24.com,important
 @@||google-analytics.com/analytics.js$domain=chess24.com
@@ -741,8 +747,6 @@ nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97735
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67101
 @@||ia.hit.interia.pl/*/date?$domain=interia.pl
-! https://github.com/AdguardTeam/AdguardFilters/issues/67061
-@@||mc.yandex.ru/metrika/tag.js$domain=iz.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67051
 @@||stat.sputnik.ru/cnt.js$domain=krskstate.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67068
@@ -811,8 +815,6 @@ nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnm
 ||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=straitstimes.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64772
 @@||cdn.optimizely.com/js/*.js$domain=ruggable.com
-! lk.gosuslugi.ru - fixed a click on columns in the top
-@@||mc.yandex.ru/metrika/tag.js$domain=lk.gosuslugi.ru
 ! https://forum.adguard.com/index.php?threads/piano-io-tinypass-com.39875/
 @@||googletagmanager.com/gtm.js$domain=thecompanion.app
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79410
@@ -958,8 +960,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||googletagmanager.com/gtm.js$domain=cildimveben.com
 @@||google-analytics.com/analytics.js$domain=cildimveben.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/59959
-@@||mc.yandex.ru/metrika/watch.js$domain=xn--80awafglm0a6dza.xn--p1ai
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59958
 @@||static.klaviyo.com/onsite/js/klaviyo.js$domain=bunkerbranding.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59919
@@ -1036,8 +1036,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||google-analytics.com/analytics.js$domain=4kdownload.com
 @@||google-analytics.com/gtm/js$domain=4kdownload.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/56963
-@@||mc.yandex.ru/metrika/tag.js$domain=salonveronika.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56840
 @@||googletagmanager.com/gtm.js$domain=vw-sklep.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56863
@@ -1112,8 +1110,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||googletagmanager.com/gtm.js$domain=tlctv.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53758
 @@||ipcheck.tmgrup.com.tr/ipcheck/getcountry?json=$xmlhttprequest,domain=ahaber.com.tr
-! https://github.com/AdguardTeam/AdguardFilters/issues/53442
-@@||mc.yandex.ru/metrika/tag.js$domain=coddyschool.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53129
 !+ PLATFORM(ios, android, ext_android_cb)
 @@||www.googletagmanager.com/gtm.js$script,domain=book.impress.co.jp
@@ -1122,7 +1118,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||google-analytics.com/gtm/js^$domain=waipu.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53007
 @@||googletagmanager.com/gtag/js$domain=riamo.ru
-@@||mc.yandex.ru/metrika/tag.js$domain=riamo.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52930
 @@||google-analytics.com/analytics.js$domain=home24.de
 @@||google-analytics.com/gtm/js?id=$domain=home24.de
@@ -1145,9 +1140,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||googletagmanager.com/gtm.js$domain=plus.net
 ! polskapress.pl - broken video player
 @@||googletagmanager.com/gtm.js$domain=dziennikbaltycki.pl|dzienniklodzki.pl|dziennikpolski24.pl|dziennikzachodni.pl|echodnia.eu|expressbydgoski.pl|expressilustrowany.pl|gazetakrakowska.pl|gazetalubuska.pl|gazetawroclawska.pl|gk24.pl|gloswielkopolski.pl|gp24.pl|gs24.pl|kurierlubelski.pl|nowiny24.pl|nowosci.com.pl|nto.pl|pomorska.pl|poranny.pl|to.com.pl|wspolczesna.pl|polskatimes.pl|sportowy24.pl|strefaagro.pl|strefabiznesu.pl|stronakobiet.pl|gol24.pl|gra.pl|naszemiasto.pl|miastakobiet.pl|stronazdrowia.pl
-! https://github.com/AdguardTeam/AdguardFilters/issues/51954
-@@||google-analytics.com/analytics.js$domain=siberianhealth.com
-||google-analytics.com/analytics.js$domain=siberianhealth.com,redirect=google-analytics,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52233
 @@||static.klaviyo.com/onsite/js/klaviyo.js$domain=complyfoam.com
 @@||a.klaviyo.com/onsite/api/*/modules?company_id=$domain=complyfoam.com
@@ -1175,8 +1167,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||p.typekit.net/*.css$domain=store.steampowered.com|nejm.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50865
 @@||bose.tt.omtrdc.net/*/bose/mbox/json?$domain=bose.fr
-! https://github.com/AdguardTeam/AdguardFilters/issues/50820
-@@||mc.yandex.ru/metrika/watch.js$domain=lingvasto.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50693
 @@||googletagmanager.com/gtm.js$domain=realestate.co.nz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50136
@@ -1200,8 +1190,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||googletagmanager.com/gtm.js$domain=teddyfood.com
 @@||google-analytics.com/analytics.js$domain=teddyfood.com
 @@||google-analytics.com/plugins/ua/ec.js$domain=teddyfood.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/49992
-@@||mc.yandex.ru/metrika/tag.js$domain=kuchenland.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48961
 @@||analytics.edgekey.net/ma_library/html5/html5_malibrary.js$domain=mxplayer.in
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48777
@@ -1225,8 +1213,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||googletagmanager.com/gtm.js$domain=beterbed.nl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47512
 @@||mtdataweb1.supertaxi.com/webclient/Scripts/tracking/tracking.js
-! yaplakal.com - fixing loading new posts
-@@||mc.yandex.ru/metrika/watch.js$domain=yaplakal.com|yap.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48385
 @@||dw.cbsi.com/anonc.js$domain=cbs.com
 @@||googletagmanager.com/gtag/js$domain=nbc.com
@@ -1239,9 +1225,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@/track?*&ref=$~script,~xmlhttprequest,~other,~image
 @@/track_click?$~script,~xmlhttprequest,~other,~image
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/48215
-@@||google-analytics.com/gtm/js?id=$domain=15min.lt
-@@||google-analytics.com/analytics.js$domain=15min.lt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48066
 @@||t2.hulu.com/*/adinteraction^$domain=player.hulu.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48010
@@ -1450,8 +1433,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||ups.com/*/tracking.cgi
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39051
 @@||cdn.segment.com/analytics.js/*/analytics.min.js$domain=surfline.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/38938
-@@||mc.yandex.ru/metrika/watch.js$domain=istiklal.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38393
 @@||smp.sankei.co.jp/js/analytics/skd.Analysis.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37935
@@ -1620,9 +1601,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33627#issuecomment-546462756
 @@||google-analytics.com/analytics.js$domain=atv.com.tr
 @@||ipcheck.tmgrup.com.tr/ipcheck/get$domain=atv.com.tr
-! https://github.com/AdguardTeam/AdguardFilters/issues/30253
-@@||mc.yandex.ru/metrika/watch.js$domain=woman.ru
-@@||mc.yandex.ru/metrika/tag.js$domain=woman.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30291
 @@||googletagmanager.com/gtm.js$domain=jbc.be
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30136
@@ -1725,8 +1703,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||inpref.com/messageApi?
 @@||inpref.s3.amazonaws.com/frosmo.easy.js$third-party
 @@||inpref.s3.amazonaws.com/sites/eventim_$script,third-party
-! https://github.com/AdguardTeam/AdguardFilters/issues/24117
-@@||mc.yandex.ru/metrika/watch.js$domain=medyaradar.com
 ! hub.docker.com
 @@||googletagmanager.com/gtm.js$domain=hub.docker.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23481
@@ -1751,12 +1727,8 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||static.parsely.com/p.js$domain=nfl.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22580
 @@||pleisty.com^$domain=evomag.ro
-! https://github.com/AdguardTeam/AdguardFilters/issues/22506
-@@||mc.yandex.ru/metrika/watch.js$domain=2mb.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21643
 @@||googletagmanager.com/gtm.js^$domain=myaccount.healthypawspetinsurance.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/22152
-@@||mc.yandex.ru/metrika/watch.js$domain=zaycev.fm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22202
 @@||gatr.hit.gemius.pl/xgemius.js$domain=f5haber.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21840
@@ -1765,9 +1737,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||googletagmanager.com/gtm.js^$domain=raywhitepakenham.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21749
 @@||cdn.segment.com/analytics.js^$domain=creativemarket.com
-! fixing levelkitchen order page
-@@||mc.yandex.ru/metrika/watch.js$domain=levelkitchen.com
-@@||mc.yandex.ru/metrika/tag.js$domain=levelkitchen.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21457
 @@||collect.igodigital.com/collect.js$domain=vitalsource.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19888#issuecomment-415859556
@@ -1815,8 +1784,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20391
 @@||google-analytics.com/analytics.js$domain=earthclassmail.com
 @@||google-analytics.com/plugins/ua/ec.js$domain=earthclassmail.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/19887
-@@||mc.yandex.ru/metrika/watch.js$domain=iz.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19787
 @@||optimizely.com/js/geo2.js$domain=cbs.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19699
@@ -1904,9 +1871,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15837
 @@||ee.hit.gemius.pl/gplayer.js$domain=tv3play.tv3.ee
 @@||google-analytics.com/analytics.js$domain=tv3play.tv3.ee
-! https://github.com/AdguardTeam/AdguardFilters/issues/15609
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||mc.yandex.ru/metrika/watch.js$domain=venalia.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15723
 @@||google-analytics.com/ga.js$domain=justsystems.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15333
@@ -1932,9 +1896,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||google-analytics.com/analytics.js$domain=raspberrypi.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14857
 @@||google-analytics.com/analytics.js$domain=pluto.tv
-! https://github.com/AdguardTeam/AdguardFilters/issues/14652
-!+ NOT_OPTIMIZED PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||mc.yandex.ru/metrika/watch.js$domain=добрынинский.рф
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14426
 @@||api.cxense.com/public/widget/data?json=$domain=lavoz.com.ar
 @@||cdn.cxense.com/cx.js$domain=lavoz.com.ar
@@ -2011,8 +1972,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||cdn.optimizely.com/js/8143030612.js$domain=bestbuy.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11580
 @@||google-analytics.com/analytics.js$domain=sms-receive.net
-! https://github.com/AdguardTeam/AdguardFilters/issues/11527
-@@||mc.yandex.ru/metrika/watch.js$domain=nsk-kvartal.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11568
 @@||cloudfront.net/opentag*.js$domain=telegraph.co.uk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11482
@@ -2137,8 +2096,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6883
 !+ PLATFORM(ios, ext_android_cb, android)
 @@||googletagmanager.com/gtm.js^$domain=crunchbase.com
-! auth.wi-fi.ru - auth is broken
-@@||mc.yandex.ru/metrika/watch.js$domain=auth.wi-fi.ru
 ! https://forum.adguard.com/index.php?threads/25253/
 @@||googletagmanager.com/gtm.js^$domain=asus.com
 ! https://forum.adguard.com/index.php?threads/25066/
@@ -2158,10 +2115,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5839
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||rover.ebay.com.au^*&cguid=$domain=ebay.com.au
-!
-! http://forum.ru-board.com/topic.cgi?forum=2&topic=5372&start=420#3
-!+ NOT_PLATFORM(windows, mac, android, ext_safari)
-@@||mc.yandex.ru/metrika/watch.js$domain=samozapis-spb.ru
 !
 ! lenta.ru, championat.com, afisha.ru - broken pages
 !+ NOT_PLATFORM(windows, mac, android)
@@ -2239,18 +2192,12 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||googletagmanager.com/gtm.js?$domain=mac-torrent-download.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5034
 @@||cdn.krxd.net/amp/remote.min.js$domain=static.telegraph.co.uk
-! news.rambler.ru - broken video player
-@@||mc.yandex.ru/metrika/watch.js$domain=news.rambler.ru
 ! mercedes-benz.de - broken page
 @@||places.mercedes-benz.com/*/adrum.js
-! m.lenta.ru - broken video player
-@@||mc.yandex.ru/metrika/watch.js$domain=lenta.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4910
 @@||mobile.flypgs.com/tealeaf.js
 ! https://forum.adguard.com/index.php?threads/21289/
 @@||boxberry.ru/tracking.service^
-! https://github.com/AdguardTeam/AdguardFilters/issues/4895
-@@||mc.yandex.ru/metrika/watch.js$domain=tickets.fc-zenit.ru
 ! https://forum.adguard.com/index.php?threads/20609/
 @@||liveinternet.ru/code$generichide,genericblock,domain=liveinternet.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4864
@@ -2329,10 +2276,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||analytics.edgesuite.net/config/beacon-*.xml$domain=video.foxnews.com|video.foxbusiness.com
 @@||analytics.edgesuite.net/html5/akamaihtml$domain=video.foxnews.com|video.foxbusiness.com
 @@||revsci.net/*/pcx.js?csid=$script,domain=video.foxnews.com|video.foxbusiness.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/3683
-@@||mc.yandex.ru/metrika/watch.js$domain=лидер-качества.рф
-! https://forum.adguard.com/index.php?threads/16836/
-@@||mc.yandex.ru/metrika/watch.js$domain=stopgame.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3417
 @@||metrics.consumerreports.org/b/ss/cuglobal/
 ! https://forum.adguard.com/index.php?threads/16053/
@@ -2381,8 +2324,6 @@ epicwow.com#@#img[width="88"][height="31"]
 @@||track.atom-data.io/report$domain=russian.rt.com
 ! https://forum.adguard.com/index.php?threads/13697/
 @@||googletagmanager.com/gtm.js$domain=tehnosila.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/2878
-@@||mc.yandex.ru/metrika/watch.js$domain=optbaza.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2874
 @@||googletagmanager.com/gtm.js$domain=forum.worldoftanks.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2873
@@ -2398,8 +2339,6 @@ epicwow.com#@#img[width="88"][height="31"]
 ! https://forum.adguard.com/index.php?threads/12020/
 @@||nmac.to/cdn-cgi/pe/bag2?r[]=*google-analytics.com
 @@||nmac.to/cdn-cgi/pe/bag2?r[]=*histats.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/2759
-@@||mc.yandex.ru/metrika/watch.js$domain=bombcat.ru
 ! https://forum.adguard.com/index.php?threads/12362/
 ! Fixing double loading
 @@||cdn.tt.omtrdc.net/cdn/target.js
@@ -2424,8 +2363,6 @@ epicwow.com#@#img[width="88"][height="31"]
 @@||partner.googleadservices.com/gpt/pubads_impl_$domain=ukr.net
 ! Fixing endless loding, caused by blocking of optimizely.com
 @@||cdn.optimizely.com/js/*.js$domain=ns.nl|compassion.com|creditsesame.com|forbes.com|freeshipping.com|heroku.com|hotukdeals.com|imageshack.com|lifelock.com|malwarebytes.org|policymic.com|ricardo.ch|spotify.com|techrepublic.com|zdnet.com|olx.ua|casper.com|dubizzle.com|pullandbear.com
-! smartresponder.ru broken registration form
-@@||mc.yandex.ru/metrika/watch.js$domain=smartresponder.ru
 ! https://forum.adguard.com/index.php?threads/11245/
 @@||apple.com/metrics/ac-analytics/*/scripts/$domain=apple.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1355
@@ -2466,8 +2403,6 @@ epicwow.com#@#img[width="88"][height="31"]
 @@||static.chartbeat.com/js/chartbeat_mab.js$domain=usatoday.com
 ! http://forum.adguard.com/showthread.php?9779
 @@||cntcerber.rambler.ru/counter.js$domain=id.rambler.ru
-! http://forum.adguard.com/showthread.php?9607
-@@||mc.yandex.ru/metrika/watch.js$domain=f5haber.com
 ! http://forum.adguard.com/showthread.php?9564
 @@||omtrdc.net^$domain=geico.com
 ! http://forum.adguard.com/showthread.php?9564
@@ -2488,8 +2423,6 @@ epicwow.com#@#img[width="88"][height="31"]
 @@||zdbb.net/r/?*&mailing
 ! https://www.tinkoff.ru/cardtocard/
 @@||tinkoffcreditsystems.d3.sc.omtrdc.net/b/ss/$domain=tinkoff.ru
-! iguides.ru - fixing loading when scrolled to the end of the page
-@@||mc.yandex.ru/metrika/watch.js$domain=iguides.ru
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1289
 @@||googletagmanager.com/gtm.js?$domain=renault.ua
 ! http://forum.adguard.com/showthread.php?4339
