@@ -634,6 +634,10 @@ smallseotools.com#@#.adsbygoogle
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/101894
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=games.miamiherald.com
+games.miamiherald.com#@#display-ad-component
+games.miamiherald.com#%#//scriptlet("adjust-setInterval", "game will", "", "0.02")
 ! https://github.com/uBlockOrigin/uAssets/issues/10745
 pdfaid.com#%#//scriptlet("prevent-setTimeout", ".offsetHeight")
 pdfaid.com#@#.googleads
@@ -7015,11 +7019,16 @@ intercelestial.com##.swal2-container
 @@||vcstream.to^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28391
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18113
-facebook.com,facebookcorewwwi.onion#@#.AdBox
-facebook.com,facebookcorewwwi.onion#@#.Ad
-facebook.com,facebookcorewwwi.onion#@#.advert
-facebook.com,facebookcorewwwi.onion#@#.post-ads
-facebook.com,facebookcorewwwi.onion#$#body > .AdBox.Ad.advert { display:block!important; }
+!#if (adguard_ext_android_cb || adguard_app_ios)
+@@||facebook.com^$generichide
+@@||facebookcorewwwi.onion^$generichide
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+facebook.com,facebookcorewwwi.onion#$#body > .AdBox.Ad.advert { display: block !important; }
+facebook.com,facebookcorewwwi.onion#$#body > .AdBox.Ad.advert ~ div[class] { display: block !important; }
+!#endif
+!+ NOT_PLATFORM(ext_ff)
+||facebook.com/rsrc.php/*/3a2mtnxi5mC.js$replace=/g\.show=a//
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17252
 @@||maps4heroes.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17316
