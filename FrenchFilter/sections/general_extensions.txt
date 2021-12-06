@@ -37,6 +37,14 @@ actu17.fr#%#//scriptlet("abort-on-property-write", "td_ad_background_click_link"
 jacquieetmicheltv.net#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/target_url/.test(a)){ _st(a,b);}};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83543
 canalplus.com#%#//scriptlet('set-constant', '__data.application.settings.featPlayerAds', 'false')
+! https://github.com/AdguardTeam/AdguardFilters/issues/100525
+prod-player.tf1.fr#%#(function(){let callCounter=0;const nativeJSONParse=JSON.parse;const handler={apply(){callCounter++;const obj=Reflect.apply(...arguments);if(callCounter<=10){if(obj.hasOwnProperty('env')&&obj.env.hasOwnProperty('origin')){if(!obj.hasOwnProperty('ads')){obj.ads={};}obj.ads.enable=false;obj.ads._prerolls=false;obj.ads._midrolls=false;}}else{JSON.parse=nativeJSONParse;}return obj;}};JSON.parse=new Proxy(JSON.parse,handler);})();
+! TODO: Change AG_defineProperty to scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithForm', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithImage', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithScript', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.sendAdRequestWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
 ! http://forum.adguard.com/showthread.php?6907
 generation-nt.com#%#Object.defineProperty(window, 'AdvertBay', { get: function() { return []; } });
 !
