@@ -7032,15 +7032,18 @@ intercelestial.com##.swal2-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17447
 !+ PLATFORM(ios, ext_android_cb)
 @@||vcstream.to^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/92570#issuecomment-989634249
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28391
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18113
 !#if (adguard_ext_android_cb || adguard_app_ios)
 @@||facebook.com^$generichide
-@@||facebookcorewwwi.onion^$generichide
 !#endif
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-facebook.com,facebookcorewwwi.onion#$#body > .AdBox.Ad.advert { display: block !important; }
-facebook.com,facebookcorewwwi.onion#$#body > .AdBox.Ad.advert ~ div[class] { display: block !important; }
+! TODO: replace these rules with those that are commented below after the release of the extension 4.0
+![$domain=facebook.com,path=/adsmanager]#$#body { display: block !important; }
+![$domain=facebook.com,path=/adsmanager]#$#body > .AdBox.Ad.advert ~ div[class] { display: block !important; }
+facebook.com#$#body > .AdBox.Ad.advert { display: block !important; }
+facebook.com#$#body > .AdBox.Ad.advert ~ div[class]:not([class*="__fb-"]):not(:last-child) { display: block !important; }
 !#endif
 !+ NOT_PLATFORM(ext_ff)
 ||facebook.com/rsrc.php/*/3a2mtnxi5mC.js$replace=/g\.show=a//
