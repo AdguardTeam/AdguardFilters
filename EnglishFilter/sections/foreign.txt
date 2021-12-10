@@ -1754,6 +1754,8 @@ viafree.dk,viafree.fi,viafree.no,viafree.se##.pause-ad
 @@||v.fwmrm.net/crossdomain.xml$domain=viafree.dk|viafree.fi|viafree.no|viafree.se
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72746
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100957
+! TODO: remove JS rule when prevent-xhr scriptlet will be available
+viafree.*#%#(function(){var b=XMLHttpRequest.prototype.open,c=/freewheel-mtgx-tv\.akamaized\.net/i;XMLHttpRequest.prototype.open=function(d,a){if("HEAD"===d&&c.test(a))this.send=function(){return null},this.setRequestHeader=function(){return null},console.log("AG has blocked request: ",a);else return b.apply(this,arguments)}})();
 viafree.*#%#//scriptlet('prevent-xhr', 'freewheel-mtgx-tv.akamaized.net')
 @@||fwmrm.net/crossdomain.xml$xmlhttprequest,domain=viafree.dk
 ||freewheel-mtgx-tv.akamaized.net^$media,redirect=noopmp4-1s,domain=viafree.*
