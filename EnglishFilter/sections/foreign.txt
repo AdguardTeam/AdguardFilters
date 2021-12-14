@@ -113,7 +113,7 @@ octanime.net##.adsense_section
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82841
 alrakoba.net##.stream-item-widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81533
-||googletagmanager.com/gtag/js$redirect=nooptext,important,domain=rotana.net
+||googletagmanager.com/gtag/js$script,redirect=noopjs,important,domain=rotana.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81136
 @@||almayadeen.net/Content/VideoJS/js/videoPlayer/VideoAds.js$domain=almayadeen.net
 almayadeen.net#%#//scriptlet("set-constant", "videojsIma", "noopFunc")
@@ -229,7 +229,7 @@ orangespotlight.com#%#//scriptlet("abort-on-property-read", "adBlockDetected")
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=orangespotlight.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48622
 !+ NOT_PLATFORM(ext_edge, ios, ext_android_cb, ext_safari)
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=nooptext,domain=animesanka.com
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=animesanka.com
 !+ PLATFORM(ext_edge, ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=animesanka.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45355
@@ -967,6 +967,10 @@ olke.az#$#.wrapper { top: 0!important; }
 !------------------------------ Bulgarian ----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102223
+@@||filmisub.com/templates/filmisub/adblock/adframe.ad-target.js
+filmisub.com#%#//scriptlet("set-constant", "noAdBlock", "true")
+filmisub.com#%#//scriptlet("set-constant", "adsNotBlocked", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101488
 kinofen.net#%#//scriptlet("set-constant", "noAdBlock", "true")
 @@||kinofen.net/templates/kinofen/adblock/*.js
@@ -1145,6 +1149,13 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102378
+parlamentnilisty.cz##.aoad
+parlamentnilisty.cz#%#//scriptlet("set-constant", "AdTrack", "emptyObj")
+!+ PLATFORM(ios, ext_android_cb)
+@@||trackad.cz/adtrack.php$domain=parlamentnilisty.cz
+! https://github.com/AdguardTeam/AdguardFilters/issues/102320
+sport.cz#@#.ad_hr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98558
 karaoketexty.cz##.ad_notice1
 karaoketexty.cz#$##ad_leader_wrapper { min-height: 50px !important; }
@@ -1158,7 +1169,7 @@ najserialy.to#@#[id^="etarget"]
 najserialy.to#%#AG_onLoad(function() {var b=new MutationObserver(function() {var c=document.querySelector('div[id="etarget-hb-wrap"] > div.close-ad'); c&&(b.disconnect(),c.click()) });b.observe(document, {childList: !0,subtree: !0});setTimeout(function() {b.disconnect()}, 2E4)});
 najserialy.to#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96840
-||trackad.cz/adtrack.php$script,other,redirect=nooptext,domain=nova.cz
+||trackad.cz/adtrack.php$script,other,redirect=noopjs,domain=nova.cz
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||trackad.cz/adtrack.php$domain=nova.cz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95920
@@ -1304,7 +1315,7 @@ freeserial.to##div[class^="reklama"]
 freeserial.to##div[class^="adv"]
 freeserial.to##a[href^="https://s.click.aliexpress.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65452
-||trackad.cz/adtrack.php$script,other,redirect=nooptext,domain=markiza.sk
+||trackad.cz/adtrack.php$script,other,redirect=noopjs,domain=markiza.sk
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||trackad.cz/adtrack.php$domain=markiza.sk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65003
@@ -1748,6 +1759,8 @@ viafree.dk,viafree.fi,viafree.no,viafree.se##.pause-ad
 @@||v.fwmrm.net/crossdomain.xml$domain=viafree.dk|viafree.fi|viafree.no|viafree.se
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72746
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100957
+! TODO: remove JS rule when prevent-xhr scriptlet will be available
+viafree.*#%#(function(){var b=XMLHttpRequest.prototype.open,c=/freewheel-mtgx-tv\.akamaized\.net/i;XMLHttpRequest.prototype.open=function(d,a){if("HEAD"===d&&c.test(a))this.send=function(){return null},this.setRequestHeader=function(){return null},console.log("AG has blocked request: ",a);else return b.apply(this,arguments)}})();
 viafree.*#%#//scriptlet('prevent-xhr', 'freewheel-mtgx-tv.akamaized.net')
 @@||fwmrm.net/crossdomain.xml$xmlhttprequest,domain=viafree.dk
 ||freewheel-mtgx-tv.akamaized.net^$media,redirect=noopmp4-1s,domain=viafree.*
@@ -2545,6 +2558,10 @@ bb.is$$div[class="banner"]
 !------------------------------ Indian -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102253
+digit.in##.textads_list
+||digit.in/js/ads_management.js
+digit.in#%#//scriptlet("set-constant", "textAdsList", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100007
 zeenews.india.com##.add-placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95887
@@ -2864,7 +2881,7 @@ cnbcindonesia.com#?##ArtikelTerkaitContainer > .col_mob_4 > .native-ads-d:upward
 duit.cc#$##ignielAdBlock { display: none !important; }
 duit.cc#$#body[style*="overflow:"] { overflow: visible !important; }
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=duit.cc
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=duit.cc,redirect=nooptext,important
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=duit.cc,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82509
 @@||mangalist.org/url/lib/adbanner.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80388
@@ -3825,6 +3842,8 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102746
+@@||scws.xyz^$domain=animeunity.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100338
 ||ludicer.it/template/checkP.js
 ludicer.it#%#//scriptlet("prevent-setTimeout", "document.body.innerHTML")
@@ -5818,6 +5837,8 @@ annapurnapost.com##.sticky-footer
 !------------------------------ Norwegian ----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102119
+vgtv.no#%#//scriptlet("json-prune", "enabled", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85973
 ||cdn.vgc.no/js/libs/homad-config.json$replace=/"enabled":true\,/"enabled":false\,/i
 ! https://forum.adguard.com/index.php?threads/tv2-no.22252/
@@ -6090,7 +6111,7 @@ skmedix.pl,interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowan
 motohigh.pl,gosc.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wypracowania.pl,otopress.pl,wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#//scriptlet("abort-current-inline-script", "parseInt", "/adBlock/")
 tvn.pl,sadeczanin.info#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "adblock")
 innpoland.pl,mamadu.pl,dadhero.pl,natemat.pl#%#//scriptlet("prevent-eval-if", "isAdblockActive")
-zwielkopolski24.pl,se.pl,dziennik.pl,rawicz24.pl,tko.pl,tvn.pl,roweroweporady.pl,tulodz.pl,weszlo.com#%#//scriptlet("abort-on-property-write", "adquestoConfig")
+forsal.pl,zwielkopolski24.pl,se.pl,dziennik.pl,rawicz24.pl,tko.pl,tvn.pl,roweroweporady.pl,tulodz.pl,weszlo.com#%#//scriptlet("abort-on-property-write", "adquestoConfig")
 roweroweporady.pl,tulodz.pl#@#.ad_container
 @@||video.onnetwork.tv/adblock_notify.js
 ||cdn.files.smcloud.net/t/adquesto_beszamel_se_pl.js
@@ -6100,6 +6121,15 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/103023
+filmomaniak.pl##.baner-inner2
+! https://github.com/AdguardTeam/AdguardFilters/issues/102867
+meczyki.pl##.ejected-banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/102708
+||sportowebeskidy.pl/static/thumbnail/bananer/
+! https://github.com/AdguardTeam/AdguardFilters/issues/102534
+wpolityce.pl##.tile--ads
+wpolityce.pl##[class^="publication_"][class*="ad-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101732
 kryptonotowania.pl##.losowanko
 kryptonotowania.pl#%#//scriptlet("abort-current-inline-script", "baner")
@@ -6118,6 +6148,10 @@ memytutaj.pl###top-ad > a[href^="https://amzn.to/"]
 memytutaj.pl###top-ad > a[href^="https://www.amazon."]
 ||cdn.shopify.com/s/files/*.gif$domain=memytutaj.pl
 ||amazon-adsystem.com/widgets/$image,important,domain=memytutaj.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/101874
+udostepnijto.pl#$#body > div.mfp-wrap { display: none !important; }
+udostepnijto.pl#$#body > div.mfp-bg { display: none !important; }
+udostepnijto.pl#$#html { overflow: auto !important; margin-right: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101608
 ||webmagazyn.pl/*/wp-content/uploads/*/300-250pammm-300x250.jpg
 webmagazyn.pl##a[href^="https://www.forexee.com/"][target="_blank"] > img
@@ -6164,8 +6198,9 @@ skipol.pl#?##content > aside > h2:contains(/^Reklama$/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101181
 winterszus.pl###text-8
 winterszus.pl##.sidebar-banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/102397
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101076
-weszlo.com##a[href^="https://fuksiarz.pl/"][href*="&utm_campaign="] > img
+weszlo.com##a[href^="https://fuksiarz.pl/"][href*="&utm_"]
 weszlo.com##img[src^="https://weszlo.com/wp-content/uploads/"][src*="/prawdziwycashback_"]
 ||weszlo.com/wp-content/uploads/*/*/prawdziwycashback_*.png
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100572
@@ -6350,6 +6385,7 @@ niebezpiecznik.pl###main > .post + a[href^="https://niebezpiecznik.pl/"][href*="
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101259
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94538
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93480
+meczyki.pl##.placeholder
 meczyki.pl##body .banner
 meczyki.pl##.bookie-wrapper
 meczyki.pl##div[data-area-id] > a[href^="https://bit.ly/"]
@@ -7429,9 +7465,6 @@ bezprawnik.pl##.wall-bg-link
 bezprawnik.pl#$#.wall-bg[style^="background-image:"] { background-image: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26020
 polsatsport.pl##.fl-right > a[href^="http://redefineadpl.hit.gemius.pl/hitredir/"][href*="url=https://ad.doubleclick.net/ddm/trackclk/"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/26019
-meczyki.pl##.banner
-meczyki.pl##.container-communique
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26076
 speedtest.pl#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25849
@@ -8215,7 +8248,7 @@ fanatik.ro##.strawberry-ads-manager-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87954
 serialeonline.su#?##sidebars > div[id^="text-"]:has(> h3:contains(/ADS|Advertisement/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82382
-||trackad.cz/adtrack.php$script,other,redirect=nooptext,domain=protvplus.ro
+||trackad.cz/adtrack.php$script,other,redirect=noopjs,domain=protvplus.ro
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||trackad.cz/adtrack.php$domain=protvplus.ro
 ! ziarulevenimentul.ro - ads
@@ -8551,6 +8584,9 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102008
+animekimi.com###animekimiads1
+animekimi.com##.animekimi-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98879
 /*.gif$domain=vbmovies.com
 vbmovies.com##.ad-float-bottom
