@@ -1149,6 +1149,12 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102540
+seznam.cz##.ssp-advert
+seznam.cz##li[data-analytics-entity-type="nativeSspAdvert"]
+||seznam.cz/*/v2/vast?
+||seznam.cz/*/static/js/ssp.js
+seznam.cz#%#//scriptlet("set-constant", "sssp", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102378
 parlamentnilisty.cz##.aoad
 parlamentnilisty.cz#%#//scriptlet("set-constant", "AdTrack", "emptyObj")
@@ -3621,6 +3627,8 @@ krucil.net##img[width="900"][height="50"]
 !------------------------------ Hebrew -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102435
+ynet.co.il###blanket:empty
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95095
 hwzone.co.il#%#//scriptlet("abort-on-property-read", "gothamBatAdblock")
 hwzone.co.il#$#.publicite.text-ad.adsbox { display: block !important; }
@@ -6121,6 +6129,8 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/102329
+mojaolesnica.pl#?#body > div[style*="min-width: 100%;"][style*="float:"]:has(> div[style] > div[style] > div[style]:contains(reklama))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103023
 filmomaniak.pl##.baner-inner2
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102867
@@ -8671,23 +8681,32 @@ doomovie-hd.com##.side_floating_ad
 /assets/img/banner-new/*$domain=doomovie-hd.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93992
 moviehdfree.ngo-stream.xyz#%#!function(){if(-1<location.href.indexOf("ban/?vid=")){var a=(new URL(window.location.href)).searchParams.get("vid");a&&(location=a)}}();
+! https://github.com/AdguardTeam/AdguardFilters/issues/102527
+xn--72czp7a9bc4b9c4e6b.video##.ads-player
+xn--72czp7a9bc4b9c4e6b.video##.ads-comment
+xn--72czp7a9bc4b9c4e6b.video#$#div[class^="ads-"][class$="-player"] { visibility: hidden !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93991
-hdd.movie365-hd.com,hdd.movies-store.com,hdd.nung2uhd.com,hdd.movie2021.com,hdd.movie22hd.com#%#AG_onLoad(function(){document.querySelector("#moviePlayer")&&playAds&&"string"===typeof playAds&&"play"===playAds&&(playAds="donplay")});
+moviedo24.com,hdd.movie365-hd.com,hdd.movies-store.com,hdd.nung2uhd.com,hdd.movie2021.com,hdd.movie22hd.com#%#AG_onLoad(function(){document.querySelector("#moviePlayer")&&"string"===typeof playAds&&"play"===playAds&&(playAds="donplay")});
+||moviedo24.com/movie?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ||hdd.movie365-hd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ||hdd.movies-store.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ||hdd.nung2uhd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ||hdd.movie2021.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ||hdd.movie22hd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93989
-/wp-content/uploads/*.gif$domain=123-hd.com|24moviehd.com|movie2uhd.com|nung2uhd.com|movie2021.com|nung2hdd.com|movieshdfree.com|newseries-hd.com|movie22hd.com|moviehdfree.net
+/wp-content/uploads/*.gif$domain=moviedee24.com|123-hd.com|24moviehd.com|movie2uhd.com|nung2uhd.com|movie2021.com|nung2hdd.com|movieshdfree.com|newseries-hd.com|movie22hd.com|moviehdfree.net
 ||bp.blogspot.com/*.gif$domain=nung2hdd.com|nanamovies.me
-24moviehd.com,movie2021.com,nung2hdd.com,movieshdfree.com,newseries-hd.com,movie22hd.com,moviehdfree.net##.ad-float
+moviedee24.com,xn--72czp7a9bc4b9c4e6b.video,24moviehd.com,movie2021.com,nung2hdd.com,movieshdfree.com,newseries-hd.com,movie22hd.com,moviehdfree.net##.ad-float
 nung2uhd.com,newseries-hd.com,movie22hd.com,moviehdfree.net##.banner
 movie2uhd.com,movieshdfree.com##.ad
+moviedee24.com,24moviehd.com##.banner-top
+moviedee24.com##.ad_f1
+moviedee24.com##.banner-player
+moviedee24.com##.bottom-center > .widget_media_image
+moviedee24.com##a[target="_blank"] > img[src*="/wp-content/uploads/"][src*=".gif"]
 24moviehd.com##.ad_cen
 24moviehd.com##.ad_right1
 24moviehd.com##.ad-main-bottom
-24moviehd.com##.banner-top
 movie2uhd.com##.adhl
 movie2uhd.com##.adbr
 nung2uhd.com##.banner-float
@@ -8695,9 +8714,10 @@ movie2021.com##[class^="banner-center-"]
 123-hd.com###banner_top
 newseries-hd.com##.admid
 newseries-hd.com##.sidebar-banner
-||cdend.com/*.mp4$domain=hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
-||moviefree365.com/clips/*.mp4$domain=hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
-||freemoviedd.*.cdn.digitaloceanspaces.com/*.mp4$domain=hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
+||van1.mvx-master4.work/FinnbetFinFin-2021.m4v
+||cdend.com/*.mp4$domain=moviedo24.com|hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
+||moviefree365.com/clips/*.mp4$domain=moviedo24.com|hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
+||freemoviedd.*.cdn.digitaloceanspaces.com/*.mp4$domain=moviedo24.com|hdd.movie365-hd.com|hdd.movies-store.com|hdd.nung2uhd.com|hdd.movie2021.com|hdd.movie22hd.com|moviehdfree.ngo-stream.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93449
 ||cdend.com/*/*.mp4$domain=nungsub.com
 ||ufaexpert.com/Vids/*.mp4$domain=nungsub.com
