@@ -2404,7 +2404,6 @@ autohaus24.de#$#.coo__container { display: none !important; }
 116117.de,kbv.de##.layer-cookie
 valleyvet.com###ToU_float
 batteryequivalents.com##.activebar-container
-messenger.com,facebook.com#$#div[data-testid="cookie-policy-dialog"] { display: none !important; }
 getir.com##.luskN
 myheritage.tw,myheritage.de##.cookie_preferences_banner
 creativ-discount.de,the-british-shop.de,vet-concept.com,msg-praxisbedarf.de,leaf-schmuck.de,comfortschuh.de,77onlineshop.de,kotte-zeller.de###agreementPrivacy
@@ -6895,6 +6894,12 @@ qastack.it#$#body { overflow: auto !important; }
 qastack.it#$##cookies-consent { display: none !important; }
 qastack.it#$##cookies-consent ~ div.modal-backdrop { display: none !important; }
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/103494
+! On facebookcareers.com remove-class cannot be used, because
+! it breaks search function (it's incorrectly displayed when class "_31e" is removed)
+facebookcareers.com#$#body.hasCookieBanner > ._li._31e { position: sticky !important; }
+facebookcareers.com,messenger.com,facebook.com#$#div[data-testid="cookie-policy-dialog"] { display: none !important; }
+messenger.com,facebook.com#%#//scriptlet("remove-class", "_31e", "body > ._li")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75585#issuecomment-811823586
 !+ PLATFORM(ext_safari)
 twitter.com#?##layers div[class^="css-"] div[dir] > a[href$="/rules-and-policies/twitter-cookies"]:upward(2)
@@ -8013,7 +8018,6 @@ pathe.nl#%#//scriptlet('remove-class', 'cookiewall-active', 'body.cookiewall-act
 hallebessermachen.de#%#//scriptlet('remove-class', 'v--modal-block-scroll', 'body.v--modal-block-scroll')
 lawrievetgroup.co.uk#%#//scriptlet('remove-class', 'noscroll', 'body.noscroll')
 chefkoch.de#%#AG_onLoad(function() {if (!document.cookie.includes("euconsent-v2")) {var g = new MutationObserver(function() {var b = document.querySelector("button.message-component.no-children");var c = document.querySelector("html");b && b.click();c && c.style.setProperty('overflow', 'visible', 'important');c && c.style.setProperty('position', 'static', 'important');});g.observe(document, {childList: !0,subtree: !0});setTimeout(function() {g.disconnect()}, 1E4)}});
-messenger.com,facebook.com#%#//scriptlet("remove-class", "_31e", "body > ._li")
 mycare.at,mycare.de#%#//scriptlet('set-cookie', 'cookie-policy-accepted-v3', 'true')
 happypancake.fi,happypancake.se#%#//scriptlet('set-cookie', 'hpc_cc', '1')
 computerbase.de#%#AG_onLoad(function(){if(-1==document.cookie.indexOf("OptanonAlertBoxClosed")){var a=new MutationObserver(function(){var b=document.querySelector("dialog.js-consent"),d=document.querySelector("body.consent-dialog-open");c=document.querySelector(".consent__options .js-consent-accept-button");b&&d&&c&&(a.disconnect(),c.click(),d.classList.remove("accept-cookies-button"),b.style="display: none !important;")});a.observe(document,{childList:!0,subtree:!0});setTimeout(function(){a.disconnect()},1E4)}});
