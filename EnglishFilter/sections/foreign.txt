@@ -971,6 +971,10 @@ olke.az#$#.wrapper { top: 0!important; }
 @@||filmisub.com/templates/filmisub/adblock/adframe.ad-target.js
 filmisub.com#%#//scriptlet("set-constant", "noAdBlock", "true")
 filmisub.com#%#//scriptlet("set-constant", "adsNotBlocked", "true")
+filmisub.com#%#//scriptlet("set-constant", "detis", "noopFunc")
+filmisub.com#%#//scriptlet('prevent-fetch', 'adskeeper')
+!+ PLATFORM(ios, ext_android_cb)
+@@||jsc.adskeeper.com/*/filmisub.com.*.js$xmlhttprequest,domain=filmisub.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101488
 kinofen.net#%#//scriptlet("set-constant", "noAdBlock", "true")
 @@||kinofen.net/templates/kinofen/adblock/*.js
@@ -1149,12 +1153,18 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/103764
+@@||cdn.cpex.cz/logos/cnc.png$domain=zive.cz
+@@||cdn.cpex.cz/cmp/v*/cpex-cmp.min.js$domain=zive.cz
+! https://github.com/AdguardTeam/AdguardFilters/issues/103752
+slovnik.seznam.cz##.TextSSP
+slovnik.seznam.cz##.BannerSSP
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102540
 seznam.cz##.ssp-advert
 seznam.cz##li[data-analytics-entity-type="nativeSspAdvert"]
 ||seznam.cz/*/v2/vast?
 ||seznam.cz/*/static/js/ssp.js
-seznam.cz#%#//scriptlet("set-constant", "sssp", "emptyObj")
+~slovnik.seznam.cz,seznam.cz#%#//scriptlet("set-constant", "sssp", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102378
 parlamentnilisty.cz##.aoad
 parlamentnilisty.cz#%#//scriptlet("set-constant", "AdTrack", "emptyObj")
@@ -6151,6 +6161,16 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/104097
+roland-gazeta.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
+!+ PLATFORM(ios, ext_android_cb)
+@@||roland-gazeta.pl^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/103605
+energetyka24.com,space24.pl,cyberdefence24.pl,defence24.pl,defence24.com##.partners-module
+energetyka24.com,space24.pl,cyberdefence24.pl,defence24.pl,defence24.com#?#.layout__middle .page-builder-main > section.block:has(> .ad-banner)
+energetyka24.com,space24.pl,cyberdefence24.pl,defence24.pl,defence24.com#?#.layout__middle .page-builder-main > section.block:has(> .partners-module)
+! https://github.com/AdguardTeam/AdguardFilters/issues/103562
+tenpoznan.pl##.code-block
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103810
 !+ PLATFORM(windows, mac, android)
 @@||helios.pl/*/*/*?ajax=$xmlhttprequest,content,elemhide,jsinject,extension
