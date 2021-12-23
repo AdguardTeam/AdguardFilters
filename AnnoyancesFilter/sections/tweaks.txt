@@ -119,7 +119,8 @@ onlinegamesx.com#$##yuidea-snp { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70610
 caracad.com#$#body { background: #222 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/71629
-nevasport.ru#$#.main-wrapper { margin-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/103187
+cossa.ru,nevasport.ru#$#.main-wrapper { margin-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66030
 naver.com#$#body #NM_INT_RIGHT > div.column_fix_wrap { position: relative!important; }
 naver.com#$#body #NM_INT_RIGHT > div.column_fix_wrap { top: 0!important; }
@@ -290,6 +291,11 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !######### JS tweaks ##########
 !##############################
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/104152
+mobi2c.com#%#//scriptlet("adjust-setInterval", "counter", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/103548
+atlai.club#%#//scriptlet("adjust-setInterval", "waitTime", "*", "0.02")
+atlai.club#%#//scriptlet("adjust-setTimeout", "checkclick", "*", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102921
 healdad.com,gamalk-sehetk.com#%#//scriptlet("adjust-setInterval", "timeleft", "", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102706
@@ -496,9 +502,12 @@ icutlink.com#%#//scriptlet("set-constant", "sec", "0")
 zegtrends.com#%#//scriptlet("adjust-setInterval", "time", "2500", "0.02")
 ! littlebyte.net - skip timer
 littlebyte.net#%#//scriptlet("adjust-setInterval", "freeRemind", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/103846
+tei.ai#%#AG_onLoad(function(){try{var b=document.querySelector('form[method="POST"] > input[name="token"]');if(b){var a=b.value;if(a.includes("aHR0c")){var c=atob(a.substring(a.indexOf("aHR0c")));location.assign(c)}}}catch(d){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/103846
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88701
 megadescargas.net,blyts.net#%#//scriptlet("adjust-setInterval", "contador", "", "0.02")
-megadescargas.net,blyts.net#%#AG_onLoad(function(){setTimeout(function(){if("string"===typeof gurl&&"string"===typeof links){var a=document.createElement("form");a.setAttribute("method","post");a.setAttribute("id","hash");a.setAttribute("action",gurl);var b=document.createElement("input");b.setAttribute("type","hidden");b.setAttribute("name","hash");b.setAttribute("value",links);a.appendChild(b);document.querySelector("body").appendChild(a);(a=document.querySelector("form#hash"))&&a.submit()}},300)});
+megadescargas.net,blyts.net#%#AG_onLoad(function(){setTimeout(function(){if("string"===typeof code){var a=document.createElement("form");a.setAttribute("method","post");a.setAttribute("id","hash");a.setAttribute("action","/?download="+code);var b=document.createElement("input");b.setAttribute("type","hidden");b.setAttribute("name","hash");b.setAttribute("value",code);a.appendChild(b);document.querySelector("body").appendChild(a);(a=document.querySelector("form#hash"))&&a.submit()}},300)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88546
 rosefile.net#%#AG_onLoad(function(){var a=document.querySelector("button#start-wait");a&&"function"===typeof redirectDownPage&&a.addEventListener("click",function(){redirectDownPage()},!1)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88482
@@ -685,8 +694,9 @@ movieflixpro.com#%#//scriptlet("adjust-setInterval", ".show_download_links", "",
 zeefiles.download#%#//scriptlet('adjust-setTimeout', 'tick', '1000', '0.02')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75106
 solotakus-tv.ml#%#//scriptlet("adjust-setTimeout", "#counter", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/103486
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74765
-extramovies.*#%#!function(){if(-1<window.location.href.indexOf("/download.php?")&&-1<window.location.href.indexOf("link=aHR0c")){var a=location.href.split("link=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
+extralinks.*,extramovies.*#%#!function(){if(-1<window.location.href.indexOf("/download.php?")&&-1<window.location.href.indexOf("link=aHR0c")){var a=location.href.split("link=");if(a&&a[1])try{window.location=atob(a[1])}catch(b){}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74715
 otomi-games.com#%#//scriptlet("adjust-setInterval", "wpsafe-", "2000", "0.02")
 otomi-games.com#%#//scriptlet("adjust-setInterval", "wpsafe-generate", "1000", "0.02")
@@ -1375,7 +1385,7 @@ huljjang.com,hulblog.com,omgmusik.com,omglyrics.com#%#!function(){if(-1<window.l
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35379
 hexafile.net#%#AG_onLoad(function(){if(window.location.href.match(/hexafile\.net\/[a-zA-Z\d]+$/)){var a=document.body.textContent.match(/\("\.link-content"\)\,[\s\S]*?="(https?:\/\/[\s\S]*?)"/);if(a&&a[1])location=a[1];}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35141
-christianivory.pro,darenjarvis.pro,todhamilton.pro,eloypatrick.pro,richardwashington.pro,elbaestes.pro,willianpadilla.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
+alfonzoheriberto.pro,freddyoctavio.pro,nathanaeldan.pro,orvilleandrea.pro,christianivory.pro,darenjarvis.pro,todhamilton.pro,eloypatrick.pro,richardwashington.pro,elbaestes.pro,willianpadilla.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 moshemartin.pro,samcunningham.pro,rudyvalencia.pro,delmarmora.pro,lucienmann.pro,debrahinton.pro,ramirocampos.pro,sherwoodsutton.pro,bethanyharrell.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 michellehardin.pro,ecleneue.com#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34990
@@ -1600,6 +1610,7 @@ now.rememberapp.co.kr,codedosa.com,gradium.co.kr,semesters.in#%#//scriptlet('set
 ! #%#//scriptlet("abort-current-inline-script", "document.onselectstart")
 now.rememberapp.co.kr,melodelaa.link,asus-zenfone.com,techieway.blogspot.com,chronologia.pl#%#//scriptlet("abort-current-inline-script", "document.onselectstart")
 !
+acritica.com#%#//scriptlet("abort-current-inline-script", "document.onkeypress")
 m.webtoons.com#%#AG_onLoad(function() {var g = new MutationObserver(function() {var c = document.querySelectorAll('img._checkVisible');for (var i = 0; i < c.length; i++) {c[i].oncontextmenu = c[i].onselectstart = c[i].ondragstart = null;}});g.observe(document, {childList: !0,subtree: !0});setTimeout(function() {g.disconnect()}, 1E4)});
 migalhas.com.br#%#//scriptlet("prevent-addEventListener", "copy", "event")
 tweaktown.com#%#//scriptlet("prevent-addEventListener", "copy", "bypassEventsInProxies")
@@ -1704,7 +1715,7 @@ utorrentgamesps2.blogspot.com#%#//scriptlet("remove-attr", "onselectstart", "bod
 utorrentgamesps2.blogspot.com#%#//scriptlet("abort-current-inline-script", "document.onkeyup")
 software-on.com#%#//scriptlet("prevent-addEventListener", "/selectstart|dragstart|keydown/", "preventDefault")
 moviesrush.one,huljjang.com,skidrowcodex.net,hulkpop.top#%#//scriptlet("abort-on-property-read", "stopPrntScr")
-thecustomrom.com,huljjang.com,hulkpop.top#%#//scriptlet("abort-on-property-read", "addMultiEventListener")
+picallow.com,thecustomrom.com,huljjang.com,hulkpop.top#%#//scriptlet("abort-on-property-read", "addMultiEventListener")
 lectortmo.com#%#//scriptlet("remove-attr", "oncontextmenu", ".img-container > img[oncontextmenu]")
 quotev.com#%#//scriptlet("remove-attr", "onselectstart|ondragstart|unselectable", "#rescontent")
 quotev.com#%#AG_onLoad(function() { document.body.onselectstart = document.body.ondragstart = function() { return true; }; });
