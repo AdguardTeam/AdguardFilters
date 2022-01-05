@@ -1281,9 +1281,11 @@ anydebrid.com#@#.responsive-ad-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90335
 @@||lewd.ninja^$csp
 new.lewd.ninja#@#.stargate
-@@||a.trk-imps.com/oauth2?id=$domain=new.lewd.ninja
-new.lewd.ninja#%#//scriptlet("set-constant", "window.adnPopConfig.zoneId", "undefined")
+new.lewd.ninja#%#(function(){window.adnPopConfig={zoneId:"1"}})();
+new.lewd.ninja#%#//scriptlet("abort-on-property-read", "adnPopConfig.triggerMethod")
 lewd.ninja#%#//scriptlet('prevent-fetch', 'ads.juicyads.com')
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+@@||a.trk-imps.com/oauth2?id=$domain=new.lewd.ninja
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||ads.juicyads.com/jsclients/jac.js$domain=lewd.ninja
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90092
