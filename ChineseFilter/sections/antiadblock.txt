@@ -2,12 +2,22 @@
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/11152
+rjno1.com##div[id][style^="width: 100%; height: 100%; border-"]
+rjno1.com#%#//scriptlet("abort-current-inline-script", "onload", "AdBlock")
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rjno1.com
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$domain=rjno1.com
+@@||rjno1.com^$generichide
+!#endif
+! https://github.com/uBlockOrigin/uAssets/issues/11148
+zhangxinxu.com#@#.sldebar_out + *,style[id] + a[class]
+zhangxinxu.com#$#.sldebar_out + * { height: 0!important; }
 ! https://github.com/uBlockOrigin/uAssets/issues/10953
 tingfm.com#%#//scriptlet("prevent-setTimeout", "adblock")
-! https://github.com/uBlockOrigin/uAssets/issues/10833
-! TODO: 
-pcbeta.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'make_div')
-||bbs.pcbeta.com/data/cache/common_jnmhixxsgemicq.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/102824
+movieclassic.net###billboard-modal
+movieclassic.net##.modal-backdrop
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102171
 @@||mm.520cc.cc/api/jspopunder.min.js$domain=mm.520cc.cc
 520cc.cc#%#//scriptlet("set-constant", "all520dddaaa222", "undefined")
@@ -23,14 +33,15 @@ jkpan.cc#%#//scriptlet("abort-current-inline-script", "document.writeln", "\u")
 !+ PLATFORM(ios, ext_android_cb)
 @@||pos.baidu.com/*?psi=*adblock$domain=jkpan.cc
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90679
-233tw.com#%#//scriptlet('prevent-setInterval', '发现严重BUG')
+233tw.com#%#//scriptlet('prevent-setTimeout', '发现严重BUG')
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||cdn.wwads.cn/js/makemoney.js$domain=233tw.com
 @@||wwads.cn/code/banners?blocks=$domain=233tw.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101079
 pcbeta.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'make_rand_div')
-/bbs.pcbeta.com\/data\/cache\/(?:common|home)_*[a-zA-Z]{1,5}.*.js\?/$domain=bbs.pcbeta.com,match-case
+||pcbeta.com/data/cache/common_dywstxjo.js
+/pcbeta\.com\/data\/cache\/(?:common|home)_*[a-zA-Z]{1,5}.*.js\?/$domain=pcbeta.com,match-case
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90168
 ruanyifeng.com#%#//scriptlet('prevent-setTimeout', 'checker')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -143,9 +154,6 @@ stealjobs.com#@#.custom-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7428
 !+ PLATFORM(ios, ext_android_cb)
 @@||moviesunuss.net^$generichide
-! rjno1.com
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||rjno1.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10485
 alotof.software#%#window.google_jobrunner = function() {};
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
@@ -202,25 +210,9 @@ papalah.com#%#//scriptlet("abort-on-property-read", "adBlockDetected")
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=papalah.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||papalah.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/37247
-rjno1.com#%#//scriptlet("prevent-setTimeout", "/Goog_Osd_UnloadAdBlock|ad blocker/")
-rjno1.com#%#//scriptlet("abort-current-inline-script", "onload", "AdBlock")
-@@||rjno1.com^$csp=script-src 'self' *;style-src
-||d5.sina.com.cn/litong/zhitou/leju/leju.js$script,redirect=noopjs,important,domain=rjno1.com
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||rjno1.com^$generichide
-@@||d5.sina.com.cn/litong/zhitou/leju/leju.js$domain=rjno1.com
-@@||rjno1.com/templates/moban/images/logo.gif#
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rjno1.com
-@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=rjno1.com
-@@||googletagservices.com/activeview/js/current/osd.js$domain=rjno1.com
-rjno1.com#@#.adsbygoogle
-rjno1.com#$#.adsbygoogle { height: 1px!important; }
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34322
 @@||8maple.ru/comic.jpg$domain=video.bilibili.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42425
-javporn.best#@#.afs_ads
 ||javporn.best/asset/default/player/plugins/vast-*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43312
 game735.com##div[id^="ysmAD"]
@@ -325,7 +317,7 @@ xiebruce.top#%#//scriptlet("prevent-addEventListener", "", "showRemoveAdBlocker"
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xiebruce.top
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90881
 ddrk.me#@#a[href*="/kst6632.com/"]
-ddrk.me#$#a[href*="/kst6632.com/"] { position: absolute !important; top: -9999px !important; }
+ddrk.me#$#a[href*="/kst6632.com/"] > img { width: 0 !important; }
 !#safari_cb_affinity(privacy)
 @@||cnzz.com/z_stat.php$domain=ddrk.me
 ||cnzz.com/z_stat.php$xmlhttprequest,script,redirect=noopjs,domain=ddrk.me,important
