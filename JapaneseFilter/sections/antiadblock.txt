@@ -1,6 +1,9 @@
 !
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/105463
+tver.jp#@#.adspace
+tver.jp#$#.playvideo .player:not(#style_important) { display: block !important; }
 ! anti-adb on articles
 coolpan.net#%#//scriptlet('prevent-addEventListener', 'error', 'adscript-error')
 coolpan.net#%#//scriptlet('set-constant', 'flgDisplay', 'false')
@@ -15,7 +18,9 @@ itby.net#%#//scriptlet('abort-current-inline-script', 'onload', 'innerHTML')
 g-pc.info#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=g-pc.info
+! https://github.com/AdguardTeam/AdguardFilters/issues/103488
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87846
+musenboya.com#@#.ads-area
 musenboya.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 musenboya.com#@#.adsbygoogle
@@ -91,8 +96,6 @@ crefan.jp#%#//scriptlet('prevent-setTimeout', 'objDef.resolve', '3000')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79141
 ||googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,redirect=nooptext,important,domain=uploader.xzy.pw
 @@||googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=uploader.xzy.pw
-! https://github.com/AdguardTeam/AdguardFilters/issues/77997
-javmix.tv#@#.afs_ads
 ! nihongo-pro.com anti-adb
 ||googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=nihongo-pro.com
 @@||googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=nihongo-pro.com
@@ -105,8 +108,6 @@ egotter.com#%#//scriptlet('abort-on-property-read', 'AdBlockDetector')
 blog.umentu.work#%#//scriptlet('prevent-setInterval', 'isBlanketFound', '4000')
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=blog.umentu.work
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=blog.umentu.work
-! https://github.com/AdguardTeam/AdguardFilters/issues/71467
-cdn-myhdjav.info#@#.afs_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67394
 @@/assets/scripts/fab.js$domain=life-n.jp|point-news.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65807
