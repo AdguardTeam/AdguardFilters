@@ -5,7 +5,7 @@ Short introduction, explain what the ways to contribute are.
 ## How to work with this repo
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) with the ["Adblock" syntax plugin](https://marketplace.visualstudio.com/items?itemName=adguard.adblock).
-2. Clone (or fork and clone) [this repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository).
+2. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository) (or fork and clone) this repo.
 3. Make your changes and commit them.
 4. Every commit needs to be linked to an issue. The commit message should look like (`Fix #123` where `123` is the issue number). This way the issue will be closed automatically once this commit lands in the `master` branch.
 
