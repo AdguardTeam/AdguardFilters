@@ -5,7 +5,7 @@ Short introduction, explain what the ways to contribute are.
 ## How to work with this repo
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) with the ["Adblock" syntax plugin](https://marketplace.visualstudio.com/items?itemName=adguard.adblock).
-2. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository) (or fork and clone) this repo.
+2. [Clone](https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository) (or fork and clone) this repo.
 3. Make your changes and commit them.
 4. Every commit needs to be linked to an issue. The commit message should look like the example below. This way the issue will be closed automatically once this commit lands in the `master` branch.
    * `Fix #123 site` where `123` is the issue number and `site` - website from the issue.
@@ -13,10 +13,10 @@ Short introduction, explain what the ways to contribute are.
 
 ## How to write filter rules
 
-Before you start, please also note we follow to the current [filters policy](https://kb.adguard.com/en/general/adguard-filter-policy). You should read and understand it - one of the most important things is the [quality requirements](https://kb.adguard.com/en/general/adguard-filter-policy#quality-requirements-for-filtering-rules).
+Before you start, please also note we follow to the current [filters policy](https://kb.adguard.com/general/adguard-filter-policy). You should read and understand it - one of the most important things is the [quality requirements](https://kb.adguard.com/general/adguard-filter-policy#quality-requirements-for-filtering-rules).
 
 Next step is creating rules.
-* There is an official [documentation](https://kb.adguard.com/en/general/how-to-create-your-own-ad-filters) that can help you.
+* There is an official [documentation](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) that can help you.
 * When are you done with creating rules, please take a look at the similar ones in the filters. This may help you to make a better version of the rule.
 
 ## Repository structure
