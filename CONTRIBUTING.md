@@ -17,7 +17,7 @@ Before you start, please also note we follow to the current [filters policy](htt
 
 Next step is creating rules.
 * There is an official [documentation](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) that can help you.
-* When are you done with creating rules, please take a look at the similar ones in the filters. This may help you to make a better version of the rule.
+* When you're done with creating rules, please take a look at the similar ones in the filters. This may help you to make a better version of the rule.
 
 ## Repository structure
 
