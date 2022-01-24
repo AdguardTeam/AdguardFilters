@@ -7,7 +7,7 @@ If you want to make AdGuard better by implementing new rules, follow the instruc
 1. Install [Visual Studio Code](https://code.visualstudio.com/download) with the ["Adblock" syntax plugin](https://marketplace.visualstudio.com/items?itemName=adguard.adblock).
 2. [Clone](https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository) (or fork and clone) this repo.
 3. Make your changes and commit them.
-4. Every commit needs to be linked to an issue. The commit message should look like the example below. This way the issue will be closed automatically once this commit lands in the `master` branch.
+4. Each commit should be linked to an issue. The commit message should look like the examples below. That way, the issue will be closed automatically once the commit is merged into the `master` branch.
    * `Fix #123 site` where `123` is the issue number and `site` - website from the issue.
    * `Fix #123 comment` where `comment` is your comment for additional fixes in the pull request.
 
