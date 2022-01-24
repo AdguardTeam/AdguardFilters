@@ -25,7 +25,7 @@ AdGuard filters are compiled from files in this repository. This is an automated
 
 #### AdGuard Base filter
 
-* Purpose: blocking different type of ads mostly on English, multilingual sites.
+* Purpose: this filter blocks various kinds of ads mostly on English-language and multilingual sites.
 * [Base folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/EnglishFilter/sections)
 * Requirements for submitting rules: don't add rules to the beginning of the file, start entering them from line 4, for example. If you add rules with a task comment or hints, put them next to the same structure in the file.
 * Notes: The AdGuard Base filter is supposed to be used with [Easylist](https://github.com/easylist/easylist) (like `AdGuard French` and `AdGuard Chinese`) so there's no need to add rules that are already in `Easylist`.
