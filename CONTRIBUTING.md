@@ -21,9 +21,10 @@ The next step is creating rules.
 
 ## Repository structure
 
-AdGuard filters are compiled from files in this repository. This is an automated process that is periodically run by scripts in the [FiltersRegistry](https://github.com/AdguardTeam/FiltersRegistry) repo.  In this repository, each filter list is divided into several files, and each file has its own purpose. If you're adding a new rule, make sure it is added to the proper file.
+AdGuard filters are compiled from files in this repository. This is an automated process that is periodically run by scripts in the [FiltersRegistry](https://github.com/AdguardTeam/FiltersRegistry) repo.  In this repository, each filter list is divided into several files, and each file has its own purpose. If you're adding a new rule, make sure it is added to the proper file or section of the file.
 
 General requirements for submitting rules: don't add rules to the beginning of the file, start entering them from line 4, for example. If you add rules with a task comment or hints, put them next to the same structure in the file.
+
 ### AdGuard Base filter
 
 * Purpose: this filter blocks various kinds of ads mostly on English-language and multilingual sites.
@@ -85,7 +86,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
 
 ### AdGuard UsefulAdsFilter filter
 
-* Purpose: this filter unblocks ads that may be useful to users.
+* Purpose: this filter unblocks search engine result that may be useful to users.
 * [UsefulAdsFilter folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/UsefulAdsFilter/sections)
 
 ### AdGuard Annoyances filter
@@ -98,10 +99,10 @@ General requirements for submitting rules: don't add rules to the beginning of t
 * Purpose: this filter serves to test some new filtering rules that can potentially cause conflicts and mess with websites' work. In case these rules perform without any issues, they get added to main filters.
 * [Experimental folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/ExperimentalFilter/sections)
 
-### AdGuard Spyware filter
+### AdGuard Tracking Protection filter
 
 * Purpose: this filter hides your actions online and helps avoid tracking.
-* [Spyware folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SpywareFilter/sections)
+* [Tracking Protection folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SpywareFilter/sections)
 
 ### AdGuard URL Tracking filter
 
