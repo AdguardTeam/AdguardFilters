@@ -100,10 +100,10 @@ General requirements for submitting rules: don't add rules to the beginning of t
 
 ### AdGuard Spyware filter
 
-* Purpose: this filter hides your actions online and avoid tracking.
+* Purpose: this filter hides your actions online and helps avoid tracking.
 * [Spyware folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SpywareFilter/sections)
 
-### AdGuard TrackParam filter
+### AdGuard URL Tracking filter
 
 * Purpose: this filter removes various kinds of tracking parameters from sites.
-* [TrackParam folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/TrackParamFilter/sections)
+* [URL Tracking folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/TrackParamFilter/sections)
