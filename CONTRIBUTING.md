@@ -80,30 +80,30 @@ General requirements for submitting rules: don't add rules to the beginning of t
 
 ### AdGuard Social filter
 
-* Purpose: this filter blocks various kinds of social widgets on sites.
+* Purpose: this filter blocks various kinds of social widgets from sites.
 * [Social folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SocialFilter/sections)
 
 ### AdGuard UsefulAdsFilter filter
 
-* Purpose: this filter shows useful ads on sites.
+* Purpose: this filter unblocks ads that may be useful to users.
 * [UsefulAdsFilter folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/UsefulAdsFilter/sections)
 
 ### AdGuard Annoyances filter
 
-* Purpose: this filter blocks various kinds of annoyances on sites.
+* Purpose: this filter blocks various kinds of annoyances from sites.
 * [Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/sections)
 
 ### AdGuard Experimental filter
 
-* Purpose: this filter blocks various kinds of elements (ads, annoyances etc) on sites that need to be properly tested before moving the rules to other filters.
+* Purpose: this filter serves to test some new filtering rules that can potentially cause conflicts and mess with websites' work. In case these rules perform without any issues, they get added to main filters.
 * [Experimental folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/ExperimentalFilter/sections)
 
 ### AdGuard Spyware filter
 
-* Purpose: this filter blocks various kinds of analytics, trackers on sites.
+* Purpose: this filter hides your actions online and avoid tracking.
 * [Spyware folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SpywareFilter/sections)
 
 ### AdGuard TrackParam filter
 
-* Purpose: this filter removes various kinds of tracking parameters on sites.
+* Purpose: this filter removes various kinds of tracking parameters from sites.
 * [TrackParam folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/TrackParamFilter/sections)
