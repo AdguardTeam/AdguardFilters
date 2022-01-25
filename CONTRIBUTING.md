@@ -84,7 +84,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
 * Purpose: this filter blocks various kinds of social widgets from sites.
 * [Social folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/SocialFilter/sections)
 
-### AdGuard UsefulAdsFilter filter
+### AdGuard Filter unblocking search ads and self-promotions
 
 * Purpose: this filter unblocks search engine result that may be useful to users.
 * [UsefulAdsFilter folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/UsefulAdsFilter/sections)
