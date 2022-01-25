@@ -4,6 +4,11 @@
 ! https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea
 #%#//scriptlet('set-constant', 'Document.prototype.interestCohort', 'undefined')
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/99502
+ntp.msn.com#%#AG_defineProperty("navigator.getBattery",{value:function(){return Promise.resolve()}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/103991
+! Fixing video player if DNS filtering is enabled
+n-tv.de#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector("#playerwrapper");if(a&&1>=a.childElementCount&&"function"===typeof startNtvVideoplayerNew)try{startNtvVideoplayerNew($("#playerwrapper"))}catch(b){}},1E3)});
 ! cw.com.tw - incorrect blocking - fixing video player (at the bottom)
 ! Example link - https://www.cw.com.tw/article/5119022
 cw.com.tw#%#//scriptlet("set-constant", "qg", "noopFunc")
