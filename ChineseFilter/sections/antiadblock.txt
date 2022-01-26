@@ -2,6 +2,19 @@
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/11152
+@@||hm.baidu.com/hm.js?$script,domain=rjno1.com
+@@||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com
+||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com,important
+@@||rjno1.com^$generichide
+@@||pagead2.googlesyndication.com/$script,xmlhttprequest,domain=rjno1.com
+||bdstatic.com/hunter/alog/dp.min.js$script,redirect=noopjs,domain=rjno1.com,important
+||g.doubleclick.net/pagead/ads?$subdocument,redirect=noopframe,domain=rjno1.com,important
+@@||bdstatic.com/hunter/alog/dp.min.js$domain=rjno1.com
+@@||g.doubleclick.net/pagead/ads?$subdocument,domain=rjno1.com
+! https://github.com/uBlockOrigin/uAssets/issues/11148
+zhangxinxu.com#@#.sldebar_out + *,style[id] + a[class]
+zhangxinxu.com#$#.sldebar_out + * { height: 0!important; }
 ! https://github.com/uBlockOrigin/uAssets/issues/10953
 tingfm.com#%#//scriptlet("prevent-setTimeout", "adblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102824
@@ -143,9 +156,6 @@ stealjobs.com#@#.custom-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7428
 !+ PLATFORM(ios, ext_android_cb)
 @@||moviesunuss.net^$generichide
-! rjno1.com
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||rjno1.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10485
 alotof.software#%#window.google_jobrunner = function() {};
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
@@ -202,21 +212,6 @@ papalah.com#%#//scriptlet("abort-on-property-read", "adBlockDetected")
 @@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=papalah.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||papalah.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/37247
-rjno1.com#%#//scriptlet("prevent-setTimeout", "/Goog_Osd_UnloadAdBlock|ad blocker/")
-rjno1.com#%#//scriptlet("abort-current-inline-script", "onload", "AdBlock")
-@@||rjno1.com^$csp=script-src 'self' *;style-src
-||d5.sina.com.cn/litong/zhitou/leju/leju.js$script,redirect=noopjs,important,domain=rjno1.com
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||rjno1.com^$generichide
-@@||d5.sina.com.cn/litong/zhitou/leju/leju.js$domain=rjno1.com
-@@||rjno1.com/templates/moban/images/logo.gif#
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rjno1.com
-@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=rjno1.com
-@@||googletagservices.com/activeview/js/current/osd.js$domain=rjno1.com
-rjno1.com#@#.adsbygoogle
-rjno1.com#$#.adsbygoogle { height: 1px!important; }
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34322
 @@||8maple.ru/comic.jpg$domain=video.bilibili.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42425
@@ -324,7 +319,7 @@ xiebruce.top#%#//scriptlet("prevent-addEventListener", "", "showRemoveAdBlocker"
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xiebruce.top
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90881
 ddrk.me#@#a[href*="/kst6632.com/"]
-ddrk.me#$#a[href*="/kst6632.com/"] { position: absolute !important; top: -9999px !important; }
+ddrk.me#$#a[href*="/kst6632.com/"] > img { width: 0 !important; }
 !#safari_cb_affinity(privacy)
 @@||cnzz.com/z_stat.php$domain=ddrk.me
 ||cnzz.com/z_stat.php$xmlhttprequest,script,redirect=noopjs,domain=ddrk.me,important
