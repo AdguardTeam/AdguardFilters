@@ -2,11 +2,17 @@
 ! These rules are against all kinds of ad blocking reinjection/circumvention scripts
 !
 ! #adcontent bait
-kriptoradar.com,morlevha.com,bakimlikadin.net,korsanedebiyat.com,ozbeceriksizler.co,iyibeslenme.net,genelpara.com,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com,azbuz.org,mustafabukulmez.com,yemeklerimiz.com,siberkalem.com,hepgezelim.com,urfakalesi.com,gecbunlari.com,oyuncukuru.org,filmonerileri.org,sosyofo.com,hknkr.com,wblogy.com,kadioglublog.com,konuneydi.com,intekno.net#@##adcontent
-kriptoradar.com,morlevha.com,bakimlikadin.net,korsanedebiyat.com,ozbeceriksizler.co,genelpara.com,azbuz.org,mustafabukulmez.com,yemeklerimiz.com#%#//scriptlet("prevent-setTimeout", "0===o.offsetLeft&&0===o.offsetTop")
+zamaninvarken.com,kredi.biz.tr,kriptoradar.com,morlevha.com,bakimlikadin.net,korsanedebiyat.com,ozbeceriksizler.co,iyibeslenme.net,genelpara.com,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com,azbuz.org,mustafabukulmez.com,siberkalem.com,hepgezelim.com,urfakalesi.com,gecbunlari.com,oyuncukuru.org,filmonerileri.org,hknkr.com,wblogy.com,konuneydi.com,intekno.net#@##adcontent
+zamaninvarken.com,kredi.biz.tr,kriptoradar.com,morlevha.com,bakimlikadin.net,korsanedebiyat.com,ozbeceriksizler.co,genelpara.com,azbuz.org,mustafabukulmez.com#%#//scriptlet("prevent-setTimeout", "0===o.offsetLeft&&0===o.offsetTop")
 iyibeslenme.net,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/106793
+okultanitimi.net#%#//scriptlet("abort-current-inline-script", "$", "adblock")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+okultanitimi.net#@#.adsbygoogle
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=okultanitimi.net
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106782
 !#if (adguard_ext_firefox || adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||prestashopturkiye.com^$generichide
@@ -17,9 +23,6 @@ iyibeslenme.net,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com#%#//script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101763
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=nullwarez.com
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,xmlhttprequest,redirect=googlesyndication-adsbygoogle,domain=nullwarez.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/101418
-@@||canlitribun24.com/cdn/ad-banner.js
-canlitribun24.com#%#//scriptlet("prevent-setTimeout", "adblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99622
 @@||artiway.com.tr/assets/*/advert.js
 @@||amazonaws.com/bwfront-production/angular/advert.js$domain=artiway.com.tr
@@ -82,9 +85,6 @@ hacoos.com#%#//scriptlet("abort-current-inline-script", "document.createElement"
 @@||bolumd.pw/templates/*/js/*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72151
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=newgames.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/69896
-torrentarsivi.com#@#.adBanner
-torrentarsivi.com###eazy_ad_unblocker_holder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68294
 apathe.net#@#.adsbygoogle
 apathe.net#%#//scriptlet("prevent-setTimeout", "test.offsetHeight")
@@ -128,10 +128,6 @@ iddaaorantahmin.com#%#//scriptlet("set-constant", "canRunAds", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56429
 @@||turkrock.com/js/*/crossdomainads.js
 turkrock.com#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
-! https://github.com/AdguardTeam/AdguardFilters/issues/56425
-cepmendili.com#%#//scriptlet("abort-on-property-write", "ai_check_block")
-! https://github.com/AdguardTeam/AdguardFilters/issues/56394
-evdepara.com#%#//scriptlet("abort-current-inline-script", "document.createElement", "ad_block")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52970
 dovizborsa.com#@#.adBanner
 dovizborsa.com#$#.adBanner { display: block!important; }
@@ -146,11 +142,6 @@ yeniwindows.com##.swal2-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61695
 okanuzun.com##[style*="cursor: no-drop;"][style*="user-select: none;"]
 okanuzun.com#%#//scriptlet("abort-on-property-write", "ai_front")
-! https://github.com/AdguardTeam/AdguardFilters/issues/61697
-sagliktais.com###ai-adb-message
-sagliktais.com###ai-adb-overlay
-! https://github.com/AdguardTeam/AdguardFilters/issues/51563
-nadidetarifler.com###koddostu-com-adblocker-engelleme
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51561
 forum.auraroleplay.com#%#//scriptlet("set-constant", "window.google_jobrunner", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51152
@@ -175,10 +166,6 @@ tekniknot.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48473
 ||yoneticihane.com/*/blossomfeaturebox.$script,stylesheet
-! https://github.com/AdguardTeam/AdguardFilters/issues/47159
-filmyuvam.com#%#//scriptlet("abort-current-inline-script", "BlockerBanner", "kontrol")
-!+ PLATFORM(ios, ext_android_cb)
-@@||filmyuvam.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47184
 @@||veterinerhekimleri.com/wp-content/plugins/*/includes/adblock-detector/advertisement.js
 veterinerhekimleri.com#%#//scriptlet("set-constant", "jQuery.adblock", "false")
@@ -217,9 +204,6 @@ cadcamsektoru.com#$#.reklam_kontrol { height: 1px!important; }
 cadcamsektoru.com#$#.icerik_reklam { position: absolute!important; left: -3000px!important; }
 !+ PLATFORM(ios, ext_android_cb)
 @@||cadcamsektoru.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/45840
-petitchef.com#@#.adBanner
-petitchef.com#%#//scriptlet("set-constant", "canRunAds", "1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45655
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=myjest.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45302
@@ -270,13 +254,8 @@ guncelkaynak.com##body > div[id^="ai-adb-"][style^="position: fixed; top:"][styl
 @@||oyunceviri.net^$generichide
 !+ PLATFORM(ios, ext_android_cb, ext_safari, ext_ff, ext_opera)
 @@||oyunceviri.net/wp-content/uploads/*.png#
-! https://github.com/AdguardTeam/AdguardFilters/issues/33143
-1excelbet365.com#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36583
 huawei-turkiye.com##.XGT-AdBlock-Govde
-! https://github.com/AdguardTeam/AdguardFilters/issues/35627
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
-@@||fulltorrentindir.club^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34999
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||dreamfancy.org^$generichide
@@ -306,9 +285,6 @@ blogkafem.net#@#.adsbygoogle
 @@||m.pes24.com^$generichide
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=m.pes24.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/31327
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
-@@||doluoyun.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30686
 @@||static.ercdn.net/js/ads.js$domain=foxplay.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30734
@@ -366,17 +342,10 @@ dijitalteknoloji.net#@#.an-sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19872
 fmhikayeleri.com#@#.an-sponsored
 fmhikayeleri.com#@#.an-advert-banner
-! https://github.com/AdguardTeam/AdguardFilters/issues/19581
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
-@@||hdturk.de^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19428
 @@||forum.miuiturkiye.net/js/*advertising
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19029
 @@||ekstrembilgi.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/19082
-listegaleri.com#@#.adsbygoogle
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=listegaleri.com
-@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=listegaleri.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17247
 maasi.org###adblock_screen
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17095
@@ -389,10 +358,6 @@ altin.in#@#.adsbygoogle
 altin.in#@#.reklam728x90
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=altin.in
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=altin.in
-! https://github.com/AdguardTeam/AdguardFilters/issues/16036
-galpool.com#@#.adsbygoogle
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=galpool.com
-@@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=galpool.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15397
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||wanaliz.com^$generichide
@@ -402,28 +367,14 @@ simulasyonturk.com#@#.an-advert-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15267
 !+ PLATFORM(ios, ext_android_cb)
 @@||androidmakale.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/13775
-@@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=guzelresimler.info
-!+ PLATFORM(ios, ext_android_cb)
-@@||guzelresimler.info^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13080
 !+ PLATFORM(ios, ext_android_cb)
 @@||unikampus.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11971
 kasvekuvvet.net##body > div[id][class][style*="z-index: 9999"] + div[class][style*="z-index: 9999"]
 kasvekuvvet.net##body > div[id][class][style*="z-index: 9999"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/12040
-@@||excelbet365.com/uploads/set_resources_*_adframe.js
-excelbet365.com#%#Object.defineProperty(window,'adblock',{value:false});
-! https://github.com/AdguardTeam/AdguardFilters/issues/12039
-e-webmasters.com#%#Object.defineProperty(window, 'BlockerBanner', { get: function() { return; } });
-e-webmasters.com#$#.reklam_alani { height: 1px!important; }
-!+ PLATFORM(ios, ext_android_cb)
-@@||e-webmasters.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10684
 @@||live.ntvradyo.com.tr/advertisement.js
-! https://forum.adguard.com/index.php?threads/resolved-https-www-trgala-com.27916/
-@@||trgala.com/wp-content/themes/jannah/js/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8748
 baho.com.tr#$#.adsmd { height: 1px!important; }
 !+ PLATFORM(ios, ext_android_cb)
@@ -442,35 +393,16 @@ baho.com.tr#@#.adsbygoogle
 @@||kamudestek.com/wp-content/themes/jannah/js/advertisement.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7775
 @@||ggmyfriend.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/31618
-! https://forum.adguard.com/index.php?threads/27088/
-programinadresi.com#@#.adBanner
-programinadresi.com#$##wrapfabber { height: 1px!important; }
-@@||programinadresi.com/templates/topskript2col/js/advertise.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7554
 @@||aofsoru.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/7350
-||metin2bot.net/kontrol/adb.js
-! https://forum.adguard.com/index.php?threads/24945/
-@@||serial69.com^$generichide
-! https://forum.adguard.com/index.php?threads/https-guvenlilink-blogspot-com-adblock.24055/
-guvenlilink.blogspot.com#@##ad
 ! https://forum.adguard.com/index.php?threads/23730/
 @@||ensonhaber.com/resimler/Assets/v2/scripts/ads.js
 ! https://forum.adguard.com/index.php?threads/23199/
 @@||lolskinlistgenerator.com/*/JS/ads.js
 ! https://forum.adguard.com/index.php?threads/22913/
 ||simulasyonturk.com/wp-content/uploads/*/*.js?ver=
-! https://forum.adguard.com/index.php?threads/matematikcifatih-com-antiadblock.22878/
-@@||matematikcifatih.com/modules/mod_jpayday/js/advertisement.js
 ! https://forum.adguard.com/index.php?threads/komplohaber-com-antiadblock.22570/
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js^$domain=komplohaber.com
-! https://forum.adguard.com/index.php?threads/22117/
-cokomik.net#$#.adsmd { height: 1px !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/25243
-! https://github.com/AdguardTeam/AdguardFilters/issues/4146
-!+ PLATFORM(ios, ext_android_cb)
-@@||turkanime.tv^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31032
 ! https://forum.adguard.com/index.php?threads/fox-com-tr-adblock-detection.19654/
 @@||foxtv-static2.ercdn.net/js/webplayer/*/ads.js$domain=fox.com.tr
@@ -480,21 +412,11 @@ cokomik.net#$#.adsmd { height: 1px !important; }
 @@||ozbeceriksizler.com^$generichide
 ! https://forum.adguard.com/index.php?threads/17911/
 @@||m.softgames.de/advertisement.js
-! https://forum.adguard.com/index.php?threads/15107/
-@@||filmiseyret.tk/*ad$script
 ! https://forum.adguard.com/index.php?threads/formatatmak-com-antiadblock.15103/
 @@||formatatmak.com^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=formatatmak.com
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl.js$domain=formatatmak.com
 @@.png#$domain=formatatmak.com
-! https://forum.adguard.com/index.php?threads/15110/
-mahluklar.org##body > div.modal-bg
-! https://forum.adguard.com/index.php?threads/13662/
-@@||ifsabox.com^$generichide
-! https://forum.adguard.com/index.php?threads/13811/
-@@||e-mete.com/js/ads-*.js
-! https://forum.adguard.com/index.php?threads/13113/
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=turkanime.tv
 ! https://forum.adguard.com/index.php?threads/12964/
 @@||teknobolge.com/ads.js
 ! https://forum.adguard.com/index.php?threads/12772/
@@ -504,13 +426,9 @@ mahluklar.org##body > div.modal-bg
 ! https://forum.adguard.com/index.php?threads/12086/
 web.tv#%#var canRunAds = true;
 @@||static.origins.web.tv/scripts/ads.js
-! https://forum.adguard.com/index.php?threads/12087/
-@@||e-mete.com/js/ads.js
 ! https://forum.adguard.com/index.php?threads/11960/
 fox.com.tr###lbads
 @@||fox.com.tr^$generichide
-! https://forum.adguard.com/index.php?threads/11922/
-@@||limitsizoyun.com^$generichide
 ! http://forum.adguard.com/showthread.php?10436
 @@||sozcu.com.tr/*/assets/js/ads.js
 ! http://forum.adguard.com/showthread.php?9225
