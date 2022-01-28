@@ -25,6 +25,49 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/107956
+@@||content*.uplynk.com/*.m3u8?*&ad.preroll=$domain=abc13.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/107277
+n1info.com#@#div[data-ad]
+! https://github.com/AdguardTeam/AdguardFilters/issues/106901
+tv.jtbc.joins.com#@#div[data-ad]
+! https://github.com/AdguardTeam/AdguardFilters/issues/106161
+preciouslifemovie.com#@##tab-ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/108243
+@@||cdn.ebayclassifieds.net/bff/static/*/MyAds.$domain=2dehands.be|2ememain.be
+! https://github.com/AdguardTeam/AdguardFilters/issues/107288
+-300x300.gif$badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/104764
+!+ PLATFORM(ext_safari, ios)
+@@||vjav.com/*&ad_tags=
+! https://github.com/AdguardTeam/AdguardFilters/issues/104237
+@@||wgplayer.com/friv5online.com/js/*/wgAds.js$domain=friv5online.com
+@@||wgplayer.com/friv5online.com/wgAds.*.conf.js$domain=friv5online.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/102922
+@@||trplus.com.tw/_ui/responsive/*/trplusLcatePage_ADV.js$domain=trplus.com.tw
+! https://github.com/uBlockOrigin/uAssets/issues/11271
+@@||dscksd.akamaiedge.net^$script,domain=lesoir.be
+! https://github.com/AdguardTeam/AdguardFilters/issues/104938
+scan-manga.com#@##pub_head
+! https://github.com/AdguardTeam/AdguardFilters/issues/105339
+programme-tv.net#@#[data-ads-core]
+@@||tra.scds.pmdstatic.net/advertising-core/*/core-ads.js$domain=programme-tv.net
+@@||tra.scds.pmdstatic.net/advertising-core/*/prisma-prebid-plugin.js$domain=programme-tv.net
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||js-sec.indexww.com/ht/p/*.js$redirect=noopjs,domain=programme-tv.net
+||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=programme-tv.net
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+@@||js-sec.indexww.com/ht/p/*.js$domain=programme-tv.net
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=programme-tv.net
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=programme-tv.net
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/106042
+1337x.to#@#a[href*=".php"]
+! https://github.com/uBlockOrigin/uAssets/issues/11190
+kiosque.canardpc.com#@#.pub468
+! https://github.com/AdguardTeam/AdguardFilters/issues/105459
+mapcustomizer.com#@#.with-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102873
 @@||olx.pl/api/v*/*/?ad_id=$xmlhttprequest
 ! https://github.com/uBlockOrigin/uAssets/issues/10628#issuecomment-980589304
@@ -34,8 +77,6 @@
 $subdocument,third-party,domain=filmstreamy.com,badfilter
 @@||embed.mystream.to^$subdocument,domain=filmstreamy.com
 @@||thevideo.me/embed-$subdocument,domain=filmstreamy.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/103322
-@@||eadn-*.nxedge.io/*/*-300x300.gif$domain=accordancebible.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99951
 iphonetweak.fr#@#.pubMobile
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100004
@@ -78,6 +119,7 @@ $subdocument,third-party,domain=vidembed.cc,badfilter
 @@||bunnycdn.ru^$xmlhttprequest,domain=fmovies.*
 @@||cdnjs.cloudflare.com/ajax/libs/$xmlhttprequest,domain=fmovies.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95087
+@@$csp=worker-src 'none',domain=uptostream.com
 @@||uptostream.com^$csp=worker-src 'none'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93910
 otomoto.pl#@#div[data-ad-id]
@@ -142,8 +184,6 @@ movs4u.*#@##clickfakeplayer
 @@.m3u8$domain=telerium.club|telerium.tv|teleriumtv.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82977
 finn.no#@#div[data-ad-id]
-! https://github.com/AdguardTeam/AdguardFilters/issues/85380
-@@||orzado.com.ua/o/wp-content/uploads/*-300x300.gif$domain=orzado.com.ua
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82982
 ||template-help.com^$third-party,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82585
@@ -168,7 +208,7 @@ humblebundle.com#@#.marketing-container
 @@||vidnext.net/player/js/$domain=vidcloud9.com
 $script,third-party,domain=vidcloud9.com,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80361
-@@||streamtape.com^$domain=voiranime.com
+@@||streamtape.*^$domain=voiranime.com
 ! go.leechpremium.link - incorrect blocking
 ||leechpremium.link^$popup,third-party,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78257
@@ -239,8 +279,6 @@ taobao.com#@#a[href*=".taobao.com/"]
 needgayporn.com#@#.is-ad-visible
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68486
 mail.sina.net#@#.pubContent
-! https://github.com/AdguardTeam/AdguardFilters/issues/68305
-@@||slsdiamonds.com/wp-content/uploads/*-300x300.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66708
 spark.adobe.com#@#div[id^="PostAd"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66354
