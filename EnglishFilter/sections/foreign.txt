@@ -1162,6 +1162,12 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/108109
+divoch.cz##.bottom-reklama
+pocasi.divoch.cz#?##leva > h2:contains(/^Reklama$/)
+pocasi.divoch.cz#?##prava > h2:contains(/^Reklama$/)
+divoch.cz##iframe[src^="https://affil.invia.cz/direct/core/tool_dynamic-banner/"]
+||affil.invia.cz/direct/core/tool_dynamic-banner/$domain=divoch.cz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103195
 suzukiclub.cz#@#.reklama
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103764
@@ -4694,6 +4700,9 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/105308
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1412.rest
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=1412.rest,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108822
 ||torrentonly3.com/data/zn_bimg/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102883
@@ -5652,6 +5661,8 @@ mlbpark.donga.com##div[class^="ad_con"]
 !---------------------------------------------------------------------
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99686
+delfi.lv###adblock-popup
+delfi.lv#%#//scriptlet("set-constant", "Adform", "emptyObj")
 cloudycdn.services#%#//scriptlet("json-prune", "source.ads")
 ||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=cloudycdn.services
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -8080,7 +8091,9 @@ filmweb.pl$$script[tag-content="adblockDisplayInformation."][min-length="8000"][
 filmweb.pl$$script[tag-content="plusAdblock"][min-length="4000"][max-length="10000"]
 filmweb.pl#%#//scriptlet("prevent-setInterval", ".offsetHeight&&0!==")
 filmweb.pl#%#//scriptlet("abort-current-inline-script", "IRI", "Adblock")
-filmweb.pl#$?#.ws__wrapper { remove: true; }
+filmweb.pl#%#//scriptlet("set-constant", "sats", "true")
+filmweb.pl#$#body > .fwPlusBtn[style]:not(#style_important), body > #advertBar-pl_PL[style]:not(#style_important), body > .clickArea[style]:not(#style_important), body > .advert[style]:not(#style_important), body > #mainSkyBanner-pl_PL[style]:not(#style_important), body > #ad[style]:not(#style_important), body > .rec-sponsored[style]:not(#style_important), body > .ws__wrapper[style]:not(#style_important), body > .text-ad[style]:not(#style_important), body > .textAd[style]:not(#style_important), body > #clickUrl1[style]:not(#style_important), body > #flashcontent3[style]:not(#style_important), body > #pasekup[style]:not(#style_important), body > .pub_728x90[style]:not(#style_important), body > .ad-internal[style]:not(#style_important), body > .ad-imagehold[style]:not(#style_important), body > .about_adsense[style]:not(#style_important), body > .abBoxAd[style]:not(#style_important), body > .HomeAds[style]:not(#style_important), body > .CommentAd[style]:not(#style_important), body > .Ad160x600[style]:not(#style_important), body > .ADTextSingle[style]:not(#style_important), body > .AD300Block[style]:not(#style_important) { display: block !important; }
+filmweb.pl#$?#.ws__wrapper:not([style]) { remove: true; }
 filmweb.pl$$script[tag-content=".name)throw h=""ABP"","][max-length="7000"]
 filmweb.pl#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/notDetectedBy/.test(a.toString()))return b(a,c)};})();
 ||filmweb.pl/*welcomeScreenJS
@@ -8791,6 +8804,10 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/108112
+||play.kodflix.com/admin/get-preroll.php
+||cdend.com/*.mp4$media,redirect=noopmp3-0.1s,domain=play.kodflix.com
+/Loading.mp4$media,redirect=noopmp3-0.1s,domain=play.kodflix.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104213
 community.headlightmag.com##.Banner-B-Top-Step2
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102008
