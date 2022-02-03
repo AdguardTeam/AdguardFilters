@@ -1,56 +1,34 @@
-name: Bug report
-description: Report an issue with filters
-labels: ["Unsorted"]
-# labels: ["A: Bug", "A: By Design", "A: Cannot reproduce", "A: Closed", "A: In progress", "A: Invalid", "A: Problematic", "A: Rejected", "A: Resolved", "A: Won't fix", "Extra", "Extra (zmc)", "Infrastructure", "N: AdGuard Browser Extension", "N: AdGuard Content Blocker", "N: AdGuard DNS", "N: AdGuard for Android", "N: AdGuard for iOS", "N: AdGuard for Mac", "N: AdGuard for Safari", "N: AdGuard for Windows", "N: Other", "NSFW", "P1: Critical", "P2: High", "P3: Medium", "P4: Low", "T: Ads", "T: Annoyance", "T: Anti Adblock Script", "T: Incorrect Blocking", "T: Popups", "T: Social Widget", "T: Stealth Mode issue", "T: Tracker"]
+name: Pull request
+description: Please include a summary of the change and which issue is fixed. If the related issue does not exist in our repository, please create it before making pool request.
 body:
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: |
-        To avoid invalid reports, please check and confirm following checkboxes.
+        To avoid invalid pull requests, please check and confirm following checkboxes.
         It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub.
       options:
-        - label: This site DOES NOT contains sexually explicit material, otherwise use [NSFW-specific form](./new?template=bug_report_NSFW.yml);
+        - label: This is not an ad/bug report;
           required: true
         - label: Filters were updated before reproducing an issue;
           required: true
         - label: AdGuard product version is up-to-date;
-          required: true
+          required: false
         - label: Browser version is up-to-date;
           required: true
-        - label: If the site or app is broken, disabling AdGuard protection resolves an issue.
+        - label: If the site or app is broken, disabling AdGuard protection resolves an issue;
           required: true
-  - type: dropdown
-    id: adguards
-    attributes:
-      label: What product do you use?
-      multiple: true
-      options:
-        - AdGuard Browser Extension
-        - AdGuard Content Blocker
-        - AdGuard DNS
-        - AdGuard for Android
-        - AdGuard for iOS
-        - AdGuard for Mac
-        - AdGuard for Safari
-        - AdGuard for Windows
-        - Other ad blocker
-    validations:
-      required: true
+        - label: My code follows the style guidelines of this project;
+          required: true          
+        - label: I have performed a self-review of my own code;
+          required: true
+        - label: My changes do not break web sites, apps and files structure.
+          required: true  
 
-  - type: input
-    id: version
+- type: dropdown
+    id: what-fixed
     attributes:
-      label: AdGuard version
-      description: What version of our software are you running?
-      placeholder: for example, 7.7.2, 2.6.1.1060 nightly, 3.6.14 beta
-    validations:
-      required: true
-
-  - type: dropdown
-    id: what-happened
-    attributes:
-      label: What type of problem have you encountered?
+      label: What what problem does pull request fix?
       description: If the problem does not fall under any category that is listed here, please contact our tech support - support@adguard.com
       multiple: true
       options:
@@ -60,165 +38,24 @@ body:
         - Social media buttons — share, like, tweet, etc.
         - Annoyances — pop-ups, cookie warnings, etc.
         - Missed analytics or tracker
-        - Dangerous site
     validations:
       required: true
 
-  - type: dropdown
-    id: browsers
+- type: input
+    id: issue
     attributes:
-      label: Which browser(s) do you use?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-        - Opera
-        - Yandex Browser
-        - other(specify in comment below)
-        - the problem is with app, not a site
+      label: Which issue is fixed?
+      description: Enter an issue number or address.
+      placeholder: ex. #100000 or https://github.com/AdguardTeam/AdguardFilters/issues/100000
     validations:
       required: true
 
-  - type: dropdown
-    id: browsers_type
-    attributes:
-      label: Which device do you use?
-      multiple: false
-      options:
-        - Desktop
-        - Mobile
-    validations:
-      required: true
-
-  - type: input
-    id: url
-    attributes:
-      label: Where is the problem encountered?
-      description: Enter the web address or affected application link.
-      placeholder: ex. https://example.com/
-    validations:
-      required: true
-
-  - type: dropdown
-    id: filters
-    attributes:
-      label: What filters do you have enabled?
-      description: Select enabled filters from the list or enter URLs of any custom filters in the comment field below.
-      multiple: true
-      options:
-        - AdGuard Base filter
-        - AdGuard Mobile Ads filter
-        - AdGuard Chinese filter
-        - AdGuard Dutch filter
-        - AdGuard French filter
-        - AdGuard German filter
-        - AdGuard Japanese filter
-        - AdGuard Russian filter
-        - AdGuard Spanish/Portuguese filter
-        - AdGuard Turkish filter
-        - AdGuard Tracking Protection filter
-        - AdGuard URL Tracking filter
-        - AdGuard Social Media filter
-        - AdGuard Annoyances filter
-        - AdGuard DNS filter
-        - AdGuard Experimental filter
-        - Filter unblocking search ads and self-promotion
-        - ---Third-party filters---
-        - EasyList
-        - ABPindo
-        - Bulgarian list
-        - EasyList China
-        - EasyList Czech and Slovak
-        - EasyList Dutch
-        - EasyList Germany
-        - EasyList Hebrew
-        - EasyList Italy
-        - EasyList Lithuania
-        - Latvian List
-        - Liste AR
-        - Liste FR
-        - ROList
-        - EasyPrivacy
-        - Icelandic ABP List
-        - AdBlockID
-        - Greek AdBlock Filter
-        - Fanboy's Annoyances
-        - Fanboy's Social Blocking List
-        - Web Annoyances Ultralist
-        - Thai Ads Filters
-        - Hungarian filter
-        - Peter Lowe's Blocklist
-        - Xfiles
-        - Adblock Warning Removal List
-        - Online Malicious URL Blocklist
-        - Spam404
-        - RU AdList - Counters
-        - ABPVN List
-        - Fanboy's Enhanced Tracking List
-        - Official Polish filters for AdBlock, uBlock Origin & AdGuard
-        - Polish GDPR-Cookies Filters
-        - Estonian List
-        - ChinaList+EasyList
-        - CJX's Annoyances List
-        - Polish Social Filters
-        - Adblock-Persian list
-        - Fanboy's Swedish
-        - Fanboy's Anti-Facebook List
-        - Fanboy's Vietnamese
-        - List-KR
-        - xinggsf
-        - I don't care about cookies
-        - Fanboy's Spanish\/Portuguese
-        - EasyList Spanish
-        - KAD - Anti-Scam
-        - Adblock List for Finland
-        - ROLIST2
-        - Iranian filter
-        - road-block
-        - Polish Annoyances Filters
-        - Polish Anti Adblock Filters
-        - Fanboy's Anti-thirdparty Fonts
-        - BarbBlock
-        - EasyList Cookie List
-        - NoCoin Filter List
-        - Frellwit's Swedish Filter
-        - YousList
-        - AlleBlock
-        - EasyList Polish
-        - Polish Anti-Annoying Special Supplement
-        - Dandelion Sprout's Nordic Filters
-        - Dandelion Sprout's Annoyances List
-        - Legitimate URL Shortener
-    validations:
-      required: true
-
-  - type: dropdown
-    id: stealth
-    attributes:
-      label: What Stealth Mode options do you have enabled?
-      description: Select any of these options if you have them enabled in Stealth Mode
-      multiple: true
-      options:
-        - Hide your search queries
-        - Send Do-Not-Track header
-        - Remove X-Client-Data header from HTTP requests
-        - Self-destruction of first-party cookies
-        - Self-destruction of third-party cookies
-        - Disable cache for third-party requests
-        - Block WebRTC
-        - Block Push API
-        - Block Location API
-        - Hide your Referrer from third-parties (specify in comment below, if used custom value)
-        - Hide your User-Agent (specify in comment below, if used custom value)
-        - Hide your IP address (specify in comment below, if used custom value)
-
-  - type: textarea
+- type: textarea
     id: comments
     attributes:
       label: Add your comment and screenshots
       description: |
+        0. DO NOT upload screenshots with sexually explicit material on GitHub directly. Instead, upload it to third-party image hosting and post URL here;
         1. Add screenshots of the problem. You can drag and drop images or paste them from clipboard;
            Use `<details> </details>` tag to hide screenshots under the spoiler; 
         2. Describe the issue extensively unless it is absolutely clear from the screenshot what the problem is;
@@ -247,8 +84,7 @@ body:
     id: terms
     attributes:
       label: Privacy
-      description: By submitting this issue, you agree that report does not contain private info
+      description: By submitting this issue, you agree that pull request does not contain private info
       options:
         - label: I agree to follow this condition
           required: true
-
