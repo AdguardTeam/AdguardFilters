@@ -1,7 +1,22 @@
 !
-! These rules are against all kinds of ad blocking reinjection/circumvention scripts
+! First of all, this section has common rules that prevent most known ad block detections. In that case domain should be added to the common rules.
+! The section contains the list of the rules are against all kinds of ads reinjection or ad-blocking circumvention scripts. If such a script does not cripple the website, we add rules to the Annoyances filter.
+! Rules should generally be domain-specific. In some exceptional cases, it's allowed to add generic ones, but this should be approved by most of the maintainers.
+!
+! Good: ||example.org/adblock/detect.js
+! Good: @@/adblocker/detect.js$domain=example.org
+! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109829
+@@||mm.520cc.cc/ad/ad_1.php
+520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "undefined")
+! https://github.com/AdguardTeam/AdguardFilters/issues/109813
+yodu.org#$##byspider { display: none !important; }
+yodu.org#$#body[style] { overflow: auto !important; }
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=yodu.org
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=yodu.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107446
 linovelib.com#$##byspider { display: none !important; }
 linovelib.com#$#body[style] { overflow: auto !important; }
@@ -26,9 +41,6 @@ tingfm.com#%#//scriptlet("prevent-setTimeout", "adblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102824
 movieclassic.net###billboard-modal
 movieclassic.net##.modal-backdrop
-! https://github.com/AdguardTeam/AdguardFilters/issues/102171
-@@||mm.520cc.cc/api/jspopunder.min.js$domain=mm.520cc.cc
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa222", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101672
 freedidi.com#@#.adsBanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98258

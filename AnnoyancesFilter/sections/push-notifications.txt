@@ -1,6 +1,10 @@
-!#######################################################
-!######### Rules for blocking push notifications #######
-!#######################################################
+!
+! This section contains the list of rules that block website push notifications ("subscribe to the news" kind of notifications).
+!
+! Good: any type of the rules will be good
+! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
 ! Disabling of push-notifications
 wallstreet-online.de,dni.ru,polit.info#%#if (window.PushManager) { window.PushManager.prototype.subscribe = function () { return { then: function (func) { } }; }; }
 macwelt.de,pcwelt.de#%#//scriptlet("set-constant", "firebase.messaging", "noopFunc")
@@ -49,6 +53,7 @@ abendzeitung-muenchen.de###webpush-app
 .name/?pus=$script,third-party
 .site/?pus=$script,third-party
 !
+||mediaboom.site^
 /pnsw_init.js
 /js/pushsubscribe.js
 ||lecaleros.com^$third-party
@@ -450,6 +455,7 @@ abendzeitung-muenchen.de###webpush-app
 /firebase.js$domain=novayagazeta.ru|comments.ua|kinosimka.net|ilan365.net|cnbcindonesia.com|haberzamani.net|oxy.cloud|allbasketball.org|auslogics.com|kartalyuvasi.com.tr|cnnindonesia.com|fbc.ua|astv.ru|pln-pskov.ru
 /firebase-messaging.js$domain=focus.ua|ukranews.com|comments.ua|coub.com|porno90.me|cnnamador.com|giallozafferano.it|wcostream.com|fptplay.vn|jooble.org|mobile01.com|myinstants.com|pdalife.ru|rg.ru|m.iguides.ru|donanimhaber.com|profile.ru|womanhit.ru|news.noteru.com|narodna-pravda.ua|newstm.in|sabah.com.tr|dreamstime.com|popbee.com|avtovzglyad.ru|allbasketball.org|tw.news.yahoo.com|takvim.com.tr|jn.pt|ria.ru|pars.host|calculator-online.net|operanewsapp.com|ahaber.com.tr|tamindir.com|concursosnobrasil.com.br|kompas.com|news.ebc.net.tw|recyclingtoday.com|homedecoratione.com|khersondaily.com|mirtesen.ru|womanhit.ru|belsat.eu|gearbest.com|op.gg|novayagazeta.ru|pocket-lint.com|turunculevye.com|bloomberght.com|stardima.com|aksam.com.tr|portamur.ru|fishki.net|ranking.goo.ne.jp
 !
+||static.bonprixsecure.com/resource/*/desktop/scripts/controller/soft_prompt.js
 n-tv.de##.backdrop
 howtogeek.com###notificationAllowPrompt
 sadeceon.com##.notifyjs-corner
@@ -457,6 +463,7 @@ sadeceon.com##.notifyjs-corner
 androidacy.com###webpushr-prompt-wrapper
 echo.msk.ru#%#//scriptlet("set-constant", "Object.prototype.PushSubscription", "")
 buhonline.ru###modals-react-app
+||s-cdn.phonearena.com/js/*/widgets/survey.js
 ||assets.alicdn.com/*/nano-webpush-ui-
 ||cyberlink.com/prog/util/web-notification
 esputnik.com##.webPushSubscriptionPreview--component
@@ -699,8 +706,6 @@ vev.io,vidup.io##.PushNotification
 ||kinoafisha.info/sw.js
 okezone.com##body > #confirm
 tuttotech.net,tuttoandroid.net###notifiche-manager.modal-notifiche
-bonprix.ru###soft_prompt_container
-bonprix.ru###webpush_overlay_back
 ||xz2.xyz/custom/js/pp_*.js
 clarin.com#%#document.cookie = "notification-_clarin=no; path=/";
 ||ariva.de/js/ariva_notification
