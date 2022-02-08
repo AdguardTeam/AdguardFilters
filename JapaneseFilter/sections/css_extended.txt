@@ -1,5 +1,9 @@
 !
-! Extended CSS rules
+! This section contains the list of extended CSS rules against ads.
+! Note, that rules should be domain-specific and you have to use special syntax `#?#` instead of `##`.
+!
+! Good: example.org#?#main > div.row:has(> div.ad)
+! Bad: example.org##main > div.ad (should be in specific.txt)
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104224#issuecomment-1002865063
 ! TODO: replace the rule below after the release of the extension 4.0
@@ -90,13 +94,20 @@ zoku-sei.com#?#.entryinner #ninja-blog-inactive:upward(.entryinner)
 nikkan-gendai.com#?#._popIn_recommend_article_wrapper > a._popIn_recommend_article_ad:first-child + a._popIn_recommend_article_ad:upward(1)
 topics.or.jp#?##_popIn_recommend ul._popIn_infinite_page:has(> li > a._popIn_recommend_article_ad)
 daily.co.jp#?#._popIn_recommend_container a._popIn_recommend_article_ad:upward(._popIn_recommend_container)
-watch.impress.co.jp,careerconnection.jp,news.nifty.com,play-life.jp,intojapanwaraku.com,goldenyokocho.jp,bestcarweb.jp,matome.response.jp,nordot.app,komachi.yomiuri.co.jp,animeanime.jp,books.j-cast.com,cafend.net,chosunonline.com,cinemacafe.net,citicpressjapan.com,cyzo.com,dailyportalz.jp,danshihack.com,mynavi.jp,gamespark.jp,getnavi.jp,gow.asia,honey-mag.jp,iionna.tokyo,inside-games.jp,japanese.joins.com,kanaloco.jp,lamire.jp,macaro-ni.jp,mag.digle.tokyo,media.mamatenna.jp,moneyforward.com,mirror.asahi.com,mxtv.jp,news.tv-asahi.co.jp,realsound.jp,ryukyushimpo.jp,saitama-np.co.jp,smart-flash.jp,taishu.jp,the-uranai.jp,uta-net.com,yamahack.com,yukawanet.com,zigsow.jp#?#li > ._popIn_recommend_article_ad:upward(1)
-nordot.app,animeanime.jp,autocar.jp,cinemacafe.net,mynavi.jp,getnavi.jp,media.moneyforward.com,the-uranai.jp#?#li > ._popIn_recommend_article_ad_reserved:upward(1)
+mensnonno.jp,watch.impress.co.jp,careerconnection.jp,news.nifty.com,play-life.jp,intojapanwaraku.com,goldenyokocho.jp,bestcarweb.jp,matome.response.jp,nordot.app,komachi.yomiuri.co.jp,animeanime.jp,books.j-cast.com,cafend.net,chosunonline.com,cinemacafe.net,citicpressjapan.com,cyzo.com,dailyportalz.jp,danshihack.com,mynavi.jp,gamespark.jp,getnavi.jp,gow.asia,honey-mag.jp,iionna.tokyo,inside-games.jp,japanese.joins.com,kanaloco.jp,lamire.jp,macaro-ni.jp,mag.digle.tokyo,media.mamatenna.jp,moneyforward.com,mirror.asahi.com,mxtv.jp,news.tv-asahi.co.jp,realsound.jp,ryukyushimpo.jp,saitama-np.co.jp,smart-flash.jp,taishu.jp,the-uranai.jp,uta-net.com,yamahack.com,yukawanet.com,zigsow.jp#?#li > ._popIn_recommend_article_ad:upward(1)
+mensnonno.jp,nordot.app,animeanime.jp,autocar.jp,cinemacafe.net,mynavi.jp,getnavi.jp,media.moneyforward.com,the-uranai.jp#?#li > ._popIn_recommend_article_ad_reserved:upward(1)
 sp.uta-net.com,otonasalone.jp,sumaiweb.jp#?#._popIn_infinite_page > a._popIn_recommend_article_ad:upward(1)
 otonasalone.jp,sumaiweb.jp#?#._popIn_infinite_page > a._popIn_recommend_article_ad_reserved:upward(1)
 !
 !
 !
+koro-pokemon.com#?##side > h2.h2s:contains(スポンサーリンク)
+pente.koro-pokemon.com#?#.h2s:last-of-type:contains(ポケモン関連)
+tokai-tv.com#?#.contents_right > div.box > div#ad_rectangle_1:upward(1)
+wired.jp#?#div[class*="ContentFooterWrapper-"]:has(> div > div.wide-adrail)
+simtaro.com#?#.entry-content > div[style^="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);"] > ins.adsbygoogle:upward(1)
+gamedbs.jp#?#div > div[style="text-align:center;"] > ins.adsbygoogle:upward(1)
+smhn.info#?#aside:has(> ins.adsbygoogle)
 onepiece-log.com#?#.entry_body > center:contains([スポンサーリンク])
 azby.fmworld.net#?##recommended > div > div.floatL > a > img[title^="[PR]"]:upward(3)
 viet-jo.com#?##irelated > div > ul > div.bds > div.bd_left1[name]:has-text(PR):upward(4)
@@ -111,7 +122,7 @@ sagatv.co.jp#?#.c-content-main > h2:not([data-bg-pattern]):contains(こちらも
 blog.jp#?#.plugin-memo > div.side > img[src*="a8.net/"]:upward(2)
 elog-ch.com#?##content > h2:contains([PR])
 elog-ch.com#?#.caption2.invisible_sp:contains(PR)
-hochi.news#?#.csw-content-box:not(.ise-ad) > div.csw-content-footer:not(.csw-off) > span.csw-ad-icon:contains(PR):upward(2)
+grapee.jp,hochi.news#?#.csw-content-box:not(.ise-ad) > div.csw-content-footer:not(.csw-off) > span.csw-ad-icon:contains(PR):upward(2)
 xtech.nikkei.com#?##sticky1 > section.l-asideSection:has(div[id^="div-gpt-"])
 xtrend.nikkei.com#?#.articles-list-item > div[id^="div-gpt-"]:upward(1)
 globe.asahi.com#?#.module-list-articles__item > div[id^="div-gpt-"]:upward(1)
@@ -441,7 +452,6 @@ appllio.com#?##main-content > #content > .block.odd:has(aside[id^="div-gpt-ad"])
 appllio.com#?#.sidebar > .region-inner > .block.odd:has(div[id^="div-gpt-ad"])
 !
 pokemon-matome.net#?#.blogparts_freeArea:has(a[href^="https://www.amazon.co.jp/exec/"])
-mainichi.jp#?#div[id^="ad-pc-article"]:upward(1)
 753ya.net#?#.grid_post-box ins.adsbygoogle:upward(.grid_post-box)
 news.merumo.ne.jp#?#.c-section__title--ranking:contains(あなたにおすすめ)
 enrichoneslife.com#?#.widget_custom_html a[href^="https://app.seedapp.jp"]:upward(.widget_custom_html)

@@ -1,3 +1,12 @@
+!
+! This section contains the list of the rules that unblock contextual (and only contextual) ads on the search engine result pages. Rules should be domain-specific.
+
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
+!
 !-------------------------------------------------------------------------------!
 !----------------------------- Search engine result pages ----------------------!
 !-------------------------------------------------------------------------------!
@@ -11,13 +20,6 @@ bing.com#@#li[class=""][data-bm][style*="margin-bottom"]
 ! *** CAUTION: all rules below are wrapped by AG directive. Don't remove it, and don't add another directives***
 !
 !#safari_cb_affinity(general)
-!
-! Search.Avira.com
-!
-search.avira.com#@#.ad-zone
-@@||google.com/adsense/search/async-ads.js$domain=search.avira.com
-@@||csr.inspsearchapi.com/lib/advertisement.js$domain=search.avira.com
-@@||google.com/afs/ads$domain=search.avira.com
 !
 ! Bing
 !
@@ -154,6 +156,8 @@ amazon.de#@#div[class*="ad-topper"]
 amazon.*#@#div[data-slot="auto-sparkle-hsa-tetris"]
 amazon.*#@##recsWidget
 amazon.*#@#div[cel_widget_id^="tetris-"]
+amazon.*#@#.csm-widget-type-sponsored-products-mobile-list-card
+amazon.*#@?##WrapperDivToHideBTF > div[cel_widget_id]:has(> div[data-a-remove-bottom-gutter] > div[data-a-card-type] > div[cel_widget_id="mobile-dp-sims_SponsoredProductsSimsDpThematicMobile"])
 !
 ! Mediafire premium upgrade
 mediafire.com#@##upsellBox

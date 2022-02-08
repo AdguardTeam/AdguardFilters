@@ -1,10 +1,19 @@
 !
-! Section contains the rules for blocking cookies
+!
+! This section contains the list of the rules that block tracking cookies. Rules should be specific and have only only one modifier `$cookie`.
+!
+! Good: ||lemurov.net^$cookie=flat_r_mb
+! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
+!
 !
 !------------------------------
 !---- Domain pecific rules ----
 !------------------------------
 !
+||adform.net^$cookie=/uid|TPC/
+||delfi.lv^$cookie=dcid
+||airasia.com^$cookie=cosmos-arbiter-identifier
+||airasia.com^$cookie=clonedDeviceID
 ||lemurov.net^$cookie=flat_r_mb
 ||21buttons.com^$cookie=21b.user.generated.id
 $cookie=vocuser_uuid,domain=ideal.es|elcorreo.com
@@ -70,8 +79,9 @@ $cookie=wuuid,domain=duolingo.com|duolingo.cn
 !------------------------------
 !
 !
+! wisepops.com widget counter
+$cookie=/^wisepops/
 ! Demandware Analytics
-$cookie=dwsid
 $cookie=/dwanonymous_/
 $cookie=/dwac_/
 $cookie=cqcid
@@ -555,6 +565,8 @@ $cookie=bf_visit
 !---- Fixing filtering errors -
 !------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/108624
+@@||store-jp.nintendo.com^$cookie
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101014
 @@||gigabyte.*^$cookie=/^_ga_/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101455

@@ -1,7 +1,16 @@
+!
+! This section contains the list of ad blocking rules that fall under "advanced" category.
+! By advanced we mean the following rule types: CSS, scriptlets, HTML filtering (`$$` marker), JS.
+!
+! Good: example.org#$##rek { display: none !important; }; example.org#%#//scriptlet('set-cookie', 'ad', '0'); example.org#%#document.cookie = "ad =0"; ; example.org$$script[tag-content="ad"][max-length="3000"].
+! Bad: example.org###rek (should be in specific.txt)
+!
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/108788
+spielen.com#%#//scriptlet("set-constant", "idhb", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107055
 gamepro.de#%#//scriptlet("set-constant", "wgm.initAds", "noopFunc")
 gamepro.de#%#(function(){var a={cmd:[],"public":{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){}}};a.cmd.push=function(b){try{b()}catch(c){}};window.jad=a})();

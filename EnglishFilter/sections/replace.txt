@@ -1,5 +1,9 @@
 !
-! The content replacement rules
+! This section contains the list of the content replacement rules that block ads. Rules must be domain-specific.
+!
+! Good: ||example.org/video-links$replace=/vast":/vast_":/
+! Bad:  ||example.org/video-links (should be in specific.txt)
+!
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105079
 ! Fix ad placeholders in iframe
@@ -81,6 +85,16 @@
 ||unicornmedia.com/now/media/playlist/*/content.m3u8$replace=/#EXTINF:[\s\S]*?https:\/\/[\s\S]*?\.unicornmedia\.com\/now\/media\/segment\/[\s\S]*?&basemediaitemguid=.*//,domain=newshub.co.nz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16677
 ||7plus.com.au/js/app.*.js$replace=/t\.sevenCatalog\.adChoice="ssaibeacon"/t\.sevenCatalog\.adChoice="csai"/,domain=7plus.com.au
+! uplynk new version
+! TODO: Try to find a way to fix an issue with time of the video
+! At the moment, video player shows that time of the video is longer than it really is,
+! so clicking somewhere after video end causes that video starts from the beginning or player is broken
+! https://github.com/AdguardTeam/AdguardFilters/issues/107671
+! https://github.com/AdguardTeam/AdguardFilters/issues/107554
+! https://github.com/AdguardTeam/AdguardFilters/issues/97875
+/playback/v3/videoPlaybackInfo$replace=/("forecastTimeline" : \[)[\s\S]*?(]\,[\s\S]*?"vendorAttributes")/\$1\$2/,domain=go.discovery.com|discoveryplus.com|go.tlc.com|watch.hgtv.com|investigationdiscovery.com|sciencechannel.com
+/playback/v3/videoPlaybackInfo$replace=/("vendorAttributes" : {)[\s\S]*?}\,[\s\S]*?("streaming")/\$1}}\,\n\$2/,domain=go.discovery.com|discoveryplus.com|go.tlc.com|watch.hgtv.com|investigationdiscovery.com|sciencechannel.com
+||uplynk.com/preplay2/*.mpd$replace=/<Period duration="[a-zA-Z\.\d]+" id="[a-zA-Z\-\d]+"><AssetIdentifier schemeIdUri="urn:com:uplynk:ad-asset-id".*?<\/AdaptationSet><\/Period>//,domain=go.discovery.com|discoveryplus.com|go.tlc.com|watch.hgtv.com|investigationdiscovery.com|sciencechannel.com
 ! uplynk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65493
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53641

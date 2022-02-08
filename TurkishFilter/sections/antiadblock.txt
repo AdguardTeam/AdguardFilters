@@ -1,5 +1,11 @@
 !
-! These rules are against all kinds of ad blocking reinjection/circumvention scripts
+! First of all, this section has common rules that prevent most known ad block detections. In that case domain should be added to the common rules.
+! The section contains the list of the rules are against all kinds of ads reinjection or ad-blocking circumvention scripts. If such a script does not cripple the website, we add rules to the Annoyances filter.
+! Rules should generally be domain-specific. In some exceptional cases, it's allowed to add generic ones, but this should be approved by most of the maintainers.
+!
+! Good: ||example.org/adblock/detect.js
+! Good: @@/adblocker/detect.js$domain=example.org
+! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 ! #adcontent bait
 zamaninvarken.com,kredi.biz.tr,kriptoradar.com,morlevha.com,bakimlikadin.net,korsanedebiyat.com,ozbeceriksizler.co,iyibeslenme.net,genelpara.com,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com,azbuz.org,mustafabukulmez.com,siberkalem.com,hepgezelim.com,urfakalesi.com,gecbunlari.com,oyuncukuru.org,filmonerileri.org,hknkr.com,wblogy.com,konuneydi.com,intekno.net#@##adcontent
@@ -7,6 +13,19 @@ zamaninvarken.com,kredi.biz.tr,kriptoradar.com,morlevha.com,bakimlikadin.net,kor
 iyibeslenme.net,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109344
+||tmgrup.com.tr/videojs/adblockDetect.js$xmlhttprequest,redirect=nooptext,important
+@@||tmgrup.com.tr/videojs/adblockDetect.js$xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/108572
+nedir.org#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=nedir.org
+! https://github.com/AdguardTeam/AdguardFilters/issues/106793
+okultanitimi.net#%#//scriptlet("abort-current-inline-script", "$", "adblock")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+okultanitimi.net#@#.adsbygoogle
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=okultanitimi.net
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106782
 !#if (adguard_ext_firefox || adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||prestashopturkiye.com^$generichide
@@ -415,8 +434,6 @@ baho.com.tr#@#.adsbygoogle
 @@||teknobolge.com/ads.js
 ! https://forum.adguard.com/index.php?threads/12772/
 @@||turkcetarih.com^$generichide
-! https://forum.adguard.com/index.php?threads/12226/
-@@||ligtv.com.tr^$generichide
 ! https://forum.adguard.com/index.php?threads/12086/
 web.tv#%#var canRunAds = true;
 @@||static.origins.web.tv/scripts/ads.js

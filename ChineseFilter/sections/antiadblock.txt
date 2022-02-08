@@ -1,7 +1,25 @@
 !
-! These rules are against all kinds of ad blocking reinjection/circumvention scripts
+! First of all, this section has common rules that prevent most known ad block detections. In that case domain should be added to the common rules.
+! The section contains the list of the rules are against all kinds of ads reinjection or ad-blocking circumvention scripts. If such a script does not cripple the website, we add rules to the Annoyances filter.
+! Rules should generally be domain-specific. In some exceptional cases, it's allowed to add generic ones, but this should be approved by most of the maintainers.
+!
+! Good: ||example.org/adblock/detect.js
+! Good: @@/adblocker/detect.js$domain=example.org
+! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109813
+yodu.org#$##byspider { display: none !important; }
+yodu.org#$#body[style] { overflow: auto !important; }
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=yodu.org
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=yodu.org
+! https://github.com/AdguardTeam/AdguardFilters/issues/107446
+linovelib.com#$##byspider { display: none !important; }
+linovelib.com#$#body[style] { overflow: auto !important; }
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=linovelib.com
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11152
 @@||hm.baidu.com/hm.js?$script,domain=rjno1.com
 @@||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com
@@ -381,10 +399,12 @@ bde4.com#%#//scriptlet("set-constant", "canRunAds", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54689
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52753#issuecomment-610411070
 ! https://github.com/AdguardTeam/AdguardFilters/pull/72215
+@@||cocomanga.com/js/ad_/$image
 @@||cocomanga.com/js/ad*/*.js
 @@||ohmanhua.com/js/*.js
 @@||cdn.runative-syndicate.com/sdk/*/n.js$domain=onemanhua.com
 @@||runative-syndicate.com/do2/*$domain=onemanhua.com
+cocomanga.com,ohmanhua.com,onemanhua.com#@#.gg_300
 cocomanga.com,ohmanhua.com,onemanhua.com#@#.adBanner
 cocomanga.com,ohmanhua.com,onemanhua.com#%#//scriptlet("set-constant", "NativeAd", "noopFunc")
 cocomanga.com,ohmanhua.com,onemanhua.com#%#//scriptlet("set-constant", "__jsadsuccess", "true")

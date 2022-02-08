@@ -1,4 +1,9 @@
 !
+! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
 !
 !### Temporary ###
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
@@ -21,6 +26,46 @@
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109188
+||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=carsmile.pl
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||googletagmanager.com/gtm.js$domain=carsmile.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/108618
+!+ PLATFORM(ios, ext_safari)
+@@||googletagmanager.com/gtag/js?id=$domain=thenewsfetcher.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/108615
+! `$redirect` cannot be used due to integrity check
+@@||cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.js$script,domain=picoworkers.com
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||picoworkers.com/login.php$replace=/\/fingerprint2.js" integrity="/\/fingerprint2.js" _integrity="/
+||cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.js$script,redirect=fingerprintjs,domain=picoworkers.com,important
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/108296
+||new.hnair.com/hainanair/ibe/static/scripts/new/profile/fingerprint2.js$script,redirect=fingerprintjs,important
+@@||new.hnair.com/hainanair/ibe/static/scripts/new/profile/fingerprint2.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/108678
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+@@||datadoghq-browser-agent.com/datadog-logs-v*.js$domain=radiotimes.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/108760
+||uim.tifbs.net/js/*.js$script,redirect=noopjs,domain=web.de|gmx.net|gmx.ch
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||uim.tifbs.net/js/*.js$domain=web.de|gmx.net|gmx.ch
+! https://github.com/AdguardTeam/AdguardFilters/issues/108526
+@@||rtoaster.jp^$script,domain=store.united-arrows.co.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/108487
+@@||ev.tpocdm.com^$xmlhttprequest,domain=wowma.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/107816
+@@||cdn.sajari.com/embed/*/*.js$domain=insurancebusinessmag.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/108403
+!+ PLATFORM(ios, ext_android_cb)
+@@||ing.blueconic.net^$domain=ing.jobs
+! https://github.com/AdguardTeam/AdguardFilters/issues/108327
+@@||googletagmanager.com/gtm.js$domain=napishem.ru
+||googletagmanager.com/gtm.js$script,xmlhttprequest,redirect=googletagmanager-gtm,important,domain=napishem.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/108229
+@@||scdn.cxense.com/cx.js$domain=friday.kodansha.co.jp
+@@||api.cxense.com/public/widget/data$domain=friday.kodansha.co.jp
+||cxense.com/cx.js$script,redirect=noopjs,domain=friday.kodansha.co.jp,important
 !https://github.com/AdguardTeam/AdguardFilters/issues/107716
 @@||googletagmanager.com/gtm.js$domain=blaklader.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99502
@@ -38,7 +83,7 @@ ntp.msn.com#@%#navigator.getBattery = undefined;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106408
 @@||online.a1.by/l/v/track.php?event=$domain=a1.by
 ! https://github.com/AdguardTeam/Scriptlets/issues/141#issuecomment-921042595
-||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprint2.js,domain=gamebox.gesoten.com,important
+||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprintjs,domain=gamebox.gesoten.com,important
 @@||cloudflare.com/ajax/libs/fingerprintjs2/$script,domain=gamebox.gesoten.com
 ! riteaid.com
 @@||rfksrv.com/rfk/js/*/init.js$script,domain=riteaid.com
@@ -306,7 +351,6 @@ pizzakiosk.ee#@#img[width="88"][height="31"]
 @@||googletagmanager.com/gtm.js$domain=dengekionline.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91881
 @@||googletagmanager.com/gtm.js$domain=mainichi.jp
-||googletagmanager.com/gtm.js$script,xmlhttprequest,redirect=googletagmanager-gtm,important,domain=mainichi.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91939
 @@||googletagmanager.com/gtm.js$domain=pcjisaku.com
 ||googletagmanager.com/gtm.js$script,xmlhttprequest,redirect=googletagmanager-gtm,important,domain=pcjisaku.com
@@ -1022,8 +1066,13 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||tags.crwdcntrl.net/c/*/cc.js?ns=$domain=html5.gamedistribution.com
 ! overwatchleague.com - fixing images
 @@||googletagmanager.com/gtm.js$domain=overwatchleague.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/109127
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59975
+||googletagmanager.com/gtag/js$script,redirect=googletagmanager-gtm,domain=html5.gamedistribution.com
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||googletagmanager.com/gtag/js$domain=html5.gamedistribution.com
 @@||google-analytics.com/analytics.js$domain=html5.gamedistribution.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59975
 @@||az416426.vo.msecnd.net/next/ai.2.min.js$domain=ams.cdn.arkadiumhosted.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87519
