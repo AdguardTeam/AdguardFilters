@@ -1,3 +1,10 @@
+!
+! This section contains the list of rules that are supposed to work on websites we have no language-specific filter for yet.
+!
+! Good: any type of the rules will be good
+! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
 !---------------------------------------------------------------------
 !------------------------------ Albanian -----------------------------
 !---------------------------------------------------------------------
@@ -487,6 +494,7 @@ auto.am##.azd-top
 !---------------------------------------------------------------------
 !------------------------------ Azerbaijani --------------------------
 !---------------------------------------------------------------------
+turbo.az##.lotriver-top-banner
 sende.biz##a[href^="https://kingads.link/"]
 sende.biz##center > div > a[href][target="_blank"] > img
 ||mp3e.sende.biz/includes/x1.gif
@@ -3888,6 +3896,10 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109771
+||primochef.it/adblock-tracking.html
+primochef.it###detect ~ div[style^="display: flex; align-items: center; justify-content: center; position: fixed;"]
+primochef.it#%#//scriptlet("set-constant", "adBlockRunning", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105192
 tuttotech.net##body #adwallpaper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105494
@@ -8280,7 +8292,7 @@ pilot.wp.pl#?#div[class*=" "] > div:first-child + img[src*="://v.wpimg.pl/"][alt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80901
 dobreprogramy.pl##div[data-index][data-slot][style]
 polygamia.pl,dobreprogramy.pl#?#div[class*=" "] > div:first-child + img[src*="://v.wpimg.pl/"][alt]:upward(1)
-polygamia.pl,dobreprogramy.pl#?#div[class*=" "]:has(> img[src*="://v.wpimg.pl/"] + div[class] > style:first-child + div:last-child)
+tech.wp.pl,gadzetomania.pl,polygamia.pl,dobreprogramy.pl#?#div[class*=" "] > img[src*="://v.wpimg.pl/"] + div[class] > style:first-child + div:last-child:upward(2)
 ! https://forum.adguard.com/index.php?threads/dobreprogramy-pl.19744/#post-127483
 dobreprogramy.pl#%#(function(a){EventTarget.prototype.addEventListener=function(){("slide-menu"==this.id||this.parentNode&&"main"==this.parentNode.id&&this==this.parentNode.firstElementChild)&&-1!==["mouseout","click","mouseover"].indexOf(arguments[0])||a.apply(this,arguments)};})(EventTarget.prototype.addEventListener);
 dobreprogramy.pl#$#body:not(#bd):not([style*="background-image:"]) { background-image:none!important; }
