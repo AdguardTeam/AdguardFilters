@@ -1,3 +1,12 @@
+!
+! This section contains the list of the rules that unblock contextual (and only contextual) ads on the search engine result pages. Rules should be domain-specific.
+
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
+!
 !-------------------------------------------------------------------------------!
 !----------------------------- Search engine result pages ----------------------!
 !-------------------------------------------------------------------------------!
@@ -147,6 +156,9 @@ amazon.de#@#div[class*="ad-topper"]
 amazon.*#@#div[data-slot="auto-sparkle-hsa-tetris"]
 amazon.*#@##recsWidget
 amazon.*#@#div[cel_widget_id^="tetris-"]
+amazon.*#@#.csm-widget-type-sponsored-products-mobile-list-card
+amazon.*#@?##WrapperDivToHideBTF > div[cel_widget_id]:has(> div[data-a-remove-bottom-gutter] > div[data-a-card-type] > div[cel_widget_id="mobile-dp-sims_SponsoredProductsSimsDpThematicMobile"])
+amazon.*#@#div[class*="btf_ad-placements-"]
 !
 ! Mediafire premium upgrade
 mediafire.com#@##upsellBox
@@ -208,8 +220,6 @@ org.rambler.ru#@#.ad-serp-item
 3g2upl4pq6kufc4m.onion,duckduckgo.com#@#.highlight_sponsored
 3g2upl4pq6kufc4m.onion,duckduckgo.com#@##ads
 3g2upl4pq6kufc4m.onion,duckduckgo.com#@#.js-results-ads
-! Comodo Search
-@@||search.comodo.com^$elemhide
 ! Ecosia search
 ecosia.org#@#.results-ads
 ecosia.org#@#.card-ad
