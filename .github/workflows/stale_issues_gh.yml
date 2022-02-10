@@ -1,7 +1,9 @@
 name: 'Close stale issues created via github'
 on:
   schedule:
+    # Runs at 04:00 every day
     - cron: '00 04 * * *'
+  workflow_dispatch:
 
 jobs:
   stale:
@@ -11,9 +13,8 @@ jobs:
         with:
           stale-issue-message: >
             This issue has been automatically marked as stale because it has been open for 4 days with no activity.
-            Please note, that our resources are limited and we can not always take the time to respond to all requests. The issue will be closed if no further activity occurs.
-            However, if you want to help solve the issue and you have some knowledge about creating rules, you are welcome to create a pull request following [these instructions](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md).
-            Thank you for your contributions.
+            Unfortunately, our resources are limited and we can not always take the time to respond to requests about websites that are not popular enough. The issue will be closed if no further activity occurs.
+            Please note, that AdGuard Filters is an open-source project that is used by different content blockers and we welcome contributions. If you have some technical knowledge about how websites work, you are welcome to create a pull request following [these instructions](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md).
           stale-issue-label: 'Stale'
           exempt-issue-labels: 'A: By design,A: In progress,A: Problematic'
           only-issue-labels: 'Unsorted'
