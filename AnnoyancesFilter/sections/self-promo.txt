@@ -1,3 +1,12 @@
+!
+! This is section contains the list of rules that block websites' own banners at our discretion.
+!
+! Self-promo example: promoting other services from the same company (if it's annoying enough).
+!
+! Good: any type of the rules will be good
+! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
 !#######################################################
 !######### Blocking self promotion #####################
 !#######################################################
@@ -49,6 +58,15 @@ disk.yandex.*##.mail360-banner
 @@||yastatic.net/daas/atom.js$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
 !-----------------------------------------------
 !
+! heise.de - ad on main page
+heise.de##section[data-component="MarketingTeaserModule"]
+heise.de#?#.ho-modules-container > div[class]:has(> div[class] > div[class]:contains(Eigenwerbung))
+! https://github.com/AdguardTeam/AdguardFilters/issues/109670
+admin.blog.fc2.com##.adimn_pr_txt
+! https://github.com/AdguardTeam/AdguardFilters/issues/109546
+jorudan.co.jp##.com_pr_rmads_bottom
+! https://github.com/AdguardTeam/AdguardFilters/issues/109549
+transit.yahoo.co.jp##.mdSidePromo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109244
 yahoo.co.jp##.MtoCTool
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109122
@@ -1228,6 +1246,8 @@ experts-exchange.com##.ctaSolutionStickyWrapper
 theguardian.com##.contributions__adblock
 ||contributions.guardianapis.com^
 !
+stopgame.ru##.corner_banner
+nttdocomo.co.jp###header-banner
 qualtrics.com##ul[data-gatext="Banners"]
 reuters.com##div[class^="RegistrationPrompt__container"]
 books.rakuten.co.jp##a[href^="https://books.rakuten.co.jp/event/campaign/pointup-program/"]
@@ -1239,6 +1259,7 @@ elearningindustry.com##.optin-cta
 the-village.ru##a[class^="base-BuyAdvLink-"]
 vk.com##.audio_promo
 uploadev.org##.offerstxt > ul > li.anim
+phonearena.com##.phone-affiliate
 squattypotty.com###omnisend-dynamic-container
 geeksforgeeks.org##div[class^="textBasedMannualAds"]
 uteka.ru##.home-page-intro-slider
@@ -1713,7 +1734,6 @@ pornhub.com,pornhub.org,pornhub.net,pornhubthbh7ap3u.onion##.premiumPromoBannerW
 expresso.pt##.remp-banner
 geeksforgeeks.org##a[href^="https://practice.geeksforgeeks.org/courses/dsa-self-paced?utm_source="] > img
 ihelper.mts.by##.main_baner
-dostfilms.biz#?#.sidebar > section.sidebox:has(> div.sidebox-ttl:contains(Интересное))
 jj-blues.com###text-10
 belta.by##.main > div[class$="right_col"] > div.top_news + div[class]
 ||letu.ru/common/img/background/doma_*.jpg
