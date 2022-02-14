@@ -1,0 +1,28 @@
+name: 'Close stale issues with low priority'
+on:
+  schedule:
+    # Runs every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v4
+        with:
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has been open for 4 days with no activity.
+            
+            Unfortunately, our resources are limited and we can not always take the time to respond to requests about websites that are not popular enough. The issue will be closed if no further activity occurs.
+            
+            Please note, that AdGuard Filters is an open-source project that is used by different content blockers and we welcome contributions. If you have some technical knowledge about how websites work, you are welcome to create a pull request following [these instructions](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md).
+          stale-issue-label: 'Stale'
+          exempt-issue-labels: 'A: By design,A: In progress,A: Problematic'
+          any-of-labels: 'P4: Low,P5: Lowest'
+          exempt-all-issue-assignees: true
+          days-before-issue-stale: 4
+          days-before-issue-close: 3
+          operations-per-run: 100
+          remove-issue-stale-when-updated: true
+          ascending: true
