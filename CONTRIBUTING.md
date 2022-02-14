@@ -57,7 +57,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
 
 * Purpose: this filter blocks various kinds of ads on German-language sites.
 * [German folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/GermanFilter/sections)
-* Notes: The AdGuard French filter includes [Easylist Germany](https://github.com/easylist/easylistgermany) if you use AdGuard products, so there's no need to add rules which are already in `Easylist Germany`.
+* Notes: The AdGuard German filter includes [Easylist Germany](https://github.com/easylist/easylistgermany) if you use AdGuard products, so there's no need to add rules which are already in `Easylist Germany`.
 
 ### AdGuard Japanese filter
 
