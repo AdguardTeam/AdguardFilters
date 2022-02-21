@@ -1,6 +1,12 @@
 !
-! Extended CSS rules
+! This section contains the list of extended CSS rules against ads.
+! Note, that rules should be domain-specific and you have to use special syntax `#?#` instead of `##`.
 !
+! Good: example.org#?#main > div.row:has(> div.ad)
+! Bad: example.org##main > div.ad (should be in specific.txt)
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/107964
+schnittberichte.com#?#header tbody > tr > td[valign="middle"]:has(> a[href^="out.php?"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105158
 kochbar.de#?#section[data-area*="_Empfehlungen-"] .rtli-large-5:has(>.kb-ad)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102303
@@ -46,6 +52,7 @@ mittelbayerische.de#$?#section > ul.collection > li > .ad-medium-rectangle-item:
 mactechnews.de#?#div[class] > div[id^="traffective-ad-"]:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94334
 heise.de#?#.article-body > .article-body > .row > .col-sm-4:has(> .downloads-container .a-ad)
+heise.de#?#.ho-modules-container > div[class]:has(> div[class]:contains(Anzeige))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94469
 der-postillon.com#?#.sidebar > .widget:has(#postillon-sidebar-rotation)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94381

@@ -1,6 +1,13 @@
 !
-! Extended CSS rules
+! This section contains the list of extended CSS rules against ads.
+! Note, that rules should be domain-specific and you have to use special syntax `#?#` instead of `##`.
 !
+! Good: example.org#?#main > div.row:has(> div.ad)
+! Bad: example.org##main > div.ad (should be in specific.txt)
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/110250
+serveradmin.ru#?#.theiaStickySidebar > div[id^="text-html-widget-"]:has(div[data-ai-debug])
+serveradmin.ru#?#.theiaStickySidebar > div[id^="text-html-widget-"]:has(> div.widget-container > div[style="text-align:center;"] > table[cellpadding])
 ! sdamgia.ru
 sdamgia.ru#?#center > script[src^="https://pagead2.googlesyndication.com/"]:upward(1)
 ! riamo.ru - leftovers
@@ -415,10 +422,10 @@ online.anidub.com#?#.wrap > div[style]:has(> div[id^="adfox_"])
 yaplakal.com#?##lentaFeed > tr:has(> td[align="center"] > noindex > div[id^="crt-"])
 yaplakal.com#?##lentaFeed > tr:has(> td[align="center"] > noindex > div[id^="antc-placeholder-"])
 !
-2-ip.online,2ip.io,2ip.ru#?#p[style] > ins.adsbygoogle:upward(1)
-2-ip.online,2ip.io,2ip.ru#?#.content > div[class]:has(> div.service-block > ins.adsbygoogle)
-2-ip.online,2ip.io,2ip.ru#?#.items-list > li.item-wrapper:has(> div[data-id="krot"])
-2-ip.online,2ip.io,2ip.ru#?##content > div[class]:has(> div[class] > a[href^="https://hidemy.name/"][href*="&utm_medium="])
+2ip.io,2ip.ru#?#p[style] > ins.adsbygoogle:upward(1)
+2ip.io,2ip.ru#?#.content > div[class]:has(> div.service-block > ins.adsbygoogle)
+2ip.io,2ip.ru#?#.items-list > li.item-wrapper:has(> div[data-id="krot"])
+2ip.io,2ip.ru#?##content > div[class]:has(> div[class] > a[href^="https://hidemy.name/"][href*="&utm_medium="])
 !
 kanobu.ru#?#section > div[style^="margin-top: 20px;"][style*="width: 300px;"] > aside:has(> iframe[title="igromania"])
 kanobu.ru#?#div[class] > div[class]:has(> iframe[title="igromania"])
@@ -462,14 +469,21 @@ okko.sport#?#div[class]:has(> div[class] > div[class]:contains(/^коэффиц�
 okko.sport#?#button:has(> span:contains(/^прогнозы$/))
 okko.sport##div[class]:has(> iframe[src^="https://clients-static.okko.tv/web/banners/winline/"])
 !
+trendymen.ru#?#.siteWidth > div.menu-sel:contains(/^Новости партнеров$/)
+meendox.net#?#.leftcol > div.box:has(> h2 > span:contains(Реклама))
+esp8266.ru#?#.p-body-inner > ul:has(> li > div.notice-content > a[href="https://jlcpcb.com/"])
+quto.ru#?#div:not([class]) > div[style] > h3:contains(/^Новости партнеров$/):upward(1)
+searchengines.guru#?#body > div[class]:has(> div[id] > ins.adsbygoogle)
 mignews.com#?#h6:contains(/^НОВОСТИ ПАРТНЕРОВ|^ЗНАКОМСТВА/)
 slovodel.com#?#.single__right > h5.right__title:contains(Новости партнеров)
+av.by#?#.index-wrapper > div.index-wrapper__side:has(> div.break--side)
 bizua.org#?##primary > div.main-box:has(> div.main-box-inside > ins.adsbygoogle)
 bizua.org#?##primary > div.main-box:has(> div.main-box-inside > div[id^="adpartner-"])
 bizua.org#?##primary > div.main-box:has(> div.main-box-inside > div[id^="bn_"])
 bizua.org#?#.code-block > div.main-box:has(> div.main-box-inside > div.MIXADVERT_NET)
 kasparov.ru#?#.newsItem:has(> div > small:contains(/^Реклама$/))
 vashdosug.ru#?#.col-md-4.col-light-grey:has(> div.bottom-banner)
+kanobu.ru#?#.knb-grid-layout > div.knb-grid-cell:has(> div[class^="AdFoxBanner"])
 topdaynews.ru#?#.theiaStickySidebar > div.sidebar-box:contains(/Новости партнеров|AdvManager/)
 vtomske.ru#?#.company-materials:has(> div.i-smi2)
 lenta.ru#?#.longgrid-feature-list__box:has(> div.banner)
@@ -483,7 +497,6 @@ vitbichi.by#?#.sidebar_banner__index > div.sidebar-block > div.newsblock > a:not
 vedomosti.ru#?#.articles-cards-list > div.articles-cards-list__cell > div.grid-cell__body > div[class^="card-banner-"]:upward(2)
 kino-teatr.ru#?#.content_block > div.page_content_block:has(> div[style] > a[href^="/go/"])
 bryansknovosti.ru#?#aside.block:not([data-alias="Copyright"]) .widget-area > li.widget_text:not(:has(> div.textwidget a[href^="https://bryansknovosti.ru/"]))
-youla.ru#?#div[data-test-component="ProductOrAdCard"]:has(> span):not(:has(div))
 krymr.com#?#.region > div.media-block-wrap:has(> h2:contains(В ДРУГИХ СМИ))
 kinosvit.tv#?##sidebar > div#barchives:contains(Интересное для Вас)
 motor.ru#?#h2[class$=" heading"]:contains(Новости партнёров)
@@ -604,7 +617,7 @@ nikvesti.com#?#.right-sidebar-section:has(> span:contains(Реклама))
 nikvesti.com#?#.important-news-block:has(> script[src^="https://jsc.mgid.com/"])
 vc.ru#?#div[class="feed"][data-feed-more-url^="https://vc.ru/"] div.feed__item:has(> div.content-feed--promo)
 rustxt.ru#?#body > div.container > div.row > div[class]:has(> ins.adsbygoogle)
-2-ip.online,2ip.io,2ip.ru#?#.page-privacy > div[class]:has(> div[class] > a[target="_blank"])
+2ip.io,2ip.ru#?#.page-privacy > div[class]:has(> div[class] > a[target="_blank"])
 37.1.206.121,new-rutor.org#?##content > div[style]:has(> div[id^="advplayer"])
 cryptoworld.su#?##widget-area > div.widget_container:has(> h4 > span:contains(Реклама))
 echo.msk.ru#?##mainsidebar > div.ad.iblock:not(:has(> a[href]))

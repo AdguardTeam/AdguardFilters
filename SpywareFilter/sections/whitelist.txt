@@ -1,4 +1,9 @@
 !
+! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
 !
 !### Temporary ###
 ! https://github.com/AdguardTeam/CoreLibs/issues/1306
@@ -21,6 +26,43 @@
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110504
+@@||pv.sohu.com/cityjson$domain=bulletin.cebpubservice.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/110958
+! TODO: replace by redirect rule when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/181
+suki-kira.com#%#//scriptlet("remove-attr", "disabled", "button.vote-submit")
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js$domain=suki-kira.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/109135
+@@||mpsnare.iesnare.com/snare.js$domain=rossmann.de
+! freundin.de - back button produces unknown error
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=freundin.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/106875
+@@||googletagmanager.com/gtm.js$domain=www3.nissan.co.jp
+||as.uncn.jp/uwt/$script,redirect=noopjs,domain=nissan.co.jp
+||b90.yahoo.co.jp/conv.js$script,redirect=noopjs,domain=nissan.co.jp
+||b92.yahoo.co.jp/js/s_retargeting.js$script,redirect=noopjs,domain=nissan.co.jp
+||js.adsrvr.org/up_loader.$script,redirect=noopjs,domain=nissan.co.jp
+||yimg.jp/images/listing/tool/cv/$script,redirect=noopjs,domain=nissan.co.jp
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||as.uncn.jp/uwt/$script,domain=www3.nissan.co.jp
+@@||b90.yahoo.co.jp/conv.js$domain=www3.nissan.co.jp
+@@||b92.yahoo.co.jp/js/s_retargeting.js$domain=www3.nissan.co.jp
+@@||js.adsrvr.org/up_loader.$script,domain=www3.nissan.co.jp
+@@||yimg.jp/images/listing/tool/cv/$script,domain=www3.nissan.co.jp
+!#endif
+! kinja group - pictures not loading mobile view
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=avclub.com|clickhole.com|deadspin.com|gizmodo.com|jalopnik.com|jezebel.com|kotaku.com|lifehacker.com|splinternews.com|theinventory.com|theonion.com|theroot.com|thetakeout.com
+! website, not a tracker
+||lp.tfd-corp.co.jp^$badfilter
+||info.neg.co.jp^$badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/110529
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@/piwik-$domain=github.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/109188
+||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=carsmile.pl
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||googletagmanager.com/gtm.js$domain=carsmile.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108618
 !+ PLATFORM(ios, ext_safari)
 @@||googletagmanager.com/gtag/js?id=$domain=thenewsfetcher.com
@@ -74,7 +116,7 @@ ntp.msn.com#@%#navigator.getBattery = undefined;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106408
 @@||online.a1.by/l/v/track.php?event=$domain=a1.by
 ! https://github.com/AdguardTeam/Scriptlets/issues/141#issuecomment-921042595
-||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprint2,domain=gamebox.gesoten.com,important
+||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprintjs,domain=gamebox.gesoten.com,important
 @@||cloudflare.com/ajax/libs/fingerprintjs2/$script,domain=gamebox.gesoten.com
 ! riteaid.com
 @@||rfksrv.com/rfk/js/*/init.js$script,domain=riteaid.com
@@ -918,8 +960,9 @@ nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnm
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64930
 @@||viu.com/ott/misc/tracking/tracking.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/109820
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65036
-@@||ipcheck.tmgrup.com.tr/ipcheck/getcountry?json=$xmlhttprequest,domain=aspor.com.tr
+@@||ipcheck.tmgrup.com.tr/ipcheck/get*?json=$xmlhttprequest,domain=aspor.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65018
 ||google-analytics.com/analytics.js$script,redirect=google-analytics,domain=straitstimes.com
 ||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=straitstimes.com
@@ -1004,8 +1047,6 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||google-analytics.com/analytics.js$domain=avast.com
 @@||google-analytics.com/gtm/js?id=$domain=avast.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/61844
-@@||github.com/carlomorgenstern/piwik-angular/$domain=github.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61875
 @@||cdn.segment.com/analytics.js$domain=buffer.com
 @@||cdn.mxpnl.com/libs/mixpanel-*-latest.min.js$domain=buffer.com
@@ -1225,7 +1266,7 @@ ciokorea.com,adpiamall.com,live.joins.com,naver.com,jbe.go.kr#%#//scriptlet('set
 @@||google-analytics.com/analytics.js$domain=tlctv.com.tr
 @@||googletagmanager.com/gtm.js$domain=tlctv.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53758
-@@||ipcheck.tmgrup.com.tr/ipcheck/getcountry?json=$xmlhttprequest,domain=ahaber.com.tr
+@@||ipcheck.tmgrup.com.tr/ipcheck/get*?json=$xmlhttprequest,domain=ahaber.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53129
 !+ PLATFORM(ios, android, ext_android_cb)
 @@||www.googletagmanager.com/gtm.js$script,domain=book.impress.co.jp

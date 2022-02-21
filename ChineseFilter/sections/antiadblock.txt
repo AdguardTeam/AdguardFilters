@@ -1,7 +1,31 @@
 !
-! These rules are against all kinds of ad blocking reinjection/circumvention scripts
+! First of all, this section has common rules that prevent most known ad block detections. In that case domain should be added to the common rules.
+! The section contains the list of the rules are against all kinds of ads reinjection or ad-blocking circumvention scripts. If such a script does not cripple the website, we add rules to the Annoyances filter.
+! Rules should generally be domain-specific. In some exceptional cases, it's allowed to add generic ones, but this should be approved by most of the maintainers.
+!
+! Good: ||example.org/adblock/detect.js
+! Good: @@/adblocker/detect.js$domain=example.org
+! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110294
+520call.me#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
+520call.me#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
+! https://github.com/AdguardTeam/AdguardFilters/issues/109914
+bde4.icu#@#a[href*="/entry/register/?i_code="]
+bde4.icu#$#a[href*="/entry/register/?i_code="] { position: absolute !important; left: -3000px !important; }
+bde4.icu#%#//scriptlet("set-constant", "canRunAds", "true")
+@@||jsdelivr.net/gh/bde4admin/*/prebid-ads.js$domain=bde4.icu
+! https://github.com/AdguardTeam/AdguardFilters/issues/110360
+! https://github.com/AdguardTeam/AdguardFilters/issues/109829
+520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
+520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
+! https://github.com/AdguardTeam/AdguardFilters/issues/109813
+yodu.org#$##byspider { display: none !important; }
+yodu.org#$#body[style] { overflow: auto !important; }
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=yodu.org
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=yodu.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107446
 linovelib.com#$##byspider { display: none !important; }
 linovelib.com#$#body[style] { overflow: auto !important; }
@@ -9,6 +33,8 @@ linovelib.com#$#body[style] { overflow: auto !important; }
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11152
+||nos.netease.com/fps-pro/frontends/house_index/index/js/index-ad.js?$script,redirect=noopjs,domain=rjno1.com,important
+@@||nos.netease.com/fps-pro/frontends/house_index/index/js/index-ad.js?$domain=rjno1.com
 @@||hm.baidu.com/hm.js?$script,domain=rjno1.com
 @@||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com
 ||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com,important
@@ -26,9 +52,6 @@ tingfm.com#%#//scriptlet("prevent-setTimeout", "adblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102824
 movieclassic.net###billboard-modal
 movieclassic.net##.modal-backdrop
-! https://github.com/AdguardTeam/AdguardFilters/issues/102171
-@@||mm.520cc.cc/api/jspopunder.min.js$domain=mm.520cc.cc
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa222", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101672
 freedidi.com#@#.adsBanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98258
@@ -269,9 +292,6 @@ ip.cn##a[href^="https://www.zeptovm.com/"]
 jav777.xyz#%#//scriptlet("prevent-eval-if", "ADS_BLOCKED")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||jav777.xyz^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/50212
-@@||video.520call.me/jspopunder.min.js$domain=520call.me
-520call.me#%#//scriptlet("set-constant", "all520dddaaa222", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52544
 mobile01.com##.ad-adblock
 @@||attach.mobile01.com/image/mod_ad/*$domain=mobile01.com
@@ -330,8 +350,6 @@ ddrk.me#$#a[href*="/kst6632.com/"] > img { width: 0 !important; }
 @@||cnzz.com/z_stat.php$domain=ddrk.me
 ||cnzz.com/z_stat.php$xmlhttprequest,script,redirect=noopjs,domain=ddrk.me,important
 !#safari_cb_affinity
-! https://github.com/AdguardTeam/AdguardFilters/issues/77323
-@@||ifsp.tv/assets/lib/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73877
 league-funny.com#%#//scriptlet("prevent-setTimeout", "ad_num_show")
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -378,11 +396,6 @@ youneed.win#%#//scriptlet("abort-on-property-read", "daau_app")
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=googlesyndication-adsbygoogle,domain=youneed.win
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=youneed.win
-! https://github.com/AdguardTeam/AdguardFilters/issues/66986
-! https://github.com/AdguardTeam/AdguardFilters/issues/65715
-bde4.com#@#a[href*=".yabo816."]
-bde4.com#$#a[href*=".yabo816."] { position: absolute !important; left: -3000px !important; }
-bde4.com#%#//scriptlet("set-constant", "canRunAds", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65194
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54689
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52753#issuecomment-610411070

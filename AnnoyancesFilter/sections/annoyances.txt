@@ -1,4 +1,10 @@
 !
+! This section contains the list of the rules against annoyances that are not falling under existing categories. Rules should be domain-specific.
+!
+! Good: example.org##.annoyance (it's an annoyance that not falling under existing categories)
+! Bad:  ||example.org^$third-party (it's an adserver and should be in adservers.txt)
+!
+!
 !######### Annoying elements (not ads)
 !
 ! Test for youtube. Look for feedback
@@ -8,6 +14,18 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76987
 youtube.com#%#AG_onLoad(function() {var a = new MutationObserver(function() {if (document.querySelector('yt-upsell-dialog-renderer')) {var b = document.querySelector('.ytd-popup-container[popup-size="UPSELL_DIALOG_RENDERER_POPUP_SIZE_LARGE"] #dismiss-button:not(.dismissed), .upsell-dialog-lightbox .upsell-dialog-dismiss-button button:not(.dismissed)');setTimeout(function() {b&&b.click()}, 3E2)}});a.observe(document, {childList: !0,subtree: !0});setTimeout(function() {a.disconnect()}, 3E3)});
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109332
+planetf1.com#$#.ciam-article-pf1 > div[id^="pp-"] { display: none !important; }
+planetf1.com#$#.ciam-article-pf1 > [style^="display: none;"] { display: block !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/110331
+rlsnet.ru##.attention-modal
+! https://github.com/AdguardTeam/AdguardFilters/issues/109969
+leparisien.fr###right_rail .dailymotion-cpe
+! https://github.com/AdguardTeam/AdguardFilters/issues/109576
+seiko-boutique.de#$#body._has-modal { overflow: auto !important; }
+seiko-boutique.de#$#.amgdprcookie-modal-container { display: none !important; }
+seiko-boutique.de#$#.modals-overlay { display: none !important; }
+seiko-boutique.de#$#div[id^="popupbuilder-popup"] { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108684
 avg.com,avast.com###offer-chrome
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108457
@@ -584,18 +602,17 @@ tvn24.pl#%#//scriptlet("json-prune", "options.auto_play")
 ! egotter.com private window detection
 egotter.com#%#//scriptlet('abort-on-property-read', 'SecretModeDetector')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76406
-||cdn.viqeo.tv/js/vq_starter.js$domain=coop-land.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/108953
+||cdn.viqeo.tv/js/vq_starter.js$domain=teleprogramma.pro|coop-land.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79892
 ownedcore.com###site-header > div > div[style="text-align:center;"] > a[rel="nofollow"][target="_blank"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76893
 gds.it###oggiinedicola
-! https://github.com/AdguardTeam/AdguardFilters/pull/89036
-||namu.wiki/i/*?type=arca&title=$domain=namu.wiki
-||namu.wiki/i/*?type=news&title=$domain=namu.wiki
+! https://github.com/AdguardTeam/AdguardFilters/pull/110014
 ||search.namu.wiki/api/ranking$domain=arca.live
 ||arca.live/api/bywiki.json$domain=arca.live
-namu.wiki#?#a[href^="https://arca.live/b/"]:upward(div.c)
-namu.wiki#?#a[href^="https://namu.news"]:upward(div.c)
+namu.wiki#?#aside > div[class]:matches-attr("/data-v-/"):has(> a[href="https://namu.news"])
+namu.wiki#?##app > div[class]:matches-attr("/data-v-/") > div > div:has(> a[href="https://namu.news"])
 board.namu.wiki,arca.live###newsRank
 arca.live###namuRank
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79295
@@ -965,7 +982,7 @@ lrytas.lt#$#.embedVideoIframe.video-sticky > .embedVideoWrapper.is-sticky { visi
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51140
 solarmovie.fun##solarmovie > movie._info > solarmovie > twshow._info > div[class] > div[class] > a[data-type="1"] + div[class]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79295
-toroox.com,payskip.org#$#.link-details > div.panel { display: none !important; }
+toroox.com#$#.link-details > div.panel { display: none !important; }
 payskip.org#$#.box-main > h4 + script + div.row > div[class]:last-child { left: -200px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/50806
 suara.com###baca-selanjutnya-popup
@@ -1718,8 +1735,6 @@ topxeber.az##.widget.recommend-box
 amalgama-lab.com###quality
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6825
 ||macerkopf.de/wp-content/plugins/dreamgrow-scroll-triggered-box/js/script.js
-! https://forum.adguard.com/index.php?threads/https-www-viyaza-com.25096/
-viyaza.com###check-also-box
 ! https://forum.adguard.com/index.php?threads/http-thefreedictionary-com.25069/
 thefreedictionary.com###OccupSlider
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6720
@@ -2383,12 +2398,19 @@ windowstechblog.nl#%#AG_onLoad(function() { window.bizpanda = {}; });
 izlemac75.net##body > div[style*="width:100%;text-align:center"]
 izlemac75.net##body > div#reload
 !
+nv.ua##section[data-type="advertising"]
+nashkraj.by##.news_detail_social
+politring.com###body_left > ul.social-links
+novayagazeta.ru##div[class^="SocialsBlock_"]
 smartme.pl##.c_ad__container
+life.nv.ua##.content-grid > div.container:not([data-vr-zone]):has(> div.row > div > a[href][target="_blank"] > picture)
 gujaratexclusive.in##.td-post-content p > a[href^="https://t.me/"]
 gujaratexclusive.in##.td-post-content p > a[href^="https://chat.whatsapp.com/"]
 gujaratexclusive.in##.td-post-content p > a[href^="https://www.instagram.com/"]
 gujaratexclusive.in##.td-post-content p > a[href^="https://twitter.com/"]
 betonmobile.ru##.promo_cont
+blogto.com##[style^="--dndwrpr-position:fixed;"]
+thegrowthop.com#$#.featured-video--fixed .player-wrapper { position: static !important; }
 globalknowledge.com##.side-col > div.type-img
 pepper.pl##.js-banner.aGrid[data-track*="twitter_banner"]
 mssqltips.com###signup-div
