@@ -1,3 +1,10 @@
+!
+! This section contains the list of ad blocking rules that fall under "advanced" category.
+! By advanced we mean the following rule types: CSS, scriptlets, HTML filtering (`$$` marker), JS.
+!
+! Good: example.org#$##rek { display: none !important; }; example.org#%#//scriptlet('set-cookie', 'ad', '0'); example.org#%#document.cookie = "ad =0"; ; example.org$$script[tag-content="ad"][max-length="3000"].
+! Bad: example.org###rek (should be in specific.txt)
+!
 !-------------------
 !-------JS----------
 !-------------------
@@ -6,6 +13,8 @@
 pornhub.com,pornhubthbh7ap3u.onion#%#AG_onLoad(function() { if (typeof redirect !== 'function') return; var str = redirect.toString(); var m = str.match(/\'(\/view.*)\'/); if (m.length != 2) return; var link = m[1]; window.location.href = m[1]; });
 !#################
 !
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/24461/1510462016/433
+news.mynavi.jp#%#//scriptlet('prevent-addEventListener', '/^(?:scroll|touchmove|wheel)$/', 'preventDefault')
 ! overlay causing scroll locked
 mudainodocument.com#%#//scriptlet('prevent-addEventListener', '/^(?:mousewheel|touchmove)$/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98497
@@ -53,7 +62,7 @@ businessinsider.in#%#AG_onLoad(function(){location.href.includes("/amp_")&&(new 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58633
 mumbailive.com#%#AG_onLoad(function(){location.pathname.startsWith("/amp/")&&(new MutationObserver(function(){document.querySelectorAll("body > amp-next-page > div > div[style='visibility: visible;']").forEach(function(a){a.shadowRoot.querySelectorAll("div.ad:not([style])").forEach(function(b){b.style="display: none !important;"})})})).observe(document,{childList:!0,subtree:!0})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56038
-m.ifvod.tv#%#//scriptlet("adjust-setInterval", "isPeriodic", "", "0.02")
+m.iyf.tv#%#//scriptlet("adjust-setInterval", "isPeriodic", "", "0.02")
 ! ixbt.com - исправление отступа в мобильной версии
 www.ixbt.com#%#//scriptlet('remove-class', 'branding', 'body[id="pagebody"]')
 ! xhamster.com - ad redirect
@@ -113,6 +122,12 @@ sasisa.ru#%#AG_onLoad(function() { window.Umobi = function() {}; });
 !-------CSS---------
 !-------------------
 !
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/24461/1510462016/433
+news.mynavi.jp#$##iframeContent { display: none !important; }
+news.mynavi.jp#$#[style="overflow: hidden;"] { overflow: auto !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/109697
+movie.digle.tokyo#$#.p-fixed-menu__button-post-movie[href^="https://t.afi-b.com"] { display: none !important; }
+movie.digle.tokyo#$#.p-fixed-menu__menu-wrapper--post-movie { background-color: #0f0e0e !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109417
 seiga.nicovideo.jp#$?#div[data-ads-name="sp_android_web_manga_viewer_lv3_300x250_south"]:upward(1) { height: 82px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109040
@@ -271,6 +286,7 @@ deviantart.com#$#div[class*="dp-ad-"] {height: 0!important; width: 0!important; 
 !-------------------
 !
 ! AMP ads in ShadowRoot
+businessinsider.in$$div[class="fc_clmb_ad"]
 $$amp-ad
 zoomtventertainment.com$$div[class="adv-blocker"]
 zoomtventertainment.com$$div[class="Layout-atfAd-VBh-h"]

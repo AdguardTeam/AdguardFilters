@@ -1,7 +1,21 @@
+!
+! This section contains the list of ad blocking rules that fall under "advanced" category.
+! By advanced we mean the following rule types: CSS, scriptlets, HTML filtering (`$$` marker), JS.
+!
+! Good: example.org#$##rek { display: none !important; }; example.org#%#//scriptlet('set-cookie', 'ad', '0'); example.org#%#document.cookie = "ad =0"; ; example.org$$script[tag-content="ad"][max-length="3000"].
+! Bad: example.org###rek (should be in specific.txt)
+!
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/109027
+pelispedia-v1.wtf#%#//scriptlet("prevent-window-open")
+pelispedia-v1.wtf#%#//scriptlet("adjust-setInterval", "Loading player", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/110168
+atomtt.com,atomixhq.art#%#//scriptlet("prevent-window-open", "!/download\/|link|atomtt\.com\//")
+! https://github.com/AdguardTeam/AdguardFilters/issues/109967
+acortaenlace.com#%#AG_onLoad(function(){try{var a;"function"==typeof decode_link&&"string"==typeof link_out&&(a=decode_link(atob(link_out)),location.assign(a)),"string"==typeof api_key&&(document.cookie=`${api_key}=Wn275; path=/`);var b=document.querySelector("* > .button#contador");b&&a&&setTimeout(()=>{var c=b.cloneNode(!0);b.parentNode.replaceChild(c,b),c.addEventListener("click",function(){location.assign(a)},!1)},500)}catch(a){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102624
 pelispop.me#%#//scriptlet("abort-on-property-read", "adk_pdisp")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102845
@@ -221,6 +235,9 @@ repelis.net#%#Object.defineProperty(window,'adbClick',{value:function(){}});
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/108294
+blog.clarocombomais.com.br#$#body { overflow: auto !important; }
+blog.clarocombomais.com.br#$##progressModal { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106118
 decorardicas.com.br,loucasporcabelos.com.br#$#.play { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97544

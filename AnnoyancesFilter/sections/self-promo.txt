@@ -1,3 +1,12 @@
+!
+! This is section contains the list of rules that block websites' own banners at our discretion.
+!
+! Self-promo example: promoting other services from the same company (if it's annoying enough).
+!
+! Good: any type of the rules will be good
+! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
+!
 !#######################################################
 !######### Blocking self promotion #####################
 !#######################################################
@@ -49,6 +58,28 @@ disk.yandex.*##.mail360-banner
 @@||yastatic.net/daas/atom.js$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
 !-----------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110736 placeholder
+blog.goo.ne.jp#$##app > div.page[style="padding-top: 11rem"] { padding-top: 4.9rem !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/110732
+car-mo.jp##.widget-shortcode.widget_media_image
+! https://github.com/AdguardTeam/AdguardFilters/issues/110544
+||nijiyome.jp/css/contents_pc/topjack.css
+||nijiyome.com/nijiyome-img/img/banners/*/topjack_$image,domain=nijiyome.jp
+nijiyome.jp###topjackContents
+! https://github.com/AdguardTeam/AdguardFilters/issues/105140
+journal.tinkoff.ru##.article-body > div.inline-level
+journal.tinkoff.ru##div[data-tracking-level-label="promo-banner-quiz-footer-banner"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/110220
+10mtv.jp###contents > a[href*="?utm_source=ad_"]
+! heise.de - ad on main page
+heise.de##section[data-component="MarketingTeaserModule"]
+heise.de#?#.ho-modules-container > div[class]:has(> div[class] > div[class]:contains(Eigenwerbung))
+! https://github.com/AdguardTeam/AdguardFilters/issues/109670
+admin.blog.fc2.com##.adimn_pr_txt
+! https://github.com/AdguardTeam/AdguardFilters/issues/109546
+jorudan.co.jp##.com_pr_rmads_bottom
+! https://github.com/AdguardTeam/AdguardFilters/issues/109549
+transit.yahoo.co.jp##.mdSidePromo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109244
 yahoo.co.jp##.MtoCTool
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109122
@@ -192,9 +223,6 @@ rakuten-bank.co.jp###floating-bnr-area
 sugi9532.com##.c-infoBar
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101977
 realsound.jp###bnr_RsCareer
-! promo banner on mobile
-!+ NOT_OPTIMIZED
-eiga.com##.header-pure-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101720
 toretoku.jp##.saleBnr
 toretoku.jp##.saleFixedBnr
@@ -582,8 +610,6 @@ ok.ru##.portlets_vk-branding-banner
 mail.ru###bubble-home
 mail.ru#?#body a[href^="https://r.mail.ru/"]:has(> span[class] > span[id^="tb-close-"])
 mail.ru##li[data-testid="extra-news-item-pulse"]
-! Mobile-only e.g. https://blog.goo.ne.jp/monplacard
-blog.goo.ne.jp##.navbar__link--bottom
 ! When logged out from rakuten
 member.id.rakuten.co.jp###recommendService
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66724
@@ -1228,9 +1254,19 @@ experts-exchange.com##.ctaSolutionStickyWrapper
 theguardian.com##.contributions__adblock
 ||contributions.guardianapis.com^
 !
+energy.rakuten.co.jp##div[class^="banner-"]
+zerohedge.com##div[class^="TheMarketEarHomePageSidebar_container__"]
+cyberleninka.ru#?#.infoblock:has(> div[class="full"] > div.bibloid_serp)
+drwindows.de#?#section[class^="artikel-"] > ul > li:not([class]):has(> a[href] > h3.post:contains(Anzeige))
+stopgame.ru##.corner_banner
+downloadcrew.com##.downloadsAd
+rakuten-card.co.jp##.list-bnr-wrap
+nttdocomo.co.jp###header-banner
 qualtrics.com##ul[data-gatext="Banners"]
 reuters.com##div[class^="RegistrationPrompt__container"]
 books.rakuten.co.jp##a[href^="https://books.rakuten.co.jp/event/campaign/pointup-program/"]
+energy.rakuten.co.jp##.bottom_slider_layout
+energy.rakuten.co.jp##.main_slider_layout
 altclick.ru##.marquiz-pops
 alternativeto.net#?#div[data-testid="alternative-list"] > ol > li:has(span[class^="AppListItem_sponsored__"])
 sme.sk##.composer-bottom-popup
@@ -1239,6 +1275,7 @@ elearningindustry.com##.optin-cta
 the-village.ru##a[class^="base-BuyAdvLink-"]
 vk.com##.audio_promo
 uploadev.org##.offerstxt > ul > li.anim
+phonearena.com##.phone-affiliate
 squattypotty.com###omnisend-dynamic-container
 geeksforgeeks.org##div[class^="textBasedMannualAds"]
 uteka.ru##.home-page-intro-slider
@@ -1713,7 +1750,6 @@ pornhub.com,pornhub.org,pornhub.net,pornhubthbh7ap3u.onion##.premiumPromoBannerW
 expresso.pt##.remp-banner
 geeksforgeeks.org##a[href^="https://practice.geeksforgeeks.org/courses/dsa-self-paced?utm_source="] > img
 ihelper.mts.by##.main_baner
-dostfilms.biz#?#.sidebar > section.sidebox:has(> div.sidebox-ttl:contains(Интересное))
 jj-blues.com###text-10
 belta.by##.main > div[class$="right_col"] > div.top_news + div[class]
 ||letu.ru/common/img/background/doma_*.jpg
@@ -1935,7 +1971,8 @@ music.youtube.com##ytmusic-mealbar-promo-renderer
 youtube.com###ticker-content
 cc-fan.ru,cn-fan.ru,fox-fan.ru###Shop
 ||banner.consultant.ru^
-themeforest.net##.banner
+toto.rakuten.co.jp#?#.login-section2 > div.login-none-inner:has(> div.campaign)
+toto.rakuten.co.jp,themeforest.net##.banner
 alba.co.kr###MainBanner
 albamon.com##.stickyBestalba
 thinkster.io###carbonhold
@@ -2004,4 +2041,10 @@ tele2.ru##div[data-cartridge-type="PersonalizedTizer"]
 ||bb.tele2.ru/media/video/*mobile$domain=tele2.ru
 ||bb.tele2.ru/media/video/*desktop$domain=tele2.ru
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110736
+!+ NOT_OPTIMIZED
+blog.goo.ne.jp##.navbar__link--bottom
+! promo banner on mobile
+!+ NOT_OPTIMIZED
+eiga.com##.header-pure-banner
 !

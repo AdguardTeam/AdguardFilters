@@ -1,5 +1,8 @@
 !
-! Section contains rules for specific websites
+! This section contains the list of domain-specific rules that block ads.
+!
+! Good: example.org###rek; ||example.com/ads/
+! Bad: example.org#$##rek { display: none !important; } (for instance, should be in general_extensions.txt)
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88097
 ipv6.baidu.com,m.baidu.com,www.baidu.com,www1.baidu.com,xueshu.baidu.com###results > div[class]:not(.result):not(.result-op):not(.sp-rslt-bar):not(.s-group-result):not(.hint-unsafe)
@@ -18,12 +21,22 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 !
 !
+ddxsku.com##.adhtml
+sunnylife.tw##.post-entry > div[style="min-width: 300px; min-height:300px;"]
+kocpc.com.tw##[ad="show"]
+applealmond.com##div[style*="height: 260px;"][style*="text-align: center;"]
+vanpeople.com##.advlr
+vanpeople.com##.main-adv
+vanpeople.com##.banneradv-newbox
+urbanlifehk.com##.desktop-sidebar__block--ad
+urbanlifehk.com##.pl-main-article__ad-block
 ||fafa.tuku.com^$domain=shouchaobao.com
 dmhy.gate.flag.moe##a[href^="https://7segu.taobao.com?"]
 mobilemagazinehk.com##.adv2
 pan.baidu.com##.photo-banner
 pan.baidu.com##.phone-banner
 mbtxt.la##.book > center
+xitongtiandi.net##.sidebar > a[target="_blank"] > img
 gbyhn.com.tw##.footer-widget-column
 commonhealth.com.tw##div[class*="ad--"]
 51zxw.net###video div[class^="adBar"]
@@ -45,6 +58,8 @@ cardu.com.tw##img[src*="/ad_images/"]
 kocpc.com.tw##.Zi_ad_ar_O_3
 kocpc.com.tw###custom_html-6
 unwire.hk###post-sidebar-ad
+||img-cos.colg.cn/uploads/images/*/ori_jpg
+bbs.colg.cn##.hdc > a[onclick][target="_blank"]
 south-plus.net##a[onclick*="'ad'"]
 zhangxinxu.com##div[class^="col-left"] > a[href^="https://item.jd.com/"][style="display:block!important;position:sticky;top:0;"]
 ||movieclassic.net/templates/frontend/airav/js/*avs-0.4.js
@@ -874,7 +889,6 @@ blphoto.net##.float-ck
 ||zhujiwiki.com/ad/
 icook.tw##.amp-parallax-ad
 icook.tw##.recipe-ad-placeholder
-ifsp.tv##.search-top > .inner > .ss-ctn[style^="height:"]
 ||image.51cto.com/ad/
 kissjojo99.com###text-16
 kissjojo99.com##.g-adv
@@ -915,8 +929,6 @@ pianba.tv,pianba.net##.play-btn > a[target="_blank"]
 2345.com###J_Banner_Special
 ettoday.net##amp-embed[type="dable"]
 ||m.audio699.com/template/m/js/qqwweef
-ifsp.tv###PR1
-ifsp.tv###PB
 ettoday.net##.ad_in_news
 finance.ettoday.net##.all_news_text1
 inmywordz.com,ants.tw##.acca-block
@@ -955,7 +967,6 @@ t.cj.sina.com.cn##.yyy-wrap-2021
 setn.com##div[class^="ad-"]
 fund.eastmoney.com##div[data-url^="//same.eastmoney.com/"]
 hotpress.info###sidebar > div.widget_text:nth-last-child(-n+3)
-||ppt.ifvod.tv/upload/video/*.jpg$domain=flyv.tv
 nicotv.me##.clearfix-ads
 nicotv.me##.container > div.slide[style="padding-bottom:0px"]
 ||cocomanga.com/sw.js
@@ -1062,13 +1073,9 @@ m.autohome.com.cn##body > section[class]:nth-child(4) > .assist + i.icon-cross
 ||symaa.cn^
 !+ NOT_OPTIMIZED PLATFORM(ios, ext_android_cb, ext_safari)
 ||hbnygj.com^
-! https://github.com/AdguardTeam/AdguardFilters/issues/87994
+! https://github.com/AdguardTeam/AdguardFilters/issues/109897
 !+ NOT_PLATFORM(ios, ext_android_cb)
-ifsp.tv##vg-player.ng-star-inserted > vg-pause-ads + div.caption.show > .inner
-! https://github.com/AdguardTeam/AdguardFilters/issues/88386
-ifvod.tv##vg-pause-ads
-!+ NOT_PLATFORM(ios, ext_android_cb)
-ifvod.tv##vg-player.ng-star-inserted > vg-pause-ads + div.caption.show > .inner
+iyf.tv##vg-player.ng-star-inserted > vg-pause-ads + div.caption.show > .inner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16384
 !+ PLATFORM(ext_edge)
 ||cibntv.net/youku/*.mp4?$redirect=nooptext,important

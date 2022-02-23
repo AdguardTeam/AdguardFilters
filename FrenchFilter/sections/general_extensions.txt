@@ -1,3 +1,10 @@
+!
+! This section contains the list of ad blocking rules that fall under "advanced" category.
+! By advanced we mean the following rule types: CSS, scriptlets, HTML filtering (`$$` marker), JS.
+!
+! Good: example.org#$##rek { display: none !important; }; example.org#%#//scriptlet('set-cookie', 'ad', '0'); example.org#%#document.cookie = "ad =0"; ; example.org$$script[tag-content="ad"][max-length="3000"].
+! Bad: example.org###rek (should be in specific.txt)
+!
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
@@ -62,6 +69,8 @@ generation-nt.com#%#Object.defineProperty(window, 'AdvertBay', { get: function()
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110907
+ouest-france.fr#$#.main { margin-top: 10px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96839
 cnews.fr#$##wrapper-publicite { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92958
@@ -102,6 +111,8 @@ all-stadium.net#$##layer2 {top:50px!important; left:950px!important;}
 !------- Content filtering rules ------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110232
+voirseries.io$$script[src="KGZ1bmN0aW9uKCQsZG9jdW1lbnQp"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25619
 mac4ever.com$$script[wildcard="*((false?*https:*:document.location.protocol)+*//*+*"][max-length="1000"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25407

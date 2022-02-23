@@ -1,5 +1,9 @@
 !
-! White list. Fixing filtration errors (false-positive)
+! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+!
 !
 ! broken player
 @@||oasis-player.p7s1.io/web/monetization/*/monetization.js$domain=puls24.at|kabeleins.de|wetter.com|prosiebenmaxx.de|sixx.de|sat1.de|puls4.com|prosieben.de|kabeleinsdoku.de|kabeleinsdoku.at|zappn.tv
@@ -25,6 +29,8 @@
 !
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/11838
+||vanwa.tech^$third-party,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108575
 123movie.*#@##tab-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109163
@@ -41,8 +47,9 @@ n1info.com#@#div[data-ad]
 tv.jtbc.joins.com#@#div[data-ad]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106161
 preciouslifemovie.com#@##tab-ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/106759
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108243
-@@||cdn.ebayclassifieds.net/bff/static/*/MyAds.$domain=2dehands.be|2ememain.be
+@@||cdn.ebayclassifieds.net/bff/static/*/MyAds.$domain=2dehands.be|2ememain.be|marktplaats.nl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107288
 -300x300.gif$badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104764
@@ -126,9 +133,6 @@ $subdocument,third-party,domain=vidembed.cc,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95052
 @@||bunnycdn.ru^$xmlhttprequest,domain=fmovies.*
 @@||cdnjs.cloudflare.com/ajax/libs/$xmlhttprequest,domain=fmovies.*
-! https://github.com/AdguardTeam/AdguardFilters/issues/95087
-@@$csp=worker-src 'none',domain=uptostream.com
-@@||uptostream.com^$csp=worker-src 'none'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93910
 otomoto.pl#@#div[data-ad-id]
 ! userload.co - incorrect blocking

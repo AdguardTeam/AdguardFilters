@@ -1,3 +1,10 @@
+!
+! This section contains the list of ad blocking rules that fall under "advanced" category.
+! By advanced we mean the following rule types: CSS, scriptlets, HTML filtering (`$$` marker), JS.
+!
+! Good: example.org#$##rek { display: none !important; }; example.org#%#//scriptlet('set-cookie', 'ad', '0'); example.org#%#document.cookie = "ad =0"; ; example.org$$script[tag-content="ad"][max-length="3000"].
+! Bad: example.org###rek (should be in specific.txt)
+!
 !--------------------------------------!
 !------- JS rules ---------------------!
 !--------------------------------------!
@@ -142,6 +149,8 @@ menshealth.de#%#function google_ad_request_done() {};
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/107964
+schnittberichte.com#$#body::after { background-image: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105922
 golem.de#$#.wraptusplit { min-height: auto!important; }
 ! gmx.net left-overs when opening inbox (need to zoom a bit)
@@ -210,8 +219,6 @@ dasoertliche.de#$#body > #oetbwrap[style="position:absolute;top:98px;"] { top: 0
 woxikon.de#$#.ads-wrapper { position: absolute!important; left: -3000px!important; }
 ! https://forum.adguard.com/index.php?threads/freenet-de-ad-blocking.28729
 freenet.de#$##frnBanner { height: 25px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/15240
-hardwareluxx.de#$#body { background-color: #efefef!important; margin-top: 0!important; margin-right: 0!important; }
 ! winfuture.de - video is vanishing after play button when hidden by normal means
 winfuture.de#$#.spoods-deeplinks { visibility: hidden!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10278
