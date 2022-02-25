@@ -6,6 +6,10 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110942
+||buzzfeednews.com^$removeparam=ref
+! https://github.com/AdguardTeam/AdguardFilters/issues/110758
+||goodreads.com^$removeparam=ref
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105140
 ||journal.tinkoff.ru$removeparam=mindbox-click-id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110462
@@ -177,8 +181,10 @@ $removeparam=dt_dapp,domain=douban.com|163.com
 ||cyber-ad01.cc^$removeparam=ip
 ! https://d-markets.net/markets/p/r?_loc=101928001&_article=1503722&_link=1449535&_lurl=http%3A%2F%2Fwww.cityheaven.net%2Faichi%2FA2302%2FA230201%2Ffujiko-ogaki_i%2Fnews%2FnewsId-1449535/?ref=myheaven
 ||d-markets.net^$removeparam=ref
-! https://github.com/AdguardTeam/AdguardFilters/issues/98685
+! https://github.com/AdguardTeam/AdguardFilters/pull/111287
 ! Coupang.com - An electronic commerce service of S. Korea.
+||coupang.com/vp/products/$removeparam=q
+||coupang.com/vp/products/$removeparam=searchId
 ||coupang.com^$removeparam=wRef
 ||coupang.com^$removeparam=traceid
 ||coupang.com^$removeparam=wTime
@@ -352,9 +358,11 @@ $removeparam=/^curator_clanid/,domain=steampowered.com|steamcommunity.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89163
 ! ||amazon.*/message-us$removeparam=origRef
 !
-! ||amazon.*$removeparam=ref - breaks adding article to basket when viewing all offers
 ! ||amazon.*$removeparam=sr - breaks automatic jump to review details
 ! ||amazon.*$removeparam=s - breaks URLs which include them to sort
+! https://github.com/AdguardTeam/AdguardFilters/issues/110571 - when more issues happen, disable rule again: breaks adding article to basket when viewing all offers
+||amazon.*$removeparam=ref
+!
 ||amazon.*$removeparam=tag
 ||amazon.*$removeparam=creative
 ||amazon.*$removeparam=creativeASIN
@@ -384,7 +392,6 @@ $removeparam=/^curator_clanid/,domain=steampowered.com|steamcommunity.com
 ||amazon.*$removeparam=dchild
 ||amazon.*$removeparam=c
 ||amazon.*$removeparam=ts_id
-||amazon.*/dp/$removeparam=tag
 ||amazon.*/aa$removeparam=bitCampaignCode
 ||amazon.*/hz/contact-us/csp$removeparam=/entries/
 ||amazon.*/hz/contact-us/csp$removeparam=/Version/
