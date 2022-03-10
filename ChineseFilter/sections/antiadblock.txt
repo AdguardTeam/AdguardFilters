@@ -8,6 +8,9 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112323
+slashview.com#@#.adsbygoogle
+slashview.com#$##SlashviewAdDetector { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110294
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
@@ -33,8 +36,10 @@ linovelib.com#$#body[style] { overflow: auto !important; }
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11152
-rjno1.com#%#//scriptlet('abort-on-stack-trace', 'document.styleSheets', 'inlineScript')
-rjno1.com#%#//scriptlet('abort-on-stack-trace', 'setTimeout', '/google|inlineScript/')
+rjno1.com#%#//scriptlet("abort-current-inline-script", "onload", "document.getElementById")
+rjno1.com#%#//scriptlet("abort-current-inline-script", "setTimeout", "google")
+rjno1.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "event.target.tagName")
+!+ PLATFORM(ext_ublock)
 rjno1.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', '/google|inlineScript/')
 rjno1.com#$?#style:contains(@keyframes) { remove: true; }
 !+ NOT_PLATFORM(ios, ext_android_cb)
