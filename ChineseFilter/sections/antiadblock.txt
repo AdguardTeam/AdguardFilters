@@ -8,8 +8,13 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112369
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=m.twfanti.com
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=m.twfanti.com,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/112323
+slashview.com#@#.adsbygoogle
+slashview.com#$##SlashviewAdDetector { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110294
-@@||520call.me/ad/ad_1.php
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109914
@@ -19,8 +24,6 @@ bde4.icu#%#//scriptlet("set-constant", "canRunAds", "true")
 @@||jsdelivr.net/gh/bde4admin/*/prebid-ads.js$domain=bde4.icu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110360
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109829
-@@||520cc.cc/ad/ad_1.php
-@@||520cc.cc/api/jspopunder.min.js?
 520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
 520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109813
@@ -36,14 +39,24 @@ linovelib.com#$#body[style] { overflow: auto !important; }
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11152
+rjno1.com#%#//scriptlet("set-constant", "google_global_correlator", "1")
+rjno1.com#%#//scriptlet("set-constant", "google_image_requests", "emptyArr")
+rjno1.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "event.target.tagName")
+!+ PLATFORM(ext_ublock)
+rjno1.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', '/google|inlineScript/')
+!+ NOT_PLATFORM(ios, ext_android_cb)
+||jspassport.ssl.qhimg.com^$script,redirect=noopjs,domain=rjno1.com
+@@||googletagmanager.com/gtag/js$script,domain=rjno1.com
+rjno1.com#$#div[class^="aqn"] { position: absolute !important; left: -4000px !important; }
+@@||pos.baidu.com^$script,domain=rjno1.com
+||pos.baidu.com^$script,redirect=noopjs,domain=rjno1.com,important
+@@||cpro.baidu.com/cpro/ui/rt.js$domain=rjno1.com
+||cpro.baidu.com/cpro/ui/rt.js$script,redirect=noopjs,domain=rjno1.com,important
+@@||cpro.baidustatic.com/cpro/ui/cm.js$script,domain=rjno1.com
 @@||hm.baidu.com/hm.js?$script,domain=rjno1.com
-@@||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com
-||home.163.com/special/$script,redirect=noopjs,domain=rjno1.com,important
 @@||rjno1.com^$generichide
 @@||pagead2.googlesyndication.com/$script,xmlhttprequest,domain=rjno1.com
-||bdstatic.com/hunter/alog/dp.min.js$script,redirect=noopjs,domain=rjno1.com,important
 ||g.doubleclick.net/pagead/ads?$subdocument,redirect=noopframe,domain=rjno1.com,important
-@@||bdstatic.com/hunter/alog/dp.min.js$domain=rjno1.com
 @@||g.doubleclick.net/pagead/ads?$subdocument,domain=rjno1.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11148
 zhangxinxu.com#@#.sldebar_out + *,style[id] + a[class]
@@ -225,9 +238,6 @@ ebb.io#%#//scriptlet('set-constant', 'google_empty_script_included', 'true')
 @@||pagead2.googlesyndication.com/pagead/js/google_top_exp.js$domain=ebb.io
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33141
-ip.cn#$##result  { display: block!important; }
-ip.cn#?#.container-fluid > #tips[style]:contains(请不要屏蔽广告)
-@@||ip.cn/favicon.ico
 @@||s.ip-cdn.com/img/logo.gif
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||s.ip-cdn.com/tp/jg.jpg
@@ -286,9 +296,6 @@ t66y.com##.tpc_content.do_not_catch > br
 getrelax.cc#@#iframe[width="300"][height="250"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48036
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45237
-@@||ip.cn^$content
-ip.cn#$#.container-fluid > #result ~ div > a[href*="share_code"] > img[id] { width: 370px!important; position: absolute!important; left: -3000px!important; }
-ip.cn##a[href^="https://www.zeptovm.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47843
 jav777.xyz#%#//scriptlet("prevent-eval-if", "ADS_BLOCKED")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
