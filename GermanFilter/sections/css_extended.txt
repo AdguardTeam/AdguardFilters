@@ -5,6 +5,9 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/111782
+pnp.de#?#.container:has(> div.OUTBRAIN)
+pnp.de#?#.container:has(> div[id^="traffective-ad-"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110920
 mbpassion.de#?#.adsbygoogle:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107964
@@ -75,8 +78,9 @@ winfuture.de#?#.news210:has( > a[href^="/news"][href*="123690"])
 winfuture.de#?#.hp_latest > div:has( > .topteaser > a[href^="/news"][href*="123690"])
 winfuture.de#?#div[class^="hp_"] > div:has( >ul > li:contains(Anzeige))
 winfuture.de#?#.topnews > div:has( > a > .img_container > .anzeige)
-winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen/))
-winfuture.de#?##main h2:has(> a:contains(/Nur heute\:|Nur diese Woche\:|Nur für [0-9]{1,} Tage|Jetzt reduziert\:|Nur noch heute|tark reduziert|Knaller-Tarif|Top-Preis|kurze Zeit|vorbestellen|Auslieferung gestartet:[\s\S]* sind da|Sale|nur jetzt[\s\S]*reduziert|ngebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen/))
+winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
+
+winfuture.de#?##main h2:has(> a:contains(/Nur heute\:|Nur diese Woche\:|Nur für [0-9]{1,} Tage|Jetzt reduziert\:|Nur noch heute|tark reduziert|Knaller-Tarif|Top-Preis|kurze Zeit|vorbestellen|Auslieferung gestartet:[\s\S]* sind da|Sale|nur jetzt[\s\S]*reduziert|ngebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
 !! ticker
 winfuture.de#?#.topnews > div:has( > .picture_head > .anzeige)
 winfuture.de#?#.newsTicker > li:has( > .anzeige)
@@ -274,6 +278,7 @@ chip.de#?#.fb > article:has(> a .Badge > .Badge__Content:contains(/gesponsert|an
 ! golem.de - left-over
 golem.de#?#.list-articles > li[class]:has(> a[href^="https://www.golem.de/news/anzeige-"])
 golem.de#$?#.list-articles > li[class]:has(> a[href^="https://www.golem.de/news/anzeige-"]) + li { border-top: solid 1px #EEE !important; }
+!+ NOT_OPTIMIZED
 forum.golem.de#?#.list-comments > li:has(> div[style])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44865
 photovoltaikforum.com#?#ul.wbbThreadPostList  > li:not([class]):has(> .wcfAdLocation)

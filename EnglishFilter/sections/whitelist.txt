@@ -9,6 +9,9 @@
 !#########################################
 ! START: Temporary
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112098
+! https://github.com/AdguardTeam/CoreLibs/issues/1607
+@@||cdpn.io/freeCodeCamp/$extension
 ! https://forum.adguard.com/index.php?threads/46253/
 ! https://github.com/AdguardTeam/CoreLibs/issues/1594
 $popup,third-party,domain=fembed-hd.com,badfilter
@@ -388,6 +391,14 @@ copypastecharacter.com#$##contents { visibility: visible!important; }
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112221
+@@||mixdrop.co/panel/actions/load.php
+/^https?:\/\/.*\.(jpg|gif|png|php|svg|ico|js|txt|css)/$popup,domain=mixdrop.*,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/112207
+@@||stc.cdncache.xyz/*/*.css$domain=streamz.ws
+@@||stc.cdncache.xyz/*/*.js$domain=streamz.ws
+@@||stc.cdncache.xyz/css/fonts/$domain=streamz.ws
+/^https?:\/\/.*\.(club|bid|biz|xyz|site|pro|info|online|icu|monster|buzz|website|biz|re|casa|top|one|space|network|live|systems|ml|world|life|co)\/.*/$~image,~media,~subdocument,third-party,domain=streamz.ws,badfilter
 ! video broken by __htas regex
 @@||cloudflare.com/ajax/libs/dash-shaka-playback/$script,domain=vpornvideos.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111705
@@ -1582,10 +1593,6 @@ nulledpremium.com$@$script[wildcard="*eval*babasbmsgx*"][min-length="5000"][max-
 @@||vidmoly.to/jws.php
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52948
 @@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=wcvb.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/52836
-@@||disqus.com/embed.js$domain=kissasian.sh
-@@||disqus.com/next/config.js$domain=kissasian.sh
-@@||c.disquscdn.com/next/embed/$domain=kissasian.sh
 ! xda-developers.com - fixing embedded tweets
 @@||cdn.syndication.twimg.com/tweets.json?$domain=xda-developers.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52812
@@ -1752,11 +1759,6 @@ kzstock.blogspot.com#@##ad-target
 @@||pussyspace.com/class/captcha/captcha.php$domain=pussyspace.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48094
 @@||cdn.staticdata.site/js/loadjs*.min.js$domain=strikeout.nu
-! https://github.com/AdguardTeam/AdguardFilters/issues/47998
-@@||kissasian.sh/Scripts/*.js
-@@||iamcdn.net/players/player.min.$domain=kissasian.sh
-@@||hydrax.net/players/player.min.$domain=kissasian.sh
-@@||cdn.jsdelivr.net/npm/jquery*/dist/jquery.min.js$domain=kissasian.sh
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47914
 ojooo.com#@##showads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47857
@@ -1810,7 +1812,8 @@ up-load.io$@$script[tag-content="zfgloaded"][min-length="30000"][max-length="800
 gplinks.co,gplinks.in$@$script[tag-content="zfgloaded"][min-length="30000"][max-length="80000"]
 ! Fixing google translate built-in Chrome
 ! broken by '|https://$third-party,xmlhttprequest,domain=' on some websites
-@@||translate.googleapis.com/translate_*/*&client=*&key=$xmlhttprequest
+@@||translate.googleapis.com/*translate_*/*=*=$xmlhttprequest
+@@||gstatic.com/images/branding/product/*x/translate_24dp.png$image,domain=translate.googleapis.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46616
 @@||track.adform.net/serving/scripts/trackpoint/async/$domain=ethias.be
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38713#issuecomment-568479607
@@ -1849,7 +1852,7 @@ links4earn.com#@#.banner-728x90
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44788
 bing.com#@#a[href^="https://www.bing.com/aclk?"]
 ! EasyList China:
-bing.com#@#.b_ad
+!bing.com#@#.b_ad
 bing.com#@#.b_adBottom
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45181
 !+ PLATFORM(windows)
@@ -2170,11 +2173,6 @@ rawstory.com#@#div[id^="div-gpt-ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36491
 @@||js-sec.indexww.com/ht/htw-baltimore-sun.js$domain=baltimoresun.com
 @@||c.amazon-adsystem.com/aax2/apstag.js$domain=baltimoresun.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/36197
-@@||wp.com/c/*/wp-includes/js
-@@||wp.com/c/*/wp-includes/css
-@@||i*.wp.com/mac-torrent-download.net/wp-content/uploads
-@@||wp.com/p/jetpack^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36264
 optifine.net#@#.tableAds
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36094
@@ -2327,12 +2325,6 @@ pembekekik.com#@#.vertical-ads
 ! kimcartoon.to - fixing video player
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||kimcartoon.to/ads/propVast.aspx
-! https://github.com/AdguardTeam/AdguardFilters/issues/33032
-! https://github.com/AdguardTeam/AdguardFilters/issues/32457
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||kissasian.sh/ads/propVast.aspx
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||kissasian.sh/ads/fb.aspx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31210
 !+ PLATFORM(ext_edge)
 @@||9140657.fls.doubleclick.net/activityi;$domain=wwws.lacapitale.com
