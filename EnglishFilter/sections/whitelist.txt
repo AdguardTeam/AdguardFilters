@@ -9,6 +9,9 @@
 !#########################################
 ! START: Temporary
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112098
+! https://github.com/AdguardTeam/CoreLibs/issues/1607
+@@||cdpn.io/freeCodeCamp/$extension
 ! https://forum.adguard.com/index.php?threads/46253/
 ! https://github.com/AdguardTeam/CoreLibs/issues/1594
 $popup,third-party,domain=fembed-hd.com,badfilter
@@ -388,6 +391,25 @@ copypastecharacter.com#$##contents { visibility: visible!important; }
 !
 !
 !
+! pornsocket.com - broken videos
+@@||en.bongacash.com/js/videojs/video.js$domain=pornsocket.com
+@@||en.bongacash.com/js/videojs/videojs_*.vast.vpaid.min.js$domain=pornsocket.com
+! moneycontrol.com - incorrect blocking
+! Fixes blocked graph - https://www.moneycontrol.com/news/business/markets/share-market-live-updates-stock-market-today-march-17-latest-news-bse-nse-sensex-nifty-covid-coronavirus-beml-gufic-biosciences-satin-creditcare-network-yasho-industries-indiabulls-housing-finance-8241801.html
+moneycontrol.com#@#iframe[width="100%"][height="120"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/112221
+@@||mixdrop.co/panel/actions/load.php
+/^https?:\/\/.*\.(jpg|gif|png|php|svg|ico|js|txt|css)/$popup,domain=mixdrop.*,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/112207
+@@||stc.cdncache.xyz/*/*.css$domain=streamz.ws
+@@||stc.cdncache.xyz/*/*.js$domain=streamz.ws
+@@||stc.cdncache.xyz/css/fonts/$domain=streamz.ws
+/^https?:\/\/.*\.(club|bid|biz|xyz|site|pro|info|online|icu|monster|buzz|website|biz|re|casa|top|one|space|network|live|systems|ml|world|life|co)\/.*/$~image,~media,~subdocument,third-party,domain=streamz.ws,badfilter
+! video broken by __htas regex
+@@||cloudflare.com/ajax/libs/dash-shaka-playback/$script,domain=vpornvideos.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/111705
+technoashwath.com#@##ad-top
+technoashwath.com#@#.largeAd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111489
 womenoftrek.com#@#iframe[width="468"][height="60"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110056
@@ -1577,10 +1599,6 @@ nulledpremium.com$@$script[wildcard="*eval*babasbmsgx*"][min-length="5000"][max-
 @@||vidmoly.to/jws.php
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52948
 @@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=wcvb.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/52836
-@@||disqus.com/embed.js$domain=kissasian.sh
-@@||disqus.com/next/config.js$domain=kissasian.sh
-@@||c.disquscdn.com/next/embed/$domain=kissasian.sh
 ! xda-developers.com - fixing embedded tweets
 @@||cdn.syndication.twimg.com/tweets.json?$domain=xda-developers.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52812
@@ -1747,11 +1765,6 @@ kzstock.blogspot.com#@##ad-target
 @@||pussyspace.com/class/captcha/captcha.php$domain=pussyspace.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48094
 @@||cdn.staticdata.site/js/loadjs*.min.js$domain=strikeout.nu
-! https://github.com/AdguardTeam/AdguardFilters/issues/47998
-@@||kissasian.sh/Scripts/*.js
-@@||iamcdn.net/players/player.min.$domain=kissasian.sh
-@@||hydrax.net/players/player.min.$domain=kissasian.sh
-@@||cdn.jsdelivr.net/npm/jquery*/dist/jquery.min.js$domain=kissasian.sh
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47914
 ojooo.com#@##showads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47857
@@ -1805,7 +1818,8 @@ up-load.io$@$script[tag-content="zfgloaded"][min-length="30000"][max-length="800
 gplinks.co,gplinks.in$@$script[tag-content="zfgloaded"][min-length="30000"][max-length="80000"]
 ! Fixing google translate built-in Chrome
 ! broken by '|https://$third-party,xmlhttprequest,domain=' on some websites
-@@||translate.googleapis.com/translate_*/*&client=*&key=$xmlhttprequest
+@@||translate.googleapis.com/*translate_*/*=*=$xmlhttprequest
+@@||gstatic.com/images/branding/product/*x/translate_24dp.png$image,domain=translate.googleapis.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46616
 @@||track.adform.net/serving/scripts/trackpoint/async/$domain=ethias.be
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38713#issuecomment-568479607
@@ -1844,7 +1858,7 @@ links4earn.com#@#.banner-728x90
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44788
 bing.com#@#a[href^="https://www.bing.com/aclk?"]
 ! EasyList China:
-bing.com#@#.b_ad
+!bing.com#@#.b_ad
 bing.com#@#.b_adBottom
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45181
 !+ PLATFORM(windows)
@@ -2165,11 +2179,6 @@ rawstory.com#@#div[id^="div-gpt-ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36491
 @@||js-sec.indexww.com/ht/htw-baltimore-sun.js$domain=baltimoresun.com
 @@||c.amazon-adsystem.com/aax2/apstag.js$domain=baltimoresun.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/36197
-@@||wp.com/c/*/wp-includes/js
-@@||wp.com/c/*/wp-includes/css
-@@||i*.wp.com/mac-torrent-download.net/wp-content/uploads
-@@||wp.com/p/jetpack^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36264
 optifine.net#@#.tableAds
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36094
@@ -2322,12 +2331,6 @@ pembekekik.com#@#.vertical-ads
 ! kimcartoon.to - fixing video player
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||kimcartoon.to/ads/propVast.aspx
-! https://github.com/AdguardTeam/AdguardFilters/issues/33032
-! https://github.com/AdguardTeam/AdguardFilters/issues/32457
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||kissasian.sh/ads/propVast.aspx
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||kissasian.sh/ads/fb.aspx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31210
 !+ PLATFORM(ext_edge)
 @@||9140657.fls.doubleclick.net/activityi;$domain=wwws.lacapitale.com
@@ -4592,12 +4595,6 @@ sportsdirect.com#@#.ads:not(body)
 @@https://adwords.google.$document,domain=google.ad|google.ae|google.al|google.am|google.as|google.at|google.az|google.ba|google.be|google.bf|google.bg|google.bi|google.bj|google.bs|google.bt|google.by|google.ca|google.cat|google.cd|google.cf|google.cg|google.ch|google.ci|google.cl|google.cm|google.cn|google.co.ao|google.co.bw|google.co.ck|google.co.cr|google.co.id|google.co.il|google.co.in|google.co.jp|google.co.ke|google.co.kr|google.co.ls|google.co.ma|google.co.mz|google.co.nz|google.co.th|google.co.tz|google.co.ug|google.co.uk|google.co.uz|google.co.ve|google.co.vi|google.co.za|google.co.zm|google.co.zw|google.com|google.com.af|google.com.ag|google.com.ai|google.com.ar|google.com.au|google.com.bd|google.com.bh|google.com.bn|google.com.bo|google.com.br|google.com.bz|google.com.co|google.com.cu|google.com.cy|google.com.do|google.com.ec|google.com.eg|google.com.et|google.com.fj|google.com.gh|google.com.gi|google.com.gt|google.com.hk|google.com.jm|google.com.kh|google.com.kw|google.com.lb|google.com.ly|google.com.mm|google.com.mt|google.com.mx|google.com.my|google.com.na|google.com.nf|google.com.ng|google.com.ni|google.com.np|google.com.om|google.com.pa|google.com.pe|google.com.pg|google.com.ph|google.com.pk|google.com.pr|google.com.py|google.com.qa|google.com.sa|google.com.sb|google.com.sg|google.com.sl|google.com.sv|google.com.tj|google.com.tr|google.com.tw|google.com.ua|google.com.uy|google.com.vc|google.com.vn|google.cv|google.cz|google.de|google.dj|google.dk|google.dm|google.dz|google.ee|google.es|google.fi|google.fm|google.fr|google.ga|google.ge|google.gg|google.gl|google.gm|google.gp|google.gr|google.gy|google.hn|google.hr|google.ht|google.hu|google.ie|google.im|google.iq|google.is|google.it|google.je|google.jo|google.kg|google.ki|google.kz|google.la|google.li|google.lk|google.lt|google.lu|google.lv|google.md|google.me|google.mg|google.mk|google.ml|google.mn|google.ms|google.mu|google.mv|google.mw|google.ne|google.nl|google.no|google.nr|google.nu|google.pl|google.pn|google.ps|google.pt|google.ro|google.rs|google.ru|google.rw|google.sc|google.se|google.sh|google.si|google.sk|google.sm|google.sn|google.so|google.sr|google.st|google.td|google.tg|google.tk|google.tl|google.tm|google.tn|google.to|google.tt|google.vg|google.vu|google.ws
 @@https://www.google.*/adsense$document,domain=google.ad|google.ae|google.al|google.am|google.as|google.at|google.az|google.ba|google.be|google.bf|google.bg|google.bi|google.bj|google.bs|google.bt|google.by|google.ca|google.cat|google.cd|google.cf|google.cg|google.ch|google.ci|google.cl|google.cm|google.cn|google.co.ao|google.co.bw|google.co.ck|google.co.cr|google.co.id|google.co.il|google.co.in|google.co.jp|google.co.ke|google.co.kr|google.co.ls|google.co.ma|google.co.mz|google.co.nz|google.co.th|google.co.tz|google.co.ug|google.co.uk|google.co.uz|google.co.ve|google.co.vi|google.co.za|google.co.zm|google.co.zw|google.com|google.com.af|google.com.ag|google.com.ai|google.com.ar|google.com.au|google.com.bd|google.com.bh|google.com.bn|google.com.bo|google.com.br|google.com.bz|google.com.co|google.com.cu|google.com.cy|google.com.do|google.com.ec|google.com.eg|google.com.et|google.com.fj|google.com.gh|google.com.gi|google.com.gt|google.com.hk|google.com.jm|google.com.kh|google.com.kw|google.com.lb|google.com.ly|google.com.mm|google.com.mt|google.com.mx|google.com.my|google.com.na|google.com.nf|google.com.ng|google.com.ni|google.com.np|google.com.om|google.com.pa|google.com.pe|google.com.pg|google.com.ph|google.com.pk|google.com.pr|google.com.py|google.com.qa|google.com.sa|google.com.sb|google.com.sg|google.com.sl|google.com.sv|google.com.tj|google.com.tr|google.com.tw|google.com.ua|google.com.uy|google.com.vc|google.com.vn|google.cv|google.cz|google.de|google.dj|google.dk|google.dm|google.dz|google.ee|google.es|google.fi|google.fm|google.fr|google.ga|google.ge|google.gg|google.gl|google.gm|google.gp|google.gr|google.gy|google.hn|google.hr|google.ht|google.hu|google.ie|google.im|google.iq|google.is|google.it|google.je|google.jo|google.kg|google.ki|google.kz|google.la|google.li|google.lk|google.lt|google.lu|google.lv|google.md|google.me|google.mg|google.mk|google.ml|google.mn|google.ms|google.mu|google.mv|google.mw|google.ne|google.nl|google.no|google.nr|google.nu|google.pl|google.pn|google.ps|google.pt|google.ro|google.rs|google.ru|google.rw|google.sc|google.se|google.sh|google.si|google.sk|google.sm|google.sn|google.so|google.sr|google.st|google.td|google.tg|google.tk|google.tl|google.tm|google.tn|google.to|google.tt|google.vg|google.vu|google.ws
 @@https://www.google.*/adwords$document,domain=google.ad|google.ae|google.al|google.am|google.as|google.at|google.az|google.ba|google.be|google.bf|google.bg|google.bi|google.bj|google.bs|google.bt|google.by|google.ca|google.cat|google.cd|google.cf|google.cg|google.ch|google.ci|google.cl|google.cm|google.cn|google.co.ao|google.co.bw|google.co.ck|google.co.cr|google.co.id|google.co.il|google.co.in|google.co.jp|google.co.ke|google.co.kr|google.co.ls|google.co.ma|google.co.mz|google.co.nz|google.co.th|google.co.tz|google.co.ug|google.co.uk|google.co.uz|google.co.ve|google.co.vi|google.co.za|google.co.zm|google.co.zw|google.com|google.com.af|google.com.ag|google.com.ai|google.com.ar|google.com.au|google.com.bd|google.com.bh|google.com.bn|google.com.bo|google.com.br|google.com.bz|google.com.co|google.com.cu|google.com.cy|google.com.do|google.com.ec|google.com.eg|google.com.et|google.com.fj|google.com.gh|google.com.gi|google.com.gt|google.com.hk|google.com.jm|google.com.kh|google.com.kw|google.com.lb|google.com.ly|google.com.mm|google.com.mt|google.com.mx|google.com.my|google.com.na|google.com.nf|google.com.ng|google.com.ni|google.com.np|google.com.om|google.com.pa|google.com.pe|google.com.pg|google.com.ph|google.com.pk|google.com.pr|google.com.py|google.com.qa|google.com.sa|google.com.sb|google.com.sg|google.com.sl|google.com.sv|google.com.tj|google.com.tr|google.com.tw|google.com.ua|google.com.uy|google.com.vc|google.com.vn|google.cv|google.cz|google.de|google.dj|google.dk|google.dm|google.dz|google.ee|google.es|google.fi|google.fm|google.fr|google.ga|google.ge|google.gg|google.gl|google.gm|google.gp|google.gr|google.gy|google.hn|google.hr|google.ht|google.hu|google.ie|google.im|google.iq|google.is|google.it|google.je|google.jo|google.kg|google.ki|google.kz|google.la|google.li|google.lk|google.lt|google.lu|google.lv|google.md|google.me|google.mg|google.mk|google.ml|google.mn|google.ms|google.mu|google.mv|google.mw|google.ne|google.nl|google.no|google.nr|google.nu|google.pl|google.pn|google.ps|google.pt|google.ro|google.rs|google.ru|google.rw|google.sc|google.se|google.sh|google.si|google.sk|google.sm|google.sn|google.so|google.sr|google.st|google.td|google.tg|google.tk|google.tl|google.tm|google.tn|google.to|google.tt|google.vg|google.vu|google.ws
-! Fixing video on nbcnews.com domains
-@@||nbcnews.com/videoplayer$jsinject
-@@||nbcnews.com/widget/pdkplayer$jsinject
-@@||player.theplatform.com^$jsinject
-@@||vplayer.nbcolympics.com^$jsinject
-@@||vplayer.nbcsports.com^$jsinject
 ! Fixing video on cnn.com
 @@||cdn.turner.com/*.swf
 @@||cdn.turner.com/*/ad_policy.xml
