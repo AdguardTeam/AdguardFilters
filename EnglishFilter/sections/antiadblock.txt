@@ -1557,8 +1557,17 @@ wcofun.com#%#//scriptlet("prevent-setTimeout", "AdBlock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105644
 sms24.me,sms24.info#%#//scriptlet("prevent-setTimeout", "/ADBLOCK|window\.\$ado/")
 sms24.me,sms24.info#%#//scriptlet('remove-class', 'preloader', '.preloader')
-||cdn.adoptum.net/ado.js$script,redirect=noopjs,domain=sms24.me|sms24.info
+sms24.me,sms24.info#%#//scriptlet('remove-class', 'placeholder-content', '.placeholder-content')
+sms24.me,sms24.info#$?#.placeholder { remove: true; }
+sms24.me,sms24.info#$?#.placeholder-glow { remove: true; }
+sms24.me,sms24.info##div[name="ado"]
 sms24.me,sms24.info##body > div[style^="position: fixed; z-index: 1000"]
+||cdn.adoptum.net/ado.js$script,redirect=noopjs,domain=sms24.me|sms24.info
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||cdn.adoptum.net/ado.js$domain=sms24.me|sms24.info
+@@||dl.adoptum.net/spc?sid=$domain=sms24.me|sms24.info
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=sms24.me|sms24.info
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95457
 @@||sledujserialy.io/theme/js/popunder.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93493
