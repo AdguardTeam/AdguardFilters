@@ -4811,6 +4811,10 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/113720
+pandora.tv##.ad_big
+||prism.pandora.tv/pandora/player/pc_time_check/
+pandora.tv#%#//scriptlet("set-constant", "isnoad_vod", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113158
 ||avjamak.net/data/by_banner/
 ||icache.pandalive.co.kr/code:pandatv/partner/banner/*.gif$domain=avjamak.net
@@ -6677,6 +6681,7 @@ investmap.pl#?##app > div[class^="sc-"] > div[class^="sc-"][height="300px"] ~ di
 !https://github.com/AdguardTeam/AdguardFilters/issues/101658
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94659
 mojegotowanie.pl##p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
+claudia.pl,elle.pl,focus.pl,elleman.pl,mojegotowanie.pl,glamour.pl##.advertising-box-wrapper
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,przyslijprzepis.pl,glamour.pl##.menu-container + p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.advertising-billboard
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.plista_container
@@ -7052,6 +7057,11 @@ tipy.interia.pl##.rekObokWstepu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67095
 darmowa-tv.ws#%#//scriptlet("abort-on-property-read", "daau_app")
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,xmlhttprequest,redirect=googlesyndication-adsbygoogle,domain=darmowa-tv.ws
+! https://github.com/AdguardTeam/AdguardFilters/issues/113851
+poczta.interia.pl##section[ui-view="message-adv"].section--message > .ad
+poczta.interia.pl##.ads-content
+poczta.interia.pl#?##main-container > .mail-frame-aside:has(> .ads-content)
+interia.pl#%#//scriptlet('remove-attr', 'style', '.mail-container[data-widget^="https://poczta.interia.pl/widget/"] > .mail-popup[style]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107397
 interia.pl##.ad
 interia.pl##.ad + .brief-placeholder-list
@@ -7610,7 +7620,8 @@ videostar.pl,pilot.wp.pl#%#//scriptlet('remove-class', 'async-hide', 'html')
 ||connect.facebook.net/*/fbevents.js$script,redirect=noopjs,domain=wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|videostar.pl|autocentrum.pl
 ||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=~pilot.wp.pl|wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|autocentrum.pl
 ||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|videostar.pl|autocentrum.pl
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+! TODO: Add "!adguard_ext_firefox" to directive below when issue with $replace rules will be fixed - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2018
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href]:matches-css-before(content: /^O[\s\S]*?,[\s\S]*?\u200B$/))
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href^="abp:subscribe?location="])
 !
@@ -9033,6 +9044,9 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110044
+||mgronline.com/js/libs/*-ads.min.js
+||imp.mgronline.com^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113590
 ||037hd.mobi/images/banners/
 037hd.mobi##a[href^="https://037hd.mobi/ads/"]
