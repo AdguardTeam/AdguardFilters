@@ -39,6 +39,14 @@ gjirafa.com##div[id^="an-holder-"]
 !------------------------------ Arabian ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/113954
+farescd.com##.ads_five
+@@||mahimeta.com/networks/ad_code.php$domain=farescd.com
+farescd.com#%#//scriptlet("abort-current-inline-script", "mMcreateCookie")
+! https://github.com/AdguardTeam/AdguardFilters/issues/113862
+makyaje.com###nodata
+makyaje.com###adintop_interstitial
+makyaje.com#$##skipContent { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113069
 beinmatch.*###sponsor
 beinmatch.*#%#//scriptlet("prevent-window-open", "!/home/")
@@ -2958,6 +2966,7 @@ indiatimes.com##.last8brdiv > div.sponsor_block
 !---------------------------------------------------------------------
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113344
+||jeniusplay.com/cdn/video/QQnewfix.mp4
 ||jeniusplay.com/cdn/gif/QQBanner/$image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111220
 liputan6.com##div[data-info="ad"]
@@ -4811,6 +4820,10 @@ dap-news.com##.ads
 !------------------------------ Korean -------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/113720
+pandora.tv##.ad_big
+||prism.pandora.tv/pandora/player/pc_time_check/
+pandora.tv#%#//scriptlet("set-constant", "isnoad_vod", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113158
 ||avjamak.net/data/by_banner/
 ||icache.pandalive.co.kr/code:pandatv/partner/banner/*.gif$domain=avjamak.net
@@ -6677,6 +6690,7 @@ investmap.pl#?##app > div[class^="sc-"] > div[class^="sc-"][height="300px"] ~ di
 !https://github.com/AdguardTeam/AdguardFilters/issues/101658
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94659
 mojegotowanie.pl##p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
+claudia.pl,elle.pl,focus.pl,elleman.pl,mojegotowanie.pl,glamour.pl##.advertising-box-wrapper
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,przyslijprzepis.pl,glamour.pl##.menu-container + p[style^="font-size: 11px; margin-bottom: 0; text-align: center;"]
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.advertising-billboard
 claudia.pl,elle.pl,focus.pl,kobieta.pl,elleman.pl,mojegotowanie.pl,przyslijprzepis.pl,glamour.pl##.plista_container
@@ -6982,8 +6996,6 @@ zdam.xyz#%#//scriptlet("abort-current-inline-script", "fetch", "reklamy")
 @@||c1.popads.net/pop.js$domain=zdam.xyz
 ! otomoto.pl - ads
 otomoto.pl##a[href][data-testid="banner-link"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/71630
-dailyweb.pl##.user-widgets > section#text-22
 ! https://github.com/AdguardTeam/AdguardFilters/issues/72809
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=soisk.pl
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=soisk.pl
@@ -7052,6 +7064,11 @@ tipy.interia.pl##.rekObokWstepu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67095
 darmowa-tv.ws#%#//scriptlet("abort-on-property-read", "daau_app")
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,xmlhttprequest,redirect=googlesyndication-adsbygoogle,domain=darmowa-tv.ws
+! https://github.com/AdguardTeam/AdguardFilters/issues/113851
+poczta.interia.pl##section[ui-view="message-adv"].section--message > .ad
+poczta.interia.pl##.ads-content
+poczta.interia.pl#?##main-container > .mail-frame-aside:has(> .ads-content)
+interia.pl#%#//scriptlet('remove-attr', 'style', '.mail-container[data-widget^="https://poczta.interia.pl/widget/"] > .mail-popup[style]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107397
 interia.pl##.ad
 interia.pl##.ad + .brief-placeholder-list
@@ -7445,6 +7462,11 @@ auto-motor-i-sport.pl,menshealth.pl,motocykl-online.pl,runners-world.pl,womenshe
 womenshealth.pl##body[onclose="return closeBrowserEvent()"] .col-xs-12 > .col-xs-12 > a[href][onclick*="'Klikniecie-welcomepage-reklama'"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41718
 rp.pl#?##main_topic_3 > .teaser-parent:has(> .ad)
+! https://github.com/AdguardTeam/AdguardFilters/issues/113744
+dailyweb.pl##.daily-adlabel
+dailyweb.pl#?#.single-post-content > .daily-podstrona-w-tresci:has(> .daily-adlabel)
+! https://github.com/AdguardTeam/AdguardFilters/issues/71630
+dailyweb.pl##.user-widgets > section#text-22
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42379
 dailyweb.pl##.adwse-headerr
 dailyweb.pl#%#//scriptlet("set-constant", "checkAds", "noopFunc")
@@ -7610,7 +7632,8 @@ videostar.pl,pilot.wp.pl#%#//scriptlet('remove-class', 'async-hide', 'html')
 ||connect.facebook.net/*/fbevents.js$script,redirect=noopjs,domain=wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|videostar.pl|autocentrum.pl
 ||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=~pilot.wp.pl|wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|autocentrum.pl
 ||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|videostar.pl|autocentrum.pl
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+! TODO: Add "!adguard_ext_firefox" to directive below when issue with $replace rules will be fixed - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2018
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href]:matches-css-before(content: /^O[\s\S]*?,[\s\S]*?\u200B$/))
 ! film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,wiadomosci.wp.pl#?#body > div[class][id]:has(a[href^="abp:subscribe?location="])
 !
@@ -9033,6 +9056,9 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/110044
+||mgronline.com/js/libs/*-ads.min.js
+||imp.mgronline.com^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113590
 ||037hd.mobi/images/banners/
 037hd.mobi##a[href^="https://037hd.mobi/ads/"]
@@ -9605,6 +9631,11 @@ brandbuffet.in.th#@#.category-advertorial
 !------------------------------ Vietnam ------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/113940
+gocmod.com#%#//scriptlet("abort-current-inline-script", "document.createElement", "adsbygoogle")
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=gocmod.com
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gocmod.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113467
 cakhia.com###overlay
 cakhia.com##.modal-backdrop
