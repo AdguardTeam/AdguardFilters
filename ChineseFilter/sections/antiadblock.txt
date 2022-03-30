@@ -8,6 +8,12 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112369
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=m.twfanti.com
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=m.twfanti.com,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/112323
+slashview.com#@#.adsbygoogle
+slashview.com#$##SlashviewAdDetector { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110294
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
 520call.me#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
@@ -33,6 +39,11 @@ linovelib.com#$#body[style] { overflow: auto !important; }
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
 ! https://github.com/uBlockOrigin/uAssets/issues/11152
+rjno1.com#%#//scriptlet("set-constant", "google_global_correlator", "1")
+rjno1.com#%#//scriptlet("set-constant", "google_image_requests", "emptyArr")
+rjno1.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "event.target.tagName")
+!+ PLATFORM(ext_ublock)
+rjno1.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', '/google|inlineScript/')
 !+ NOT_PLATFORM(ios, ext_android_cb)
 ||jspassport.ssl.qhimg.com^$script,redirect=noopjs,domain=rjno1.com
 @@||googletagmanager.com/gtag/js$script,domain=rjno1.com
@@ -74,8 +85,9 @@ jkpan.cc#%#//scriptlet("abort-current-inline-script", "document.writeln", "\u")
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101079
 pcbeta.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'make_rand_div')
-||pcbeta.com/data/cache/common_dywstxjo.js
-/pcbeta\.com\/data\/cache\/(?:common|home)_*[a-zA-Z]{1,5}.*.js\?/$domain=pcbeta.com,match-case
+||pcbeta.com/data/cache/common_fbdbbsyuzhttpx.js
+||pcbeta.com/data/cache/_djwbhgprrtnmby.js
+/pcbeta\.com\/data\/cache\/(?:common)?_[a-z]{14}\.js\?/$script,~third-party,domain=pcbeta.com,match-case
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90168
 ruanyifeng.com#%#//scriptlet('prevent-setTimeout', 'checker')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -227,9 +239,6 @@ ebb.io#%#//scriptlet('set-constant', 'google_empty_script_included', 'true')
 @@||pagead2.googlesyndication.com/pagead/js/google_top_exp.js$domain=ebb.io
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33141
-ip.cn#$##result  { display: block!important; }
-ip.cn#?#.container-fluid > #tips[style]:contains(请不要屏蔽广告)
-@@||ip.cn/favicon.ico
 @@||s.ip-cdn.com/img/logo.gif
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||s.ip-cdn.com/tp/jg.jpg
@@ -288,9 +297,6 @@ t66y.com##.tpc_content.do_not_catch > br
 getrelax.cc#@#iframe[width="300"][height="250"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48036
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45237
-@@||ip.cn^$content
-ip.cn#$#.container-fluid > #result ~ div > a[href*="share_code"] > img[id] { width: 370px!important; position: absolute!important; left: -3000px!important; }
-ip.cn##a[href^="https://www.zeptovm.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47843
 jav777.xyz#%#//scriptlet("prevent-eval-if", "ADS_BLOCKED")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
