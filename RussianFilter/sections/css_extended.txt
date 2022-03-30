@@ -5,6 +5,12 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112253
+bessarabiainform.com#?##secondary > aside[id^="execphp-"]:has(> div.execphpwidget a[href="https://admiral.assolgroup.com/"])
+bessarabiainform.com#?##secondary > aside[id^="execphp-"]:has(> div.execphpwidget script[src^="https://rus.redtram.com/"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/110032
+shazoo.ru#$?#body > style:contains(height: 250px;) { remove: true; }
+shazoo.ru#$?#head > style:contains(body{background: #410e13) { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110250
 serveradmin.ru#?#.theiaStickySidebar > div[id^="text-html-widget-"]:has(div[data-ai-debug])
 serveradmin.ru#?#.theiaStickySidebar > div[id^="text-html-widget-"]:has(> div.widget-container > div[style="text-align:center;"] > table[cellpadding])
@@ -385,6 +391,7 @@ glavnoe-smi.ru#?#.footer-top-area > div.container > div.row > div[class^="col-"]
 7days.ru#?##page_content > div[class] > div[id][style]:has(> div[id^="crt-"])
 7days.ru#?#.b-columns > div.b-columns__col > div.b-columns__col-in > div[class]:has(> div[id^="adfox_"])
 !
+fontanka.ru#?#div[id^="adv_"]:upward(1)
 fontanka.ru#?#noindex ~ div[class] > div[class]:has(> div[style="display: none !important;"])
 fontanka.ru#?#div[class] > div[id^="div-gpt-ad-"]:upward(1)
 !
@@ -457,6 +464,8 @@ coronavirus-monitor.ru#?#.entry-content > div[style]:has(> ins.adsbygoogle)
 coronavirus-monitor.ru#?#.entry-content > center:has(> div[style] > div.mk-ad-container)
 !
 hallporn.com#?#article:has(> script[data-idzone])
+!
+sports.ru#?#.material-list--additional-block-reverse > article.material-list__item:has(> span:contains(/^Реклама$/))
 sports.ru#$?#main > article:has(> a[rel*="sponsored"]) { remove: true; }
 sports.ru#?#.aside-news-list > li.aside-news-list__item:has(> span.aside-news-list__advert)
 sports.ru#?#.nav-items-list > li.nav-items-list__item:has(> div.nav-item > a.nav-item__banner)
@@ -469,6 +478,28 @@ okko.sport#?#div[class]:has(> div[class] > div[class]:contains(/^коэффиц�
 okko.sport#?#button:has(> span:contains(/^прогнозы$/))
 okko.sport##div[class]:has(> iframe[src^="https://clients-static.okko.tv/web/banners/winline/"])
 !
+av.by#?#.journal__grid > div.journal__cell:has(> div.journal__break)
+newsler.ru#?#.fl-r-w > div.fl-r-p:has(> div.fl-r-i > div.rec-)
+point.md#?#aside > div[class^="sc-"]:has(> div[id^="vertical-banner-placeholder-admixer"])
+point.md#?#aside > div[class^="sc-"]:has(> div[class] > a[href^="https://pentru-ucraina"])
+tsn.ua##.c-section > div.l-row > div.l-col:has(> aside[data-ad-container])
+ostro.org#?#div[class="title"]:has(> h2:contains(/^НОВОСТИ ПАРТНЕРОВ$/))
+grad.ua#?#div.blok_header_title:has(> h3:contains(/^СМИ Украины:$/))
+9tv.co.il#?#.content_group:has(> div#taboola-below-main-column-thumbnails)
+rbc.ru#?#.l-col-100h-parent > div.l-col-100h:has(> div.l-sticky > div.fox-tail > a.banner__container__link)
+zakon.kz#?#.feed_item > div.container:has(> div > div[id^="adfox_"])
+racurs.ua#?#main > div.inner-page-container:has(> section.block_section > div.container > header a:contains(Новости партнеров))
+rokwell.ru#?#.wpb_wrapper > div.wpb_text_column:has(> div.wpb_wrapper > div.inmain-content > div[id^="fofuny"])
+rokwell.ru#?#.td-container > div.vc_row:has(> div.main-footer-btn > div.vc_column-inner div[id^="fofuny"])
+74.ru#?#.central-column-container > div[data="[object Object]"]:not([data-cms-place]):has(> section[class] a[href^="https://auto.ru/"])
+unian.net#?#.article-column > div.title-bordered:contains(Новости партнеров)
+unian.net#?#.publication > div.title-without-border:contains(Новости партнеров)
+upl.uz#?##dle-content > h4:contains(Интересное по теме:)
+adme.ru#?#header[data-test-id="header"] ~ div[class]:last-child > div[class] > div[class]:if-not(a[data-test-id="logo-link"])
+trendymen.ru#?#.siteWidth > div.menu-sel:contains(/^Новости партнеров$/)
+news.ru#?#.post-wrapper > div[class]:has(> div.container > div.row > div[class^="col-"] > div[id^="adfox_"])
+meendox.net#?#.leftcol > div.box:has(> h2 > span:contains(Реклама))
+esp8266.ru#?#.p-body-inner > ul:has(> li > div.notice-content > a[href="https://jlcpcb.com/"])
 quto.ru#?#div:not([class]) > div[style] > h3:contains(/^Новости партнеров$/):upward(1)
 searchengines.guru#?#body > div[class]:has(> div[id] > ins.adsbygoogle)
 mignews.com#?#h6:contains(/^НОВОСТИ ПАРТНЕРОВ|^ЗНАКОМСТВА/)
@@ -494,8 +525,7 @@ vitbichi.by#?#.sidebar_banner__index > div.sidebar-block > div.newsblock > a:not
 vedomosti.ru#?#.articles-cards-list > div.articles-cards-list__cell > div.grid-cell__body > div[class^="card-banner-"]:upward(2)
 kino-teatr.ru#?#.content_block > div.page_content_block:has(> div[style] > a[href^="/go/"])
 bryansknovosti.ru#?#aside.block:not([data-alias="Copyright"]) .widget-area > li.widget_text:not(:has(> div.textwidget a[href^="https://bryansknovosti.ru/"]))
-youla.ru#?#div[data-test-component="ProductOrAdCard"]:has(> span):not(:has(div))
-krymr.com#?#.region > div.media-block-wrap:has(> h2:contains(В ДРУГИХ СМИ))
+d1lynpf6ndesae.cloudfront.net,rukrymr.azureedge.net,krymr.com#?#.region > div.media-block-wrap:has(> h2:contains(В ДРУГИХ СМИ))
 kinosvit.tv#?##sidebar > div#barchives:contains(Интересное для Вас)
 motor.ru#?#h2[class$=" heading"]:contains(Новости партнёров)
 kinoafisha.info#?#.article_content > div[class]:has(> div[id^="notsy_container_"])
@@ -659,7 +689,6 @@ allkey.org#?#.sidebar__right > aside[class]:not(:has(> h3.widget-title))
 fapality.com#?#.wrapper > div[class]:has(> div.page_second_title:contains(Реклама))
 cosmosplanet.ru#?#.widget_text > div.widget-header:contains(Реклама)
 skinsbuy.ru#?##content div[id][style]:has(> table[id] > tbody td.teaser)
-adme.ru#?#div[data-test-id="article-bottom-recommended"] > div > div[class*="_"]:not(:has(> div[data-test-id^="article-list-element-"]))
 korabelov.info#?#div[class^="stream-item"]:has(> span.stream-title:contains(Реклама))
 volyninfa.com.ua#?##primary > div.main-box:has(> div.main-box-inside > div[id^="MIXADV_"])
 ru.onlinemschool.com#?#body div[id^="oms_"] > div[id]:has(> a[href] > img[onerror])
@@ -679,7 +708,7 @@ volos-ok.ru#?#div[id^="gnezdo_ru_"]:upward(2)
 pinsknews.by#?#.sidebar_list > li.widget:has(div.textwidget > a[target="_blank"]:not([href^="http://www.pinsknews.by/"]) > img)
 glav.su#?#h2:contains(НОВОСТИ ПАРТНЕРОВ)
 glav.su#?#h2:contains(НОВОСТИ ПАРТНЕРОВ) + div.f
-04868.com.ua,karelia.news,0629.com.ua,5692.com.ua,01.kg,0154.by,0472.ua,048.ua,0512.com.ua,0522.ua,0532.ua,0552.ua,056.ua,0564.ua,061.ua,06153.com.ua,0642.ua,62.ua,7152.kz,7232.kz,city04.kz,go152.by,go232.by,inaktau.kz,inalmaty.kz,inastana.kz,inatyrau.kz,inkaragandy.kz,inshymkent.kz,kaskelenec.kz,oshto.kg,qapshagai-city.kz,uralskcity.kz#?#.card-wrapper:has(> amp-ad)
+44.ua,056.ua,032.ua,04868.com.ua,karelia.news,0629.com.ua,5692.com.ua,01.kg,0154.by,0472.ua,048.ua,0512.com.ua,0522.ua,0532.ua,0552.ua,056.ua,0564.ua,061.ua,06153.com.ua,0642.ua,62.ua,7152.kz,7232.kz,city04.kz,go152.by,go232.by,inaktau.kz,inalmaty.kz,inastana.kz,inatyrau.kz,inkaragandy.kz,inshymkent.kz,kaskelenec.kz,oshto.kg,qapshagai-city.kz,uralskcity.kz#?#.card-wrapper:has(> amp-ad)
 go01.ru#?#div.row > div:has(> a[href*="/adverts"])
 dev.by#?#.section-aside:has(> div[class*="adfox"])
 gorodarmavir.ru#?#.news-grid > div:has(> .thumbnails > div[id^="banner-slider"])
@@ -694,7 +723,6 @@ novychas.by#?##main-sidebar div.sidebar-content-block:has(> div[class] > a[targe
 mihelp.ru#?#.gridlove-posts > div.col-lg-4:has(> div.gridlove-box > div.textwidget > p > ins.adsbygoogle)
 forbes.ru#?#.article__sidebar > .col-1500:has(> .banner__300-600)
 woman.ru#?#.page__body > div.page__right-column:has(> div.placeholder > div.right-column__banner-area)
-kartaslov.ru#?#.row div[style]:has(> script[async][src^="//s.luxupcdnc.com/"])
 sexxx.ooo#?##xbody-right > div.mablock:has(> h3:contains(Онлайн ХХХ))
 sobaka.ru#?#article > div.b-post-view__section:has(> div.b-post-view__projects div[id^="adv220_"])
 detaly.co.il#?#.herald-module > div.herald-mod-wrap:has(> div.herald-mod-head > div.herald-mod-title > h2.herald-color:contains(Реклама))
