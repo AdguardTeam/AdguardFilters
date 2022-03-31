@@ -5,6 +5,9 @@
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/112829
+! Fixes loading comments
+||independent.co.uk/_build/main.*.js$replace=/(checkAdBlocker[\s\S]*?:..=).\.sent/\$1true/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110514
 ||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$replace=/function iD\(a\,b\,c\){return a\+b\+"\/vid\/"\+c\+"\/streams"}/function iD\(a\,b\,c\){}/,domain=sbs.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105079
@@ -123,8 +126,8 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10770
 ||content.uplynk.com/api/v*/preplay/*.json$replace=/\{"boundaries": \[\{"[\s\S]*?"content_type": "ad"[\s\S]*?"ads": \{"breaks":[\s\S]*?"playURL":/{"playURL":/,domain=cwtv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20922
-||manifest.*.theplatform.com/*/*.meta*referer=www.nbc.com$replace=/#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/#EXT-X-ENDLIST/,domain=player.theplatform.com,important
-||manifest.*.theplatform.com/*/*.m3u8?*referer=www.nbc.com$replace=/(#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXTINF:.*\n.*nbcuadops-vh.akamaihd.net\/i\/ads\/.*\n)//,domain=player.theplatform.com,important
+||manifest.*.theplatform.com/*/*.meta*referer=$replace=/#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/#EXT-X-ENDLIST/,domain=player.theplatform.com,important
+||manifest.*.theplatform.com/*/*.m3u8?*referer=$replace=/(#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXTINF:.*\n.*nbcuadops-vh.akamaihd.net\/i\/ads\/.*\n)//,domain=player.theplatform.com,important
 ! https://forum.adguard.com/index.php?threads/https-www-nbc-com-this-is-us-video-windows.25463/
 ||manifest.theplatform.com/*/*.m3u8?$replace=/(#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXTINF:.*\n.*nbcuadops-vh.akamaihd.net\/i\/ads\/.*\n)//,important
 ||manifest.theplatform.com/*/*.meta$replace=/#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/#EXT-X-ENDLIST/,important
