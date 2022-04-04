@@ -5,6 +5,17 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/113647
+mbpassion.de#?#.cb-entry-content > div > div:has(> center > font:contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/112598
+wetter.com#?#.app-layout:has(> div.OUTBRAIN)
+! https://github.com/AdguardTeam/AdguardFilters/issues/111782
+pnp.de#?#.container:has(> div.OUTBRAIN)
+pnp.de#?#.container:has(> div[id^="traffective-ad-"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/112701
+blick.ch#?#main > div[class^="sc"] > div[class^="sc"] > div[class^="sc"] > div[class]:has(> div:contains(Werbung))
+! https://github.com/AdguardTeam/AdguardFilters/issues/110920
+mbpassion.de#?#.adsbygoogle:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107964
 schnittberichte.com#?#header tbody > tr > td[valign="middle"]:has(> a[href^="out.php?"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105158
@@ -73,8 +84,9 @@ winfuture.de#?#.news210:has( > a[href^="/news"][href*="123690"])
 winfuture.de#?#.hp_latest > div:has( > .topteaser > a[href^="/news"][href*="123690"])
 winfuture.de#?#div[class^="hp_"] > div:has( >ul > li:contains(Anzeige))
 winfuture.de#?#.topnews > div:has( > a > .img_container > .anzeige)
-winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen/))
-winfuture.de#?##main h2:has(> a:contains(/Nur heute\:|Nur diese Woche\:|Nur für [0-9]{1,} Tage|Jetzt reduziert\:|Nur noch heute|tark reduziert|Knaller-Tarif|Top-Preis|kurze Zeit|vorbestellen|Auslieferung gestartet:[\s\S]* sind da|Sale|nur jetzt[\s\S]*reduziert|ngebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen/))
+winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
+
+winfuture.de#?##main h2:has(> a:contains(/Nur heute\:|Nur diese Woche\:|Nur für [0-9]{1,} Tage|Jetzt reduziert\:|Nur noch heute|tark reduziert|Knaller-Tarif|Top-Preis|kurze Zeit|vorbestellen|Auslieferung gestartet:[\s\S]* sind da|Sale|nur jetzt[\s\S]*reduziert|ngebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
 !! ticker
 winfuture.de#?#.topnews > div:has( > .picture_head > .anzeige)
 winfuture.de#?#.newsTicker > li:has( > .anzeige)
@@ -187,8 +199,6 @@ vollmacht-muster.de#?#.mh-sidebar > div.mh-widget:has(> h4 > span:contains(Anzei
 transfermarkt.de,streamfootball.tv#?#.sponsor-container div[class="wrapper-for-grid-item ng-star-inserted"]:has(div[style="background-image: url(\"assets/images/placeholder_image.jpg\");"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62466
 ga.de#?#.weekli-section-nav:has(> div.weekli-anzeige > span:contains(ANZEIGE))
-! paketda.de - Ad text in article
-paketda.de#?#.pure-u-1:has(>span:contains(Anzeige))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61378#issuecomment-673424540
 rennrad-news.de#?#.p-pageWrapper > #header:has(.p-header-inner > .p-header-content > .mtbnews-forum__banner > #MTB_D_Forum_Themen_Leaderboard)
 emtb-news.de,rennrad-news.de#?#.p-body-pageContent > .mtbnews-forum__in-thread:has(> div > div[id^="MTB_M_Forum_Themen_InContent-"])
@@ -274,6 +284,7 @@ chip.de#?#.fb > article:has(> a .Badge > .Badge__Content:contains(/gesponsert|an
 ! golem.de - left-over
 golem.de#?#.list-articles > li[class]:has(> a[href^="https://www.golem.de/news/anzeige-"])
 golem.de#$?#.list-articles > li[class]:has(> a[href^="https://www.golem.de/news/anzeige-"]) + li { border-top: solid 1px #EEE !important; }
+!+ NOT_OPTIMIZED
 forum.golem.de#?#.list-comments > li:has(> div[style])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44865
 photovoltaikforum.com#?#ul.wbbThreadPostList  > li:not([class]):has(> .wcfAdLocation)
@@ -294,6 +305,7 @@ freundin.de#?#div[class*="teaser-list"] > article:has(> .teaser__caption > .item
 freundin.de#?#.item-content__row-col > article:has(> .teaser__caption > .item-marketing-sponsored)
 freundin.de#?#div[class^="pls"] > div[class^="pls"] > div:has(> div[class] div[class] > a + div[class] span:contains(Anzeige))
 freundin.de#?#div[class^="adykos"]:has(> div[class] > div[class] > span > svg > g#harpers_bezahlte_partnerschaft)
+freundin.de#?#.adykos-0:has(> div > a + div > span > svg#main > #harpers_bezahlte_partnerschaft)
 freundin.de#?#.freundinPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class] > svg > g#harpers_bezahlte_partnerschaft)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38629
 rennrad-news.de#?#.js-replyNewMessageContainer > .message--post[data-author="MTB-News.de"]:has(div[id^="div-gpt-ad"])
