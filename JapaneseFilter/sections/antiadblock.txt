@@ -8,6 +8,14 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://kakomonn.com/shakaifukushi/questions
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=kakomonn.com
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1598352715/690
+g-pc.info#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
+! https://github.com/AdguardTeam/AdguardFilters/issues/111528
+ma-bank.net#@#.ad_div
+ma-bank.net#@##ad_area
+ma-bank.net#@##adspace
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108229
 friday.kodansha.co.jp#$#body { overflow: visible !important; }
 friday.kodansha.co.jp#$#body div.fc-ab-root { display: none !important; }
@@ -16,9 +24,8 @@ friday.kodansha.co.jp#$#body div.fc-ab-root { display: none !important; }
 ! playai.nu anti-adb
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=playai.nu,important
 @@||||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=playai.nu
-! https://github.com/AdguardTeam/AdguardFilters/issues/105463
-tver.jp#@#.adspace
-tver.jp#$#.playvideo .player:not(#style_important) { display: block !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/114306
+@@||tver.jp/doubleserve.js
 ! anti-adb on articles
 coolpan.net#%#//scriptlet('prevent-addEventListener', 'error', 'adscript-error')
 coolpan.net#%#//scriptlet('set-constant', 'flgDisplay', 'false')
@@ -34,13 +41,12 @@ g-pc.info#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=g-pc.info
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103488
-! https://github.com/AdguardTeam/AdguardFilters/issues/87846
-musenboya.com#@#.ads-area
-musenboya.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
+@@||musenboya.com^$generichide
+musenboya.com#$?#div[id] > div[id^="im-"] > script[src^="https://imp-"]:upward(2) { height: 1px !important; }
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-musenboya.com#@#.adsbygoogle
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=musenboya.com
-@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$domain=musenboya.com
+@@||imp-adedge.i-mobile.co.jp/script/v1/spot.js$domain=musenboya.com
+@@||ssp-bidapi.i-mobile.co.jp/api/v1/spot.ashx?$domain=musenboya.com
+@@||spnativeapi-tls.i-mobile.co.jp/api/ad_spot.ashx?$domain=musenboya.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95723
 tabtter.jp#@##googlead
@@ -124,17 +130,14 @@ blog.umentu.work#%#//scriptlet('prevent-setInterval', 'isBlanketFound', '4000')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=blog.umentu.work
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67394
 @@/assets/scripts/fab.js$domain=life-n.jp|point-news.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/66815
+520cc.cc#@##inplayer
+@@||dl.520cc.cc/*/ad.php?$~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65807
 ||freemen.jp/wp-content/uploads/yIOefayFENNZ/$script
 ||freemen.jp/wp-content/uploads/gftpkzd.js
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=freemen.jp
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=freemen.jp
-! https://github.com/AdguardTeam/AdguardFilters/issues/65518
-manga1000.com#$##dsaxdsf2 { height: 1px!important; }
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||a.exosrv.com/ads.js$domain=manga1000.com
-manga1000.com#@#iframe[width="300"][height="250"]
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87687
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||js.ad-stir.com/js/adstir.js$domain=h-ken.net
@@ -146,7 +149,7 @@ h-ken.net#%#//scriptlet("abort-current-inline-script", "onload", "ad")
 ! https://github.com/AdguardTeam/AdguardFilters/pull/61513/
 @@||my0nio.seesaa.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60864
-/modal-dist/index.js$script,domain=ananweb.jp|diamond.jp|iza.ne.jp|lifehacker.jp|newsweekjapan.jp
+/modal-dist/index.js$script,domain=ananweb.jp|newsweekjapan.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54027
 @@||pointservice.com/res/media/common/ad/adframe.js$script,domain=goldencocco.jp|mottonoutore.jp
 goldencocco.jp#%#//scriptlet("set-constant", "adblock", "false")
