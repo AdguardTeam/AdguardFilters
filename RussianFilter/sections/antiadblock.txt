@@ -36,6 +36,14 @@ sinoptik.ua#@##left-slot1
 sinoptik.ua#@#div[id^="bn_"]
 !#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/111700
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/dist/videojs.ima.js$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/dist/videojs.ima.css$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/node_modules/video.js/dist/video.min.js$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/node_modules/video.js/dist/video-js.min.css$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.min.js$domain=vinteratv.com
+@@||googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.css$domain=vinteratv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111120
 imena-znachenie.ru#%#//scriptlet('prevent-setTimeout', 'блокировщик')
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -231,9 +239,6 @@ lotzon.pro##body > [id][style^="z-index:"]:not([class])
 2ip.io,2ip.ru#$#a[href^="https://krot.io"] { visibility: hidden !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58704
 ||pcnews.ru/js/blockAdblock.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/88221
-@@/spor/jquerymin18.js$~third-party
-@@/spor/jquerymin18.js$domain=only-tv.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56859
 @@||peers.tv/cnplayer/imasdk/*.js$xmlhttprequest
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55798
@@ -403,8 +408,11 @@ nashaplaneta.net#@#.adsbygoogle
 mta-resource.ru#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61672
 hitline.org.ua##.bantop
-! Online VT cdntelesee.com, cdnpotok.com
-@@/googleads.g.doubleclick.net/[a-z0-9]*$/$xmlhttprequest,domain=cdntelesee.com|cdnpotok.com|only-tv.org
+! Online VT cdnpotok.com
+@@||cdnpotok.com/spor/jquerymin18.js
+@@/googleads.g.doubleclick.net\/\w{5,8}/$xmlhttprequest,domain=cdnpotok.com|only-tv.org|oneliketv.com
+cdnpotok.com,only-tv.org,oneliketv.com#%#//scriptlet("set-constant", "canRunAds", "true")
+cdnpotok.com##img[src$="adblock.png"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51177
 @@||eu-vast.vertamedia.com/vmap?aid=$domain=inter.ua
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51401
@@ -778,7 +786,7 @@ wss://s.zmctrack.net/
 forumodua.com#$?#head > iframe[name] { remove: true; }
 strana.ua#$?#body > iframe[style="display:none"] { remove: true; }
 !
-panno4ka.net,meteo.ua,censor.net,kurs.com.ua,zv.zp.ua,ivona.ua,i.ua,buhgalter.com.ua,nv.ua,pravda.com.ua,nbnews.com.ua,viva.ua,zn.ua,bigmir.net,glavcom.ua,hvylya.net,inforesist.org,nnovosti.info,obyava.ua,smak.ua,strana.ua,tochka.net,u-news.com.ua,ukr.net,vesti.ua#$?#body > iframe:not([class]):not([id]):not([src]) { remove: true; }
+gazeta.ua,panno4ka.net,meteo.ua,censor.net,kurs.com.ua,zv.zp.ua,ivona.ua,i.ua,buhgalter.com.ua,nv.ua,pravda.com.ua,nbnews.com.ua,viva.ua,zn.ua,bigmir.net,glavcom.ua,hvylya.net,inforesist.org,nnovosti.info,obyava.ua,smak.ua,strana.ua,tochka.net,u-news.com.ua,ukr.net,vesti.ua#$?#body > iframe:not([class]):not([id]):not([src]) { remove: true; }
 i.factor.ua,kriminal.tv,i.ua,lifedon.com.ua,football24.ua,vsetv.com,112.ua,gorod.dp.ua,autoua.net,beauty.ua,besplatka.ua,enovosty.com,facenews.ua,forumodua.com,hvylya.net,kolobok.ua,kp.ua,liga.net,orakul.com,real-vin.com,segodnya.ua,tv.ua,ubr.ua,vesti.ua,vgorode.ua#$?#body iframe[name]:not([class]):not([id]):not([src]) { remove: true; }
 newsyou.info,4mama.ua,autoua.net,censor.net,eurointegration.com.ua,gagadget.com,internetua.com,okino.ua,orakul.com,ringside24.com,toneto.net,tvgid.ua#$?#head > iframe[name]:not([class]):not([id]):not([src]) { remove: true; }
 !
@@ -813,28 +821,6 @@ maxpark.com,y-story.ru,primamedia.ru,sobakada.ru,aftershock.news,it-tehnik.ru,mo
 ! <script>var _0x
 !+ NOT_PLATFORM(windows, mac, android)
 @@||loadercdn.com^
-!
-! `cc-support-script`
-alau.kz#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", "addEventListener")
-/^.*\.ru\/[\w\d]{5,12}/$xmlhttprequest,other,third-party,domain=sovsport.ru|trud.ru|politros.com
-sovsport.ru#%#//scriptlet("abort-on-property-write", "__XABStatus")
-!+ NOT_PLATFORM(windows, mac, android)
-ogodom.ru,progorod59.ru,car.ru,mainavi.ru,yconsult.ru,zakonprost.ru,sadovodu.com,adderall.ru,km.ru,proroofer.ru,aftershock.news,bigbangserial.ru,darkside.ru,farap.ru,gryadki.com.mnogo-krolikov.ru,it-tehnik.ru,lostseries.ru,modernfirearms.net,pravda.ru,primamedia.ru,sobakada.ru,sonnikonline.club,sovsport.ru,y-story.ru,сельхозпортал.рф#%#//scriptlet("abort-current-inline-script", "String.fromCharCode", "/load\(\[e\(atob\(host\)/")
-ogodom.ru,progorod59.ru,car.ru,mainavi.ru,yconsult.ru,zakonprost.ru,sadovodu.com,adderall.ru,km.ru,proroofer.ru,aftershock.news,bigbangserial.ru,darkside.ru,farap.ru,gryadki.com.mnogo-krolikov.ru,it-tehnik.ru,lostseries.ru,modernfirearms.net,pravda.ru,primamedia.ru,sobakada.ru,sonnikonline.club,sovsport.ru,y-story.ru,сельхозпортал.рф$$script[tag-content="load([e(atob(host)"][max-length="3500"]
-!
-$$script[tag-content="cc-support-script"][max-length="8000"]
-theplace.ru,fastpic.ru,teleprogramma.pro,homius.ru,ogodom.ru,progorod59.ru,car.ru,mainavi.ru,e-news.su,yconsult.ru,tsargrad.tv,zakonprost.ru,sadovodu.com,adderall.ru,km.ru,proroofer.ru,aftershock.news,bigbangserial.ru,darkside.ru,farap.ru,gryadki.com.mnogo-krolikov.ru,it-tehnik.ru,lostseries.ru,modernfirearms.net,pravda.ru,primamedia.ru,sobakada.ru,sonnikonline.club,sovsport.ru,y-story.ru,сельхозпортал.рф$$script[tag-content="cc-support-script"][max-length="8000"]
-! new rule for extensions
-comp-profi.com#%#//scriptlet('abort-current-inline-script', 'SharedWorker', 'cc-support-script')
-!
-||svpressa.ru/|$xmlhttprequest
-! `new (function(){`
-$$script[id="cc-support-script-b"][max-length="350"]
-$$script[id="cc-support-script"][min-length="30000"][max-length="150000"]
-trud.ru,7days.ru,car.ru,svpressa.ru,radikal.ru$$script[id="cc-support-script"][min-length="40000"][max-length="60000"]
-imperiyanews.ru,svpressa.ru#%#//scriptlet("abort-current-inline-script", "Ma_random", "new (function")
-radikal.ru#%#//scriptlet("abort-current-inline-script", "Math.random", "/^new \(function/")
-7days.ru#%#//scriptlet("abort-current-inline-script", "Math_random", "try{var Math_random")
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25761
 ||logist.uxxo.ru/static/libs/adetector/overlay.js
@@ -1635,14 +1621,14 @@ sdamgia.ru$$script[tag-content="adb=1"]
 ! START: Yandex
 !
 ! old cookies: Bismuth|computer|discussion|^specific\$|^engineer|instruction|telecommunications|pronunciation|involved|^adequate
-$cookie=/blcrm|bltsr|BgeeyNoBJuyII|computer/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
+$cookie=/blcrm|bltsr|EMCzniGaQ|computer/,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru|yandex.ua
 !
-auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|BgeeyNoBJuyII|computer/')
+auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|EMCzniGaQ|computer/')
 ! TODO: add domains auto.ru and kinopoisk.ru to the rule below after the next release of AG for macos (current 2.3.2)
-$cookie=/blcrm|bltsr|BgeeyNoBJuyII|computer/,domain=baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
+$cookie=/blcrm|bltsr|EMCzniGaQ|computer/,domain=baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
 $cookie=/^los\$/,domain=auto.ru
 ! zen.yandex.ru - broken resources
-~passport.yandex.ru,~zen.yandex.ru,yandex.md,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#//scriptlet('remove-cookie', '/blcrm|bltsr|BgeeyNoBJuyII|computer/')
+~passport.yandex.ru,~zen.yandex.ru,yandex.md,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua#%#//scriptlet('remove-cookie', '/blcrm|bltsr|EMCzniGaQ|computer/')
 !
 ! makes kinopoisk.ru redirect to sso.kinopoisk.ru and back endlessly
 ! ||kinopoisk.ru^$cookie=/consultant|introductory|knowledge|transfer|technology|workplace/
@@ -1768,7 +1754,6 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru|yandex.ua
 ||yandex.*/pogoda/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru|yandex.ua
 ||zen.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=zen.yandex.by|zen.yandex.com|zen.yandex.fr|zen.yandex.kz|zen.yandex.ru|zen.yandex.ua
-||mail.yandex.*/monitoring_liza.txt$domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
 ||mail.yandex.*$script,replace=/\,ab:e.blocker\,/\,/
 ||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr
 ||mail.yandex.*/*/*-$replace=/(^{"rtb":.*)|(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.ua|mail.yandex.com|mail.yandex.com.tr

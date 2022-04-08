@@ -5,6 +5,82 @@
 ! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
 !
 !
+! unhide contents https://ananweb.jp/soken/topics/research/406565/
+ananweb.jp#@#.ad-banner:not([style="height: 5px; width: 5px; position: absolute; top: 0;"]):not(.blocker-tester + .ad-banner)
+! unhide Firework video
+hanako.tokyo#@#.ad-banner:not([style="height: 5px; width: 5px; position: absolute; top: 0;"]):not(.blocker-tester + .ad-banner)
+! unhide popIn
+osusume.mynavi.jp#@#.ad-widget
+! baila.hpplus.jp unbreak self-promo
+@@||img-baila.hpplus.jp/common/large/image/ad/$image,~third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/110785
+@@||ascii.jp/img/ad/radeon/logo.png
+! https://github.com/AdguardTeam/AdguardFilters/issues/28185
+@@||ntv.co.jp/ad-navi/$stylesheet
+@@||ntv.co.jp/ad-navi/cx/cx_code.js
+! vector.co.jp - fixing images
+@@||cache.vector.co.jp/img_cache/*/300x250.
+! ptj.jp - broken pages
+!+ NOT_OPTIMIZED
+@@||ptj.jp/*.cgi
+! https://github.com/AdguardTeam/AdguardFilters/issues/19538
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=natgeo.nikkeibp.co.jp
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1598352715/120
+@@||adcdn.goo.ne.jp/images/pix/$script,domain=nttdocomo.co.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/78094
+||googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=real-sports.jp
+! unbreak games on game.goo.ne.jp
+@@||googletagservices.com/tag/js/gpt.js$domain=game.goo.ne.jp
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=game.goo.ne.jp
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=game.goo.ne.jp
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=game.goo.ne.jp
+! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1598352715/232
+!+ NOT_PLATFORM(windows, mac)
+@@||adcdn.goo.ne.jp/images/pix/2dwkwwau99.js$domain=news.goo.ne.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/95739
+@@||cxad.cxense.com/adserver/search$domain=gizmodo.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/8873
+@@||img.*.impact-ad.jp^$domain=tjapan.jp
+! contents links https://www.honda.co.jp/ACCESS/dog/index.html
+honda.co.jp#@##footer-banner
+! https://www.mitsubishi-motors.co.jp/lineup/ek_space/index.html?intcid2=top-recommendcar_03
+mitsubishi-motors.co.jp#@#.top-banners
+! unbreak bottom images
+natsume-anime.jp#@##topBanners
+! menu hidden on mobile
+kichijo-joshi.jp#@#.sp_ad
+! contents hidden
+agonp.jp#@#.top-banners
+! bottom links
+matsuzaka-steak.com#@##footer-banner
+! unbreak menu on mobile
+taiju-life.co.jp#@#.spLinks
+! unbreak contents
+yamaya.jp#@#.top-banners
+! footer link on mobile view
+@@||worldvision.jp/img/topSP/topFootBana_ad.gif|
+! self-promo at search page
+cookpad.com#@#.banner_header
+! https://github.com/AdguardTeam/AdguardFilters/issues/110312
+hoken-all.co.jp#@#.bottom_ad
+! unbreak right side
+gameranbu.jp#@#.side_ad
+! minpo.jp self-promo
+minpo.jp#@#.ads300
+! https://github.com/AdguardTeam/AdguardFilters/issues/79057
+tv-tokyo.co.jp#@#iframe[width="300"][height="250"]
+! https://github.com/hirorpt/filters/commit/7368d27f494e7fd3e9c3f460d72fab7b370892fd
+maidonanews.jp#@#.module-ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/55576
+webcartop.jp#@#.single-ads
+! https://github.com/AdguardTeam/AdguardFilters/issues/106875
+@@||m.one.impact-ad.jp/pix?p=$domain=www3.nissan.co.jp
+@@||img.ak.impact-ad.jp/sr/js/nissan_VisitorAPI_main.js$domain=www3.nissan.co.jp
+@@||img.ak.impact-ad.jp/ut/$script,domain=www3.nissan.co.jp
+@@||penta.a.one.impact-ad.jp^$other,domain=www3.nissan.co.jp
+||googleadservices.com/pagead/conversion.js$script,redirect=noopjs,domain=nissan.co.jp
+||img.ak.impact-ad.jp/sr/js/nissan_VisitorAPI_main.js$script,redirect=noopjs,domain=nissan.co.jp
+||penta.a.one.impact-ad.jp^$script,redirect=noopjs,domain=nissan.co.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107680
 @@||ias.global.rakuten.com/adv/$script,domain=24.rakuten.co.jp
 @@||rmp.rakuten.co.jp/js/aa.js$domain=24.rakuten.co.jp
@@ -49,11 +125,6 @@ komachi.yomiuri.co.jp#@#._popIn_recommend_article_ad_reserved
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75227
 !+ PLATFORM(ios, ext_safari)
 @@||anymind360.com/js/*/ats.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/70829
-!+ PLATFORM(windows, mac, android, ext_chromium)
-||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vmap$xmlhttprequest,redirect=noopvmap-1.0,domain=tver.jp
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
-@@||pubads.g.doubleclick.net/gampad/ads?*&output=xml_vmap$xmlhttprequest,domain=tver.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66531
 @@||picrew.me/player/api/ads?$xmlhttprequest,~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62583
