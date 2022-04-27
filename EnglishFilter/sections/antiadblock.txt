@@ -4587,6 +4587,9 @@ filezip.cc#$##blockblockA { display: none!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44864
 bit-url.com#@#.adsBox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44788 - bing.com - it seems that bing.com is using some kind of ad reinjection script and displays different ads if below elements are blocked
+! https://github.com/AdguardTeam/AdguardFilters/issues/116297
+! 27.04.2022 - It looks like that website is checking "document.querySelector('li.b_ad').offsetHeight < 1 || document.querySelector('li.b_ad').offsetWidth < 1 || document.querySelector('li.b_ad').offsetLeft < 0" (and some other elements) and
+! if it returns true, then ABDEF cookie is set to "V=13&ABDV=13" and then display a different ads, if returns false then to "V=13&ABDV=11" and ad reinjection is not called, if I'm not wrong
 ! bing.com##.sb_adTA
 ! bing.com###b_content > main > #b_results > li:not(.b_algo):not(.b_ans):not(.b_mop):not(.b_pag)
 bing.com#@#li.b_adBottom
@@ -4595,7 +4598,8 @@ bing.com#@#a[href^="https://www.bing.com/aclick?"]
 bing.com#@##b_results > li:not(.b_algo):not(.b_ans):not(.b_pag):not(.aca_algo):not(.aca_algo_count):not(.b_msg)
 @@||bing.com^$generichide
 bing.com#$?#.b_ad { remove: true; }
-bing.com#$#.b_ad { position: absolute!important; left: -3000px!important; }
+bing.com#$#.b_ad { display: block !important; position: absolute !important; top: -9999px !important; }
+||bing.com^$cookie=ABDEF
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44870
 @@||hofoot.vidcrt.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44731
