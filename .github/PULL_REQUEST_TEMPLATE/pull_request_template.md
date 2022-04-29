@@ -1,6 +1,7 @@
 ### Please include a summary of the change and which issue is fixed.
 ### If the related issue does not exist in our repository, please create it before making pool request.
-### It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub.
+### It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub directly.
+### Please note, that we verify every pull request manually, so it may take time to apply it.
 
 ---
 
@@ -10,7 +11,7 @@
 
         
   - [ ] This is not an ad/bug report;
-  - [ ] My code follows the style guidelines of this project;
+  - [ ] My code follows the style guidelines and [syntax](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) of this project;
   - [ ] I have performed a self-review of my own changes;
   - [ ] My changes do not break web sites, apps and files structure.
 
@@ -19,17 +20,19 @@
 
   - [ ] Missed ads or ad leftovers;
   - [ ] Website or app doesn't work properly;
-  - [ ] AdGuard gets detected on a website
-  - [ ] Social media buttons — share, like, tweet, etc.
+  - [ ] AdGuard gets detected on a website;
+  - [ ] Missed analytics or tracker;
+  - [ ] Social media buttons — share, like, tweet, etc;
   - [ ] Annoyances — pop-ups, cookie warnings, etc.
-  - [ ] Missed analytics or tracker
-
+  
 ### Which issue is fixed?
-##### Enter an issue address.
+##### Enter an issue address:
 
 Example: https://github.com/AdguardTeam/AdguardFilters/issues/100000
 
 ### Add your comment and screenshots
+##### If possible, a screenshot of a page or application should not be cropped too much. Otherwise, it is not always clear where the element is located.
+
 **0.** **DO NOT** upload screenshots with sexually explicit material on GitHub directly. Instead, upload it to third-party image hosting and post URL without preview here;
 
 **1.** Add screenshots of the problem. You can drag and drop images or paste them from clipboard;
