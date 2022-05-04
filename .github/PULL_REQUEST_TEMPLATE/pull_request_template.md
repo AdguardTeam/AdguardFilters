@@ -26,7 +26,7 @@
   - [ ] Annoyances — pop-ups, cookie warnings, etc.
   
 ### What issue is being fixed?
-##### Enter an issue address:
+##### Enter the issue address:
 
 Example: https://github.com/AdguardTeam/AdguardFilters/issues/100000
 
