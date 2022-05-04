@@ -16,7 +16,7 @@
   - [ ] My changes do not break web sites, apps and files structure.
 
 ### What problem does the pull request fix?
-##### If the problem does not fall under any category that is listed here, please contact our tech support - support@adguard.com
+##### If the problem does not fall under any category that is listed here, please contact our tech support: `support@adguard.com`
 
   - [ ] Missed ads or ad leftovers;
   - [ ] Website or app doesn't work properly;
