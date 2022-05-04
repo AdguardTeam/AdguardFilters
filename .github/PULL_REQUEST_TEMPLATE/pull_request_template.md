@@ -39,7 +39,7 @@ Example: https://github.com/AdguardTeam/AdguardFilters/issues/100000
 
 Use `<details> </details>` tag to hide screenshots under the spoiler; 
 
-**2.** Describe the issue extensively unless it is absolutely clear from the screenshot what the problem is;
+**2.** Describe the issue in detail until it is absolutely clear from the screenshot what the problem is;
 
 You can also indicate any other information that you think the developers should know.
 
