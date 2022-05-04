@@ -25,7 +25,7 @@
   - [ ] Social media buttons — share, like, tweet, etc;
   - [ ] Annoyances — pop-ups, cookie warnings, etc.
   
-### Which issue is fixed?
+### What issue is being fixed?
 ##### Enter an issue address:
 
 Example: https://github.com/AdguardTeam/AdguardFilters/issues/100000
