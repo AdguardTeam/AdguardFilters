@@ -11,7 +11,7 @@
 
         
   - [ ] This is not an ad/bug report;
-  - [ ] My code follows the style guidelines and [syntax](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) of this project;
+  - [ ] My code follows the [guidelines](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md) and [syntax](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) of this project;
   - [ ] I have performed a self-review of my own changes;
   - [ ] My changes do not break web sites, apps and files structure.
 
