@@ -280,6 +280,11 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/118013
+! for some reason scriptlets (adjust-setTimeout/adjust-setInterval) causes that captcha cannot be resolved
+cryptodirectories.com#%#//scriptlet("prevent-window-open")
+raincaptcha.com#%#//scriptlet("set-constant", "__wait", "0")
+raincaptcha.com#%#(function(){window.setTimeout=new Proxy(window.setTimeout,{apply:(a,b,c)=>c&&c[0]&&/if\(!/.test(c[0].toString())&&c[1]&&1e4===c[1]?(c[1]*=.01,Reflect.apply(a,b,c)):Reflect.apply(a,b,c)});window.setInterval=new Proxy(window.setInterval,{apply:(a,b,c)=>c&&c[0]&&/initWait/.test(c[0].toString())&&c[1]&&1e3===c[1]?(c[1]*=.01,Reflect.apply(a,b,c)):Reflect.apply(a,b,c)})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117922
 mozlink.net#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118188
