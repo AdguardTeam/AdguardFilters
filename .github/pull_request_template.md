@@ -1,5 +1,5 @@
 ### Please include a summary of the change and which issue is fixed.
-### If the related issue does not exist in our repository, please create it before making pool request.
+### If the related issue does not exist in our repository, please create it before making pull request.
 ### It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub directly.
 ### Please note, that we verify every pull request manually, so it may take time to apply it.
 
@@ -9,7 +9,7 @@
 ### Prerequisites
 ##### To avoid invalid pull requests, please check and confirm following checkboxes:
 
-        
+
   - [ ] This is not an ad/bug report;
   - [ ] My code follows the [guidelines](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md) and [syntax](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) of this project;
   - [ ] I have performed a self-review of my own changes;
@@ -24,7 +24,7 @@
   - [ ] Missed analytics or tracker;
   - [ ] Social media buttons — share, like, tweet, etc;
   - [ ] Annoyances — pop-ups, cookie warnings, etc.
-  
+
 ### What issue is being fixed?
 ##### Enter the issue address:
 
@@ -37,7 +37,7 @@ Example: https://github.com/AdguardTeam/AdguardFilters/issues/100000
 
 **1.** Add screenshots of the problem. You can drag and drop images or paste them from clipboard;
 
-Use `<details> </details>` tag to hide screenshots under the spoiler; 
+Use `<details> </details>` tag to hide screenshots under the spoiler;
 
 **2.** Describe the issue in detail until it is absolutely clear from the screenshot what the problem is;
 
