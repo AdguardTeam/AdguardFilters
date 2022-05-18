@@ -16,14 +16,15 @@
   - [ ] My changes do not break web sites, apps and files structure.
 
 ### What problem does the pull request fix?
-##### If the problem does not fall under any category that is listed here, please contact our tech support: `support@adguard.com`
+##### If the problem does not fall under any category that is listed here, please write a comment below in corresponding section
 
   - [ ] Missed ads or ad leftovers;
   - [ ] Website or app doesn't work properly;
   - [ ] AdGuard gets detected on a website;
   - [ ] Missed analytics or tracker;
   - [ ] Social media buttons — share, like, tweet, etc;
-  - [ ] Annoyances — pop-ups, cookie warnings, etc.
+  - [ ] Annoyances — pop-ups, cookie warnings, etc;
+  - [ ] Filters maintenance.
 
 ### What issue is being fixed?
 ##### Enter the issue address:
