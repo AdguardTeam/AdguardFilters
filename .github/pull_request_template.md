@@ -1,5 +1,6 @@
 # Creating the pull request
 
+test
 > Please include a summary of the change and which issue is fixed\
 > If the related issue does not exist in our repository, please create it before making pull request\
 > It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub directly\
