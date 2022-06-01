@@ -12,7 +12,7 @@
 ! French-language catch-up TV web apps
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119411
-gala.fr,capital.fr#%#AG_onLoad(function(){if(window.pmsCoreAds&&Array.isArray(pmsCoreAds)){var b=new MutationObserver(function(){var a=document.querySelector("div[data-ads-core] .dailymotion-player-wrapper");if(a&&pmsCoreAds.length){b.disconnect();for(const a of pmsCoreAds)if("function"==typeof a)try{a()}catch(a){console.error(a)}}});b.observe(document,{childList:!0,subtree:!0}),setTimeout(function(){b.disconnect()},2E4)}});
+gala.fr,capital.fr#%#AG_onLoad(function(){if(window.pmsCoreAds&&Array.isArray(pmsCoreAds)){window.pmsCoreAds=new Proxy(pmsCoreAds,{set:(a,b,c,d)=>{if("function"==typeof c)try{c()}catch(a){}return Reflect.set(a,b,c,d)}})}});
 ! allocine.fr - fixing delay in the video player
 allocine.fr#%#//scriptlet("set-constant", "AC.config.ads", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118970
