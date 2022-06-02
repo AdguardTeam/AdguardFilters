@@ -5,18 +5,18 @@
 > It is highly recommended to use our [Web Reporting Tool](https://kb.adguard.com/en/technical-support/reporting-tool) instead of creating an issue on GitHub directly\
 > Please note, that we verify every pull request manually, so it may take time to apply it
 
-### Prerequisites
+## Prerequisites
 
-#### To avoid invalid pull requests, please check and confirm following terms
+### To avoid invalid pull requests, please check and confirm following terms
 
 - [ ] This is not an ad/bug report;
 - [ ] My code follows the [guidelines](https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md) and [syntax](https://kb.adguard.com/general/how-to-create-your-own-ad-filters) of this project;
 - [ ] I have performed a self-review of my own changes;
 - [ ] My changes do not break web sites, apps and files structure.
 
-### What problem does the pull request fix?
+## What problem does the pull request fix?
 
-#### If the problem does not fall under any category that is listed here, please write a comment below in corresponding section
+### If the problem does not fall under any category that is listed here, please write a comment below in corresponding section
 
 - [ ] Missed ads or ad leftovers;
 - [ ] Website or app doesn't work properly;
@@ -26,9 +26,9 @@
 - [ ] Annoyances — pop-ups, cookie warnings, etc;
 - [ ] Filters maintenance.
 
-### What issue is being fixed?
+## What issue is being fixed?
 
-#### Enter the issue address
+### Enter the issue address
 
 Example: <https://github.com/AdguardTeam/AdguardFilters/issues/100000>
 
