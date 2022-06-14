@@ -32,6 +32,14 @@
 
 Example: <https://github.com/AdguardTeam/AdguardFilters/issues/100000>
 
+### Add data for filters-pr-checker
+
+1. Website url
+<!-- Write the url here in format #url: https://example.org -->
+
+2. List of filters (optional). By default, rules are taken from modified files.
+<!-- Write list of filters here in format #filters: tests/filter.txt; tests/filter2.txt -->
+
 ### Add your comment and screenshots
 
 #### If possible, a screenshot of a page or application should not be cropped too much. Otherwise, it is not always clear where the element is located
