@@ -8,6 +8,14 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/121515
+bigpixel.cn#$?##PAGE_AD_1 { remove: true; }
+bigpixel.cn#%#//scriptlet("set-constant", "killads", "true")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||cpro.baidustatic.com/cpro/ui/cm.js$domain=pf.bigpixel.cn
+@@||pos.baidu.com/*?di=$script,domain=pf.bigpixel.cn
+@@||pos.baidu.com/*?conwid=$subdocument,domain=pf.bigpixel.cn
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120635
 moeci.com#%#//scriptlet('prevent-setTimeout', '_0x')
 !#if (adguard_app_ios || adguard_ext_android_cb)
