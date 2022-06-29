@@ -26,6 +26,29 @@
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/123018
+||btloader.com/tag?$redirect=noopjs,domain=voici.fr
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||btloader.com/tag?$domain=voici.fr
+! https://github.com/AdguardTeam/AdguardFilters/issues/123002
+@@||googletagmanager.com/gtm.js$domain=brita.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/122824
+@@||jsainsbury.*.qualtrics.com/jfe/form/$subdocument
+! https://github.com/AdguardTeam/AdguardFilters/issues/122659
+||api.ipify.org/?format=json$xmlhttprequest,redirect=nooptext,domain=utils.surf
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||api.ipify.org/?format=json$domain=utils.surf
+! https://github.com/AdguardTeam/AdguardFilters/issues/122614
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+@@||share.9cdn.net/share/long_cache/js/tracking/tracking.*.min.js$domain=nine.com.au
+! https://github.com/AdguardTeam/AdguardFilters/issues/122396
+!+ PLATFORM(ios, ext_safari)
+!#safari_cb_affinity(general,privacy)
+@@||cdn.segmentify.com^$domain=gratis.com
+!#safari_cb_affinity
+!+ NOT_PLATFORM(ios, ext_safari)
+@@||cdn.segmentify.com/*/segmentify.js$domain=gratis.com
+||cdn.segmentify.com/*/segmentify.js$script,important,redirect=noopjs,domain=gratis.com
 ! https://github.com/uBlockOrigin/uAssets/issues/13782
 @@||marketingautomation.services^$script,domain=leeuwerik.nl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122424
@@ -92,9 +115,6 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119018
 !+ PLATFORM(ios, ext_safari)
 @@||googletagmanager.com/gtag/js$domain=snake.io
-! https://github.com/AdguardTeam/AdguardFilters/issues/119178
-||cdn.segmentify.com/*/segmentify.js$script,important,redirect=noopjs,domain=gratis.com
-@@||cdn.segmentify.com/*/segmentify.js$domain=gratis.com
 ! https://github.com/easylist/easylist/pull/12019
 @@||pvtag.yahoo.co.jp^$script,domain=paypaymall.yahoo.co.jp
 ! https://github.com/uBlockOrigin/uAssets/issues/13222
@@ -294,7 +314,7 @@ extrahop.com#%#//scriptlet('prevent-setTimeout', 'ad blocker')
 ! www.satofull.jp images not shown
 @@||rtoaster.jp/Rtoaster.js$domain=satofull.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111052
-@@||wcs.naver.net/wcslog.js$domain=ciokorea.com|adpiamall.com|live.joins.com|naver.com|jbe.go.kr|privatenote.co.kr
+@@||wcs.naver.net/wcslog.js$domain=ciokorea.com|adpiamall.com|live.joins.com|naver.com|jbe.go.kr|privatenote.co.kr|dabangapp.com|kyobobook.co.kr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110504
 @@||pv.sohu.com/cityjson$domain=bulletin.cebpubservice.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110958
@@ -341,13 +361,9 @@ suki-kira.com#%#//scriptlet("remove-attr", "disabled", "button.vote-submit")
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||picoworkers.com/login.php$replace=/\/fingerprint2.js" integrity="/\/fingerprint2.js" _integrity="/
 ||cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.js$script,redirect=fingerprintjs2,domain=picoworkers.com,important
-! TODO: remove after extension release (next after 4.0.159) Must be checked if fingerprintjs2 redirect is supported
-||cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.js$script,redirect=fingerprintjs,domain=picoworkers.com,important
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108296
 ||new.hnair.com/hainanair/ibe/static/scripts/new/profile/fingerprint2.js$script,redirect=fingerprintjs2,important
-! TODO: remove after extension release (next after 4.0.159) Must be checked if fingerprintjs2 redirect is supported
-||new.hnair.com/hainanair/ibe/static/scripts/new/profile/fingerprint2.js$script,redirect=fingerprintjs,important
 @@||new.hnair.com/hainanair/ibe/static/scripts/new/profile/fingerprint2.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108678
 !+ NOT_PLATFORM(windows, mac, android, ext_chromium)
@@ -391,8 +407,6 @@ ntp.msn.com#@%#navigator.getBattery = undefined;
 ! https://github.com/AdguardTeam/Scriptlets/issues/141#issuecomment-921042595
 @@||cloudflare.com/ajax/libs/fingerprintjs2/$script,domain=gamebox.gesoten.com
 ||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprintjs2,domain=gamebox.gesoten.com,important
-! TODO: remove after extension release (next after 4.0.159) Must be checked if fingerprintjs2 redirect is supported
-||cloudflare.com/ajax/libs/fingerprintjs2/$script,redirect=fingerprintjs,domain=gamebox.gesoten.com,important
 ! riteaid.com
 @@||rfksrv.com/rfk/js/*/init.js$script,domain=riteaid.com
 ! jolie.de/maedche.de - broken picture gallery
@@ -1598,6 +1612,7 @@ nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48863
 @@||googletagmanager.com/gtm.js$domain=scotsman.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48850
+||tag.aticdn.net/*/smarttag.js$script,redirect=ati-smarttag,domain=rte.ie,important
 @@||tag.aticdn.net/*/smarttag.js$domain=rte.ie
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48571
 @@||cdn.blueconic.net/salemmediagroup.js$domain=biblestudytools.com

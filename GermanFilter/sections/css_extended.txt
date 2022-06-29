@@ -5,6 +5,20 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/122983
+zentrum-der-gesundheit.de#?#main > div > div.bg-white:has(> div > div#bottom-1)
+! https://github.com/AdguardTeam/AdguardFilters/issues/122945
+praxistipps.focus.de#?#.wrapper-safe > div.fb:has(> div > div.Article__Ad)
+! bild.de ads on main page
+bild.de#?#.main-content > .block:has(> h2.block-title + div > .layout > .mtl[data-teaser-position])
+! eltern.de,essen-und-trinken.de - ad main page
+eltern.de,essen-und-trinken.de#?#article:has(> .teaser__text-content > .ad-labels)
+! brigitte.de - ad at main page
+brigitte.de#?#article:has(> div[class] > .ad-labels)
+! welt.de - ads on main page and articles
+welt.de#?#article:has(> ul[class^="c-teaser-default"] > li > header > .c-anzeige-marker)
+welt.de#?#.c-grid__item:has(> article > header > .c-anzeige-marker)
+welt.de#?#.c-inline-element:has(> .o-teaser .c-inline-teaser__section-topic > span:contains(Advertorial))
 ! jpgames.de - left-over in sidebar
 jpgames.de#?##secondary > aside[id^="custom_html-"]:has(> .widget-header > .widget-title:contains(Werbung))
 ! focus.de - left-over in sidebar when viewing an article
@@ -144,10 +158,12 @@ bild.de#?#.main-content ~ .mtl--footer:has(> h4 > .anchor--external)
 ! gamestar.de - ad on main page
 gamestar.de#?#.scroll-container > div > .content-item-medium:has(> data[value="Deal"])
 ! winfuture.de Ads at main page
-winfuture.de#?#.news210:has( > a[href^="/news"][href*="123690"])
+winfuture.de#?#[class^="news"]:has( > a[href^="/news"][href*="123690"])
 winfuture.de#?#.hp_latest > div:has( > .topteaser > a[href^="/news"][href*="123690"])
 winfuture.de#?#div[class^="hp_"] > div:has( >ul > li:contains(Anzeige))
 winfuture.de#?#.topnews > div:has( > a > .img_container > .anzeige)
+winfuture.de#?#.topnews > div[class]:has(> a > span > .anz)
+winfuture.de#?#[class^="news"]:has(> .picture_head > .anz)
 winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
 
 winfuture.de#?##main h2:has(> a:contains(/Nur heute\:|Nur diese Woche\:|Nur für [0-9]{1,} Tage|Jetzt reduziert\:|Nur noch heute|tark reduziert|Knaller-Tarif|Top-Preis|kurze Zeit|vorbestellen|Auslieferung gestartet:[\s\S]* sind da|Sale|nur jetzt[\s\S]*reduziert|ngebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
