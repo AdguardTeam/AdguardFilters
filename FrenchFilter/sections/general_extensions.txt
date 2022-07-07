@@ -9,8 +9,6 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
-! French-language catch-up TV web apps
-!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119411
 voici.fr,programme-tv.net,gala.fr,capital.fr#%#AG_onLoad(function(){if(window.pmsCoreAds&&Array.isArray(pmsCoreAds)){window.pmsCoreAds=new Proxy(pmsCoreAds,{set:(a,b,c,d)=>{if("function"==typeof c)try{let a=!1;const b=b=>{var c=document.querySelector(".ads-core-video");c&&a?clearInterval(d):(b(),a=!0)},d=setInterval(b,1e3,c)}catch(a){}return Reflect.set(a,b,c,d)}})}});
 ! allocine.fr - fixing delay in the video player
@@ -24,20 +22,6 @@ purepeople.com#%#(function(){var a={cmd:[],public:{getVideoAdUrl:function(){},cr
 seriepourvous.com#%#//scriptlet("remove-attr", "href", "a[href]#clickfakeplayer")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104938
 scan-manga.com#%#//scriptlet("abort-current-inline-script", "document.getElementById", "window.open")
-! https://github.com/AdguardTeam/AdguardFilters/issues/83543
-canalplus.com#%#//scriptlet('set-constant', '__data.application.settings.featPlayerAds', 'false')
-! https://github.com/AdguardTeam/AdguardFilters/issues/103930
-6play.fr,rtlplay.be#%#//scriptlet('json-prune', 'applaunch.data.player.features.ad.enabled applaunch.data.player.features.ad.dai.enabled', 'appName')
-! https://github.com/AdguardTeam/AdguardFilters/issues/100525
-! https://gist.github.com/ameshkov/265f353a816110e8b9d5fc37ad66c31a
-prod-player.tf1.fr#%#(function(){let callCounter=0;const nativeJSONParse=JSON.parse;const handler={apply(){callCounter++;const obj=Reflect.apply(...arguments);if(callCounter<=10){if(obj.hasOwnProperty('env')&&obj.env.hasOwnProperty('origin')){if(!obj.hasOwnProperty('ads')){obj.ads={};}obj.ads.enable=false;obj.ads._prerolls=false;obj.ads._midrolls=false;}}else{JSON.parse=nativeJSONParse;}return obj;}};JSON.parse=new Proxy(JSON.parse,handler);})();
-! TODO: Change AG_defineProperty to scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
-tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithForm', { get: function() { return function() {return true;}; } });
-tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithImage', { get: function() { return function() {return true;}; } });
-tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithScript', { get: function() { return function() {return true;}; } });
-tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
-tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.sendAdRequestWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
-!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105459
 mapcustomizer.com#%#//scriptlet('remove-class', 'with-ad', 'div')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100793
@@ -75,6 +59,24 @@ actu17.fr#%#//scriptlet("abort-on-property-write", "td_ad_background_click_link"
 jacquieetmicheltv.net#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/target_url/.test(a)){ _st(a,b);}};
 ! http://forum.adguard.com/showthread.php?6907
 generation-nt.com#%#Object.defineProperty(window, 'AdvertBay', { get: function() { return []; } });
+!
+! French-language official catch-up TV web apps
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/83543
+canalplus.com#%#//scriptlet('set-constant', '__data.application.settings.featPlayerAds', 'false')
+! https://github.com/AdguardTeam/AdguardFilters/issues/123526
+canalplus.com#%#//scriptlet('json-prune', 'ads.*.default ads.*.url')
+! https://github.com/AdguardTeam/AdguardFilters/issues/103930
+6play.fr,rtlplay.be#%#//scriptlet('json-prune', 'applaunch.data.player.features.ad.enabled applaunch.data.player.features.ad.dai.enabled', 'appName')
+! https://github.com/AdguardTeam/AdguardFilters/issues/100525
+! https://gist.github.com/ameshkov/265f353a816110e8b9d5fc37ad66c31a
+prod-player.tf1.fr#%#(function(){let callCounter=0;const nativeJSONParse=JSON.parse;const handler={apply(){callCounter++;const obj=Reflect.apply(...arguments);if(callCounter<=10){if(obj.hasOwnProperty('env')&&obj.env.hasOwnProperty('origin')){if(!obj.hasOwnProperty('ads')){obj.ads={};}obj.ads.enable=false;obj.ads._prerolls=false;obj.ads._midrolls=false;}}else{JSON.parse=nativeJSONParse;}return obj;}};JSON.parse=new Proxy(JSON.parse,handler);})();
+! TODO: Change AG_defineProperty to scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithForm', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithImage', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithScript', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.pingURLWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
+tf1.fr#%#AG_defineProperty('tv.freewheel.SDK.Util.sendAdRequestWithXMLHTTPRequest', { get: function() { return function() {return true;}; } });
 !
 !--------------------------------------!
 !------- CSS fixes --------------------!

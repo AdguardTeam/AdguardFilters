@@ -57,11 +57,6 @@ chat.babel.com#%#//scriptlet('prevent-setTimeout', 'ShowAdvertising')
 @@||googletagmanager.com/gtag/js$domain=chat.babel.com
 @@||adv.123multimedia.com/AdConfig.aspx$domain=chat.babel.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/102748
-qub.ca#$#.adsbox.ad-banner:not([style="height: 5px; width: 5px; position: absolute; top: 0;"]):not(.blocker-tester + .ad-banner) { display: block !important; }
-qub.ca#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
-!+ PLATFORM(ios, ext_android_cb)
-@@||qub.ca^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101696
 @@||abcbourse.com/scripts2/prebid.js
 abcbourse.com#$##mywraptest { height: 1px !important; }
@@ -161,10 +156,6 @@ jardiner-malin.fr#%#//scriptlet("set-constant", "wIsAdBlocked", "false")
 @@||cdn-a.yieldlove.com/yieldlove-bidder.js$domain=jardiner-malin.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54079
 bleachmx.fr#%#//scriptlet("abort-on-property-read", "mdpDeBlocker")
-! https://github.com/AdguardTeam/AdguardFilters/issues/53934
-@@||proxy.ads.canalplus-bo.net/web/*/advert/?adInfo=$domain=canalplus.com
-@@||v.fwmrm.net/ad/g/1?*&resp=vmap$domain=canalplus.com
-@@||proxy.ads.canalplus-bo.net/web/*/adserver/info/?adInfo=$domain=canalplus.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53875
 @@||leakgaming.fr/js/*/Adsplex-shu.js
 leakgaming.fr#%#//scriptlet("abort-current-inline-script", "$", "!document.getElementById(btoa")
@@ -275,9 +266,6 @@ sante.journaldesfemmes.fr,linternaute.com#$#.AdBox.Ligatus.pub_300x250.pub_300x2
 @@||kweb.r66net.com/getlink|$domain=linternaute.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linternaute.com
 !#endif
-! https://forum.adguard.com/index.php?threads/15884/
-@@||static.canal-plus.net/resources/adframe.html?adName=$domain=canalplus.com
-@@||proxy.ads.canalplus-bo.net/web/*/adserver/info/?asset=$domain=canalplus.com
 ! https://forum.adguard.com/index.php?threads/m-rtl-be-adguard-mobile.31398/
 @@||service.videoplaza.tv/proxy/bwtest.jpg$domain=rtl.be
 @@||service.videoplaza.tv/proxy/pulse-sdk-html5^$domain=rtl.be
@@ -318,8 +306,6 @@ illicoporno.com#%#window.is_adblocked = false;
 ! https://forum.adguard.com/index.php?threads/www-culture-generale-fr.30064/
 culture-generale.fr#@#.an-advert-banner
 culture-generale.fr#@#.an-sponsored
-! https://forum.adguard.com/index.php?threads/www-rtlplay-be-tvi-humour-rtl-tvi.29736
-@@||be-rtl.videoplaza.tv/proxy/distributor/$domain=rtlplay.be
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25494
 ledauphine.com###adBlockDetect
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22988
@@ -330,15 +316,6 @@ ledauphine.com###adBlockDetect
 @@||vandenbrink.fr^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21648
 @@||reevown.com/vendor/publicite_blog.js^
-! https://github.com/AdguardTeam/AdguardFilters/issues/85384
-! https://github.com/AdguardTeam/AdguardFilters/issues/37231
-@@||ads.stickyadstv.com/auto-user-sync$domain=6play.fr
-@@||ads.stickyadstv.com/www/delivery/swfIndex.php?reqType=$domain=6play.fr
-@@||v.fwmrm.net/ad/g/1$domain=6play.fr
-@@||cdn.stickyadstv.com/www/images/*.mp4$xmlhttprequest,domain=6play.fr
-@@||imasdk.googleapis.com/js/sdkloader/vpaid_adapter.js$domain=6play.fr
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=6play.fr
-||cdn.stickyadstv.com/www/images/*.mp4$media,redirect=noopmp3-0.1s,domain=6play.fr
 ! https://forum.adguard.com/index.php?threads/nordpresse-be.29210/
 nordpresse.be#@#.an-advert-banner
 nordpresse.be#@#.an-sponsored
@@ -357,40 +334,6 @@ ultimate-catch.eu#%#//scriptlet("abort-current-inline-script", "document.getElem
 @@||static.criteo.net/js/px.js^$domain=ultimate-catch.eu
 !+ PLATFORM(ios, ext_android_cb)
 @@||cas.criteo.com/delivery/ajs.php^$domain=ultimate-catch.eu
-!
-! [TF1]
-! https://github.com/AdguardTeam/AdguardFilters/issues/77931 (TF1)
-! https://github.com/AdguardTeam/AdguardFilters/issues/108132 (TF1 INFO)
-! TODO: Change AG_defineProperty to scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
-!
-! (1/2) "DOM" AAB CHECK
-!
-tf1.fr#%#AG_defineProperty('__TF1_CONFIG__.adblock.display', { value: false, writable: false });
-tf1info.fr#%#AG_defineProperty('__NEXT_DATA__.runtimeConfig.adBlock.enable', { value: false, writable: false });
-!
-! Part below required for TF1 galaxy websites (iframe) + for products without scriptlets support
-tf1.fr,tf1info.fr#$#.ads.ad.adsbox.ad-placement.carbon-ads { display: block!important; }
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ads
-prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ad
-prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ad-placement
-prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.carbon-ads
-! not working in Safari because of a bug
-! https://github.com/AdguardTeam/AdguardForiOS/issues/1253
-@@||tf1.fr^$generichide
-@@||tf1info.fr^$generichide
-!#endif
-!
-! (2/2) "NETWORK REQUEST" AAB CHECK
-!
-tf1.fr#%#AG_defineProperty('__TF1_CONFIG__.adblock.serverRequest', { value: false, writable: false });
-tf1info.fr#%#AG_defineProperty('__NEXT_DATA__.runtimeConfig.adBlock.serverRequest', { value: false, writable: false });
-!
-! Whitelisted mainly for "adguard_app_ios" and "adguard_ext_android_cb" (fallback solution for others)
-@@||static.adsafeprotected.com/favicon.ico$domain=tf1.fr|tf1info.fr
-@@||ads.stickyadstv.com^|$xmlhttprequest,domain=tf1.fr|tf1info.fr
-! [/TF1]
-!
 ! https://forum.adguard.com/index.php?threads/chat-nrj-fr.28809/
 @@||chat.nrj.fr/Scripts/Lib/adsbygoogle.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15246
@@ -523,3 +466,72 @@ retinaboys.com###screen_block
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7980
 smarthomearea.de#@#.an-sponsored
 smarthomearea.de#@#.an-advert-banner
+!
+!
+! French-language official catch-up TV web apps
+!
+!
+! [MISCELLANEOUS]
+! https://github.com/AdguardTeam/AdguardFilters/issues/102748
+qub.ca#$#.adsbox.ad-banner:not([style="height: 5px; width: 5px; position: absolute; top: 0;"]):not(.blocker-tester + .ad-banner) { display: block !important; }
+qub.ca#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
+!+ PLATFORM(ios, ext_android_cb)
+@@||qub.ca^$generichide
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/53934
+@@||proxy.ads.canalplus-bo.net/web/*/advert/?adInfo=$domain=canalplus.com
+@@||v.fwmrm.net/ad/g/1?*&resp=vmap$domain=canalplus.com
+@@||proxy.ads.canalplus-bo.net/web/*/adserver/info/?adInfo=$domain=canalplus.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/123526
+canalplus.com#%#//scriptlet('json-prune', 'ads.enableAntiAdBlocking')
+! https://forum.adguard.com/index.php?threads/15884/
+@@||static.canal-plus.net/resources/adframe.html?adName=$domain=canalplus.com
+@@||proxy.ads.canalplus-bo.net/web/*/adserver/info/?asset=$domain=canalplus.com
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/85384
+! https://github.com/AdguardTeam/AdguardFilters/issues/37231
+@@||ads.stickyadstv.com/auto-user-sync$domain=6play.fr
+@@||ads.stickyadstv.com/www/delivery/swfIndex.php?reqType=$domain=6play.fr
+@@||v.fwmrm.net/ad/g/1$domain=6play.fr
+@@||cdn.stickyadstv.com/www/images/*.mp4$xmlhttprequest,domain=6play.fr
+@@||imasdk.googleapis.com/js/sdkloader/vpaid_adapter.js$domain=6play.fr
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=6play.fr
+||cdn.stickyadstv.com/www/images/*.mp4$media,redirect=noopmp3-0.1s,domain=6play.fr
+!
+! https://forum.adguard.com/index.php?threads/www-rtlplay-be-tvi-humour-rtl-tvi.29736
+@@||be-rtl.videoplaza.tv/proxy/distributor/$domain=rtlplay.be
+! [/MISCELLANEOUS]
+!
+! [TF1]
+! https://github.com/AdguardTeam/AdguardFilters/issues/77931 (TF1)
+! https://github.com/AdguardTeam/AdguardFilters/issues/108132 (TF1 INFO)
+! TODO: Change AG_defineProperty to scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
+!
+! (1/2) "DOM" AAB CHECK
+!
+tf1.fr#%#AG_defineProperty('__TF1_CONFIG__.adblock.display', { value: false, writable: false });
+tf1info.fr#%#AG_defineProperty('__NEXT_DATA__.runtimeConfig.adBlock.enable', { value: false, writable: false });
+!
+! Part below required for TF1 galaxy websites (iframe) + for products without scriptlets support
+tf1.fr,tf1info.fr#$#.ads.ad.adsbox.ad-placement.carbon-ads { display: block!important; }
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ads
+prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ad
+prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.ad-placement
+prod-player.tf1.fr,tf1.fr,tf1info.fr#@#.carbon-ads
+! not working in Safari because of a bug
+! https://github.com/AdguardTeam/AdguardForiOS/issues/1253
+@@||tf1.fr^$generichide
+@@||tf1info.fr^$generichide
+!#endif
+!
+! (2/2) "NETWORK REQUEST" AAB CHECK
+!
+tf1.fr#%#AG_defineProperty('__TF1_CONFIG__.adblock.serverRequest', { value: false, writable: false });
+tf1info.fr#%#AG_defineProperty('__NEXT_DATA__.runtimeConfig.adBlock.serverRequest', { value: false, writable: false });
+!
+! Whitelisted mainly for "adguard_app_ios" and "adguard_ext_android_cb" (fallback solution for others)
+@@||static.adsafeprotected.com/favicon.ico$domain=tf1.fr|tf1info.fr
+@@||ads.stickyadstv.com^|$xmlhttprequest,domain=tf1.fr|tf1info.fr
+! [/TF1]
+!
