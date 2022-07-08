@@ -38,7 +38,7 @@ Example: <https://github.com/AdguardTeam/AdguardFilters/issues/100000>
 <!-- Write the url here in format #url: https://example.org -->
 
 2. List of filter Ids (optional). By default, all recommended filters are applied.
-<!-- Write list of filters here in format #filters: 1; 2 -->
+<!-- Write list of filters here in format #filters: 1, 2 -->
 
 ### Add your comment and screenshots
 
