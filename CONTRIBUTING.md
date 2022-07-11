@@ -109,7 +109,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
       * [Popups folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Popups/sections)
 
    - ### Widgets
-      * Purpose: this filter blocks annoying third-party widgets: online assistants, live support chats, etc.
+      * Purpose: this filter blocks annoying third-party widgets - online assistants, live support chats, etc.
       * [Widgets folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Widgets/sections)
 
    - ### Other Annoyances
