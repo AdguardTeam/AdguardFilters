@@ -92,15 +92,15 @@ General requirements for submitting rules: don't add rules to the beginning of t
 ### AdGuard Annoyances filter
 
 * Purpose: Blocks irritating elements on web pages including cookie notices, third-party widgets and in-page pop-ups.
-* [AdGuard Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter)
+* [Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter)
 
 Contains the following AdGuard filters: Cookie Notices, Popups, Mobile App Banners, Other Annoyances and Widgets:
 
-- ### Cookie
+- ### Cookie Notices
 * Purpose: this filter blocks cookie notices on web pages.
 * [Cookies folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Cookies/sections)
 
-- ### MobileApp
+- ### Mobile App Banners
 * Purpose: this filter blocks irritating banners that promote mobile apps of websites.
 * [MobileApp folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/MobileApp/sections)
 
@@ -112,7 +112,7 @@ Contains the following AdGuard filters: Cookie Notices, Popups, Mobile App Banne
 * Purpose: this filter blocks annoying third-party widgets: online assistants, live support chats, etc.
 * [Widgets folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Widgets/sections)
 
-- ### Other
+- ### Other Annoyances
 * Purpose: this filter blocks irritating elements on web pages that do not fall under the popular categories of annoyances.
 * [Other folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Other/sections)
 
