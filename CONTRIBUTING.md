@@ -94,7 +94,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
 * Purpose: Blocks irritating elements on web pages including cookie notices, third-party widgets and in-page pop-ups.
 * [Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter)
 
-Contains the following AdGuard filters: Cookie Notices, Popups, Mobile App Banners, Other Annoyances and Widgets:
+   Contains the following AdGuard filters: Cookie Notices, Popups, Mobile App Banners, Other Annoyances and Widgets:
 
    - ### Cookie Notices
       * Purpose: this filter blocks cookie notices on web pages.
