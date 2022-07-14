@@ -5,6 +5,11 @@
 ! Bad:  ||example.org^$third-party (it's an adserver and should be in adservers.txt)
 !
 !
+!
+!==================================================================================================================
+!============================================section===============================================================
+! TODO: TEMPORARY SECTION ============must be removed after moving the rules to new files==========================
+!
 !######### Annoying elements (not ads)
 !
 ! Test for youtube. Look for feedback
@@ -14,6 +19,11 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76987
 youtube.com#%#AG_onLoad(function() {var a = new MutationObserver(function() {if (document.querySelector('yt-upsell-dialog-renderer')) {var b = document.querySelector('.ytd-popup-container[popup-size="UPSELL_DIALOG_RENDERER_POPUP_SIZE_LARGE"] #dismiss-button:not(.dismissed), .upsell-dialog-lightbox .upsell-dialog-dismiss-button button:not(.dismissed)');setTimeout(function() {b&&b.click()}, 3E2)}});a.observe(document, {childList: !0,subtree: !0});setTimeout(function() {a.disconnect()}, 3E3)});
 !
+! amazon.de video player -- Rating of episode at start as overlay
+amazon.de#?#.webPlayerElement .atvwebplayersdk-player-container div:not([class]):not([tabindex]) > div[class]:not([style*="margin"]) > div[class] > div[class] > div[class] > span:contains(Bewertung)
+! gamestar.de - left-over with no content on https://www.gamestar.de/news/
+gamestar.de#?#.box-reload > .media:not(:has(> *)):not(:contains(/[a-zA-Z0-9]/))
+gamestar.de#?#.box-reload > .media:not(:has(> *)):not(:contains(/[a-zA-Z0-9]/)) + hr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123138#issuecomment-1171536858
 theroot.com,jalopnik.com,lifehacker.com,kotaku.com,gizmodo.com##.sidebar-sticky-children
 theroot.com,jalopnik.com,lifehacker.com,kotaku.com,gizmodo.com###js_moreFromNetwork
@@ -1027,10 +1037,8 @@ iqiyi.com##.iqp-player > iqpdiv[data-cupid="container"] > div[data-adzone][templ
 !+ PLATFORM(ios)
 ||t7z.cupid.iqiyi.com^$badfilter
 !#safari_cb_affinity
-!
 !+ PLATFORM(ios)
 9to5google.com,9to5mac.com,9to5toys.com,dronedj.com,electrek.co##.newsletter-box
-!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68543
 kupidonia.ru##.zen-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57706
@@ -2517,6 +2525,10 @@ dobro.mail.ru##.dobro-popup-subscribe
 hi-tech.mail.ru##.sticky_footer div[class^="block block_padding rb-block-"]
 ! END: mail.ru
 !
+!==================================================================================================================
+!============================================section===============================================================
+! TODO: TEMPORARY SECTION ============must be removed after moving the rules to new files==========================
+!
 !######### Social annoyances
 !
 ##.arcontactus-message-button
@@ -2565,22 +2577,6 @@ solidsoftwaretools.com#$#.mts-cl-social-locker { display: none!important; }
 solidsoftwaretools.com#$#div[class][data-locker-id] { display: block!important; }
 ! trimay.ru - social video locker
 ||trimay.ru/?
-! Social Locker - WordPress content locking plugin
-/wp-content/plugins/sociallocker-
-! onp-sl-social-locker
-trickswire.com#$#.mts-cl-overlap-mode > .mts-cl-overlap-box { display: none!important; }
-trickswire.com#$#.mts-cl-overlap-mode > .mts-cl-blur-area { filter: none!important; }
-/pandalocker.$script,domain=lanka.ru
-0lik.ru##.onp-sl-outer-wrap
-0lik.ru$replace=/locker:{\s+timer:\s'\d\d'/locker: { timer: '1'/
-animaunt.tv##.icon-bar > .fl-fl
-cracxpro.com,hackintoshzone.com,gigadownloads.co,techsini.com##.onp-sl-overlap-box
-psdfreebies.com#$#.onp-locker-call { display: block!important; }
-rbc.ua##.telegram-link
-hackstore.net,activationkeys.co,bicfic.com,boxcracked.com,idmcrackpatch.com,activationkey.net,activatorproductkey.org,androidride.com,c4crack.com,chserialkey.com,ckfile.com,crack4us.com,cracksmod.com,cracxsoftwares.com,creativefabrica.com,downloadmockup.com,f4freesoftware.com,freeappstorepc.com,fullpcsoftz.com,gomovies.co,hentairon.net,latestcracked.com,megawarez.org,procrackerz.org,profullcrack.com,psdfreebies.com,realhax.com,sajidpc.com,serialkeypro.com,shehrozpc.com,sjcrack.com,soft7star.com,warezcrack.net,workingkeys.org#$#.onp-sl-content { display: block!important; }
-hackstore.net,activationkeys.co,bicfic.com,boxcracked.com,idmcrackpatch.com,activationkey.net,activatorproductkey.org,androidride.com,c4crack.com,chserialkey.com,ckfile.com,crack4us.com,cracksmod.com,cracxsoftwares.com,creativefabrica.com,downloadmockup.com,f4freesoftware.com,freeappstorepc.com,fullpcsoftz.com,gomovies.co,hentairon.net,latestcracked.com,megawarez.org,procrackerz.org,profullcrack.com,psdfreebies.com,realhax.com,sajidpc.com,serialkeypro.com,shehrozpc.com,sjcrack.com,soft7star.com,warezcrack.net,workingkeys.org#$#.onp-sl-social-locker { display: none!important; }
-latestcracked.com#$#.onp-sl-signin-locker { display: none!important; }
-warezcrack.net#$#.onp-sl-content > [data-lock-id^="onpLock"] { display: block!important; }
 !
 m.fuhuz.com###guideModal
 menunedeli.ru##.save-recipe-blk
