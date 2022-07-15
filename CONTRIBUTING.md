@@ -105,7 +105,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
       * [MobileApp folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/MobileApp/sections)
 
    - ### Popups
-      * Purpose: this filter blocks all kinds of pop-ups that are not necessary for websites operation.
+      * Purpose: this filter blocks all kinds of pop-ups that are not necessary for websites' operation.
       * [Popups folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Popups/sections)
 
    - ### Widgets
