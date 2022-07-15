@@ -4,6 +4,8 @@
 ! Good: any type of the rules will be good
 ! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
 !
+! TODO: bookmarks: Fixing the issues
+! TODO: devide by rule types(generic/3p/specific, whitelist...)
 !
 ! Disabling of push-notifications
 wallstreet-online.de,dni.ru,polit.info#%#if (window.PushManager) { window.PushManager.prototype.subscribe = function () { return { then: function (func) { } }; }; }
@@ -12,28 +14,6 @@ life.ru,macwelt.de,pcwelt.de#%#//scriptlet("set-constant", "firebase.messaging",
 ! To be discussed
 ! #%#//scriptlet("set-constant", "Notification.permission", "denied")
 !
-! ||cdn.subscribers.com/assets/subscribers.js
-!
-! Third-party push-notifications
-!
-!https://pushiki.ru/js/script2.js?sid=3&d=xatab-repack.net
-!https://push-money.ru/api/id38/clicked
-||pushiki.ru^$third-party
-||push-money.ru^$third-party
-!
-! *crWEbPushEl
-! *    https://cdn.karuna4u.com/sdk/siteScript?p_id=*&hold=*&subid_*sitescript&subid*
-! *https://cdn.pushofferpro.com/sdk/siteScript?p_id=*&hold=*&subid_*sitescript&subid*
-.com/sdk/siteScript?p_id=*&hold=*&subid_*sitescript&subid*
-!
-||celesterium.com^$third-party
-abendzeitung-muenchen.de###webpush-app
-||moengage.com^$third-party
-||heroesdom.com^$third-party
-||karuna4u.com^$third-party
-||pushofferpro.com^$third-party
-! uCoz
-||leechiza.net^$third-party
 ! `window.wpnConfig`
 ! https://vinuser5.biz/?pu=ha3gemtcg45ha3ddf4ytanju
 .me/?pu=$script,third-party
@@ -51,6 +31,17 @@ abendzeitung-muenchen.de###webpush-app
 .name/?pus=$script,third-party
 .site/?pus=$script,third-party
 !
+!
+||celesterium.com^$third-party
+abendzeitung-muenchen.de###webpush-app
+||moengage.com^$third-party
+||heroesdom.com^$third-party
+||karuna4u.com^$third-party
+||pushofferpro.com^$third-party
+||leechiza.net^$third-party
+.com/sdk/siteScript?p_id=*&hold=*&subid_*sitescript&subid*
+||pushiki.ru^$third-party
+||push-money.ru^$third-party
 ###kp-subscribe-window
 ||mailer.i.bizml.ru^
 ||bro1.biz^
@@ -470,6 +461,9 @@ abendzeitung-muenchen.de###webpush-app
 /firebase.js$domain=novayagazeta.ru|comments.ua|kinosimka.net|ilan365.net|cnbcindonesia.com|haberzamani.net|oxy.cloud|allbasketball.org|auslogics.com|kartalyuvasi.com.tr|cnnindonesia.com|fbc.ua|astv.ru|pln-pskov.ru|aylink.co
 /firebase-messaging.js$domain=webursa.com|s.akiba-souken.com|bfm.ru|theswagsports.com|focus.ua|ukranews.com|comments.ua|coub.com|porno90.me|cnnamador.com|giallozafferano.it|wcostream.com|fptplay.vn|jooble.org|mobile01.com|myinstants.com|pdalife.ru|rg.ru|m.iguides.ru|donanimhaber.com|profile.ru|womanhit.ru|news.noteru.com|narodna-pravda.ua|newstm.in|sabah.com.tr|dreamstime.com|popbee.com|avtovzglyad.ru|allbasketball.org|tw.news.yahoo.com|takvim.com.tr|jn.pt|ria.ru|pars.host|calculator-online.net|operanewsapp.com|ahaber.com.tr|tamindir.com|concursosnobrasil.com.br|kompas.com|news.ebc.net.tw|recyclingtoday.com|homedecoratione.com|khersondaily.com|mirtesen.ru|womanhit.ru|belsat.eu|gearbest.com|op.gg|novayagazeta.ru|pocket-lint.com|turunculevye.com|bloomberght.com|stardima.com|aksam.com.tr|portamur.ru|fishki.net|ranking.goo.ne.jp|ohmymag.com|mgronline.com|semnasem.org|bluradio.com|carwale.com|finanznachrichten.de|home.kingsoft.jp|sputnik.kg
 !
+/js/push.js$domain=site.ua|gorod24.online|ytro.news|vz.ru
+kgw.com##.page__notifications
+kufar.by##div[class^="styles_webpush_banner__"]
 pecom.ru##.gr-visual-prompt
 ladbible.com##div[data-cypress="soft-push-notification-modal"]
 polskieradio.pl##.main-page__bell
@@ -484,6 +478,7 @@ einvestidor.estadao.com.br###push-notification-prompt-container
 girafa.com.br#%#//scriptlet('set-cookie', 'saiupagina', 'true')
 sloanreview.mit.edu##.news-signup
 manutd.com##div[data-impression^="Notification_Prompt"]
+||image.sendsay.ru/app/js/forms/forms.min.js
 ||image.sendsay.ru/app/js/sdk/sdk.min.js
 ||de.russiatoday.com/static/js/pushes/web-push-notification.js
 ||free.rnv.life/js/pub.min.js
@@ -508,7 +503,6 @@ ficbook.net#$#body { overflow: visible!important; padding-right: 0!important; }
 ficbook.net#$##notificationsSubscribeModal ~ .modal-backdrop { display: none!important; }
 eisamay.com,samayam.com,indiatimes.com##.notification_popup
 ||149.56.24.226/service-worker.js
-||vz.ru/static/js/push.js
 ||fahrradmagazin.net/p/app.js
 ||careerindex.jp/templates/push_notification
 24nyt.dk##.tnp-leads-topbar-show
@@ -554,7 +548,6 @@ trashbox.ru###div_bottom_subscribe_placeholder
 caracoltv.com,shock.co##.PushSubscription-content
 banglatech24.com###perfecty-push-dialog-container
 newinform.com,nevnov.ru,rueconomics.ru,slovodel.com,riafan.ru##.pushSubscribe
-||ytro.news/static/js/push.js
 ||maximizly.*/sources/webpush/production/js/maximizly-push.js
 ||cosplay-porn.me/swps.js
 animefire.net###page-mask
@@ -732,7 +725,6 @@ takiedela.ru##.b-push-notification
 justnutritive.com##.order-notification
 ||api-analytics.rozetka.com.ua/js/exponea.min.js
 ||7themes.su/sw.js
-||gorod24.online/application/views/gorod24_dev/js/push.js
 platinmods.com##.notice--enablePush
 tv6tnt.com##.notification-button
 ||tr.link/push/push.js
@@ -934,6 +926,11 @@ armeniasputnik.am,sputniknewslv.com##.modal-push
 !
 aol.com#$#.m-notifications-banner { display: none !important; }
 aol.com#$#.banner-active { margin-top: 0 !important; }
+!
+!
+!==================================================================================================================
+!============================================section===============================================================
+! TODO: TEMPORARY SECTION ============must be removed after moving the rules to new files==========================
 !
 ! Fixing the issues
 !
