@@ -5,16 +5,14 @@
 ! Good: any type of the rules will be good
 ! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
 !
-! TODO: bookmarks: Whitelist, Rules with Hints, generic, mobile only(directive)
-! TODO: review girectives. Maybe we can decrease their number and optimize
 !
 !#######################################################
 !######### Banners of mobile apps for the sites ########
 !#######################################################
 !
-!### HINTS are at the end of file
+!### HINTS are at the end of Specific section
 !
-! generic
+! SECTION: Mobile apps - generic rules
 /wp-content/plugins/ioimedia-app-banner/*
 /js/jquery.smartbanner.js
 ||2app.lk^$third-party
@@ -25,7 +23,12 @@
 ###smartbanner.windows
 ##head[prefix~="medium-com:"] ~ body .js-openInAppButton
 ##head[prefix~="medium-com:"] ~ body .js-postActionsBarContent > .js-readNextInteractions
+! NOTE: Generic rules end ⬆️
+! !SECTION: Mobile apps - Generic rules
 !
+!
+! SECTION: Mobile apps - Specific
+1kr.ua##.install-application
 tenki.jp##.app-week-btn-img-box
 noin.shop##.promote-app
 kuronekoyamato.co.jp##.customer-top-app
@@ -1022,6 +1025,7 @@ news.yahoo.co.jp##a[data-ylk^="rsec:webtoapp;slk:bnr_"]
 news.yahoo.co.jp###wrapper > #peron
 partner.yahoo.co.jp##.Rsab
 paypayfleamarket.yahoo.co.jp###appadbnr
+weather.yahoo.co.jp##.doubleImage_cardBetween
 weather.yahoo.co.jp##.linkAndroid
 weather.yahoo.co.jp###content > #doubleImage.tracked_mods.doubleImage-skew
 weather.yahoo.co.jp###doubleImage
@@ -1029,7 +1033,6 @@ weather.yahoo.co.jp##.footeLinkPromo
 weather.yahoo.co.jp##.appLink
 weather.yahoo.co.jp##.mdStickyFooter
 weather.yahoo.co.jp##a[href^="https://app.adjust.com/"]
-weather.yahoo.co.jp##.doubleImage_cardBetween > div[data-doubleimage="short"]
 shopping.yahoo.co.jp,103.by##.AppBanner
 search.yahoo.co.jp###contentsInner > article[class^="W2ALink_W2ALink__"]
 sports.yahoo.co.jp###header > #RSAB
@@ -1544,177 +1547,46 @@ imageban.ru##img[alt="Get it on Google Play"]
 ||vizefinalsorupaylasimi.com/uploads/googleplay.jpg
 mediamarkt.de##.mrh-app-banner
 rt.com###offers
-!
-reddit.com#$#.m-blurred { filter: none !important; }
-reddit.com#$#div[class="NavFrame"] div[class="XPromoPopup m-active"] { display: none !important; }
-reddit.com#$#.XPromoBlockingModal { display: none !important; }
-reddit.com#%#//scriptlet('remove-class', 'scroll-disabled', 'body')
-reddit.com#%#//scriptlet('remove-class', 'm-blurred', '.m-blurred')
-!
-! https://github.com/AdguardTeam/AdguardFilters/pull/100226
-m.webtoons.com##._appDownloadPopup
-m.webtoons.com#$#.pop_download_home { display: none !important; }
-m.webtoons.com#$#.dim.home { display: none !important; }
-m.webtoons.com#$#._homeAppDownloadPopup { display: none !important; }
-m.webtoons.com#$#body { overflow: visible !important; position: relative !important; }
-!
-atresplayer.com#?#div[class^="style__StyledGlobalWrapper-"] > div[class^="style__StyledGenericModal-"]:has(> a[title="Descargar la app"])
-!+ PLATFORM(android)
-atresplayer.com##div[class^="style__BreakSpace-"]
-!
-9gag.com##a[class="get-the-app-banner"]
-9gag.com#$#.open-in-app { display: none !important; }
-9gag.com#$#body { overflow: auto !important; }
-!+ NOT_OPTIMIZED
-9gag.com##.download-app-container
-!
-rtl2.de#$#body { overflow: auto !important; }
-rtl2.de#$#.campaign-overlay { display: none !important; }
-!
-goodreads.com#$#html.withAppInstallationBanner .siteHeader { top: 0 !important; }
-goodreads.com#$#html[style="margin-top: 80px;"] { margin-top: 0 !important; }
-!
-!+ NOT_OPTIMIZED
-retrip.jp,rtrp.jp#$##page[style^="padding-top"] { padding-top: 45px!important; }
-!+ NOT_OPTIMIZED
-retrip.jp,rtrp.jp#$#header-induction { display: none!important; }
-!+ NOT_OPTIMIZED
-retrip.jp,rtrp.jp#$#header.ng-scope[style^="height"] { height: auto!important; }
-!
-mobile.reuters.com#$#.header-main { margin-top: 0 !important; }
-mobile.reuters.com#$#nav.section-nav { padding-top: 54px !important; }
-mobile.reuters.com#$#section.search-nav { padding-top: 0 !important; }
-mobile.reuters.com#$##nonEditBannerContainer { display: none !important; }
-!
+cnnbrasil.com.br#%#//scriptlet('set-cookie-reload', 'CNNsmartbanner', '1')
+bilyoner.com#%#//scriptlet('set-cookie', 'smartbanner-closed', 'true')
+izi.ua#%#if (typeof sessionStorage != 'undefined' && sessionStorage.setItem) { sessionStorage.setItem('hideMobilePopup', '1'); };
+leroymerlin.ru#%#//scriptlet('set-cookie', 'daysToHide', '14')
+protonmail.com#%#//scriptlet('set-cookie', 'ch.protonmail.android-smartbanner-closed', 'true')
+kompas.com#%#//scriptlet('set-cookie', 'cbapps_close', '1')
+kinopovtor1.online#%#//scriptlet("abort-on-property-read", "stickyConfig")
+m.kwejk.pl#%#(function(){var a=new Date;a=a.getFullYear()+"-"+(a.getMonth()+1)+"-"+a.getDate();document.cookie="closed="+a})();
+b.hatena.ne.jp#%#document.cookie = "android-smartapp-banner=1; path=/;";
+akinator.mobi#%#document.cookie="com.digidust.elokence.akinator.freemium-smartbanner-closed=true; path=/;";
+yemek.com#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("smartAppStatus", "false") } } catch (ex) {} })();
+m.jbzd.cc,m.jbzdy.cc#%#document.cookie = "play-creation=1; path=/;";
+intermarche.pl#%#document.cookie = "interapp_redirect=false; path=/;";
+vodafone.cz,m.jdsports.co.uk,mmajunkie.com#%#document.cookie="sb-closed=true; path=/;";
+fcn.de,kq2.com,kdrv.com,wfft.com,wtva.com,wktv.com,actionnewsnow.com#%#document.cookie = "smartbanner-closed=true; path=/;";
+wiwo.de#%#document.cookie = "appInstall=true";
+m.nhaccuatui.com#%#document.cookie = "isCloseSmartAppBanner=true";
+m.standaard.be#%#document.cookie = "sb-closed=true";
+givemesport.com#%#document.cookie = "gms.appPromo=1";
+appticker.de#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/loadAppStoreBanner/.test(a.toString()))return b(a,c)};})();
+forvo.com,trthaber.com,kanald.com.tr#%#document.cookie = "smartbanner_exited=1";
+sahibinden.com#%#document.cookie = "sbt=none";
+sahibinden.com#%#localStorage.setItem('smartBanner', '{"smartAppBannerEnabled":true}');
+m.n11.com#%#document.cookie = "appRedirectionCancelled=true";
+monster.de#%#document.cookie = "jobr.splitter.cookie=true";
+m.sportmaster.ru#%#document.cookie = "esm-sb-closed=true";
+life.ru#%#document.cookie = "smartbanner=already_shows";
+finanzen.net#%#document.cookie="sb-closed=true; path=/;";
 svyaznoy.ru#%#//scriptlet('remove-class', 'android-banner-on-page')
-!
 ebay.*###gh-appBanner
-!
-!+ NOT_OPTIMIZED
-m.tokopedia.com#$#div[data-testid="divBottomSheetWebToApp"] { display: none!important; }
-m.tokopedia.com#$#body { overflow: visible!important; }
-m.tokopedia.com#$#.unf-overlay { display: none!important; }
-m.tokopedia.com#$?#body > div > div.unf-sheet__wrapper:has(> article img[alt="app"]) { display: none!important; }
-!
-!
 m.avito.ru##div[data-marker="main-container"] > div[data-scroll-blocker="true"]
-!
 vodafone.ua#$#div.smartbanner { display: none !important; }
 vodafone.ua#$#.smartbanner-show { margin-top: 0 !important; }
-!
 m.imgur.com#$#div[class^="SeeImgurOIA-"] { display: none!important; }
 m.imgur.com#$#body { overflow-y: visible!important; }
-!
 c.mi.com#$#.xm-header.app-down .top { top: 0 !important; }
 c.mi.com#$#.xm-header.app-down { margin-top: 0 !important; }
 c.mi.com#$#.app-download { display: none !important; }
-!
 msn.com#$##irisbannerph { display: none !important; }
 msn.com#%#//scriptlet('remove-class', 'irisbactive-top', 'body')
-!
-citrus.ua#$#.download-mobile-app { display: none !important; }
-citrus.ua#$#html { overflow: visible !important; }
-citrus.ua#$#body { overflow: visible !important; }
-!
-touch.mail.ru##.tp-1-overlay
-touch.mail.ru#$?#body > div[class^="meta-block-"] { display: none !important; }
-touch.mail.ru#$?#body { overflow: visible !important; }
-touch.mail.ru#$?#html { overflow: visible !important; }
-!
-m.soundcloud.com#$##app > #content { padding-top: 45px !important; }
-m.soundcloud.com#$#.upsellBanner { display: none !important; }
-!
-m.box.com#$#.mobile-app-banner { display: none!important; }
-m.box.com#$#.app-banner-enabled div.page { top: 0!important; }
-! adidas.ru
-adidas.ru#$#.mobile_app_baner_container { display: none!important; }
-adidas.ru#$#body > .sticky-wrapper { height: 61px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/122817
-instagram.com##section._9arc7
-! https://github.com/AdguardTeam/AdguardFilters/issues/37627
-24h.m.pchome.com.tw#$##smartbanner[class*="shown"]+#WRAPPER .block_H { top: 0 !important; }
-24h.m.pchome.com.tw#$##smartbanner[class*="shown"]+#WRAPPER { margin-top: 0px !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/37542
-!+ NOT_OPTIMIZED
-zdf.de#$#.smartbanner-show { margin-top: 0 !important; }
-!+ NOT_OPTIMIZED
-zdf.de#$#.smartbanner-show header.b-header { top: 0 !important; }
-!+ NOT_OPTIMIZED
-zdf.de#$#.smartbanner { display: none !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/32617
-vivareal.com.br#$#.site-header[data-smart-banner] { margin-top:0px!important; }
-vivareal.com.br#$#.app-smart-banner { display:none!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/32028
-cardsmobile.ru#$#.cm-menu--page-begin[style="top: 60px;"] { top: 0!important; }
-cardsmobile.ru#$#body > div[class="cm-dbn"] { position: absolute!important; left: -3000px!important; }
-cardsmobile.ru#$#body > section[class="cm-s-0"][style="padding-top: 196px;"] { padding-top: 88px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/31093
-fandom.com#$#body { margin-top: 0!important; }
-fandom.com#$#.smart-banner { display: none!important; }
-fandom.com#$#.global-navigation-mobile-wrapper { top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/29195
-hidemyna.me#$#.main-download-popup { display: none!important; }
-hidemyna.me#$##top-menu { top: 0px!important; }
-hidemyna.me#$?##content-section > header:not(:has(> *)) { display: none!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/24616
-! https://github.com/AdguardTeam/AdguardFilters/issues/43626
-linkedin.com#$#.no-scroll { overflow:visible!important; }
-! linkedin.com#$#.modal-container { display:none!important; }
-linkedin.com#$#.shared-modal-open { overflow:visible!important; }
-!
-bigbasket.com#$#.smart-banner .mdl-layout__drawer-button { top: 0!important; }
-bigbasket.com#$#smart-banner { display: none!important; }
-!
-tieba.baidu.com#$#.navbar-box { top: 44px!important; }
-tieba.baidu.com#$#body .tb-index-navbar .navbar-view { top: 24px!important;}
-! https://github.com/AdguardTeam/AdguardFilters/issues/17404
-bing.com#$#.b_hphb { display:block!important; }
-bing.com#$##bLogoExp { display:block!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/37020
-unian.net#$#.app-weather { display: none!important; }
-unian.net#$#.main-column > div > aside { height: 30px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/16638
-zillow.com#$##app-upsell > .fixed-banner { display: none!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/16641
-givemesport.com#$##gms-editorial > .gms-article-indicator.floating-fixed { margin-top: 0!important; }
-!
-aminoapps.com#$?#html:has(> body) { overflow: visible!important; }
-aminoapps.com#$#.overlay { display: none!important; }
-aminoapps.com#$#.get-app { display: none!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/16094
-m.imgur.com#$#.AppBanner-container { height: 50px!important; }
-!
-tvrain.ru#$#.smartbanner { display: none!important; }
-tvrain.ru#$#html.smartbanner-show { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/8962
-m.tr.beinsports.com#$#body > .android.shown { display: none!important; }
-m.tr.beinsports.com#$#form > header[style="top: 78px;"] { top: 0!important; }
-m.tr.beinsports.com#$#.content_section[style="margin-top: 78px;"] { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/7860
-sat1.de#$##smartbanner { display: none!important; }
-sat1.de#$#html.mob[style^="margin-top:"] { margin-top: 0!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/8071
-m.aboutyou.de#$#.app-teaser { display: none!important; }
-m.aboutyou.de#$#.app-teaser+.fake-nav-bar+* .bar-header { top: 0!important; }
-m.aboutyou.de#$#.app-teaser+.fake-nav-bar+*+.container { padding-top: 0!important; }
-! https://forum.adguard.com/index.php?threads/madame-lefigaro-fr.23720/
-lefigaro.fr#$#html.smartBanner header#fig-header { height: 50px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/5474
-m.vlive.tv#$#.pop_banner { display: none!important; }
-m.vlive.tv#$#body.layer_open { position: relative!important; }
-m.vlive.tv#$#.pop_banner+#wrap .vlive_top { top: 0!important; }
-m.vlive.tv#$#.pop_banner+#wrap { padding-top: 0!important; }
-!
-kicker.de#$##ovHeader { top: 0!important; }
-kicker.de#$##ovContentScroller { padding-top: 0!important; }
-!
-m.ulmart.ru#$#.smartbanner { display: none!important; }
-m.ulmart.ru#$#.smartbanner_show .snap-content, .smartbanner_show .snap-drawers { top: 0!important; }
-!
-teb.com.tr#$#html { margin-top: 0!important; }
-teb.com.tr#$##smartbanner.android { display: none!important; }
-teb.com.tr#$##smartbanner.ios { display: none!important; }
-!
 mytuner-radio.com###appDownloadAd
 d19jioddu7q9d3.cloudfront.net,d1e6t2g7k08m8d.cloudfront.net,svoboda.azureedge.net,svoboda.org#$#.promo-banner { display: none !important; }
 d19jioddu7q9d3.cloudfront.net,d1e6t2g7k08m8d.cloudfront.net,svoboda.azureedge.net,svoboda.org#$#body { padding-top: 0 !important; }
@@ -1746,50 +1618,106 @@ ask.fm#$##appPromoter{ display: none!important; }
 ask.fm#$#body.appPromoBody{ margin: 0!important; }
 tripadvisor.co.uk,tripadvisor.jp,tripadvisor.com.br#$##PAGE_CONTAINER.smartbanner_shown_on_top { top: 0!important; }
 tripadvisor.de,tripadvisor.be,tripadvisor.ca,tripadvisor.co,tripadvisor.co.id,tripadvisor.co.uk,tripadvisor.com,tripadvisor.com.au,tripadvisor.com.br,tripadvisor.com.gr,tripadvisor.com.mx,tripadvisor.com.my,tripadvisor.com.sg,tripadvisor.com.tr,tripadvisor.com.tw,tripadvisor.es,tripadvisor.fr,tripadvisor.ie,tripadvisor.in,tripadvisor.it,tripadvisor.jp,tripadvisor.net,tripadvisor.nl,tripadvisor.se#$#._1iK6seYO:has(div[class^="memx-gating-overlays-GateRedesignSignIn__modalContainer"]) { display:none !important; }
+24h.m.pchome.com.tw#$##smartbanner[class*="shown"]+#WRAPPER .block_H { top: 0 !important; }
+24h.m.pchome.com.tw#$##smartbanner[class*="shown"]+#WRAPPER { margin-top: 0px !important; }
+9gag.com##.download-app-container
+9gag.com##a[class="get-the-app-banner"]
+9gag.com#$#.open-in-app { display: none !important; }
+9gag.com#$#body { overflow: auto !important; }
+adidas.ru#$#.mobile_app_baner_container { display: none!important; }
+adidas.ru#$#body > .sticky-wrapper { height: 61px!important; }
+aminoapps.com#$#.get-app { display: none!important; }
+aminoapps.com#$#.overlay { display: none!important; }
+aminoapps.com#$?#html:has(> body) { overflow: visible!important; }
+atresplayer.com#?#div[class^="style__StyledGlobalWrapper-"] > div[class^="style__StyledGenericModal-"]:has(> a[title="Descargar la app"])
+bigbasket.com#$#.smart-banner .mdl-layout__drawer-button { top: 0!important; }
+bigbasket.com#$#smart-banner { display: none!important; }
+bing.com#$##bLogoExp { display:block!important; }
+bing.com#$#.b_hphb { display:block!important; }
+cardsmobile.ru#$#.cm-menu--page-begin[style="top: 60px;"] { top: 0!important; }
+cardsmobile.ru#$#body > div[class="cm-dbn"] { position: absolute!important; left: -3000px!important; }
+cardsmobile.ru#$#body > section[class="cm-s-0"][style="padding-top: 196px;"] { padding-top: 88px!important; }
+citrus.ua#$#.download-mobile-app { display: none !important; }
+citrus.ua#$#body { overflow: visible !important; }
+citrus.ua#$#html { overflow: visible !important; }
+fandom.com#$#.global-navigation-mobile-wrapper { top: 0!important; }
+fandom.com#$#.smart-banner { display: none!important; }
+fandom.com#$#body { margin-top: 0!important; }
+givemesport.com#$##gms-editorial > .gms-article-indicator.floating-fixed { margin-top: 0!important; }
+goodreads.com#$#html.withAppInstallationBanner .siteHeader { top: 0 !important; }
+goodreads.com#$#html[style="margin-top: 80px;"] { margin-top: 0 !important; }
+hidemyna.me#$##top-menu { top: 0px!important; }
+hidemyna.me#$#.main-download-popup { display: none!important; }
+hidemyna.me#$?##content-section > header:not(:has(> *)) { display: none!important; }
+instagram.com##section._9arc7
+kicker.de#$##ovContentScroller { padding-top: 0!important; }
+kicker.de#$##ovHeader { top: 0!important; }
+lefigaro.fr#$#html.smartBanner header#fig-header { height: 50px!important; }
+linkedin.com#$#.no-scroll { overflow:visible!important; }
+linkedin.com#$#.shared-modal-open { overflow:visible!important; }
+m.aboutyou.de#$#.app-teaser { display: none!important; }
+m.aboutyou.de#$#.app-teaser+.fake-nav-bar+* .bar-header { top: 0!important; }
+m.aboutyou.de#$#.app-teaser+.fake-nav-bar+*+.container { padding-top: 0!important; }
+m.box.com#$#.app-banner-enabled div.page { top: 0!important; }
+m.box.com#$#.mobile-app-banner { display: none!important; }
+m.imgur.com#$#.AppBanner-container { height: 50px!important; }
+m.soundcloud.com#$##app > #content { padding-top: 45px !important; }
+m.soundcloud.com#$#.upsellBanner { display: none !important; }
+m.tokopedia.com#$#.unf-overlay { display: none!important; }
+m.tokopedia.com#$#body { overflow: visible!important; }
+m.tokopedia.com#$#div[data-testid="divBottomSheetWebToApp"] { display: none!important; }
+m.tokopedia.com#$?#body > div > div.unf-sheet__wrapper:has(> article img[alt="app"]) { display: none!important; }
+m.tr.beinsports.com#$#.content_section[style="margin-top: 78px;"] { margin-top: 0!important; }
+m.tr.beinsports.com#$#body > .android.shown { display: none!important; }
+m.tr.beinsports.com#$#form > header[style="top: 78px;"] { top: 0!important; }
+m.ulmart.ru#$#.smartbanner { display: none!important; }
+m.ulmart.ru#$#.smartbanner_show .snap-content, .smartbanner_show .snap-drawers { top: 0!important; }
+m.vlive.tv#$#.pop_banner { display: none!important; }
+m.vlive.tv#$#.pop_banner+#wrap .vlive_top { top: 0!important; }
+m.vlive.tv#$#.pop_banner+#wrap { padding-top: 0!important; }
+m.vlive.tv#$#body.layer_open { position: relative!important; }
+m.webtoons.com##._appDownloadPopup
+m.webtoons.com#$#._homeAppDownloadPopup { display: none !important; }
+m.webtoons.com#$#.dim.home { display: none !important; }
+m.webtoons.com#$#.pop_download_home { display: none !important; }
+m.webtoons.com#$#body { overflow: visible !important; position: relative !important; }
+mobile.reuters.com#$##nonEditBannerContainer { display: none !important; }
+mobile.reuters.com#$#.header-main { margin-top: 0 !important; }
+mobile.reuters.com#$#nav.section-nav { padding-top: 54px !important; }
+mobile.reuters.com#$#section.search-nav { padding-top: 0 !important; }
+reddit.com#$#.m-blurred { filter: none !important; }
+reddit.com#$#.XPromoBlockingModal { display: none !important; }
+reddit.com#$#div[class="NavFrame"] div[class="XPromoPopup m-active"] { display: none !important; }
+reddit.com#%#//scriptlet('remove-class', 'm-blurred', '.m-blurred')
+reddit.com#%#//scriptlet('remove-class', 'scroll-disabled', 'body')
+retrip.jp,rtrp.jp#$##page[style^="padding-top"] { padding-top: 45px!important; }
+retrip.jp,rtrp.jp#$#header-induction { display: none!important; }
+retrip.jp,rtrp.jp#$#header.ng-scope[style^="height"] { height: auto!important; }
+rtl2.de#$#.campaign-overlay { display: none !important; }
+rtl2.de#$#body { overflow: auto !important; }
+sat1.de#$##smartbanner { display: none!important; }
+sat1.de#$#html.mob[style^="margin-top:"] { margin-top: 0!important; }
+teb.com.tr#$##smartbanner.android { display: none!important; }
+teb.com.tr#$##smartbanner.ios { display: none!important; }
+teb.com.tr#$#html { margin-top: 0!important; }
+tieba.baidu.com#$#.navbar-box { top: 44px!important; }
+tieba.baidu.com#$#body .tb-index-navbar .navbar-view { top: 24px!important;}
+touch.mail.ru##.tp-1-overlay
+touch.mail.ru#$?#body > div[class^="meta-block-"] { display: none !important; }
+touch.mail.ru#$?#body { overflow: visible !important; }
+touch.mail.ru#$?#html { overflow: visible !important; }
+tvrain.ru#$#.smartbanner { display: none!important; }
+tvrain.ru#$#html.smartbanner-show { margin-top: 0!important; }
+unian.net#$#.app-weather { display: none!important; }
+unian.net#$#.main-column > div > aside { height: 30px!important; }
+vivareal.com.br#$#.app-smart-banner { display:none!important; }
+vivareal.com.br#$#.site-header[data-smart-banner] { margin-top:0px!important; }
+zdf.de#$#.smartbanner { display: none !important; }
+zdf.de#$#.smartbanner-show header.b-header { top: 0 !important; }
+zdf.de#$#.smartbanner-show { margin-top: 0 !important; }
+zillow.com#$##app-upsell > .fixed-banner { display: none!important; }
 !
-! JS
-!
-cnnbrasil.com.br#%#//scriptlet('set-cookie-reload', 'CNNsmartbanner', '1')
-bilyoner.com#%#//scriptlet('set-cookie', 'smartbanner-closed', 'true')
-izi.ua#%#if (typeof sessionStorage != 'undefined' && sessionStorage.setItem) { sessionStorage.setItem('hideMobilePopup', '1'); };
-leroymerlin.ru#%#//scriptlet('set-cookie', 'daysToHide', '14')
-protonmail.com#%#//scriptlet('set-cookie', 'ch.protonmail.android-smartbanner-closed', 'true')
-kompas.com#%#//scriptlet('set-cookie', 'cbapps_close', '1')
-kinopovtor1.online#%#//scriptlet("abort-on-property-read", "stickyConfig")
-m.kwejk.pl#%#(function(){var a=new Date;a=a.getFullYear()+"-"+(a.getMonth()+1)+"-"+a.getDate();document.cookie="closed="+a})();
-b.hatena.ne.jp#%#document.cookie = "android-smartapp-banner=1; path=/;";
-akinator.mobi#%#document.cookie="com.digidust.elokence.akinator.freemium-smartbanner-closed=true; path=/;";
-yemek.com#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("smartAppStatus", "false") } } catch (ex) {} })();
-m.jbzd.cc,m.jbzdy.cc#%#document.cookie = "play-creation=1; path=/;";
-intermarche.pl#%#document.cookie = "interapp_redirect=false; path=/;";
-vodafone.cz,m.jdsports.co.uk,mmajunkie.com#%#document.cookie="sb-closed=true; path=/;";
-fcn.de,kq2.com,kdrv.com,wfft.com,wtva.com,wktv.com,actionnewsnow.com#%#document.cookie = "smartbanner-closed=true; path=/;";
-wiwo.de#%#document.cookie = "appInstall=true";
-m.nhaccuatui.com#%#document.cookie = "isCloseSmartAppBanner=true";
-m.standaard.be#%#document.cookie = "sb-closed=true";
-givemesport.com#%#document.cookie = "gms.appPromo=1";
-appticker.de#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/loadAppStoreBanner/.test(a.toString()))return b(a,c)};})();
-forvo.com,trthaber.com,kanald.com.tr#%#document.cookie = "smartbanner_exited=1";
-sahibinden.com#%#document.cookie = "sbt=none";
-sahibinden.com#%#localStorage.setItem('smartBanner', '{"smartAppBannerEnabled":true}');
-m.n11.com#%#document.cookie = "appRedirectionCancelled=true";
-monster.de#%#document.cookie = "jobr.splitter.cookie=true";
-m.sportmaster.ru#%#document.cookie = "esm-sb-closed=true";
-life.ru#%#document.cookie = "smartbanner=already_shows";
-finanzen.net#%#document.cookie="sb-closed=true; path=/;";
-!
-!
-!--- Rules with Hints
-!
-!+ PLATFORM(ios)
-google.ad,google.ae,google.al,google.am,google.as,google.at,google.az,google.ba,google.be,google.bf,google.bg,google.bi,google.bj,google.bs,google.bt,google.by,google.ca,google.cat,google.cd,google.cf,google.cg,google.ch,google.ci,google.cl,google.cm,google.cn,google.co.ao,google.co.bw,google.co.ck,google.co.cr,google.co.id,google.co.il,google.co.in,google.co.jp,google.co.ke,google.co.kr,google.co.ls,google.co.ma,google.co.mz,google.co.nz,google.co.th,google.co.tz,google.co.ug,google.co.uk,google.co.uz,google.co.ve,google.co.vi,google.co.za,google.co.zm,google.co.zw,google.com,google.com.af,google.com.ag,google.com.ai,google.com.ar,google.com.au,google.com.bd,google.com.bh,google.com.bn,google.com.bo,google.com.br,google.com.bz,google.com.co,google.com.cu,google.com.cy,google.com.do,google.com.ec,google.com.eg,google.com.et,google.com.fj,google.com.gh,google.com.gi,google.com.gt,google.com.hk,google.com.jm,google.com.kh,google.com.kw,google.com.lb,google.com.ly,google.com.mm,google.com.mt,google.com.mx,google.com.my,google.com.na,google.com.nf,google.com.ng,google.com.ni,google.com.np,google.com.om,google.com.pa,google.com.pe,google.com.pg,google.com.ph,google.com.pk,google.com.pr,google.com.py,google.com.qa,google.com.sa,google.com.sb,google.com.sg,google.com.sl,google.com.sv,google.com.tj,google.com.tr,google.com.tw,google.com.ua,google.com.uy,google.com.vc,google.com.vn,google.cv,google.cz,google.de,google.dj,google.dk,google.dm,google.dz,google.ee,google.es,google.fi,google.fm,google.fr,google.ga,google.ge,google.gg,google.gl,google.gm,google.gp,google.gr,google.gy,google.hn,google.hr,google.ht,google.hu,google.ie,google.im,google.iq,google.is,google.it,google.je,google.jo,google.kg,google.ki,google.kz,google.la,google.li,google.lk,google.lt,google.lu,google.lv,google.md,google.me,google.mg,google.mk,google.ml,google.mn,google.ms,google.mu,google.mv,google.mw,google.ne,google.nl,google.no,google.nr,google.nu,google.pl,google.pn,google.ps,google.pt,google.ro,google.rs,google.ru,google.rw,google.sc,google.se,google.sh,google.si,google.sk,google.sm,google.sn,google.so,google.sr,google.st,google.td,google.tg,google.tk,google.tl,google.tm,google.tn,google.to,google.tt,google.vg,google.vu,google.ws###stUuGf
-!+ PLATFORM(android)
-pinterest.*#%#AG_onLoad(function(){var a=new MutationObserver(function(){if(document.querySelector('div[data-test-id="appUpsell-continue"] > button')){document.querySelector('div[data-test-id="appUpsell-continue"] > button').click(); a.disconnect();}});a.observe(document,{childList: !0, subtree: !0});});
-! Suppressing PWA "Add To Home screen" annoyance
-! Limit it to mobile versions only
-! causes some issues: https://github.com/AdguardTeam/AdguardForMac/issues/550
-!+ PLATFORM(android, ios)
-~kurer-sreda.ru,~chorki.com,~zattoo.com,~zaycev.net,~xltrax.ee,~hitta.se,~mail.ru,~v7player.wostreaming.net,~facebook.com,~instagram.com,~drive.google.com$$link[rel="manifest"]
+! Misc rules, removed during optimization. If some rules are in groups, no need to move them here
 !
 !+ NOT_OPTIMIZED
 m.apkpure.com##.aegon-down-item
@@ -1970,34 +1898,21 @@ honeysanime.com#$##wrap-app-notice { display: none !important; }
 !+ NOT_OPTIMIZED
 m.tokopedia.com#$#div[data-testid="divOverlay"] { display: none!important; }
 !
-!--- Directive
-!--- Android && iOS
-!#if (adguard_app_android || adguard_app_ios)
-afisha.ru#?#div[id="__PAGE__"] > div[class]:has(> a[href^="https://redirect.appmetrica.yandex.com/serve/"])
-pinkoi.com#$##g-app-bar { display: none !important; }
-pinkoi.com#$#.s-app-banner div#m-mainview { padding-top: 51px !important; }
-lihkg.com#?##app > div#splitView ~ div[class]:has(> div[class] div[class]:contains(APP))
-temp-mail.org#%#//scriptlet('remove-class', 'smartbanner-show', 'html')
-ozon.ru#$?#.mobile > div.modal-mask:has(> div.modal-wrapper > div.modal-container > div.modal-content h2:contains(OZON ещё лучше в приложении)) { display: none!important; }
-ozon.ru#$#body { overflow: visible!important; }
-ozon.ru#$#html { overflow: visible!important; }
-newzit.com#$#div[class*="hasSmartBanner_"] > div[class^="banner_"] { display: none !important; }
-newzit.com#$#div[class*="hasSmartBanner_"] { padding-top: 0 !important; }
-!#endif
 !
-! Unhide for Android CB if top padding cannot be removed
-!#if (adguard_ext_android_cb)
-tinhte.vn##a[href="https://tinhte.vn/app"]
-tinhte.vn##.app-install-wrapper
-teb.com.tr#@##smartbanner.ios
-goodreads.com#@##smartbanner.android
-kicker.de#@##smartbanner.ios
-kicker.de#@##smartbanner.android
-edeka.de#@##smartbanner.ios
-edeka.de#@##smartbanner.android
-!#endif
 !
+!--- Mobile sites only
+!   SECTION: Mobile apps - Mobile sites only
 !#if (adguard_app_android || adguard_app_ios || adguard_ext_android_cb)
+!+ PLATFORM(ios)
+google.ad,google.ae,google.al,google.am,google.as,google.at,google.az,google.ba,google.be,google.bf,google.bg,google.bi,google.bj,google.bs,google.bt,google.by,google.ca,google.cat,google.cd,google.cf,google.cg,google.ch,google.ci,google.cl,google.cm,google.cn,google.co.ao,google.co.bw,google.co.ck,google.co.cr,google.co.id,google.co.il,google.co.in,google.co.jp,google.co.ke,google.co.kr,google.co.ls,google.co.ma,google.co.mz,google.co.nz,google.co.th,google.co.tz,google.co.ug,google.co.uk,google.co.uz,google.co.ve,google.co.vi,google.co.za,google.co.zm,google.co.zw,google.com,google.com.af,google.com.ag,google.com.ai,google.com.ar,google.com.au,google.com.bd,google.com.bh,google.com.bn,google.com.bo,google.com.br,google.com.bz,google.com.co,google.com.cu,google.com.cy,google.com.do,google.com.ec,google.com.eg,google.com.et,google.com.fj,google.com.gh,google.com.gi,google.com.gt,google.com.hk,google.com.jm,google.com.kh,google.com.kw,google.com.lb,google.com.ly,google.com.mm,google.com.mt,google.com.mx,google.com.my,google.com.na,google.com.nf,google.com.ng,google.com.ni,google.com.np,google.com.om,google.com.pa,google.com.pe,google.com.pg,google.com.ph,google.com.pk,google.com.pr,google.com.py,google.com.qa,google.com.sa,google.com.sb,google.com.sg,google.com.sl,google.com.sv,google.com.tj,google.com.tr,google.com.tw,google.com.ua,google.com.uy,google.com.vc,google.com.vn,google.cv,google.cz,google.de,google.dj,google.dk,google.dm,google.dz,google.ee,google.es,google.fi,google.fm,google.fr,google.ga,google.ge,google.gg,google.gl,google.gm,google.gp,google.gr,google.gy,google.hn,google.hr,google.ht,google.hu,google.ie,google.im,google.iq,google.is,google.it,google.je,google.jo,google.kg,google.ki,google.kz,google.la,google.li,google.lk,google.lt,google.lu,google.lv,google.md,google.me,google.mg,google.mk,google.ml,google.mn,google.ms,google.mu,google.mv,google.mw,google.ne,google.nl,google.no,google.nr,google.nu,google.pl,google.pn,google.ps,google.pt,google.ro,google.rs,google.ru,google.rw,google.sc,google.se,google.sh,google.si,google.sk,google.sm,google.sn,google.so,google.sr,google.st,google.td,google.tg,google.tk,google.tl,google.tm,google.tn,google.to,google.tt,google.vg,google.vu,google.ws###stUuGf
+!
+! Suppressing PWA "Add To Home screen" annoyance
+! Limit it to mobile versions only
+! causes some issues: https://github.com/AdguardTeam/AdguardForMac/issues/550
+~kurer-sreda.ru,~chorki.com,~zattoo.com,~zaycev.net,~xltrax.ee,~hitta.se,~mail.ru,~v7player.wostreaming.net,~facebook.com,~instagram.com,~drive.google.com$$link[rel="manifest"]
+!
+atresplayer.com##div[class^="style__BreakSpace-"]
+pinterest.*#%#AG_onLoad(function(){var a=new MutationObserver(function(){if(document.querySelector('div[data-test-id="appUpsell-continue"] > button')){document.querySelector('div[data-test-id="appUpsell-continue"] > button').click(); a.disconnect();}});a.observe(document,{childList: !0, subtree: !0});});
 mistore.jp##.js-lead-banner
 m.timesofindia.com##div[class^="nonAppView"] > div[class^="_"] > a[href*="app.goo.gl/"]
 belluna.jp###applidl_bn
@@ -2057,10 +1972,25 @@ townwork.net##.MP-appDl
 lulucos-bys.jp##.m-banner-download-app-top-fixed
 arine.jp##.SiteHeader-app-banner
 nhk.or.jp###appsbanner
+afisha.ru#?#div[id="__PAGE__"] > div[class]:has(> a[href^="https://redirect.appmetrica.yandex.com/serve/"])
+pinkoi.com#$##g-app-bar { display: none !important; }
+pinkoi.com#$#.s-app-banner div#m-mainview { padding-top: 51px !important; }
+lihkg.com#?##app > div#splitView ~ div[class]:has(> div[class] div[class]:contains(APP))
+temp-mail.org#%#//scriptlet('remove-class', 'smartbanner-show', 'html')
+ozon.ru#$?#.mobile > div.modal-mask:has(> div.modal-wrapper > div.modal-container > div.modal-content h2:contains(OZON ещё лучше в приложении)) { display: none!important; }
+ozon.ru#$#body { overflow: visible!important; }
+ozon.ru#$#html { overflow: visible!important; }
+newzit.com#$#div[class*="hasSmartBanner_"] > div[class^="banner_"] { display: none !important; }
+newzit.com#$#div[class*="hasSmartBanner_"] { padding-top: 0 !important; }
 !#endif
+!   NOTE: Mobile sites only end ⬆️
+!   !SECTION: Mobile apps - Mobile sites only
+! NOTE: Specific end ⬆️
+! !SECTION: Mobile apps - Specific
+!
 !
 !--- Whitelist
-!
+! SECTION: Mobile apps - Whitelist
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118200 RECOMMEND not shown
 @@||fashion-headline.com/js/jquery.smartbanner.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113325
@@ -2077,3 +2007,17 @@ nhk.or.jp###appsbanner
 @@/js/jquery.smartbanner.js$domain=fiyatseyir.com|greyhound.com|amalgama-lab.com|m.halkbank.com.tr|intime.ua|avic.ua|mirage.ru|speedtest.net|energy.de|hermesworld.com|lekvapteke.ru|mcdonalds.com.tr|yalispor.com.tr|metroturizm.com.tr|anadolu.edu.tr|whatpub.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35423
 @@||cdn.bustracker.utrack.com/js/jquery.smartbanner.js
+!
+! Unhide for Android CB if a CSS rules required
+!#if (adguard_ext_android_cb)
+tinhte.vn##a[href="https://tinhte.vn/app"]
+tinhte.vn##.app-install-wrapper
+teb.com.tr#@##smartbanner.ios
+goodreads.com#@##smartbanner.android
+kicker.de#@##smartbanner.ios
+kicker.de#@##smartbanner.android
+edeka.de#@##smartbanner.ios
+edeka.de#@##smartbanner.android
+!#endif
+! NOTE: Whitelist end ⬆️
+! !SECTION: Mobile apps - Whitelist

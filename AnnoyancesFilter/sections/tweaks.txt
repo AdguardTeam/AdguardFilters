@@ -4,11 +4,10 @@
 ! Good: any type of the rules will be good
 ! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
 !
-! TODO: bookmarks: CSS tweaks, JS tweaks, HTML tweaks, context menu
-!
 !##############################
 !######### CSS tweaks #########
 !##############################
+! SECTION: Tweaks - CSS
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123316
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium)
@@ -398,10 +397,16 @@ softpedia.com#$#iframe.swipebox-rightxd[id="relcontent"] { top: 60px!important; 
 letitbit.net##img[class="mcmp_postrol_img"]
 ! newsweek.com - hide the popup which limits the number of articles that can be read
 newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
+! NOTE: CSS end ⬆️
+! !SECTION: Tweaks - CSS
+!
+!
+!
 !
 !##############################
 !######### JS tweaks ##########
 !##############################
+! SECTION: Tweaks - JS
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124297
 cmacked.com#%#//scriptlet("adjust-setInterval", ".show_download_links", "", "0.02")
@@ -1835,13 +1840,37 @@ revclouds.com#%#AG_onLoad(function() {document.getElementById("tick-dwn").click(
 !
 imslp.org#%#AG_onLoad(function(){var b=document.getElementById("sm_dl_wait");if(b){var c=document.createElement("a");c.setAttribute("href",b.getAttribute("data-id"));c.innerHTML="<b>"+("function"==typeof window.a?IMSLPGetMsg("js-s"):"Click here to continue your download.")+"</b>";var d=document.createElement("style");d.innerHTML="#sm_dl_wait{display:none!important;}";b.parentNode.insertBefore(c,b);b.parentNode.insertBefore(d,b)}});
 !
+! NOTE: JS end ⬆️
+! !SECTION: Tweaks - JS
 !
 !
 !
-! START: context menu
+!
+!##############################
+!######### HTML tweaks ########
+!##############################
+! SECTION: Tweaks - HTML
+!
+! Disable autoplay
+||get.x-link.pl/*,embed.html$replace=/video:"(autoplay|scroll_pause)"\,/video:""\,/
+||static.doviz.com/js/common.*.js$replace=/autoPlay:true/autoPlay:false/,domain=doviz.com
+||focus.de$replace=/autoPlay:[\s\S]*\,autoStickiness/autoPlay:false\,autoStickiness/,important,~script,~stylesheet,~xmlhttprequest
+||oe24.at$replace=/"autostart":"true"/"autostart":"false"/,important,~script,~stylesheet,~xmlhttprequest
+||huffingtonpost.de$replace=/autoplay=true/autoplay=false/,important,~script,~stylesheet,~xmlhttprequest
+||video.golem.de$replace=/autoPl:\s"true"/autoPl:"false"/,important,~script,~stylesheet,~xmlhttprequest
+! lenta.ru and motor.ru - disable autolay
+||api.vp.rambler.ru/api/*/getPlayerData?params=$replace=/"autoPlay":"(scroll|scroll_mute)"/"autoPlay":"no"/
+! NOTE: HTML end ⬆️
+! !SECTION: Tweaks - HTML
+!
+!
+!
+!
+! SECTION: Tweaks - Context menu(mixed rules)
 !
 !* Unblock context menu and other mouse limitations
 !
+! NOTE: Context menu - basic rules
 /wp-content/plugins/content-copy-protection-disable-right-click/assets/*
 /wp-content/plugins/ungrabber/js/ungrabber.min.js
 /wp-content/plugins/image-watermark/js/no-right-click.js
@@ -1871,11 +1900,12 @@ imslp.org#%#AG_onLoad(function(){var b=document.getElementById("sm_dl_wait");if(
 ||xn--b1aew.xn--p1ai/media/*/js/nocopy.js
 ||cdn.web.tv/asset/javascripts/smothScroll.min.js
 ||serialuk.net/js/copyright.js
-!--- Cosmetic rules ---
+!
 lezhinus.com,lezhin.com###viewer-coach
 qanda.ai##div[class^="Picture__Protector-"]
 codedosa.com###wpcp-error-message
 !--- CSS ---
+! NOTE: Context menu - CSS
 fibabanka.com.tr#$#html { margin-top: 0px !important; }
 on.od.ua#$#.footer_wrapper { padding-bottom: 0px !important; }
 olympics.com#$#.b2p-main { margin-top: 0 !important; }
@@ -1946,6 +1976,7 @@ m.rtl.be,procrackerz.org,chapterupdates.com,babelnovel.com,katzen-fieber.de,xn--
 quotev.com#$#body #res_area ::selection { background-color: #3297FD!important; }
 !
 !--- JS ----
+! NOTE: Context menu - JS
 !
 ! #%#//scriptlet('abort-current-inline-script', 'document.oncontextmenu')
 mi-faq.ru,mathbang.net,seriesgratis.biz,mangacrab.com,metalnaveia66.com,bollywoodhindi.in,legionscans.com,footy.to,kdramasurdu.net,osomatsusan.hatenablog.com,flinsetyadi.com,bingotingo.com,carfixer.co.kr,urbanbrush.net,now.rememberapp.co.kr,untitle.org,tecnoprogramas.com,blog.daum.net,animeactua.com,creativestudio.kr,onna.kr,info-beihilfe.de,audiobookcup.com,funfunhan.com,blofinder.com,bookpost.kr,ex-nihil0.com,donghun.kr,zoommastory.com,deutschaj.com,kokone.co.kr,stevenh.net,ideas0419.com,raycat.net,zoominlife.com,hosii.info,janndk.com,blahblah.pe.kr,geniusjw.com,blog.esherloon.com,centrair.kr,softwarebits.net,tunovelaligera.com,krtopic.com,healthfeed.co.kr,my-expert.ru,bimiacg.net,solidfile.net,promocode99.in,downloadtutorials.net,nawalakarsa.id,tecnomusic-evolution.com,jpopsingles.eu,wartaterkini.news,pcprogramasymas.net,tistory.com,hunter-xhunter.com,ghostspectre.the-ninja.jp,slothjuns.net,eduardo-monica.com,apkspurefile.com,foxaholic.com,koreanaddict.net,omgkpop.top,gamegame.kr,eoreuni.com,jstranslations1.com,animeuniverse.it,baltasar5010purohentai.com,securitypcsoluciones.blogspot.com,unisinav.com,aihristdreamtranslations.com,tipslab.info,indcit.com,semi168.net,semi168.club,audio-sound-premium.com,filmboxoffice.web.id,kakpishem.ru,manhwa-manga41.bid,manhwa-manga42.bid,manhwa-manga43.bid,manhwa-manga44.bid,manhwa-manga45.bid,manhwa-manga46.bid,manhwa-manga47.bid,manhwa-manga.bid,teepr.com,texte.work,sysnettechsolutions.com,reinodekovel.com,elektrikmen.com,world4.eu,activationkeys.co,secondlifetranslations.com,samuraiscan.com,globaledu.jp,lazytranslations.com#%#//scriptlet('abort-current-inline-script', 'document.oncontextmenu')
@@ -2187,6 +2218,7 @@ skidrowreloaded.com#%#var _={get:function(){return function(){}}};Object.defineP
 thegreatdaily.com#%#Object.defineProperty(window, 'clearSelection', { get: function() { return []; } });
 mhwg.org,biyografi.info,seiya-saiga.com#%#//scriptlet("remove-attr", "oncontextmenu|onselectstart", "body")
 !--- HTML ----
+! NOTE: Context menu - HTML
 beginerboy.blogspot.com$$script[tag-content="typeof document.onselectstart"]
 quotev.com$$style[tag-content="#res_area ::selection"][max-length="250"]
 quotev.com$$script[tag-content="document.body.ondragstart=function"][max-length="150"]
@@ -2195,20 +2227,8 @@ turkstar.in$$script[id="wpcp_disable_Right_Click"]
 turkstar.in$$style[tag-content=".unselectable"][max-length="350"]
 openssource.biz$$script[tag-content="document.onkeypress = function"][max-length="2000"]
 twgreatdaily.com$$script[tag-content="indexOf|css|fn|this|attr|unselectable|console|empty|copy|contextmenu"]
-! END: context menu
-!*
-!*****
-!
-!##############################
-!######### HTML tweaks ########
-!##############################
-!
-! Disable autoplay
-||get.x-link.pl/*,embed.html$replace=/video:"(autoplay|scroll_pause)"\,/video:""\,/
-||static.doviz.com/js/common.*.js$replace=/autoPlay:true/autoPlay:false/,domain=doviz.com
-||focus.de$replace=/autoPlay:[\s\S]*\,autoStickiness/autoPlay:false\,autoStickiness/,important,~script,~stylesheet,~xmlhttprequest
-||oe24.at$replace=/"autostart":"true"/"autostart":"false"/,important,~script,~stylesheet,~xmlhttprequest
-||huffingtonpost.de$replace=/autoplay=true/autoplay=false/,important,~script,~stylesheet,~xmlhttprequest
-||video.golem.de$replace=/autoPl:\s"true"/autoPl:"false"/,important,~script,~stylesheet,~xmlhttprequest
-! lenta.ru and motor.ru - disable autolay
-||api.vp.rambler.ru/api/*/getPlayerData?params=$replace=/"autoPlay":"(scroll|scroll_mute)"/"autoPlay":"no"/
+! NOTE: Context menu(mixed rules) end ⬆️
+! !SECTION: Tweaks - Context menu(mixed rules)
+
+
+
