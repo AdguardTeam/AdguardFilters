@@ -91,8 +91,30 @@ General requirements for submitting rules: don't add rules to the beginning of t
 
 ### AdGuard Annoyances filter
 
-* Purpose: this filter blocks various kinds of annoyances from sites.
-* [Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/sections)
+* Purpose: this filter blocks irritating elements on web pages including cookie notices, third-party widgets and in-page pop-ups.
+* [Annoyances folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter)
+
+   Contains the following AdGuard filters: Cookie Notices, Popups, Mobile App Banners, Other Annoyances and Widgets:
+
+   - ### Cookie Notices
+      * Purpose: this filter blocks cookie notices on web pages.
+      * [Cookies folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Cookies/sections)
+
+   - ### Mobile App Banners
+      * Purpose: this filter blocks irritating banners that promote mobile apps of websites.
+      * [MobileApp folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/MobileApp/sections)
+
+   - ### Popups
+      * Purpose: this filter blocks all kinds of pop-ups that are not necessary for websites' operation.
+      * [Popups folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Popups/sections)
+
+   - ### Widgets
+      * Purpose: this filter blocks annoying third-party widgets - online assistants, live support chats, etc.
+      * [Widgets folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Widgets/sections)
+
+   - ### Other Annoyances
+      * Purpose: this filter blocks irritating elements on web pages that do not fall under the popular categories of annoyances.
+      * [Other folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/AnnoyancesFilter/Other/sections)
 
 ### AdGuard Experimental filter
 
