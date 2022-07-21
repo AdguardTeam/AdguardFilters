@@ -4,14 +4,14 @@
 ! Good: any type of the rules will be good
 ! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
 !
-!
 !#######################################################
 !######### Block useless widgets #######################
 !### Weather, money exchange, 3rd-party feedbacks, #####
 !### 3rd-party assistants, etc #########################
 !#######################################################
 !
-! START: Blogroll widgets (sougo RSS)
+! SECTION: Widgets (sougo RSS) - Blogroll
+! NOTE: Blogroll generic
 ||komatech.net^$third-party
 ||fukugan.com^$third-party
 ||3site-rss.s3-ap-northeast-1.amazonaws.com^
@@ -32,6 +32,12 @@
 [$path=/\/(?:a_load|fightersmatome|junglep2|uwasainfo|yakiusoku)/]blog.livedoor.jp##.rss-blogroll
 matomesoku.jp,2ch-ero-report.blog.jp,chunisoku.com,eroitaiken.blog.jp,gurasen.com,moetataiken.com,nokuo.blog.jp,nius.doorblog.jp,pokemonunite.blog.jp,okanenews24.com,valorantchannel.livedoor.blog,vipperlog.com,vipstyle.tokyo,blue-archive.doorblog.jp,beikokukabu-etf-matome.com,pokemongo-kouryakumatome.net,doujin-rpgfan.com,nandemo-nadeshiko.blog.jp,samuraisoccer.doorblog.jp,gamehig.com,chomagireko.blog.jp,bybybicycle.blog.jp,animesoku.com,moemoeanime.blog.jp,buzzral.com,2ch-uwaki.com,2chmatome.bloggeek.jp,2monkeys.jp,5ch-echiechi.doorblog.jp,5chmatome.blogo.jp,aburatanisannogamematome.blog.jp,addchannel.net,aiteesokuhou.blog.jp,akb48rompen.com,audioon.blog.jp,azurlane.doorblog.jp,babymetaltimes.com,bb.doorblog.jp,blog-mougenda.com,blog.game084.com,bm.2chblog.jp,chikakb.ldblog.jp,chomangasokuho.blog.jp,curationewsharp.blog.jp,curioso.blog.jp,dareda.net,db-gohan.blog.jp,dechisoku.com,ebitsu.net,ekurere3.com,ekuzodeerhand.blog.jp,everydayissunday.livedoor.blog,fate-go-grandorder.blog.jp,fate-go.blog.jp,fate-gok.blog.jp,fate-grandorder-go.blog.jp,fate-kouryakumaster.blog.jp,fireembs.blog.jp,gacha.blog.jp,gamejksokuhou.com,gazoua2meru.livedoor.blog,geinoutopics-plus.blog.jp,gensen2ch.com,gunji.blog.jp,hanshintigers1.blog.jp,heart-net.xyz,heartlife-matome.com,hero-news.com,hiraganakeyaki.blog.jp,honsoku.com,hoshujapan.jp,hrocks6969.xyz,ideal2ch.livedoor.biz,internet-game-lounge.blog.jp,jiwachan.net,kasegeru.blog.jp,katasumisokuhou.blog.jp,kazokuchannel.doorblog.jp,kijoden.com,kijonikki.net,kijyotsubu.net,kininaruero7.blog.jp,kinpira-san.com,kokoyakyumatomesokuho.blog.jp,koumuin-matome.blog.jp,labradorsokuho.net,maki7.dreamlog.jp,mashlife.doorblog.jp,matmebae.net,matomelotte.com,matomemo-ch.net,mhsoken.blog.jp,mindhack2ch.com,mirishita.2chblog.jp,moe-vip.com,money-life.doorblog.jp,nanj-push.blog.jp,nanj-short.net,nanj-world.blog.jp,nanjchallenge.net,narisoku.blog.jp,newsweb.blog.jp,nizigami.com,onosakaemiri.blog.jp,oomonoyoutubersokuhou.blogo.jp,orufemorufenz.com,oumaga-times.com,pachinko-next.blog.jp,pachinkolist.com,paranormal-ch.com,pawawa.sokuho.org,pinap.blog.jp,pokemon-goh.doorblog.jp,rakukan.net,romeodensetsu.com,ronsoku.com,sematome.com,setouchi48g.ldblog.jp,shironeko-guild.blog.jp,shumi-nikki.xyz,skematomemon.com,sontaku.info,sutekinakijo.com,syurabarabanba.blog.jp,tachiyomitoday.com,taorun.xyz,timely.blog.jp,tsubamesoku.blog.jp,uwakich.com,virtualyoutuber-matome.blog.jp,visual-matome.com,vrtuber-news.com,vtuber-densoku.blog.jp,yabesoku.blog.jp,yofukasi-susume.xxxblog.jp,yurukuyaru.com,zetusoku.net##.rss-blogroll
 ! Blogroll specific rules
+! NOTE: Blogroll specific
+moeclo.ldblog.jp##iframe
+moeclo.ldblog.jp##div[id^="RSS"]
+moeclo.ldblog.jp###TOPArea
+moeclo.ldblog.jp##div[class^="RSS"]
+mhmatome.com###text-22
 vtubernews.jp##.rss-sub
 kidanlog.com##.rss-flexbox
 blog.livedoor.jp##.blogroll_body
@@ -246,11 +252,367 @@ huyosoku.com##.blogrolls
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23120
 mindhack2ch.com#?#.article-body > .ad:has(> .adsbygoogle)
 mindhack2ch.com#?#.article-post-bottom > .rss-article:has(> .rss-article-item)
-! END: Blogroll widgets (sougo RSS)
+! NOTE: Blogroll (sougo RSS) end ⬆️
+! !SECTION: Widgets (sougo RSS) - Blogroll
 !
 !
 !
-! Suggestion widgets
+! Marketing wingets: Advisers, online-bots/chats, feedback widgets, call-backs
+! SECTION: Widgets - marketing
+!
+!   SECTION: Widgets - Marketing(generic rules)
+! Lexprofit
+.info/proxy_*.php?init_widget=$script
+.net/proxy_*.php?init_form=$script
+.ru/proxy_*.php?init_form=$script
+.ru/proxy_*.php?init_widget=$script
+.net/proxy_*.php?init_widget=$script
+.ru/proxy_*.php?init_button=$script
+.net/proxy_*.php?init_button=$script
+.ru/proxy_*.php?p___=*&part_url=*.php?callback=*&token=*&iso=
+.net/proxy_*.php?p___=*&part_url=*.php?callback=*&token=*&iso=
+!
+!
+~sinoptik.ua###SinoptikInformer
+##a[title="WhatsApp Newsletter Marketing"]
+!
+.az/livechat/
+/crm/site_button/loader_*.js
+/edugram_chat.js
+/promo.php?type=partnerchat&file=PRVD_partnerChat.js
+/PRVD_partnerChat.js
+/PRVD_partnerChat_utf8.min.js
+/static.leadia.ru/js/*
+/unib0ts/unibots*/*/script.js
+/widget/js/przv.js
+/wp-content/plugins/bazz-callback-widget/*
+/wp-content/plugins/click-to-chat-for-whatsapp/new/inc/assets/js/app.js
+/wp-content/plugins/elfsight-whatsapp-chat-cc/*
+! gubagoo
+||gubagootracking.com^$third-party
+||cdn.gubagoo.io^$third-party
+##gg-toolbar--specials
+!   NOTE: Marketing(generic rules) end ⬆️
+!   !SECTION: Widgets - Marketing(generic rules)
+!
+!   SECTION: Widgets - Marketing(third-party services)
+! make it domain specific, block if the widget is really annoying
+!||zopim.com^$third-party,domain=
+!
+||salesiq.zoho.in^$third-party
+||servicelead.top^$third-party
+||iadvize.com^$third-party
+||jurleads.ru^$third-party
+||kommunicate.io^$third-party
+||leadback.ru^$third-party
+||leadbooster-chat.pipedrive.com^$third-party
+||leadgenic.ru^$third-party
+||js.driftt.com^$third-party
+||informers.sinoptik.ua^$third-party
+||highflyers.ru^$third-party
+||helpscout.net^$third-party
+||foresee.com^$third-party
+||form.cloudleadia.com^$third-party
+||consultsystems.ru^$third-party
+||cp.onicon.ru^$third-party
+||cp.skibble.com.ua^$third-party
+||crm.sov-inform-buro.ru^
+||digital-interview.com^$third-party
+||dtbot.directtalk.com.br^$third-party
+||easyliao.com^$third-party
+||edialog24.com^$third-party
+||embed.doorbell.io^$third-party
+||acobot.ai^$third-party
+||api-pravoved.s3.amazonaws.com^$third-party
+||api.autopilothq.com^$third-party
+||api.cloudleadia.com^$third-party
+||api.leadiacloud.com^$third-party
+||api.pozvonim.com^$third-party
+||api.spotleadia.com^$domain=~venyoo.ru
+||api.venyoo.ru^$third-party
+||api.visitor.chat^$third-party
+||cdn.callbackhunter.com^$third-party
+||cdn.callbackkiller.com^$third-party
+||cdn.callibri.ru^$third-party
+||callback.onlinepbx.ru^$third-party
+||callkeeper.ru^$third-party
+||callmenow.com.ua^$third-party
+||cbot.ai^$third-party
+||app.chatplus.jp^$third-party
+||apps.azhelp.ru^$third-party
+||artibot.ai^$third-party
+||avaamo.com^$third-party
+||bazzaro.ru^$third-party
+||blinger.io^$third-party
+||cdn.freshbots.ai^$third-party
+||cdn.krible.com^$third-party
+||cdn.reamaze.com^$third-party
+||chaser.ru^$third-party
+||chat.amplify.ai^$third-party
+||chat.autofaq.ai^$third-party
+||chat.sociomile.com^$third-party
+||chat24.io^$third-party
+||chatbot.lifecell.ua^
+||chatra.io^$third-party
+||chats.novait.com.ua^$third-party
+||chatterpal.me^$third-party
+||ckct.ru^$third-party
+||cleversite.ru^$third-party
+||client.crisp.chat^$third-party
+||clients.streamwood.ru^$third-party
+||clloudia.com^$third-party
+||code.blablateka.com^$third-party
+||comagic.ru^$third-party
+||envybox.io^$third-party
+||epleads.ru^$third-party
+||extraaedge.com^$third-party
+||eyenewton.ru^$third-party
+||fastcallagent.com^$third-party
+||feedback.luxnet.ua^$third-party
+||frase.io^$third-party
+||getbutton.io^$third-party
+||gtlead.ru^$third-party
+||widget.siteheart.com^$third-party
+||widget.skobeeff.ru^$third-party
+||widget.surveymonkey.com^$third-party
+||widget.teletype.app^$third-party
+||widget.textback.io^$third-party
+||widget.webica.pro^$third-party
+||widget.whatsbroadcast.com^$third-party
+||widget.whatshelp.io^$third-party
+||widgets.binotel.com^$third-party
+||widgets.livetex.ru^$third-party
+||widgets.mango-office.ru^$third-party
+||widget.lawyer-feedot.ru^$third-party
+||widget.mango-office.ru^$third-party
+||widget.manychat.com^$third-party
+||widget.my.feedot.com^$third-party
+||widget.profeat.team^$third-party
+||widget.reserve-widget.ru^$third-party
+||web-client-02.livetex.ru^$third-party
+||web-client.livetex.ru^$third-party
+||web.redhelper.ru^$third-party
+||webim.ru^$third-party
+||whatya.solairo-api.com^$third-party
+||whisbi.com^$third-party
+||whitesaas.com^$third-party
+||widget-static.com^$third-party
+||widget-v*.tidiochat.com^$third-party
+||widget.beesender.com^$third-party
+||widget.cloud-cdn.ru^
+||widget.contactleader.pl^$third-party
+||widget.cpa.legalaxy.com^$third-party
+||widget.getgist.com^$third-party
+||widget.happycustomer.ru^$third-party
+||widget.happyfoxchat.com^
+||widget.helpcrunch.com^$third-party
+||userlike.com^$third-party
+||vchat.essaygator.net^$third-party
+||verbox.ru^$third-party
+||uberlaw.ru^$third-party
+||tidiochat.com^$third-party
+||static.landbot.io^$third-party
+||static.leadia.ru^$third-party
+||static.me-talk.ru^$third-party
+||liveexpert.ru^$third-party
+||livesupporti.com^$third-party
+||embed.tawk.to^$third-party,domain=~jumbo-casino.fun|~roonlabs.com
+||jivosite.com^$third-party,domain=~jivosite.ru
+||mod.calltouch.ru^$third-party
+||netroxsc.ru^$third-party
+||pinformer.sinoptik.ua^$third-party
+||plus20.ru^$third-party
+||st.yagla.ru^$third-party
+||static.elfsight.com^$third-party,domain=~cafemarta.ch|~trestlebrewing.com
+||widget.sender.mobi^$third-party,domain=~privat24.ua|~privatbank.ua
+||cloud.lexprofit.$third-party
+||partner-widget.vse-sdal.com^
+||perimeterx.widget.insent.ai^
+!   NOTE: Marketing(third-party services) end ⬆️
+!   !SECTION: Widgets - Marketing(third-party services)
+!
+!   SECTION: Widgets - Marketing(specific)
+/motchat/design/defaulttheme/js/widgetv*/index.js$domain=incredibleindia.org
+24.rakuten.co.jp##.WidgetForm-Form > div.Nps
+24tv.ua###user-vote-trigger
+acefitness.org##.qn-chat-prompt
+aimersoft.com###aimersoft-chat-robot
+ambria.de,sieh-an.de,creation-l.de###userlikeCustomTab
+angrycitizen.ru##.angry-lawyer-widget
+angrycitizen.ru##.pravoved-bnnr
+astrospeak.com##.lucy
+axiomplus.com.ua##.call-me-widget
+backit.me##.the-jivo-stub
+beru.ru##.zendesk-chat
+biznes-delo.ru##iframe[src^="https://api.clloudia.com/"]
+blamper.ru##div[data-module^="widgets/common/FakeChat/"]
+brainklinik.ru###topPhonex
+budcraft.ua##div[onclick="get_modal_callbacking();"]
+cab.meest.cn###beesender-chat
+centr-hirurgii.ru,smclinic.ru###call-btn
+citrus.ua##.citrus-message-button
+colorescience.com##.gobot-overlay
+delovoymir.biz##.dmwomen_bl
+educba.com###call-advisor
+educba.com##iframe[data-product="web_widget"]
+eldorado.ru###custom-livetex-fab
+electron1ca.ru##.open__callme
+electron1ca.ru##.popup-phone-wrapper
+esputnik.com##.intercom-lightweight-app
+f.ua##.callback_buttons
+finder.com###intercomChatButton
+fooda.com##.olark-bottom-left
+game-pristavka.ru###animate_btn_4
+gamesindustry.biz##iframe.jobs-widget
+goodprice4you.ru##.call-order
+gryadki.com###light_comment
+hdfcbank.com###chatTogglerDiv
+help.bc.game##.csh-footer-ask
+ihk-nuernberg.de##div[id^="inactiveChat"]
+itstep.dp.ua##.block_to_call
+justanswer.com##.th-chat-window
+kansaz.in#?#.row-fluid-wrapper:has(> div.row-fluid > div[data-widget-type="custom_widget"] > div.hs_cos_wrapper h3:contains(Ask a Question))
+kasla.ru##.callback-button
+khv-okna.ru###pozvonim-button
+klaster.ua##.sonar_effect
+lidl.de##button[data-target="#feedback-cover"]
+liquidweb.com##footer + div[class^="FixedButton_"]
+muzofond.fm##.feedback-main-container
+myassignmenthelp.com###support-chat-wrapper
+nahnews.org##.zenLink
+network.mobile.rakuten.co.jp###rexSurveyEmbedded
+networkguru.ru##.tbForm_CallMe
+ozon.ru##div[data-widget="webFeedbackForm"]
+petrovich.ru##.webim_button
+pickyourtrail.com##.sidebar-wrapper > div.bookingForm
+pitergsm.ru##.callback-btn
+pixnet.net##.pixhappix-container
+pravoved.ru##.prvd-primary-qp-popup-container
+pravoved.ru##.prvd-qp-entry-point
+pravoved.ru##.ver_2.city
+pulscen.ru##.online-consultant-info-bar
+rakuten.co.jp###rexSurveyRoot
+romarg.ro###deskpro-container
+rsocks.net###alert
+samsung.com##.chats
+samsungstore.ru##.feedback
+samsungstore.ru##.mango-callback
+sddhelp.ru##.hi_help
+shiksha.com###chat-container
+sitejabber.com###url_home > #scrollbox
+sks-auto.ru##.fw-container__step__form__design-btn__body
+spliiit.com##.chat-in-live
+vinmec.com##.global-thread-create-cta
+volyninfa.com.ua###custom_html-2
+washingtontimes.com###feedbackify
+williams-sonoma.com,potterybarn.com,pbteen.com,potterybarnkids.com,westelm.com,markandgraham.com###quiqChatLaunch
+wind10.ru###custom_html-7
+world-of-facts.com###leadia_science_widget
+youla.ru#?##app > div > div[class]:has(> div[class] > span[data-test-component="OnboardingTooltip"])
+yuristznaet.ru##iframe[src^="http://form.cloudleadia.com/"]
+||101urist.com/_*.php$script
+||alcogolizm.com/konsul/
+||app.carnow.com/dealers/carnow_plugin.js$domain=hondacarsrockhill.com
+||app.whappodo.com/pages/widget^$third-party
+||app.yellowmessenger.com/widget/main.js
+||askaunjai.ais.co.th/aunjai-get-files/js/aunjai_widget.js
+||assets.kayako.com/messenger/
+||assets.livecall.io/accounts/*/widget.js
+||assets.zendesk.com/embeddable_framework/main.js$domain=zarplata.ru
+||autofaq.ai/widget/$third-party
+||autolegal.ru/_fb/widget.php
+||axiomplus.com.ua/static/*/Axiom_CallMe/js/call-me.js
+||az601263.vo.msecnd.net/webview/*/embed.js
+||banco.bradesco/assets/common/chatbia/js/chatbia-dist.js
+||beltehno.by/manager/callMe/script
+||biznes-delo.ru/_*.php$script
+||boldchat.com^$domain=byjus.com
+||bot.aimylogic.com/chatwidget
+||cdn.banki.ru/static/bundles/*/CreditMasterBundle/
+||cdn.banki.ru/static/bundles/ui-*/BigDataBundle/credit-master-chatbot*.js
+||cdn.carrotquest.io^$domain=brutalshop.ru
+||cdn.xeno.app/chat_loader.js
+||connect.livechatinc.com^$domain=byjus.com|spiritualresearchfoundation.org|civilsdaily.com
+||content.astro7.ru/js/chat-bot-
+||finbazis.ru/_*.php|
+||formcs.globalso.com^$domain=voopoo.com
+||hello.zonos.com/hello.js
+||highflyers.ru/ven/wiget_consult.js
+||hotpartner.ru/forms/widget
+||info-gosuslugi.ru/_*.php$script
+||jilishnik.ru/_*.php$script
+||js.zohocdn.com/salesiq/js/floatbutton_*.js
+||kasikornbank.com/SiteCollectionDocuments/js/LiveChat.js
+||ladesk.com/scripts/track.js
+||law-divorce.ru/_fb/widget.php
+||leetero.ru/consultant/$third-party
+||livechat.chat2desk.com$third-party
+||livetex.ru/js/client.js$third-party,domain=~tele2.ru|~linline-clinic.ru|~lg.com
+||me-talk.ru/support/support.js$third-party
+||media.reformal.ru/widgets/$third-party
+||migranty.info/*/js/chat.*.min.js
+||mobitorg.phonet.com.ua/public/widget/call-catcher/
+||my.zadarma.com/callbackWidget/js/main.min.js
+||nauchniestati.ru/wp-content/themes/express/assets/js/chat.js
+||networkguru.ru/catalog/view/theme/networkguru/javascript/CallMe.js
+||online.a1.by/js/button.js
+||pg-chatn9.bjmantis.net/chat
+||place.leadada.com/api.js?chatform
+||plusinbound.hachidori.io/operators/js_chat.js
+||pravapot.ru/*.php?promo_id=
+||propiskainfo.ru/*.php?promo_id=
+||provodim24.ru/_*.php$script
+||rac.co.uk/RAC/Responsive-MediaLibrary/LiveChat/
+||rsocks.net/resources/landing/message.mp3
+||s.9111s.ru/*/js/robot_chat/addQ_chat.js
+||s.acquire.io/*/init.js
+||s.blamper.ru/js/app/widgets/common/FakeChat/
+||salesforce.com/*/webpack-script-manifest-liveChat-js.*.js
+||salesforceliveagent.com^$domain=liquidweb.com|intimissimi.com
+||salesiq.zoho.com/widget
+||sf-thomas-cook.s*.amazonaws.com/chatsdk/
+||sinoptik.ua/_uploaded_files/informer/
+||sinoptik.ua/informers$third-party
+||sourcingplace.net/livechaten/php/app.php?widget-init.js
+||sparmoscow.ru/_*.php|
+||sprosivracha.com/widget/js/init.js
+||static.olark.com/jsclient/$third-party,domain=~fooda.com
+||static.parastorage.com/services/chat-worker/*$domain=isiptv.net
+||support-widget.nakanohito.jp^$domain=jre-travel.com
+||svoe.guru/_*.php|
+||tars-file-upload.s*.amazonaws.com/bulb/js/widget.js$domain=healthians.com
+||tforms.fcc-online.pl/public/widget.js
+||tocplus*.com/chatLoader.do?
+||turimm.com/_*.php$script
+||turkbet.zendesk.com/embeddable$domain=turkbet.tv
+||unpkg.com/blip-chat-widget$domain=apppay.com.br
+||urist-24.com/*/addwidget.js
+||w.chatlio.com/v5/w.chatlio-widget.js
+||wchat.freshchat.com/js/widget.js
+||widget.info-static.ru/js/init.js
+||yangteacher.ru/reformal.js
+||yastatic.net/*/chat/widget.js$domain=next24.ru|goodprice4you.ru
+||yengec.zendesk.com/embeddable/
+!   NOTE: Marketing(specific) end ⬆️
+!   !SECTION: Widgets - Marketing(specific)
+!
+!   SECTION: Widgets - Marketing - Whitelist
+! cab.meest.cn - infinete loading wheel on the page
+@@||widget.beesender.com/*/widget.js$domain=cab.meest.cn
+@@||widget.beesender.com/*/chunk-vendors.js$domain=cab.meest.cn
+! https://github.com/AdguardTeam/AdguardFilters/issues/52267
+@@||static.apester.com/js/sdk/*/apester-javascript-sdk.min.js$domain=sport24.ru
+@@||display.apester.com/interactions/$xmlhttprequest,domain=sport24.ru
+@@||renderer.apester.com^$domain=sport24.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/6473
+@@||code.jivosite.com^$domain=help.letyshops.ru
+!   NOTE: Marketing - Whitelist end ⬆️
+!   !SECTION: Widgets - Marketing - Whitelist
+!
+! Layanan Chat
+indoxxi.show##.tawkto-btn
+!
+!   SECTION: Widgets - Suggestion widgets
 ||geoapteka.ua/geowidget/loader/geowidget.min.js$domain=pharmencyclopedia.com.ua
 pharmencyclopedia.com.ua###geo_wgt
 ixbt.com##div[id^="marketWidget"]
@@ -270,6 +632,8 @@ mhealth.ru##.incut_readmore
 ||js.trendmd.com/trendmd.$third-party
 techxplore.com,phys.org##.embed-responsive-trendmd
 naobzorah.ru###shopBlock
+! gacraft recommendations
+||gacraft.jp^$third-party
 ! popIn recommendations
 mbs.jp##.common-wrap--ranking
 ||api.popin.cc^$third-party
@@ -280,348 +644,159 @@ bike-news.jp,otonanswer.jp$$div[data-history="photo_extra"]
 buzzmag.jp##.date-tags + div.single-head > div.section-head2
 yukawanet.com###custom_html-27
 full-count.jp#?#section > div.c-heading:has(> p.c-heading__en:contains(RECOMMEND))
+!   NOTE: Suggestion widgets end ⬆️
+!   !SECTION: Widgets - Suggestion widgets
 !
-! Vacancy widgets
-||cvmarket.lv/infoblocks/$third-party
-||widgets.digitalmediacommunications.com^$third-party
-||js-seeker.newjobs.com^$domain=monster.com
-||js.jebbit.com/companion/*/widget.js$third-party
-!
-!
-! START: Adviser/online-consultant/feedback widgets
-!
-! Lexprofit
-.info/proxy_*.php?init_widget=$script
-.net/proxy_*.php?init_form=$script
-.ru/proxy_*.php?init_form=$script
-.ru/proxy_*.php?init_widget=$script
-.net/proxy_*.php?init_widget=$script
-.ru/proxy_*.php?init_button=$script
-.net/proxy_*.php?init_button=$script
-.ru/proxy_*.php?p___=*&part_url=*.php?callback=*&token=*&iso=
-.net/proxy_*.php?p___=*&part_url=*.php?callback=*&token=*&iso=
-!
-||formcs.globalso.com^$domain=voopoo.com
-||leadgenic.ru^$third-party
-||widget.profeat.team^$third-party
-||rac.co.uk/RAC/Responsive-MediaLibrary/LiveChat/
-/wp-content/plugins/bazz-callback-widget/*
-||boldchat.com^$domain=byjus.com
-rakuten.co.jp###rexSurveyRoot
-||pg-chatn9.bjmantis.net/chat
-||partner-widget.vse-sdal.com^
-||easyliao.com^$third-party
-||perimeterx.widget.insent.ai^
-||askaunjai.ais.co.th/aunjai-get-files/js/aunjai_widget.js
-ozon.ru##div[data-widget="webFeedbackForm"]
-||kasikornbank.com/SiteCollectionDocuments/js/LiveChat.js
-||widget.happyfoxchat.com^
-||banco.bradesco/assets/common/chatbia/js/chatbia-dist.js
-||migranty.info/*/js/chat.*.min.js
-network.mobile.rakuten.co.jp###rexSurveyEmbedded
-||bot.aimylogic.com/chatwidget
-24.rakuten.co.jp##.WidgetForm-Form > div.Nps
-||cdn.freshbots.ai^$third-party
-||app.chatplus.jp^$third-party
-||w.chatlio.com/v5/w.chatlio-widget.js
-||online.a1.by/js/button.js
-esputnik.com##.intercom-lightweight-app
-||chatterpal.me^$third-party
-justanswer.com##.th-chat-window
-||unpkg.com/blip-chat-widget$domain=apppay.com.br
-pixnet.net##.pixhappix-container
-||salesforce.com/*/webpack-script-manifest-liveChat-js.*.js
-ambria.de,sieh-an.de,creation-l.de###userlikeCustomTab
-||widget.surveymonkey.com^$third-party
-||dtbot.directtalk.com.br^$third-party
-||acobot.ai^$third-party
-||sf-thomas-cook.s*.amazonaws.com/chatsdk/
-hdfcbank.com###chatTogglerDiv
-||widget.cloud-cdn.ru^
-||hello.zonos.com/hello.js
-||js.zohocdn.com/salesiq/js/floatbutton_*.js
-||tars-file-upload.s*.amazonaws.com/bulb/js/widget.js$domain=healthians.com
-sddhelp.ru##.hi_help
-muzofond.fm##.feedback-main-container
-||nauchniestati.ru/wp-content/themes/express/assets/js/chat.js
-||artibot.ai^$third-party
-||plusinbound.hachidori.io/operators/js_chat.js
-||assets.kayako.com/messenger/
-||vchat.essaygator.net^$third-party
-myassignmenthelp.com###support-chat-wrapper
-||static.elfsight.com^$third-party,domain=~cafemarta.ch|~trestlebrewing.com
-||static.landbot.io^$third-party
-youla.ru#?##app > div > div[class]:has(> div[class] > span[data-test-component="OnboardingTooltip"])
-||extraaedge.com^$third-party
-||cdn.reamaze.com^$third-party
-||support-widget.nakanohito.jp^$domain=jre-travel.com
-||tidiochat.com^$third-party
-pickyourtrail.com##.sidebar-wrapper > div.bookingForm
-||s.acquire.io/*/init.js
-kansaz.in#?#.row-fluid-wrapper:has(> div.row-fluid > div[data-widget-type="custom_widget"] > div.hs_cos_wrapper h3:contains(Ask a Question))
-||widget.teletype.app^$third-party
-romarg.ro###deskpro-container
-williams-sonoma.com,potterybarn.com,pbteen.com,potterybarnkids.com,westelm.com,markandgraham.com###quiqChatLaunch
-gamesindustry.biz##iframe.jobs-widget
-||yengec.zendesk.com/embeddable/
-||userlike.com^$third-party
-ihk-nuernberg.de##div[id^="inactiveChat"]
-||wchat.freshchat.com/js/widget.js
-sks-auto.ru##.fw-container__step__form__design-btn__body
-/motchat/design/defaulttheme/js/widgetv*/index.js$domain=incredibleindia.org
-||cdn.xeno.app/chat_loader.js
-||autofaq.ai/widget/$third-party
-||frase.io^$third-party
-||leadbooster-chat.pipedrive.com^$third-party
-||ckct.ru^$third-party
-||callkeeper.ru^$third-party
-liquidweb.com##footer + div[class^="FixedButton_"]
-aimersoft.com###aimersoft-chat-robot
-||helpscout.net^$third-party
-||widget-v*.tidiochat.com^$third-party
-||salesiq.zoho.in^$third-party
-||widget.getgist.com^$third-party
-||widget.helpcrunch.com^$third-party
-/unib0ts/unibots*/*/script.js
-shiksha.com###chat-container
-||avaamo.com^$third-party
-||app.yellowmessenger.com/widget/main.js
-/wp-content/plugins/click-to-chat-for-whatsapp/new/inc/assets/js/app.js$domain=balkangunlugu.com.tr
-||sourcingplace.net/livechaten/php/app.php?widget-init.js
-||app.carnow.com/dealers/carnow_plugin.js$domain=hondacarsrockhill.com
-washingtontimes.com###feedbackify
-||widget.info-static.ru/js/init.js
-||ladesk.com/scripts/track.js
-||iadvize.com^$third-party
-||apps.azhelp.ru^$third-party
-||static.parastorage.com/services/chat-worker/*$domain=isiptv.net
-||widget.lawyer-feedot.ru^$third-party
-||epleads.ru^$third-party
-educba.com###call-advisor
-educba.com##iframe[data-product="web_widget"]
-volyninfa.com.ua###custom_html-2
-||salesiq.zoho.com/widget
-/wp-content/plugins/elfsight-whatsapp-chat-cc/*
-||digital-interview.com^$third-party
-||chat.sociomile.com^$third-party
-||kommunicate.io^$third-party
-||chat.amplify.ai^$third-party
-||urist-24.com/*/addwidget.js
-||uberlaw.ru^$third-party
-||api.visitor.chat^$third-party
-/edugram_chat.js
-||cdn.banki.ru/static/bundles/ui-*/BigDataBundle/credit-master-chatbot*.js
-||whisbi.com^$third-party
-||widget.my.feedot.com^$third-party
-||widget.reserve-widget.ru^$third-party
-||chaser.ru^$third-party
-||place.leadada.com/api.js?chatform
-||tocplus*.com/chatLoader.do?
-||widget.beesender.com^$third-party
-||chat.autofaq.ai^$third-party
-||widget.webica.pro^$third-party
-||getbutton.io^$third-party
-||feedback.luxnet.ua^$third-party
-24tv.ua###user-vote-trigger
-||webim.ru^$third-party
-petrovich.ru##.webim_button
-||widget.whatshelp.io^$third-party
-||sprosivracha.com/widget/js/init.js
-||widget.cpa.legalaxy.com^$third-party
-||edialog24.com^$third-party
-/widget/js/przv.js
-||crm.sov-inform-buro.ru^
-||chat24.io^$third-party
-||chats.novait.com.ua^$third-party
-||servicelead.top^$third-party
-||jurleads.ru^$third-party
-||gtlead.ru^$third-party
-||client.crisp.chat^$third-party
-fooda.com##.olark-bottom-left
-||widget.contactleader.pl^$third-party
-||blinger.io^$third-party
-.az/livechat/
-||bazzaro.ru^$third-party
-||callback.onlinepbx.ru^$third-party
-||widget.textback.io^$third-party
-||widget.manychat.com^$third-party
-||widget-static.com^$third-party
-||cloud.lexprofit.$third-party
-||plus20.ru^$third-party
-||clloudia.com^$third-party
-||livechat.chat2desk.com$third-party
-||content.astro7.ru/js/chat-bot-
-||st.yagla.ru^$third-party
-||cdn.callbackhunter.com^$third-party
-||verbox.ru^$third-party
-||static.me-talk.ru^$third-party
-||livesupporti.com^$third-party
-||widget.mango-office.ru^$third-party
-||netroxsc.ru^$third-party
-||mod.calltouch.ru^$third-party
-||networkguru.ru/catalog/view/theme/networkguru/javascript/CallMe.js
-networkguru.ru##.tbForm_CallMe
-||turkbet.zendesk.com/embeddable$domain=turkbet.tv
-||assets.zendesk.com/embeddable_framework/main.js$domain=zarplata.ru
-/PRVD_partnerChat_utf8.min.js
-/promo.php?type=partnerchat&file=PRVD_partnerChat.js
-/PRVD_partnerChat.js
-/static.leadia.ru/js/*
-||cdn.callibri.ru^$third-party
-||comagic.ru^$third-party
-||api.autopilothq.com^$third-party
-||fastcallagent.com^$third-party
-||foresee.com^$third-party
-||js.driftt.com^$third-party
-||embed.tawk.to^$third-party,domain=~jumbo-casino.fun|~roonlabs.com
-||static.olark.com/jsclient/$third-party,domain=~fooda.com
-||cdn.callbackkiller.com^$third-party
-||static.leadia.ru^$third-party
-||app.whappodo.com/pages/widget^$third-party
-||api.spotleadia.com^$domain=~venyoo.ru
-||leadback.ru^$third-party
-||form.cloudleadia.com^$third-party
-||highflyers.ru^$third-party
-||widgets.mango-office.ru^$third-party
-||my.zadarma.com/callbackWidget/js/main.min.js
-||widgets.binotel.com^$third-party
-||beltehno.by/manager/callMe/script
-||envybox.io^$third-party
-||hotpartner.ru/forms/widget
-||me-talk.ru/support/support.js$third-party
-||highflyers.ru/ven/wiget_consult.js
-||az601263.vo.msecnd.net/webview/*/embed.js
-||embed.doorbell.io^$third-party
-||clients.streamwood.ru^$third-party
-||cdn.carrotquest.io^$domain=brutalshop.ru
-||widget.happycustomer.ru^$third-party
-||widget.sender.mobi^$third-party,domain=~privat24.ua|~privatbank.ua
-||yangteacher.ru/reformal.js
-||media.reformal.ru/widgets/$third-party
-||alcogolizm.com/konsul/
-||api-pravoved.s3.amazonaws.com^$third-party
-||api.cloudleadia.com^$third-party
-||api.leadiacloud.com^$third-party
-||api.pozvonim.com^$third-party
-||api.venyoo.ru^$third-party
-||cdn.krible.com^$third-party
-||chatra.io^$third-party
-||cleversite.ru^$third-party
-||code.blablateka.com^$third-party
-||consultsystems.ru^$third-party
-||cp.onicon.ru^$third-party
-||eyenewton.ru^$third-party
-||jivosite.com^$third-party,domain=~jivosite.ru
-||leetero.ru/consultant/$third-party
-||liveexpert.ru^$third-party
-||pinformer.sinoptik.ua^$third-party
-||sinoptik.ua/_uploaded_files/informer/
-||sinoptik.ua/informers$third-party
-||informers.sinoptik.ua^$third-party
-||web-client-02.livetex.ru^$third-party
-||web-client.livetex.ru^$third-party
-||web.redhelper.ru^$third-party
-||whitesaas.com^$third-party
-||widget.siteheart.com^$third-party
-||widget.skobeeff.ru^$third-party
-||widget.whatsbroadcast.com^$third-party
-||widgets.livetex.ru^$third-party
-||livetex.ru/js/client.js$third-party,domain=~tele2.ru|~linline-clinic.ru|~lg.com
-! make it domain specific, block if the widget is really annoying
-!||zopim.com^$third-party,domain=
-! gubagoo
-||gubagootracking.com^$third-party
-||cdn.gubagoo.io^$third-party
-##gg-toolbar--specials
-!
-vinmec.com##.global-thread-create-cta
-wind10.ru###custom_html-7
-backit.me##.the-jivo-stub
-acefitness.org##.qn-chat-prompt
-finder.com###intercomChatButton
-||chatbot.lifecell.ua^
-||connect.livechatinc.com^$domain=byjus.com|spiritualresearchfoundation.org|civilsdaily.com
-cab.meest.cn###beesender-chat
-||cdn.banki.ru/static/bundles/*/CreditMasterBundle/
-klaster.ua##.sonar_effect
-spliiit.com##.chat-in-live
-centr-hirurgii.ru,smclinic.ru###call-btn
-help.bc.game##.csh-footer-ask
-||axiomplus.com.ua/static/*/Axiom_CallMe/js/call-me.js
-axiomplus.com.ua##.call-me-widget
-game-pristavka.ru###animate_btn_4
-samsung.com##.chats
-samsungstore.ru##.feedback
-samsungstore.ru##.mango-callback
-electron1ca.ru##.open__callme
-electron1ca.ru##.popup-phone-wrapper
-kasla.ru##.callback-button
-goodprice4you.ru##.call-order
-||yastatic.net/*/chat/widget.js$domain=next24.ru|goodprice4you.ru
-eldorado.ru###custom-livetex-fab
-pitergsm.ru##.callback-btn
-||propiskainfo.ru/*.php?promo_id=
-delovoymir.biz##.dmwomen_bl
-lidl.de##button[data-target="#feedback-cover"]
-||salesforceliveagent.com^$domain=liquidweb.com|intimissimi.com
-||s.9111s.ru/*/js/robot_chat/addQ_chat.js
-/crm/site_button/loader_*.js
-khv-okna.ru###pozvonim-button
-||finbazis.ru/_*.php|
-||sparmoscow.ru/_*.php|
-||pravapot.ru/*.php?promo_id=
-gryadki.com###light_comment
-world-of-facts.com###leadia_science_widget
-||provodim24.ru/_*.php$script
-||assets.livecall.io/accounts/*/widget.js
-||autolegal.ru/_fb/widget.php
-||info-gosuslugi.ru/_*.php$script
-||turimm.com/_*.php$script
-beru.ru##.zendesk-chat
-||biznes-delo.ru/_*.php$script
-biznes-delo.ru##iframe[src^="https://api.clloudia.com/"]
-||jilishnik.ru/_*.php$script
-nahnews.org##.zenLink
-blamper.ru##div[data-module^="widgets/common/FakeChat/"]
-||s.blamper.ru/js/app/widgets/common/FakeChat/
-||mobitorg.phonet.com.ua/public/widget/call-catcher/
-||101urist.com/_*.php$script
-brainklinik.ru###topPhonex
-f.ua##.callback_buttons
-citrus.ua##.citrus-message-button
-||rsocks.net/resources/landing/message.mp3
-rsocks.net###alert
-itstep.dp.ua##.block_to_call
-||svoe.guru/_*.php|
-pravoved.ru##.prvd-primary-qp-popup-container
-pravoved.ru##.prvd-qp-entry-point
-pravoved.ru##.ver_2.city
-budcraft.ua##div[onclick="get_modal_callbacking();"]
-||law-divorce.ru/_fb/widget.php
-astrospeak.com##.lucy
-yuristznaet.ru##iframe[src^="http://form.cloudleadia.com/"]
-sitejabber.com###url_home > #scrollbox
-pulscen.ru##.online-consultant-info-bar
-##a[title="WhatsApp Newsletter Marketing"]
-angrycitizen.ru##.pravoved-bnnr
-angrycitizen.ru##.angry-lawyer-widget
-~sinoptik.ua###SinoptikInformer
-! Layanan Chat
-indoxxi.show##.tawkto-btn
-! cab.meest.cn - infinete loading wheel on the page
-@@||widget.beesender.com/*/widget.js$domain=cab.meest.cn
-@@||widget.beesender.com/*/chunk-vendors.js$domain=cab.meest.cn
-! https://github.com/AdguardTeam/AdguardFilters/issues/52267
-@@||static.apester.com/js/sdk/*/apester-javascript-sdk.min.js$domain=sport24.ru
-@@||display.apester.com/interactions/$xmlhttprequest,domain=sport24.ru
-@@||renderer.apester.com^$domain=sport24.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/6473
-@@||code.jivosite.com^$domain=help.letyshops.ru
-!
-! END: Adviser/online-consultant/feedback widgets
+! NOTE: Marketing end ⬆️
+! !SECTION: Widgets - marketing
 !
 !
 !
+! Chat widgets(not marketing)
+! SECTION: Widgets - Chats
+!
+!   SECTION: Widgets - Chats(generic)
+/js/chat/edu_chat.js
+/wp-content/plugins/creame-whatsapp-me/public/js/joinchat.
+!
+||synalio.com^$third-party
+||chat.mundiale.com.br^$third-party
+||chatbot.com^$third-party
+||cdn-chat.grattis.ru^$third-party
+||cdn.carrotquest.app^$third-party
+||cdn.qform24.com^$third-party
+||continual.ly^$third-party
+||corover.mobi^$third-party
+||collectcdn.com^$third-party
+||config.gorgias.chat^$third-party
+||purechat.com^$third-party
+||mylivechat.com^$third-party
+||secure.livechatinc.com^$third-party
+||widget.info-static.ru^$third-party
+||widget.installchatbot.com^$third-party
+||widget.moin.ai^$third-party
+||widget.replain.cc^$third-party
+||widget.chatbullet.com^$third-party
+||showtalk.jp^$third-party
+||sge-chat.skorpik.ru^
+||tripla.jp^$third-party
+||uhchat.net^$third-party
+||wat.atms.at^$third-party
+||widget.feedot-lawyer.ru^
+!   NOTE: Chats(generic) end ⬆️
+!   !SECTION: Widgets - Chats(generic)
+!
+!   SECTION: Widgets - Chats(specific)
+!   NOTE: chatango.com widget
+sportnews.to,footlive.me.pokemon-tube.com,shirainime.com,mangashiro.co,daemon-hentai.com,seirsanduk.us,mangashiro.org,animefrenzy.net,sedsports.com,139.99.120.222,indoxxi.show,strikeout.nu,aniwatcher.com,mylivecricket.info,debrid-file.com,streamonsport.info##iframe[src*="chatango.com"]
+||st.chatango.com^$domain=sportnews.to|streamonsports.cc|footlive.me|neonime.site|viprow.me|psntvs.me|sports-stream.net|anonenime.com|hesgoal.com|sanzisport.com|goanimelist.me|pokemon-tube.com|animeindo.moe|shirainime.com|mangashiro.co|daemon-hentai.com|seirsanduk.us|mangashiro.org|animefrenzy.net|sedsports.com|139.99.120.222|indoxxi.show|cricfree.sc|cricfree.live|wespeakrugby.com|bosscast.net|strikeout.nu|aniwatcher.com|mylivecricket.info|debrid-file.com|neonime.vip|streamonsport.info|snahp.it|worldcupfootball.me
+streamonsports.cc,streamonsport.info##.chatango
+139.99.120.222,indoxxi.show##.chatango-btn
+!
+60fps.live###custom_html-3
+99rent.pl###tidio-chat
+aaaauto.pl###site-bottom-bar-content > a[href^="/pl/callback_form.php"].smoothbox
+anime-skorpik.com###sgeChat
+animeindo.moe##iframe[src*="/animeindo/chat.php"]
+anonenime.com#?#.sidebar > div.section:has(> div.area > h3 > span:contains(Repot Link))
+beru.ru##.webim-chat
+boxberry.ru##.popup-messenger
+buhgalter.com.ua##.chat
+byjus.com##.bcFloat
+cricfree.sc##.main > .container > .col-md-3 > div[class^="chat"]
+cricfree.sc#?#.main > .container > .col-md-3 > .title-seaducal-section > h2:contains(CHAT ROOM)
+daemon-hentai.com###secondary > div.widget:last-child
+direct.money.pl###widget-fc-mobile-button
+easeus.com###livechat-for-own
+films-skorpik.com##.sgeChat
+finam.ru##.arni-button-container
+freesexyindians.com##div[style^="bottom: 0;right:0;position: fixed; z-index:"]
+goanimelist.me#?#.wpex-sidebar > div.wpex-widget-area:has(> div.widget_text > h3:contains(Live Chat))
+howdyho.net##.hollow
+iobit.com###diagnosis-call
+iport.ru##.js-widgets-wrap
+javtasty.com##.table > .block-chat
+klingel.de,happy-size.de,meyer-mode.de,diemer.de##begl-chat
+knights-table.net###arrowchat_base
+lenov.ru##.lc_area
+lenov.ru##a[href="http://lenov.ru/chat.html"]
+lenov.ru##a[onclick^="window.open('/chat.php'"]
+lenov.ru#?#.wrapper > div.col-md-3 > div.nav-side-menu > h2:contains(Мини чат)
+lunafon.ru###us_fixed_contact_button
+mega.ru##.chatButton
+moluch.ru##.ask_out
+moretvtime.com##.cov
+narecza.com###header > div.wsc
+nexcess.net##.chatContainer
+nhentai.net###chatbanner
+nhentai.net##footer > p > b
+ordvor.com##.joinchat
+otosklep24.pl###up_talk0
+pornohirsch.com###customer-chat-iframe
+sanzisport.com###text-7
+schlaganfall-hilfe.de##.chatbot
+sedsports.com###custom_html-67
+senetic.pl###floating_boxes.livechat-space
+set.or.th##.chatbot-icon
+sklum.com##.oct8ne-btn
+snahp.it#?#.sidebar-content > div.widget:has(> div.textwidget > iframe[src^="https://st.chatango.com/"])
+sports-stream.net#?##logo > #sidebar:has(> div[id^="sidebarchat"])
+students-library.com##body > div.modal ~ script[defer] + div[style]
+terminix.com##.ToggleChatButtonWrapper
+tuttosportweb.com###sidebar
+viprow.me##.d-md-block > .w-100[data-item="chat"]
+xn--80aaivjfyj3e.com,wiseeconomist.ru,zakon.today##.pravoved-ru-widget
+zebratechnologies.force.com##.zbrbot-container
+||app.hubspot.com/conversations-visitor$third-party
+||byjus.nanorep.co/web/floating-widget.js
+||cdn.shopify.com/shopifycloud/shopify_chat^$third-party
+||cdn.shopifycloud.com/shopify_chat/$third-party
+||chatwhizz.com/chat-support/js/wk-chat-support.js
+||collectcdn.com/launcher.js$domain=dila.ua
+||connect.podium.com/widget.js$third-party
+||csportal.directstar.ru^$domain=store.sony.ru
+||effect.com/widget$third-party
+||fstrkchat.com/widget/$third-party
+||hospitaloswaldocruz.my.salesforce.com^$domain=hospitaloswaldocruz.org.br
+||lenov.ru/engine/modules/light_chat/
+||liquidweb.my.salesforce.com^$domain=nexcess.net
+||my.salesforce.com/embeddedservice/*/esw.min.js
+||procdncache.com/chat.php
+||reactive.factor.ua/buhgalter911_chat/$domain=buhgalter.com.ua
+||selcdn.net/chatBot.js
+||service.force.com/embeddedservice/*/esw.min.js
+||simplebotz.com/packages/rocketchat_livechat/assets/rocketchat-livechat.min.js
+||sklum.com/core/controllers/front/LiveChat/js/OctoneController.js
+||smartsuppchat.com/loader.js
+||sonnik.expert/wid4360.php
+||studlancer.net/images/chat/studlancer_form.js
+||teknomehmet.com/wp-content/plugins/creame-whatsapp-me/public/js/whatsappme.min.js
+||tuttosportweb.com/tochat
+||video.ibm.com/socialstream/$domain=myoplay.club
+||wchat.freshchat.com^$domain=unstoppabledomains.com
+||web.tolstoycomments.com^$domain=zaycev.fm
+||widget.flyzoo.co^$domain=androidaba.com
+||xatech.com/web_gear/chat/chat.swf
+||youpits.com/chat*.html$domain=60fps.live
+||zebratechnologies.force.com/resource/*/ChatbotJs/js/botchat-es5.js
+!   NOTE: Chats(specific) end ⬆️
+!   !SECTION: Widgets - Chats(specific)
+!
+!
+!   NOTE: Whitelist for chat widgets
+! https://github.com/AdguardTeam/AdguardFilters/issues/102621
+@@||service.force.com/embeddedservice/*/esw.min.js$domain=visible.com
+! NOTE: Chats end ⬆️
+! !SECTION: Widgets - Chats
+!
+!
+!
+!
+!
+!--- Another widgets - all kinds of really annoying widgets
+! SECTION: Widgets - Another
+!
+!   SECTION: Uncategorized
 ! speed test widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/110452
 ||pcm-intl.speedtestcustom.com^$domain=pcmag.com
@@ -645,9 +820,6 @@ yenidonem.com.tr###ilangovtr
 ||socialproof.primewidgets.com/*/online
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67266#issuecomment-724652599
 indigo.co.ua###__replain_widget
-! https://github.com/AdguardTeam/AdguardFilters/issues/63098
-||igas.com.ua^$third-party
-##.igas-widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57159
 ||date.cursorinfo.co.il^
 cursorinfo.co.il##.footer_bar_people
@@ -678,10 +850,10 @@ bosscast.net#?#body[marginwidth="0"][marginheight="0"] > div:first-child:only-of
 ||discordapp.com/widget?id=$domain=hentaiz.org|animeru.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26435
 ||sumo.com^$third-party
-!
-||widgets.sprinkletxt.com^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51400
 yenicagri.com##iframe[src^="https://medya.ilan.gov.tr/widgets/"]
+! liderbursa.com
+liderbursa.com##iframe[data-src^="https://medya.ilan.gov.tr/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19610
 ||medya.ilan.gov.tr/widgets^$third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7035
@@ -736,7 +908,17 @@ heise.de##amp-apester-media
 welt.de##iframe[src^="https://widget.civey.com"]
 faz.net##.opinarywidget
 amp.focus.de##amp-embed[type="opinary"]
-! generic
+spiegel.de##div[data-settings*="https://widget.civey.com/"]
+! spiegel.de - breaking comments
+@@||compass.pressekompass.net/compasses^$domain=spiegel.de
+! kinoafisha widget
+||kinoafisha.ua/widget/$third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/63098
+||igas.com.ua^$third-party
+##.igas-widget
+!
+!   NOTE: Uncategorized - generic rules
+!
 ##amp-apester-media
 ##.opinarywidget
 ##amp-embed[type="opinary"]
@@ -744,6 +926,9 @@ amp.focus.de##amp-embed[type="opinary"]
 ##iframe[src^="https://widget.civey.com"]
 ##amp-iframe[src^="https://widget.civey.com"]
 ##iframe[src*="compass.pressekompass.net/compasses"]
+!
+||widgets.sprinkletxt.com^
+||insticator.com^$third-party
 ||iteratehq.com^$third-party
 ||assets-prod.vicomi.com^$third-party
 ||apester.com^$third-party
@@ -752,141 +937,21 @@ amp.focus.de##amp-embed[type="opinary"]
 ||compass.pressekompass.net/compasses^$third-party
 ||widgets.opinary.com^$third-party
 ||app.mycountrytalks.org^$third-party
+!   NOTE: Uncategorized end ⬆️
+!   !SECTION: Widgets - Uncategorized
 !
-spiegel.de##div[data-settings*="https://widget.civey.com/"]
-! spiegel.de - breaking comments
-@@||compass.pressekompass.net/compasses^$domain=spiegel.de
 !
-||insticator.com^$third-party
+!   NOTE: Vacancy widgets
 !
-! kinoafisha widget
-||kinoafisha.ua/widget/$third-party
+||cvmarket.lv/infoblocks/$third-party
+||widgets.digitalmediacommunications.com^$third-party
+||js-seeker.newjobs.com^$domain=monster.com
+||js.jebbit.com/companion/*/widget.js$third-party
+||widgets.jobbio.com^
+nextpit.de##.jobbioapp
 !
-! Chat widgets
+!   NOTE: Exchange rates widgets
 !
-||uhchat.net^$third-party
-||continual.ly^$third-party
-||tripla.jp^$third-party
-||showtalk.jp^$third-party
-||cdn.shopify.com/shopifycloud/shopify_chat^$third-party
-||procdncache.com/chat.php
-||video.ibm.com/socialstream/$domain=myoplay.club
-/js/chat/edu_chat.js
-||chatbot.com^$third-party
-||mylivechat.com^$third-party
-moluch.ru##.ask_out
-||connect.podium.com/widget.js$third-party
-terminix.com##.ToggleChatButtonWrapper
-||chatwhizz.com/chat-support/js/wk-chat-support.js
-||simplebotz.com/packages/rocketchat_livechat/assets/rocketchat-livechat.min.js
-||widget.moin.ai^$third-party
-||sklum.com/core/controllers/front/LiveChat/js/OctoneController.js
-sklum.com##.oct8ne-btn
-schlaganfall-hilfe.de##.chatbot
-||service.force.com/embeddedservice/*/esw.min.js
-||my.salesforce.com/embeddedservice/*/esw.min.js
-||hospitaloswaldocruz.my.salesforce.com^$domain=hospitaloswaldocruz.org.br
-||secure.livechatinc.com^$third-party
-||liquidweb.my.salesforce.com^$domain=nexcess.net
-nexcess.net##.chatContainer
-||widget.installchatbot.com^$third-party
-||collectcdn.com^$third-party
-||zebratechnologies.force.com/resource/*/ChatbotJs/js/botchat-es5.js
-zebratechnologies.force.com##.zbrbot-container
-snahp.it#?#.sidebar-content > div.widget:has(> div.textwidget > iframe[src^="https://st.chatango.com/"])
-klingel.de,happy-size.de,meyer-mode.de,diemer.de##begl-chat
-||cdn.shopifycloud.com/shopify_chat/$third-party
-||config.gorgias.chat^$third-party
-||wchat.freshchat.com^$domain=unstoppabledomains.com
-||cdn.carrotquest.app^$third-party
-||widget.chatbullet.com^$third-party
-freesexyindians.com##div[style^="bottom: 0;right:0;position: fixed; z-index:"]
-||effect.com/widget$third-party
-||widget.info-static.ru^$third-party
-||byjus.nanorep.co/web/floating-widget.js
-byjus.com##.bcFloat
-||chat.mundiale.com.br^$third-party
-||cdn-chat.grattis.ru^$third-party
-||widget.replain.cc^$third-party
-||selcdn.net/chatBot.js
-||csportal.directstar.ru^$domain=store.sony.ru
-iport.ru##.js-widgets-wrap
-||fstrkchat.com/widget/$third-party
-lunafon.ru###us_fixed_contact_button
-||cdn.qform24.com^$third-party
-||widget.feedot-lawyer.ru^
-||studlancer.net/images/chat/studlancer_form.js
-/wp-content/plugins/creame-whatsapp-me/public/js/joinchat.
-easeus.com###livechat-for-own
-||sonnik.expert/wid4360.php
-ordvor.com##.joinchat
-students-library.com##body > div.modal ~ script[defer] + div[style]
-||web.tolstoycomments.com^$domain=zaycev.fm
-viprow.me##.d-md-block > .w-100[data-item="chat"]
-daemon-hentai.com###secondary > div.widget:last-child
-||corover.mobi^$third-party
-||app.hubspot.com/conversations-visitor$third-party
-sports-stream.net#?##logo > #sidebar:has(> div[id^="sidebarchat"])
-moretvtime.com##.cov
-howdyho.net##.hollow
-finam.ru##.arni-button-container
-||teknomehmet.com/wp-content/plugins/creame-whatsapp-me/public/js/whatsappme.min.js
-anonenime.com#?#.sidebar > div.section:has(> div.area > h3 > span:contains(Repot Link))
-knights-table.net###arrowchat_base
-set.or.th##.chatbot-icon
-boxberry.ru##.popup-messenger
-mega.ru##.chatButton
-||youpits.com/chat*.html$domain=60fps.live
-60fps.live###custom_html-3
-beru.ru##.webim-chat
-sanzisport.com###text-7
-goanimelist.me#?#.wpex-sidebar > div.wpex-widget-area:has(> div.widget_text > h3:contains(Live Chat))
-sedsports.com###custom_html-67
-animeindo.moe##iframe[src*="/animeindo/chat.php"]
-narecza.com###header > div.wsc
-xn--80aaivjfyj3e.com,wiseeconomist.ru,zakon.today##.pravoved-ru-widget
-pornohirsch.com###customer-chat-iframe
-||reactive.factor.ua/buhgalter911_chat/$domain=buhgalter.com.ua
-buhgalter.com.ua##.chat
-cricfree.sc##.main > .container > .col-md-3 > div[class^="chat"]
-cricfree.sc#?#.main > .container > .col-md-3 > .title-seaducal-section > h2:contains(CHAT ROOM)
-||collectcdn.com/launcher.js$domain=dila.ua
-iobit.com###diagnosis-call
-99rent.pl###tidio-chat
-aaaauto.pl###site-bottom-bar-content > a[href^="/pl/callback_form.php"].smoothbox
-otosklep24.pl###up_talk0
-senetic.pl###floating_boxes.livechat-space
-direct.money.pl###widget-fc-mobile-button
-||wat.atms.at^$third-party
-||purechat.com^$third-party
-||widget.flyzoo.co^$domain=androidaba.com
-films-skorpik.com##.sgeChat
-lenov.ru##.lc_area
-||lenov.ru/engine/modules/light_chat/
-lenov.ru#?#.wrapper > div.col-md-3 > div.nav-side-menu > h2:contains(Мини чат)
-lenov.ru##a[href="http://lenov.ru/chat.html"]
-lenov.ru##a[onclick^="window.open('/chat.php'"]
-##embed[src="http://www.xatech.com/web_gear/chat/chat.swf"]
-javtasty.com##.table > .block-chat
-anime-skorpik.com###sgeChat
-tuttosportweb.com###sidebar
-||sge-chat.skorpik.ru^
-||smartsuppchat.com/loader.js
-||tuttosportweb.com/tochat
-||xatech.com/web_gear/chat/chat.swf
-nhentai.net##footer > p > b
-nhentai.net###chatbanner
-! chatango.com widget
-sportnews.to,footlive.me.pokemon-tube.com,shirainime.com,mangashiro.co,daemon-hentai.com,seirsanduk.us,mangashiro.org,animefrenzy.net,sedsports.com,139.99.120.222,indoxxi.show,strikeout.nu,aniwatcher.com,mylivecricket.info,debrid-file.com,streamonsport.info##iframe[src*="chatango.com"]
-||st.chatango.com^$domain=sportnews.to|streamonsports.cc|footlive.me|neonime.site|viprow.me|psntvs.me|sports-stream.net|anonenime.com|hesgoal.com|sanzisport.com|goanimelist.me|pokemon-tube.com|animeindo.moe|shirainime.com|mangashiro.co|daemon-hentai.com|seirsanduk.us|mangashiro.org|animefrenzy.net|sedsports.com|139.99.120.222|indoxxi.show|cricfree.sc|cricfree.live|wespeakrugby.com|bosscast.net|strikeout.nu|aniwatcher.com|mylivecricket.info|debrid-file.com|neonime.vip|streamonsport.info|snahp.it|worldcupfootball.me
-streamonsports.cc,streamonsport.info##.chatango
-139.99.120.222,indoxxi.show##.chatango-btn
-!
-! Whitelist for chat widgets
-! https://github.com/AdguardTeam/AdguardFilters/issues/102621
-@@||service.force.com/embeddedservice/*/esw.min.js$domain=visible.com
-!
-! Exchange rates widgets
 ||btxliveprice.kceyazilim.com^
 ufanotes.ru#?#.right > div.rates
 volyninfa.com.ua#?##sidebar div.widget:has(> div.textwidget > div[id^="kurs-com-ua-"])
@@ -906,9 +971,8 @@ rosbalt.ru##.ad_tele
 miningclub.info#?#.p-body-sidebar > div.block:has(> div.block-container > h3.block-minorHeader:contains(Курсы))
 dimnovyn.com#?#.right > section.side_block:contains(Валюта)
 !
-!***
-!* Weather widgets
-!*
+!   NOTE: Weather widgets
+!
 ufanotes.ru#?#.right > div.weather
 expert.com.ua#?##secondary > aside.widget:has(> div.textwidget > center > div#SinoptikInformer)
 nikcenter.org#?#aside > div.row:has(> div.gsInformer)
@@ -933,10 +997,8 @@ forumua.org##.l-narrow-column > div.custom-html-widget
 gazeta.ua#?#.container div.w:has(> div#SinoptikInformer)
 dks.com.ua#?#.module-style:has(#SinoptikInformer)
 subbota.ua##aside.sidebar > div[id^="custom_html-"]
-!*
-!***
 !
-! Donation widgets (which are really annoying only)
+!   NOTE: Donation widgets (which are really annoying only)
 !
 discours.io##.donate-container
 kill-the-hero.com##.kofi-button
@@ -995,5 +1057,25 @@ samlab.ws##iframe[src^="https://yoomoney.ru/"]
 hromadske.ua#$#.DonateModal-overlay { display: none !important; }
 hromadske.ua#$#body { overflow: visible !important; }
 !
-! Social locker widget
+!   NOTE: Social locker widget
+!
+! Social Locker - WordPress content locking plugin
+/wp-content/plugins/sociallocker-
+! onp-sl-social-locker
+trickswire.com#$#.mts-cl-overlap-mode > .mts-cl-overlap-box { display: none!important; }
+trickswire.com#$#.mts-cl-overlap-mode > .mts-cl-blur-area { filter: none!important; }
+/pandalocker.$script,domain=lanka.ru
+0lik.ru##.onp-sl-outer-wrap
+0lik.ru$replace=/locker:{\s+timer:\s'\d\d'/locker: { timer: '1'/
+animaunt.tv##.icon-bar > .fl-fl
+cracxpro.com,hackintoshzone.com,gigadownloads.co,techsini.com##.onp-sl-overlap-box
+psdfreebies.com#$#.onp-locker-call { display: block!important; }
+rbc.ua##.telegram-link
+hackstore.net,activationkeys.co,bicfic.com,boxcracked.com,idmcrackpatch.com,activationkey.net,activatorproductkey.org,androidride.com,c4crack.com,chserialkey.com,ckfile.com,crack4us.com,cracksmod.com,cracxsoftwares.com,creativefabrica.com,downloadmockup.com,f4freesoftware.com,freeappstorepc.com,fullpcsoftz.com,gomovies.co,hentairon.net,latestcracked.com,megawarez.org,procrackerz.org,profullcrack.com,psdfreebies.com,realhax.com,sajidpc.com,serialkeypro.com,shehrozpc.com,sjcrack.com,soft7star.com,warezcrack.net,workingkeys.org#$#.onp-sl-content { display: block!important; }
+hackstore.net,activationkeys.co,bicfic.com,boxcracked.com,idmcrackpatch.com,activationkey.net,activatorproductkey.org,androidride.com,c4crack.com,chserialkey.com,ckfile.com,crack4us.com,cracksmod.com,cracxsoftwares.com,creativefabrica.com,downloadmockup.com,f4freesoftware.com,freeappstorepc.com,fullpcsoftz.com,gomovies.co,hentairon.net,latestcracked.com,megawarez.org,procrackerz.org,profullcrack.com,psdfreebies.com,realhax.com,sajidpc.com,serialkeypro.com,shehrozpc.com,sjcrack.com,soft7star.com,warezcrack.net,workingkeys.org#$#.onp-sl-social-locker { display: none!important; }
+latestcracked.com#$#.onp-sl-signin-locker { display: none!important; }
+warezcrack.net#$#.onp-sl-content > [data-lock-id^="onpLock"] { display: block!important; }
+!
+! NOTE: Another end ⬆️
+! !SECTION: Widgets - Another
 !

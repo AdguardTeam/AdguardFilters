@@ -19,18 +19,18 @@ web.de,gmx.net,gmx.ch,gmx.at#%#//scriptlet("set-constant", "ui.AdServiceConfig.e
 wetter.com#%#//scriptlet('set-constant', 'wcomAdFrameworkInit', 'undefined')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108788
 spielen.com#%#//scriptlet("set-constant", "idhb", "emptyObj")
-! https://github.com/AdguardTeam/AdguardFilters/issues/107055
-gamepro.de#%#//scriptlet("set-constant", "wgm.initAds", "noopFunc")
-gamepro.de#%#(function(){var b={cmd:[],public:{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){},setTargetingOnPosition:function(){}}};b.cmd.push=function(a){try{a()}catch(a){}},window.jad=b})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102180
 duden.de#%#//scriptlet('remove-class', 'pageskin', 'body.pageskin')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101799
 katzen-forum.net#%#AG_onLoad(function() { document.body.innerHTML = document.body.innerHTML.replace(/Werbung:/g, ""); });
 ! blick.ch - video ads
 blick.ch#%#//scriptlet("set-constant", "Object.prototype.adsEnabled", "false")
+! https://github.com/AdguardTeam/AdguardFilters/issues/124356
+! https://github.com/AdguardTeam/AdguardFilters/issues/107055
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94882
-gamestar.de#%#//scriptlet("set-constant", "wgm.initAds", "noopFunc")
-gamestar.de#%#(function(){var b={cmd:[],public:{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){},setTargetingOnPosition:function(){}}};b.cmd.push=function(a){try{a()}catch(a){}},window.jad=b})();
+gamepro.de,gamestar.de#%#//scriptlet("set-constant", "wgm.initAds", "noopFunc")
+! Rule below fixes issue with video player if user has DNS filtering enabled, but it seems that at the moment it's not required
+! gamepro.de,gamestar.de#%#(function(){const b={cmd:[],public:{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){},setTargetingOnPosition:function(){},setConfig:function(){},loadPositions:function(){},displayPositions:function(){},getDailymotionAdsParamsForScript:function(b,c){if(b&&"function"==typeof c)try{c({a:b})}catch(b){console.error(b)}}}};b.cmd.push=function(a){try{window.addEventListener("load",()=>{a()})}catch(a){console.error(a)}},window.jad=b})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93347
 joyn.de#%#//scriptlet('prevent-fetch', 'zomap.de')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92118
@@ -155,6 +155,8 @@ menshealth.de#%#function google_ad_request_done() {};
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/124639
+3c.web.de#$#html.can-have-sky .section-content { margin-right: 0px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120779
 giga.de#$#nav[data-role="alice-sub-navbar"][data-position="smart-sticky"] { margin-top: auto !important; }
 ! wooco.de - ad banner top

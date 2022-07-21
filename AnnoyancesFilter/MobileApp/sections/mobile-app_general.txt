@@ -1,14 +1,23 @@
-! 
-! dummy. Content must be replaced by corresponding rules
 !
-||dummy.rule^$badfilter
-dummy.rule###mfn-gdpr
-dummy.rule##.Cms_CookieConsent
-dummy.rule##.shopui-eu-cookie-bar
-dummy.rule##.footer-lgpd
-dummy.rule###footer-lgpd
-dummy.rule###cookie-bg
-dummy.rule##.cookiealert.show
-dummy.rule###cm-cookie-window
-dummy.rule##.amgdprcookie-bar-container
-dummy.rule###machete_cookie_container
+! This section contains the list of generic rules are against banners that promote mobile apps.
+!
+! Good: ##amp-app-banner
+! Bad: example.org###amp-app-banner (should be in mobile-app_specific.txt)
+!
+! SECTION: Mobile apps - generic rules
+/wp-content/plugins/ioimedia-app-banner/*
+/js/jquery.smartbanner.js
+||2app.lk^$third-party
+||br.app.link^$third-party
+!
+##amp-app-banner
+###smartbanner.ios
+###smartbanner.windows
+##head[prefix~="medium-com:"] ~ body .js-openInAppButton
+##head[prefix~="medium-com:"] ~ body .js-postActionsBarContent > .js-readNextInteractions
+! https://developer.apple.com/documentation/webkit/promoting_apps_with_smart_app_banners
+!+ PLATFORM(ios)
+#$?#meta[name="apple-itunes-app"] { remove: true; }
+! NOTE: Generic rules end ⬆️
+! !SECTION: Mobile apps - Generic rules
+!
