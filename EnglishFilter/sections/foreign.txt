@@ -1260,6 +1260,11 @@ mob.hr##.side_banner
 !------------------------------ Czech and Slovakian ------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/125337
+super.cz###adSkyscraperStart-1 + div[style]
+super.cz###adPlachtaStart-1 + div[style]
+super.cz$$script[tag-content=" if (adbCookie == "]
+super.cz$$script[tag-content="adCommercialBackground"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124723
 ||stream.cz/*/vast?
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125016
@@ -2169,6 +2174,10 @@ radiocockpit.fr#%#function setTimeout() {};
 !------------------------------ Georgian -----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/125199
+croconet.ge##.bunner_section:not(:first-child)
+||croconet.ge/ads-crocobet/
+||croconet.ge/*/assets/data/banners_data.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99608
 goal.ge##.web-promotion
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78418
@@ -6088,6 +6097,9 @@ m.basketnews.lt##.main_title > div[style="text-align: center;"] > a > img
 !------------------------------ Macedonian ----------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/124691
+stream.mk#@#.ad-placement
+stream.mk#$##ablockercheck { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121412
 ||sportski.mk/wp-content/uploads/*/1920x1080-1.png
 sportski.mk#$#body { background-image: none !important; }
@@ -6487,6 +6499,8 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 !+ PLATFORM(ios, ext_android_cb)
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/125340
+probasket.pl##.widget_text
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125226
 mma.pl##div[id^="mma_hdh"]
 mma.pl##div[id^="empty_id"]
@@ -8642,6 +8656,10 @@ money.pl#$#body { overflow: visible!important; }
 ! ||std.wpcdn.pl/wpjslib/wpjslib-sgap.js$replace=/((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$2\$3\$4 false\$5/,script
 ! ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|(\.hostname;function .\(\)\{return) .===.(\}))/\$4\$5\$6 false\$7/,script
 ! ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)|((display:\\s\*)none(\\s\*!important)|((\.hostname;function .\(\)|=function\(\))\{return) .===.(\}))/\$4\$5\$6\$8/,script
+||komorkomania.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
+||komorkomania.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
+||komorkomania.pl^$replace=/(abp:subscribe[\s\S]*?.=function\(\)\{)return .===.(\}\,)/\$1return\$2/,script
+||komorkomania.pl^$replace=/(abp:subscribe[\s\S]*?.=\(\)=>).===.(\,)/\$1{return}\$2/,script
 ||vpolshchi.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*\n)//,script
 ||vpolshchi.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 ||vpolshchi.pl^$replace=/(abp:subscribe[\s\S]*?.=function\(\)\{)return .===.(\}\,)/\$1return\$2/,script
@@ -9005,7 +9023,7 @@ dobreprogramy.pl##button[class][type="button"] + a[href*="?utm_source=dobreprogr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80901
 dobreprogramy.pl##div[data-index][data-slot][style]
 polygamia.pl,dobreprogramy.pl#?#div[class*=" "] > div:first-child + img[src*="://v.wpimg.pl/"][alt]:upward(1)
-tech.wp.pl,gadzetomania.pl,polygamia.pl,dobreprogramy.pl#?#div[class*=" "] > img[src*="://v.wpimg.pl/"] + div[class] > style:first-child + div:last-child:upward(2)
+komorkomania.pl,tech.wp.pl,gadzetomania.pl,polygamia.pl,dobreprogramy.pl#?#div[class*=" "] > img[src*="://v.wpimg.pl/"] + div[class] > style:first-child + div:last-child:upward(2)
 ! https://forum.adguard.com/index.php?threads/dobreprogramy-pl.19744/#post-127483
 dobreprogramy.pl#%#(function(a){EventTarget.prototype.addEventListener=function(){("slide-menu"==this.id||this.parentNode&&"main"==this.parentNode.id&&this==this.parentNode.firstElementChild)&&-1!==["mouseout","click","mouseover"].indexOf(arguments[0])||a.apply(this,arguments)};})(EventTarget.prototype.addEventListener);
 dobreprogramy.pl#$#body:not(#bd):not([style*="background-image:"]) { background-image:none!important; }
@@ -9192,6 +9210,8 @@ stirileprotv.ro##.topBranding
 @@||canale.live/player-tv/live/reclama/*.css$~third-party
 @@||cdn.casamireasa.biz/deploys/www/delivery/$domain=canale.live
 @@||videocdn.click/reclama/ads.js$domain=canale.live
+canale.live##body > div[style*="position:fixed;"][style*=";z-index:10"]
+canale.live#%#//scriptlet("set-constant", "moneyAbovePrivacyByvCDN", "true")
 canale.live#%#//scriptlet("set-constant", "canRunAds", "true")
 canale.live#%#//scriptlet('prevent-setInterval', 'adblock')
 canale.live#%#//scriptlet("set-constant", "isBlocked", "false")
@@ -9577,6 +9597,8 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !------------------------------ Thai ---------------------------------
 !---------------------------------------------------------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/125259
+trueid.net#@#.adBanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121983
 anime-suba.com###light
 anime-suba.com##.Anadvertisement0
