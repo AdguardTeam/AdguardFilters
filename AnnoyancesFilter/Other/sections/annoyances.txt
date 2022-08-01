@@ -15,6 +15,16 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76987
 youtube.com#%#AG_onLoad(function() {var a = new MutationObserver(function() {if (document.querySelector('yt-upsell-dialog-renderer')) {var b = document.querySelector('.ytd-popup-container[popup-size="UPSELL_DIALOG_RENDERER_POPUP_SIZE_LARGE"] #dismiss-button:not(.dismissed), .upsell-dialog-lightbox .upsell-dialog-dismiss-button button:not(.dismissed)');setTimeout(function() {b&&b.click()}, 3E2)}});a.observe(document, {childList: !0,subtree: !0});setTimeout(function() {a.disconnect()}, 3E3)});
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/125403
+||static.insurancedekho.com/pwa/js/bundle/Newsdetail.
+insurancedekho.com##.leadformV3
+! https://github.com/AdguardTeam/AdguardFilters/issues/124958
+[$path=/search]yandex.ru##.Warning_type_roskomnadzor
+[$path=/video/search]yandex.ru##.prevention_instance_rknWarning
+! https://github.com/AdguardTeam/AdguardFilters/issues/124961
+[$path=/search]nova.rambler.ru##div[class^="SerpWarning__warning"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/124959
+go.mail.ru##.App-RKN
 ! amazon.de video player -- Rating of episode at start as overlay
 amazon.de#?#.webPlayerElement .atvwebplayersdk-player-container div:not([class]):not([tabindex]) > div[class]:not([style*="margin"]) > div[class] > div[class] > div[class] > span:contains(Bewertung)
 ! gamestar.de - left-over with no content on https://www.gamestar.de/news/
@@ -103,8 +113,8 @@ turkishairlines.com#?##page_wrapper > section.nopadding:has(> div.middle-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115178
 eurosport.tvn24.pl#%#//scriptlet('prevent-requestAnimationFrame', 'toggleFloatingClass')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115052
-||img.weblogssl.com/*/js/dailymotion-$domain=xataka.com|applesfera.com
-xataka.com,applesfera.com##.base-asset-video
+||img.weblogssl.com/*/js/dailymotion-$domain=applesfera.com
+applesfera.com##.base-asset-video
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114333#issuecomment-1093685116
 niusnews.com##div[class^="divLogin"]
 niusnews.com##.divMPop
@@ -649,9 +659,7 @@ pln-pskov.ru##.telegramim_button
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83115
 klops.ru##.container-telegram
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83062
-! https://github.com/AdguardTeam/AdguardFilters/issues/99741
 onliner.by##.news-widget
-onliner.by##.news-text > hr + div.news-media
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83222
 ask.lecturenotes.in##nav[aria-label*="mailbox"] + div[class]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82749
@@ -2005,7 +2013,7 @@ facebook.com###fbVideoStreamingReactionsTray
 ! "possible friends"
 facebook.com##._5pcr.fbUserPost._4nef._5pcr
 m.facebook.com##div[data-mcomponent="MScreen"] > div[data-type="vscroller"] > div[data-mcomponent="MContainer"][style*="height:574px; z-index:0; width:"]
-m.facebook.com#?#div[data-mcomponent="MContainer"][style*="height:"][style*="px; z-index:"][style*="0; width:"]:has(> div[data-is-snappable-in-h-scroll="true"])
+m.facebook.com#?#.filler ~ div:not([data-srat]) > div > div[data-mcomponent="MContainer"][style*="height:"][style*="px; z-index:"][style*="0; width:"]:has(> div[data-is-snappable-in-h-scroll="true"])
 ! "People you may know" at https://www.facebook.com/profile.php
 ! facebook.com###pagelet_pymk_timeline
 facebook.com#?##ssrb_top_nav_end + div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div[class]:has(> div[class] > div[class] > div[class] > div[class] > div[class] > div[class] > div > div[class] > div[aria-label="People you may know"])
@@ -2018,6 +2026,7 @@ facebook.com,facebookcorewwwi.onion#%#!function(){var e=new MutationObserver(fun
 !! for new interface
 facebook.com,facebookcorewwi.onion#%#!function(){var b=0,d=[];new MutationObserver(function(){document.querySelectorAll("div[data-pagelet^=\"FeedUnit\"]:not([style*=\"display: none\"]), div[role=\"feed\"] > div:not([style*=\"display: none\"])").forEach(function(e){Object.keys(e).forEach(function(a){if(a.includes("__reactEvents")||a.includes("__reactProps")){a=e[a];try{if(a.children?.props?.category?.includes("ENGAGEMENT")||a.children?.props?.children?.props?.category?.includes("ENGAGEMENT")||a.children?.props?.children?.props?.feedEdge?.category?.includes("ENGAGEMENT")){b++,e.style="display: none !important;";var f=e.querySelector("a[href][aria-label]:not([aria-hidden])");f&&(d.push(["Suggested post blocked based on property ["+b+"] -> "+f.ariaLabel]),console.table(d))}}catch(a){}}})})}).observe(document,{childList:!0,subtree:!0})}();
 facebook.com,facebookcorewwwi.onion#%#new MutationObserver(function(){document.querySelectorAll('div[role="feed"] > div[data-pagelet^="FeedUnit"] > div[class]:not([style*="height"])').forEach(function(e){"display: none !important;"==e.getAttribute("style")||e.classList.contains("hidden_elem")||e.querySelectorAll("div[aria-posinset] div[style] div[class] > div[class] > div[class] > div[class] > span")[0].innerText.contains("Suggested for you")&&(console.log("--------"),console.log("Annoyances hidden (Suggested for you)"),e.style="display:none!important;")})}).observe(document,{childList:!0,subtree:!0});
+t.facebook.com#%#new MutationObserver(function(){document.querySelectorAll('div[role="feed"] > span').forEach(function(e){"display: none !important;"==e.getAttribute("style")||e.classList.contains("hidden_elem")||e.querySelectorAll("div[aria-posinset] div[style] div[class] > div[class] > div[class] > div[class] > span")[0].innerText.contains("Suggested for you")&&(console.log("--------"),console.log("Annoyances hidden (Suggested for you)"),e.style="display:none!important;")})}).observe(document,{childList:!0,subtree:!0});
 !! mobile
 mobile.facebook.com,alpha.facebook.com,m.facebook.com##article[data-xt*="originated_from_recommendation"]
 x.facebook.com##article[data-store*="originated_from_recommendation"]
@@ -2036,7 +2045,7 @@ facebook.com##div[role="main"] div[data-pagelet="VideoChatHomeUnit"]
 ! Suggested groups
 mbasic.facebook.com,m.facebook.com##[data-ft*="quick_promotion_instance_log_data_encoded"]
 facebook.com##div[role="main"] div[style="height: 0px;"] + div[class] > div[class] > div[class] div[class] div[class][style*="border-radius"]
-m.facebook.com##div[data-tti-phase][data-mcomponent="MContainer"][style*="height:449px; z-index:0; width:"]
+m.facebook.com##div[data-type="vscroller"] > div[data-tti-phase][data-mcomponent="MContainer"][style*="height:449px; z-index:0; width:"]
 ! Suggested pages
 facebook.com##div[role="feed"] div[style="border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;"] div[style="border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;"]
 m.facebook.com##div[data-type="vscroller"] > div[style^="margin-top:"][style*="px; height:35px; z-index:0; width:"]
