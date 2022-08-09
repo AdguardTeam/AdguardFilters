@@ -1,0 +1,37 @@
+name: "Remove 'A: In Progress' labels when issue is closed"
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issueNumber = context.issue.number;
+
+            var issueLabelsRaw = await github.issues.listLabelsOnIssue({
+              owner,
+              repo,
+              issue_number: issueNumber,
+            });
+
+            var issueLabels = issueLabelsRaw.data.map((el) => el.name);
+
+            const labelsToRemove = [ 'A: In Progress' ];
+            for (let label of labelsToRemove) {
+              if (issueLabels.includes(label)) {
+                github.issues.removeLabel({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                  name: label,
+                });
+              }
+            }
