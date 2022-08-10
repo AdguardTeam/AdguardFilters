@@ -1,8 +1,8 @@
-name: "Remove 'Resolved' and 'Cannot reproduce' labels when issue is reopened"
+name: "Remove 'A: In Progress' labels when issue is closed"
 
 on:
   issues:
-    types: [reopened]
+    types: [closed]
 
 jobs:
   remove_label:
@@ -24,7 +24,7 @@ jobs:
 
             var issueLabels = issueLabelsRaw.data.map((el) => el.name);
 
-            const labelsToRemove = [ 'A: Resolved', 'A: Cannot reproduce' ];
+            const labelsToRemove = [ 'A: In progress' ];
             for (let label of labelsToRemove) {
               if (issueLabels.includes(label)) {
                 github.issues.removeLabel({
@@ -35,4 +35,3 @@ jobs:
                 });
               }
             }
-
