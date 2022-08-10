@@ -1,14 +1,14 @@
-name: "Remove 'Resolved' and 'Cannot reproduce' labels when issue is reopened"
+name: "Remove 'A: Resolved', 'A: Cannot reproduce' labels and Assigne when issue is reopened"
 
 on:
   issues:
     types: [reopened]
 
 jobs:
-  remove_label:
+  remove_labels_assignees:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -16,7 +16,7 @@ jobs:
             const repo = context.repo.repo;
             const issueNumber = context.issue.number;
 
-            var issueLabelsRaw = await github.issues.listLabelsOnIssue({
+            var issueLabelsRaw = await github.rest.issues.listLabelsOnIssue({
               owner,
               repo,
               issue_number: issueNumber,
@@ -27,7 +27,8 @@ jobs:
             const labelsToRemove = [ 'A: Resolved', 'A: Cannot reproduce' ];
             for (let label of labelsToRemove) {
               if (issueLabels.includes(label)) {
-                github.issues.removeLabel({
+                console.log(`Removing ${label} from #${issueNumber}`);
+                await github.rest.issues.removeLabel({
                   owner,
                   repo,
                   issue_number: issueNumber,
@@ -35,4 +36,16 @@ jobs:
                 });
               }
             }
+
+            const assignees = context.payload.issue.assignees.map(a => a.login);
+            if (assignees.length !=== 0) {
+              console.log(`Removing assignees ${assignees} from #${issueNumber}`);
+              await github.rest.issues.removeAssignees({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                assignees: assignees,
+              });
+            }
+
 
