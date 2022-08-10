@@ -12,10 +12,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(JSON.stringify(context.issue.assignees, 0, 4))
+            console.log('CONTEXT');
+            console.log(context);
+            console.log('ISSUE');
+            context.log(context.payload.issue);
+            console.log('ASSIGNEES');
+            console.log(JSON.stringify(context.payload.issue.assignees, 0, 4))
 
-            const labelName = context.label.name;
-            const senderName = context.sender.login;
+            const labelName = context.payload.label.name;
+            const senderName = context.payload.sender.login;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const issueNumber = context.issue.number;
