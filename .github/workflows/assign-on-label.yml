@@ -12,21 +12,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log('CONTEXT');
-            console.log(context);
-            console.log('ISSUE');
-            console.log(context.payload.issue);
-            console.log('ASSIGNEES');
-            console.log(JSON.stringify(context.payload.issue.assignees, 0, 4))
-
             const labelName = context.payload.label.name;
             const senderName = context.payload.sender.login;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const issueNumber = context.issue.number;
+            const assignees = context.payload.issue.assignees.map(a => a.login);
 
-            if (labelName === 'A: In progress') {
-              github.issues.addAssignees({
+            if (labelName === 'A: In progress' && !assignees.inclues(senderName)) {
+              console.log(`Adding ${senderName} to the #${issueNumber} assignees`);
+              await github.issues.addAssignees({
                 owner,
                 repo,
                 issue_number: issueNumber,
