@@ -12,4 +12,19 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(context)
+            console.log(JSON.stringify(context.issue.assignees, 0, 4))
+
+            const labelName = context.label.name;
+            const senderName = context.sender.login;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issueNumber = context.issue.number;
+
+            if (labelName === 'A: In progress') {
+              github.issues.addAssignees({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                assignees: [ senderName ],
+              });
+            }
