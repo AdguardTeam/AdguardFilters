@@ -20,8 +20,8 @@ jobs:
             const assignees = context.payload.issue.assignees.map(a => a.login);
 
             if (labelName === 'A: In progress' && !assignees.includes(senderName)) {
-              console.log(`Adding ${senderName} to the #${issueNumber} assignees`);
-              await github.issues.addAssignees({
+              console.log(`Adding @${senderName} to the #${issueNumber} assignees`);
+              await github.rest.issues.addAssignees({
                 owner,
                 repo,
                 issue_number: issueNumber,
