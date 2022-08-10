@@ -1,4 +1,4 @@
-name: "Remove 'A: Resolved', 'A: Cannot reproduce' labels and Assigne when issue is reopened"
+name: "Remove status labels and assignee when issue is reopened"
 
 on:
   issues:
@@ -24,7 +24,7 @@ jobs:
 
             var issueLabels = issueLabelsRaw.data.map((el) => el.name);
 
-            const labelsToRemove = [ 'A: Resolved', 'A: Cannot reproduce' ];
+            const labelsToRemove = [ 'A: Resolved', 'A: Cannot reproduce', 'A: In progress' ];
             for (let label of labelsToRemove) {
               if (issueLabels.includes(label)) {
                 console.log(`Removing ${label} from #${issueNumber}`);
@@ -38,7 +38,7 @@ jobs:
             }
 
             const assignees = context.payload.issue.assignees.map(a => a.login);
-            if (assignees.length !=== 0) {
+            if (assignees.length !== 0) {
               console.log(`Removing assignees ${assignees} from #${issueNumber}`);
               await github.rest.issues.removeAssignees({
                 owner,
