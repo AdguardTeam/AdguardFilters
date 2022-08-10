@@ -1,0 +1,15 @@
+name: "Add Assignee when is labeled with 'A: In progress'"
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            console.log(context)
