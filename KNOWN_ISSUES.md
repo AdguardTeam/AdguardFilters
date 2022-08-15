@@ -10,3 +10,7 @@ It seems, fixed in https://github.com/AdguardTeam/FiltersRegistry/pull/655
     * https://github.com/AdguardTeam/AdguardForiOS/issues/2027
     * https://github.com/AdguardTeam/AdguardForiOS/issues/2026
     * https://github.com/AdguardTeam/AdguardForiOS/issues/1970
+
+2. ### Problem: Stealth Mode causes CORS policy errors, and exclusiond does not help
+
+Reported: https://github.com/AdguardTeam/CoreLibs/issues/1661
