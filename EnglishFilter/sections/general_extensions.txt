@@ -287,6 +287,9 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/124745
+! TODO: use scriptlet when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/202
+player.theplatform.com#%#(()=>{window.XMLHttpRequest.prototype.open=new Proxy(window.XMLHttpRequest.prototype.open,{apply:async(a,b,c)=>{const d=c[1];return"string"!=typeof d||0===d.length?Reflect.apply(a,b,c):(d.match(/manifest\..*\.theplatform\.com\/.*\/.*\.m3u8\?.*|manifest\..*\.theplatform\.com\/.*\/*\.meta.*/)&&b.addEventListener("readystatechange",function(){if(4===b.readyState){const a=b.response;Object.defineProperty(b,"response",{writable:!0}),Object.defineProperty(b,"responseText",{writable:!0});const c=a.replaceAll(/#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/g,"");b.response=c,b.responseText=c}}),Reflect.apply(a,b,c))}})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126547
 maxstream.video#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124322
@@ -3761,6 +3764,11 @@ mobilapk.com#%#AG_onLoad(function() { setTimeout(function() {document.getElement
 !-------CSS---------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/127561
+!+ NOT_PLATFORM(ios, android)
+4tube.com#$##listingFirstRow { width: 100%!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/127517
+thequint.com#$#.content { margin-top: 160px!important; }
 ! https://www.wsj.com/articles/becky-hammon-las-vegas-aces-wnba-11660309231 placeholder
 wsj.com#$#.wsj-16h9qyj-Box { min-height: auto !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126835
