@@ -57,7 +57,7 @@ COMMITPATTERN = re.compile(r"^(A|M|P)\:\s(\((.+)\)\s)?(.*)$")
 # List the files that should not be sorted, either because they have a special sorting system or because they are not filter files
 IGNORE = (
     "CC-BY-SA.txt", "easytest.txt", "GPL.txt", "MPL.txt", "filter.txt", "exclusions.txt", "general_extensions.txt",
-    "antiadblock.txt", "foreign.txt", "whitelist.txt", "general_js_api.txt", "whitelist_stealth.txt",
+    "antiadblock.txt", "foreign.txt", "allowlist.txt", "general_js_api.txt", "allowlist_stealth.txt",
     "enhancedstats-addon.txt", "fanboy-tracking", "firefox-regional", "other")
 
 # List all Adblock Plus options (excepting domain, which is handled separately), as of version 1.3.9
