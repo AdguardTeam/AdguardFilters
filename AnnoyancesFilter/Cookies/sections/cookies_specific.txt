@@ -10000,13 +10000,7 @@ trouw.nl#%#AG_onLoad(function() { var check = document.getElementsByClassName('s
 volkskrant.nl#%#AG_onLoad(function() { setTimeout(function() {if(document.getElementsByClassName("modal-overlay")[0].isvisible = true){document.getElementsByClassName("button button--accept")[0].click();}}, 300); });
 ziekenhuis.nl#%#AG_onLoad(function() { setTimeout(function() {var check = document.getElementsByClassName('cookiewall')[0]; if (check){document.cookie = "acceptcookies=true"; location.reload();}; }, 300); });
 ! youtube - new cookie window
-! https://github.com/AdguardTeam/Scriptlets/issues/212
-! TODO: replace the rule with a scriptlet `set-cookie-reload` when it is improved
-youtube.com#%#(function(){window.self!==window.top||document.cookie.includes("visitor=")||(document.cookie="visitor=1; path=/;",document.cookie&&location.reload())})();
-! revert this rule if the above rule breaks something
-! youtube.com#%#AG_onLoad(function(){if(document.cookie.indexOf('CONSENT=YES+yt.') === -1){var a=new MutationObserver(function(){var b=document.querySelector('.termlinks + div[class*="ytd-consent-bump-"] > ytd-button-renderer:last-child');b&&(a.disconnect(),b.click())});a.observe(document,{childList:!0,subtree:!0});setTimeout(function(){a.disconnect()},1E4)}});
-!+ PLATFORM(ios)
-m.youtube.com#%#//scriptlet('set-cookie-reload', 'visitor', '1')
+youtube.com#%#//scriptlet('set-cookie-reload', 'visitor', '1')
 ! https://gist.github.com/AdamWr/b32688adb0393d31525f445ee5ab4302#file-gistfile1-txt
 google.*,youtube.com#%#(function(){try{var time=(new Date).getTime();var cookieDate=new Date(time+1314E6);var hostname=location.host;var locSubString=null;if(!hostname.startsWith("google.")&&!hostname.startsWith("youtube."))locSubString=hostname.substring(hostname.indexOf(".")+1);var loc=locSubString||hostname;if(document.cookie.indexOf("CONSENT=YES")!==-1)return;document.cookie="CONSENT=YES+; domain="+loc+"; path=/; expires="+cookieDate.toUTCString()}catch(ex){console.error("AG: failed to set consent cookie: "+ex)}})();
 ! NOTE: Specific rules(JS) end ⬆️
