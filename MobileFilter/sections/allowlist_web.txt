@@ -2,7 +2,7 @@
 ! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
 !
 ! Good: example.org#@#.ad
-! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !
 ! ##### TEMPORARY START #####
@@ -23,6 +23,11 @@
 @@||cdn.ampproject.org/v0.js$domain=novosti-n.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115709
 ign.com#@#.zad.billboard
+! Crunchyroll
+!+ PLATFORM(ios)
+@@||api.crunchyroll.com/log_ad_event.0.json
+!+ PLATFORM(ios)
+@@||v.fwmrm.net/ad/*&resp=vast2
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114968
 @@||g.doubleclick.net/tag/js/gpt.js$domain=koigaku.machicon.jp
 @@||g.doubleclick.net/gpt/pubads_impl_$script,domain=koigaku.machicon.jp
@@ -42,28 +47,14 @@ safeframe.googlesyndication.com###towerVideo
 @@||partner1.cashback.zen.com/aff_
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103481
 matomedane.jp#@##AdvHeader
-! https://github.com/AdguardTeam/AdguardFilters/issues/100669
-@@||g.doubleclick.net^$app=jp.co.alc.eow
-@@||seal.globalsign.com^$app=jp.co.alc.eow
-@@||smartnews-ads.com^$app=jp.co.alc.eow
-@@||static.ads-twitter.com^$app=jp.co.alc.eow
-@@||trj.valuecommerce.com^$app=jp.co.alc.eow
-! https://play.google.com/store/apps/details?id=com.ss.android.article.topbuzzvideo connection error
-@@||i*-tb.isnssdk.com^$app=com.ss.android.article.topbuzzvideo
-@@||i.isnssdk.com^$app=com.ss.android.article.topbuzzvideo
-@@||isub.isnssdk.com^$app=com.ss.android.article.topbuzzvideo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98108
 nashemisto.dp.ua,5692.com.ua,048.ua$@$amp-ad
-! https://github.com/AdguardTeam/AdguardFilters/issues/96947
-@@||imasdk.googleapis.com^$app=pl.polsatgo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95096
 !+ PLATFORM(android)
 @@||10015.io^$content
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92164
 !+ PLATFORM(ios, ext_safari)
 @@||dotomi.com^$domain=dotomi.com
-! https://github.com/AdguardTeam/AdguardForAndroid/issues/3933#issuecomment-895091276
-@@||imasdk.googleapis.com^$app=com.zattoo.player|com.sfr.android.redtv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88141
 @@||sf*-*cdn-tos.pstatp.com^$domain=juejin.cn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/86726
@@ -151,8 +142,6 @@ businessinsider.co.za#@#.ad-loaded
 @@||guce.advertising.com/collectIdentifiers
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34162
 niji-gazo.com#@#.ad-block
-! https://github.com/AdguardTeam/AdguardFilters/issues/35772
-@@||imasdk.googleapis.com^$app=jp.naver.line.android
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36227
 @@||ci.phncdn.com/www-static/js/vmobile/flipbook.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24587
@@ -174,16 +163,12 @@ m.veporns.com#@##topAds
 @@||b92.net/a/cmt_submit.php$document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26698
 @@||leanplum.com^$domain=nbc.com|leanplum.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/26520
-@@||imasdk.googleapis.com^$app=tv.fourgtv.fourgtv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22203
 !#if (adguard_app_android)
 @@||hydrax.net/players^
 @@||mp4upload.com/jw/jwplayer.js
 @@||cdn.jsdelivr.net/npm/jquery@
 !#endif
-! com.jellybtn.cashkingmobile - fixing permanent network requests
-@@||wd.adcolony.com^|$app=com.jellybtn.cashkingmobile
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23772
 @@||pics.porndroids.com^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18815
@@ -257,8 +242,6 @@ med1.de#@#div[id^="imAd_"]
 vorsprung-online.de#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8001
 reviews.mtbr.com#@#.header-ad
-! https://github.com/AdguardTeam/AdguardFilters/issues/7916
-@@||imasdk.googleapis.com/native/core/*/native_bridge__*.js$app=com.pelmorex.WeatherEyeAndroid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6807
 @@||hdzog.com/assets/$domain=m.hdzog.com
 @@||hdzog.com/get_file/$domain=m.hdzog.com
@@ -277,12 +260,6 @@ olx.ro#@#DIV[class^="banner"]
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_$script,domain=m.timesofindia.com
 @@||mobileads.indiatimes.com/Web_Ads/js/22april16/prebid_1.js$script,domain=m.timesofindia.com
 timesofindia.indiatimes.com#@#style[type="text/css"] + div[class]:not([id]):not([style]):not([class*=" "])
-! https://github.com/AdguardTeam/AdguardFilters/issues/976
-@@||imasdk.googleapis.com/native/core/*/native_bridge__*.js$app=com.crunchyroll.crunchyroid
-! https://github.com/AdguardTeam/AdguardForAndroid/issues/1256
-@@||bats.video.yahoo.com$app=com.yahoo.mobile.client.android.mail
-! https://github.com/AdguardTeam/AdguardFilters/issues/5539
-@@||imasdk.googleapis.com/native/core/*/native_bridge_*.js$app=com.sonyliv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3708
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=m.legacy.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5005
@@ -290,8 +267,6 @@ timesofindia.indiatimes.com#@#style[type="text/css"] + div[class]:not([id]):not(
 ! https://forum.adguard.com/index.php?threads/21029/
 @@||pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1&output=xml_vast*&url=http%3A%2F%2Famp.usatoday.com
 @@||players.brightcove.net/*/index.html?videoId=$domain=amp.usatoday.com
-! https://github.com/AdguardTeam/AdguardForAndroid/issues/1160
-@@||api.branch.io^$app=com.reddit.frontpage
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4659
 @@||report-ads-to.pubnation.com/dist/pnr.js?t=$domain=m.neogaf.com
 ! https://github.com/AdguardTeam/AdguardDNS/issues/64
@@ -323,27 +298,16 @@ m.veporn.net#@#.advertisment
 m.veporn.net#@##topAds
 ! https://forum.adguard.com/index.php?threads/16893/
 @@||g.doubleclick.net/gpt/pubads_impl_$script,domain=ukr.net
-! https://github.com/AdguardTeam/AdguardFilters/issues/3610
-@@||mafia-rules.net^$app=net.bestmafia,document
-! https://github.com/AdguardTeam/AdguardForAndroid/issues/925
-@@||config2.mparticle.com^$app=via.rider
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3492
 @@||b.marfeel.com/statics/marfeel/gardac.js$domain=applesencia.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/3465
-@@||rutube.ru/play/embed/*?advertiser_id=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3451
 @@||forums.windowscentral.com^$script,~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3310
 @@||android-api-de.gumtree.com/api/users/*/ads.json
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1275
 idownloadblog.com#@#.header-ad
-! Play Music mad blocked counter issue
-@@||doubleclick.net^$app=com.google.android.music
-@@||googleadservices.com^$app=com.google.android.music
 ! redtube.com - fixing icons
 @@||static.redtube.com/mobi/images/$domain=redtube.com|redtube.net
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/2153
-@@||ads.adfox.ru/*/getCode$app=ru.infoshell.android
 ! https://forum.adguard.com/index.php?threads/12453/
 @@||popads.net^$domain=popads.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2676
@@ -420,10 +384,6 @@ deviantart.com#@#.mobile-ad
 @@||android.clients.google.com/market/GetBinary/$document
 !+ PLATFORM(android)
 @@||play.google.com/store/apps/$document
-! Youtube & Samsung issue: https://github.com/AdguardTeam/AdguardForAndroid/issues/986
-@@||googleadservices.com^|$app=com.google.android.youtube
-! https://github.com/AdguardTeam/AdguardFilters/issues/100525
-@@||imasdk.googleapis.com^$app=fr.tf1.mytf1
 ! Do not break Taboola newsfeed in the samsung browser.
 ! It is used as a homepage there.
 ! https://news.internet.apps.samsung.com

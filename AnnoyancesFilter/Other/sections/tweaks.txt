@@ -2,7 +2,7 @@
 ! This section contains the list of rules that are used for UI tweaks and other similar cases. For instance, we unblock the right context menu or unblock selecting text on a webpage.
 !
 ! Good: any type of the rules will be good
-! Bad: @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+! Bad: @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !##############################
 !######### CSS tweaks #########
@@ -421,6 +421,14 @@ newsweek.com##iframe[src="http://sns.europe.newsweek.com/newsletter?popup=1"]
 !##############################
 ! SECTION: Tweaks - JS
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/128081
+freeudemycourse.com#%#//scriptlet("adjust-setInterval", "countdownwrapper", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/128080
+course-downloader.com#%#//scriptlet("adjust-setTimeout", "countDown", "", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/128026
+modshost.net#%#//scriptlet("adjust-setInterval", "timeleft", "*", "0.02")
+! https://github.com/AdguardTeam/AdguardFilters/issues/128036
+codenova-center.web.app#%#//scriptlet("adjust-setInterval", "contador", "*", "0.02")
 ! http://adfoc.us/serve/?id=47525085215776
 adfoc.us#%#//scriptlet("set-constant", "count", "0")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127047
@@ -1664,14 +1672,6 @@ cheatsquad.gg#%#//scriptlet("set-constant", "youtube", "1")
 wowroms.com#%#AG_onLoad(function() { setTimeout(function() { second = 0; }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37731
 imgfile.net#%#//scriptlet("adjust-setInterval", ".timer-link", "", "0.02")
-! https://github.com/AdguardTeam/AdguardFilters/issues/46442
-! TODO: Change AG_setConstant to scripltet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/65
-!+ PLATFORM(ext_ff, ext_opera)
-rysafe.blogspot.com#%#//scriptlet("set-constant", "safelink.counter", "0")
-!+ NOT_PLATFORM(ext_ff, ext_opera)
-rysafe.blogspot.com#%#AG_setConstant('safelink.counter', '0');
-rysafe.blogspot.com#%#AG_setConstant('safelink.click2x', 'false');
-rysafe.blogspot.com#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector('.result > a[href^="http"]'); if(el) { location = el.href; } }, 2000); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46530
 !+ NOT_PLATFORM(windows, mac, android)
 sfile.mobi#%#//scriptlet("adjust-setInterval", "downloadButton", "", "0.02")
@@ -1758,8 +1758,9 @@ prayersalltime.com,letsdownloads.com#%#AG_onLoad(function() { var el=document.qu
 newsteez.com#%#AG_onLoad(function() { var el=document.querySelector("#wpsafe-linkio > a[href]");if(el){var elHref=el.href,dest=elHref.split("?safelink_redirect=http://blankrefer.com/?");dest&&dest[1]&&(window.location=dest[1])}; });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38600
 onioncloud.stream,ihls.pro#%#(function(){var c=window.setInterval;window.setInterval=function(a,b){return 1E3===b&&/#pleasewait/.test(a.toString())&&(b*=.01),c.apply(this,arguments)}.bind(window);window.addEventListener("DOMContentLoaded",function(){setTimeout(function(){var a=document.querySelector('a[href^="https://ihls.stream/public/"].redirect');a&&a.click()},300)})})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/127886
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38558
-boost.ink#%#(function(){var b=new MutationObserver(function(){var a=document.querySelector('script[src^="/assets/js/unlock.js"][version]');if(a){var c=a.getAttribute("version");c&&setTimeout(function(){window.location=atob(c)},500)}});b.observe(document,{childList:!0,subtree:!0})})();
+boost.ink#%#(()=>{const a=new MutationObserver(function(){const b=document.querySelector("script[src^=\"/assets/js/unlock.js\"]");if(b){a.disconnect();let c;for(let a of b.attributes)if(a.textContent.includes("aHR0c")){c=a.textContent;break}c&&setTimeout(function(){location.assign(atob(c))},500)}});a.observe(document,{childList:!0,subtree:!0})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38274
 k2nblog.com#%#!function(){if(-1<location.pathname.indexOf("/linkdl.htm")){var b64dest=location.href.split("linkdl.html?url=");if(b64dest&&b64dest[1]){location=atob(b64dest[1]);}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123405
@@ -1777,7 +1778,7 @@ huljjang.com,hulblog.com,omgmusik.com,omglyrics.com#%#!function(){if(-1<window.l
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35379
 hexafile.net#%#AG_onLoad(function(){if(window.location.href.match(/hexafile\.net\/[a-zA-Z\d]+$/)){var a=document.body.textContent.match(/\("\.link-content"\)\,[\s\S]*?="(https?:\/\/[\s\S]*?)"/);if(a&&a[1])location=a[1];}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35141
-alfonzoheriberto.pro,freddyoctavio.pro,nathanaeldan.pro,orvilleandrea.pro,christianivory.pro,darenjarvis.pro,todhamilton.pro,eloypatrick.pro,richardwashington.pro,elbaestes.pro,willianpadilla.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
+davisonbarker.pro,alfonzoheriberto.pro,freddyoctavio.pro,nathanaeldan.pro,orvilleandrea.pro,christianivory.pro,darenjarvis.pro,todhamilton.pro,eloypatrick.pro,richardwashington.pro,elbaestes.pro,willianpadilla.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 moshemartin.pro,samcunningham.pro,rudyvalencia.pro,delmarmora.pro,lucienmann.pro,debrahinton.pro,ramirocampos.pro,sherwoodsutton.pro,bethanyharrell.pro#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 michellehardin.pro,ecleneue.com#%#!function(){if(-1<location.pathname.indexOf("/pushredirect/")){var url=new URL(window.location.href); var dest=url.searchParams.get('dest'); if(dest){location=dest;}}}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34990
@@ -1943,6 +1944,7 @@ qanda.ai##div[class^="Picture__Protector-"]
 codedosa.com###wpcp-error-message
 !--- CSS ---
 ! NOTE: Context menu - CSS
+author.today#$#.noselect { -webkit-touch-callout: default!important; -moz-user-select: text!important; -webkit-user-select: text!important; -ms-user-select: text!important; -o-user-select: text!important; user-select: text!important; -khtml-user-select: text!important; }
 nbcnews.com#$#.videoPlayer { position: static !important; }
 moidom.citylink.pro#$#.player-balloon { min-height: auto !important; }
 tomshw.it#$#body .page-bottom { margin-top: 38px !important; }
@@ -2037,11 +2039,11 @@ mathbang.net,teus.me,untitle.org,gaesae.com,onna.kr,archwin.net,funfunhan.com,on
 ! #%#//scriptlet('abort-on-property-read', 'disable_copy')
 neo-blood.co.jp,machow2.com,rawneix.in,mangacrab.com,metalnaveia66.com,bollywoodhindi.in,kdramasurdu.net,theturtleislandnews.com,audiotools.in,audiobookcup.com,lapandilladelarejilla.es,7misr4day.com,michaelemad.com,lazytranslations.com,wartaterkini.news,hunter-xhunter.com,foxaholic.com,koreanaddict.net,jstranslations1.com,baltasar5010purohentai.com,tokubatch.com,clockks.com,iptv4best.com,reinodekovel.com,elektrikmen.com,world4.eu,activationkeys.co,samuraiscan.com#%#//scriptlet('abort-on-property-read', 'disable_copy')
 ! #%#//scriptlet('abort-on-property-read', 'getSelection')
-salgoonews.com,postshare.co.kr,rbc.ru,epnc.co.kr,wolyo.co.kr,hinfomax.co.kr,outdoornews.co.kr,anekdoty.ru,championat.com,bloombergquint.com,kinogo-net-hd.ru,bigcinema-online.net,bigcinema-tv.club,gidonline-kino.club,kinogo-2017.com,kinogo-720.club,kinogo.club,kinogoonline.club,season-var.net,topcinema.tv,kinogo2.net,kino-kingdom.com,hd-kinogo.co#%#//scriptlet('abort-on-property-read', 'getSelection')
+aitimes.kr,salgoonews.com,postshare.co.kr,rbc.ru,epnc.co.kr,wolyo.co.kr,hinfomax.co.kr,outdoornews.co.kr,anekdoty.ru,championat.com,bloombergquint.com,kinogo-net-hd.ru,bigcinema-online.net,bigcinema-tv.club,gidonline-kino.club,kinogo-2017.com,kinogo-720.club,kinogo.club,kinogoonline.club,season-var.net,topcinema.tv,kinogo2.net,kino-kingdom.com,hd-kinogo.co#%#//scriptlet('abort-on-property-read', 'getSelection')
 ! #%#//scriptlet('abort-on-property-read', 'disableSelection')
 osomatsusan.hatenablog.com,iembra2or.com,battle-one.com,terbit21.online,wizardsubs.com,audio-sound-premium.com,sysnettechsolutions.com,mustafabukulmez.com,ifdreamscametrue.com#%#//scriptlet('abort-on-property-read', 'disableSelection')
 ! #%#//scriptlet('remove-attr', 'oncontextmenu|onselectstart|ondragstart', 'body')
-venturesquare.net,spooncast.net,rdsong.com,slist.kr,3dpchip.com,lover91.net,novelpia.com,dragonball-tube.com,onepiece-tube.com,fairytail-tube.org,baho.com.tr,wholehk.com,siyasetcafe.com,webtv.dothome.co.kr,outdoornews.co.kr,egloos.com,novel.naver.com,eskisehirekspres.net#%#//scriptlet('remove-attr', 'oncontextmenu|onselectstart|ondragstart', 'body')
+edujin.co.kr,venturesquare.net,spooncast.net,rdsong.com,slist.kr,3dpchip.com,lover91.net,novelpia.com,dragonball-tube.com,onepiece-tube.com,fairytail-tube.org,baho.com.tr,wholehk.com,siyasetcafe.com,webtv.dothome.co.kr,outdoornews.co.kr,egloos.com,novel.naver.com,eskisehirekspres.net#%#//scriptlet('remove-attr', 'oncontextmenu|onselectstart|ondragstart', 'body')
 ! #%#//scriptlet('set-constant', 'disableEnterKey', 'noopFunc')
 legionscans.com,a2zapk.com,flinsetyadi.com,theaircurrent.com,fully-fundedscholarships.com,now.rememberapp.co.kr,codedosa.com,gradium.co.kr,semesters.in#%#//scriptlet('set-constant', 'disableEnterKey', 'noopFunc')
 ! #%#//scriptlet('abort-current-inline-script', 'document.onselectstart')
@@ -2053,6 +2055,7 @@ jootc.com,dora-guide.com,codedosa.com,gradium.co.kr,semesters.in#%#//scriptlet("
 ! #%#//scriptlet("set-constant", 'disable_copy_ie', 'noopFunc')
 jootc.com,dora-guide.com,codedosa.com,gradium.co.kr,semesters.in#%#//scriptlet("set-constant", "disable_copy_ie", "noopFunc")
 !
+author.today#%#//scriptlet('remove-attr', 'oncontextmenu|onselectstart|ondragstart|onmousedown|unselectable', '.noselect')
 123pan.com#%#//scriptlet('prevent-addEventListener', 'contextmenu', '[native code]')
 dizilab9.com#%#//scriptlet("set-constant", "vidcheck", "1")
 comeinsidebox.com,ezms.link#%#//scriptlet("abort-current-inline-script", "addEventListener", "blockEvent")

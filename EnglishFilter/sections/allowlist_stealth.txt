@@ -2,7 +2,7 @@
 ! This section contains the list of rules that fix Stealth Mode issues. Rules should be domain-specific.
 !
 ! Good: @@||example.org^$stealth
-! Bad:  example.org#@#.ad (should be in AdGuard Base - whitelist.txt)
+! Bad:  example.org#@#.ad (should be in AdGuard Base - allowlist.txt)
 !
 ! TODO: change the rules when https://github.com/AdguardTeam/CoreLibs/issues/1224 will be supported by apps and extensions
 !
@@ -10,6 +10,7 @@
 ! https://github.com/AdguardTeam/CoreLibs/issues/1645 [Stealth Mode - Protect from DPI]
 ! TODO: change the current modifier to `$stealth=dpi` when CL1.10 will be available in the app release channel
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+@@||mpt.gov.by^$stealth
 @@||bachhoaxanh.com^$stealth
 @@||mojedatovaschranka.cz^$stealth
 @@||osym.gov.tr^$stealth
@@ -23,13 +24,14 @@
 @@||bankrespublika.az^$stealth
 @@||aztelekom.az^$stealth
 @@||ghxi.com^$stealth
-@@||thegioididong.com^$stealth
 @@||mfah.org^$stealth
 @@||blog.torproject.org^$stealth
 @@||mil.by^$stealth
 @@||pravo.by^$stealth
 @@||tvr.by^$stealth
 @@||beltelecom.by^$stealth
+!+ NOT_OPTIMIZED
+@@||thegioididong.com^$stealth
 !#endif
 ! https://github.com/AdguardTeam/CoreLibs/issues/1603
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112161
@@ -67,6 +69,10 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/127656#issuecomment-1227726814 [Stealth Mode - IP hiding]
+@@||stream.voidboost.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127859
+@@||ok.ru/videoembed/$domain=boosty.to,stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127859 [Stealth Mode - IP hiding]
 @@||images.boosty.to^$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127703 [Stealth Mode - Referrer]
@@ -1580,8 +1586,6 @@
 @@||girafa.com.br^$stealth
 ! https://forum.adguard.com/index.php?threads/8tracks-com-windows-youtube-video-keeps-buffering.23414/ [Stealth Mode - Referrer]
 @@||8tracks.com^$stealth
-! https://github.com/AdguardTeam/AdguardFilters/issues/5585 [Stealth Mode - Referrer]
-@@||rutube.ru/play/embed/$stealth
 ! https://forum.adguard.com/index.php?threads/resolved-http-www-dizigold-org.18356/#post-122052 [Stealth Mode - Hide search queries]
 @@||dizigold.org^$stealth
 !https://forum.adguard.com/index.php?threads/iha-com-tr.15027/

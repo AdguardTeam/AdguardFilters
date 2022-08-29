@@ -3,12 +3,15 @@
 
 !
 ! Good: example.org#@#.ad
-! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !
 !#########################################
 ! START: Temporary
 !
+! https://github.com/easylist/easylist/issues/13103
+nybooks.com#@#.top-ad-wrapper
+nybooks.com##.ad-spacing
 ! adguard-dns.io - fixing domain check in user filter
 @@||api.adguard-dns.io/api/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124894
@@ -90,9 +93,6 @@ adcripto.com#@#a[href^="https://goraps.com/"]
 ! Broken images
 ! Reported to EasyList
 @@||hackread.com/wp-content/uploads/2021/08/google-ads-malware-$image
-! unbreak ad8.jp
-/ad8.$badfilter
-/ad8.$domain=~ad8.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104184
 @@||ssl.sdcdn.com/cms/ads/*$domain=stardoll.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101108
@@ -404,6 +404,24 @@ copypastecharacter.com#$##contents { visibility: visible!important; }
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/128221
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+@@||cdn.adswizz.com/adswizz/js/SynchroClient*.js$domain=jacarandafm.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128112
+!+ PLATFORM(ios, ext_safari)
+@@||adcr.naver.com^$domain=naver.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128133
+!+ PLATFORM(ios)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=abcnews.go.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/127984
+@@||teachoo.com/static/html/js/ad_footer.js$domain=teachoo.com
+@@||teachoo.com/static/html/js/prebid.js$domain=teachoo.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/127617
+@@||a.realsrv.com/ad-provider.js$domain=koushoku.org
+@@||syndication.realsrv.com/$domain=koushoku.org
+koushoku.org#@#.exo-native-widget-outer-container
+koushoku.org#@#.adsbyexoclick
+koushoku.org#@#.exo-native-widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127175
 @@||coinpayu.com/assets/ads_$domain=coinpayu.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127573
@@ -537,8 +555,8 @@ tomshardware.com#@#.sponsored-article
 !+ PLATFORM(windows, mac, android)
 @@||prod.pandateacher.com/web-fos/app/$xmlhttprequest,elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118378
-$popup,third-party,domain=housecardsummerbutton.com|fittingcentermondaysunday.com|reputationsheriffkennethsand.com|launchreliantcleaverriver.com|audaciousdefaulthouse.com|v-o-e-unblock.com|un-block-voe.net|voeun-block.net|voe-un-block.com|voeunblk.com|voeunblck.com|voeunbl0ck.com|voeunblock3.com|voeunblock2.com|voeunblock1.com|voeunblock.com|voe-unblock.*|voe.bar|voe.sx,badfilter
-/^https?:\/\/.*\.(club|net|xyz|top|casa)\//$popup,domain=housecardsummerbutton.com|fittingcentermondaysunday.com|reputationsheriffkennethsand.com|launchreliantcleaverriver.com|audaciousdefaulthouse.com|v-o-e-unblock.com|un-block-voe.net|voeun-block.net|voe-un-block.com|voeunblk.com|voeunblck.com|voeunbl0ck.com|voeunblock3.com|voeunblock2.com|voeunblock1.com|voeunblock.com|voe-unblock.*|voe.bar|voe.sx,badfilter
+$popup,third-party,domain=bigclatterhomesguideservice.com|housecardsummerbutton.com|fittingcentermondaysunday.com|reputationsheriffkennethsand.com|launchreliantcleaverriver.com|audaciousdefaulthouse.com|v-o-e-unblock.com|un-block-voe.net|voeun-block.net|voe-un-block.com|voeunblk.com|voeunblck.com|voeunbl0ck.com|voeunblock3.com|voeunblock2.com|voeunblock1.com|voeunblock.com|voe-unblock.*|voe.bar|voe.sx,badfilter
+/^https?:\/\/.*\.(club|net|xyz|top|casa)\//$popup,domain=bigclatterhomesguideservice.com|housecardsummerbutton.com|fittingcentermondaysunday.com|reputationsheriffkennethsand.com|launchreliantcleaverriver.com|audaciousdefaulthouse.com|v-o-e-unblock.com|un-block-voe.net|voeun-block.net|voe-un-block.com|voeunblk.com|voeunblck.com|voeunbl0ck.com|voeunblock3.com|voeunblock2.com|voeunblock1.com|voeunblock.com|voe-unblock.*|voe.bar|voe.sx,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118335
 xdpedia.com#@#div[id^="ezoic-pub-ad-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118188
@@ -789,7 +807,7 @@ linkjust.com#@#.banner-728x90
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98103
 @@||vidembed.cc/encrypt-ajax.php?id=
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97003
-bharian.com.my,nst.com.my#@#.sticky-ad
+hmetro.com.my,bharian.com.my,nst.com.my#@#.sticky-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97961
 ironsaga-msoku.xyz#@#.ad.widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96482
@@ -1293,8 +1311,6 @@ roomer.ru#@#.section-ads
 inky.dk,inky.fi,inky.no,inky.se#@#iframe[width="200"][height="240"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67839
 @@||c.amazon-adsystem.com/aax2/apstag.js$domain=wgntv.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/67733
-@@||miohentai.com/wp-content/themes/frontier/video-ads/assets/js/videojs-vast5.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67578
 @@||cdn.bluebillywig.com/apps/player/*/components/admanager.js$domain=eurogamer.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67447

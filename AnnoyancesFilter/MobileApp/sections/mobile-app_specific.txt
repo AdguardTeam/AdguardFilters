@@ -3,12 +3,17 @@
 ! Note, that the file consists of multiple sections for different purposes. For instance, there is a section for exceptions and some platform-specific sections.
 !
 ! Good: any type of the rules will be good
-! Bad: example.org#@##smartbanner.ios (should be in AdGuard Base - mobile-app_whitelist.txt)
+! Bad: example.org#@##smartbanner.ios (should be in AdGuard Base - mobile-app_allowlist.txt)
 !
 ! HINTS are at the end of Specific section
 !
 ! SECTION: Mobile apps - Regular rules
 !
+atlasbus.ru#%#(function(){-1==document.cookie.indexOf("native-app-topper")&&(document.cookie="native-app-topper="+Date.now()+"; path=/;",location.reload())})();
+dolap.com#?#.fancybox-overlay > .fancybox-wrap:has(div.fancybox-inner > div.redirectToDownloadApp)
+dolap.com#$#.fancybox-lock { overflow: auto !important }
+tripmydream.com#?#.mediaSP__center > div.mediaIncut:has(> div.mediaIncut__content > p > a[data-type="iosapp"])
+appledaily.com.tw##a[href="https://feature.appledaily.com.tw/apppromo/"]
 [$path=/chat]yandex.*##.yamb-mobile-app-suggest-block
 aliexpress.com##.mobile-app
 mzh.moegirl.org.cn#?#.header > div:not([class]) > button.download-app:upward(1)
@@ -60,7 +65,6 @@ gibiru.com##.icon-mobile-app
 gibiru.com##.lead > div[class^="visible"]
 s-pulse.co.jp##.contents a[href="/fan/app/spulseapp_lp"]
 islambook.com###page-loader + div.panel-danger
-discord.com##nav + div[class^="base-"] > div[class^="notice-"]
 linkedin.com##.base-promo
 green-japan.com#?#.MuiBox-root > a[href^="https://greenlink.onelink.me/ACx6/"]:upward(1)
 mercari.com###getTheAppFooter
@@ -164,7 +168,6 @@ auto.ria.com##.entry-promo-app
 auto.ria.com##.mopile-app-banner
 flightradar24.com##.applink-container
 sankakucomplex.com###news-ticker
-check24.de#%#//scriptlet('set-cookie', 'c24FlugSplashApp', '1')
 etsy.com###web2app-shophome
 spbdnevnik.ru#%#//scriptlet('set-local-storage-item', 'getAppAddsClosed', '1')
 spbdnevnik.ru###getAppAdds
@@ -677,7 +680,7 @@ stolichki.ru#$##main-app__block { display: none !important; }
 stolichki.ru#$#div[class^="secondMenu__wrapper"] { top: 0 !important; }
 juejin.cn##.app-download-sidebar-block
 mondo.me##.footer-promo-banner
-bharian.com.my,nst.com.my#%#//scriptlet('set-cookie', 'appDownloadBanner', '1')
+hmetro.com.my,bharian.com.my,nst.com.my#%#//scriptlet('set-cookie', 'appDownloadBanner', '1')
 biz-journal.jp##.sns_apuri > a.lozad
 forum.finance.ua###banner-zone-top-forum-mobile
 zomato.com#?##root > div[class] > div[class]:has(> div[class] > div[class] > div[class] > h2:contains(Get the Zomato App))
@@ -775,7 +778,7 @@ downdetector.in,downdetector.com##.app-promo-card
 sky.com.br##a[data-gtm-label="banner-app"]
 aptoide.com##div[class^="containers__SearchInstallerContainer"]
 ucuzabilet.com#?#.content-area:has(>div.row > span > a[href="https://play.google.com/store/apps/details?id=com.ucuzabilet"])
-m.rabota.ua##alliance-shared-app-promo-banner
+rabota.ua##alliance-shared-app-promo-banner
 m.rabota.ua##app-promo-banner
 warnung.bund.de##.apphint
 bulurum.com##.MobileContainer
@@ -892,8 +895,6 @@ tinhte.vn#?#.main div.app-install-wrapper:upward(2)
 gids.tv##.promo-apps
 account.mail.ru##.mail-app-promo
 yoomoney.ru##.money-app-promo2
-m.check24.de#$#.c24m-asb { display: none !important; }
-m.check24.de#$#.c24m-asb-visible { position: absolute !important; }
 malaysiastock.biz###sideMenu_install_app
 malaysiastock.biz###div_mobileApp_Promotion
 navitime.com###white-space
@@ -1795,6 +1796,25 @@ zdf.de#$#.smartbanner { display: none !important; }
 zdf.de#$#.smartbanner-show header.b-header { top: 0 !important; }
 zdf.de#$#.smartbanner-show { margin-top: 0 !important; }
 zillow.com#$##app-upsell > .fixed-banner { display: none!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/128317
+check24.de##.c24m-ls-ap
+check24.de##.c24AppSplash
+check24.de###c24m-sab
+check24.de#$##c24asle { display: none !important; }
+check24.de#$#.qa-splash-screen { display: none !important; }
+check24.de#$##splashScreenContainer { display: none !important; }
+check24.de#$#c24m-app-splash-banner { display: none !important; }
+check24.de#$#.tko-app-splash-banner { display: none !important; }
+check24.de#$#.u-cv--hidden { content-visibility: auto !important }
+check24.de#$#html > body[class] { overflow: auto !important; }
+check24.de#%#//scriptlet('set-cookie', 'app_promo_splash_screen_close', '1')
+check24.de#%#//scriptlet('set-cookie', 'c24FlugSplashApp', '1')
+check24.de#%#//scriptlet('set-cookie', 'appsplash', '1')
+check24.de#%#//scriptlet('set-cookie', 'dslsplash', '1')
+!+ NOT_OPTIMIZED
+check24.de#$#.c24m-asb { display: none !important; }
+!+ NOT_OPTIMIZED
+check24.de#$#.c24m-asb-visible { position: absolute !important; }
 !
 ! Misc rules, removed during optimization. If some rules are in groups, no need to move them here
 !
@@ -1997,6 +2017,11 @@ google.ad,google.ae,google.al,google.am,google.as,google.at,google.az,google.ba,
 ! causes some issues: https://github.com/AdguardTeam/AdguardForMac/issues/550
 ~lafenice.io,~kurer-sreda.ru,~chorki.com,~zattoo.com,~zaycev.net,~xltrax.ee,~hitta.se,~mail.ru,~v7player.wostreaming.net,~facebook.com,~instagram.com,~drive.google.com$$link[rel="manifest"]
 !
+ifunny.co#?##App > div[class^="_"] > div > h1:contains(see iFunny in...):upward(2)
+m.shein.com##.j-config-top-banner
+travel.rakuten.co.jp###ptr_app_bnr
+coinpaprika.com##.landing-coins__app-popup
+gamerch.com##.wiki-head__menu--guide
 tokyo-calendar.jp#$##global-header-open-app-div { display: none !important; }
 tokyo-calendar.jp#$#.navbar-fixed-top[style^="top:"] { top: 0 !important; }
 beauty.ulifestyle.com.hk###Open-appLink

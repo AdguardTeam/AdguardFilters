@@ -2,7 +2,7 @@
 ! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
 !
 ! Good: example.org#@#.ad
-! Bad:  @@||example.org^$stealth (should be in AdGuard Base - whitelist_stealth.txt)
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !
 !### Temporary ###
@@ -30,6 +30,24 @@
 !#endif
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/14520
+@@||munchkin.marketo.net/munchkin.js$domain=telus.com
+! https://github.com/easylist/easylist/pull/13081/
+@@||api.ipify.org^$xmlhttprequest,domain=offering-flower.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128061
+@@||images.taboola.com/taboola/image/fetch/$image,domain=azby.fmworld.net
+||api.taboola.com/2.0/json/*/recommendations.$redirect=nooptext,domain=azby.fmworld.net
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||api.taboola.com/2.0/json/*/recommendations.$domain=azby.fmworld.net
+! https://github.com/uBlockOrigin/uAssets/issues/14408
+@@||googletagmanager.com/gtm.js$domain=upwork.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/127720
+@@||mmstat.com/eg.js$domain=player.youku.com
+! https://github.com/uBlockOrigin/uAssets/issues/14482
+@@||pv.sohu.com/cityjson$domain=vip.jsjinfu.com
+! raaga.com - play all button
+@@||googletagmanager.com/gtm.js$domain=raaga.com
+||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,important,domain=raaga.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127724
 ||googletagmanager.com/gtag/js$script,redirect=googletagmanager-gtm,domain=weathernews.jp,important
 @@||googletagmanager.com/gtag/js$script,domain=weathernews.jp
@@ -1687,8 +1705,10 @@ nnmclub.ro,nnm-club.t0r.xyz,nnm-club-me.appspot.com,nnm-club.lib,nnm-club.me,nnm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48385
 @@||dw.cbsi.com/anonc.js$domain=cbs.com
 @@||googletagmanager.com/gtag/js$domain=nbc.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128043
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48235
 @@||jssdkcdns.mparticle.com/js/v*/*/mparticle.js$domain=cwtv.com
+@@||identity.mparticle.com/v1/identify$domain=cwtv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48216
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@://www.fedex.com/Tracking?
@@ -3299,7 +3319,7 @@ mozilla-russia.org#@#img[width="88"][height="31"]
 @@||zylom.com/images/site/zylom/scripts/google-analytics.js
 @@||zynga.com/current/iframe/track.php?$domain=apps.facebook.com
 @@||beacon.guim.co.uk/accept-beacon?
-! Preliminarily whitelisting Omniture s_code tracking pixels (script versions H.25 - H.25.2) due to breakage (https://adblockplus.org/forum/viewtopic.php?f=10&t=11378) if blocking the script causes issues
+! Preliminarily allowing Omniture s_code tracking pixels (script versions H.25 - H.25.2) due to breakage (https://adblockplus.org/forum/viewtopic.php?f=10&t=11378) if blocking the script causes issues
 @@||112.2o7.net/b/ss/$image,domain=espn.com.br
 @@||122.2o7.net/b/ss/$image,domain=billetnet.dk|billettservice.no|goal.com|lippupalvelu.fi|pcworld.com|riverisland.com|techhive.com|ticketmaster.ae|ticketmaster.co.uk|ticketmaster.de|ticketmaster.ie|ticketmaster.nl|ticnet.se
 @@||fandango.com/b/ss/$image
@@ -3316,7 +3336,7 @@ mozilla-russia.org#@#img[width="88"][height="31"]
 @@||smetrics.ticketmaster.com/b/ss/$image
 @@||stat.safeway.com/b/ss/$image
 @@||walmart.com/b/ss/
-! Whitelists to fix broken pages of tracking companies
+! Allowed to fix broken pages of tracking companies
 @@||heatmap.it^$domain=heatmap.me
 ! German
 @@||a.visualrevenue.com/vrs.js$domain=t-online.de
