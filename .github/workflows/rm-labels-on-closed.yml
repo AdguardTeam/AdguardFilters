@@ -1,4 +1,4 @@
-name: "Remove 'Unsorted' labels when the issue is closed"
+name: "Remove 'A: In Progress' and 'Unsorted' labels when the issue is closed"
 
 on:
   issues:
@@ -24,7 +24,7 @@ jobs:
 
             var issueLabels = issueLabelsRaw.data.map((el) => el.name);
 
-            const labelsToRemove = [ 'Unsorted' ];
+            const labelsToRemove = [ 'A: In Progress' , 'Unsorted' ];
             for (let label of labelsToRemove) {
               if (issueLabels.includes(label)) {
                 console.log(`Removing ${label} from #${issueNumber}`);
