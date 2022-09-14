@@ -28,7 +28,7 @@ General requirements for submitting rules: don't add rules to the beginning of t
 ### AdGuard Base filter
 
 * Purpose: this filter blocks various kinds of ads mostly on English-language and multilingual sites.
-* [Base folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/EnglishFilter/sections)
+* [Base folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/BaseFilter/sections)
 * Notes: The AdGuard Base filter includes [Easylist](https://github.com/easylist/easylist) if you use AdGuard products, so there's no need to add rules which are already in `Easylist`.
 
 ### AdGuard Russian filter

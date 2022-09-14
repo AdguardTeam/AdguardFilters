@@ -5,6 +5,13 @@
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/129556
+! https://github.com/AdguardTeam/AdguardFilters/issues/129658
+! TODO: Try to find a way to fix an issue with time of the video
+! At the moment, video player shows that time of the video is longer than it really is (time of the video + ads),
+! so clicking somewhere after video end causes that the new video starts playing
+||pubads.g.doubleclick.net/ondemand/*/content/*/vid/*/streams/*/manifest.mpd$replace=/<Period id="(pre|mid|post)-roll-.-ad-[\s\S]*?>[\s\S]*?<\/Period>//,domain=cbs.com|paramountplus.com
+||pubads.g.doubleclick.net/ondemand/hls/*.m3u8$replace=/#EXTINF:(\d|\d\.\d+)\,\nhttps:\/\/redirector\.googlevideo\.com\/videoplayback\?[\s\S]*?&source=dclk_video_ads&[\s\S]*?\n//,domain=paramountplus.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128144
 ||registry.api.cnn.io/bundles/fave/latest-*.x/js$replace=/prod:{clips:{enabled:!0/prod:{clips:{enabled:!1/,domain=cnn.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124348
