@@ -4147,6 +4147,8 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/129892
+ispazio.net##.a-wrap
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129893
 laleggepertutti.it#?#.content-article > div.spazioalto > script:upward(1)
 laleggepertutti.it##div[id^="lx_"]
@@ -6396,16 +6398,6 @@ joujizz.com##.video-top-wrap > .sb
 !---------------------------------------------------------------------
 ! NOTE: Polish
 !
-! Temporary
-! https://github.com/AdguardTeam/AdguardFilters/issues/57685#issuecomment-647022651
-! probably FiltersRegistry issue
-polsatnews.pl,polsatsport.pl##.videoPlayer__vast
-||redirector.redefine.pl/r/*$media,redirect=noopmp4-1s,domain=polsatnews.pl|polsatsport.pl
-! https://github.com/AdguardTeam/AdguardForWindows/issues/2273
-@@||wnioski.mpips.gov.pl^$extension,elemhide,jsinject
-! End
-!
-! ---------------------------
 ! FuckAdBlock Polish
 skmedix.pl,interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -6419,7 +6411,7 @@ skmedix.pl,interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowan
 skmedix.pl,interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ad
 skmedix.pl,interia.pl,trojmiasto.pl,js.iplsc.com,pomponik.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wroclawskiejedzenie.pl,jbzdy.co,innpoland.pl,jbzdy.com.pl,mywrestling.com.pl,andek.com.pl,smartage.pl,joemonster.org,tajemnice-swiata.pl,naszraciborz.pl,natemat.pl,stadionowioprawcy.net,fortnitepolska.pl,sadistic.pl,napisy24.pl,mamadu.pl,towideo.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com,dziwneobrazki.pl#@#.text_ads
 !#endif
-! ---------------------------
+!
 ! adquesto / questpass.pl
 motohigh.pl,gosc.pl,posty.pl,zalajkowane.pl,kulinarnapolska.org,wypracowania.pl,otopress.pl,wroclawskiejedzenie.pl,innpoland.pl,smartage.pl,joemonster.org,natemat.pl,mamadu.pl,forsal.pl,kresy.pl,mambiznes.pl,prnews.pl,weszlo.com#%#//scriptlet("abort-current-inline-script", "parseInt", "/adBlock/")
 tvn.pl,sadeczanin.info#%#//scriptlet("abort-current-inline-script", "document.addEventListener", "adblock")
@@ -8161,9 +8153,6 @@ kinoseans.pl#%#//scriptlet("set-constant", "count", "0")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34228
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||jbzdy.com.pl^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/95954
-! Temporary
-www.dobreprogramy.pl#@#div > .fb-page[data-href$="/dobreprogramy/" i]:upward(2)
 ! wp.pl ads - iOS
 ! TODO: remove when this issue will be fixed - https://github.com/AdguardTeam/AdguardForiOS/issues/1897
 !#if (adguard_app_ios)
@@ -8171,8 +8160,6 @@ wp.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.gaf_directOnly"
 wp.pl#?#div[class*=" "] > img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child:upward(1)
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69501
-! Temporary
-wp.pl#@%#//scriptlet('ubo-nostif.js', 'detected', '300')
 !+ PLATFORM(windows, mac, android, ext_safari, ios)
 @@||www.dobreprogramy.pl^$generichide,badfilter
 !+ PLATFORM(ext_safari, ios)
@@ -9261,9 +9248,6 @@ player.pl#%#//scriptlet('remove-class', 'async-hide', 'html')
 player.pl#%#//scriptlet("json-prune", "movie.advertising.ad_server")
 tvn24.pl#%#//scriptlet("json-prune", "playlist.movie.advertising.ad_server")
 tvn.pl#%#//scriptlet("json-prune", "movie.advertising.ad_server movies.*.advertising.ad_server playlist.movie.advertising.ad_server")
-! Temporary solution until it will possible to fix it via $redirect rule - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1471
-!+ PLATFORM(ext_chromium, ext_opera, ext_edge)
-player.pl#%#!function(){function z(f){var a=function(){for(var a=arguments.length,c=Array(a),b=0;b<a;b++)c[b]=arguments[b];var d=new (window.Function.prototype.bind.apply(g,c)),h=d.open;d.open=function(){for(var a=arguments.length,b=Array(a),e=0;e<a;e++)b[e]=arguments[e];var c=f.apply(void 0,b);"string"===typeof c&&Object.defineProperties(this,{responseText:{configurable:!1,set:function(){},get:function(){return c}},status:{configurable:!1,set:function(){},get:function(){return 200}},statusText:{configurable:!1,set:function(){},get:function(){return"OK"}}});return h.apply(d,b)};return d};try{var g=window.XMLHttpRequest;window.XMLHttpRequest=a}catch(k){}}z(function(f,a){if(/^https?:\/\/tvn\.adocean\.pl\/ad\.xml/.test(a))return'<VAST version="2.0"></VAST>'});}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78932
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34440
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21435
@@ -9349,7 +9333,9 @@ interia.pl#%#document.cookie = "lltsg=1";
 ! NOTE: Romanian
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129752
-||s*emagst.akamaized.net/assets/*/js/ads_script.js$domain=emag.ro
+! It looks like that website checks if ad blocker is enabled
+! and if so, then instead of displaying banners from ad servers, a different banners are displayed
+||s*emagst.akamaized.net/assets/*/js/ads_script.js$domain=emag.ro,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129383
 mediafax.ro###sidebar > div[style^="margin:10px auto; text-align:center;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127108
@@ -9774,6 +9760,8 @@ topsinhalamp3.com#?##sitbl > tbody > tr[-ext-has='a[href^="https://ylx-4.com"]']
 !---------------------------------------------------------------------
 ! NOTE: Thai
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/130111
+siamblockchain.com##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129088
 onlyfans24.co###bt-ads
 onlyfans24.co##div[id^="aaa-banner-"]
