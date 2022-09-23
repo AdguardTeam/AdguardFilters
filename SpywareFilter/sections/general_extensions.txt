@@ -11,6 +11,8 @@
 ! https://developer.chrome.com/docs/privacy-sandbox/topics/
 ! TODO: replace with a scriptlet later: https://github.com/AdguardTeam/Scriptlets/issues/214
 #%#//scriptlet('set-constant', 'Document.prototype.browsingTopics', 'undefined')
+ppomppu.co.kr#%#AG_onLoad(() => { if (/^https:\/\/(www\.|m\.|)ppomppu\.co\.kr\/(new\/|)hotdeal\//g.test(document.location.href)) { var k = (n) => { if(/\/\/click\.linkprice\.com\/click\.php\?/.test(n)) { return new URLSearchParams(n).get("tu") } else { return n } }; new MutationObserver((o) => { Array.from(o[0].addedNodes).filter(e => /[0-9]{7,9}$/.test(e.className) && /ppomppu\.co\.kr\/(new\/|)hotdeal\/\?/.test(e.querySelector(".view > a").href)).forEach((e) => { e.querySelector(".view > a").href = e.querySelector("p > a[href]:not([class])").href = k(new URLSearchParams(e.querySelector(".view > a").href).get("url"))})}).observe(document.querySelector(".hotDeal_goods > ul#hotdeal"), { childList: true })}});
+ppomppu.co.kr#%#AG_onLoad(() => { if (/m\.ppomppu\.co\.kr\/new\/bbs_view\.php\?/.test(location.href) || /\.ppomppu\.co\.kr\/zboard\/view\.php\?/.test(location.href)) { Array.from(document.querySelectorAll("a[href][target='_blank']")).filter(e => /^https:\/\/s\.ppomppu\.co\.kr(\/|)\?idno=/.test(e.href)).forEach((o) => { o.href = atob(new URLSearchParams(o.href).get("target").replace("\\", ""))})}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130197
 mirrormedia.mg#%#//scriptlet("set-constant", "dataLayer", "emptyArr")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127628
