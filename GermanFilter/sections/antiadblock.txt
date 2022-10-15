@@ -939,13 +939,17 @@ beste-freundin-gesucht.de##.bfgad
 agrarwetter.net###body_opacity_overlay
 agrarwetter.net###DivdetectorContainer
 agrarwetter.net#%#//scriptlet("prevent-setTimeout", "adBlock")
-! https://github.com/AdguardTeam/AdguardFilters/issues/123855
-computerbase.de#%#//scriptlet("abort-current-inline-script", "document.createElement", "adblock")
-||computerbase.de^$replace=/function showMessage\(\)//,~stylesheet,~script,~xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/131952
+computerbase.de#%#//scriptlet("abort-current-inline-script", "document.createElement", "/adblock|googlesyndication\.com/")
+computerbase.de#%#//scriptlet('prevent-element-src-loading', 'img', 'pagead2.googlesyndication.com')
 computerbase.de#@#.adbox
 computerbase.de#@#.adbox1
+computerbase.de#@#.adbox2
 @@||computerbase.de/img/ads/
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
+@@||pagead2.googlesyndication.com/pagead/images/i.png$domain=computerbase.de
 @@||pagead2.googlesyndication.com/pagead/images/transparent.png$domain=computerbase.de
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123326
 gutekueche.at#%#//scriptlet("set-constant", "gkAdsWerbung", "0")
 @@||gutekueche.at/mix/js/app/ads.js
@@ -1251,11 +1255,6 @@ suedkurier.de#@#.Ligatus
 !suedkurier.de#@#.adforge
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11553
 ||spiegel.de/*/messaging-*.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/12324
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
-@@||dz4soft.blogspot.de^$generichide
-!+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=dz4soft.blogspot.de
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11644
 caravaning.de#%#//scriptlet("set-constant", "adblockActive", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11545
