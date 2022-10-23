@@ -9,18 +9,14 @@
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
-!#if (!adguard_ext_android_cb)
-rocketnews24.com#%#//scriptlet('set-constant', 'googletag.apiReady', 'false')
-rocketnews24.com#%#//scriptlet('set-constant', 'SCO.adBlckrStatus', 'false')
-rocketnews24.com#$#body { overflow: visible !important; }
-rocketnews24.com#$#body div.fc-ab-root:not(#style_important) { display: none !important; }
-||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=rocketnews24.com,important
-@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
-!#endif
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||rocketnews24.com^$generichide
-@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+@@||sst.rocketnews24.com/gtm.js$script,~third-party
+@@||g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
+@@||g.doubleclick.net/gpt/pubads_impl_$script,domain=rocketnews24.com
 @@||fundingchoicesmessages.google.com^$domain=rocketnews24.com
+rocketnews24.com#%#AG_defineProperty('googlefc.getAdBlockerStatus',{value:()=>3});
+@@||rocketnews24.com^$generichide
+!#if (adguard_app_ios || adguard_ext_android_cb)
 @@||adservice.google.com/adsid/integrator.js$domain=rocketnews24.com
 @@||rocketnews24.com/wp-content/themes/rocketnews/js/prebid.js$domain=rocketnews24.com
 @@||adservice.google.ru/adsid/integrator.js$domain=rocketnews24.com
@@ -307,7 +303,7 @@ video.tv-tokyo.co.jp#@##adspace
 !+ PLATFORM(ios, ext_android_cb)
 @@||gagetmatome.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7918
-!! for safety due to possible ban 
+!! for safety due to possible ban
 ! disabled these rules and `@@||s10.histats.com/js15_as.js$domain=avgle.com` in https://forum.adguard.com/index.php?threads/34852/
 !@@||avgle.com/video/$genericblock,generichide
 !@@||avgle.com/embed/$genericblock,generichide
