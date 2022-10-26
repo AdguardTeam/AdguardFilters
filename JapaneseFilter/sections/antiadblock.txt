@@ -8,26 +8,27 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/132814
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
 ! Similar site in Base filter: soranews24.com
-rocketnews24.com##.adb-caption
-rocketnews24.com#$#.ads-relatedbottom { height: 1px !important; }
+youpouch.com,rocketnews24.com##.adb-caption
+youpouch.com,rocketnews24.com#$#.ads-relatedbottom { height: 1px !important; }
 ||pagead2.googlesyndication.com/pagead/$script,redirect=googlesyndication-adsbygoogle,domain=rocketnews24.com
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
-@@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com
-||g.doubleclick.net/gampad/ads?$xmlhttprequest,removeparam=/^([a-dfmnr-u]|e[ir]|ga|i[dfm]|o[hi]|p[s-v]|vi)/,domain=rocketnews24.com
+@@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com|youpouch.com
+||g.doubleclick.net/gampad/ads?$xmlhttprequest,removeparam=/^([a-dfmnr-u]|e[ir]|ga|i[dfm]|o[hi]|p[s-v]|vi)/,domain=rocketnews24.com|youpouch.com
 @@||sst.rocketnews24.com/gtm.js$script,~third-party
-@@||g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
+@@||g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com|youpouch.com
 @@||g.doubleclick.net/gpt/pubads_impl_$script,domain=rocketnews24.com
-@@||fundingchoicesmessages.google.com^$domain=rocketnews24.com
+@@||fundingchoicesmessages.google.com^$script,domain=rocketnews24.com|youpouch.com
 !#endif
-rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
+youpouch.com,rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
+@@||youpouch.com^$generichide
 @@||rocketnews24.com^$generichide
 !#if (adguard_app_ios || adguard_ext_android_cb)
-@@||securepubads.g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com
 @@||adservice.google.com/adsid/integrator.js$domain=rocketnews24.com
 @@||rocketnews24.com/wp-content/themes/rocketnews/js/prebid.js$domain=rocketnews24.com
-@@||adservice.google.ru/adsid/integrator.js$domain=rocketnews24.com
+@@||adservice.google.*/adsid/integrator.js$domain=rocketnews24.com
 @@||pagead2.googlesyndication.com/pagead/js/$domain=rocketnews24.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131843
@@ -78,9 +79,6 @@ nazolog.com#@#.img_ad
 ||i.imgur.com^$image,redirect=32x32-transparent.png,domain=comick.top|syosetu.top
 @@||comick.top/cdn-cgi/zaraz/s.js
 @@||syosetu.top/cdn-cgi/zaraz/s.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/132814
-youpouch.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
-youpouch.com##.adb-caption
 ! https://kakomonn.com/shakaifukushi/questions
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=kakomonn.com
 ! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1598352715/690
