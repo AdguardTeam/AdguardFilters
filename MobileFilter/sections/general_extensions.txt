@@ -50,7 +50,7 @@ m.nuvid.*#%#//scriptlet("abort-on-property-read", "mobileAdvPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93574
 liquipedia.net#%#//scriptlet('remove-class', 'mobile-sticky-ad-is-active', 'body')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90236
-popcornnews.ru#%#//scriptlet('remove-in-shadow-dom', '.i-amphtml-unresolved') 
+popcornnews.ru#%#//scriptlet('remove-in-shadow-dom', '.i-amphtml-unresolved')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89046
 vivud.com#%#//scriptlet('set-cookie', 'rich_media', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81870
@@ -145,6 +145,19 @@ sasisa.ru#%#AG_onLoad(function() { window.Umobi = function() {}; });
 !-------CSS---------
 !-------------------
 !
+! leftover at the top
+ciudad.com.ar#$##header { height: auto!important; }
+! leftover at the top
+!#if (adguard_app_ios || adguard_app_android)
+ambito.com#$#.banner-wrapper-header { display: none!important; }
+ambito.com#$#.header-top { top: 0!important; }
+ambito.com#$#body { padding-top: 66px!important; }
+ambito.com#$#.amp-banner-top { display: none!important; }
+ambito.com#%#//scriptlet('remove-class', 'header-logo-banner', 'header')
+!#endif
+! leftover at the top
+bolavip.com#$##top-sticky { display: none!important; }
+bolavip.com#$#.header-top-sticky { top: 0!important; }
 ! scroll lock (not by cosmetic filter)
 techinsight.jp#$#body[style^="position: fixed"] { position: static !important; }
 ! bottom placeholder
@@ -204,6 +217,7 @@ oantagonista.uol.com.br#$#@media (max-width: 800px) { body #div-gpt-leaderboard 
 games.app-liv.jp#$#.jack-content { display: none !important; }
 games.app-liv.jp#$#body.jack { padding-top: 12% !important; }
 ! 9gag.com - ad leftover at the top
+9gag.com#$#.post-tab-bar__container.sticky[style*="top:"] { top: 48px !important; }
 9gag.com#$##jsid-app > div[style^="position: fixed; width:"][style*="top: 50px"] { top: 0 !important; }
 9gag.com#$##jsid-app > div[style^="padding-top:"][style*="padding-top: 146px"] { padding-top: 100px !important; }
 9gag.com#$##jsid-app > div[style^="padding-top:"][style*="padding-top: 98px"] { padding-top: 50px !important; }
@@ -394,4 +408,3 @@ vokrug.tv$$amp-embed[type="engageya"]
 motherless.com$$script[tag-content="awentw.com"][min-length="2000"][max-length="2500"]
 ! Yandex.Search
 yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru$$div[class="serp-item serp-adv-item"]
-
