@@ -1,0 +1,30 @@
+name: "Assign when the issue is labeled with 'A: In progress'"
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labelName = context.payload.label.name;
+            const senderName = context.payload.sender.login;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issueNumber = context.issue.number;
+            const assignees = context.payload.issue.assignees.map(a => a.login);
+
+            if (labelName === 'A: In progress' && !assignees.includes(senderName)) {
+              console.log(`Adding @${senderName} to the #${issueNumber} assignees`);
+              await github.rest.issues.addAssignees({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                assignees: [ senderName ],
+              });
+            }

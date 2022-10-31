@@ -6,11 +6,34 @@
 ! Bad: example.org###rek (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/131034
+imdb.com#%#//scriptlet("set-constant", "doWithAds", "noopFunc")
 ! This rule is for suppressing Google Topics.
 ! Read more about it here:
 ! https://developer.chrome.com/docs/privacy-sandbox/topics/
 ! TODO: replace with a scriptlet later: https://github.com/AdguardTeam/Scriptlets/issues/214
 #%#//scriptlet('set-constant', 'Document.prototype.browsingTopics', 'undefined')
+! https://github.com/AdguardTeam/AdguardFilters/pull/133054
+fmkorea.com#%#//scriptlet("set-constant", "link_url", "")
+! https://github.com/AdguardTeam/AdguardFilters/pull/130514
+ppomppu.co.kr#%#AG_onLoad(() => { if (/^https:\/\/(www\.|m\.|)ppomppu\.co\.kr\/(new\/|)hotdeal\//g.test(document.location.href) && document.querySelector(".hotDeal_goods > ul#hotdeal")) { var k = (n) => { if(/\/\/click\.linkprice\.com\/click\.php\?/.test(n)) { return new URLSearchParams(n).get("tu") } else { return n } }; new MutationObserver((o) => { Array.from(o[0].addedNodes).filter(e => /[0-9]{7,9}$/.test(e.className) && /ppomppu\.co\.kr\/(new\/|)hotdeal\/\?/.test(e.querySelector(".view > a").href)).forEach((e) => { e.querySelector(".view > a").href = e.querySelector("p > a[href]:not([class])").href = k(new URLSearchParams(e.querySelector(".view > a").href).get("url"))})}).observe(document.querySelector(".hotDeal_goods > ul#hotdeal"), { childList: true })}});
+ppomppu.co.kr#%#AG_onLoad(() => { if (/m\.ppomppu\.co\.kr\/new\/bbs_view\.php\?/.test(location.href) || /ppomppu\.co\.kr\/zboard\/view\.php\?/.test(location.href)) { Array.from(document.querySelectorAll("a[href][target='_blank']")).filter(e => /^https:\/\/s\.ppomppu\.co\.kr(\/|)\?idno=/.test(e.href)).forEach((o) => { o.href = atob(new URLSearchParams(o.href).get("target").replace("\\", ""))})}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/132024
+revv.co.in#%#(()=>{window.google_optimize={get(){}}})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/131243
+app.tirelocator.ca#%#//scriptlet("set-constant", "googleAnalyticsEnhancedTrackEvent", "noopFunc")
+app.tirelocator.ca#%#//scriptlet("set-constant", "googleAnalyticsEnhancedTrackPageview", "noopFunc")
+! https://github.com/AdguardTeam/AdguardFilters/issues/130685
+reelrundown.com#%#//scriptlet('prevent-fetch', 'uid.mavencoalition.io')
+! https://github.com/AdguardTeam/AdguardFilters/issues/130197
+mirrormedia.mg#%#//scriptlet("set-constant", "dataLayer", "emptyArr")
+! https://github.com/AdguardTeam/AdguardFilters/issues/127628
+edeka.de#%#(()=>{window.tC={event:{track(){}}}})();
+edeka.de#%#//scriptlet('prevent-element-src-loading', 'script','tc_DigitalesMarketing')
+! https://github.com/AdguardTeam/AdguardFilters/issues/127461
+bulletin.sntba.com#%#//scriptlet("set-constant", "returnCitySN", "emptyObj")
+! https://github.com/AdguardTeam/AdguardFilters/issues/126745
+ta.alamo.com#%#(()=>{window.CQ_Analytics={SegmentMgr:{loadSegments(){}},ClientContextUtils:{init(){}}}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122614
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium)
 nine.com.au#%#(()=>{window.tracking={setConfig(){},trackPage(){},trackVideoAutoFail(){}}})();
@@ -103,9 +126,9 @@ hindustantimes.com#%#!function(){window.pSUPERFLY={virtualPage:function(){}};}()
 store.line.me#%#//scriptlet('remove-class', 'async-hide', 'html')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70941
 pioneer.eu#%#//scriptlet('remove-attr', 'onclick', 'a[href][onclick^="trackOutboundLink"]')
-! https://github.com/AdguardTeam/AdguardFilters/issues/64616	
-!+ PLATFORM(android)	
-www.google.*#%#//scriptlet('remove-attr', 'onmousedown|data-mousedown|ping|data-click', 'a[href][onmousedown], a[href][ping]')	
+! https://github.com/AdguardTeam/AdguardFilters/issues/64616
+!+ PLATFORM(android)
+www.google.*#%#//scriptlet('remove-attr', 'onmousedown|data-mousedown|ping|data-click', 'a[href][onmousedown], a[href][ping]')
 ! Remove tracking attributes from the search results
 www.google.*#%#//scriptlet('remove-attr', 'ping', 'div[id="search"] a[data-ved][ping]')
 !
@@ -146,6 +169,4 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1)  { remove: true; }
 !-------------------
 !-------HTML--------
 !-------------------
-citystar.ru$$script[tag-content="acn.rucounter.ru"][max-length="500"]
-echo.msk.ru$$script[tag-content="r=d.im.width"][max-length="200"]
-echo.msk.ru$$script[tag-content="s=screen;"][max-length="200"]
+!

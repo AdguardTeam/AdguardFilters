@@ -1,0 +1,250 @@
+!
+! This section contains the list of generic blocking rules.
+!
+! Good: .org/ads/
+! Bad: .org/ads/$domain=example.org (for instance, should be in speficic.txt)
+!
+!
+! This is an interesting case.
+! This is a part of the URL used by an Indian ISP called BSNL
+! to inject ads into HTTP pages
+! Example URL: http://117.254.84.212:3000/getjs?nadipdata=%7B%22url%22%3A%22%2F%22%2C%22referer%22%3A%22%22%2C%22host%22%3A%22h2020.myspecies.info%22%2C%22categories%22%3A%5B100%5D%2C%22reputations%22%3A%5B1%5D%2C%22nadipdomain%22%3A1%2C%22policyid%22%3A0%7D&screenheight=1120&screenwidth=1792&tm=1603925840327&lib=true&method2=true
+!
+/getjs?nadipdata$third-party,replace=/[\s\S]+openOriginalUrl[\s\S]+/openOriginalUrl()/
+!
+! Banner names
+!
+!
+! Porn banners
+.com/ablck/250-300/
+! Ad redirects on visit abandoned domains
+/?tm=1&subid4=*&kw=$all
+/page/bouncy.php?&bpae=*&redirectType=js&inIframe=$all
+! https://github.com/AdguardTeam/AdguardFilters/issues/131024
+&siteid=*&adid=$removeparam
+! Vidstream
+/mellowpresence.com^$script
+! https://github.com/easylist/easylist/pull/9330
+! Example URL: https://2fe5885777.b370db8cb7.com/75ef9b49bd156e7615885ad2fbc87f82.js
+/^https:\/\/[0-9a-f]{10}\.[0-9a-f]{10}\.com\/[0-9a-f]{32}\.js$/$script,third-party
+!
+! Clickunders in the players on porn sites
+/assets/jquery/jquery-1.4.1.min.js?v=2&type=adult
+/assets/jquery/jquery-1.4.2.min.js?v=2&type=adult
+/assets/jquery/jquery-1.4.3.min.js?v=2&type=adult
+!
+/?rb=*&zoneid=$xmlhttprequest,third-party
+/prepare/ads^
+_clickunder&pb=$popup
+/contents/images-banners/*
+/go/*?ident=*&id_site=$~third-party
+%3Faf_prt%3D*%26af_siteid%3D1*%26clickid%3D$all
+/rtb/r/?token=$script
+.com/pw/waWQiOjEw
+! Clickadu
+/get/*?zoneid=*&jp=$script
+! https://github.com/AdguardTeam/AdguardFilters/pull/83787
+/c-hive.min.js$script,~third-party
+/shrinker/js/h1j.js$script,~third-party
+/shrinker/js/h2j.js$script,~third-party
+!
+! revolving servers ex. propu.sh,itweepinbelltor.com
+/pfe/current/*$script,third-party
+!
+! common TXXX network scripts
+/assets/jwplayer-*/vast.js$script,~third-party
+/ytrek7.$script,~third-party
+/lemon7.$script,~third-party
+/teo7.$script,~third-party
+/nofa7.$script,~third-party
+/afon7.$script,~third-party
+/rass7.$script,~third-party
+/huyass7.$script,~third-party
+/kzdh7.$script,~third-party
+/klesd7.$script,~third-party
+!
+! Popular on Japanese sites but seen in other countries too
+! https://github.com/AdguardTeam/AdguardFilters/issues/58587#issuecomment-656098019
+! Sample URL: ||js.passaro-de-fogo.biz/t/113/750/a1113750.js
+/\/t\/[0-9]{3}\/[0-9]{3}\/a[0-9]{4,9}\.js$/$script
+!
+! ex. https://d3a00ifauhjdp.cloudfront.net/?afiad=933423
+/^https?:\/\/[0-9a-z]{13,14}\.cloudfront\.net\/\?[a-z]{3,5}=\d{6}$/$script,xmlhttprequest,third-party
+!
+.xyz/1clkn/
+.club/1clkn/
+! https://github.com/AdguardTeam/AdguardFilters/issues/65588
+!+ PLATFORM(ios, ext_safari)
+.adriver.$domain=~adriver.co
+! https://github.com/AdguardTeam/AdguardFilters/issues/44105
+.com/*?*&refer=*fmovies.*&adb=$all
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+.com/*?*&refer=*fmovies.*&adb=
+! PopAds redirects
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+.com/s?cid=*&iuid=*&ts=*&ps=*&pw=*&pl=*&r=
+! ads on the porn sites
+/s/s/js/m/custom.js?
+/s/s/js/m/custom_advanced.js?
+/s/s/js/ssu.v2.
+/_xa/ads_batch?ads=$xmlhttprequest,script
+/a/ipn/js/*
+/a/pop/js/*
+/s/s/supc.php
+/s/su.php?t=
+/s/js/ssu.v2.js?v=
+/xvideo.js|
+! Adman System popunderp
+/_a_ta/s/s/*
+/local_p.js^
+/local_su.js?t=
+/ab-a.js?v=
+/local_ssu.js|
+/s/s/suo.php
+!
+.pro/v1/a/*.js|
+.pro/v1/a/*/js?subid=awn|
+.pro/v1/a/*/js?container=
+.pro/v2/a/ban/
+!
+!
+.icu/*?zoneid=*&visitor_id=$all
+/?pid=*&subid=*&clickid=$popup
+/pu/?psid=
+! Popular ExoClick script name
+.com/f_lo.js|$script,~third-party
+/flo.js|
+! Block some clickunders
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+.com/watch?key=
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+.click/?ip=$popup
+! for a lot of porn sites
+porn*.me/bees.js|
+porn*.com/bees.js|
+porn*.net/bees.js|
+!
+!+ NOT_OPTIMIZED
+_ad_content.
+!+ NOT_OPTIMIZED
+/getAditem
+!+ NOT_OPTIMIZED
+/getMultiAdsStrategy
+!+ NOT_OPTIMIZED
+/getStartPageAds
+!+ NOT_OPTIMIZED
+/getads?
+!+ NOT_PLATFORM(ext_safari, ios)
+/tghr.js$script
+!
+/fret/meow4/*$script,third-party
+/display/items.php?$script,third-party
+/s/s/sum.php
+/q/tdl/95/dnt/*$script,third-party
+/vhdpoppingmodels/*$script
+.popup_im.
+/728xx90.jpg?sid=
+/script/yzfdmoan.js|$third-party
+/?c=propeller&lpid=$all
+/xstat/ppjs?
+/hillpop.php|$script,~third-party
+/eroclick.js
+/ts.php?q=$xmlhttprequest,third-party
+/ts.php?z=$xmlhttprequest,third-party
+/script/atga.js$third-party
+/rtbfeed.php?$image,third-party
+/gofd_fl.js
+/j/m/qqqq.js?
+/code/native.js?h=$script
+/aas/r45d/vki/*$script,third-party
+/lv/esnk/*$script,third-party
+/i/npage/*/code.js|$script,third-party
+/bultykh/ipp24/7/bazinga/*$script,third-party
+/pn07uscr/f/tr/zavbn/*$script,third-party
+/sdk/push_web/?zid=$script,third-party
+.pro/v2/a/push/js/$third-party
+/ntfc.php?p=$third-party
+/script/su.js$script,third-party
+/javascript/fropo.js
+/pub/js_min.js|
+/askrej/*$script,~third-party
+/nb/f_ls.js
+/askdrej/*$script,~third-party
+/bannerpop/uploads/*
+/xxx.js|$script,~third-party
+.systems/signup?ad_domain=$all
+/ld/ifk?zoneid=
+/asset/default/player/plugins/vast-*.js
+.com/1clkn/
+.php?*&v=direct&siteId=*&minBid=*&popundersPerIP=
+/cdn-cgi/pe/bag2?r[]=*ssp.zryydi.com
+/cdn-cgi/pe/bag2?r[]=*d27x580xb9ao1l.cloudfront.net
+/cdn-cgi/pe/bag2?r[]=*.popmajor.com
+/cdn-cgi/pe/bag2?r[]=*.mgid.com
+/cdn-cgi/pe/bag2?r[]=*party-vqgdyvoycc.now.sh
+/static/js/amvn.js
+://*.*.biz/*?*!&bid=$third-party
+/phantomPopunder.js|
+.com/ad_js/
+/cdn-cgi/pe/bag2?r[]=*syndication.exoclick.com
+/js/popunderjs/init.js^
+.space/?tid=
+.baidu.com/cpro/
+.baidu.com/ecom
+.baidu.com/h.
+.baidu.com/union/
+.com/ad.$domain=~ad-tuning.de
+/?track=ad:$third-party
+/_ra_lib.js
+/_ra_lib.php
+/abdetect.min.js^
+/ads.criteo.com.js
+/adsadclient
+/adsen.php
+/adwolf.$domain=~adwolf.ru
+/anti-ad-buster.js
+/banners*swf
+/cdn-cgi/pe/bag2?r[]=*cdn.plopx.com
+/cdn-cgi/pe/bag2?r[]=*securepubads.g.doubleclick.net
+/cdn-cgi/pe/bag2?r[]=*bontent.powvideo.net
+/cdn-cgi/pe/bag2?r[]=*dacash.powvideo.net
+/cdn-cgi/pe/bag2?r[]=*.poptm.com
+/cdn-cgi/pe/bag2?r[]=*cpmstar.com
+/cdn-cgi/pe/bag2?r[]=*prscripts.com
+/cdn-cgi/pe/bag2?r[]=http%3A%2F%2Fhilltopads.net
+/cu.php?s=$popup
+/di3asdadasdadas.di3asdsa.js
+/fiets-banner_
+/filejoker.$image
+/hitfile_730_90.png
+/im/im.js?sk=
+/index.php?op=ad_click
+/mobiquo/smartbanner/ads.js^
+/player_embed_cu.php?s=$popup
+/redirect-ads.php
+/tc-under.min.js
+_200x250.png
+Banner468x60
+http://www.ads.$third-party
+!
+! https://forum.adguard.com/index.php?threads/22268/
+/file?type=script&n=1&k=*&int=60&cl=$script
+! RoughTed malvertising servers
+! https://blog.malwarebytes.com/cybercrime/2017/05/roughted-the-anti-ad-blocker-malvertiser/
+!
+! PPU clickunder
+.com/?zoneid=*&xref=*&uuid=$redirect=nooptext,important
+! AdMaven
+&abt=0&red=1*&tid=
+&tid=*&red=1&abt=$redirect=nooptext,important
+?tid=*&red=1&*&abt=$redirect=nooptext,important
+/?&pid=*&subid=$redirect=nooptext,important
+/?&subid=*&pid=$redirect=nooptext,important
+!+ PLATFORM(ios, ext_safari)
+&tid=*&red=1&abt=
+!+ PLATFORM(ios, ext_safari)
+?tid=*&red=1&*&abt=
+!+ PLATFORM(ios, ext_safari)
+/?&pid=*&subid=
+!+ PLATFORM(ios, ext_safari)
+/?&subid=*&pid=

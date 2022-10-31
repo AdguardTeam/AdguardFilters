@@ -8,12 +8,17 @@
 !-------------------
 !-------JS----------
 !-------------------
-!### TEMPORARY ###
+!
 ! https://forum.adguard.com/index.php?threads/12443/
 pornhub.com,pornhubthbh7ap3u.onion#%#AG_onLoad(function() { if (typeof redirect !== 'function') return; var str = redirect.toString(); var m = str.match(/\'(\/view.*)\'/); if (m.length != 2) return; var link = m[1]; window.location.href = m[1]; });
-!#################
-!
-!
+! https://github.com/AdguardTeam/AdguardFilters/issues/130689
+tech.hindustantimes.com#%#//scriptlet('hide-in-shadow-dom', '.ampAds')
+! https://github.com/AdguardTeam/AdguardFilters/issues/129754
+healthshots.com#%#//scriptlet('hide-in-shadow-dom', 'div[class^="storyBlock"]:not(.trackWidget), .storyAd')
+! https://github.com/AdguardTeam/AdguardFilters/issues/126016
+m.viptube.com#%#//scriptlet("set-constant", "player.postitialTimeout", "0")
+! https://github.com/AdguardTeam/AdguardFilters/issues/126103
+thestudentroom.co.uk#%#//scriptlet('remove-class', 'fixed_ad', '#header.fixed_ad')
 ! popunder on clicking thumbnails
 share-videos.se#%#//scriptlet("abort-current-inline-script", "$", "clickurl")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122886
@@ -45,7 +50,7 @@ m.nuvid.*#%#//scriptlet("abort-on-property-read", "mobileAdvPop")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93574
 liquipedia.net#%#//scriptlet('remove-class', 'mobile-sticky-ad-is-active', 'body')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/90236
-popcornnews.ru#%#//scriptlet('remove-in-shadow-dom', '.i-amphtml-unresolved') 
+popcornnews.ru#%#//scriptlet('remove-in-shadow-dom', '.i-amphtml-unresolved')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89046
 vivud.com#%#//scriptlet('set-cookie', 'rich_media', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81870
@@ -87,7 +92,7 @@ m.iyf.tv#%#//scriptlet("adjust-setInterval", "isPeriodic", "", "0.02")
 ! ixbt.com - исправление отступа в мобильной версии
 www.ixbt.com#%#//scriptlet('remove-class', 'branding', 'body[id="pagebody"]')
 ! xhamster.com - ad redirect
-xhwide1.com,xhamster16.*,hamsterix.*,xhplanet1.com,xhamster11.com,xhamster4.com,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster11.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.com,xhamster18.com,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.desi,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,openxh2.com,xhamster.one,xhamster.desi,xhamsterpremium.com,stripchat.com#%#//scriptlet("set-cookie-reload", "ts_popunder", "1")
+xhamster3.com,xhamster18.desi,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.com,xhamster18.com,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.desi,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com#%#//scriptlet("set-cookie-reload", "ts_popunder", "1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47222
 gotporn.com#%#//scriptlet("set-constant", "PopUnder.bindEvent", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47227
@@ -140,6 +145,40 @@ sasisa.ru#%#AG_onLoad(function() { window.Umobi = function() {}; });
 !-------CSS---------
 !-------------------
 !
+! leftover at the top
+ciudad.com.ar#$##header { height: auto!important; }
+! leftover at the top
+!#if (adguard_app_ios || adguard_app_android)
+ambito.com#$#.banner-wrapper-header { display: none!important; }
+ambito.com#$#.header-top { top: 0!important; }
+ambito.com#$#body { padding-top: 66px!important; }
+ambito.com#$#.amp-banner-top { display: none!important; }
+ambito.com#%#//scriptlet('remove-class', 'header-logo-banner', 'header')
+!#endif
+! leftover at the top
+bolavip.com#$##top-sticky { display: none!important; }
+bolavip.com#$#.header-top-sticky { top: 0!important; }
+! scroll lock (not by cosmetic filter)
+techinsight.jp#$#body[style^="position: fixed"] { position: static !important; }
+! bottom placeholder
+jmty.jp#$#.c-tab-bar-controller.with-overlay { padding-bottom: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/131270
+nyahentai.re#$##is_w_area { display: none!important; }
+nyahentai.re#$#html { overflow: visible!important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/130657
+apkmirror.com#$#body { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/129361
+reuters.com#$#.site-header__show-nav__3po5A .site-header__inner-sticky__1fm3o { top: 0px !important; }
+! remove placeholder
+trailrunner.jp#$#.header .brand { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/126012#issuecomment-1213327876
+veryfreeporn.com#$#.video-block > .headline.mobile-device { padding-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/126103
+thestudentroom.co.uk#$#@media (max-width: 980px) { body .panel-main > #topFixedAd ~ #content { padding-top: 0 !important; } }
+! https://github.com/AdguardTeam/AdguardFilters/issues/125755
+gamer.ne.jp#$#.adBillBordNone { min-height: 42px !important; }
+! broken layout
+trilltrill.jp#$#.header-GlobalHeader { top: 0 !important; }
 ! placeholder
 himado.in#$##contents { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122866
@@ -178,7 +217,10 @@ oantagonista.uol.com.br#$#@media (max-width: 800px) { body #div-gpt-leaderboard 
 games.app-liv.jp#$#.jack-content { display: none !important; }
 games.app-liv.jp#$#body.jack { padding-top: 12% !important; }
 ! 9gag.com - ad leftover at the top
+9gag.com#$#.post-tab-bar__container.sticky[style*="top:"] { top: 48px !important; }
 9gag.com#$##jsid-app > div[style^="position: fixed; width:"][style*="top: 50px"] { top: 0 !important; }
+9gag.com#$##jsid-app > div[style^="padding-top:"][style*="padding-top: 146px"] { padding-top: 100px !important; }
+9gag.com#$##jsid-app > div[style^="padding-top:"][style*="padding-top: 98px"] { padding-top: 50px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111188
 kalerkantho.com#$#.must-header-fixed-sticky { margin-top: 0 !important; }
 ! brandkagu-outlet.net ad
@@ -362,32 +404,7 @@ zoomtventertainment.com$$amp-embed[type="taboola"]
 24tv.ua$$div[class="within-ads"]
 vokrug.tv,dni.ru$$amp-iframe[src="https://news.gnezdo.ru/"]
 vokrug.tv$$amp-embed[type="engageya"]
-finance.rambler.ru$$div[class="read-also__lentainform"]
-gordonua.com$$amp-iframe[src="https://recreativ.ru/"]
-rambler.ru$$div[class="banner-wrapper"]
-m.gazeta.ru,magadanmedia.ru,ussurmedia.ru$$amp-embed[type="24smi"]
-m.timesofindia.com,m-timesofindia-com.cdn.ampproject.org$$div[class="ad1 MREC"]
-m.timesofindia.com$$div[class="adspacing"]
-m.timesofindia.com$$div[class="aroundthewebspacing"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/61958
-championat.com$$amp-embed[height="354"][width="600"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/28322
-nashobmen.org$$script[tag-content="script_0.src ="][max-length="900"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17500
 motherless.com$$script[tag-content="awentw.com"][min-length="2000"][max-length="2500"]
 ! Yandex.Search
-yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru,yandex.ua$$div[class="serp-item serp-adv-item"]
-! Yandex.Weather
-yandex.ru#$#div[class*="_with-url-actualizer_yes"] > div.adv_type_top { display: none !important; }
-yandex.ru#$#div[class*="_with-url-actualizer_yes"] > div.adv_type_top ~ div[class$="__map_compressed"] { top: 0 !important; }
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/7438
-pure-t.ru$$a[class="mobile-banner"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/4285
-dropapk.com$$script[tag-content="function(){if (window.atob)"][max-length="5000"]
-! WebSocket ads
-rutorgames.org$$script[wildcard="*document.createElement*new Worker*w.onmessage*"][max-length="1600"]
-bobfilm.tv$$script[wildcard="*script*this.onerror*eval(atob*"][max-length="1000"]
-! or #%#Object.defineProperty(window, 'AMSP', { get: function() { return []; } });
-! https://github.com/AdguardTeam/AdguardFilters/issues/2637
-nasimke.ru$$script[tag-content="function show_ads"][max-length="6000"]
+yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru$$div[class="serp-item serp-adv-item"]

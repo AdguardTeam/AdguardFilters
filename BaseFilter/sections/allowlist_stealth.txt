@@ -1,0 +1,1900 @@
+!
+! This section contains the list of rules that fix Stealth Mode issues. Rules should be domain-specific.
+!
+! Good: @@||example.org^$stealth
+! Bad:  example.org#@#.ad (should be in AdGuard Base - allowlist.txt)
+!
+! TODO: change the rules when https://github.com/AdguardTeam/CoreLibs/issues/1224 will be supported by apps and extensions
+!
+!############### TEMPORARY ###############
+!
+! https://github.com/AdguardTeam/CoreLibs/issues/1645 [Stealth Mode - Protect from DPI]
+! TODO: change the current modifier to `$stealth=dpi` when CL1.10 will be available in the app release channel, then the rules can be moved from the temporary section
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!+ NOT_OPTIMIZED
+@@||uptodate.com^$stealth
+!+ NOT_OPTIMIZED
+@@||p30download.ir^$stealth
+!+ NOT_OPTIMIZED
+@@||wko.at^$stealth
+!+ NOT_OPTIMIZED
+@@||ric-ul.ru^$stealth
+!+ NOT_OPTIMIZED
+@@||sravni-labs.ru^$stealth
+!+ NOT_OPTIMIZED
+@@||mpt.gov.by^$stealth
+!+ NOT_OPTIMIZED
+@@||bachhoaxanh.com^$stealth
+!+ NOT_OPTIMIZED
+@@||mojedatovaschranka.cz^$stealth
+!+ NOT_OPTIMIZED
+@@||osym.gov.tr^$stealth
+!+ NOT_OPTIMIZED
+@@||suwonlib.go.kr^$stealth
+!+ NOT_OPTIMIZED
+@@||go.gov.il^$stealth
+!+ NOT_OPTIMIZED
+@@||bcee.snet.lu^$stealth
+!+ NOT_OPTIMIZED
+@@||kun.uz^$stealth
+!+ NOT_OPTIMIZED
+@@||gosuslugi.ru^$stealth
+!+ NOT_OPTIMIZED
+@@||filecity.co.kr^$stealth
+!+ NOT_OPTIMIZED
+@@||bankrespublika.az^$stealth
+!+ NOT_OPTIMIZED
+@@||aztelekom.az^$stealth
+!+ NOT_OPTIMIZED
+@@||ghxi.com^$stealth
+!+ NOT_OPTIMIZED
+@@||mfah.org^$stealth
+!+ NOT_OPTIMIZED
+@@||blog.torproject.org^$stealth
+!+ NOT_OPTIMIZED
+@@||mil.by^$stealth
+!+ NOT_OPTIMIZED
+@@||pravo.by^$stealth
+!+ NOT_OPTIMIZED
+@@||tvr.by^$stealth
+!+ NOT_OPTIMIZED
+@@||beltelecom.by^$stealth
+!+ NOT_OPTIMIZED
+@@||dienmayxanh.com^$stealth
+!+ NOT_OPTIMIZED
+@@||thegioididong.com^$stealth
+!#endif
+!
+! https://github.com/AdguardTeam/CoreLibs/issues/1603
+! https://github.com/AdguardTeam/AdguardFilters/issues/112161
+! TODO: Check with release version of AdGuard with CoreLibs v1.10
+@@||free-mp3-download.net^$stealth
+! fix AdGuard account authorisation [Stealth Mode - TTL of first-party cookies = 0]
+! current as of 20.09.2022
+!+ PLATFORM(android)
+@@||adguard.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45549
+! https://github.com/AdguardTeam/AdguardFilters/issues/38586
+! https://forum.adguard.com/index.php?threads/1fichier-com.32832/
+! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1391 [Stealth Mode - DNT]
+! checked 20.09.2022
+@@||1fichier.com/?$stealth,~stylesheet,~image,~script
+!#########################################
+!
+!
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/133406 [Stealth Mode - It's broken by many options]
+@@||logowanie.play.pl^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/133340 [Stealth Mode - Referrer]
+@@||maps.googleapis.com/maps/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/132933 [Stealth Mode - IP hiding]
+@@||zhodinonews.by$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131801 [Stealth Mode - Hide search queries, Referrer]
+@@||kh.google.com/rt/earth/$stealth,xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/132602 [Stealth Mode - Referrer]
+@@||earthquakecensus.com/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/132241 [Stealth Mode - Referrer]
+@@||tv.uctnew.com/*embed$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/132236 [Stealth Mode - Referrer]
+@@||bdnewszh.com^*.php|$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/132477 [Stealth Mode - Referrer]
+@@||constraindefiant.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131718 [Stealth Mode - Block third-party Authorization header]
+@@||split.io/api/$stealth,domain=secure.rewardcodes.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/132344 [Stealth Mode - Referrer]
+@@||sport247.me/api/$stealth,domain=dzeko11.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/132145 [Stealth Mode - Block third-party Authorization header]
+@@||graph.microsoft.com^$stealth,xmlhttprequest,domain=odwebp.svc.ms
+! https://github.com/AdguardTeam/AdguardFilters/issues/131837 [Stealth Mode - Referrer]
+@@||unbiasedsenseevent.com/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131920 [Stealth Mode - Referrer]
+@@||youtube.com/live_chat?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131862 [Stealth Mode - Block third-party Authorization header]
+@@||api.github.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131886 [Stealth Mode - Referrer]
+@@||anizmstream*.com/cdn/down/$stealth,domain=anizmplayer.com|anizm.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/131664 [Stealth Mode - Block third-party Authorization header]
+@@||sendvsfeedback2-secondary.azurewebsites.net^$stealth
+!  https://github.com/AdguardTeam/AdguardFilters/issues/116093
+@@||tradingview.com^$script,stealth
+@@||realtime-chart.info^$script,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131741 [Stealth Mode - Referrer]
+@@||api.mghubcdn.com/graphql$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131562 [Stealth Mode - Referrer]
+@@||games.crazygames.com/*/index.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131580 [Stealth Mode - Block third-party Authorization header]
+@@||appsync-api.*.amazonaws.com/graphql$stealth,domain=goodreads.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/131581 [Stealth Mode - Referrer]
+@@||consent.cookiefirst.com/banner.js$stealth
+@@||consent.cookiefirst.com/sites$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131531 [Stealth Mode - Referrer]
+@@||dnvodcdn.me/*/mp4$stealth,domain=iyf.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/131521 [Stealth Mode - Referrer]
+@@||mghubcdn.com^$stealth,domain=mangafox.fun
+! https://github.com/AdguardTeam/AdguardFilters/issues/131460 [Stealth Mode - Referrer]
+@@||alicdn.com^$stealth,domain=developer.aliyun.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/131127 [Stealth Mode - Referrer]
+@@||vkcdn5.com^$stealth,image,media
+! https://github.com/AdguardTeam/AdguardFilters/issues/131114 [Stealth Mode - Referrer]
+@@||accounts.google.com/gsi/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130871 [Stealth Mode - Referrer]
+@@||hotit.link/iframe.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130737 [Stealth Mode - Referrer]
+@@||cdn122.com/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130793 [Stealth Mode - Referrer]
+@@/*/*-*/*.png$stealth,xmlhttprequest,domain=dizibox.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/126013 [Stealth Mode - Referrer]
+@@||video.externulls.com/key=$stealth
+! infranken.de/nordbayern.de - third-party element not shown [Stealth Mode - Referrer]
+@@||delivery.consentmanager.net/delivery/cmp.php$stealth
+@@||cdn.consentmanager.net/delivery/customdata/$stealth
+@@||cdn.consentmanager.net/delivery/js/cmp*.min.js$stealth
+@@||cdn.consentmanager.net/delivery/lang/langpurpose*.min.js$stealth
+! viprow.nu - broken player [Stealth Mode - Referrer]
+@@||icetoot.me/*/chunklist.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130590 [Stealth Mode - Referrer]
+@@||azureedge.net/scripts/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130566 [Stealth Mode - Referrer]
+@@||content.uplynk.com/preplay/*.json$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130518 [Stealth Mode - Referrer]
+@@||slive.webhockey.xyz/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130519 [Stealth Mode - Referrer]
+@@||weak.nonsavefiles.xyz/live$stealth
+@@||weak.weakcdn.xyz/live$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130493 [Stealth Mode - Referrer]
+@@||worldeo.site/iframe.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130490 [Stealth Mode - Referrer]
+@@/live/*.m3u8$stealth,domain=tutele.nl|futbollibre2.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/130284 [Stealth Mode - Referrer]
+@@||olacast.live^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130286 [Stealth Mode - Referrer]
+@@||vikistream.com/embed$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130444 [Stealth Mode - Referrer]
+@@||smokelearned.net/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129967 [Stealth Mode - Referrer]
+@@||vudeo.io/embed-$stealth
+@@||alucard.stream/playlist/$stealth
+@@/image/*$xmlhttprequest,stealth,domain=turkanime.co
+! https://github.com/AdguardTeam/AdguardFilters/issues/130418 [Stealth Mode - Referrer]
+! fixing popular problems with sreaming services(like in this issue only)
+@@/index.m3u8?wmsAuthSign=$stealth
+@@.ru.com/*/tracks-$xmlhttprequest,stealth
+@@||vhls.ru.com/*.m3u8$xmlhttprequest,stealth
+@@/hls/*.m3u8$stealth
+@@/playlist.m3u8$stealth
+@@/chunks.m3u8$stealth
+@@/hls.key$stealth
+@@.ts^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/53280 [Stealth Mode - Referrer]
+@@||forms.ministryforms.net/viewForm.aspx$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/104168 [Stealth Mode - Referrer]
+@@||streampass.org^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/22422 [Stealth Mode - third-party cookies]
+@@||accounts.ea.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129990 [Stealth Mode - Referrer]
+@@||cdn.swordflake.com^$stealth,image,domain=mangagecesi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/129945 [Stealth Mode - Referrer]
+@@||txxxporn.tube/ext/get_file/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130763
+! https://github.com/AdguardTeam/AdguardFilters/issues/129619 [Stealth Mode - Referrer]
+@@||shrink-service.it/api-extension/$stealth,domain=adshnk.com|pairom.com|adshrink.it
+@@||pagead2.googlesyndication.com/pagead/$stealth,domain=adshnk.com|pairom.com|adshrink.it
+@@||fundingchoicesmessages.google.com^$stealth,domain=adshnk.com|pairom.com|adshrink.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/129332 [Stealth Mode - Referrer]
+@@||wecast.to/*.php?stream=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129335 [Stealth Mode - Referrer]
+@@||reels2watch.com/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129560 [Stealth Mode - Referrer]
+@@||lapido.link/iframe.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129566 [Stealth Mode - Referrer]
+@@||get-to.link^$stealth
+! winfuture.de - pictures in article gallery not showing after click [Stealth Mode - Referrer]
+@@||consentmanager.net/delivery/$domain=winfuture.de,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129117 [Stealth Mode - Referrer]
+@@||mooc-image.nosdn.127.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128838 [Stealth Mode - Referrer]
+@@||music1.muonmusic.com/?path=$stealth
+@@||music1.muonmusic.com/*.m4u$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/129091 [Stealth Mode - Referrer]
+@@||stfly.me^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128774 [Stealth Mode - Referrer]
+@@||cnubis.com/*?download_token=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128912 [Stealth Mode - Referrer]
+@@||wecast.to/walid.php^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128678 [Stealth Mode - Referrer]
+@@||cloud-*.onionflix.$stealth
+@@||cloud-*.onionplay.$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128941 [Stealth Mode - Referrer]
+! Used many domains to avoid bans, so the rule is not specific
+@@/cdn*/premium*/tracks-$xmlhttprequest,script,stealth
+@@||streamservicehd.click/*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128522 [Stealth Mode - Referrer]
+@@||captcha-api.yandex.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/43224 [Stealth Mode - Referrer]
+@@.dmf.link/dl/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127783 [Stealth Mode - Referrer]
+@@||camsecure.co/httpswebcam/*.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/128484 [Stealth Mode - Referrer]
+@@/*/*.jpg$stealth,image,domain=mangarawjp.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128232 [Stealth Mode - Referrer]
+@@||vidcdn.co/iframe/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127656#issuecomment-1227726814 [Stealth Mode - IP hiding]
+@@||stream.voidboost.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127859
+@@||ok.ru/videoembed/$domain=boosty.to,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127859 [Stealth Mode - IP hiding]
+@@||images.boosty.to^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127703 [Stealth Mode - Referrer]
+@@||deliriousholistic.net/embed$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127694 [Stealth Mode - Any option]
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=forum.release-apk.com,stealth,important
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads*.js$domain=forum.release-apk.com,important,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127640 [Stealth Mode - Referrer]
+@@||cloudapp.chinacloudapi.cn/lb.php?url=$stealth
+! stoerungsauskunft.de - no elements loading [Stealth Mode - Block third-party Authorization header]
+@@||api-public.stoerungsauskunft.de/api$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127122 [Stealth Mode - Referrer]
+@@||catlat.link/iframe.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/127475 [Stealth Mode - IP hiding]
+@@||housecardsummerbutton.com^$stealth
+@@||delivery-node-*.voe-network.net/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/126196 [Stealth Mode - Block third-party Authorization header]
+@@||api.bileto.com^$stealth,domain=arriva.cz
+! https://github.com/AdguardTeam/AdguardFilters/issues/127350 [Stealth Mode - Referrer]
+@@/chunklist.m3u8$stealth,domain=liveply.me
+! https://github.com/AdguardTeam/CoreLibs/issues/1661 [Stealth Mode - Referrer]
+@@||teleportal.ua/vplayer/?hash=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/126747 [Stealth Mode - Block third-party Authorization header]
+@@||apiwaka.azure-api.net/api/key/$stealth,domain=wakanim.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/126727 [Stealth Mode - Block third-party Authorization header]
+@@||focusmate-api.herokuapp.com/v*/profiles/$stealth,domain=focusmate.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/126946 [Stealth Mode - User-agent]
+@@||addons.opera.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/126434 [Stealth Mode - Block third-party Authorization header]
+@@||public-image-upload.s3.amazonaws.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/126433 [Stealth Mode - Block third-party Authorization header]
+@@||mein.toubiz.de/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/124917 [Stealth Mode - Referrer]
+@@||transact.playstation.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/124917 [Stealth Mode - Block third-party Authorization header]
+@@||api.playstation.com^$stealth
+@@||web.np.playstation.com/api^$stealth
+@@||np.community.playstation.net^$stealth
+! store.playstation.com - broken agegate [Stealth Mode - Referrer]
+@@||store.playstation.com/html/webIframeRedirect.html?requestId$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125917 [Stealth Mode - Referrer]
+@@||dwnserver.com/download/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125886 [Stealth Mode - Referrer]
+@@||img.achost.top^$stealth,domain=galge.fun
+! https://github.com/AdguardTeam/AdguardFilters/issues/125825 [Stealth Mode - Block third-party Authorization header]
+@@||apim.prd.natlot.be^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125723 [Stealth Mode - IP hiding]
+@@||xes.pl/sign-in.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125331 [Stealth Mode - Referrer]
+@@||img.mxomo.com^$image,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125330 [Stealth Mode - Referrer]
+@@||cdnv2.newcomertoday.me/*.jpg$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/125230 [Stealth Mode - Referrer]
+@@||hls-live.bdstatic.com/*/stream_$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/131302 [Stealth Mode - Block third-party Authorization header]
+@@||gfnpc.api.entitlement-prod.nvidiagrid.net^$stealth
+@@||prod.sfm.geforcenow.nvidiagrid.net^$stealth
+@@||userstore.nvidia.com/v1/clientData$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/124836 [Stealth Mode - Block third-party Authorization header]
+@@||login.nvidia.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/123421 [Stealth Mode - Block third-party Authorization header]
+@@||api-*us1*.cludo.com/api/*/search$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/124836 [Stealth Mode - WebRTC]
+! TODO: remove negated content types when the version with https://github.com/AdguardTeam/CoreLibs/issues/1224 will be released
+@@||play.geforcenow.com/mall/$stealth,~script,~xmlhttprequest,~image,~stylesheet,~other,~media
+! https://old.reddit.com/r/Adguard/comments/w7nzlq/site_still_broken_after_adding_to_allowlist [Stealth Mode - Referrer]
+@@||api.babbel.io^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/124305 [Stealth Mode - Referrer]
+@@||vikistream.com:*/hls/*.m3u8$stealth
+@@||cdn.raino.xyz/hls/*.m3u8$stealth
+@@||eplayer.click/*/*.php$stealth
+@@||srv.vhls.ru.com/cdn/*/*/*.m3u8$stealth
+@@/cdn/*/tracks-*/*/*.js$stealth,domain=strims.top
+! https://github.com/AdguardTeam/AdguardFilters/issues/123523 [Stealth Mode - Block third-party Authorization header]
+@@||public-api.reviews.2gis.com^$stealth
+@@||achieves.2gis.com/*/achieves?locale=$stealth,xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/123710 [Stealth Mode - Block third-party Authorization header]
+@@||loki.delve.office.com/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/123401 [Stealth Mode - Referrer]
+@@||zyz.sdljwomen.com/*/?url=$stealth
+! studienwahl.de - adblock detection [Stealth Mode - Referrer]
+@@||ced.sascdn.com/tag/*/smart.js$domain=studienwahl.de,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/123604 [Stealth Mode - Referrer]
+@@||cm.blazecloud.co/*.jpg$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/122871 [Stealth Mode - Block third-party Authorization header]
+@@||api.hbo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/122907 [Stealth Mode - Referrer]
+@@||img.eplayer.is^$stealth,domain=hpav.tv
+@@||pornimg.xyz^$stealth,domain=hpav.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/122907 [Stealth Mode - Referrer]
+@@||ihlv1.xyz/images$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/122752 [Stealth Mode - Referrer]
+@@||pay.yandex.ru/web/sdk/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/122892 [Stealth Mode - Referrer]
+@@||orospucocugi.xyz/mp4/$stealth,media
+! https://github.com/AdguardTeam/AdguardFilters/issues/122690 [Stealth Mode - Referrer]
+@@||vidmoly.to/embed-*.html$stealth,domain=hdfilmcehennemi.me
+! https://github.com/AdguardTeam/AdguardFilters/issues/122547 [Stealth Mode - Block third-party Authorization header]
+@@||um.viuapi.io/drm/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/122152 [Stealth Mode - Referrer]
+@@||geo.dailymotion.com/player/*.html$stealth,domain=ohmymag.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/122012 [Stealth Mode - Referrer]
+@@||supremejav.com/supjav.php^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/121681 [Stealth Mode - Referrer]
+@@||mangakala.com/wp-content/uploads/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/121453 [Stealth Mode - IP hiding]
+@@||track.ukrposhta.ua^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/121023 [Stealth Mode - Referrer]
+@@||ihlv1.xyz/images$image,stealth,domain=weloma.art
+! https://github.com/AdguardTeam/AdguardFilters/issues/121396 [Stealth Mode - Block third-party Authorization header]
+@@||api.prod.bunnings.com.au^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/120298 [Stealth Mode - Block third-party Authorization header]
+@@||graphql.datocms.com^$stealth,domain=sensorkit.arduino.cc
+! https://github.com/AdguardTeam/AdguardFilters/issues/121055 [Stealth Mode - Block third-party Authorization header]
+@@||sto-caas-api.e-spirit.cloud/*/content/$domain=sto.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/118495 [Stealth Mode - Referrer]
+@@||api.penpencil.xyz^$stealth,domain=physicswallah.live|pw.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/120220
+@@||1trackapp.com^$stealth,xmlhttprequest,domain=1track.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/119422 [Stealth Mode - Referrer]
+@@||img*.*.xyz^$stealth,image,domain=manhwa18.cc
+! https://github.com/AdguardTeam/AdguardFilters/issues/119579 [Stealth Mode - Referrer]
+@@||klimv*.xyz/images$stealth,domain=klmag.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/119041 [Stealth Mode - Referrer]
+@@||vid.xilften.ru/embed-$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118915 [Stealth Mode - Referrer]
+@@||arnolds.com.br^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118858 [Stealth Mode - Referrer]
+@@||ivi.ru/*/video/?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118605 [Stealth Mode - Referrer]
+@@||a-delivery*.mxdcontent.net^$stealth,media
+! https://github.com/AdguardTeam/AdguardFilters/issues/118603 [Stealth Mode - Referrer]
+@@||apiblogger.xyz/blogger/video-play.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118601 [Stealth Mode - Referrer]
+@@||playnewserie.xyz^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118397 [Stealth Mode]
+@@||signin.aws.amazon.com/signin^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118490 [Stealth Mode - Referrer]
+@@||tudogostoso.de^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118294 [Stealth Mode - Referrer]
+@@||fundingchoicesmessages.google.com/f/*=$script,domain=youpouch.com,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118161 [Stealth Mode - Referrer]
+@@||grimoireoss-pa.clients6.google.com^$stealth,domain=cs.opensource.google
+! https://github.com/AdguardTeam/AdguardFilters/issues/117641 [Stealth Mode - Referrer]
+@@.b-cdn.net/*.m3u8?$xmlhttprequest,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/117586 [Stealth Mode - Block Push API]
+@@||kad.arbitr.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/117290 [Stealth Mode - WebRTC]
+@@||gamivo.com/product/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/117300 [Stealth Mode - Referrer]
+@@||smartdoing.tech^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/117502
+! https://github.com/AdguardTeam/AdguardFilters/issues/117279 [Stealth Mode - Referrer]
+@@||edge.mycdn.live/live/*.m3u8$stealth
+@@||edge.mycdn.live^$stealth,domain=futemax.gratis|futebolplayhd.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/116967 [Stealth Mode - Referrer]
+@@||fundingchoicesmessages.google.com/f/*=$script,domain=soranews24.com,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/117013 [Stealth Mode - Referrer]
+@@||img.*.net^$stealth,domain=bnman.net
+@@||img*.kangaroobro.com^$stealth,domain=bnman.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/116948 [Stealth Mode - Referrer]
+@@||sejasaudavel.net^$stealth
+@@||cqvboeirsvugo.biz/*.php?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116952 [Stealth Mode - Referrer]
+@@||ip-*.net/*.mp4$stealth,domain=meusanimes.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/116957 [Stealth Mode - Referrer]
+@@||multicanais.org/get/auth$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116946 [Stealth Mode - Referrer]
+@@||viajarhoje.com^$stealth
+@@||saborcaseiro.org/*.php?contentId=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116942 [Stealth Mode - Referrer]
+@@||api.anivideo.fun/file/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116799 [Stealth Mode - Referrer]
+@@||servermonster.online/*.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116811
+@@||s.stormedia.info/*.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116709 [Stealth Mode - Referrer]
+@@||mzzcloud.life/embed-$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116637 [Stealth Mode - Referrer]
+@@||mfcdn.net/store/$stealth,domain=fanfox.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/116426 [Stealth Mode - Referrer]
+@@||cdnyauction.buyee.jp^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118213 [Stealth Mode - Referrer]
+@@||cdn.hsmedia.ru/dist/$stealth,domain=maximonline.ru|woman.ru|parents.ru|vokrugsveta.ru|psychologies.ru|ellegirl.ru|wday.ru|elle.ru|marieclaire.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/116349 [Stealth Mode - Referrer]
+@@||hotpoint.pw/iframe.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116265 [Stealth Mode - Referrer]
+@@||clubinvest.top^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116266 [Stealth Mode - Referrer]
+@@||cdn*-player.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116218 [Stealth Mode - Referrer]
+@@||mundotec.pro^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116188 [Stealth Mode - Referrer]
+@@||conheceresaber.space^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116195 [Stealth Mode - Block third-party Authorization header]
+@@||api.apple-mapkit.com^$stealth
+@@||cdn.apple-mapkit.com/*?apiVersion=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116187 [Stealth Mode - Referrer]
+@@||fofoquei.com/*/*.m3u8$stealth
+@@||embeds.filmezando.net/player/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116181
+@@||player.uauflix.online^$stealth
+@@||uauplayer.com/player^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116182 [Stealth Mode - Referrer]
+@@||mundodebolso.me^$stealth
+@@||temperosdavovo.com/*/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116085 [Stealth Mode - Referrer]
+@@||manchetehoje.xyz/*/*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116117 [Stealth Mode - Referrer]
+@@||s3.amazonaws.com^$stealth,domain=informationisbeautiful.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/115628 [Stealth Mode - Block third-party Authorization header]
+@@||portal.azure.com/*/resource/subscriptions/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116075
+@@||dostavista.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/115963 [Stealth Mode - Referrer]
+@@||cdn13.com^$stealth,media
+! https://github.com/AdguardTeam/AdguardFilters/issues/116030 [Stealth Mode - Referrer]
+@@||decorardicas.com.br^$stealth
+@@||loucasporcabelos.com.br^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116036
+@@||steampiay.cc^$stealth
+@@||pouvideo.cc^$stealth
+@@||pomvideo.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116031 [Stealth Mode - Referrer]
+@@||encripted-encripted-encripted-encripted-encripted-encripted.fun/r.php?data=*?vid=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/116026 [Stealth Mode - Referrer]
+@@||lordplayer.club/*/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/118217
+! https://github.com/AdguardTeam/AdguardFilters/issues/115812 [Stealth Mode - Referrer]
+@@||ntcdntempv*.com/data/images/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/115740 [Stealth Mode - Referrer]
+@@||html5.5games.cc^$stealth,third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/115652 [Stealth Mode - Referrer]
+@@||hls.redefine.pl^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/115391 [Stealth Mode - Referrer]
+@@||api-*.cludo.com/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/115356 [Stealth Mode - Referrer]
+@@||forum.javcdn.cc^$stealth,domain=javbus.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/115083 [Stealth Mode - Referrer]
+@@||img*.*img18fx.xyz^$stealth,image,domain=manga18fx.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/115152 [Stealth Mode - Referrer]
+@@||img.bondinternational.net^$stealth,image,domain=leyuman.com
+@@||img*.kangaroobro.com/images/$stealth,image,domain=leyuman.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/114874 [Stealth Mode - Referrer]
+@@||usanewstoday.club/safe*.php?link=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/114510 [Stealth Mode - Referrer]
+@@||iknow-pic.cdn.bcebos.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/113711 [Stealth Mode - Referrer]
+@@||miui.com/unlock/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/114803 [Stealth Mode - Referrer]
+@@||10drives.com/downv*.php$stealth
+@@||10drives.com/api/$stealth,domain=premiumebooks.*
+! https://github.com/AdguardTeam/AdguardFilters/issues/114743 [Stealth Mode - Referrer]
+@@stmggv*.*/images/$stealth,domain=manhuascan.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/114345 [Stealth Mode - Referrer]
+@@||cdntvpotok.com/*.php$stealth
+@@||cdnpotok.com/*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/114472 [Stealth Mode - Referrer]
+@@||4kya.com/?url=$stealth,domain=netflix.mom
+! https://github.com/AdguardTeam/AdguardFilters/issues/113774 [Stealth Mode - Referrer]
+@@||checkoutshopper-live.adyen.com/checkoutshopper/*/securedFields.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/114231 [Stealth Mode - Referrer]
+@@||dapi.kakao.com/*/maps/sdk.js$stealth,domain=kfckorea.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/114044 [Stealth Mode - Referrer]
+@@||api.mapbox.com/geocoding/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/113838 [Stealth Mode - IP hiding]
+@@||novelpia.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/113965 [Stealth Mode - Referrer]
+@@||vaughnsoft.net/play/$stealth,domain=vaughn.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/113830 [Stealth Mode - Referrer]
+@@||imasdk.googleapis.com^$stealth,domain=news.tvb.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/128883
+! https://github.com/AdguardTeam/AdguardFilters/issues/113262 [Stealth Mode - Referrer]
+@@||idmsa.apple.com/appleauth/$stealth,domain=icloud.com|icloud.com.cn
+! https://github.com/AdguardTeam/AdguardFilters/issues/113509 [Stealth Mode - Referrer]
+@@/img/tab_$stealth,image,domain=mangakakalot.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/113264 [Stealth Mode - Referrer]
+@@/Status/ping$stealth,domain=status.bigant.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/113139 [Stealth Mode - Referrer]
+@@||upstreamcdn.co/hls/$stealth,domain=upstream.to
+! https://github.com/AdguardTeam/AdguardFilters/issues/112944 [Stealth Mode - Referrer]
+@@||stackpathcdn.com^$stealth,domain=tympanus.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/113055 [Stealth Mode - Referrer]
+@@||player.daznfeeds.com/vod/$stealth
+@@||player.daznfeeds.com/bootstrap/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/112833 [Stealth Mode - Referrer]
+@@/live/*.$stealth,domain=tutele.sx|futbolfullenvivo.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/109512 [Stealth Mode - Referrer]
+@@||directly.com/chat?cfgId=$stealth
+@@||directline.botframework.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/109801 [Stealth Mode - IP hiding]
+@@||1plus1.video/tvguide/embed/*?autoplay=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/111187 [Stealth Mode - Referrer]
+@@||rumble.com/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/108599 [Stealth Mode - Referrer]
+@@||xp-cdn.net/video/$stealth,media,domain=xpornium.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/110746 [Stealth Mode - Referrer]
+@@||pornimg.xyz^$stealth,domain=popjav.tv
+@@||img.eplayer.is^$stealth,domain=popjav.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/110629
+@@||dirtyship.net/dirtyship/$media,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/108448 [Stealth Mode - WebRTC]
+@@||w2g.tv/rooms/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/109773 [Stealth Mode - Referrer]
+@@||player*.cinestream.bid^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/108868 [Stealth Mode - Referrer]
+@@||api.mapbox.com/*/mapbox.satellite/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/107216 [Stealth Mode - Block third-party Authorization header]
+@@||api.openprovider.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/107596 [Stealth Mode - Block third-party Authorization header]
+@@||store-web.dynamics.com^$stealth
+@@||xboxlive.com^$stealth
+@@||xboxservices.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/106303 [Stealth Mode - Referrer]
+@@||duihui.duoduocdn.com^$image,stealth,domain=zhibo8.cc
+! https://github.com/AdguardTeam/AdguardFilters/issues/107777 [Stealth Mode - Referrer]
+@@.jpg$stealth,domain=manga1001.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/108211 [Stealth Mode - Referrer]
+@@||gurgle.zdbb.net/amp-targeting$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/107857 [Stealth Mode - Referrer]
+@@||pornimg.xyz^$stealth,domain=hpjav.tv
+@@||img.eplayer.is^$stealth,domain=hpjav.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/106462 [Stealth Mode - Block third-party Authorization header]
+@@||api.onedrive.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/105866 [Stealth Mode - Referrer]
+@@||player.daznfeeds.com^$stealth,domain=transfermarkt.*
+! https://github.com/AdguardTeam/AdguardFilters/issues/105485 [Stealth Mode - Referrer]
+@@||webapi.ctfile.com/getfile.php$stealth,domain=ct.999wan.wang
+! https://github.com/AdguardTeam/AdguardFilters/issues/105282 [Stealth Mode - Referrer]
+@@||dynamic-images-picturehappy.*.amazonaws.com^$stealth,domain=picturehappy.lv
+! https://github.com/AdguardTeam/AdguardFilters/issues/132405 [Stealth Mode - Referrer]
+@@||strmrdr*/index.php?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/104524 [Stealth Mode - Referrer]
+@@||core-nmaps-renderer-nmaps.maps.yandex.net/tile?x=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/104795 [Stealth Mode - Referrer]
+@@||bitvtom100.xyz/public/*/video?vid=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/105776
+@@||evisaforms.state.gov^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/105226
+@@||captcha-delivery.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/105544 [Stealth Mode - Referrer]
+@@||api-game.rivet.gg^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/102628 [Stealth Mode - Referrer]
+@@||mggm.club/thum/$image,stealth,domain=manga1000.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/102896 [Stealth Mode - Referrer]
+@@||scontent-*.cdninstagram.com^$stealth,domain=bella.tw
+! https://github.com/AdguardTeam/AdguardFilters/issues/102602
+@@||maps.googleapis.com/maps/api/$stealth,domain=budmatauto.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/101263 [Stealth Mode - Referrer]
+@@||bin.bnbstatic.com^$stealth,domain=binance.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/102339 [Stealth Mode - Referrer]
+@@||mangarc.com^$stealth,image,domain=mangalek.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/101724 [Stealth Mode - Referrer]
+@@||pic*.cdncl.net^$stealth,domain=cowlevel.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/102199 [Stealth Mode - Referrer]
+@@||my-bucket-s3-*-amazonaws.*.*/*.mp4$stealth,domain=ibomma.pw
+! https://github.com/AdguardTeam/AdguardFilters/issues/101484 [Stealth Mode - Referrer]
+@@||media.biertijd.com/galleries/$stealth,domain=biertijd.xxx
+! https://github.com/AdguardTeam/AdguardFilters/issues/101503 [Stealth Mode - Referrer]
+@@||sudoroot.net/*/|$stealth
+@@||animeshouse.net/mp4doo/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/101412 [Stealth Mode - Referrer]
+@@||e-podroznik.pl/public/$stealth,domain=hoper.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/100796 [Stealth Mode - Referrer]
+@@||static.hentai.direct/$stealth,image
+! https://github.com/AdguardTeam/AdguardFilters/issues/101490 [Stealth Mode - Referrer]
+@@||vip.rtsts.me/?pge=$image,stealth
+@@||v1sts.me/?pge=stream$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/100401 [Stealth Mode - Block third-party Authorization header]
+@@||cdn.apple-mapkit.com/ma/bootstrap?$stealth,domain=icloud.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/99588 [Stealth Mode - Referrer]
+@@||ibeta-www.oss-cn-beijing.aliyuncs.com^$stealth,domain=betahub.cn
+! https://github.com/AdguardTeam/AdguardFilters/issues/99389 [Stealth Mode - Referrer]
+@@||mapapi.cloud.huawei.com/mapjs/v*/api/$stealth,domain=petalmaps.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/98975 [Stealth Mode - Block third-party Authorization header]
+@@||nbaapi.neulion.com/api_nba/$stealth,domain=nba.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/98906
+@@||ssl-thumb2.720static.com^$stealth,image
+! https://github.com/AdguardTeam/AdguardFilters/issues/98853 [Stealth Mode - Referrer]
+@@||api.mapbox.com/*?secure&access_token=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/98137 [Stealth Mode - Referrer]
+@@||ip-*.net/*.mp4$stealth,domain=animeonline.site
+! https://github.com/AdguardTeam/AdguardFilters/issues/96261 [Stealth Mode - Referrer]
+@@||mhscdnv*/images/$stealth,domain=manhuascan.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/97649 [Stealth Mode - Referrer]
+@@||avf41.club/images^$stealth,domain=manga1000.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/96913#issuecomment-952242629 [Stealth Mode - Referrer]
+@@||onlinefixuploads.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/97915 [Stealth Mode - Referrer]
+@@||ixifile.xyz/*.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/97176 [Stealth Mode - Referrer]
+@@||webzjac.reg.*.com^$stealth,domain=passport.youdao.com
+@@||webzjcaptcha.reg.*.com/api/$stealth,domain=passport.youdao.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/98051 [Stealth Mode - Referrer]
+@@||fundingchoicesmessages.google.com^$stealth,domain=stooq.pl|stooq.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/97673 [Stealth Mode - Referrer]
+@@||anyhentai.com/*.mp4?st=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/96837 [Stealth Mode - Block third-party Authorization header]
+@@||de-api.eco.astro.com.my/feed/api/$stealth,domain=astroawani.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/96631 [Stealth Mode - Block third-party Authorization header]
+@@||identity.oraclecloud.com//sso/v*/sdk/authenticate$stealth,domain=v2.ereg.ets.org
+! https://github.com/AdguardTeam/AdguardFilters/issues/96635#issuecomment-948466433 [Stealth Mode - User-agent]
+@@||izifilm.net^$stealth,app=Kinoplay.exe
+! https://github.com/AdguardTeam/AdguardFilters/issues/96856 [Stealth Mode - Referrer]
+@@||shortlink.prz.pw^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/96278 [Stealth Mode - Referrer]
+@@||bing.com/api/v*/Places/AutoSuggest?$stealth,domain=obi.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/96562 [Stealth Mode - Referrer]
+@@||api.mapbox.com^$stealth,domain=planet.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/95900 [Stealth Mode - Referrer]
+@@||botprotect.io^$stealth,domain=robloxscripts.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/95265
+@@||data.alicloudccp.com^$stealth,domain=aliyundrive.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/95696 [Stealth Mode - User-agent]
+@@||microsoft.com/*/p/$stealth
+! kinopoisk.ru - sign in was broken [Stealth Mode - third-party cookies]
+@@||sso.kinopoisk.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/96541 [Stealth Mode - Referrer]
+@@||internetowa.tv^$stealth,domain=hejo.tv
+@@||cdnnetwork.info^$stealth,domain=hejo.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/105801
+! https://github.com/AdguardTeam/AdguardFilters/issues/95882 [Stealth Mode - Referrer]
+@@||simg.doubanio.com^$stealth,domain=douban.com
+@@||img*.doubanio.com^$stealth,domain=accounts.douban.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/96021 [Stealth Mode - Referrer]
+@@||kissorg.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/96003 [Stealth Mode - Block third-party Authorization header]
+@@||live-buyback-order-api.live-api.recommerce.cloud/product?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/94305 [Stealth Mode - Referrer]
+@@||checkdomain.b-cdn.net/assets/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/94125 [Stealth Mode - Referrer]
+@@||api.mpapis.xyz/|$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/94134 [Stealth Mode - IP hiding]
+@@/token/*/master.mp4$stealth,domain=anilife.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/93925 [Stealth Mode - Referrer]
+@@||autocomplete.geocoder.api.here.com/*/suggest.json$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/94148 [Stealth Mode - Referrer]
+@@||dapi.kakao.com/v*/maps/sdk.js$stealth,domain=nonghyup.tritops.co.kr
+! https://github.com/AdguardTeam/AdguardFilters/issues/92377
+@@||track.toggl.com/auth^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/93292 [Stealth Mode - Referrer]
+@@||moly.cloud/*/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92911 [Stealth Mode - Referrer]
+@@||rota.cc^$stealth
+@@||automotur.club^$stealth
+! afisha.ru broken instagram frames [Stealth Mode - Referrer]
+@@||scontent-arn*.cdninstagram.com/v/$stealth,image,domain=afisha.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/92635
+@@||funshion.com/*/media/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92634 [Stealth Mode - Referrer]
+@@||ksv-video-publish-m3u8.cdn.bcebos.com/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92600 [Stealth Mode - Referrer]
+@@||droplink.co^$stealth,~third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/93029 [Stealth Mode - Referrer]
+@@||fundingchoicesmessages.google.com^$stealth,script,domain=player.addradio.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/92140 [Stealth Mode - Referrer]
+@@||link1s.*^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92334 [Stealth Mode - Referrer]
+@@||v.gqyy8.com:*.php?vid=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92275 [Stealth Mode - Referrer]
+@@||tiles.esa.maps.eox.at/wms?SERVICE=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92353 [Stealth Mode - Referrer]
+@@||img2.xyz.futbol/comics/$domain=jmana1.net,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/91915 [Stealth Mode - Referrer, IP hiding]
+@@||unian.net/player/$stealth
+@@||api.1plus1.video^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/92180 [Stealth Mode - Referrer]
+@@||battlecats-db.imgs-server.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/91016 [Stealth Mode - Referrer]
+@@||hlssec.rambler.eaglecdn.com/key.bin$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/90839 [Stealth Mode - Referrer]
+@@||manhua.acimg.cn^$stealth,domain=ac.qq.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/90981 [Stealth Mode - Referrer]
+@@||files.nextcdn.org/stream/$stealth,domain=animepahe.com|kwik.cx
+! https://github.com/AdguardTeam/AdguardFilters/issues/90892 [Stealth Mode - Referrer]
+@@||t*.daumcdn.net/cafeattach/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/90423 [Stealth Mode - Referrer]
+@@||content-*.googleapis.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/90545 [Stealth Mode - Referrer]
+@@||nhanhtruyen.org/data/images/$stealth,domain=nettruyenvip.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/90012 [Stealth Mode - Referrer]
+@@||cloudfront.net/images/$stealth,domain=maps.seaofthieves.rarethief.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/89642 [Stealth Mode - Referrer]
+@@||123tv.live^$stealth
+@@|http$stealth,xmlhttprequest,other,media,domain=123tv.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/89977 [Stealth Mode - Referrer]
+@@||login.bible.com^$stealth,domain=bible.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/89323 [Stealth Mode - Referrer]
+@@||img*.japanreader.com/uploads/$stealth,domain=lectortmo.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/89131 [Stealth Mode - Block third-party Authorization header]
+@@||platform-eu.cloud.coveo.com^$stealth,domain=fiskars.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/88832 [Stealth Mode - Referrer]
+@@||drop*.dropmefile.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/88656 [Stealth Mode - Referrer]
+@@||aniboom.one/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/88413 [Stealth Mode - Referrer]
+@@||vidcloud.msk.ru/embed$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/87427 [Stealth Mode - Referrer]
+@@||app.aboutyou.com/sign_in_with_apple$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/88006 [Stealth Mode - Referrer]
+@@||scontent-*.cdninstagram.com^$stealth,domain=wp.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/86859 [Stealth Mode - Referrer]
+@@||embed.meomeo.pw/fastmedia/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/87288 [Stealth Mode - Referrer]
+@@||google-analytics.com/analytics.js$domain=mediamarkt.*,stealth,important
+@@||google-analytics.com/plugins/ua/ec.js$domain=mediamarkt.*,stealth,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/86093 [Stealth Mode - Referrer]
+@@||closeload.com/video/embed/$stealth
+@@||server*cdn*.tk/hls/$stealth
+@@||cloadstream*.xyz/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/87074 [Stealth Mode - Referrer]
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=apkmirror.com,stealth
+@@||widgets.outbrain.com/outbrain.js$domain=apkmirror.com,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/87046 [Stealth Mode - Referrer]
+@@||9cache.com^$stealth,domain=9gag.com
+! ccleaner shop - not loading products [Stealth Mode - Referrer]
+@@||static-cf.cleverbridge.com/mycontent^$domain=secure.ccleaner.com,stealth
+! Kinja websites (kotaku.com) - broken pictures [Stealth Mode - Referrer]
+@@||i.kinja-img.com^$stealth
+! Broken pictures - [Stealth Mode - Referrer]
+@@||m.media-amazon.com/images/*$domain=amazon.*,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/86938 [Stealth Mode - Referrer]
+@@||media.nbb-cdn.de/images^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/86895 [Stealth Mode - Referrer]
+@@||sf*-*cdn-tos.pstatp.com^$domain=bcy.net,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/85212 [Stealth Mode - Referrer]
+@@||medium.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/85325
+! Streamplay
+@@||stemplay.*^$stealth
+@@||powvibeo.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/85371 [Stealth Mode - Referrer]
+@@||hotstream.club/player/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/113893
+! https://github.com/AdguardTeam/AdguardFilters/issues/85090 [Stealth Mode - Referrer]
+@@/cdn/hls/*/master.txt$stealth,domain=diziyo.*|dzyco.*
+! Fixing issue with installing addons from addons.opera.com
+@@||addons.opera.com/ru/extensions/details/$stealth
+@@||addons.opera.com/extensions/download/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/84932 [Stealth Mode - Block third-party Authorization header]
+@@||writing.chegg.com/graphql$stealth,domain=citationmachine.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/85258 [Stealth Mode - Block third-party Authorization header]
+@@||api.mojang.com^$stealth
+@@||api.minecraftservices.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/84837 [Stealth Mode - Referrer]
+@@||s2-download.xyz^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82309
+@@||officeapps.live.com/*.aspx$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/81577
+@@||secure.ccavenue.com/transaction/$stealth
+! https://forum.adguard.com/index.php?threads/43237/ [Stealth Mode - Referrer]
+@@||formula.ifz.ru/cgi-bin/tex2img-new.cgi$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/84234 [Stealth Mode - Referrer]
+@@||api.its-mo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/83666 [Stealth Mode - Referrer]
+@@||webhook.frontapp.com/forms/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/83651
+@@||streanplay.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82882 [Stealth Mode - Referrer]
+@@||storage.yandex.net/rdisk/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/130703
+! https://github.com/AdguardTeam/AdguardFilters/issues/83098 [Stealth Mode - Referrer]
+@@||punakong.com:*/Cloud/Down/$stealth,domain=zxzj.*
+! https://forum.adguard.com/index.php?threads/give-me-solution-please-all-image-blocking.42999/ [Stealth Mode - Referrer]
+@@||cdn.statically.io/img^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82345 [Stealth Mode - Referrer]
+@@||video.javhdporn.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82466 [Stealth Mode - Referrer]
+@@||ac.namu.la^$domain=arca.live,media,image,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82168 [Stealth Mode - Referrer]
+@@||vod*.myqcloud.com^$stealth,domain=cloud.tencent.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/82040 [Stealth Mode - Referrer]
+@@||vkprime.com/embed-*.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82208 [Stealth Mode - Referrer]
+@@||content-*.uplynk.com/preplay$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82201 [Stealth Mode - IP hiding]
+@@||jobportal.uni-koeln.de^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/82151 [Stealth Mode - Referrer]
+@@||google-analytics.com/analytics.js$stealth,domain=tv-media.at
+! https://github.com/AdguardTeam/AdguardFilters/issues/81323 [Stealth Mode - Referrer]
+@@||scan-trad.fr^$stealth,image,domain=scantrad.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/81382 [Stealth Mode - WebRTC, Referrer]
+@@||meet.jit.si^$stealth
+@@||play.vidyard.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/81067 [Stealth Mode - Referrer]
+@@||scontent*.cdninstagram.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/94766
+! https://github.com/AdguardTeam/AdguardFilters/issues/80694 [Stealth Mode - Referrer]
+@@||grimoireoss-pa.clients6.google.com^$domain=source.chromium.org,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/79861 [Stealth Mode - third-party cookies]
+@@||f95zone.to/login/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/79698 [Stealth Mode - Block third-party Authorization header]
+@@||api.athom.com^$domain=my.homey.app,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/78385 [Stealth Mode - Referrer]
+@@||api.cafeyn.co/users/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/79055 [Stealth Mode - IP hiding]
+@@||hotmo.org^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/78661
+@@||css.njhzmxx.com^$stealth,domain=yhdm.io
+! https://github.com/AdguardTeam/AdguardFilters/issues/78051 [Stealth Mode - Referrer]
+@@/embed/*$subdocument,stealth,domain=strims.world|daddylive.*
+! https://github.com/AdguardTeam/AdguardFilters/issues/78197 [Stealth Mode - Referrer]
+@@||cloudfront.net^$domain=postype.com,stealth,image
+! https://github.com/AdguardTeam/AdguardFilters/issues/77924 [Stealth Mode - Referrer]
+@@||sinaimg.cn^$stealth,domain=weibo.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/76235 [Stealth Mode - Referrer]
+@@||data.simpleupload.net/download/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/75484 [Stealth Mode - Block third-party Authorization header]
+@@||ingka.com^$stealth,domain=ikea.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/80854
+! https://github.com/AdguardTeam/AdguardFilters/issues/75417 [Stealth Mode - Referrer]
+@@|http*.php?url=$stealth,domain=nicotv.me
+! https://github.com/AdguardTeam/AdguardFilters/issues/76140 [Stealth Mode - Referrer]
+@@||uma.media^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/78193 [Stealth Mode - WebRTC]
+@@||myself-bbs.com/player/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/74518
+@@||amazonaws.com^$stealth,domain=console.aws.amazon.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/75102 [Stealth Mode - Referrer]
+@@||edx.org^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/74670 [Stealth Mode - Referrer]
+@@||api.youla.io^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/74623#issuecomment-777594020 [Stealth Mode - Referrer]
+@@||global.apis.naver.com^$stealth,domain=webtoons.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/74612 [Stealth Mode - Referrer]
+@@||api.mapbox.com^$stealth,domain=maps.me
+! https://github.com/AdguardTeam/AdguardFilters/issues/73941 [Stealth Mode - Do-not-Track]
+@@||cinemaxxl.de^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/75370 [Stealth Mode - Referrer]
+@@||midiaflixhd.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/74228 [Stealth Mode - Referrer]
+@@||kinescope.io/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/74305 [Stealth Mode - Referrer]
+@@||darmowa-tv.ws^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/73961 [Stealth Mode - Referrer]
+@@||imfaclub.com/images/$stealth,domain=lovehug.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/73924 [Stealth Mode - Referrer]
+@@||v.shoosh.co^$media,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/73227 [Stealth Mode - IP hiding]
+@@||drtuber.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/72165 [Stealth Mode - Referrer]
+@@||s*.bpwco.com^$xmlhttprequest,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/73236 [Stealth Mode - Referrer]
+@@||ask.qcloudimg.com^$stealth,domain=cloud.tencent.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/73013 [Stealth Mode - third-party cookies]
+@@||e-podroznik.pl/public/$stealth,domain=malopolskiekoleje.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/73755 [Stealth Mode - Referrer]
+@@||glavred.info^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/72306 [Stealth Mode - IP hiding]
+@@||mijn.kpn.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/73815 [Stealth Mode - Referrer]
+@@||iframe.simplex-affiliates.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/71534 [Stealth Mode - User-agent]
+! Fixing Edge Browser start page
+@@||ntp.msn.com/edge/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/71538 [Stealth Mode - Referrer]
+@@||nextstream.org^$stealth,domain=animepahe.com|kwik.cx
+! https://github.com/AdguardTeam/AdguardFilters/issues/71231 [Stealth Mode - Block third-party Authorization header]
+@@||api.os.fressnapf.com^$stealth,domain=fressnapf.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/70256
+@@||senseoflaw.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/70139 [Stealth Mode - Referrer]
+! For izlemac*.net - frequently changed domain
+@@||izlemac*.net/*-player-*.html$stealth
+@@||x.*.tk/*/strmrdr.m3u8$stealth
+@@||x.*.tk/*/caxi.m3u8$stealth
+@@||r.*.tk/*/xox_*/jpeg$stealth
+@@||x.*.xyz/*/xox_*.jpeg$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/70980 [Stealth Mode - Block third-party Authorization header]
+@@||wisr.tech^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/70102 [Stealth Mode - Referrer]
+@@||s1-filecr.xyz^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/70546 [Stealth Mode - IP hiding]
+@@||mathworks.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/70055 [Stealth Mode - IP hiding]
+@@||account.withings.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/69963 [Stealth Mode - Referrer]
+@@||wkretype.bdimg.com/retype/$stealth,domain=wenku.baidu.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/69788 [Stealth Mode - Referrer]
+@@||img*.*.*^$stealth,domain=mangalib.me
+! https://github.com/AdguardTeam/AdguardFilters/issues/69594 [Stealth Mode - Referrer]
+@@||audiko.net/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/69789 [Stealth Mode - Referrer]
+@@||ani-*.xyz/*.html$stealth,domain=aniwatch.me
+! https://github.com/AdguardTeam/AdguardFilters/issues/69596 [Stealth Mode - Referrer]
+@@||downloads.castlabs.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/69616 [Stealth Mode - Referrer]
+@@||link.mazterize.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/85382 [Stealth Mode - Referrer]
+@@||blog.naverblogwidget.com/ExternalWidgetRender.$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/69217 [Stealth Mode - Referrer]
+@@||akamaized.net/exp=$stealth,xmlhttprequest,domain=vidio.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/69203 [Stealth Mode - Referrer]
+@@||dapi.kakao.com/v*/*?appkey=$stealth,domain=ediya.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/68597 [Stealth Mode - Referrer]
+@@||stream.tn/embed-$stealth
+@@||vidoz.org/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/68328 [Stealth Mode - third-party cookies]
+@@||primevideo.com^$stealth
+@@||amazon.com/*/signin$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/68287 [Stealth Mode - Referrer]
+@@||mp4.sh/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/68320 [Stealth Mode - Referrer]
+@@||consistent.stream^$subdocument,stealth,domain=gostream.site
+! https://github.com/AdguardTeam/AdguardFilters/issues/70562 [Stealth Mode - IP hiding]
+@@||memoryhackers.org^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/67982 [Stealth Mode - Referrer]
+@@||50.7.*.*:8081/*?wmsAuthSign=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/67134 [Stealth Mode - Referrer]
+@@||upos-sz-mirrorhw.bilivideo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/67342 [Stealth Mode - Referrer]
+@@||player-smotri.mail.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/67102 [Stealth Mode - Referrer]
+@@||my.foxnews.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/66931 [Stealth Mode - Referrer]
+@@||elections.ap.org/widgets/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/65839 [Stealth Mode - Block third-party Authorization header]
+@@||disco-api.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/65534 [Stealth Mode - DNT]
+@@||typhoon.zjwater.gov.cn^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/65448 [Stealth Mode - Referrer]
+@@||hypercomments.com/api/comments?widget_id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/65468 [Stealth Mode - Referrer]
+@@||api.mapbox.com^$stealth,domain=padmapper.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/64493 [Stealth Mode - Referrer]
+@@||c.dun.*.com/api/$stealth,domain=dig.chouti.com
+! Tiktok videos [Stealth Mode - Referrer]
+@@||tiktokcdn.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/63777
+@@||konto.play.pl^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/63234 [Stealth Mode - WebRTC, Referrer]
+@@||bazon.site/embed/$stealth
+! https://github.com/AdguardTeam/CoreLibs/issues/1335 [Stealth Mode - WebRTC]
+@@||file.fm/f/$stealth
+@@||files.fm/f/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/62077 [Stealth Mode - Referrer]
+@@||api.imgur.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/61998 [Stealth Mode - IP hiding, User-agent]
+@@||api.ott.kinopoisk.ru^$stealth
+@@||ott.yandex.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/62129 [Stealth Mode - IP hiding]
+@@||exsite24.pl/cdn-cgi/challenge-platform/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/61919
+@@||ntv*.akamaized.net/*.m3u8$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/61832 [Stealth Mode - Referrer]
+@@||mkklcdnv7.com^$stealth,image
+! https://forum.adguard.com/index.php?threads/adguard-breaks-newly-redesigned-blitz-app.39391/ [Stealth Mode - User-agent]
+@@||blitz.gg/app^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/61565 [Stealth Mode - Referrer]
+@@||wstream.to/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/60981 [Stealth Mode - Block third-party Authorization header]
+@@||sso.myscript.com^$stealth
+@@||nebo.app/auth?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/60796 [Stealth Mode - User-agent]
+@@||yoox.com/images/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/60780 [Stealth Mode - Referrer]
+@@||dxb.to/player/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/60120 [Stealth Mode - Referrer]
+@@||partner.speedtestcustom.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/60623 [Stealth Mode - Referrer]
+@@||realtimestatistics.net^$stealth,domain=worldometers.info
+! https://github.com/AdguardTeam/AdguardFilters/issues/60448 [Stealth Mode - Referrer]
+@@||i.pximg.net/*/img/$stealth,domain=pixiv.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/60226
+@@||ahcdn.xyz^$stealth,media
+! https://github.com/AdguardTeam/AdguardFilters/issues/60250 [Stealth Mode - Referrer]
+@@||api.smartystreets.com/lookup$stealth,domain=att.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/60103 [Stealth Mode - Referrer]
+@@||embed.binkies3d.com^$stealth,domain=gsmarena.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/59917 [Stealth Mode - Referrer]
+@@||shrink-service.it/api-extension/$stealth,domain=adshrink.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/59439 [Stealth Mode - IP hiding]
+@@||zee5*.akamaized.net^$stealth,domain=zee5.com
+@@||www.zee5.com^$stealth,domain=zee5.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/58999 [Stealth Mode - User-agent]
+@@||id.skyeng.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/58946 [Stealth Mode - Block third-party Authorization header]
+@@||ec.nintendo.com^$stealth
+@@||accounts.nintendo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/58947 [Stealth Mode - Referrer]
+@@||31vaktii.xyz^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/58105 [Stealth Mode - third-party cookies]
+@@||demorgen.be^$domain=myprivacy.dpgmedia.be,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/58303 [Stealth Mode - Referrer]
+@@||huxiucdn.com/*/*.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/57121 [Stealth Mode - Block third-party Authorization header]
+@@||payments.braintree-api.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/57494 [Stealth Mode - Referrer]
+@@||ren.tv/video/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/57349 [Stealth Mode - Referrer]
+@@||s-delivery*.mxdcontent.net^$media,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56530 [Stealth Mode - Referrer]
+@@||dotice.me/*.m3u8$stealth
+@@||key.seckeyserv.me^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/57017
+@@||registrierung.web.de^$stealth
+@@||registrierung.gmx.net^$stealth
+! https://forum.adguard.com/index.php?threads/20532/ [Stealth Mode - Referrer]
+@@||ttranslit.com^*.m3u8?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/55883 [Stealth Mode - Referrer]
+@@||privateuploads.net/%$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56860 [Stealth Mode - Referrer]
+@@||tvizorcdn.ru/*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56640 [Stealth Mode - Referrer]
+@@||sdn.cz^$stealth,domain=televizeseznam.cz
+! https://github.com/AdguardTeam/AdguardFilters/issues/56477#issuecomment-638972724 [Stealth Mode - Block third-party Authorization header]
+@@||userservice-api.channel5.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56770 [Stealth Mode - Block Push API]
+@@||powv1deo.cc^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56483 [Stealth Mode - IP hiding]
+@@||subscribenow.com.au/*/offers/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/56338 [Stealth Mode - WebRTC]
+@@||hangouts.google.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/73820
+! https://github.com/AdguardTeam/AdguardFilters/issues/56368 [Stealth Mode - Referrer]
+@@/mangakakalot/*$stealth,image,domain=mangakakalot.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/56020 [Stealth Mode - Referrer]
+@@||123tv.live^$stealth,domain=123tvnow.com
+@@/live/*/*.m3u8$stealth,domain=123tvnow.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/56068 [Stealth Mode - Referrer]
+@@||amazonaws.com/zeroistanbulplaylist/$stealth,domain=zeroistanbul.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/55487 [Stealth Mode - IP hiding]
+@@||50.7.161.20:8081/*.m3u8?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35789 [Stealth Mode - Referrer]
+@@||cloudvideo.tv/embed-$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/55309 [Stealth Mode - Referrer]
+@@||mylogin.abc.net.au^$stealth
+@@||login.abc.net.au^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/54799 [Stealth Mode - Block third-party Authorization header]
+@@||public-ubiservices.ubi.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/54772 [Stealth Mode - Referrer]
+@@||gounlimited.to/embed-*.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/55036 [Stealth Mode - Referrer]
+! https://github.com/AdguardTeam/AdguardFilters/issues/54660
+@@||mcloud.to/key$stealth
+@@||mcloud.to/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/54513 [Stealth Mode - IP hiding]
+@@||finishline.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/54270 [Stealth Mode - Referrer]
+@@||preview.editmysite.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/53998 [Stealth Mode - Referrer]
+@@||ahcdn.com/key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/53977 [Stealth Mode - Referrer]
+@@||downloader.disk.yandex.$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/53890 [Stealth Mode - Block Push API]
+@@||savefrom.net/savefrom.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/53310 [Stealth Mode - Block Push API]
+@@||powvldeo.me^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52943 [Stealth Mode - Referrer]
+@@||forms.ministryforms.net/*.aspx^$stealth,domain=app.clovergive.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/96974 [Stealth Mode - Block third-party Authorization header]
+! https://github.com/AdguardTeam/AdguardFilters/issues/52135 [Stealth Mode - Block third-party Authorization header]
+@@||bamgrid.com^$stealth,domain=disneyplus.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/53120 [Stealth Mode - Referrer]
+@@||webcam.atomsk.ru^*/index?vid=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/66881
+! https://github.com/AdguardTeam/AdguardFilters/issues/65928
+! https://github.com/AdguardTeam/AdguardFilters/issues/52925 [Stealth Mode - Referrer]
+@@||przegladsportowy.pl/*&srcc=ucs$stealth
+@@||auto-swiat.pl/*srcc=ucs$stealth
+@@||komputerswiat.pl/*srcc=ucs$stealth
+@@||noizz.pl/*srcc=ucs$stealth
+@@||plejada.pl/*srcc=ucs$stealth
+@@||medonet.pl/*srcc=ucs$stealth
+@@||businessinsider.com.pl/*srcc=ucs$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52896 [Stealth Mode - Referrer]
+@@||cdn.bunny.sh^$media,stealth
+! facebook.com - missing option to switch to new layout [Stealth Mode - User-agent]
+@@||facebook.com/bluebar/modern_settings_menu^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52411 [Stealth Mode - Referrer - IP hiding]
+@@||compriso.speedtestcustom.com^$third-party,stealth
+@@||compriso.speedtestcustom.com/api/js/servers$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52315 [Stealth Mode - Referrer]
+@@||amazonaws.com/images.filepuma.com^$stealth,domain=filepuma.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/52311 [Stealth Mode - Referrer]
+@@||9anime.nl/watch/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52255 [Stealth Mode - Referrer]
+@@||tv.media.jio.com/streams_live/$stealth,domain=jionews.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/52100
+@@||cetesdirecto.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/51919 [Stealth Mode - Strip URLs from tracking parameters]
+@@||lanacion.com.ar/?utm_source=navigation$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/51752 [Stealth Mode - Referrer]
+@@||tawk.to^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/51230 [Stealth Mode - Referrer]
+@@||cdpn.io^$stealth,domain=codepen.io
+! https://github.com/AdguardTeam/AdguardFilters/issues/50691 [Stealth Mode - Referrer]
+@@||onli.anime-best.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45780#issuecomment-593124050 [Stealth Mode - WebRTC]
+@@||e.mail.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/50634 [Stealth Mode - Referrer]
+@@||cdnfile.info/*/stream/$stealth,domain=vidcloud9.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/50186 [Stealth Mode - Referrer]
+@@||rexdlfile.com/index.php?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/50259 [Stealth Mode - Referrer]
+@@||realtime-chart.info^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/50042
+@@||clipwatching.com/embed-*.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49995
+@@||media.videopolis.com/*/api/getById/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49074 [Stealth Mode - Referrer]
+@@||static.crunchyroll.com/*/player.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49682 [Stealth Mode - Block third-party Authorization header]
+@@||bcvipva02.rightnowtech.com^$stealth,domain=custhelp.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/49958#issuecomment-586758624 [Stealth Mode - Referrer]
+@@||relap.io/api/v*/head.js$domain=briefly.ru|kulturologia.ru,stealth
+! backerkit.com - survey not completing [Stealth Mode - Referrer]
+@@||backerkit.com/backer/survey$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49262
+@@||gameguardian.b-cdn.net^$domain=gameguardian.net,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49266#issuecomment-583076764 [Stealth Mode - IP hiding]
+@@||s*.5playdisk.ru/*/files/*.apk$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/49009 [Stealth Mode - Referrer]
+@@||byfly.dualstack.speedtestcustom.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/48902 [Stealth Mode - Referrer]
+@@||down.humoruniv.org^$image,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/48880 [Stealth Mode - Referrer]
+@@||cdpn.io/*/v*/store?token=$stealth,domain=codepen.io
+! https://github.com/AdguardTeam/AdguardFilters/issues/48379 [Stealth Mode - Referrer]
+@@||worldometers.info^|$stealth
+! https://forum.adguard.com/index.php?threads/bank-website-keeps-redirecting.37056/
+@@||homebanking.bancoctt.pt^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/48221 [Stealth Mode - Block third-party Authorization header]
+@@||api.getgrover.com/api/*/user$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/48069 [Stealth Mode - IP hiding]
+@@||cdn*.vb*rexhammond.pw/stream*/cdn*$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/48092 [Stealth Mode - Referrer]
+@@||cdn*.porno-film.site/vk_video$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/47342 [Stealth Mode - Referrer]
+@@||avgle.com/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/47881 [Stealth Mode - IP hiding]
+@@||tbs.com/core/$stealth,domain=tbs.com
+@@||tbs.com/modules/$stealth,domain=tbs.com
+@@||tbs.com/themes/$stealth,domain=tbs.com
+@@||tbs.com/api/*/resolve$stealth,domain=tbs.com
+@@||tbs.com/ajax/$stealth,domain=tbs.com
+@@||tbs.com/libraries/$stealth,domain=tbs.com
+@@||tbs.com/turner/$stealth,domain=tbs.com
+@@||cdn.turner.com/*/getConfig$stealth,domain=tbs.com
+@@||turnip.cdn.turner.com/top/auth/$stealth,domain=tbs.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/47722 [Stealth Mode - Referrer]
+@@||login.aliexpress.com^$stealth,domain=aliexpress.ru|aliexpress.com
+@@||passport.aliexpress.com^$stealth,domain=aliexpress.ru|aliexpress.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/74129
+@@||1plus1.video/video/embed/$stealth,~script,~xmlhttprequest,~other
+@@||grandcentral.1plus1.video^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/47113 [Stealth Mode - Referrer]
+@@||html5.gamedistribution.com/*/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/47154 [Stealth Mode - User-agent]
+@@||microsoftedgeinsider.com/*/download$stealth
+@@||microsoftedge.microsoft.com/addons^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/46699 [Stealth Mode - Referrer]
+@@||apiavsee.com/player.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/46730 [Stealth Mode - Referrer]
+@@||auth.xtrend.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/46686 [Stealth Mode - Referrer]
+@@||mediaset.es/*mtweb$stealth,domain=mitele.es
+! amazon Video page - plugin not supported [Stealth Mode - User-agent]
+@@||amazon.*/*/dp$stealth
+@@||amazon.*/*autoplay$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/46447 [Stealth Mode - Referrer]
+@@||player.daznfeeds.com/epbootstrap^$stealth
+@@||player.daznfeeds.com/epvod^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/46261 [Stealth Mode - User-agent]
+@@||youtube.com/$stealth,app=MicrosoftEdgeCP.exe
+! wakanim.tv - broken player [Stealth Mode - Block third-party Authorization header]
+@@||wakatest.keydelivery.northeurope.media.azure.net^$stealth,domain=wakanim.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/45811 [Stealth Mode - IP hiding]
+@@||multi.idocdn.com^$domain=hydrax.net,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45817 [Stealth Mode - Strip URLs from tracking parameters]
+@@||ad.doubleclick.net/ddm/trackclk/*https://www.thegoodguys.com.au/*?utm_source=Partner$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45696#issuecomment-564835302 [Stealth Mode - Referrer]
+@@||qooqlevideo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45714 [Stealth Mode - Referrer]
+@@||shumafen.cn/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45450 [Stealth Mode - Disable cache for third-party requets]
+@@||transfer-storage-transfer-*.s3.*.amazonaws.com^$stealth,domain=fromsmash.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/45282 [Stealth Mode - Referrer]
+@@||aplayer.xyz/player/watch.php^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45287 [Stealth Mode - Referrer]
+@@||stream-play-4you-ads.anime-live.com^$stealth
+! https://forum.adguard.com/index.php?threads/www-asos-fr.36189 [Stealth Mode - Referrer]
+@@||my.asos.com/identity^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/110008
+! https://github.com/AdguardTeam/AdguardFilters/issues/45105 [Stealth Mode - Referrer]
+@@truyen$stealth,image,domain=blogtruyen.vn
+! https://github.com/AdguardTeam/AdguardFilters/issues/45077 [Stealth Mode - Referrer]
+@@||static.3001.net^$stealth,domain=freebuf.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/44783
+! https://github.com/AdguardTeam/AdguardFilters/issues/44453 [Stealth Mode - Referrer]
+@@||filmweb.pl^$stealth
+! login.yahoo.com - sometimes ligin failed(Captcha issue) [Stealth Mode - Referrer]
+@@||login.yahoo.com$stealth
+@@||login.yahoo.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/45490 [Stealth Mode - Referrer]
+@@||myanime.online/player/out.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/44369 [Stealth Mode - Referrer]
+@@||hamreus.com^$image,stealth,domain=manhuagui.com|mhgui.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/44298
+@@||linetv.tw/profile$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/43804 [Stealth Mode - IP hiding]
+@@||prod.sixthcontinent.com/webapi/getaccesstoken$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/43735 [Stealth Mode - Referrer]
+@@||antibot.cloud/content/cloud*.php?$stealth
+! Fixing images on dontorrent.to [Stealth Mode - Referrer]
+@@||blazing.network/imagenes/$image,stealth,domain=dontorrent.to
+! https://github.com/AdguardTeam/AdguardFilters/issues/43568
+@@||tv.kakao.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/43306 [Stealth Mode - Referrer]
+@@||vnecdn.net/vnexpress/video/video/$stealth,domain=vnexpress.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/43398 [Stealth Mode - Referrer]
+@@||amazonaws.com/cwl-leveling-json^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/43375 [Stealth Mode - Referrer]
+@@||hentaicdn.com^$stealth,domain=hentai2read.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/42999
+@@||holywarsoo.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/42737 [Stealth Mode - IP hiding]
+@@||mijn.ou.nl/web/ou/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/12579 [Stealth Mode - Referrer]
+@@||txxx.ahcdn.com/key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/42946 [Stealth Mode - Strip URLs from tracking parameters]
+@@||chaynikam.info^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/42634 [Stealth Mode - Referrer]
+@@||googleapis.com/tile/v*/createSession?key=$stealth,domain=waze.com
+@@||googleapis.com/tile/v*/*?session=$stealth,domain=waze.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/41380 [Stealth Mode - Referrer]
+@@||algolia.net/*/indexes/*/queries?x-algolia-agent*vue-instantsearch*algolia-api-key$stealth
+! https://forum.adguard.com/index.php?threads/34955/ [Stealth Mode - Referrer]
+@@||potokcdn.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/41774 [Stealth Mode - Referrer]
+@@||hls.jetcdn.co/public/dist/index.html$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40983 [Stealth Mode - Referrer]
+@@||linkvietvip.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/41136 [Stealth Mode - Referrer]
+@@||51.15.*/videoplayback?vid=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40761 [Stealth Mode - no option]
+@@||booking.vietjetair.com/searchrespax.aspx$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40548 [Stealth Mode - Referrer]
+@@||avple.video/v/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40618 [Stealth Mode - IP hiding]
+@@||downloadly.ir^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40501 [Stealth Mode - Referrer]
+@@/data/editor/*$stealth,domain=coolenjoy.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/40394 [Stealth Mode - Referrer]
+@@||animeku.org/play*.php?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/40139 [Stealth Mode - Referrer]
+@@||fonts.shopifycdn.com/roboto/roboto_*.woff$stealth,domain=shopify.com
+! origin.com - sign-in/checkout broken [Stealth Mode - Block third-party Authorization header]
+@@||gateway.ea.com/proxy/identity/pids$stealth
+@@||gateway.ea.com/proxy/commerce/carts2$stealth
+! https://forum.adguard.com/index.php?threads/issue-with-mycanal-fr.34924/  [Stealth Mode - Block third-party Authorization header]
+@@||secure-gen-hapi.canal-plus.com/conso/view$stealth
+@@||secure-gen-hapi.canal-plus.com/conso/playset^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39728 [Stealth Mode - Strip URLs from tracking parameters]
+!+ PLATFORM(android)
+@@||likemore-go.imgsmail.ru^$stealth,domain=tut.by
+! https://github.com/AdguardTeam/AdguardFilters/issues/39822 [Stealth Mode - Referrer]
+@@||1plus1.ua^$stealth,domain=1plus1.ua
+! https://github.com/AdguardTeam/AdguardFilters/issues/39776 [Stealth Mode - Referrer]
+@@||ilrestodelcarlino.it/*/video/*?embed$stealth
+@@||ads.viralize.tv/display/$stealth,domain=ilrestodelcarlino.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/38910 [Stealth Mode - Referrer]
+@@/dash?tvid=$stealth,domain=iqiyi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/39650 [Stealth Mode - Referrer]
+@@||login.vk.com/?act=openapi$domain=220vk.com,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39669 [Stealth Mode - Referrer]
+@@||ndisk*.cizgifilmlerizle.com/getvid?$stealth
+! bethesda.net - patch notes not opening [Stealth Mode - Block third-party Authorization header]
+@@||cdn.contentful.com/spaces^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39373 [Stealth Mode - Referrer]
+@@||youtube.googleapis.com/embed^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39103 [Stealth Mode - Referrer]
+@@||stream365.live/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39069 [Stealth Mode - Referrer]
+@@||cdn-pics.pornhd.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/39071 [Stealth Mode - Referrer]
+@@||pictogo.net^$stealth,third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/38583 [Stealth Mode - Referrer]
+@@||googleapis.com/youtube/*/search?key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38163 [Stealth Mode - Referrer]
+@@||maps.googleapis.com/maps/api/$stealth,domain=offerup.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/38230 [Stealth Mode - Referrer]
+@@||kastream.biz/embed*.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38088 [Stealth Mode - Referrer]
+@@||player.starlight.digital^$stealth
+! gmx.net - error 403 when clicking on link on redirector [Stealth Mode - Referrer]
+@@||deref-gmx.net/mail/client/*/dereferrer/?redirectUrl=$stealth
+! https://forum.adguard.com/index.php?threads/webtoons-com-comment-error.34212 [Stealth Mode - Referrer]
+@@||global.apis.naver.com/commentBox/cbox/web_neo_list_jsonp.json$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/63522
+! https://github.com/AdguardTeam/AdguardFilters/issues/34644 [Stealth Mode - Strip URLs from tracking parameters]
+@@||fakt.pl/*?utm_source=$stealth
+@@||onet.pl/?utm_source=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34068 [Stealth Mode - Referrer]
+@@||cdntvnet.com/*.php$stealth,domain=hochu.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/37463 [Stealth Mode - Referrer]
+@@||id.zaloapp.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37799 [Stealth Mode - Referrer]
+@@||cdn*.jianshu.io^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37551 [Stealth Mode - Referrer]
+@@||ymcdn.site/check.php?callback=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37446 [Stealth Mode - WebRTC]
+@@||web.skype.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37489 [Stealth Mode - WebRTC]
+@@||homeagents.online^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/37251 [Stealth Mode - Referrer]
+@@||prettyfast.to/e/*?&autostart$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/36802 [Stealth Mode - Referrer]
+@@||fastplay.me/ifr/fst/gov2a.php?id=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/31239 [Stealth Mode - Referrer]
+@@||hdzog.ahcdn.com/key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/36904 [Stealth Mode - Referrer]
+@@||zhengdongwuye.cn/upload/$image,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35064 [Stealth Mode - Referrer]
+@@/track?vid=*&mime=video/mp4&*&domain=*.drive.google.com$stealth,domain=kissasian.sh
+@@/videoplayback?vid=*.drive.google.com&*&mime=video/mp4$stealth,domain=kissasian.sh
+! https://github.com/AdguardTeam/AdguardFilters/issues/36932 [Stealth Mode - Referrer]
+@@||amhcdn.net/*/*.mp4$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/36802
+@@||videoplanet.me/ifr/fst/gov2a.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/36048 [Stealth Mode - Block third-party Authorization header]
+@@||api.pinger.com$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/36278 [Stealth Mode - Referrer]
+@@||rykoeb.com/remote_control.php^$stealth
+! https://forum.adguard.com/index.php?threads/opera-my-flow-problem.33645 [ Stealth Mode - Block third-party Authorization header]
+@@||flow.opera.com/*/pairing-tokens$stealth
+! frankenpost.de - "Vorlesen" broken [Stealth Mode - Referrer]
+@@||linguatec.org/VoiceReaderWeb15WebService^$stealth
+! jccsmart.com is broken [Stealth Mode]
+@@||jccsmart.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35999 [Stealth Mode - Referrer]
+@@||embed.streamx.live^$stealth
+! https://forum.adguard.com/index.php?threads/2034/
+@@||googleadservices.com/pagead/conversion.js$domain=dubizzle.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/12579 [Stealth Mode - Referrer]
+@@||txxx.com/ext/get_file^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35419 [Stealth Mode - Referrer]
+@@||player.vimeo.com/video^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35407 [Stealth Mode - Referrer]
+@@||e.issuu.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/35331 [Stealth Mode - Referrer]
+@@||googleapis.com/identitytoolkit^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/57566 [Stealth Mode - Referrer]
+@@||algolia.net/*/indexes/$stealth
+@@||algolianet.com/*/indexes/$stealth
+! redirect from corporate offer site broken [Stealth Mode - Referrer]
+@@||corporatebenefits.spectrum8.de^$third-party,stealth
+@@||estore.sonymobile.com/*-epp/?refid=$third-party,stealth
+! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1420 [Stealth Mode - Referrer]
+@@||api.mapbox.com/*/mapbox.mapbox-terrain-*,mapbox.mapbox-streets-*^$stealth
+! forumcommunity.net - pictures not loading [Stealth Mode - Referrer]
+@@||img.forumfree.net^$stealth
+@@||uploads.forumcommunity.it^$stealth
+@@||upload.forumfree.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34622 [Stealth Mode - Referrer]
+@@||lmjvideocdn.*-cdn.net/*.mp4?hash=$stealth,domain=letmejerk.com
+! xhamster.com - broken video [Stealth Mode - Referrer]
+@@||cdn13.com/dash$domain=xhamster.com,stealth
+! hexlet.io - video player fixing [Stealth Mode - Referrer]
+@@||player.vimeo.com^$domain=hexlet.io,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34511 [Stealth Mode - Referrer]
+@@||episode.pmcontent.com^$stealth
+! prom.ua - fixing adding to basket [Stealth Mode - Referrer]
+@@||my.prom.ua/*/iframe$stealth
+! hanime.tv - broken video [Stealth Mode - Referrer]
+@@||hanime.tv/omni-player/index.html$stealth
+! my.visualstudio.com/downloads - error page [Stealth Mode - Referrer]
+@@||vlscppe.microsoft.com/fp/tags.js$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/34201 [Stealth Mode - Referrer]
+@@||trollvid.net/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/38345 [Stealth Mode - Referrer]
+@@||player*.kotakhitam.casa/?$stealth
+@@||player.kotakputih.casa/?$stealth
+@@||player.kotakcoklat.casa/?$stealth
+@@||player.kotaksilver.casa/?$stealth
+@@||player.mittui.com/?$stealth
+@@||player.akubebas.com/?$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33933 [Stealth Mode - Referrer]
+@@||kotakhitam.casa/?*token=$stealth
+@@||kotakputih.casa/?*token=$stealth
+@@||kotakcoklat.casa/?*token=$stealth
+@@||kotaksilver.casa/?*token=$stealth
+@@||mittui.com/?*token=$stealth
+@@||akubebas.com/?*token=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33905 [Stealth Mode - Referrer]
+@@||uzmantv.com/metadata/$stealth
+! https://reddit.com/r/Adguard/comments/bq0cab/how_to_configure_so_that_kinja_sites_gizmodo/ [Stealth Mode - Referrer]
+@@||kinja.com/api/profile/accountwithtoken$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33874 [Stealth Mode - Referrer]
+@@||cdn4.us^$stealth
+@@.m3u8$stealth,domain=telerium.tv
+! https://github.com/AdguardTeam/AdguardFilters/issues/33872 [Stealth Mode - Referrer]
+@@||hbimg.huabanimg.com^$stealth,domain=huaban.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/33700 [Stealth Mode - Referrer]
+@@||cloud.typography.com/*/css/fonts.css$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33672
+@@||vider.info^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33631 [Stealth Mode - Referrer]
+@@||mcloud.to/embed/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33395 [Stealth Mode - Referrer]
+@@||cdn.bg/live/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33602 [Stealth Mode - Referrer]
+@@||google.com/maps/embed/v*/place?key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33299 [Stealth Mode - Referrer]
+@@||lhscanlation.club/images/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33292 [Stealth Mode - Referrer]
+@@||namu.la^$stealth,domain=namu.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/33121 [Stealth Mode - Referrer]
+@@||jawcloud.co/embed$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/32836 [Stealth Mode - Referrer]
+@@||bing.com/secure/Passport.aspx$stealth,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/32557 [Stealth Mode - Referrer]
+@@||amazonaws.com/cdn.pbrd.co/images/$stealth,domain=pasteboard.co
+! https://github.com/AdguardTeam/AdguardFilters/issues/31969 [Stealth Mode - IP hiding]
+@@||javfor.me/jav-api.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/32461 [Stealth Mode - User-agent]
+@@||stepik.org/lesson^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/32175 [Stealth Mode - Referrer]
+@@||nasa-i.akamaihd.net/hls/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/32013 [Stealth Mode - Referrer]
+@@||googleapis.com/youtube/$stealth,domain=learnlinux.tv
+! bundestag.de/mediathek - player breaks after a while (seen in console) [Stealth Mode - without options]
+@@||cdn.tv*.eu^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/29469 [Stealth Mode - without options]
+@@||vk.com/vkpay$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/31887 [Stealth Mode]
+@@||t-mobile.cz/sms^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/31793 [Stealth Mode - Referrer]
+@@/streamlive/*.m3u8?token=$stealth,domain=stream.televall.website|stream.televall.site
+! https://github.com/AdguardTeam/AdguardFilters/issues/31360 [Stealth Mode - Referrer]
+@@||icloud.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/31175 [Stealth Mode - Referrer]
+@@||qiantucdn.com^$stealth,domain=58pic.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/31000 [Stealth Mode - Referrer]
+@@||vidstream.to^$stealth,domain=egybest.*
+@@||egybest.*^$stealth
+@@||egy.best^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/52963 [Stealth Mode - Referrer]
+@@||tildacdn.com^$stealth,xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/30973 [Stealth Mode - Referrer]
+@@||googleapis.com/youtube/$stealth,domain=angrybirdsnest.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/30668 [Stealth Mode - Referrer]
+@@||36krcnd.com^$stealth,domain=36kr.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/30630 [Stealth Mode - Referrer]
+@@||manhuagui.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/30112 [Stealth Mode - IP hiding]
+@@||secure.selfwealth.com.au^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28054 [Stealth Mode - Referrer]
+@@||pornohype.cc/*/|$media,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28445 [Stealth Mode - Referrer]
+@@||file-static.com^$stealth,domain=eyny.com
+@@||static-file.com^$stealth,domain=eyny.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/29664 [Stealth Mode - Referrer]
+@@||4cdn.org^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/29502 [Stealth Mode - Block third-party Authorization header]
+@@||api.momentumdash.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28586
+@@||vk.payservice.io^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28958 [Stealth Mode - Referrer]
+@@||cdn61.zvooq.com/track/stream^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28444 [Stealth Mode - Referrer]
+@@||ruten.com.tw^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/28152 [Stealth Mode - IP hiding]
+@@||monoprice.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/27982 [Stealth Mode - IP hiding]
+@@||filmix.co/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/27076
+@@||channel4.com^$stealth
+! geetest.com is the captcha service
+@@||api.geetest.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/24679
+@@||tvplayer.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/24052
+@@||hqq.tv/player/embed_player.php$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/23138 [Stealth Mode - Referrer]
+@@||csdnimg.cn^$stealth,domain=csdn.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/23031 [Stealth Mode - Referrer]
+@@||static.gota.infomaker.io^$stealth,domain=blt.se
+@@||cloudfront.net/imengine/image.php$stealth,domain=blt.se
+! https://github.com/AdguardTeam/AdguardFilters/issues/22778
+@@||id.atlassian.com^$stealth
+@@||login.nvgs.nvidia.com^$stealth
+@@||bitbucket.org/SetCST^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/22641 [Stealth Mode - Strip URLs from tracking parameters]
+@@||cps.jd.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/22422
+@@||accounts.ea.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/22430
+@@||services.postimees.ee/places/*/autocomplete/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/22424 [Stealth Mode - Referrer]
+@@||yams.akamaized.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/18439#issuecomment-419687203 [Stealth Mode - Referrer]
+@@||video*.xhcdn.com/key=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/21868
+@@||baidupcs.com/file/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/21712 [Stealth Mode - Referrer]
+@@||crowdcompute-pa.clients*.google.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/21004 [Stealth Mode - Referrer]
+@@||pstatic.net^$image,stealth
+@@||postfiles*.naver.net^$stealth
+@@||dthumb.phinf.naver.net^$stealth
+@@||static.editor.naver.net/static/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/20819 [Stealth Mode - Referrer]
+@@||dyncdn.me/mimages/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/20278 [Stealth Mode - Block Java]
+@@||integration.plarium.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/19794 [Stealth Mode - Referrer]
+@@||services.postcodeanywhere.co.uk/Capture/Interactive/$stealth
+! Fixing not working video sent via Messenger on Facebook [Stealth Mode - Referrer]
+@@||fbcdn.net^$stealth
+! Fixing Yandex.TV player [Stealth Mode - Hide search queries]
+@@||yastatic.net/yandex-html5-video-player-bundles$stealth
+@@||yastatic.net/yandex-video-player-iframe-api-bundles$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/111362
+! https://github.com/AdguardTeam/AdguardFilters/issues/100956
+! https://github.com/AdguardTeam/AdguardFilters/issues/46832
+! https://github.com/AdguardTeam/AdguardFilters/issues/16807 [Stealth Mode - Referrer]
+! https://github.com/AdguardTeam/AdguardFilters/issues/11446 [Stealth Mode - Referrer]
+@@||szbdyd.com^$stealth,domain=bilibili.com
+@@||mcdn.bilivideo.cn^$stealth,domain=bilibili.com
+@@||bilivideo.com^$stealth,domain=bilibili.com
+@@||acgvideo.com^$stealth,domain=bilibili.com
+@@||hdslb.com^$stealth,domain=bilibili.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/16376
+@@||imgtn.bdimg.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/33767
+! https://github.com/AdguardTeam/AdguardFilters/issues/14987
+@@212.103.68.8:443$network
+@@185.88.236.76:443$network
+@@185.88.236.77:443$network
+@@5.148.189.205:443$network
+@@5.148.189.204:443$network
+@@5.148.189.203:443$network
+! https://github.com/AdguardTeam/AdguardFilters/issues/14618 [Stealth Mode - Referrer]
+@@||places.nbnco.net.au/places/$stealth
+! https://forum.adguard.com/index.php?threads/https-kinomonitor-ru.28298/ [Stealth Mode - Referrer]
+@@||widget.kassa.rambler.ru/CrossDomainInteraction/$stealth
+! https://github.com/AdguardTeam/StealthMode/issues/20
+@@||api.bitwarden.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/12026 [Stealth Mode - Referrer]
+@@||swapsmut.com/video/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/11621 [Stealth Mode - Referrer]
+@@||cdns.*.gigya.com/gs/webSdk/Api.aspx$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/11346 [Stealth Mode - Referrer]
+@@||datavimg.com^$stealth
+! https://forum.adguard.com/index.php?threads/28083/ [Stealth Mode - Referrer]
+@@||maps.2gis.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/11447 [Stealth Mode - Referrer]
+@@||doubanio.com/view/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/10657 [Stealth Mode - Referrer]
+@@||fmhua.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/10658 [Stealth Mode - Referrer]
+@@||177mh.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/10659 [Stealth Mode - Referrer]
+@@||cdndm5.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/10528 [Stealth Mode - Referrer]
+@@||tx.acgvideo.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/9775 [Stealth Mode - Referrer]
+@@||securevideotoken.tmgrup.com.tr/webtv/secure^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/8284 [Stealth Mode - WebRTC]
+@@://www.coinbase.com^$stealth
+! https://forum.adguard.com/index.php?threads/https-www-empflix-com-nsfw.25985/ [Stealth Mode - Strip URLs from tracking parameters]
+@@||empflix.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/7163
+@@||bitdefender.com/submit/$stealth
+! fox.com.tr - fixing player [Stealth Mode - Referrer]
+@@||fox-nv.mncdn.com^$stealth
+! https://forum.adguard.com/index.php?threads/25729/ [Stealth Mode - Referrer]
+@@||tmgrup.com.tr/site/$script,stylesheet,stealth
+@@||iatv.tmgrup.com.tr^$script,stealth
+@@||i.tmgrup.com.tr^$script,stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/6975
+@@||rmfon.pl^$stealth
+! https://forum.adguard.com/index.php?threads/25615/ [Stealth Mode - Referrer]
+@@||google.com/maps/api/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/6834 fixing moonwalk players [Stealth Mode - User-agent]
+@@/video/*/index.m3u8?*&frame_commit=*&mw_pid=*&signature=$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/6767 [Stealth Mode - Referrer]
+@@||iprima.cz^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/6775 [Stealth Mode - Referrer]
+@@||openstream.io/hls/$stealth
+! turbo.az - website is broken [Stealth Mode - Referrer]
+@@||turbo.az^$stealth
+! https://forum.adguard.com/index.php?threads/http-tap-az-abnormal-traffic.24553/ [Stealth Mode - Referrer]
+@@||tap.az^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2243
+@@||cdn.taboola.com/libtrc/*/loader.js$domain=cnet.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/6564 [Stealth Mode - hide IP]
+@@||player.pl^$stealth
+! interia.pl - video is broken [Stealth Mode - Referrer]
+@@||get.x-link.pl/*embed.html$stealth
+! https://forum.adguard.com/index.php?threads/24521/ [Stealth Mode - Referrer]
+@@://*.xuk.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/6348 [Stealth Mode - Strip URLs from tracking parameters]
+@@||cdn-fck.tnaflix.com^$stealth
+! https://forum.adguard.com/index.php?threads/24460/ [Stealth Mode - hide IP]
+@@||porn-studio.ru$stealth
+! https://forum.adguard.com/index.php?threads/24366/ [Stealth Mode - Referrer]
+@@cdn.eporner.com^$stealth
+! https://forum.adguard.com/index.php?threads/24337/ [Stealth Mode - hide IP]
+@@.porntube.com^$stealth
+! https://forum.adguard.com/index.php?threads/24332/ [Stealth Mode - Referrer]
+@@||daxab.com/player/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/5819 [Stealth Mode - hide IP]
+@@||kinogo.*/*.flv$stealth
+! https://github.com/AdguardTeam/AdguardForWindows/issues/356#issuecomment-314934554 [Stealth Mode - Strip URLs from tracking parameters]
+@@||xe.com^$stealth
+@@||girafa.com.br^$stealth
+! https://forum.adguard.com/index.php?threads/8tracks-com-windows-youtube-video-keeps-buffering.23414/ [Stealth Mode - Referrer]
+@@||8tracks.com^$stealth
+! https://forum.adguard.com/index.php?threads/resolved-http-www-dizigold-org.18356/#post-122052 [Stealth Mode - Hide search queries]
+@@||dizigold.org^$stealth
+!https://forum.adguard.com/index.php?threads/iha-com-tr.15027/
+@@||max.permato.com/getWidget^$stealth
+! https://forum.adguard.com/index.php?threads/21808/ [Stealth Mode - Referrer]
+@@||bogi.ru/comments_widget.php$stealth
+! https://forum.adguard.com/index.php?threads/20397/
+@@||cdnvideo.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/4430 [Stealth Mode - Referrer]
+@@||img.noobzone.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/4399 [Stealth Mode - User-agent]
+@@||clients4.google.com/chrome-sync/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/4395 [Stealth Mode - Referrer]
+@@||tracktor.in/td.php?s=$stealth
+! https://forum.adguard.com/index.php?threads/voodaith7e-com.19387/ [Stealth Mode - Referrer]
+@@||voodaith7e.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/4281 [Stealth Mode - Hide search queries]
+@@||rackcdn.com^$stealth,domain=investing.com|forexpros.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/3985 [Stealth Mode - Hide search queries]
+@@||tvizor.org/channels/*.html$stealth
+! https://forum.adguard.com/index.php?threads/14865/ - Firefox only [Stealth Mode - User-agent]
+@@||portal.mail.ru^$stealth
+@@||account.mail.ru^$stealth
+@@||auth.mail.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/3771 [Stealth Mode - Hide search queries]
+@@||vkluchi.tv/channels/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/3758 [Stealth Mode - Hide search queries]
+@@||marketing.dropbox.com/?referrer=$stealth
+! door2windows.com - fixing downloading [Stealth Mode - Referrer]
+@@||www.door2windows.com^$stealth
+! Netflix metro app - can't launch the app [Stealth Mode - User-agent]
+@@||api-*.netflix.com/win/uwa/$stealth
+! nowvideo.li - video is broken [Stealth Mode - hide IP]
+@@||nowvideo.*/video/$stealth
+! mts.ru - login button is broken [Stealth Mode - Referrer]
+@@||mts.ru^$stealth
+! Torrent tracker client can't download [Stealth Mode - User-agent]
+@@||bt*.t-ru.org^$stealth
+! https://forum.adguard.com/index.php?threads/14479/ [Stealth Mode - Referrer]
+@@||lswcdn.net^$stealth
+! https://forum.adguard.com/index.php?threads/13787/ [Stealth Mode - hide IP]
+@@||starman.ee/session/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2808
+@@||pcidss.yandex.net^$stealth
+! https://forum.adguard.com/index.php?threads/12685/
+@@||cbox.ws/box/$stealth
+! http://forum.ru-board.com/topic.cgi?forum=5&topic=31105&start=3420#15
+@@||mail.google.com/mail/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2635
+@@||xfinity.com^$stealth
+@@||comcast.net^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2580
+@@||login.live.com^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2584
+@@||id.wsj.com$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2371
+@@||trade.aliexpress.com$stealth
+! https://github.com/AdguardTeam/AdguardForWindows/issues/1118
+@@||esia.gosuslugi.ru^$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2242 [Stealth Mode - WebRTC]
+@@||facebook.com/videocall/$stealth
+! https://github.com/AdguardTeam/AdguardFilters/issues/2267
+@@||raindrop.io/api/$stealth
+! https://forum.adguard.com/index.php?threads/10557/
+@@||1ttv.net/iframe.php$stealth
+! https://forum.adguard.com/index.php?threads/10586/
+@@||freehdsport.com^$stealth
+! https://forum.adguard.com/index.php?threads/10573/
+@@||allsport-live.net^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1803 [Stealth Mode - WebRTC]
+@@||web.whatsapp.com^$stealth
+! https://forum.adguard.com/index.php?threads/10252/page-2#post-82951 [Stealth Mode - WebRTC]
+@@||player.adcdn.tv^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2166
+@@.myvi.ru^$stealth
+@@||myvi.ru/player/$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/797
+@@||login.microsoftonline.com^$stealth
+! https://forum.adguard.com/index.php?threads/10339/
+@@||vivo.sx^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2117
+@@||accounts.login.idm.telekom.com^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2119 [Stealth Mode - third-party cookies]
+@@||rzd.ru^$stealth
+! https://forum.adguard.com/index.php?threads/10143/
+@@||static.comic.naver.net/staticimages/comicweb/naver/$image
+@@||imgcomic.naver.net^$image
+@@||thumb.comic.naver.net^$image
+! https://forum.adguard.com/index.php?threads/10195/
+@@||zombicide.com^$stealth
+! https://forum.adguard.com/index.php?threads/10149/
+@@||iptvsale.info^$stealth
+! https://forum.adguard.com/index.php?threads/10046/ [Stealth Mode - hide IP]
+@@||thevideo.me:*/*/v.mp4$stealth
+! https://forum.adguard.com/index.php?threads/10081/
+@@||watchlivestream.me.uk^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2051
+@@||sync.everhelper.me^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2046 [Stealth Mode - hide IP]
+@@||popler.tv^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2042 [Stealth Mode - Referrer]
+@@||yourcinema.tv^$stealth
+! https://forum.adguard.com/index.php?threads/9779/ [Stealth Mode - Referrer]
+@@||zenexplayer.com^$stealth
+! https://forum.adguard.com/index.php?threads/9646/ [Stealth Mode - Referrer]
+@@||perxs.net^$stealth
+@@||wizhdsports.com/live/stream25.php^$stealth
+@@||bro.adcast.tech/stream.php^$stealth
+@@||hdfree.tv/live^$stealth
+! https://forum.adguard.com/index.php?threads/9765/
+@@||help.ea.com^$stealth
+! https://forum.adguard.com/index.php?threads/9740/ [Stealth Mode - Referrer]
+@@||latino-webtv.com^$stealth
+! https://forum.adguard.com/index.php?threads/9739/ [Stealth Mode - third-party cookies]
+@@||feldherr.com^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2011 [Stealth Mode - third-party cookies]
+@@||audible.com^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1979 [Stealth Mode - third-party cookies]
+@@||indiegogo.com^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1598 [Stealth Mode - third-party cookies]
+@@||wargaming.net^$stealth
+! http://forum.adguard.com/showthread.php?10664 [Stealth Mode - third-party cookies]
+@@||hotstar.com^$stealth
+! http://forum.adguard.com/showthread.php?10530
+! Fixing a Google captcha
+@@||ipv4.google.com/sorry^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1957 [Stealth Mode - third-party cookies]
+! flickr.com - fixing authorization
+@@||login.yahoo.com/config/$stealth
+@@||flickr.com/register_cookies.gne?$stealth
+@@||flickr.com/signin/$stealth
+@@||accounts-flickr.yahoo.com^$stealth
+@@||flickr.com/cookie_$stealth
+! bild.de - fixing authorization [Stealth Mode - third-party cookies]
+@@||bild.de^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1898 [Stealth Mode - Referrer]
+! prom.ua - fixing remote cart on third-party sites
+@@||my.prom.ua/remote/
+! webaudioapi.com - audio samples are broken [Stealth Mode - WebRTC]
+@@||webaudioapi.com/samples/
+! Broken sync in Yandex Browser [Stealth Mode - User-agent]
+@@||sync.disk.yandex.net^
+@@||xmpp.disk.yandex.net^
+@@||api.browser.yandex.*^
+! warthunder.ru - fixing authorization
+@@||login.gaijin.net^
+@@||forum.warthunder.ru/?&identity_
+@@||forum.warthunder.ru/index.php?*&section=
+! Fixing synchronization [Stealth Mode - hide user-agent]
+@@||browser.yandex.*/sync/
+! http://forum.adguard.com/showthread.php?9453 [Stealth Mode - Referrer]
+@@||xmissymedia.com/galleries/$domain=xmissy.nl,image
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1667 [Stealth Mode - third-party cookies]
+@@||forgeofempires.com/game/json
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1646 [Stealth Mode - Referrer]
+@@||winvistaclub.com/wp-content/uploads/$domain=thewindowsclub.com
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1632 [Stealth Mode - Referrer, third-party cookies]
+! aliexpress.com - broken checkout
+@@||icashier.alipay.com^$domain=aliexpress.com
+@@||iopen.alipay.com/gateway.do$domain=aliexpress.com
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1499 [Stealth Mode - WebRTC]
+@@||plus.google.com/hangouts/$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1592 [Stealth Mode - third-party cookies]
+! Fixing authorization via github.com
+@@||github.com/login$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1549 [Stealth Mode - third-party cookies]
+@@||loginza.ru/api/
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1543 [Stealth Mode - hide IP]
+@@||veehd.com/dl/
+! solvemedia.com - captcha is broken [Stealth Mode - User-agent]
+@@||api.solvemedia.com^$stealth
+@@||api-secure.solvemedia.com^$stealth
+! nwolb.com - login failed [Stealth Mode - third-party cookies]
+@@||nwolb.com^
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1534 [Stealth Mode - hide IP]
+@@||tinypic.com/upload.php
+! Fixing Yandex authorization [Stealth Mode - third-party cookies]
+@@||passport.yandex.ru^$stealth
+@@||pass.yandex.ru^
+@@||pass.yandex.kz^
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1505 [Stealth Mode - third-party cookies]
+! broken autentification with ulogin.ru
+@@||ulogin.ru/auth.php
+@@||ulogin.ru/fill.php
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1367 [Stealth Mode - third-party cookies]
+@@||adobelogin.com^
+@@||adobeid-*.services.adobe.com^
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1379 [Stealth Mode - third-party cookies]
+@@||facebook.com/login.php$stealth
+@@||facebook.com/*/dialog/oauth$stealth
+! usps.com - access denied to tracking page [Stealth Mode - IP hiding]
+@@||tools.usps.com/go/TrackConfirmAction
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1202 [Stealth Mode - User-agent]
+@@||sync.opera.com/api/sync/$stealth
+@@||auth.opera.com^$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1109 [Stealth Mode - IP hiding]
+@@||api.surfeasy.com/*/geo_lookup$stealth
+! http://forum.adguard.com/showthread.php?8067 [Stealth Mode - Referrer]
+@@||hypercomments.com/api/comments?_=$stealth
+!! http://forum.adguard.com/showthread.php?7582 [Stealth Mode - third-party cookies]
+!! 1. Login to account.microsoft.com
+@@||account.microsoft.com/auth/$stealth
+@@||account.microsoft.com/?refd=$stealth
+!! 2. Jump to Google Store from other site
+@@||chrome.google.com/webstore/detail/$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1666 [Stealth Mode - third-party cookies]
+@@||microsoft.com/*=wsign$stealth
+@@||profile.microsoft.com/RegSysProfileCenter/$stealth
+@@||microsoft.com/*/signin.aspx$stealth
+@@||microsoft.com/*/signout.aspx$stealth
+! https://github.com/AdguardTeam/AdguardForWindows/issues/252 [Stealth Mode - third-party cookies]
+@@||answers.microsoft.com/*/completesignin
+@@||answers.microsoft.com/*/site/startsignin
+! http://forum.adguard.com/showthread.php?7406 (#119)
+! Go to https://products.office.com/en-us/office-insider then click "install the office insider build now"
+@@||stores.office.com/authredir
+@@||stores.office.com/myaccount/advancedinstalls.aspx
+! http://forum.adguard.com/showthread.php?7610 [Stealth Mode - Referrer]
+@@||xda-cdn.com^$stealth,domain=xda-developers.com
+! http://forum.adguard.com/showthread.php?7463 [Stealth Mode - Referrer]
+@@||kastatic.com^$stealth,domain=kickass.to
+! http://forum.adguard.com/showthread.php?7539 [Stealth Mode - Referrer]
+@@||mycdn.me^$stealth
+@@||odnoklassniki.ru/get$stealth
+@@||ok.ru/web-api/music/conf$stealth
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/883 [Stealth Mode - Referrer]
+@@||media-imdb.com^$stealth,domain=imdb.com
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/812 [Stealth Mode - Referrer, third-party cookies]
+@@||datacloudmail.ru^$domain=cloud.mail.ru
+! https://github.com/AdguardTeam/AdguardForWindows/issues/259
+@@||cbox.ws/box/?boxid=$domain=exystence.net
+! http://forum.adguard.com/showthread.php?6047 (#376) [Stealth Mode - third-party cookies]
+! Login to habrahabr projects; login to hypercomments on sites
+@@||id.tmtm.ru/login/
+@@||hypercomments.com/auth/
+@@||hypercomments.com/api/login?
+! privat24 [Stealth Mode - Referrer, third-party cookies]
+@@||privat24.privatbank.ua^
+! http://forum.adguard.com/showthread.php?6772 [Stealth Mode - Referrer]
+@@||cdn*.downloadapkgames.com/?session=
+! http://forum.adguard.com/showthread.php?6047 (#273) [Stealth Mode - third-party cookies]
+@@||login.wmtransfer.com^$stealth
+! http://forum.adguard.com/showthread.php?6681 [Stealth Mode - third-party cookies]
+@@||login.uid.me^$domain=ucoz.ru
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/692 [Stealth Mode - third-party cookies]
+@@||vodakpsdhdsdrm-vh.akamaihd.net/z/clips/

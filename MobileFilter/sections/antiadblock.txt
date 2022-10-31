@@ -8,14 +8,15 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
-!--- Temporary
-! https://github.com/AdguardTeam/AdguardForiOS/issues/255
-@@||m.beautypageants.in^$elemhide
-!---
 ! Rules for AdFender to block injected ads when AdGuard DNS is active
 !+ PLATFORM(ios, ext_android_cb)
 ||chefkoch.de/magazin/sites/default/files/styles/*/public/media/image/*/*_*x*.jpg
-!
+! https://github.com/AdguardTeam/AdguardFilters/issues/127712
+erozine.jp#%#//scriptlet("set-constant", "mobiles", "")
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||spad.i-mobile.co.jp/script/adssp.js?$domain=erozine.jp
+@@||spad.i-mobile.co.jp/script/adcore_sp_inline*.js$domain=erozine.jp
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114806
 eromanga-kishin.com#@#.ad_widget
 ! https://github.com/uBlockOrigin/uAssets/issues/10674
@@ -50,11 +51,6 @@ wr.de,wp.de,nrz.de#@#.ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16544
 !+ PLATFORM(ios, ext_android_cb)
 @@||dallasnews.com^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/16085
-m.postimees.ee#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
-@@||m.postimees.ee/static/libraries/fuckadblock.js
-!+ PLATFORM(ios, ext_android_cb)
-@@||m.postimees.ee^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8802
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=mobile.donanimhaber.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14770
@@ -94,7 +90,6 @@ food.ndtv.com,m.ndtv.com#%#Object.defineProperty(window, 'canRunAdsN', { get: fu
 @@||m.timesofindia.com/ad-*.cms
 @@||m.timesofindia.com/*ads*.cms
 @@||b.scorecardresearch.com/beacon.js$domain=m.timesofindia.com
-@@||google-analytics.com/analytics.js$domain=m.timesofindia.com
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=m.timesofindia.com
 @@||static.chartbeat.com/js/chartbeat.js$domain=m.timesofindia.com
 @@||static.clmbtech.com^$domain=timesofindia.com,script

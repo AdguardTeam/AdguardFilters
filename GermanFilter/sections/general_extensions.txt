@@ -9,6 +9,8 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/131890
+eispop.com#%#//scriptlet('set-constant', 'Object.prototype.AdOverlay', 'noopFunc')
 ! https://github.com/uBlockOrigin/uAssets/issues/6541#issuecomment-1140420880
 vip.de#%#//scriptlet('prevent-xhr', 'svonm')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117511
@@ -29,7 +31,8 @@ blick.ch#%#//scriptlet("set-constant", "Object.prototype.adsEnabled", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107055
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94882
 gamepro.de,gamestar.de#%#//scriptlet("set-constant", "wgm.initAds", "noopFunc")
-gamepro.de,gamestar.de#%#(function(){const a={cmd:[],public:{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){},setTargetingOnPosition:function(){},setConfig:function(){},loadPositions:function(){},displayPositions:function(){},getDailymotionAdsParamsForScript:function(c,a){if(c&&"function"==typeof a)try{a({a:c})}catch(a){console.error(a)}}}};a.cmd.push=function(b){try{b()}catch(b){console.error(b)}},window.jad=a})();
+! Rule below fixes issue with video player if user has DNS filtering enabled, but it seems that at the moment it's not required
+! gamepro.de,gamestar.de#%#(function(){const b={cmd:[],public:{getVideoAdUrl:function(){},createNewPosition:function(){},refreshAds:function(){},setTargetingOnPosition:function(){},setConfig:function(){},loadPositions:function(){},displayPositions:function(){},getDailymotionAdsParamsForScript:function(b,c){if(b&&"function"==typeof c)try{c({a:b})}catch(b){console.error(b)}}}};b.cmd.push=function(a){try{window.addEventListener("load",()=>{a()})}catch(a){console.error(a)}},window.jad=b})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93347
 joyn.de#%#//scriptlet('prevent-fetch', 'zomap.de')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92118
@@ -70,9 +73,9 @@ bs.to#%#//scriptlet("abort-current-inline-script", "parseInt", "bsduid")
 stern.de#%#//scriptlet("json-prune", "enabled", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31070
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
-chip.de#%#//scriptlet("json-prune", "enabled", "testhide")
+chip.de#%#//scriptlet("json-prune", "enabled", "force_disabled")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53011
-gload.cc#%#//scriptlet("abort-on-property-write", "bullads")
+gload.to#%#//scriptlet("abort-on-property-write", "bullads")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52959
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
 tele5.de#%#//scriptlet("json-prune", "testhide")
@@ -82,7 +85,6 @@ movie-blog.tv,movie-blog.sx,movie-blog.to#%#//scriptlet("abort-on-property-read"
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42934
 ani-stream.com#%#AG_onLoad(function() { setTimeout(function() { if(typeof loadplayer == "function") { loadplayer(); }; }, 300); }); 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40359
-player.glomex.com#%#//scriptlet("set-constant", "Object.prototype._getSalesHouseConfigurations", "noopFunc") 
 ! player.glomex.com#%#//scriptlet("set-constant", "Object.prototype.disableAds", "true")
 ! player.glomex.com#%#//scriptlet("set-constant", "Object.prototype._createAd", "noopFunc") -- adblock detection on infranken.de
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36737
@@ -154,8 +156,10 @@ menshealth.de#%#function google_ad_request_done() {};
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/132098
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124639
 3c.web.de#$#html.can-have-sky .section-content { margin-right: 0px !important; }
+3c-bap.web.de,3c-bap.gmx.net#$#.page-body > .section-content { margin-right: 0px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120779
 giga.de#$#nav[data-role="alice-sub-navbar"][data-position="smart-sticky"] { margin-top: auto !important; }
 ! wooco.de - ad banner top
@@ -229,7 +233,7 @@ dasoertliche.de#$#body > #oetbwrap[style="position:absolute;top:98px;"] { top: 0
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17150
 woxikon.de#$#.ads-wrapper { position: absolute!important; left: -3000px!important; }
 ! https://forum.adguard.com/index.php?threads/freenet-de-ad-blocking.28729
-freenet.de#$##frnBanner { height: 25px!important; }
+freenet.de#$##frnBanner { height: 25px!important; min-height: 0px !important;}
 ! winfuture.de - video is vanishing after play button when hidden by normal means
 winfuture.de#$#.spoods-deeplinks { visibility: hidden!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10278
@@ -311,14 +315,5 @@ freenet.de#$##frnMain { min-height: 0!important; }
 !--------------------------------------!
 !------- Content filtering rules ------!
 !--------------------------------------!
-! https://github.com/AdguardTeam/AdguardFilters/issues/33849
-! https://github.com/AdguardTeam/AdguardFilters/issues/30443
-! https://github.com/AdguardTeam/AdguardFilters/issues/28684
-bs.to$$script[tag-content="Object["][min-length="4000"][max-length="10000"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/2193
-tagesanzeiger.ch$$div[class="teaserEditorialContent"][tag-content="Werbung"]
-tagesanzeiger.ch$$div[class="teaserEditorialContent"][tag-content="Sponsored Content"]
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/1758
-pcwelt.de$$div[class="box"][tag-content="-Anzeige-"]
-! http://forum.adguard.com/showthread.php?8853
-chip.de$$article[tag-content="Anzeige |"]
+!
+

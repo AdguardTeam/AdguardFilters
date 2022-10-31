@@ -1,0 +1,295 @@
+!
+! This section contains the list of rules that fix incorrect blocking. Rules must be domain-specific.
+!
+! Good: example.org#@#.ad
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
+!
+!
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/125735
+freenet.de#@##frnBanner
+! https://github.com/AdguardTeam/AdguardFilters/issues/125221
+@@||ad71.adfarm1.adition.com/lt?nw=$domain=atv.at
+! https://github.com/AdguardTeam/AdguardFilters/issues/125101
+@@||static.trbo.com/img/$domain=o2online.de
+! berliner-zeitung.de - article hidden on main page which contains the word Anzeige in its header
+berliner-zeitung.de#@?#.m-article-teaser:-abp-has(div:-abp-contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/122203
+mobile.de#@#[data-ad-id]
+! https://github.com/AdguardTeam/AdguardFilters/issues/122120
+@@||static.cgames.de/gs_cb/assets/core/js/libs/adblockDetection.min.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/121633
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=mein-schoener-garten.de
+@@||ads.julephosting.de/podcasts/$domain=open.spotify.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/112598
+@@||g.doubleclick.net/gampad/adx?*/sparta/*&t=ad_type%3Dtoolbar%26$document,subdocument,domain=wetter.com,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/112938
+jobs.weser-kurier.de#@%#//scriptlet('abort-current-inline-script', 'Math', '/="h[\s\S]{0,5}[\s\S]*t[\s\S]*o[\s\S]*e[\s\S]*\/[\s\S]{0,5}co[\s\S]{0,10}",/')
+! https://github.com/AdguardTeam/AdguardFilters/issues/113049
+@@||static-v*.trbo.com/plugin/trbo_*.js$domain=blau.de
+@@||api-v*.trbo.com/r.php$domain=blau.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/108788
+!+ PLATFORM(ios, ext_android_cb)
+@@||hb.improvedigital.com/pbw/headerlift.min.js$domain=spielen.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/107944
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=noopjs,domain=wetteronline.de
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=wetteronline.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/107055
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
+@@||getjad.io/library/$script,domain=gamepro.de
+@@||getjad.io/prebid/$script,domain=gamepro.de
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/118244
+@@||cdn.stroeerdigitalgroup.de/metatag/live/mps_womenshealth/metaTag.min.js$domain=womenshealth.de
+||cdn.stroeerdigitalgroup.de/metatag/live/mps_womenshealth/metaTag.min.js$script,redirect=noopjs,domain=womenshealth.de,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/104747
+heise.de#@#[data-ad-unit]
+! https://github.com/AdguardTeam/AdguardFilters/issues/103978
+@@||sdn-global-audio-adswizz-cache.3qsdn.com/*/files/$other,media,domain=noz.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/102829
+@@||cdntrf.com/prebid/ingame.de/prebid_config.json$domain=ingame.de
+@@||cdntrf.com/lib/templates/index.js$domain=ingame.de
+@@||cdntrf.com/trfAdSetup.js$domain=ingame.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/100493
+reidl.de#@#ins[data-revive-zoneid]
+! https://github.com/AdguardTeam/AdguardFilters/issues/100241
+!#safari_cb_affinity(all)
+@@||heise.de/news^
+@@||heise.de/forum^
+!#safari_cb_affinity
+! https://github.com/AdguardTeam/AdguardFilters/issues/99244
+sportbuzzer.de#@#.dcm-section-wrapper
+! https://github.com/AdguardTeam/AdguardFilters/issues/97155
+!#safari_cb_affinity(general,privacy)
+@@||cdntrf.com/trfAdSetup.js$domain=ingame.de
+@@||cdntrf.com/id-ingame.js$domain=ingame.de
+@@||cdntrf.com/trf-id-instream.js$domain=ingame.de
+!#safari_cb_affinity
+! https://github.com/AdguardTeam/AdguardFilters/issues/95384
+quiz-lounge.com#@#.mt-3
+! https://github.com/AdguardTeam/AdguardFilters/issues/95058
+!#safari_cb_affinity(general,privacy)
+@@||cdntrf.com/trfAdSetup.js$domain=tz.de
+@@||cdntrf.com/trf-tz-only_NATIVE.js$domain=tz.de
+@@||cdntrf.com/prebid/tz.de/prebid_config.json$domain=tz.de
+!#safari_cb_affinity
+! https://github.com/AdguardTeam/AdguardFilters/issues/93029
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=player.addradio.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/92113
+@@||platform-modules.sgweb.softgames.de/ads/p2-ads-client.js$domain=games.softgames.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/92109
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||dco.smartclip.net/?plc=$domain=spiele.rtl.de
+@@||des.smartclip.net/ads?type=$domain=spiele.rtl.de
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/88720
+fahrrad.de#@#.is-sponsored
+! https://github.com/AdguardTeam/AdguardFilters/issues/87832
+||widgets.outbrain.com/outbrain.js$script,redirect=noopjs,domain=spiegel.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/83496
+||glomex.com^$popup,badfilter
+! t-online.de video not working
+@@||player.glomex.com/integration^$domain=t-online.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/81081
+@@||movie.momo-net.com/_embed/video.php$domain=german-porno-deutsch.info
+! https://github.com/AdguardTeam/AdguardFilters/issues/82152
+@@||cdn.stroeerdigitalgroup.de/metatag/live/bauer-tvmovie/metaTag.min.js$domain=tv14.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/82143
+@@||static-v*.trbo.com/plugin/trbo_*.js$domain=o2online.de
+@@||api-v*.trbo.com/r.php$domain=o2online.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/82443
+@@||ravensburger-werbemittel.de/content/wcm/mediadata/images/Werbemittel/$~third-party
+@@||ravensburger.com/content/wcm/mediadata/images/Werbemittel/$domain=ravensburger-werbemittel.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/82035
+businessinsider.de#@#.ll_partnerexpert_widget
+! https://github.com/AdguardTeam/AdguardFilters/issues/82003
+@@||getraenkedienst.com/muenchen/media/image/
+! wanted.de - search not showing anything
+@@||google.com/afs/ads?q=*adsafe$domain=wanted.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/81964
+@@||toolbox.dfb.de/img/partner-logos^
+@@||assets.dfb.de/uploads/*/original_$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/85395
+urlaubspartner.net#@#.werbung
+urlaubspartner.net#@##werbung
+! https://github.com/AdguardTeam/AdguardFilters/issues/81940
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=gamestar.de
+@@||googletagservices.com/tag/js/gpt.js$domain=gamestar.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/80889
+@@||baumberger.shop/cache/style_*_responsive_ad_header.css$~third-party
+@@||baumberger.shop/cache/javascript_*_responsive_ad_footer.js$~third-party
+! https://github.com/AdguardTeam/AdguardFilters/issues/80803
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=player.motorsport-magazin.com
+@@||cdn.jsdelivr.net/combine/npm/video.js*/dist/video-js.min.css*/videojs-contrib-ads*/dist/videojs.ads.min.css$domain=player.motorsport-magazin.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/79974
+saechsische.de#@?#article,div:-abp-has( > div > .article-section--nad > span:-abp-contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/79115
+tarnkappe.info#@#.category-advertorial
+! https://github.com/AdguardTeam/AdguardFilters/issues/74986
+hochzeitsportal24.de#@##bannerwerbung
+! https://github.com/AdguardTeam/AdguardFilters/issues/73868
+druckerchannel.de#@##DCGA_CONTAINER
+! https://github.com/AdguardTeam/AdguardFilters/issues/71692
+@@||googletagservices.com/tag/js/gpt.js$domain=cinemaxx.de
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=cinemaxx.de
+@@||securepubads.g.doubleclick.net/gampad/ads$domain=cinemaxx.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/70473
+@@||ad.71i.de/somtag/loader/loader.js$domain=atv.at
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=atv.at
+! https://github.com/AdguardTeam/AdguardFilters/issues/67223
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=netzwelt.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/64063
+@@||c.amazon-adsystem.com/aax2/apstag.js$domain=fitforfun.de
+@@||a.bf-ad.net/adengine/fff/adengine.js$domain=fitforfun.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/63806
+cash.ch#@#.ad-enabled
+! https://github.com/AdguardTeam/AdguardFilters/issues/63830
+golem.de#@%#(function(b,d,e){function a(){}b={get:function(){return a},set:a},d={};Object.defineProperties(d,{spid_control_callback:b,content_control_callback:b,vid_control_callback:b});e=new Proxy({},{get:function(a,c){switch(c){case "config":return d;case "_setSpKey":throw Error();default:return a[c]}},set:function(a,c,b){switch(c){case "config":return!0;case "bootstrap":case "mms":return a[c]=b,!0;default:throw Error();}}});Object.defineProperty(window,"_sp_",{get:function(){return e},set:a})})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/61906
+chip.de#@%#(function(o){function a(a){return{get:function(){return a},set:b}}function b(){}function c(){throw"Adguard: stopped a script execution.";}var d={},e=a(function(a){a(!1)}),f={},g=EventTarget.prototype.addEventListener;o(d,{spid_control_callback:a(b),content_control_callback:a(b),vid_control_callback:a(b)});o(f,{config:a(d),_setSpKey:{get:c,set:c},checkState:e,isAdBlocking:e,getSafeUri:a(function(a){return a}),pageChange:a(b),setupSmartBeacons:a(b)});Object.defineProperty(window,"_sp_",a(f));EventTarget.prototype.addEventListener=function(a){"sp.blocking"!=a&&"sp.not_blocking"!=a&&g.apply(this,arguments)}})(Object.defineProperties);
+! saechsische.de - article hidden - https://www.saechsische.de/staatsanwalt-gegenueber-rechten-befangen-5247375.html
+saechsische.de#@?#article,div:-abp-has( > .article-fill__section > span:-abp-contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/57374
+||movie-blog.org^$subdocument,domain=movie-blog.org,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/70817
+turn-on.de#@#.noadblock
+! rtl.de - video not showing
+@@||bilder-a.akamaihd.net/ip/js/ipdvdc/blockadblock.min.js$domain=rtl.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/53752
+saechsische.de#@?#article,div:-abp-has(> .landingpage > span:-abp-contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/50079
+krone.at#@#.ad-container
+! https://github.com/AdguardTeam/AdguardFilters/issues/49853
+buecher.de#@#.top-banners
+! https://github.com/AdguardTeam/AdguardFilters/issues/49006
+@@||prosiebengames.de/modules/custom/adspree_custom/js/colorbox.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/48701
+@@||cdn.stroeerdigitalgroup.de/metatag/live/bauer-autozeitung/metaTag.min.js$domain=autozeitung.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/48231
+@@||shop.printweb.de/werbung^$domain=printweb.de
+! yello.de - article broken
+yello.de#@#.advertorial
+! gamestar.de - video player is not loading
+@@||c.amazon-adsystem.com/aax2/apstag.js$domain=gamestar.de
+! broken video - https://github.com/AdguardTeam/AdguardFilters/issues/38126
+@@||component-vvs.glomex.com/embed^$popup
+! https://github.com/AdguardTeam/AdguardFilters/issues/42551
+@@||cdnstatic.secure.spiegel.de/SP/*/grafik^
+! dr-gumpert.de - broken article layout
+dr-gumpert.de#@#.adsbygoogle
+! freundin.de - broken infinite scrolling
+@@||freundin.de/*_wrapper_format=drupal_ajax
+! https://github.com/AdguardTeam/AdguardFilters/issues/38173
+email.t-online.de#@#.advertising
+! https://github.com/AdguardTeam/AdguardFilters/issues/38848
+@@||api.spendino.de/admanager^
+! https://github.com/AdguardTeam/AdguardFilters/issues/37287
+@@||st.wetteronline.de/dr/*/css/p_*.css
+! https://github.com/AdguardTeam/AdguardFilters/issues/35504
+@@||ad.doubleclick.net/ddm/pfadx^$domain=n-tv.de
+@@||ad-ipd.sxp.smartclip.net/select^$domain=n-tv.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/36756
+@@||openx.gamereactor.dk/www/delivery/fc.php?script=bannerTypeHtml:vastInlineBannerTypeHtml:vastInlineHtml$domain=gamereactor.de
+! epochtimes.de - broken video
+@@||c.amazon-adsystem.com/aax2/apstag.js$domain=epochtimes.de
+! joyn.de - video not playing
+@@||yospace.com/csm/builder/*,proxy$domain=joyn.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/27368
+@@||mediamarkt.de/*/shop^
+! frag-mutti.de - missing article content
+frag-mutti.de#@##top-banner
+! kinopolis.de - self-promo blocked
+@@||adspirit.de^$domain=kinopolis.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/28318
+@@||ad.71i.de/somtag/loader/loader.js$domain=promipool.de
+@@||ad.71i.de/somtag/config/promipoolde/default.js$domain=promipool.de
+! spieletipps.de - broken text in article
+spieletipps.de#@##leaderboard
+! https://github.com/AdguardTeam/AdguardFilters/issues/24240
+@@||data.lidl.de^$jsinject
+! https://github.com/AdguardTeam/AdguardFilters/issues/23380
+@@||ib.adnxs.com/ptv$domain=tele5.de
+@@||ad-ipd.sxp.smartclip.net/select$domain=tele5.de
+! rheinischepostmediengruppe.de - broken banner at top
+rheinischepostmediengruppe.de#@##banner_carousel
+! https://github.com/AdguardTeam/AdguardFilters/issues/22185
+!+ PLATFORM(ios, ext_android_cb)
+giga.de#@##teaserheld-header
+! https://github.com/AdguardTeam/AdguardFilters/issues/22404
+@@||catalog.mann-filter.com/media/werbebanner^
+! https://github.com/AdguardTeam/AdguardFilters/issues/21934
+@@||cdn.antenne.de/antenne-de/uploads^
+! https://github.com/AdguardTeam/AdguardFilters/issues/21340
+androidpit.de#@##ad-sticky-container
+! https://github.com/AdguardTeam/AdguardFilters/issues/20330
+@@||cdn.stroeerdigitalgroup.de/metatag/live/bauer-tvmovie/metaTag.min.js$domain=tvmovie.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/18077
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=20min.ch
+! https://github.com/AdguardTeam/AdguardFilters/issues/18075
+mytoys.de#@#iframe[width="300"][height="250"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/17480
+sueddeutsche.de#@#.ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/10142
+@@||partnerads.ysm.yahoo.com/ypa/?ct=*suchmaschine.com$domain=suchmaschine.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/10479
+spiele-for-free.de#@#a[href^="http://wlx-secure.com/"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/10104
+@@||s.adadapter.netzathleten-media.de/*/naMediaAd.js$domain=wooco.de
+wooco.de#@#.naMediaAd
+! https://github.com/AdguardTeam/AdguardFilters/issues/7638
+@@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl.js$domain=autobild.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/7343
+m.tvtoday.de#@#.banner-container
+! https://github.com/AdguardTeam/AdguardFilters/issues/7214
+@@||smartclip.net/?plc=$domain=energy.de
+@@||smartclip.net/ads?type=$domain=energy.de
+! https://forum.adguard.com/index.php?threads/25203/
+islamische-zeitung.de#@#.sb-widget
+! https://forum.adguard.com/index.php?threads/23770/
+schogetten.de#@#.Werbung
+! werbung.qs-optiker.de - site is broken
+@@||werbung.qs-optiker.de^$domain=werbung.qs-optiker.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/5440
+kachelmannwetter.com#@#iframe[width="300"][height="250"]
+! https://forum.adguard.com/index.php?threads/21931/
+@@||arkadiumhosted.com/API/$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/5075
+@@||ww251.smartadserver.com/ac?nwid=*&siteid=$domain=transfermarkt.de
+! https://forum.adguard.com/index.php?threads/browsergames-spielen-de.20358/
+browsergames.spielen.de#@##gameimage
+! https://github.com/AdguardTeam/AdguardFilters/issues/3506
+kostenlose-online-rechner.de#@##advert1
+kostenlose-online-rechner.de#@##advert2
+! https://forum.adguard.com/index.php?threads/14135/
+rtl.de#@#.rtlde-medium-rectangle
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2081
+@@||gntm.connect.prosieben.de^$generichide
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1648
+@@||cdn.inside-handy.de/ih/top/
+! http://forum.adguard.com/showthread.php?9165
+@@||google-analytics.com/analytics.js^$domain=freshmilk.tv
+! http://forum.adguard.com/showthread.php?9166
+@@||assets.sport1.de/bundles/
+@@||doubleclick.net^$domain=video.sport1.de
+@@||nuggad.net^$domain=video.sport1.de
+@@||ad.71i.de^$domain=video.sport1.de
+! http://forum.adguard.com/showthread.php?8976
+! for correct blocking ads on tv4play.se
+@@||videoplaza1.tv/proxy/as3_vp_player-ku
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/1395
+@@||lotto-bw.de^$jsinject
+! http://forum.adguard.com/showthread.php?8387
+@@||lustich.de.adadapter.netzathleten-media.de/API-1.0/*/naMediaAd.js$domain=lustich.de
+! http://forum.adguard.com/showthread.php?7970
+@@||toggo.de/module/catchup/admeta.php
+! rtl.de - broken player
+@@||cdn.videoplaza.tv/contrib/de-ipd/svm/homadConfigVideoplaza-rtl.json$domain=rtl.de
+! http://forum.adguard.com/showthread.php?8058
+@@||smartadserver.com/ac?$domain=bildderfrau.de
+! http://forum.adguard.com/showthread.php?8061
+@@||spiele.rtl.de/landingpage/index/$document
+! http://forum.adguard.com/showthread.php?2874-servustv-com-(google-chrome-firefox)
+@@||ad3.adfarm1.adition.com^$domain=servustv.com,other
+! https://github.com/AdguardTeam/AdguardFilters/issues/3346
+@@||api.ebay-kleinanzeigen.de/api/ads/

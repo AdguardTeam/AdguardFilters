@@ -5,6 +5,46 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/132504
+blick.ch#?#article > div.unblurred:has(> div:contains(Werbung))
+! t-online.de ad in article and cleanup
+t-online.de#?#main[data-testid="PageMain"] > div[class^="css-"]:has(> div[class^="css-"] > div[data-component="CommercialSDI"])
+t-online.de#?#div[data-testid="StageLayout.CompanionItem"]:has(> div[data-commercial-format])
+t-online.de#?#div[data-testid="StageLayout.CompanionItem"]:has(> div[class] > div[class] > div[data-testid="StageNetflix.VariantTonline"])
+t-online.de#?#div[data-article-bottom] > div[class]:has(> div[data-taboola-placement])
+t-online.de#?#div[data-article-bottom] > div[class]:has(> div[data-external-nativendo])
+! manager-magazin.de - ad in article and main page
+manager-magazin.de#?#.relative:has(> section[style="display: none !important;"])
+manager-magazin.de#?#section[data-area="contentbox"]:has(> div[class] > span:contains(ANZEIGE))
+! kurier.de,frankenpost.de/np-coburg.de - ad cleanup
+kurier.de,np-coburg.de,frankenpost.de#?#.item:has(> .content > a[data-tags="Advertorial Anzeigenkennung"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/131016
+stadt-bremerhaven.de#?#.sidebar-content > p:contains(Anzeige)
+! womenshealth - ad deals on main page
+womenshealth.de#?#div[class]:has(> a > span > .v-A_-teaser__tag--ad)
+! verkehrsinformation.de - left-overs
+verkehrsinformation.de#?#div[class]:has(> div[style]:only-child > .adsbygoogle:only-child)
+! donaukurier.de - left-overs in article and main page
+donaukurier.de#?#div:has(> div[id^="traffective-ad"])
+donaukurier.de#?#div[id^="ezplatform-page-block"]:has(> div[class] > iframe[name="marketing"])
+donaukurier.de#?#div[id^="ezplatform-page-block"]:has(> section > small > l:contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/128385
+haus.de#?#div[class]:has(> .OUTBRAIN)
+! https://github.com/AdguardTeam/AdguardFilters/issues/127933
+saarbruecker-zeitung.de#?#.park-section > div.park-multi-portal:has(> article.park-slider aside[data-portal-id="smartad"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/127775
+gameme.eu#?#.wpb_wrapper > div.wpb_row > div.vc_column_inner > div.vc_column-inner > div.wpb_wrapper > div.td-a-rec-id-custom-spot:upward(3)
+gameme.eu#?#.stretch_row_1200 > div.wpb_row > div.vc_column_container > div.wpb_wrapper > div.td-a-rec-id-custom-spot:upward(2)
+! motorsport-total.com ads on main page
+motorsport-total.com#?#.picture-content-wrapper:has(> a > figure > .txt-small > span:contains(ANZEIGE))
+motorsport-total.com#?#.picture-content-wrapper:has(> a + p > a:contains(Anzeige))
+! https://github.com/AdguardTeam/AdguardFilters/issues/126610
+wetterkontor.de#?#.uk-panel:has(> div[class^="adunit-container"])
+wetterkontor.de#?#.uk-panel:has(> .adsbygoogle)
+! mopo.de - ticker ads
+mopo.de#?#.js-marquee:has(> a[href*="campaign"][target="_blank"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/124978
+wz.de#?#.park-section-portal-top__content > div.park-section > article.park-teaser-collection:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124504#issuecomment-1189013577
 radio.de#?#div[class^="sc-"] > div[class^="sc-"] > div[id^="RAD_"]:upward(2)
 ! winfuture.de - left-over main page
@@ -41,6 +81,7 @@ brigitte.de#?#article:has(> div[class] > .ad-labels)
 welt.de#?#article:has(> ul[class^="c-teaser-default"] > li > header > .c-anzeige-marker)
 welt.de#?#.c-grid__item:has(> article > header > .c-anzeige-marker)
 welt.de#?#.c-inline-element:has(> .o-teaser .c-inline-teaser__section-topic > span:contains(Advertorial))
+welt.de#?#article:has( > ul > li .o-teaser__title > a[href^="/Advertorials/"])
 ! jpgames.de - left-over in sidebar
 jpgames.de#?##secondary > aside[id^="custom_html-"]:has(> .widget-header > .widget-title:contains(Werbung))
 ! focus.de - left-over in sidebar when viewing an article
@@ -176,15 +217,17 @@ mademyday.com#?##container > div.widget:not([data-mode="gallery"]):has(a[href="#
 tonspion.de#?##secondary > .widget div[id^="div-gpt-ad-"]:upward(.widget)
 ! bild.de - gutschein ads
 bild.de#?#.main-content > section.block:has(> .block__layout-wrapper > .layout > .taboola)
-bild.de#?#.main-content ~ .mtl--footer:has(> h4 > .anchor--external)
+bild.de#?#.main-content ~ .mtl--footer:has(> * > .anchor--external)
 ! gamestar.de - ad on main page
 gamestar.de#?#.scroll-container > div > .content-item-medium:has(> data[value="Deal"])
+gamestar.de#?#.scroll-container > div > div:has(> div[id] > .info:contains(Anzeige))
 ! winfuture.de Ads at main page
 winfuture.de#?#[class^="news"]:has( > a[href^="/news"][href*="123690"])
 winfuture.de#?#.hp_latest > div:has( > .topteaser > a[href^="/news"][href*="123690"])
 winfuture.de#?#div[class^="hp_"] > div:has( >ul > li:contains(Anzeige))
 winfuture.de#?#.topnews > div:has( > a > .img_container > .anzeige)
-winfuture.de#?#.topnews > div[class]:has(> a > span > .anz)
+winfuture.de#?#.topnews > div[class]:has(> div[class^="news"] > .anz)
+winfuture.de#?#.tile_300:has(> .img_container > a > .anz)
 winfuture.de#?#[class^="news"]:has(> .picture_head > .anz)
 winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
 
@@ -330,7 +373,7 @@ simply-yummy.de#?##zl_sidebar > .zl_widget[data-bid]:has(> div[id^="div-gpt-ad"]
 ! chefkoch.de - left-over at startpage
 chefkoch.de#?#div[amp-access^="NOT hasPaid"] +.ds-box:has(> .ds-hr:empty:first-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53011
-gload.cc#?#.tm-main-top > .uk-width-1-1 > .widget_custom_html:has(> .textwidget > center > a[href][target="_blank"] > img)
+gload.to#?#.tm-main-top > .uk-width-1-1 > .widget_custom_html:has(> .textwidget > center > a[href][target="_blank"] > img)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51710
 fitbook.de#?#.pb--three-small > .teaser--b:has(>a[href^="https://secure.adnxs.com/"])
 ! bayern-reporter.com - left-over in article
@@ -380,6 +423,7 @@ focus.de#?##sidebar > .block:has(> div[id] > div[class] > .surftipp:contains(Ges
 tz.de#?#.id-g--oneCol > div[data-id-module]:has(> div[id] > div[data-id-advertdfpconf])
 ! mopo.de - left-over at main page
 mopo.de#?#.dm_content_block > article:has(> a[href*="-advertorial"])
+mopo.de#?#.slick-slide:has(> .Anzeige)
 ! chip.de - ads at main page
 chip.de#?#.List > li:has(> article > a:contains(Anzeige))
 chip.de#?#.fb > article:has(> a .Badge > .Badge__Content:contains(/gesponsert|anzeige/))
@@ -408,8 +452,8 @@ freundin.de#?#.item-content__row-col > article:has(> .teaser__caption > .item-ma
 freundin.de#?#div[class^="pls"] > div[class^="pls"] > div:has(> div[class] div[class] > a + div[class] span:contains(Anzeige))
 freundin.de#?#div[class^="adykos"]:has(> div[class] > div[class] > span > svg > g#harpers_bezahlte_partnerschaft)
 freundin.de#?#.adykos-0:has(> div > a + div > span > svg#main > #harpers_bezahlte_partnerschaft)
-freundin.de#?#.freundinPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class] > svg > g#harpers_bezahlte_partnerschaft)
-freundin.de#?#.freundinPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class]:contains(Anzeige))
+freundin.de#?#.fullWidthPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class] > svg > g#harpers_bezahlte_partnerschaft)
+freundin.de#?#.fullWidthPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class]:contains(Anzeige))
 freundin.de#?#.ab-ad_placement-article ~ div .ab-products-entityType_not_set:upward(2)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38629
 rennrad-news.de#?#.js-replyNewMessageContainer > .message--post[data-author="MTB-News.de"]:has(div[id^="div-gpt-ad"])
@@ -479,7 +523,10 @@ buffed.de,pcgameshardware.de#?#.articleTicker > .item.noImg[-ext-has='div.itemHe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/29318
 mtb-news.de#?#ol#messageList > li.message:not([id]):not([data-author]):has(> div.messageUserInfo > div.messageUserBlock > h3.userText > em:contains(Anzeige))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24865
-extratipp.com#?#.id-SiteMain > .id-g--oneCol:has(> div > div > div[data-id-advertdfpconf])
+! https://github.com/AdguardTeam/AdguardFilters/issues/126713
+wiesn.bayern,werra-rundschau.de,wasserburg24.de,wlz-online.de,volksfest-freising.de,soester-anzeiger.de,rosenheim24.de,oktoberfest.bayern,news.bayern,meine-anzeigenzeitung.de,mangfall24.de,lokalo24.de,leinetal24.de,innsalzach24.de,in-muenchen.de,hersfelder-zeitung.de,herbstfest-rosenheim.de,giessener-allgemeine.de,fehmarn24.de,brokser-heiratsmarkt.de,extratipp.com#?#.id-SiteMain > .id-g--oneCol:has(> div > div > div[data-id-advertdfpconf])
+sauerlandkurier.de,kurierverlag.de,kreisbote.de,ingame.de,hanauer.de,hallo-muenchen.de,dasgelbeblatt.de,costanachrichten.com,buzzfeed.de,az-online.de#?#.id-SiteMain > .id-g--oneCol:has(> div > div:only-child > div > div[data-id-advertdfpconf])
+chiemgau24.de#?#.id-SiteMain > .id-g--oneCol:has(> div > div > div > div[data-id-advertdfpconf])
 ! chip.de - left-over at main page
 chip.de#?#.List > li[-ext-has='a[title*="Gesponsert"]']
 ! rundschau-online.de left-over
@@ -802,5 +849,7 @@ pcgames.de#?#.column > .module:has(> div[class] > div[class] > .item > span > a[
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8048
 wallstreet-online.de#?#.extract > strong:contains(Anzeige)
 !
+chip.de#?#.DetailPage__Right-Column > div.is-hidden-md:has(> div[id^="advertisment-"])
+rtl.de#?##showheroes-script-container:upward(1)
 caravaning.de##.v-A_-teaser:has(> div[ga-track-cl*="sponsoredBox"])
 amateurbusters.com#?#.sb_area > .sb_area_headline:contains(Urlaub)
