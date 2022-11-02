@@ -5,6 +5,26 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/133812
+motorsport-total.com#?#.innercontent > div.mt30:has(> div.f1de-container > div.OUTBRAIN)
+motorsport-total.com#?#.flex-boxes > div.block-320:has(> div.teaser_container span.ads-anzeige)
+! https://github.com/AdguardTeam/AdguardFilters/issues/132504
+blick.ch#?#article > div.unblurred:has(> div:contains(Werbung))
+! t-online.de ad in article and cleanup
+t-online.de#?#main[data-testid="PageMain"] > div[class^="css-"]:has(> div[class^="css-"] > div[data-component="CommercialSDI"])
+t-online.de#?#div[data-testid="StageLayout.CompanionItem"]:has(> div[data-commercial-format])
+t-online.de#?#div[data-testid="StageLayout.CompanionItem"]:has(> div[class] > div[class] > div[data-testid="StageNetflix.VariantTonline"])
+t-online.de#?#div[data-article-bottom] > div[class]:has(> div[data-taboola-placement])
+t-online.de#?#div[data-article-bottom] > div[class]:has(> div[data-external-nativendo])
+! manager-magazin.de - ad in article and main page
+manager-magazin.de#?#.relative:has(> section[style="display: none !important;"])
+manager-magazin.de#?#section[data-area="contentbox"]:has(> div[class] > span:contains(ANZEIGE))
+! kurier.de,frankenpost.de/np-coburg.de - ad cleanup
+kurier.de,np-coburg.de,frankenpost.de#?#.item:has(> .content > a[data-tags="Advertorial Anzeigenkennung"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/131016
+stadt-bremerhaven.de#?#.sidebar-content > p:contains(Anzeige)
+! womenshealth - ad deals on main page
+womenshealth.de#?#div[class]:has(> a > span > .v-A_-teaser__tag--ad)
 ! verkehrsinformation.de - left-overs
 verkehrsinformation.de#?#div[class]:has(> div[style]:only-child > .adsbygoogle:only-child)
 ! donaukurier.de - left-overs in article and main page
@@ -200,7 +220,7 @@ mademyday.com#?##container > div.widget:not([data-mode="gallery"]):has(a[href="#
 tonspion.de#?##secondary > .widget div[id^="div-gpt-ad-"]:upward(.widget)
 ! bild.de - gutschein ads
 bild.de#?#.main-content > section.block:has(> .block__layout-wrapper > .layout > .taboola)
-bild.de#?#.main-content ~ .mtl--footer:has(> h4 > .anchor--external)
+bild.de#?#.main-content ~ .mtl--footer:has(> * > .anchor--external)
 ! gamestar.de - ad on main page
 gamestar.de#?#.scroll-container > div > .content-item-medium:has(> data[value="Deal"])
 gamestar.de#?#.scroll-container > div > div:has(> div[id] > .info:contains(Anzeige))
@@ -209,7 +229,8 @@ winfuture.de#?#[class^="news"]:has( > a[href^="/news"][href*="123690"])
 winfuture.de#?#.hp_latest > div:has( > .topteaser > a[href^="/news"][href*="123690"])
 winfuture.de#?#div[class^="hp_"] > div:has( >ul > li:contains(Anzeige))
 winfuture.de#?#.topnews > div:has( > a > .img_container > .anzeige)
-winfuture.de#?#.topnews > div[class]:has(> a > span > .anz)
+winfuture.de#?#.topnews > div[class]:has(> div[class^="news"] > .anz)
+winfuture.de#?#.tile_300:has(> .img_container > a > .anz)
 winfuture.de#?#[class^="news"]:has(> .picture_head > .anz)
 winfuture.de#?##topnewscontent > h2:has(> a:contains(/(Anzeige)|wieder erhältlich:|Schnäppchen|sale|(?<!-)Angebot(?!s)|(für|ab)[\s\S]*[0-9]{1,2}(,?[0-9]{1,2}) (Euro|€)|Chance!|nur jetzt[\s\S]*reduziert|(Black|Cyber)[\s\S]*(day|W)|(Das|Der|Die)[\s\S]*(jetzt?) bei (Media Markt|Saturn|Amazon)|Rabatt|Günstig[\s\S]*(bei (Media Markt|Saturn|Amazon)|Deals für)|Deals[\s\S]*(Media Markt|Saturn|Amazon)|Letzte Chance|(Media Markt|Saturn|Amazon)[\s\S]*Deal|(waipu.tv)[\s\S]*preis|bei (Media Markt|Saturn|Amazon) bestellen|Amazon-Gutschein/))
 
@@ -434,8 +455,8 @@ freundin.de#?#.item-content__row-col > article:has(> .teaser__caption > .item-ma
 freundin.de#?#div[class^="pls"] > div[class^="pls"] > div:has(> div[class] div[class] > a + div[class] span:contains(Anzeige))
 freundin.de#?#div[class^="adykos"]:has(> div[class] > div[class] > span > svg > g#harpers_bezahlte_partnerschaft)
 freundin.de#?#.adykos-0:has(> div > a + div > span > svg#main > #harpers_bezahlte_partnerschaft)
-freundin.de#?#.freundinPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class] > svg > g#harpers_bezahlte_partnerschaft)
-freundin.de#?#.freundinPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class]:contains(Anzeige))
+freundin.de#?#.fullWidthPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class] > svg > g#harpers_bezahlte_partnerschaft)
+freundin.de#?#.fullWidthPagePresenter > div[class] > div[class]:has(> a > div[class] > div[class]:contains(Anzeige))
 freundin.de#?#.ab-ad_placement-article ~ div .ab-products-entityType_not_set:upward(2)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38629
 rennrad-news.de#?#.js-replyNewMessageContainer > .message--post[data-author="MTB-News.de"]:has(div[id^="div-gpt-ad"])

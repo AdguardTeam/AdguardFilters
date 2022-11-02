@@ -1,12 +1,21 @@
 !
-! This section contains the list of rules that fix the problems, caused by incorrect blocking of website push notifications.
+! This section contains the list of rules that fix the problems caused by incorrect blocking of website push notifications.
 ! At the bottom of this file, you can find the allowlist that fixes issues caused by the rules from this file.
 !
 ! Good: @@||popups.org^$domain=example.org
-! Bad: ||example.org^
+! Bad:  ||example.org^
 !
 ! SECTION: Push notifications - Allowlist
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/131114
+pipedream.com#@##credential_picker_container
+! https://github.com/AdguardTeam/AdguardFilters/issues/130066
+@@||onesignal.com^$domain=e1.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/129633
+!+ NOT_PLATFORM(windows, mac, android)
+||cdn.onesignal.com/sdks/OneSignalSDK.js$script,redirect=noopjs,domain=sammobile.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||cdn.onesignal.com/sdks/OneSignalSDK.js$domain=sammobile.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126988
 @@||cdn.onesignal.com/sdks/amp/amp-helper-frame.js$domain=lelum.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121072
@@ -60,3 +69,4 @@
 @@||api.savemedia.website^$domain=convert2mp3.club
 ! NOTE: Allowlist end ⬆️
 ! !SECTION: Push notifications - Allowlist
+!
