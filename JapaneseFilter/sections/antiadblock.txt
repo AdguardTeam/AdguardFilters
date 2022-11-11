@@ -15,7 +15,7 @@ snrec.jp#$#body.tp-modal-open { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132814
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
 ! Similar site in Base filter: soranews24.com
-rocketnews24.com,youpouch.com#$#.ad300x250 { min-height: 1px !important; height: 1px !important; overflow: hidden !important; }
+rocketnews24.com,youpouch.com##iframe[id^="google_ads_iframe"]
 @@||tpc.googlesyndication.com/simgad/$xmlhttprequest,domain=rocketnews24.com|youpouch.com
 ||tpc.googlesyndication.com^$image,redirect-rule=1x1-transparent.gif,domain=rocketnews24.com|youpouch.com
 @@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com|youpouch.com
@@ -35,6 +35,12 @@ rocketnews24.com,youpouch.com#$#.ad300x250 { min-height: 1px !important; height:
 @@||adservice.google.*/adsid/integrator.js$domain=rocketnews24.com|youpouch.com
 @@||pagead2.googlesyndication.com/pagead/js/$domain=rocketnews24.com|youpouch.com
 !#endif
+!#safari_cb_affinity(privacy)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
+@@||tpc.googlesyndication.com/simgad/$image,domain=rocketnews24.com
+!#endif
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131843
 blog-and-destroy.com###no-ads-msg
 blog-and-destroy.com##.affiliate-card
@@ -155,14 +161,19 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
-sekai-kabuka.com##div[style="height: 20px;width:272px;top: 567px;line-height:1;background:#800;color:#fff;z-index:0;margin: 0 0 0 -374px;position: absolute;font-size: 22px;"]
-sekai-kabuka.com#$#div[data-ih] { font-size: 0 !important; }
+sekai-kabuka.com#$#div[style="height:0;width:0px;position:relative;margin: 0 auto;"] > div[class][style*="background:#800"][style*="font-size:"] { font-size: 0 !important; background: none !important; }
+realtime-chart.info,sekai-kabuka.com#$#div[data-i2h] { font-size: 0 !important; }
 sekai-kabuka.com#%#//scriptlet('remove-attr', 'onclick', 'div[data-js][style*="background"]', 'stay')
+realtime-chart.info#$#div[onclick*="儡騾濶鵞罅苡iﾟﾛlﾞ"] { pointer-events: none !important; }
+realtime-chart.info#$#div[onclick][style*="cursor:pointer"] { pointer-events: none !important; }
+realtime-chart.info#$#div[style="width:120px;line-height:1.1;position:relative;"] > b[style="font-size:32px"] { font-size: 0 !important; }
+realtime-chart.info#$#a[href^="https://px.a8.net/svt/ejp?"] { pointer-events: none !important; }
+realtime-chart.info#$#div[data-ih*="広告"] { background: none !important; font-size: 0 !important; cursor: default !important; }
+realtime-chart.info#$?#div[class^="amazon"] > b[class^="amazon"]:has(> b[style^="font-size:"]) { font-size: 0 !important; }
 realtime-chart.info#$#img[src*="/clip_"] + b { background: none !important; font-size: 0 !important; }
 realtime-chart.info,sekai-kabuka.com#$#div[data-js] { background: none !important; cursor: default !important; }
+realtime-chart.info#%#//scriptlet('remove-attr', 'onclick', '[onclick^="location.href=\'https://px.a8.net"]')
 realtime-chart.info#%#//scriptlet('remove-attr', 'href', 'a[href^="https://a.r10.to/"]')
-realtime-chart.info#%#//scriptlet('remove-attr', 'href', 'a[href^="https://px.a8.net/svt/ejp?"]')
-realtime-chart.info#%#//scriptlet('remove-attr', 'onclick', 'div[onclick*="JumpDataHref(this)"][data-href]', 'stay')
 @@||realtime-chart.info^$generichide
 @@||sekai-kabuka.com^$generichide
 realtime-chart.info,sekai-kabuka.com#%#//scriptlet("set-constant", "alert", "noopFunc")
