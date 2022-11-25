@@ -28,6 +28,11 @@ rocketnews24.com,youpouch.com#$#div[id^="google_ads_iframe"] { height: 1px !impo
 @@||youpouch.com^$generichide
 @@||rocketnews24.com^$generichide
 ||fundingchoicesmessages.google.com^$script,redirect-rule=noopjs,domain=rocketnews24.com|youpouch.com
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||youpouch.com/_static/$replace=/!1===SCO\.imgLazyLoad/1===1/,script
+||rocketnews24.com/_static/$replace=/!1===SCO\.imgLazyLoad/1===1/,script
+youpouch.com,rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
+!#endif
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||tpc.googlesyndication.com/simgad/$image,domain=rocketnews24.com|youpouch.com
 @@||adservice.google.com/adsid/integrator.js$domain=rocketnews24.com|youpouch.com
@@ -160,6 +165,7 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
+sekai-kabuka.com#$?#td[width="160"] > div[class] > div > div[id][style^="height:"]:contaiins(広告非表示) { z-index: -1 !important; }
 sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style="width: 258px;"]:contains(不具合が) { z-index: -1 !important; }
 sekai-kabuka.com#$?#td[width="160"] > div[style] > div[id][style]:has(> div[class]:contains(定期的に配置が)) { z-index: -1 !important; }
 sekai-kabuka.com#$#ins.adsbygoogle > div[style="width:728px;height:90px;position:absolute;z-index:999;line-height:1.1;display:flex;justify-content:center;align-items:center;"] { height: 1px !important; overflow: auto !important; }
