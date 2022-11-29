@@ -8,6 +8,11 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! musmus.main.jp anti-adb
+musmus.main.jp#@##ad_space
+musmus.main.jp#@#.adsbygoogle
+musmus.main.jp#$#div[class*="ad_"] {  height: 1px !important; width: 1px !important; min-height: 1px !important; padding: 0 !important; margin: 0 !important; overflow: hidden !important; }
+musmus.main.jp#$#div[id^="sub_ad"] {  height: 1px !important; width: 1px !important; min-height: 1px !important; padding: 0 !important; margin: 0 !important; overflow: hidden !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133621
 snrec.jp#$#.tp-backdrop { display: none!important; }
 snrec.jp#$#.tp-modal { display: none!important; }
@@ -15,7 +20,7 @@ snrec.jp#$#body.tp-modal-open { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132814
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
 ! Similar site in Base filter: soranews24.com
-rocketnews24.com,youpouch.com##iframe[id^="google_ads_iframe"]
+rocketnews24.com,youpouch.com#$?#iframe[id^="google_ads_iframe"] { remove: true; }
 @@||tpc.googlesyndication.com/simgad/$xmlhttprequest,domain=rocketnews24.com|youpouch.com
 ||tpc.googlesyndication.com^$image,redirect-rule=1x1-transparent.gif,domain=rocketnews24.com|youpouch.com
 @@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com|youpouch.com
@@ -28,6 +33,11 @@ rocketnews24.com,youpouch.com##iframe[id^="google_ads_iframe"]
 @@||youpouch.com^$generichide
 @@||rocketnews24.com^$generichide
 ||fundingchoicesmessages.google.com^$script,redirect-rule=noopjs,domain=rocketnews24.com|youpouch.com
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||youpouch.com/_static/$replace=/!1===SCO\.imgLazyLoad/1===1/,script
+||rocketnews24.com/_static/$replace=/!1===SCO\.imgLazyLoad/1===1/,script
+youpouch.com,rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
+!#endif
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||tpc.googlesyndication.com/simgad/$image,domain=rocketnews24.com|youpouch.com
 @@||adservice.google.com/adsid/integrator.js$domain=rocketnews24.com|youpouch.com
@@ -160,15 +170,18 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
+realtime-chart.info#?#td[style="vertical-align: top"] > div[id] > div[id] > div[id] > div[style="top:1550px"] > div[style="z-index:-1"]:contains(/^広告非表示だと色々と不具合が発生します$/)
+sekai-kabuka.com#$?#td[width="160"] > div[class] > div > div[id][style^="height:"]:contaiins(広告非表示) { z-index: -1 !important; }
+sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style="width: 259px;"]:contains(不具合が) { z-index: -1 !important; }
+sekai-kabuka.com#$?#td[width="160"] > div[style] > div[id][style]:has(> div[class]:contains(定期的に配置が)) { z-index: -1 !important; }
+sekai-kabuka.com#$#ins.adsbygoogle > div[style="width:728px;height:90px;position:absolute;z-index:999;line-height:1.1;display:flex;justify-content:center;align-items:center;"] { height: 1px !important; overflow: auto !important; }
+realtime-chart.info#$#div[style="top:1424px"] > [style*="font-size:"]:is(b, span, a) { font-size: 0 !important; }
 realtime-chart.info#%#//scriptlet('remove-attr', 'onclick', '.amazoom1[onclick^="clickcat"][target="_blank"]')
-sekai-kabuka.com#$#div[data-i3h] { font-size: 0 !important; }
-sekai-kabuka.com#$#div[id][class][style^="position:relative;background:#000;"][style*="width:729px;"][style*="height: 90px;"] { height: 1px !important; overflow: auto !important; }
-sekai-kabuka.com#$#td[width="160"] > a[onmousemove="on_lx_bar();"] ~ script + div[class] { background: none !important; }
-sekai-kabuka.com#$#div[style^="height:0px;width:"][style$="position:abusolute;margin: 0 auto;"] > div[class][style*="background:"][style*="font-size:"] { font-size: 0 !important; background: none !important; }
-realtime-chart.info,sekai-kabuka.com#$#div[data-i2h] { font-size: 0 !important; }
+sekai-kabuka.com#$#div[id][class][style^="position:relative;background:#000;"][style*="width:729px;"][style*="height: 90px;"] { height: 1px !important; }
+realtime-chart.info#$#div[data-i4h] { font-size: 0 !important; }
 sekai-kabuka.com#%#//scriptlet('remove-attr', 'onclick', 'div[data-js][style*="background"]', 'stay')
 realtime-chart.info#$?#div[style="height:241px;"] > div[class]:contains(/^広告非表示だと色々と不具合が発生します$/) { font-size: 0 !important; }
-realtime-chart.info#$?#div[style="top:1423px"] > div[class]:contains(/^広告 非表示だと色々と不具合が発生します$/) { font-size: 0 !important; }
+realtime-chart.info#$?#div[style="top:1424px"] > div[class]:contains(/^広告 非表示だと色々と不具合が発生します$/) { font-size: 0 !important; }
 realtime-chart.info#$#div[class^="amazon"] > b[class^="amazon"] > b[style^="font-size:"] { font-size: 0 !important; }
 realtime-chart.info#$#div[onclick$="()"] { pointer-events: none !important; }
 realtime-chart.info#$#div[onclick][style*="cursor:pointer"] { pointer-events: none !important; }
@@ -223,10 +236,6 @@ crefan.jp#%#//scriptlet('prevent-setTimeout', 'objDef.resolve', '3000')
 egotter.com#%#//scriptlet('abort-on-property-read', 'AdBlockDetector')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67394
 @@/assets/scripts/fab.js$domain=life-n.jp|point-news.jp
-! https://github.com/AdguardTeam/AdguardFilters/issues/66815
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
-@@||520cc.cc/jspopunder.
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65807
 ||freemen.jp/wp-content/uploads/yIOefayFENNZ/$script
 ||freemen.jp/wp-content/uploads/gftpkzd.js

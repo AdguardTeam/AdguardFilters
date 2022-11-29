@@ -8,6 +8,18 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/135094
+link-descarga.site##.adp
+link-descarga.site##.adp-underlay
+link-descarga.site#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+! https://github.com/AdguardTeam/AdguardFilters/issues/134647
+meutimao.com.br#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=meutimao.com.br
+! https://github.com/AdguardTeam/AdguardFilters/issues/134928
+mangacrab.com##div[uncopy-anti-adblocker]
+/wp-content/plugins/uncopy/frontend/js/uncopy-frontend.min.js$domain=mangacrab.com
+mangacrab.com#%#//scriptlet("set-constant", "antiAdBlockerStyle", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134511
 discografias.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -1075,11 +1087,12 @@ mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "Goo
 mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_osd_loaded", "1")
 mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "stopMan", "false")
 mangahost4.com,mangahosted.com,mangahost2.com#%#//scriptlet("set-constant", "google_unique_id", "1")
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("set-constant", "googleIMState", "emptyObj")
 mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "document.querySelector", "BLOQUEADOR")
-mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "jQuery", "BLOQUEADOR")
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "setTimeout", "BLOQUEADOR")
 mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet("abort-current-inline-script", "EventTarget.prototype.addEventListener", "BLOQUEADOR")
 mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com$$script[tag-content="BLOQUEADOR"][max-length="15000"]
+mangahost4.com,mangahosted.com,mangahost2.com,mangahost1.com,mangahostbr.net,mangahostbr.com$$script[wildcard="*AdBlock is*BLOQUEADOR*"][max-length="15000"]
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||mangahost4.com^$generichide
 @@||mangahosted.com^$generichide

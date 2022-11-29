@@ -6,6 +6,32 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://oshiete.goo.ne.jp/ksos/?from=hensyu_i
+||oshiete.goo.ne.jp^$removeparam=from
+! https://github.com/AdguardTeam/AdguardFilters/issues/135493
+||immobilienscout24.de^$removeparam=referrer
+||immobilienscout24.de^$removeparam=navigationServiceUrl
+||immobilienscout24.de^$removeparam=searchId
+||immobilienscout24.de^$removeparam=searchGeoPath
+||immobilienscout24.de^$removeparam=enteredFrom
+||immobilienscout24.de^$removeparam=source
+! https://github.com/AdguardTeam/AdguardFilters/issues/134658
+||tumblr.com^$removeparam=source
+! https://github.com/AdguardTeam/AdguardFilters/issues/134656
+||tumblr.com^$removeparam=_branch_referrer
+||tumblr.app.link^$removeparam=_p
+! https://github.com/AdguardTeam/AdguardFilters/issues/135099
+||dhits.docomo.ne.jp^$removeparam=affiliate
+! https://github.com/AdguardTeam/AdguardFilters/issues/134731
+||promo.korabli.su^$removeparam
+! Adjust
+||app.adjust.com^$removeparam=nend_click_id
+||app.adjust.com^$removeparam=install_callback
+||app.adjust.com^$removeparam=ip_address
+||app.adjust.com^$removeparam=user_agent
+||app.adjust.com^$removeparam=campaign
+||app.adjust.com^$removeparam=creative
+||app.adjust.com^$removeparam=/^event_callback_/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134215
 ||elgato.com^$removeparam=platform
 ||elgato.com^$removeparam=link_id
@@ -76,9 +102,9 @@
 ||store.udiscovermusic.com^$removeparam=/utm_/
 ! https://github.com/uBlockOrigin/uAssets/issues/14653
 ||hktvmall.com/yuicombo?$script,removeparam=/^\/_ui\/desktop\/common\/js\/uiAnalytics\//
-||hktvmall.com/yuicombo?$script,removeparam=/_ui/shared/common/js/analytics/with-intersection-track.js
-||hktvmall.com/yuicombo?$script,removeparam=/_ui/shared/common/js/InappCommunicationManager.js
-||hktvmall.com/yuicombo?$script,removeparam=/_ui/shared/common/js/util/jquery.analytics-utils.js
+||hktvmall.com/yuicombo?$script,removeparam=/_ui\/shared\/common\/js\/analytics\/with-intersection-track.js/
+||hktvmall.com/yuicombo?$script,removeparam=/_ui\/shared\/common\/js\/InappCommunicationManager.js/
+||hktvmall.com/yuicombo?$script,removeparam=/_ui\/shared\/common\/js\/util\/jquery.analytics-utils.js/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128820
 ||go.xlivrdr.com^$removeparam
 ||stripchat.com^$removeparam=affiliateId
@@ -214,7 +240,6 @@ $removeparam=/utm_partner_id|frommail/,domain=mail.ru|sportmail.ru
 ||p.typekit.net^$stylesheet,removeparam
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118376#issuecomment-1134132202
 ||open.spotify.com^$removeparam=_branch_referrer
-||open.spotify.com^$removeparam=si
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120276 ex. https://snail.qcplay.co.jp/?shortlink=tadqwmj0&c=GamerchPCJack0523-0606&pid=Gamerch
 ||qcplay.co.jp/?shortlink=*&c=$removeparam=c
 ||qcplay.co.jp^$removeparam=pid
@@ -630,6 +655,7 @@ $removeparam=a_aid,domain=expressvpn.com|vpnarea.com
 ||cc.naver.com/cc?a$removeparam=sy
 ! Yandex
 ! may be merged in regex rule over time
+||yandex.*/promo/$removeparam=utm-term
 ||yandex.*/news/$removeparam=from
 ||yandex.*/news/$removeparam=persistent_id
 ||yandex.*/sport/$removeparam=persistent_id
@@ -664,6 +690,10 @@ $removeparam=a_aid,domain=expressvpn.com|vpnarea.com
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 ! ||www.google.com/url?$removeparam=ved
 ! ||google.*/search$removeparam=ved
+||google.*/search$removeparam=oq
+||google.*/search$removeparam=gs_l
+||google.*/search$removeparam=ie
+||google.*/search$removeparam=oe
 ||google.*/websearch$removeparam=visit_id
 ||google.*/search$removeparam=biw
 ||google.*/search$removeparam=bih
