@@ -31,10 +31,18 @@ snrec.jp#$#body.tp-modal-open { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132814
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
 ! Similar site in Base filter: soranews24.com
-rocketnews24.com,youpouch.com##div[data-google-query-id]
-rocketnews24.com,youpouch.com##.amp-animate
-rocketnews24.com,youpouch.com###banner
-rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'style|height', 'amp-img')
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
+||rocketnews24.com/_static/$script,replace=/\w+\.onload=//
+||youpouch.com/_static/$script,replace=/\w+\.onload=//
+!#endif
+rocketnews24.com,youpouch.com###aw0[onclick="ha('aw0')"]
+rocketnews24.com,youpouch.com###aw0[on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')"]
+rocketnews24.com,youpouch.com###taw0
+rocketnews24.com,youpouch.com##amp-ad-exit + div
+rocketnews24.com,youpouch.com##.misc > #div-gpt-ad-header
+rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-footer')
+rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-pagebottom')
+rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-relatedbottom-1')
 @@||tpc.googlesyndication.com/simgad/$xmlhttprequest,domain=rocketnews24.com|youpouch.com
 ||tpc.googlesyndication.com^$image,redirect=1x1-transparent.gif,domain=rocketnews24.com|youpouch.com,important
 @@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=rocketnews24.com|youpouch.com
@@ -73,7 +81,6 @@ blog-and-destroy.com#%#//scriptlet("abort-current-inline-script", "onload", "ads
 !+ PLATFORM(windows, mac, android, ext_chromium, ext_ublock)
 musenboya.com#%#//scriptlet("abort-current-inline-script", "navigator.brave")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131648
-helpsupport.blog.fc2.com#$##sp-area-1 { height: 90px !important; position: absolute !important; left: -4000px !important; }
 helpsupport.blog.fc2.com#@#.AdContainer
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=helpsupport.blog.fc2.com,important
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=helpsupport.blog.fc2.com
@@ -189,11 +196,12 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
-realtime-chart.info#?#td[style="vertical-align: top"] > div[id] > div[id] > div[id] > div[style="top:1550px"] > div[style="z-index:-1"]:contains(/^広告非表示だと色々と不具合が発生します$/)
-sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style="width: 232px;"]:contains(不具合が) { z-index: -1 !important; }
+realtime-chart.info#%#//scriptlet('remove-attr', 'onmousedown', 'a')
+realtime-chart.info#?#td[style="vertical-align: top"] > div[id] > div[id] > div[id] > div[style="top:1437px"] > div[style="z-index:-1"]:contains(/^広告非表示だと色々と不具合が発生します$/)
+sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style="width: 231px;"]:contains(不具合が) { z-index: -1 !important; }
 sekai-kabuka.com#$?#td[width="160"] > div[style] > div[id][style]:has(> div[class]:contains(定期的に配置が)) { z-index: -1 !important; }
 sekai-kabuka.com#$#ins.adsbygoogle > div[style="width:728px;height:90px;position:absolute;z-index:999;line-height:1.1;display:flex;justify-content:center;align-items:center;"] { height: 1px !important; overflow: auto !important; }
-realtime-chart.info#$#div[style="top:1442px"] > [style*="font-size:"]:is(b, span, a) { font-size: 0 !important; }
+realtime-chart.info#$#div[style="top:1437px"] > [style*="font-size:"]:is(b, span, a) { font-size: 0 !important; }
 realtime-chart.info#%#//scriptlet('remove-attr', 'onclick', '.amazoom1[onclick^="clickcat"][target="_blank"]')
 sekai-kabuka.com#$#div[id][class][style^="position:relative;background:#000;"][style*="width:729px;"][style*="height: 90px;"] { height: 1px !important; }
 realtime-chart.info#$#div[data-i4h] { font-size: 0 !important; }
@@ -269,14 +277,12 @@ h-ken.net#%#//scriptlet("abort-current-inline-script", "onload", "ad")
 goldencocco.jp#%#//scriptlet("set-constant", "adblock", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54025
 mottonoutore.jp#%#//scriptlet("set-constant", "adblock", "false")
-! https://github.com/AdguardTeam/AdguardFilters/issues/93086
-coron.tech#%#//scriptlet('remove-attr', 'class', '#s-post')
-coron.tech#%#//scriptlet('remove-attr', 'class', 'section[itemprop="articleBody"]')
+! https://github.com/AdguardTeam/AdguardFilters/issues/137690
+coron.tech#%#//scriptlet('remove-attr', 'class', '[id][role] > [id] > [class] > section')
 connect.coron.tech#%#//scriptlet('abort-current-inline-script', 'jQuery', 'decodeURIComponent')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||ad.jp.ap.valuecommerce.com/servlet/jsbanner$domain=coron.tech
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=coron.tech
-@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$domain=coron.tech
 coron.tech#@#.adsbygoogle
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52566
