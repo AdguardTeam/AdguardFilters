@@ -31,21 +31,7 @@ snrec.jp#$#body.tp-modal-open { overflow: visible!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132814
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132525
 ! Similar site in Base filter: soranews24.com
-rocketnews24.com,youpouch.com###div-gpt-ad-entrybottom
 rocketnews24.com,youpouch.com#%#//scriptlet('prevent-fetch', 'tpc.googlesyndication.com')
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
-||rocketnews24.com/_static/$script,replace=/\w+\.onload=//
-||youpouch.com/_static/$script,replace=/\w+\.onload=//
-!#endif
-youpouch.com###header-main > div.ad
-youpouch.com##.widget_text:first-child
-rocketnews24.com,youpouch.com##amp-ad-exit + div[class*="-banner"]
-rocketnews24.com,youpouch.com##.widget_custom_html:not(#custom_html-2)
-rocketnews24.com,youpouch.com###aw0[onclick="ha('aw0')"]
-rocketnews24.com,youpouch.com###aw0[on="tap:exit-api.exit(target='landingPage',_googClickLocation='2')"]
-rocketnews24.com,youpouch.com##.misc > #div-gpt-ad-header
-youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-sidetop')
-rocketnews24.com,youpouch.com#%#//scriptlet('remove-class', 'ads-relatedbottom')
 rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-sidebottom')
 rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-footer')
 rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-pagebottom')
@@ -63,6 +49,10 @@ rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-re
 @@||rocketnews24.com^$generichide
 ||googlesyndication.com/safeframe/$subdocument,redirect=noopframe,domain=rocketnews24.com|youpouch.com
 ||fundingchoicesmessages.google.com^$script,redirect-rule=noopjs,domain=rocketnews24.com|youpouch.com
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
+||rocketnews24.com/_static/$script,replace=/\w+\.onload=//
+||youpouch.com/_static/$script,replace=/\w+\.onload=//
+!#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||youpouch.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
 ||rocketnews24.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
@@ -74,7 +64,7 @@ youpouch.com,rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelec
 @@||adservice.google.com/adsid/integrator.js$domain=rocketnews24.com|youpouch.com
 @@||rocketnews24.com/wp-content/themes/rocketnews/js/prebid.js$domain=rocketnews24.com|youpouch.com
 @@||adservice.google.*/adsid/integrator.js$domain=rocketnews24.com|youpouch.com
-@@||pagead2.googlesyndication.com/pagead/js/$domain=rocketnews24.com|youpouch.com
+@@||pagead2.googlesyndication.com/pagead/$script,domain=rocketnews24.com|youpouch.com
 !#endif
 !#safari_cb_affinity(privacy)
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=rocketnews24.com
@@ -228,9 +218,9 @@ realtime-chart.info#%#//scriptlet('remove-attr', 'href', 'a[href^="https://a.r10
 realtime-chart.info,sekai-kabuka.com#%#//scriptlet("set-constant", "alert", "noopFunc")
 ! realtime-chart.info anti-adb
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=realtime-chart.info|sekai-kabuka.com
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,important,redirect=googlesyndication-adsbygoogle,domain=realtime-chart.info|sekai-kabuka.com
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,important,redirect=googlesyndication-adsbygoogle,domain=realtime-chart.info
 ! fix for DNS user
-realtime-chart.info,sekai-kabuka.com#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
+realtime-chart.info#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
 realtime-chart.info,sekai-kabuka.com#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83022
 ouminews.net#$#.ad_unit.ad-unit.text-ad.text_ad.pub_300x250 { display: block !important; }
