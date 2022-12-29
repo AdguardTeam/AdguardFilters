@@ -93,12 +93,12 @@ imena-znachenie.ru#@#.admiddle
 ! bankbinlist.com
 bankbinlist.com###overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107157
-vuzlit.ru,studwood.net,bstudy.net#%#//scriptlet("abort-on-property-read", "abl")
+vuzlit.com,vuzlit.ru,studwood.net,bstudy.net#%#//scriptlet("abort-on-property-read", "abl")
 !#if (adguard_app_ios || adguard_ext_android_cb)
-@@||securepubads.g.doubleclick.net/pagead/ppub_config$domain=vuzlit.ru|studwood.net|bstudy.net
-@@||adservice.google.com/adsid/integrator.js$domain=vuzlit.ru|studwood.net|bstudy.net
-@@||player.adtcdn.com/prebidlink/*/hb_*.js$domain=vuzlit.ru|studwood.net|bstudy.net
-@@||securepubads.g.doubleclick.net/pagead/js/rum.js$domain=vuzlit.ru|studwood.net|bstudy.net
+@@||securepubads.g.doubleclick.net/pagead/ppub_config$domain=vuzlit.com|vuzlit.ru|studwood.net|bstudy.net
+@@||adservice.google.com/adsid/integrator.js$domain=vuzlit.com|vuzlit.ru|studwood.net|bstudy.net
+@@||player.adtcdn.com/prebidlink/*/hb_*.js$domain=vuzlit.com|vuzlit.ru|studwood.net|bstudy.net
+@@||securepubads.g.doubleclick.net/pagead/js/rum.js$domain=vuzlit.com|vuzlit.ru|studwood.net|bstudy.net
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102209
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -306,20 +306,21 @@ freefotohelp.ru#%#//scriptlet("set-constant", "pra", "123")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102060
 !+ NOT_PLATFORM(windows, mac, android)
 @@||pubads.g.doubleclick.net/gampad/ads?sz=640x360&ad_rule=0&iu=%2F82479101%2FTsn.ua%2FPREroll-1_Cut&cust_params=$domain=imasdk.googleapis.com
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48882#issuecomment-584208221
 1plus1.video#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ||1plus1.video/static/player/js/ovva.$script,replace=/\.abMessage\(\)//
 @@||pubads.g.doubleclick.net/gampad/ads?*1plus1.video$domain=imasdk.googleapis.com
 @@||1plus1.video/static/pubads.ad^
 @@||player.adtelligent.com/prebid/wrapper_*.js|$domain=1plus1.video
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=1plus1.video
-@@||gaua.hit.gemius.pl/gemiuslib.js?$domain=1plus1.video
-||gaua.hit.gemius.pl/gemiuslib.js$script,xmlhttprequest,redirect=noopjs,domain=1plus1.video,important
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=1plus1.video|1plus1.ua
+@@||gaua.hit.gemius.pl/gemiuslib.js$domain=1plus1.video|1plus1.ua
+||gaua.hit.gemius.pl/gemiuslib.js$script,xmlhttprequest,redirect=noopjs,domain=1plus1.video|1plus1.ua,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89348
 @@||unian.net/static/pubads.ad
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=unian.net
 !#safari_cb_affinity(general,privacy)
-@@||gaua.hit.gemius.pl/gplayer.js$domain=unian.net
+@@||gaua.hit.gemius.pl/gplayer.js$domain=1plus1.video|1plus1.ua|unian.net
 @@||gaua.hit.gemius.pl/gemiuslib.js$domain=unian.net
 !#safari_cb_affinity
 !
@@ -1693,6 +1694,9 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 !
 ! drive2.ru
 ||drive2.ru/*/*/$xmlhttprequest,jsonprune=\$..[rtb\, direct]
+!
+! irecommend.ru
+||irecommend.ru/*/*/$xmlhttprequest,jsonprune=\$.data.*.attributes
 !
 !#if (!adguard_ext_firefox)
 ||dzen.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
