@@ -14,6 +14,16 @@
 ||geolocation.onetrust.com/cookieconsentpub/*/geo/location$xmlhttprequest,redirect-rule=noopjson
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139618
+@@||gdpr.privacymanager.io/*/gdpr.bundle.js$domain=futurezone.at
+@@||gdpr-wrapper.privacymanager.io/gdpr/*/gdpr-liveramp.js$domain=futurezone.at
+! pcgames.de - quiz not shown
+@@||cdn.privacy-mgmt.com/unified/wrapperMessagingWithoutDetection.js$domain=pcgames.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/139332
+!#if (adguard_ext_android_cb)
+makro.pl#@#.cookie-container
+makro.pl#@#.cookie-disclaimer:not(body)
+!#endif
 ! fightclubnews.cz - incorrect blocking (images do not load)
 @@||fightclubnews.cz/wp-content/plugins/cookie-law-info/public/js/cookie-law-info-public.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139227
@@ -47,7 +57,7 @@ mojkatalog.rs#@##onetrust-consent-sdk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137440
 keravanenergia.fi#@##cookie-law-info-bar
 ! https://github.com/uBlockOrigin/uAssets/issues/16007
-!#if (adguard_app_ios || adguard_ext_android_cb)
+!#if (adguard_ext_android_cb)
 paradoxwikis.com#@#.cookies-bar
 paradoxwikis.com#@#.cookies-overlay
 !#endif
@@ -541,7 +551,7 @@ gmx.co.uk#@##onetrust-consent-sdk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118172
 @@||cdn.ampproject.org/v0/amp-consent-*.js$domain=edition.cnn.com
 ! blackout with scroll locked
-!#if (adguard_app_ios || adguard_ext_android_cb)
+!#if (adguard_ext_android_cb)
 ttoday.it#@##cookie-law-info-bar
 ttoday.it#@##cliSettingsPopup
 !#endif
@@ -676,7 +686,7 @@ metro.hu#@#.cookie-disclaimer:not(body)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111709
 zentalk.asus.com#@##cookie-policy-info
 ! css fixes needed
-!+ PLATFORM(ios, ext_android_cb)
+!+ PLATFORM(ext_android_cb)
 exakta.se,exaktacreative.se,exaktasoftware.se#@#.cookiePopup
 ! https://github.com/ryanbr/fanboy-adblock/issues/1410
 @@||consent.cookiebot.com^$script,domain=ekstrabladet.dk
