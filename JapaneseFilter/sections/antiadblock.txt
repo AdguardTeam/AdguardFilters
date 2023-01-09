@@ -47,20 +47,10 @@ rocketnews24.com,youpouch.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-re
 @@||rocketnews24.com^$generichide
 ||googlesyndication.com/safeframe/$subdocument,redirect=noopframe,domain=rocketnews24.com|youpouch.com
 ||fundingchoicesmessages.google.com^$script,redirect-rule=noopjs,domain=rocketnews24.com|youpouch.com
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
-||rocketnews24.com/_static/$script,replace=/\w+\.onload=//
-||youpouch.com/_static/$script,replace=/\w+\.onload=//
-!#endif
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+rocketnews24.com,youpouch.com#%#//scriptlet('prevent-setTimeout', 'b.s.reject', '1000')
 ||youpouch.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
 ||rocketnews24.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
 youpouch.com,rocketnews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
-!#endif
-!!#if (adguard_app_ios || adguard_ext_safari)
-!rocketnews24.com,youpouch.com#%#//scriptlet("abort-on-property-read", "document.createElement")
-!rocketnews24.com,youpouch.com#$#img[data-sco-src] { display: none !important; }
-!rocketnews24.com,youpouch.com#%#AG_onLoad(function(){let a=document.querySelectorAll("img+noscript");let ns=function(b){let f=new DOMParser();let g=f.parseFromString(b.textContent,'text/html');return document.adoptNode(g.querySelector('img'));};for(let b of a){let c=ns(b);b.parentNode.replaceChild(c,b);}});
-!!#endif
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||googlesyndication.com/safeframe/$domain=rocketnews24.com|youpouch.com
 @@||tpc.googlesyndication.com/simgad/$image,domain=rocketnews24.com|youpouch.com
