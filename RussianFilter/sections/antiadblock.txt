@@ -42,6 +42,8 @@ sinoptik.ua#%#//scriptlet("abort-on-property-read", "SIN.AdsLoader")
 sinoptik.ua$$script[tag-content="SIN.AdsLoader.adBlockDetector()"][max-length="16000"]
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/138822
+@@||staticmv.mediavitrina.ru/yastatic/ads.js$domain=player.mediavitrina.ru
 ! antiadblock
 yvid.ru#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb)
@@ -1427,11 +1429,10 @@ manshet.ru###k788
 !
 ! 1tv.ru - anti-adblock message in the player
 !+ NOT_PLATFORM(ext_ff)
-||adfox.ru/*/getCode?$xmlhttprequest,redirect=noopvast-3.0,important,domain=1tv.ru
+/getCode?$xmlhttprequest,redirect=noopvast-3.0,important,domain=1tv.ru
 /vast^$xmlhttprequest,redirect=noopvast-3.0,important,domain=static.1tv.ru
-@@||ads.adfox.ru/*/getCode?$xmlhttprequest,domain=1tv.ru
+@@/getCode?$xmlhttprequest,domain=1tv.ru
 @@||ads.adfox.ru/*/getCode?pp=$domain=1tv.ru
-@@||v.adfox.ru/*/getCode?$domain=1tv.ru
 @@||static.1tv.ru/player/*/banner.gif$domain=1tv.ru
 @@||stats.seedr.com/vast?gid=$domain=static.1tv.ru
 @@||static.1tv.ru^$content
@@ -1699,6 +1700,7 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||irecommend.ru/*/*/$xmlhttprequest,jsonprune=\$.data.*.attributes
 !
 !#if (!adguard_ext_firefox)
+||yandex.ru/weather/$script,xmlhttprequest,replace=/^Ya\[\d+\].*//
 ||dzen.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
 ||spletnik.ru/_$script,replace=/\/context_adb.*//
 ||echo.msk.ru^$replace=/Ya.*\[{"attributes".*"blockId".*//,script
@@ -1718,6 +1720,7 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||s.zmctrack.net/z$replace=/{"session".*//,xmlhttprequest,important,domain=sinoptik.ua
 ||gismeteo.*/*/*/*_$replace=/"R-A-.*//,script,xmlhttprequest,other
 ||gorodrabot.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
+||24smi.org/*/*/*_$script,replace=/RTB//
 ||24smi.org/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
 ||avito.ru/*/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
 ||fb.ru/*/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest

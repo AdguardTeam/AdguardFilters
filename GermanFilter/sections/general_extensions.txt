@@ -12,6 +12,8 @@
 ! VAST video ads - e. g. https://github.com/AdguardTeam/AdguardFilters/issues/135687
 spiegel.de,stern.de,desired.de,pcgames.de,t-online.de,vox.de,spieletipps.de,wetter.de,golem.de,autobild.de,buffed.de,gamesaktuell.de,kino.de,pcgameshardware.de,videogameszone.de,familie.de,tvnow.de,welt.de#%#//scriptlet('prevent-xhr', '.damoh.')
 !
+! chip.de - ad popup when pressing download
+chip.de#%#//scriptlet('set-cookie', 'chipde-r2d2-view-state ', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135749
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135687
 welt.de,t-online.de#%#(()=>{window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,{apply:(a,b,c)=>{const d=b.urlCalled;return"string"!=typeof d||0===d.length?Reflect.apply(a,b,c):d.match(/\.damoh\./)?void 0:Reflect.apply(a,b,c)}})})();
@@ -87,12 +89,9 @@ gload.to#%#//scriptlet("abort-on-property-write", "bullads")
 tele5.de#%#//scriptlet("json-prune", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53012
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51634
-movie-blog.tv,movie-blog.sx,movie-blog.to#%#//scriptlet("abort-on-property-read", "vavpo")
+movie-blog.tv,movie-blog.sx#%#//scriptlet("abort-on-property-read", "vavpo")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42934
 ani-stream.com#%#AG_onLoad(function() { setTimeout(function() { if(typeof loadplayer == "function") { loadplayer(); }; }, 300); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/40359
-! player.glomex.com#%#//scriptlet("set-constant", "Object.prototype.disableAds", "true")
-! player.glomex.com#%#//scriptlet("set-constant", "Object.prototype._createAd", "noopFunc") -- adblock detection on infranken.de
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36737
 pornoente.tv#%#//scriptlet("set-constant", "vpUsePreRoll", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34396
@@ -102,8 +101,6 @@ ddl-music.to#%#document.cookie = "ddlpop=1; path=/;";
 maniac.de#%#Object.defineProperty(window, 'td_ad_background_click_link', { get: function() { return ""; } });
 ! radio.at, radio.net, radio.de -- blocking PreRoll by faking user agent to Google bot
 radio.at,radio.net,radio.de#%#document.cookie = "google_nomod=547";
-! https://github.com/AdguardTeam/AdguardFilters/issues/24506
-movie-blog.to#%#Object.defineProperty(window, 'PopUnder', { get: function() { return; } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24266
 ddl-warez.to#%#document.cookie = "ddlpop=1"; document.cookie = "ddlpop2=1";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33849
@@ -144,7 +141,7 @@ maniac.de#%#(function() { var w_open = window.open, regex = /maniadrd.php/; wind
 ! https://forum.adguard.com/index.php?threads/13927/
 formel1.de#%#AG_onLoad(function() {document.getElementsByTagName("div")[0].setAttribute("class", "aswift_0");});
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1788
-myvideo.de,prosieben.de,prosiebenmaxx.de,sat1.de,kabeleins.de,sat1gold.de,sixx.de#%#Object.defineProperty(window, 'SIMAD', { get: function() { return function() { }; } });
+myvideo.de,prosieben.de,prosiebenmaxx.de,sat1.de,kabeleins.de,sixx.de#%#Object.defineProperty(window, 'SIMAD', { get: function() { return function() { }; } });
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1411
 sueddeutsche.de#%#window.blockAdBlock = function() {};
 ! http://forum.adguard.com/showthread.php?8096
@@ -162,6 +159,8 @@ menshealth.de#%#function google_ad_request_done() {};
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139202
+hardwareluxx.de#$#body { margin-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136708
 computerwoche.de#$#.idgGoogleAdTag { position: absolute !important; left: -9999px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136684
