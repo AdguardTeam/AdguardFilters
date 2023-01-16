@@ -1204,6 +1204,10 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !---------------------------------------------------------------------
 ! NOTE: Croatian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139960
+tportal.hr#%#//scriptlet('set-constant', 'Object.prototype.showBanner', 'undefined')
+! https://github.com/AdguardTeam/AdguardFilters/issues/139959
+bloombergadria.com##.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138837
 novilist.hr##.more-news
 novilist.hr##.addBlock
@@ -1264,6 +1268,9 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139947
+||sbazar.cz/*/static/js/ssp.js
+sbazar.cz#%#//scriptlet("set-constant", "sssp", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139830
 betarena.cz##.skyscraper
 betarena.cz##div.bestBetBox
@@ -1891,23 +1898,13 @@ sledujufilmy.cz##.block[style="position: relative; float: right; height: 848px; 
 ||cdn.tinypass.com^$domain=sme.sk
 ! https://forum.adguard.com/index.php?threads/19077/
 ||extra.cz/*/*pripad
-||extra.cz/*?click=
-extra.cz##.detail-inner > .perex + .centered
-extra.cz##.main-content > div[id*="-c"]
-||extra.cz/*=ref^$redirect=nooptext
-||extra.cz/*._blank$script
-||extra.cz/*&p=outstream$script
-||extra.cz/*?test$script
 ! https://forum.adguard.com/index.php?threads/10320/
-extra.cz#%#Object.defineProperty(window, 'windowWidth', { get: function() { return 300; } });
-extra.cz##.container > div[class^="ad "]
+extra.cz#%#//scriptlet('set-constant', 'windowWidth', '300')
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2893
 ||mobilmania.cz/RssHubPager.ashx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2737
 @@||mitsubishiclub.cz^$generichide
-!
-extra.cz##.movingAd
 !
 .cz/ads/$~object,domain=~hcplzen.cz
 ! mobilmania.cz - broken player
@@ -3944,6 +3941,12 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139918
+autopareri.com#@#.adsbygoogle
+autopareri.com#%#//scriptlet('prevent-setTimeout', 'adblock_agent')
+! https://github.com/AdguardTeam/AdguardFilters/issues/139952
+tecnologia.libero.it###cont-wallpaper.hp_320x1
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=tecnologia.libero.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139652
 tuttosport.com##div[class^="OutbrainWidget_placeholder"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138968
@@ -4572,11 +4575,6 @@ justnerd.it##.adsbygoogle
 techuniverse.it###cb-logo-box > div.cb-h-block > img[alt]
 ! video.huffingtonpost.it broken videon
 @@||imasdk.googleapis.com$domain=video.huffingtonpost.it
-! https://github.com/AdguardTeam/AdguardFilters/issues/22694
-evilkingmedia.com#%#Object.defineProperty(window, 'adBlockDetected', { get: function() { return; } });
-@@||cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js$domain=evilkingmedia.com
-!+ PLATFORM(ios, ext_android_cb)
-@@||evilkingmedia.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22630
 macitynet.it#$#body.td-ad-background-link { cursor:initial!important; }
 macitynet.it#$##td-outer-wrap > .td-header-wrap {margin-top: 0!important; }
@@ -5529,6 +5527,12 @@ roweroweporady.pl,tulodz.pl#@#.ad_container
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
 !
+! https://github.com/AdguardTeam/CoreLibs/issues/1720
+! https://github.com/AdguardTeam/AdguardFilters/issues/140053
+podhale24.pl$$script[tag-content="fbevents.js"][max-length="500"]
+podhale24.pl##.castorama
+podhale24.pl##.post > .a.bg
+podhale24.pl##.allmedica.footer > span
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139887
 se.pl,urzadzamy.pl##.zpr_box_topboard
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139829
@@ -5569,7 +5573,7 @@ cashless.pl#?#.container > div.text-xs:contains(/^Reklama/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138337
 moviesroom.pl##.popup-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138100
-poradnikzdrowie.pl###hook_box_topboard
+se.pl,poradnikzdrowie.pl###hook_box_topboard
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137685
 naszemma.pl###block-16
 naszemma.pl##a[href^="https://naszemma.pl/go/betclic"]
@@ -5871,10 +5875,6 @@ esanok.pl##.con-post > .row > .post-entry > .row > .col-md-6 > div[style^="width
 esanok.pl#?#.sidebar-blok.patronat:has(> .adsbygoogle)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127589
 mojagazetka.com##div[data-cy="AdsWrapper"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/127511
-gra.pl##.componentsPromotionsVideo
-gra.pl##.promoContainer
-gra.pl##div[style="height: 900px; padding-bottom: 20px;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127383
 sadeczanin.info###topContainer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127042
@@ -6297,7 +6297,7 @@ energetyka24.com,space24.pl,cyberdefence24.pl,defence24.pl,defence24.com#?#.layo
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103562
 tenpoznan.pl##.code-block
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103810
-!+ PLATFORM(windows, mac, android)
+!+ NOT_OPTIMIZED PLATFORM(windows, mac, android)
 @@||helios.pl/*/*/*?ajax=$xmlhttprequest,content,elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111240
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103278
@@ -6452,6 +6452,9 @@ virpe.cc#@#.adsBox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98796
 ||beskidlive.pl/images/banners/
 beskidlive.pl#?#.jm-module-in > .jm-module-content > .custom:has(> p[style="text-align: center;"]:contains(/^REKLAMA$/))
+! https://github.com/AdguardTeam/AdguardFilters/issues/140222
+satkurier.pl##div[id^="m_top_"]
+satkurier.pl##div[id^="m_inside_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98413
 satkurier.pl##div[style="width:300px;margin-left:auto;margin-right:auto;margin-bottom:26px"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122428
@@ -7010,6 +7013,8 @@ pomponik.pl##body .ad-rectangle:not(#style_important)
 pomponik.pl##.box.ad
 pomponik.pl###feed_grupa.ad
 pomponik.pl##.article-body__ad-gora-srodek
+! https://github.com/AdguardTeam/AdguardFilters/issues/139889
+sport.interia.pl#?#section[id^="react_component_"] > div:not([class], [id]) > div[class^="sc"]:has(> div[class^="sc"]:only-child > div[data-iwa-viewability-name="gora_srodek"]:only-child > .ad:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133132
 sport.interia.pl#?#section[id^="react_component_"] div[class^="sc"]:has(> div[data-iwa-viewability-name]:only-child > .ad:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95994
@@ -8022,6 +8027,9 @@ wykop.pl#?##itemsStream > .link:has(a[href^="http://www.wykop.pl/reklama"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23706
 gazeta.pl###alternativeNewsSource
 gazeta.pl##.o-section__adform
+! https://github.com/AdguardTeam/AdguardFilters/issues/139975
+! https://github.com/AdguardTeam/AdguardFilters/issues/139973
+gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl#?#.componentsPromotionsPromotedList[data-event-position-context^="marketing_"]:not(:has(> .atomsHeader > h2.atomsHeader__title > span:contains(Quizy)))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121975
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121876
 stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,echodnia.pl,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gra.pl,gs24.pl,i.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,strefaedukacji.pl,stronakobiet.pl,stronazdrowia.pl,to.com.pl,wspolczesna.pl##.componentsListingLargeRow__content > div[data-turn-on-display] > .atomsListingArticleTileWithSeparatedLink > a[title="Reklama"]
@@ -8029,13 +8037,13 @@ stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131526
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124290
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124289
-stronakuchni.pl,stronapodrozy.pl,expressilustrowany.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,stronakobiet.pl,strefabiznesu.pl,strefaagro.pl,motofakty.pl##.componentsPromotionsListWithTabs
+gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsListWithTabs
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121404
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124259
-stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.layoutsGrid__right > [style="height: 900px; padding-bottom: 20px;"]
-stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsArticlePromotedList
+gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.layoutsGrid__right > [style="height: 900px; padding-bottom: 20px;"]
+gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsArticlePromotedList
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23631
-stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.promoContainer
+gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.promoContainer
 ||s-gr.cdngr.pl/assets/gratka/v*/css/pages/promoButton.css
 ||ppstatic.pl/assets/gratka/v*/css/pages/promoButton.css$domain=~naszemiasto.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23630
@@ -8453,9 +8461,6 @@ filmweb.pl#%#//scriptlet("abort-current-inline-script", "document.createElement"
 @@||filmweb.pl^$elemhide,important
 !+ PLATFORM(ext_safari, ios)
 @@||filmweb.pl^$generichide,badfilter
-! https://github.com/AdguardTeam/AdguardFilters/issues/7471
-! niezalezna.pl - ads reinjection
-niezalezna.pl#%#Object.defineProperty(window,'adonisHash',{get:function(){},set:function(){throw'Adguard: stopped a script execution.'}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109192
 mmorpg.org.pl##div[id*="_bill_"]
 mmorpg.org.pl##div[id*="_bill_"] + a[href="/premium"]
@@ -8941,6 +8946,8 @@ nosteam.ro#%#window.open = function() {};
 !---------------------------------------------------------------------
 ! NOTE: Serbian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/140228
+radiosarajevo.ba##div[style^="min-height: 250px; width: 100%"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136478
 bosnainfo.ba##.banner
 bosnainfo.ba###Billboard_UnderArticle
