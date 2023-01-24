@@ -42,9 +42,12 @@ sinoptik.ua#%#//scriptlet("abort-on-property-read", "SIN.AdsLoader")
 sinoptik.ua$$script[tag-content="SIN.AdsLoader.adBlockDetector()"][max-length="16000"]
 !
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/139861
+! https://github.com/AdguardTeam/AdguardFilters/issues/140815
+!#if (!adguard_app_windows && adguard_app_mac && adguard_app_android)
 docs-python.ru#@#div[id^="yandex_rtb"]
 @@||yandex.ru/ads/$domain=docs-python.ru
+!#endif
+||docs-python.ru^$~script,~stylesheet,~other,replace=/ads===false\|\|v===true/ads===undefined/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138822
 @@||staticmv.mediavitrina.ru/yastatic/ads.js$domain=player.mediavitrina.ru
 ! antiadblock
