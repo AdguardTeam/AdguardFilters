@@ -10830,7 +10830,7 @@ volkskrant.nl#%#AG_onLoad(function() { setTimeout(function() {if(document.getEle
 ziekenhuis.nl#%#AG_onLoad(function() { setTimeout(function() {var check = document.getElementsByClassName('cookiewall')[0]; if (check){document.cookie = "acceptcookies=true"; location.reload();}; }, 300); });
 !
 ! TODO: remove when `trusted-click-element` will be available in all AdGuard release verions
-thestrad.com#%#EventTarget.prototype.addEventListener = new Proxy(EventTarget.prototype.addEventListener, { apply: (target, thisArg, argsList) => { Reflect.apply(target, thisArg, argsList); if (argsList[0] === 'click') { Array.from(document.querySelectorAll('#notice .bottom-row button[title="Options"], .footer-policy button[title="Reject All"]')).forEach((e) => { if (typeof e.click !== 'undefined') e.click(); })}}});
+thestrad.com#%#setInterval(() => { Array.from(document.querySelectorAll('#notice .bottom-row button[title="Options"], .footer-policy button[title="Reject All"]')).forEach((e) => { try { e.click() } catch {}}, 500)})
 ! TODO: remove when `trusted-click-element` will be available in all AdGuard release verions
 video.gazzetta.it,corriere.it#%#AG_onLoad(() => { new MutationObserver((mutationList, observer) => { mutationList.forEach((mutation) => { if (Array.from(mutation.addedNodes).some((e) => { return e.className == "privacy-cp-wall"})) { document.querySelector('.privacy-cp-wall #privacy-cp-wall-accept').click() }})}).observe(document.querySelector('body'), { childList: true })});
 ! TODO: remove when `trusted-set-cookie` will be available in all AdGuard release verions
