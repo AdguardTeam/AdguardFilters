@@ -9828,7 +9828,6 @@ columbia.com.tr#%#//scriptlet('set-local-storage-item', 'cookieConsent', 'false'
 hardware.info#%#(function(){try{"undefined"==typeof localStorage||localStorage.getItem("consentData")||localStorage.setItem("consentData","{\"relevantAds\":{\"version\":1,\"approved\":false},\"youtube\":{\"version\":1,\"approved\":true}}")}catch(b){}})();
 mensjournal.com,zoom.us#%#AG_onLoad(function() {var b=new MutationObserver(function() {var c=document.querySelector('#onetrust-accept-btn-handler'); c&&(b.disconnect(),c.click()) });b.observe(document, {childList: !0,subtree: !0});setTimeout(function() {b.disconnect()}, 1E4)});
 bitso.com#%#//scriptlet('set-cookie', 'bitso_cc', '1')
-sky.it#%#AG_onLoad(function(){if(window.location.href.includes("consentUUID")){var g=new MutationObserver(function(){var b=document.querySelector('button[title^="ACCETTA TUTTI I COOKIES"]');setTimeout(function(){ b&&b.click(); }, 100);});g.observe(document,{childList:!0,subtree:!0});setTimeout(function(){g.disconnect()},1E4)}});
 help.kobo.com#%#//scriptlet('set-local-storage-item', 'c_rakobo_cc', '1')
 cmp-sp.neuepresse.de,cmp.wowtv.de,cmp-sp.lvz.de#%#AG_onLoad(function(){if(window.location.href.match(/consentUUID|privacy/)){var b=new MutationObserver(function(){var a=document.querySelector('button[title*="Alle"][title*="ablehnen"]');a&&(b.disconnect(),a.click())});b.observe(document,{childList:!0,subtree:!0}),setTimeout(function(){b.disconnect()},1E4)}});
 jonas-in-auroville.de#%#//scriptlet('set-local-storage-item', 'cookies-selected', 'true')
@@ -10828,7 +10827,12 @@ topics.nl#%#AG_onLoad(function() { setTimeout(function() {if(document.getElement
 trouw.nl#%#AG_onLoad(function() { var check = document.getElementsByClassName('site-tr bg-blur has-shadow')[0]; if (check){document.cookie = "nl_cookiewall_version=1"; location.reload();}; });
 volkskrant.nl#%#AG_onLoad(function() { setTimeout(function() {if(document.getElementsByClassName("modal-overlay")[0].isvisible = true){document.getElementsByClassName("button button--accept")[0].click();}}, 300); });
 ziekenhuis.nl#%#AG_onLoad(function() { setTimeout(function() {var check = document.getElementsByClassName('cookiewall')[0]; if (check){document.cookie = "acceptcookies=true"; location.reload();}; }, 300); });
-!
+! TODO: remove separate rules 2 and 3 and move to top when https://github.com/AdguardTeam/Scriptlets/issues/284 is resolved
+sky.it#%#//scriptlet('trusted-click-element', 'button[title="GESTISCI COOKIES"], button[title="RIFIUTA TUTTO"]')
+sky.it#%#//scriptlet('trusted-click-element', 'button[title="GESTISCI COOKIES"]')
+sky.it#%#//scriptlet('trusted-click-element', 'button[title="RIFIUTA TUTTO"]')
+! TODO: remove when `trusted-click-element` will be available in all AdGuard release verions
+sky.it#%#AG_onLoad(function(){if(window.location.href.includes("consentUUID")){var g=new MutationObserver(function(){var b=document.querySelector('button[title^="ACCETTA TUTTI I COOKIES"]');setTimeout(function(){ b&&b.click(); }, 100);});g.observe(document,{childList:!0,subtree:!0});setTimeout(function(){g.disconnect()},1E4)}});
 ! TODO: remove when `trusted-click-element` will be available in all AdGuard release verions
 dealabs.com#%#AG_onLoad(function(){if(window.location.href.includes("dealabs.com")){var g=new MutationObserver(function(){var b=document.querySelector('button[data-t="acceptAllBtn"]');b&&b.click();});g.observe(document,{childList:!0,subtree:!0});setTimeout(function(){g.disconnect()},1E4)}});
 ! TODO: rewrite and move to top when https://github.com/AdguardTeam/Scriptlets/issues/284 is resolved
