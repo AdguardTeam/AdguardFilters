@@ -43,9 +43,18 @@ sinoptik.ua$$script[tag-content="SIN.AdsLoader.adBlockDetector()"][max-length="1
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140815
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+!#if (adguard_app_ios || adguard_ext_android_cb)
 docs-python.ru#@#div[id^="yandex_rtb"]
 @@||yandex.ru/ads/$domain=docs-python.ru
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+docs-python.ru#%#//scriptlet('prevent-addEventListener', 'load', 'function')
+docs-python.ru#%#AG_onLoad(function(){document.querySelectorAll('pre').forEach(function(a){a.classList.add('highlight')})});
+docs-python.ru#$#nav { visibility: visible !important; }
+docs-python.ru#$#aside { visibility: visible !important; }
+docs-python.ru#$##container-share-error { visibility: visible !important; }
+docs-python.ru#$##donate-row { visibility: visible !important; }
+docs-python.ru#$#pre { color: #212529 !important; user-select: text !important; }
 !#endif
 ||docs-python.ru^$~script,~stylesheet,~other,replace=/ads===false\|\|v===true/ads===undefined/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138822
