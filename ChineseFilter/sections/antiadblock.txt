@@ -8,9 +8,10 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/141742
-520cc.cc#%#//scriptlet('set-constant', 'all520dddaaa2022ccc', 'true')
-520cc.cc#%#//scriptlet('set-constant', 'ad_id_for_555', 'true')
+! https://github.com/AdguardTeam/AdguardFilters/issues/141600
+520cc.cc#%#//scriptlet('prevent-setTimeout', 'myModal')
+520cc.cc#%#//scriptlet('set-constant', 'document.write', 'undefined')
+@@||520click.com/ad.php$stealth
 !+ PLATFORM(ios, ext_android_cb)
 @@||520click.com/ad.php
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138700
@@ -31,12 +32,6 @@ renfei.net#$#body { overflow-y: auto !important; }
 @@||renfei.net^$generichide
 @@||googleads4.g.doubleclick.net^$domain=renfei.net
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/134555
-@@||dl.520cc.cc/ddll/ad.php$~third-party
-dl.520cc.cc#@##inplayer
-dl.520cc.cc#$##infile { visibility: visible !important; }
-dl.520cc.cc#$##inplayer { position: absolute !important; left: -3000px !important; }
-dl.520cc.cc#%#//scriptlet('set-constant', 'ADS_BLOCKED', 'false')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133146
 mpyit.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -146,10 +141,6 @@ bde4.icu#@#a[href*="/entry/register/?i_code="]
 bde4.icu#$#a[href*="/entry/register/?i_code="] { position: absolute !important; left: -3000px !important; }
 bde4.icu#%#//scriptlet("set-constant", "canRunAds", "true")
 @@||jsdelivr.net/gh/bde4admin/*/prebid-ads.js$domain=bde4.icu
-! https://github.com/AdguardTeam/AdguardFilters/issues/110360
-! https://github.com/AdguardTeam/AdguardFilters/issues/109829
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022aaa", "undefined")
-520cc.cc#%#//scriptlet("set-constant", "all520dddaaa2022ccc", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109813
 yodu.org#$##byspider { display: none !important; }
 yodu.org#$#body[style] { overflow: auto !important; }
@@ -368,11 +359,6 @@ game735.com#$#div[id^="gklobl"] { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43307
 @@||www.ruanyifeng.com^$csp=script-src 'self' * 'sha256-0McqMM66/wAVZmxF6zXpjNsb1UMbTl4LXBXdhqPKxws='
 ruanyifeng.com#@#a > img[src*="wangbase.com/blogimg/asset/"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/43815
-@@/520cc.cc\/ad[a-z]{1,12}\/[a-z0-9A-Z]{12,}.js/$domain=520cc.cc
-@@||ads.exosrv.com/iframe.php$domain=520cc.cc
-520cc.cc#@#iframe[width="300"][height="250"]
-||520cc.cc/data/attachment/*.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/46061#issuecomment-601842012
 t66y.com#%#//scriptlet('adjust-setTimeout', 'adhtml', '10005')
 t66y.com#%#//scriptlet('adjust-setTimeout', 'blockText', '1005')
