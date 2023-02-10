@@ -1,0 +1,32 @@
+name: Lint Adblock Rules
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.txt'
+  pull_request:
+    types:
+      - opened
+    paths:
+      - '**/*.txt'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out to repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+    
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Run AGLint
+        run: yarn lint
