@@ -8,6 +8,14 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/142790
+ssbsblg.blogspot.com#%#//scriptlet('remove-attr', 'hidden', 'html[hidden]')
+ssbsblg.blogspot.com#%#//scriptlet('abort-current-inline-script', 'atob', '/documentEl[\s\S]*?_0x/')
+ssbsblg.blogspot.com#$#.btmads { position: absolute !important; left: -3000px !important; }
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||ssbsblg.blogspot.com^$generichide
+@@||ssbsblg.glitch.me/*.js$domain=ssbsblg.blogspot.com
+!#endif
 ! gbf.life anti-adb
 gbf.life#@#.adsbygoogle
 gbf.life##.adsbygoogle.ads-slot
@@ -195,6 +203,7 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
+realtime-chart.info##td[style^="vertical-align"] div[style^="top:"] img[src*="/clip_"] + b
 realtime-chart.info##td[style^="vertical-align"] div[style^="top"] [class^="amazoom"][onclick]
 realtime-chart.info##td[style^="vertical-align"] div[style^="top:"] a[onmousedown]
 realtime-chart.info#%#//scriptlet('remove-attr', 'onclick', 'td[style] div[style^="top:1"] > div')
@@ -211,7 +220,6 @@ realtime-chart.info#$#div[class^="amazon"] > b[class^="amazon"] > b[style^="font
 realtime-chart.info#$#div[style="width:120px;line-height:1.1;position:relative;"] > b[style="font-size:32px"] { font-size: 0 !important; }
 realtime-chart.info#$#a[href^="https://px.a8.net/svt/ejp?"] { pointer-events: none !important; }
 realtime-chart.info#$?#div[class^="amazon"] > b[class^="amazon"]:has(> b[style^="font-size:"]) { font-size: 0 !important; }
-realtime-chart.info#$#img[src*="/clip_"] + b { background: none !important; font-size: 0 !important; }
 sekai-kabuka.com#$#div[data-js] { background: none !important; cursor: default !important; }
 @@||realtime-chart.info^$generichide
 @@||sekai-kabuka.com^$generichide
