@@ -8,6 +8,12 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/142756
+nptmedia.tv#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|ads-api\.twitter\.com/')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||ads-api.twitter.com^|$xmlhttprequest,domain=nptmedia.tv
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=nptmedia.tv
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142462
 netcine.to#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
