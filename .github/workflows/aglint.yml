@@ -30,3 +30,19 @@ jobs:
       
       - name: Run AGLint
         run: yarn lint
+
+      - name: Conclusion
+        # Run always, even if previous steps are skipped or failed
+        if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: technote-space/workflow-conclusion-action@v3
+      
+      - name: Send Slack notifications on failure
+        # Run only if previous steps are failed
+        if: ${{ failure() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ env.WORKFLOW_CONCLUSION }}
+          fields: workflow, repo, message, commit, author, eventName, ref
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
