@@ -2119,21 +2119,11 @@ kava.ee##.kava_ad_chilli
 !---------------------------------------------------------------------
 ! NOTE: Finnish
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/137583
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-||fcdn.lauta.media^$domain=ylilauta.org
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115277
-||adx.adform.net/adx/$script,xmlhttprequest,redirect=noopjs,domain=fcdn.lauta.media
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-ylilauta.org##div.a[data-src]
-ylilauta.org##iframe[src^="https://ads.ylilauta.org/"]
-ylilauta.org##iframe[src^="https://fcdn.lauta.media/?"]
-||fcdn.lauta.media/?$subdocument,domain=ylilauta.org
-||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?contentLoadFailed\(\);//
-||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Module\/FrameLoader\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
-||ylilauta.org^$removeheader=link
-!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/143183
+||static.ylilauta.org/js/*/Module/FrameLoader.js
+ylilauta.org##div[data-a][data-d]
+ylilauta.org##div[data-src*="//fcdn.lauta.media/"].a
 ! ruutu.fi - video ads
 ||nelonenmedia-pmd-ads-*.nm-stream.nelonenmedia.fi/*.mp4$media,redirect=noopmp4-1s,domain=ruutu.fi
 ||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=ruutu.fi
