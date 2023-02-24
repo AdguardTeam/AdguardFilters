@@ -14,8 +14,8 @@
 hardware.info,tweakers.net#@#.AdBar
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142982
-tweakers.net#%#//scriptlet('prevent-addEventListener', '', 'handleAdblockDetect()')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+tweakers.net#%#(function(){const a=Function.prototype.toString;window.EventTarget.prototype.addEventListener=new Proxy(window.EventTarget.prototype.addEventListener,{apply:(b,c,d)=>{const e=d[1];return e&&"function"==typeof e&&/handleAdblockDetect|Flags.autoRecov/.test(a.call(e))&&(d[1]=function(){}),Reflect.apply(b,c,d)}})})();
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
 @@||aa.tweakers.nl/json$domain=tweakers.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99141
 @@/prebid/ad.gif?user=*&adId=$domain=kijk.nl
@@ -42,7 +42,6 @@ hardware.info#%#//scriptlet("abort-on-property-read", "Object.prototype.autoReco
 hardware.info#%#//scriptlet("prevent-addEventListener", "", "Flags.autoRecov")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62479
 tweakers.net#%#//scriptlet("abort-on-property-read", "Object.prototype.autoRecov")
-tweakers.net#%#//scriptlet("prevent-addEventListener", "", "Flags.autoRecov")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||tweakers.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56379
