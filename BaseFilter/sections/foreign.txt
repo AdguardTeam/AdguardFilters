@@ -2118,10 +2118,10 @@ kava.ee##.kava_ad_chilli
 ! https://github.com/AdguardTeam/AdguardFilters/issues/143183
 ylilauta.org##div[data-a][data-d]
 ylilauta.org##div[data-src*="//fcdn.lauta.media/"].a
-ylilauta.org#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.append', '#contentLoadFailed')
+ylilauta.org#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.append', '/#(contentLoadFailed|showFail)/')
 ||fcdn.lauta.media^$domain=ylilauta.org
 /^https:\/\/es\.ylilauta\.org\/files\/[a-z0-9]+\/[a-z0-9]+\/[a-z0-9]+\.jpg/$domain=ylilauta.org
-||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?contentLoadFailed\(\);//
+||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?(contentLoadFailed|showFail)\(\);//
 ||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Module\/FrameLoader\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
 ||ylilauta.org^$removeheader=link
 ! ruutu.fi - video ads
@@ -7012,6 +7012,8 @@ ppe.pl#%#AG_onLoad(function(){var a=document.querySelector("#hot_0 > .slider-ite
 ! napiprojekt.pl - "popunder"
 ||hellozdrowie.pl^$domain=napiprojekt.pl
 napiprojekt.pl#%#(function(){location.pathname.startsWith("/napisy-")&&AG_onLoad(function(){setTimeout(function(){var a=document.createElement("iframe");document.body.appendChild(a);a.src="https://www.napiprojekt.pl/napisy-4684-Shrek-(2001)";a.sandbox="";a.style.cssText="position: absolute; left: -3000px;";setTimeout(function(){a&&a.remove()},5E3)},500)})})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/144276
+deccoria.pl##body .dc-billboard:not(#style_important)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124025
 pomponik.pl##body .ad-container:not(#style_important)
 pomponik.pl##body .ad-rectangle:not(#style_important)
