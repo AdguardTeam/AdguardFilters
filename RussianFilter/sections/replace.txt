@@ -4,9 +4,6 @@
 ! Good: ||example.org/video-links$replace=/vast":/vast_":/
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
-! NOTE: UA rules copied to Ukrainian filter
-! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
-!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66827
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"exchange"\,"normal"/"normal"/
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
@@ -122,17 +119,3 @@
 !
 bender/_bender*.js$script,replace=/this\.removeShadowBlockers\(\);/true; return;/
 !
-! NOTE: UA rules copied to Ukrainian filter
-! TODO: Remove these rules after splitting the filter
-! NOTE: START UKRAINIAN
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/92400
-||kinoglobus.at.ua^$replace=/РЕКЛАМА:\s//
-! https://github.com/AdguardTeam/AdguardFilters/issues/64547
-! teleportal.ua - реклама перед видео. под этим комментарием второй вариант
-||vcms-api*.starlight.digital/hls/*?file=*&testadv=$removeparam=testadv
-||vcms-api*.starlight.digital/player-api/$xmlhttprequest,replace=/"mediaHls"/"mediaHlsNoAdv"/
-! https://github.com/AdguardTeam/AdguardFilters/issues/3205
-||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-! NOTE: END Ukrainian
