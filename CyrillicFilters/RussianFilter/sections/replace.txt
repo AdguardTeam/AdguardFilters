@@ -1,2 +1,121 @@
-! ### DUMMY. Must be replaced by the actual Russian filter ###
-! test_rule_15
+!
+! This section contains the list of the content replacement rules that block ads. Rules must be domain-specific.
+!
+! Good: ||example.org/video-links$replace=/vast":/vast_":/
+! Bad:  ||example.org/video-links (should be in specific.txt)
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/66827
+||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"exchange"\,"normal"/"normal"/
+||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
+||relap.io/api/*/active_widget_cfgs$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
+! Block vk ads(they are hidden, but visible in some reports)
+||vk.com/al_feed.php?queue$replace=/-ads_experiment;rb://
+! https://github.com/AdguardTeam/AdguardFilters/issues/57021
+/play/js/FWDEVPlayer.my.js$replace=/adsVideoSourcePath:"[a-zA-Z0-9]+"/adsVideoSourcePath:""/,domain=hdrabbit.ru|kinowinx.ru|forallkino.ru
+! razlozhi.ru - удаление отступа справа
+||razlozhi.ru/*/css/styles.css$replace=/body\._\w+_\d?{margin-right:240px/body{margin-right:0px/
+! wasd.tv - preroll ads
+||wasd.tv/ssp/roll$xmlhttprequest,other,~script,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! https://github.com/AdguardTeam/AdguardFilters/issues/49088
+||vast*.kinogo.by/code/video-steam/?id=$xmlhttprequest,other,~script,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! https://github.com/AdguardTeam/AdguardFilters/issues/58733
+||online.anidub.com/player/index.php?vid=$replace=/if \(!ad\.isDone\)/if (ad.isDone)/
+||anime.anidub.life/player/index.php?vid=$replace=/if \(!ad\.isDone\)/if (ad.isDone)/
+! oneseasons.club - preroll ads
+||oneseasons.club/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! anidub.com
+||exchange.buzzoola.com/adv/*/jsvpaid$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! https://github.com/AdguardTeam/AdguardFilters/issues/39998
+!+ PLATFORM(windows,mac,android)
+||otvet.mail.ru/*/|$replace=/\{\s*(\"css\"\s:\s*".*"\,)|(\"baits\"\s:\s*".*"\,)//
+! https://github.com/AdguardTeam/AdguardFilters/issues/29629
+||my.mail.ru/*?xemail=*&ajax_call=$replace=/^.*\"direct\":\{\"ads\"\:.*\$//,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/25040
+://rustorka.*/forum/$~script,replace=/(ads_script.onload = function\(\) {)[\s\S]*var website[\s\S]*?}/\$1}/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/27033
+||ads.adfox.ru/*/getCode?p1=*www.tvzavr.ru$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://forum.adguard.com/index.php?threads/28997/
+||n1307adserv.xyz/vast.xml?key=*&vastv=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/18606
+||herotowe.org/*/iframe?$replace=/"reserve_vast":{"urls":\[".*?]}\,//
+! https://github.com/AdguardTeam/AdguardFilters/issues/15537
+||pornovizion.xyz/*.html$replace=/adsPrerollMediaUrl:(\s)*\['\/AJAX\/[a-z0-9]+.mp4'\]\,//
+! kodik.cc
+||kodik.*/video-links$replace=/vast":/vast_":/
+! https://github.com/AdguardTeam/AdguardFilters/issues/16723
+/components/video/ajax/get_movie_code.php$replace=/if\(cur_time == 0\)/if\(cur_time\)/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/12971
+://goodgame.ru^|$replace=/"duration": \d\d/"duration": 0/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/25355
+! https://github.com/AdguardTeam/AdguardFilters/issues/26893
+! it breaks embed players. For custom filter only
+.torrentstream.*/get?_*=$script,xmlhttprequest,other,redirect=noopvast-3.0
+! hi-tech.mail.ru
+||hi-tech.mail.ru/*/js/cmpld/web/common.js$replace=/^mimic_.+//,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/8588
+||maximonline.ru/tube/controllers/select.php?_=$replace=/"fileUrl":\[.+?]\,//
+! https://github.com/AdguardTeam/AdguardFilters/issues/27921
+||a.radio7.ru/*/getCode?$replace=/(<[A-Z]+AST[\s\S]*?>)[\s\S]*<\/[A-Z]+AST>/<?xml version="1.0"?><nobanner><\/nobanner>/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/8396
+||a.europaplus.ru/*/getCode?$replace=/(<[A-Z]+AST[\s\S]*?>)[\s\S]*<\/[A-Z]+AST>/<?xml version="1.0"?><nobanner><\/nobanner>/,important
+! https://forum.adguard.com/index.php?threads/25004/
+||24video.*/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~script,~stylesheet,~xmlhttprequest,domain=24video.vip|24video.site|24video.adult|24video.in
+! https://github.com/AdguardTeam/AdguardFilters/issues/7394
+||rose.ixbt.com/vast_min.php$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://forum.adguard.com/index.php?threads/25004/
+||24v.tv/*=*=/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://forum.adguard.com/index.php?threads/18491/
+||s.mimovi.ru/*/b|$replace=/maxTime:\s\d+\,/maxTime: 500\,/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/5988
+||franecki.net/assets/vendor/*.xml^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://forum.adguard.com/index.php?threads/22933/
+||videoframe.online/?$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
+! unionpeer.com - удаление отступа сверху
+||unionpeer.com/cache/template.css^$replace=/;padding: 200px 0px 0px !important;/;padding: 0px 0px 0px !important;/
+! https://forum.adguard.com/index.php?threads/20004/
+||share-serials.net/video.php$replace=/showadv110\(\);/createPlayer\(\);/,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/3515
+||videoframe.blue^$replace=/\{timer:\d\d\, hardTimer\:\d\d\,/\{timer:0\, hardTimer\:0\,/i,important
+! ivi.ru ads
+||api.ivi.ru/light/?$replace=/"files":[\s\S]*"mraid_file_url"/"files": []\, "mraid_file_url"/
+||api.ivi.ru/light/?$replace=/"files":[\s\S]*"mraid_file_url"/"files": []\, "mraid_file_url"/,important
+! ||api.ivi.ru/light/?r=$replace=/\"third_party_adv_xml_link\": .*?\,/"third_party_adv_xml_link": null\,/
+! ||api.ivi.ru/light/?r=$replace=/\"third_party_adv_xml_link\": .*?\,/"third_party_adv_xml_link": null\,/,important
+||get.5visions.com/creative/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||get.5visions.com/creative/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||v.adfox.ru/*/getCodeTest?pp=*www.ivi.ru$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||v.adfox.ru/*/getCodeTest?pp=*www.ivi.ru$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+||v.adfox.ru/*/getCode?pp=*&dl=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||v.adfox.ru/*/getCode?pp=*&dl=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! mail.ru video ads
+||ad.mail.ru/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||ad.mail.ru/vast/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! https://forum.adguard.com/index.php?threads/15975/
+||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! https://forum.adguard.com/index.php?threads/14794/
+||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/,important
+||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/
+! https://github.com/AdguardTeam/AdguardFilters/issues/615
+||api.tree.tv/getreklama?$replace=/\[([\s\S])+]/[]/,important
+||api.tree.tv/getreklama?$replace=/\[([\s\S])+]/[]/
+! rutube.ru
+||rutube.ru/api/play/$replace=/cuepoints/_cuepoints/
+! TODO: проверить актуальность правил
+! rutube.ru - разрешаем перемотку
+||out.pladform.ru/getVast$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||out.pladform.ru/getVast$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! telezombi.ru - cut the text ad in the video player
+||clients.cdnet.tv/flashplayer/fileinstruction2.php$replace=/(<advert[\s\S]*?>)[\s\S]*<\/advert>/\$1<\/advert>/,important
+||clients.cdnet.tv/flashplayer/fileinstruction2.php$replace=/(<advert[\s\S]*?>)[\s\S]*<\/advert>/\$1<\/advert>/
+!
+!||a*.dot*.org/f*h.js$replace=/FJCaller/FJCaller2/
+||a*.dot*.org/f*h.js$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+!||a*.dot*.org/f*h.js$replace=/FJCaller/FJCaller2/,important
+||a*.dot*.org/f*h.js$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+! https://github.com/AdguardTeam/ExperimentalFilter/issues/2197
+||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+!
+bender/_bender*.js$script,replace=/this\.removeShadowBlockers\(\);/true; return;/
+!
