@@ -4,17 +4,13 @@
 ! Good: ||example.org/video-links$replace=/vast":/vast_":/
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
+! NOTE: UA rules copied to Ukrainian filter
+! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/92400
-||kinoglobus.at.ua^$replace=/РЕКЛАМА:\s//
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66827
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"exchange"\,"normal"/"normal"/
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
 ||relap.io/api/*/active_widget_cfgs$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
-! https://github.com/AdguardTeam/AdguardFilters/issues/64547
-! teleportal.ua - реклама перед видео. под этим комментарием второй вариант
-||vcms-api*.starlight.digital/hls/*?file=*&testadv=$removeparam=testadv
-||vcms-api*.starlight.digital/player-api/$xmlhttprequest,replace=/"mediaHls"/"mediaHlsNoAdv"/
 ! Block vk ads(they are hidden, but visible in some reports)
 ||vk.com/al_feed.php?queue$replace=/-ads_experiment;rb://
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57021
@@ -100,9 +96,6 @@
 ! https://forum.adguard.com/index.php?threads/15975/
 ||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ||inv-nets.admixer.net/dsp.aspx?$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-! https://github.com/AdguardTeam/AdguardFilters/issues/3205
-||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
-||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://forum.adguard.com/index.php?threads/14794/
 ||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/,important
 ||ok.ru/videoembed/$replace=/promoMetadata/pormoMetadata/
@@ -128,3 +121,18 @@
 ||v.adfox.ru/*/getCode?pp=*&dl=http://tvc/pryamoy/efir/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 !
 bender/_bender*.js$script,replace=/this\.removeShadowBlockers\(\);/true; return;/
+!
+! NOTE: UA rules copied to Ukrainian filter
+! TODO: Remove these rules after splitting the filter
+! NOTE: START UKRAINIAN
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/92400
+||kinoglobus.at.ua^$replace=/РЕКЛАМА:\s//
+! https://github.com/AdguardTeam/AdguardFilters/issues/64547
+! teleportal.ua - реклама перед видео. под этим комментарием второй вариант
+||vcms-api*.starlight.digital/hls/*?file=*&testadv=$removeparam=testadv
+||vcms-api*.starlight.digital/player-api/$xmlhttprequest,replace=/"mediaHls"/"mediaHlsNoAdv"/
+! https://github.com/AdguardTeam/AdguardFilters/issues/3205
+||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
+! NOTE: END Ukrainian

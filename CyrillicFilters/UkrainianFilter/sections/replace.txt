@@ -5,4 +5,12 @@
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
 !
-
+! https://github.com/AdguardTeam/AdguardFilters/issues/92400
+||kinoglobus.at.ua^$replace=/РЕКЛАМА:\s//
+! https://github.com/AdguardTeam/AdguardFilters/issues/64547
+! teleportal.ua - реклама перед видео. под этим комментарием второй вариант
+||vcms-api*.starlight.digital/hls/*?file=*&testadv=$removeparam=testadv
+||vcms-api*.starlight.digital/player-api/$xmlhttprequest,replace=/"mediaHls"/"mediaHlsNoAdv"/
+! https://github.com/AdguardTeam/AdguardFilters/issues/3205
+||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
+||rtb.meta.ua/sport/get_vast.cgi$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
