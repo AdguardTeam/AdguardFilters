@@ -2018,12 +2018,17 @@ ylilauta.org##div[data-src*="//fcdn.lauta.media/"].a
 ylilauta.org#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.append', '/#(contentLoadFailed|showFail)/')
 ||fcdn.lauta.media^$domain=ylilauta.org
 /^https:\/\/es\.ylilauta\.org\/files\/[a-z0-9]+\/[a-z0-9]+\/[a-z0-9]+\.jpg/$domain=ylilauta.org
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+ylilauta.org#$#iframe.a { height: 0 !important; }
+$csp=worker-src 'none',domain=ylilauta.org
+||ylilauta.org/service-worker.js
+||static.ylilauta.org/js/*/Library/ServiceWorker.js$replace=/export default class ServiceWorker[\s\S]*/export default class ServiceWorker\n{}/
+||static.ylilauta.org/js/*/Lauta.js$replace=/this\.checkTampering\(\)/!1/
+||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Lauta\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
+||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Library\/ServiceWorker\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
 ||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?(contentLoadFailed|showFail)\(\);//
 ||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Module\/FrameLoader\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
 ||ylilauta.org^$removeheader=link
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-ylilauta.org#%#(function(){const b=window.alert;window.alert=function(a){if(!/you are using an ad blocker/.test(a.toString()))return b(a)};})();
-ylilauta.org##.toast-root
 !#endif
 ! ruutu.fi - video ads
 ||nelonenmedia-pmd-ads-*.nm-stream.nelonenmedia.fi/*.mp4$media,redirect=noopmp4-1s,domain=ruutu.fi
