@@ -2020,12 +2020,9 @@ ylilauta.org#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.append', '
 /^https:\/\/es\.ylilauta\.org\/files\/[a-z0-9]+\/[a-z0-9]+\/[a-z0-9]+\.jpg/$domain=ylilauta.org
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ylilauta.org#$#iframe.a { height: 0 !important; }
-$csp=worker-src 'none',domain=ylilauta.org
-||ylilauta.org/service-worker.js
-||static.ylilauta.org/js/*/Library/ServiceWorker.js$replace=/export default class ServiceWorker[\s\S]*/export default class ServiceWorker\n{}/
+||ylilauta.org/service-worker.js$replace=/&& event.request.integrity === ''/&& event.request.integrity === '0'/
 ||static.ylilauta.org/js/*/Lauta.js$replace=/this\.checkTampering\(\)/!1/
 ||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Lauta\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
-||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Library\/ServiceWorker\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
 ||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?(contentLoadFailed|showFail)\(\);//
 ||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Module\/FrameLoader\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
 ||ylilauta.org^$removeheader=link
