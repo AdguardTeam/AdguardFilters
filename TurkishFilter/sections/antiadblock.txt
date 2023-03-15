@@ -13,6 +13,19 @@ zamaninvarken.com,kredi.biz.tr,kriptoradar.com,morlevha.com,bakimlikadin.net,kor
 iyibeslenme.net,teknop.net,kirtkirtla.com,buneymis.net,ozgunbilgi.com#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/145451
+canlitribun45.com#%#//scriptlet('prevent-xhr', '/advert.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||canlitribun45.com/cdn/advert.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/145198
+raindropteamfan.com#%#//scriptlet('prevent-fetch', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=raindropteamfan.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/144268
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mangawt.com
+mangawt.com#%#//scriptlet('prevent-xhr', 'static.doubleclick.net/instream/ad_status.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+||static.doubleclick.net/instream/ad_status.js$xmlhttprequest,redirect=nooptext,domain=mangawt.com
 ! https://github.com/uBlockOrigin/uAssets/issues/16991
 veryansintv.com#%#//scriptlet('prevent-setTimeout', 'kanews-modal-adblock', '5000')
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -237,8 +250,11 @@ kanald.com.tr#%#//scriptlet("set-constant", "hasAdblock", "false")
 kanald.com.tr#%#(()=>{window.adservice={version:'3.3.1',gpt:{getAdUnits:function(){},getVersion(){return'2023030601'}},adUnits:[],modules:[],oopAdUnits:[],videoAdUnits:[],interactiveAdUnits:[]}})();
 @@||kanald.com.tr/*scripts/ad*.js
 @@||cdn.medyanetads.com/assets/adservice.css$domain=kanald.com.tr
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium)
 @@||ad.medyanetads.com/adservice/adservice.js$domain=kanald.com.tr
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=kanald.com.tr
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=kanald.com.tr
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63655
 @@||pagead2.googlesyndication.com/pagead/js/*/show_ads_impl_*.js$domain=myjest.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62381
