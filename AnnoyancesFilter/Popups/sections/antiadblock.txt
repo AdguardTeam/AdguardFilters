@@ -35,6 +35,7 @@ yandex.ru##.stack > div[class^="sticky-"]
 ! Yandex.Video, Dzen
 dzen.ru,yandex.*#%#//scriptlet("abort-on-property-write", "Object.prototype.adSystem")
 ! Yandex.TV
+tv.yandex.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 tv.yandex.ru##div[id^="adfox_"]
 ! Yandex.Zen
 zen.yandex.ru##.article-render__block_embed-type_yandex-direct
@@ -46,7 +47,7 @@ docviewer.yandex.*#%#//scriptlet("abort-on-property-read", "Object.prototype.YaA
 !#endif
 !
 ! Yandex.Images
-[$path=/images]yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
+yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
 [$path=/images/]yandex.*##div[data-state*="/image/new/serp/page/commercial/incut"]
 ! TODO: remove the hint below after this task is solved
 ! https://github.com/uBlockOrigin/uBlock-issues/issues/2465
@@ -411,6 +412,7 @@ reddit.com,reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion#@#.Sid
 !
 ! Add same rules to the Admiral section of Tracking Protection filter
 !
+||cautiouscamera.com^$third-party
 ||friendlyfold.com^$third-party
 ||talltouch.com^$third-party
 ||knitstamp.com^$third-party
@@ -2829,9 +2831,10 @@ cc-fan.tv,cn-fan.tv,fox-fan.tv,nf-fan.tv#@#.text_ads
 ! aternos.org#%#!function(){window.pbjs={cmd:{push:function(){}},adUnits:function(){}};window.snhb={globalSettings:{},startAuction:function(){}};window.pbjsChunk=()=>{}}();
 ! for apps and ext4.0
 @@||hb.vntsm.io/content.html$domain=aternos.org
-aternos.org#$?#.responsive-sky-scraper > * { remove: true; }
 aternos.org#$?#.ad-dfp { remove: true; }
-aternos.org#$#.header-link-exaroton > a { opacity: 0 !important; pointer-events: none !important; }
+! script checks these elements even if rules changed
+! .responsive-sky-scraper
+! .header-link-exaroton
 ||aternos.org/panel/ajax/reportDetection.php?$xmlhttprequest,1p
 !#safari_cb_affinity(general)
 @@||aternos.org^$generichide
