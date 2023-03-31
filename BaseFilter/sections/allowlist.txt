@@ -377,9 +377,11 @@ elperiodico.com#@#.adLoaded
 @@||cloud.189.cn^$xmlhttprequest,elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80473
 pornhub.com,pornhubthbh7ap3u.onion,redtube.com,tube8.com,tube8.es,tube8.fr#@#[src^="bLob:"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/40391
-@@||idol.sankakucomplex.com/post/index.content?next=*&page=$elemhide,jsinject,extension
-@@||idol.sankakucomplex.com/post/index.content?next=*&page=$other
+! https://github.com/AdguardTeam/AdguardFilters/issues/146701
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+@@||sankakucomplex.com/*/post/index.content?next=$xmlhttprequest,jsinject,elemhide,extension
+@@||sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide,extension
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103899
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 !+ NOT_OPTIMIZED
@@ -1107,8 +1109,6 @@ job-draft.com#@#.top-banners
 @@||googletagservices.com/tag/js/gpt.js$domain=infocar.ua
 ||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=infocar.ua
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=infocar.ua
-! https://github.com/AdguardTeam/AdguardFilters/issues/83165
-@@||chan.sankakucomplex.com/id/post/index.content?next=$xmlhttprequest,jsinject,elemhide,extension
 ! games on https://games.yahoo.co.jp/play/
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$script,domain=play.neos-easygames.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82903
@@ -3444,10 +3444,6 @@ kitguru.net#@#div > a[class] > img[src]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5739
 @@||eye.swfchan.com/captcha/*.gif$domain=eye.swfchan.com
 @@||eye.swfchan.com/flash.asp?id=*.swf$domain=eye.swfchan.com
-! https://forum.adguard.com/index.php?threads/20084/
-!+ NOT_PLATFORM(windows, mac, android)
-@@||chan.sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide
-@@||chan.sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5737
 @@||cbsistatic.com/scripts/NativeAdManager.js^$domain=cbsnews.com
 !
