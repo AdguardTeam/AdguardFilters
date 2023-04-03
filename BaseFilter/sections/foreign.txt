@@ -124,7 +124,7 @@ beinmatch.*###sponsor
 beinmatch.*#%#//scriptlet("prevent-window-open", "!/home/")
 beinmatch.*#%#//scriptlet("abort-on-property-read", "S9tt")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113045
-redirect.khsm.io,re.two.re,noon.khsm.io##.ads
+mawsueaa.com,redirect.khsm.io,re.two.re,noon.khsm.io##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112654
 ||vga4a.com/wp-content/uploads/Horizon-Web-Banners*-x-*.jpg
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112746
@@ -1182,6 +1182,10 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! gozofinder.com - ads at top
+gozofinder.com#?##root > div[class]:has(> .advert-iframe)
+gozofinder.com#$#.advertisement-branding { margin-top: 0px !important; }
+gozofinder.com##.advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145524
 iprima.cz##.mone_box
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144956
@@ -1213,9 +1217,6 @@ imeteo.sk#@#.is-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135870
 endless-live.cz#@##reklama
 endless-live.cz#%#//scriptlet('prevent-setTimeout', 'Adblocker')
-! https://github.com/AdguardTeam/AdguardFilters/issues/146543
-||expres.cz^$cookie=/^adb\$|adb\.key/
-expres.cz#%#//scriptlet("abort-on-property-read", "_1gif")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145888
 ||sport.cz/*/static/js/ssp.js
 ||sport.cz^$cookie=sportySporty
@@ -1582,8 +1583,13 @@ dama.cz##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45896
 denik.cz##.reklama-box-leaderboard
 denik.cz##div[class^="reklama-box"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/147038
+! https://github.com/AdguardTeam/AdguardFilters/issues/146543
+idnes.cz,expres.cz#%#//scriptlet("abort-on-property-read", "_1gif")
 ! adbDetect
+$cookie=/^adb\$|adb\.key/,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz
 expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('remove-cookie', '/^adb$|adb\.key|^[a-z]{5,11}$/')
+expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'kununu_mul')
 expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet("abort-on-property-read", "Object.prototype.kununu_mul")
 ! novinky.cz requires different rule, because rule above breaks video player
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
@@ -7384,6 +7390,7 @@ zalajkowane.pl###main-sidebar > #text-12
 ||video.onnetwork.tv^$domain=jbzd.com.pl
 ||taboola.com^$domain=jbzd.com.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47872
+jbzd.com.pl##a[href^="https://orlenteam.pl/"] > img
 jbzd.com.pl##.jad-rectangle
 !+ NOT_OPTIMIZED
 jbzd.com.pl#?##content-container > .article:has(> .article-avatar.hidden + .article-content > .article-details > .article-info > .article-author > strong:contains(/^Reklama$/))
@@ -8024,6 +8031,8 @@ wykop.pl#?##itemsStream > .link:has(a[href^="http://www.wykop.pl/reklama"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23706
 gazeta.pl###alternativeNewsSource
 gazeta.pl##.o-section__adform
+! https://github.com/AdguardTeam/AdguardFilters/issues/146873
+||ppstatic.pl/lib/ppa/v*/js/main.hb.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139975
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139973
 e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl#?#.componentsPromotionsPromotedList[data-event-position-context^="marketing_"]:not(:has(> .atomsHeader > h2.atomsHeader__title > span:contains(Quizy)))
@@ -8936,6 +8945,9 @@ nosteam.ro#%#window.open = function() {};
 !---------------------------------------------------------------------
 ! NOTE: Serbian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/146982
+noizz.rs##.placeholder
+noizz.rs###bannerStickyBottom
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142624
 sportklub.rs##.banner-placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141210
