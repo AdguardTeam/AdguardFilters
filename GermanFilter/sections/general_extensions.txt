@@ -11,9 +11,6 @@
 !
 ! VAST video ads - e. g. https://github.com/AdguardTeam/AdguardFilters/issues/135687
 stern.de,desired.de,pcgames.de,t-online.de,vox.de,spieletipps.de,wetter.de,golem.de,autobild.de,buffed.de,gamesaktuell.de,kino.de,pcgameshardware.de,videogameszone.de,familie.de,tvnow.de,welt.de#%#//scriptlet('prevent-xhr', '.damoh.')
-!#if (adguard_ext_firefox)
-spiegel.de,t-online.de,giga.de,welt.de#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'onreadystatechange')
-!#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146229
 ! TODO: use scriptlet "inject-css-in-shadow-dom" when it will be available in apps
@@ -24,6 +21,9 @@ chip.de#%#//scriptlet('set-cookie', 'chipde-r2d2-view-state ', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135749
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135687
 giga.de,spiegel.de,welt.de,t-online.de#%#(()=>{window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,{apply:(a,b,c)=>{const d=b.urlCalled;return"string"!=typeof d||0===d.length?Reflect.apply(a,b,c):d.match(/\.damoh\./)?void 0:Reflect.apply(a,b,c)}})})();
+!#if (adguard_ext_firefox)
+giga.de,spiegel.de,welt.de,t-online.de#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'onreadystatechange')
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131890
 eispop.com#%#//scriptlet('set-constant', 'Object.prototype.AdOverlay', 'noopFunc')
 ! https://github.com/uBlockOrigin/uAssets/issues/6541#issuecomment-1140420880
