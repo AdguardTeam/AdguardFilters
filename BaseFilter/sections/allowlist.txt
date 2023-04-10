@@ -85,6 +85,21 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/147895
+coursekingdom.xyz#@#[href^="https://ad.admitad.com/"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/147504
+gearspace.com#@#a[onclick]
+! https://github.com/AdguardTeam/AdguardFilters/issues/147201
+@@||tvid.in/sdk/*.js$domain=em.timesnownews.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/147510
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+@@||googletagservices.com/tag/js/gpt.js$domain=scotsman.com,badfilter
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||securepubads.g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=scotsman.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/146971
+zol.com.cn#@##search_ad
+! connect.ubisoft.com - unable to see entered login and not able to link accounts to e. g. Amazon
+@@||connect.ubisoft.com/oauth/*?redirectUrl$jsinject
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146765
 @@||pub.pixels.ai/prebid_standard.js$domain=standard.co.uk
 ! abcya.com - fixing video games
@@ -105,8 +120,10 @@ supersummary.com#@#.sidebar-ads-container
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=click2houston.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142849
-!+ PLATFORM(ios)
-@@||nessainy.net^$domain=kissanime.com.ru
+!#if (adguard_app_ios)
+||nessainy.net^$popup,badfilter
+||nessainy.net^$badfilter
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145816
 ||pub.doubleverify.com/signals/pub.js$script,redirect=noopjs,domain=ladbible.com|unilad.com|gamingbible.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -372,9 +389,11 @@ elperiodico.com#@#.adLoaded
 @@||cloud.189.cn^$xmlhttprequest,elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80473
 pornhub.com,pornhubthbh7ap3u.onion,redtube.com,tube8.com,tube8.es,tube8.fr#@#[src^="bLob:"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/40391
-@@||idol.sankakucomplex.com/post/index.content?next=*&page=$elemhide,jsinject,extension
-@@||idol.sankakucomplex.com/post/index.content?next=*&page=$other
+! https://github.com/AdguardTeam/AdguardFilters/issues/146701
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+@@||sankakucomplex.com/*/post/index.content?next=$xmlhttprequest,jsinject,elemhide,extension
+@@||sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide,extension
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103899
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 !+ NOT_OPTIMIZED
@@ -921,18 +940,6 @@ mediafire.com#@##adwrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91838
 @@||googletagservices.com/tag/js/gpt.js$domain=topuniversities.com
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=topuniversities.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/92113
-games.softgames.com#@#iframe[src^="https://pagead2.googlesyndication.com/"]
-games.softgames.com#@#a[href^="https://adclick.g.doubleclick.net/"]
-games.softgames.com#@#[id^="google_ads_iframe"]
-games.softgames.com#@#a[href^="https://www.googleadservices.com/pagead/aclk?"]
-@@||googletagservices.com/tag/js/gpt.js$domain=games.softgames.com
-@@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=games.softgames.com
-@@||safeframe.googlesyndication.com/safeframe/*/html/container.html$domain=games.softgames.com
-@@||securepubads.g.doubleclick.net/gampad/ads$domain=games.softgames.com
-@@||gstatic.com/admanager/outstream/rewarded_web_video_en.js$domain=safeframe.googlesyndication.com
-@@||www.gstatic.com/admanager/outstream/rewarded_web_video_canary_en.js$domain=safeframe.googlesyndication.com
-@@||googleads.g.doubleclick.net/pagead/images/gmob/close-circle-30x30.png$domain=safeframe.googlesyndication.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92383
 @@||dailymotion.com/embed/video/$subdocument,domain=xataka.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92335
@@ -972,8 +979,6 @@ tvbox.one#@#.homeadv
 alle-lkw.de#@##gwd-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88812
 @@||zeekmagazine.com/wp-content/plugins/wp-ad-guru/assets/js/adguru.js
-! button broken at https://minigame.aeriagames.jp/games/top/ae-soft-306
-@@||games.softgames.com/ads-ng/$domain=games.softgames.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88563
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=gostanford.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88488
@@ -1102,8 +1107,6 @@ job-draft.com#@#.top-banners
 @@||googletagservices.com/tag/js/gpt.js$domain=infocar.ua
 ||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=infocar.ua
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=infocar.ua
-! https://github.com/AdguardTeam/AdguardFilters/issues/83165
-@@||chan.sankakucomplex.com/id/post/index.content?next=$xmlhttprequest,jsinject,elemhide,extension
 ! games on https://games.yahoo.co.jp/play/
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$script,domain=play.neos-easygames.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82903
@@ -1897,10 +1900,11 @@ kzstock.blogspot.com#@##ad-target
 @@||kimcartoon.to/Scripts^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48162
 @@||stream2watch.ws/js/app.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/48199
+! https://github.com/AdguardTeam/AdguardFilters/issues/146902
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=10play.com.au
 @@||securepubads.g.doubleclick.net/gpt/pubads_impl_*.js$domain=10play.com.au
-@@||securepubads.g.doubleclick.net/gampad/ads^$domain=10play.com.au
+@@||pubads.g.doubleclick.net/ondemand/hls/content/*/streams|$xmlhttprequest,domain=10play.com.au
+@@||pubads.g.doubleclick.net/ondemand/hls/content/*/streams/*.m3u8$domain=10play.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48072
 @@||pussyspace.com/class/captcha/captcha.php$domain=pussyspace.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47914
@@ -2502,7 +2506,7 @@ gmanetwork.com#@#.leaderboard
 @@||flyordie.com/games/online/iframeafg*.html
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28718
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||shareasale.com/r.cfm?u=*&urllink=
+@@||shareasale.com/r.cfm?
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28689
 @@||ebonus.gg/static/videojs.ads.css
 @@||ebonus.gg/static/videojs.ads.min.js
@@ -3438,10 +3442,6 @@ kitguru.net#@#div > a[class] > img[src]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5739
 @@||eye.swfchan.com/captcha/*.gif$domain=eye.swfchan.com
 @@||eye.swfchan.com/flash.asp?id=*.swf$domain=eye.swfchan.com
-! https://forum.adguard.com/index.php?threads/20084/
-!+ NOT_PLATFORM(windows, mac, android)
-@@||chan.sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide
-@@||chan.sankakucomplex.com/post/index.content?next=*&page=$jsinject,elemhide,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5737
 @@||cbsistatic.com/scripts/NativeAdManager.js^$domain=cbsnews.com
 !
