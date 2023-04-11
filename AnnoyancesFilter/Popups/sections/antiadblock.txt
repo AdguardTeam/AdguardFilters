@@ -30,6 +30,8 @@ afisha.yandex.ru##div[style="width:100%;height:240px;display:block"]
 yandex.ru##div[class*="-R-A-"]
 yandex.ru##.stack > div[class^="sticky-"]
 ! Yandex.Weather
+[$path=/weather]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
+[$path=/pogoda]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 [$path=/pogoda]yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
 !#if (!ext_ublock)
 ! Yandex.Video, Dzen
@@ -95,7 +97,7 @@ spletnik.ru$$script[wildcard="*insertAfter*params*"][min-length="500"][max-lengt
 spletnik.ru#%#//scriptlet('abort-on-property-write', 'Object.prototype.encodeJsonpScriptSrc')
 !
 ! 24smi.org
-24smi.org#%#//scriptlet('abort-on-property-read', 'Object.prototype.getAdbBits')
+24smi.org#%#//scriptlet('set-constant', 'Object.prototype.blockId', 'undefined')
 !
 ! sm.news,amedia.online, sdamgia.ru
 sm.news,amedia.online,sdamgia.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.RenderMarks")
@@ -586,6 +588,7 @@ usatoday.com#@#.ad-slot
 ! SECTION: Anti-adblock - Regular rules
 ! Do not forget about '!#safari_cb_affinity' section for exclusions
 !
+rutube.ru#?#.notification-module__infoNotifications:has(> div[class^="infoNotificationsItem"] span[class^="freyja_char-notification__description"]:contains(Блокировщик рекламы может помешать правильной работе плеера.))
 ||it-actual.ru/wp-content/themes/iconic-one/js/lcr.js
 advancedtomato.com##.donate-container
 lightnovelpub.com##.comment-wrapper > ul > li:has(> ins.adsbygoogle)
