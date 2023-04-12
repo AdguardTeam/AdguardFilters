@@ -34,6 +34,7 @@ it-actual.ru#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=it-actual.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145320
+@@||api-video.khl.ru^$generichide
 api-video.khl.ru#%#//scriptlet('prevent-xhr', 'an.yandex.ru')
 ||webcaster.pro/sentry.min.js$domain=api-video.khl.ru
 ||an.yandex.ru/system/context.js$script,xmlhttprequest,redirect=noopjs,domain=api-video.khl.ru
@@ -1479,7 +1480,10 @@ docviewer.yandex.ru,docviewer.yandex.by,docviewer.yandex.com,docviewer.yandex.co
 ://yandex.*/news/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"rtb":.+visibilitySettings.+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,domain=yandex.by|yandex.kz|yandex.ru
 !
 ! Yandex.Weather
-yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru$$script[wildcard="*var initTime*var advStartTime*parent.classList.add*"]
+/^https:\/\/www.yandex.\w+\/(weather|pogoda)\//$script,xmlhttprequest,jsonprune=\$.data.*.attributes,domain=yandex.*
+! TODO: remove next two rules 2 weeks after release AdGuard apps with CL 1.11
+||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
+||yandex.*/pogoda/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
 !
 !afisha.yandex.by,afisha.yandex.kz,afisha.yandex.ru#%#//scriptlet("abort-on-property-read", "window.IntersectionObserver")
 !+ PLATFORM(windows, mac, android)
@@ -1488,7 +1492,7 @@ yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru$$script[wildcar
 ! Yandex.Maps
 !
 ! Yandex.Mail
-||mail.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,important,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
+||mail.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,important,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
 !
 ! Yandex.TV
 tv.yandex.by,tv.yandex.kz,tv.yandex.ru$$script[tag-content="adblockDetected"][max-length="5000"]
@@ -1543,30 +1547,28 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||yandex.*/news/*$replace=/.*\[{"adm":{".*:{"imptrackers":.*//,xmlhttprequest,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru
 //yandex.*/news/*$replace=/^\{\"rtb\":.*//,script,other,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru
 /kinopoisk\.ru\/\w+\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]{100,}/$replace=/"attributes"/""/,script,domain=www.kinopoisk.ru
-||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
-||yandex.*/pogoda/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
-||zen.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=zen.yandex.by|zen.yandex.com|zen.yandex.fr|zen.yandex.kz|zen.yandex.ru
+||zen.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest,domain=zen.yandex.by|zen.yandex.com|zen.yandex.fr|zen.yandex.kz|zen.yandex.ru
 ||mail.yandex.*$script,replace=/\,ab:e.blocker\,/\,/
 ||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
-||mail.yandex.*/*/*-$replace=/(^{"rtb":.*)|(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
-||tv.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru
-||afisha.yandex.*/*/*-*-*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest,domain=afisha.yandex.by|afisha.yandex.kz|afisha.yandex.ru
+||mail.yandex.*/*/*-$replace=/(^{"rtb":.*)|^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
+||tv.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru
+||afisha.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest,domain=afisha.yandex.by|afisha.yandex.kz|afisha.yandex.ru
 ||gismeteo.*/*/*/*_$replace=/"R-A-.*//,script,xmlhttprequest,other
 ||gorodrabot.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
 ||24smi.org/*/*/*_$script,replace=/RTB//
 ||24smi.org/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
-||avito.ru/*/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||fb.ru/*/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||syl.ru/*/*/*/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||auto.ru/*/*-*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||businessman.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||e1.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||forexpf.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||infoniac.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||kakprosto.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||livejournal.com/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||otzovik.com/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
-||pikabu.ru/*/*/*-$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,xmlhttprequest
+||avito.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||fb.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||syl.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||auto.ru/*/*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||businessman.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||e1.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||forexpf.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||infoniac.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||kakprosto.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||livejournal.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||otzovik.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
+||pikabu.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*$//,script,other,xmlhttprequest
 ||razlozhi.ru/*/*/*/*-$script,replace=/({"rtb":.*)|(.*"blockId":.*"commonRtbVisibility":.*)//
 !#endif
 !
