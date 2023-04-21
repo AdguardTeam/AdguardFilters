@@ -8,6 +8,12 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/17645
+negociosecommerce.com,puromarketing.com,todostartups.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+negociosecommerce.com,puromarketing.com,todostartups.com#%#//scriptlet('prevent-fetch', 'call-zone-adxs')
+negociosecommerce.com,puromarketing.com,todostartups.com#@#.adxs-vertisements
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=negociosecommerce.com|puromarketing.com|todostartups.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148011
 hinatasoul.com#%#//scriptlet('abort-current-inline-script', 'document.getElementsByTagName', 'adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -67,12 +73,12 @@ nptmedia.tv#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142951
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142462
 netcine.to#%#//scriptlet('prevent-xhr', '/tag.min.js')
-netcine.to#%#//scriptlet('prevent-fetch', 'googleads.g.doubleclick.net method:HEAD')
-netcine.to#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|\/data\/utep_ad\.js|trafficjunky\.com/')
+netcine.to#%#//scriptlet('prevent-fetch', 'method:HEAD')
+netcine.to#%#//scriptlet('remove-cookie', '__cf_xt')
 @@||netcine.to/data/utep_ad.js$xmlhttprequest
 @@||googleads.g.doubleclick.net/pagead/id$xmlhttprequest,domain=netcine.to
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=netcine.to
+@@$third-party,xmlhttprequest,domain=netcine.to
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142265
 antoniomote.com#$#[id].adsbox.doubleclick.ad-placement { display: block !important; }
