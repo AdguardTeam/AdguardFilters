@@ -42,7 +42,7 @@
 ! Some sites are broken. The rules are required for apps only.
 .demdex.net/id^$redirect=nooptext,important
 ||omtrdc.net/id^$redirect=nooptext,important
-||omtrdc.net/rest/v*/delivery?client=$replace=/^\{[\s\S]*\}\$/{}/,domain=~kia.com|~pccomponentes.com
+||omtrdc.net/rest/v*/delivery?client=$replace=/^\{[\s\S]*\}\$/{}/,domain=~kia.com|~pccomponentes.com|~acrobat.adobe.com
 ||nd.demdex.net/event?d_mid=$redirect=nooptext,important,domain=9now.com.au
 ||adc.nine.com.au/?token=$redirect=nooptext,important,domain=9now.com.au
 ||googleadservices.com/pagead/conversion_async.js$redirect=noopjs,domain=ffm.to,important
@@ -468,7 +468,6 @@ androplus.org##a[href^="https://px.a8.net/"]
 ||suumo.jp/jj/jjcommon/vos/
 ||p.flipp.com/beacons
 ||secretcv.com/log/
-||segodnya.ua/article/view/inc/*?counter_locale=
 ||rambler.ru/metrics/
 ||api.vp.rambler.ru/events/
 ||delivery.r2b2.cz/events.php?
@@ -2877,7 +2876,6 @@ dreamprogs.net##td[width="88"][height="31"]
 ||bravotube.net/b_track.js
 ||brightcove.com/1pix.gif
 ||brille24.de/fileadmin/tracking
-||btrace.qq.com^
 ||cbslocal.com^*/cbs1x1.gif?
 ||cdn-library.net/*&data=anti-abp
 ||cdn.segment.com/analytics.js
@@ -3383,3 +3381,35 @@ link.gmapp*.net$image
 ||theadex.com^$domain=saturn.de|mediamarkt.de
 !+ PLATFORM(ios)
 ||exactag.com^$domain=saturn.de|mediamarkt.de
+!
+!
+! We're getting tons of questions from users who do not understand why some test on the internet does not show 100%.
+! We're tired of explaining why this or that domain should not be blocked in reality so there's that
+!
+! Following domains should not be blocked globally because they are not used to collect data (admin panels, bug tracking services)
+!
+! Google Analytics admin panel
+||analytics.google.com^$domain=d3ward.github.io
+! We're blocking what's required on this web site, but more granuralry (i.e. `/collect` location). Unfortunately, this test check for the whole domain blocking, hence here's a rule
+||analytics.google.com^$domain=d3ward.github.io
+! Used as a click-through tracking domain for Google Analytics when a user clicks on a ad link that has been tagged with Google Analytics tracking code
+||click.googleanalytics.com^$domain=d3ward.github.io
+! Blocking of this domain may break Yahoo apps
+||log.fc.yahoo.com^$domain=d3ward.github.io
+! Used for managing Yandex AppMetrica
+||appmetrica.yandex.ru^$domain=d3ward.github.io
+||metrika.yandex.ru^$domain=d3ward.github.io
+! Used by TikTok Business API for managing advertising campaigns
+||business-api.tiktok.com^$domain=d3ward.github.io
+! Used for creating Pinterest widgets
+||widgets.pinterest.com^$domain=d3ward.github.io
+!
+||udc.yahoo.com^$domain=d3ward.github.io
+||udcm.yahoo.com^$domain=d3ward.github.io
+! Bug tracker services
+||notify.bugsnag.com^$domain=d3ward.github.io
+||sessions.bugsnag.com^$domain=d3ward.github.io
+||api.bugsnag.com^$domain=d3ward.github.io
+||app.bugsnag.com^$domain=d3ward.github.io
+||browser.sentry-cdn.com^$domain=d3ward.github.io
+||app.getsentry.com^$domain=d3ward.github.io
