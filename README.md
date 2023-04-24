@@ -2,6 +2,11 @@
 <h1 align="center">AdGuard Filters</h1>
 <h3 align="center">The place where ads are actually blocked</h3>
 
+<p align="center">
+    <img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master" alt="Linter workflow status" />
+    <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE"><img src="https://img.shields.io/badge/GPL-3.0-only" alt="License: GPL-3.0-only" /></a>
+</p>
+
 <img src="https://cdn.adguard.com/public/Adguard/Github/adguard_filters.png" style="border: 1px solid #efefef; padding: 2px;" />
 </p>
 
