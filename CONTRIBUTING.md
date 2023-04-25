@@ -23,8 +23,8 @@ Steps for contributors:
 5. Install dependencies by running `yarn` in the root of the repo. This will
    install [AGLint][aglint] and [Husky][husky]. After the installation is
    complete, it will also call `postinstall` script that will install Husky
-   pre-commit hook that will run AGLint on your changes before you commit them
-   and will prevent you from committing if there are any errors.
+   pre-commit hook which will run AGLint on your changes before you commit
+   them and will prevent you from committing if there are any errors.
 6. Create a new branch for your changes. Please use the following naming
    convention: `fix/123` where `123` is the issue number you're working on.
 7. Make your changes, test them and put them in the proper file or section
