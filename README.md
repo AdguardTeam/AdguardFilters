@@ -4,8 +4,7 @@
 <h3 align="center">The place where ad trackers are actually blocked</h3>
 
 <p align="center">
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking.svg" 
-         style="max-width: 400px;" />
+    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking.svg" />
 </p>
 
 <p align="center">
