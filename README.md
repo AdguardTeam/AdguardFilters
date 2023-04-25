@@ -40,7 +40,7 @@ developed content-blocking filter lists available, if not the most.
 
 Our filter policy is available [here][policy].
 
-[policy]: https://kb.adguard.com/general/adguard-filter-policy
+[policy]: https://adguard.com/kb/general/ad-filtering/filter-policy/
 
 ## Contributing to AdGuard
 
