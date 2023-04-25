@@ -4,6 +4,10 @@
 <h3 align="center">The place where ad trackers are actually blocked</h3>
 
 <p align="center">
+    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking_shield_small.png" />
+</p>
+
+<p align="center">
     <img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master"
          alt="Linter workflow status" />
     <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE">
@@ -13,10 +17,6 @@
     <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/AdguardTeam/AdguardFilters" />
     <img alt="GitHub issues" src="https://img.shields.io/github/issues/AdguardTeam/AdguardFilters">
     <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/AdguardTeam/AdguardFilters">
-</p>
-
-<p align="center">
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking_shield.png" />
 </p>
 
 This is the place where we create filters for [AdGuard][adguard] and other
