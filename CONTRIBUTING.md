@@ -33,7 +33,7 @@ Steps for contributors:
 8. If everything is fine, commit your changes. Please always make separate
    branches and commits for different issues and don't mix them in one. It
    is easier to manage and review them that way.
-9.  Push your new branch to your fork. This will create a new branch in your
+9. Push your new branch to your fork. This will create a new branch in your
     fork with the same name as the one you created locally and doesn't affect
     the original repo at this point.
 10. Create a pull request from your fork to this repo and wait for the review.
