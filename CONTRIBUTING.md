@@ -9,7 +9,7 @@ instructions below to make your ideas come to life faster!
 
 Here's what you need to do before you start working on the repo.
 
-Steps for contributors:
+**Steps for contributors:**
 
 1. If you don't have a GitHub account, [create one][createaccount].
 2. Install [Git][git], [Node.js][nodejs] and [Yarn][yarn]. These are essential
