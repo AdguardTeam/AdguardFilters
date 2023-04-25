@@ -12,8 +12,8 @@ Here's what you need to do before you start working on the repo.
 Steps for contributors:
 
 1. If you don't have a GitHub account, [create one][createaccount].
-2. Install [Git][git], [Node.js][nodejs] and [Yarn][yarn]. These are essential tools for
-   working with the repo.
+2. Install [Git][git], [Node.js][nodejs] and [Yarn][yarn]. These are essential
+   tools for working with the repo.
 3. Install [Visual Studio Code][vscode] with the
    ["Adblock" syntax plugin][vscodeplugin]. We recommend using this editor to
    write filter rules.
@@ -21,21 +21,21 @@ Steps for contributors:
    access to the original repo). If you don't know how to do it, please read
    [this guide][clonerepo].
 5. Install dependencies by running `yarn` in the root of the repo. This will
-   install [AGLint][aglint] and [Husky][husky]. After the installation is complete,
-   it will also call `postinstall` script that will install Husky pre-commit hook
-   that will run AGLint on your changes before you commit them and will prevent you
-   from committing if there are any errors.
+   install [AGLint][aglint] and [Husky][husky]. After the installation is
+   complete, it will also call `postinstall` script that will install Husky
+   pre-commit hook that will run AGLint on your changes before you commit them
+   and will prevent you from committing if there are any errors.
 6. Create a new branch for your changes. Please use the following naming
    convention: `fix/123` where `123` is the issue number you're working on.
-7. Make your changes, test them and put them in the proper file or section of
-   the file. Please read the [Repository structure](#repository-structure)
+7. Make your changes, test them and put them in the proper file or section
+   of the file. Please read the [Repository structure](#repository-structure)
    section below to learn more about the structure of the repo.
-8. If everything is fine, commit your changes. Please always make separate branches
-   and commits for different issues and don't mix them in one. It is easier to
-   manage and review them that way.
-9. Push your new branch to your fork. This will create a new branch in your fork
-   with the same name as the one you created locally and doesn't affect the
-   original repo at this point.
+8. If everything is fine, commit your changes. Please always make separate
+   branches and commits for different issues and don't mix them in one. It
+   is easier to manage and review them that way.
+9.  Push your new branch to your fork. This will create a new branch in your
+    fork with the same name as the one you created locally and doesn't affect
+    the original repo at this point.
 10. Create a pull request from your fork to this repo and wait for the review.
     AGLint will run automatically on your PR and will report any errors.
     If there are any errors, fix them and push your changes to your fork.
