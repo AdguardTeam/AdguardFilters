@@ -7,12 +7,16 @@
     <img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master"
          alt="Linter workflow status" />
     <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/GPL-3.0-only" alt="License: GPL-3.0-only" />
+        <img src="https://img.shields.io/github/license/AdguardTeam/AdguardFilters" alt="License: GPL-3.0-only" />
     </a>
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/AdguardTeam/AdguardFilters">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/AdguardTeam/AdguardFilters" />
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/AdguardTeam/AdguardFilters">
+    <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/AdguardTeam/AdguardFilters">
 </p>
 
 <p align="center">
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/adguard_filters.png" />
+    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking_shield.png" />
 </p>
 
 This is the place where we create filters for [AdGuard][adguard] and other
@@ -29,10 +33,6 @@ our filters, improve them, and keep them current.
 
 We are proud of the fact that AdGuard Filters are among the most actively
 developed content-blocking filter lists available, if not the most.
-
-<p>
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/adguard_filters_strong.png" />
-</p>
 
 [adguard]: https://adguard.com/
 
