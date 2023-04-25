@@ -1,50 +1,62 @@
 name: AGLint
 
+env:
+  NODE_VERSION: 16
+
 on:
   push:
     branches:
       - master
     paths:
-      - '**/*.txt'
+      - "**/*.txt"
   pull_request:
     branches:
       - master
     types:
       - opened
     paths:
-      - '**/*.txt'
+      - "**/*.txt"
 
 jobs:
   lint:
+    name: Run AGLint
     runs-on: ubuntu-latest
     steps:
       - name: Check out to repository
         uses: actions/checkout@v3
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
-    
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      
+
+      # If the linter found any errors, it will exit with a non-zero code,
+      # which will cause the job to fail
       - name: Run AGLint
         run: yarn lint
 
-      - name: Conclusion
-        # Run always, even if previous steps are skipped or failed
-        if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
-        uses: technote-space/workflow-conclusion-action@v3
-      
-      - name: Send Slack notifications on failure
-        # Run only if previous steps are failed
-        if: ${{ failure() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
-        uses: 8398a7/action-slack@v3
+  notify:
+    name: Send Slack notification on failure
+    runs-on: ubuntu-latest
+    # We should wait for the lint job to finish before handling the notification
+    needs: lint
+    # With always() we can run this job even if the previous job failed, but we also
+    # should check if the event is push or the PR is coming from the same repository
+    if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    steps:
+      # Get the workflow conclusion
+      - uses: technote-space/workflow-conclusion-action@v3
+
+      # Send a Slack notification if the conclusion is failure
+      - uses: 8398a7/action-slack@v3
         with:
-          status: ${{ env.WORKFLOW_CONCLUSION }}
+          status: failure
           fields: workflow, repo, message, commit, author, eventName, ref
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ env.WORKFLOW_CONCLUSION == 'failure' }}
