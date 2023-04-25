@@ -1,18 +1,19 @@
 &nbsp;
 
+<p align="center">
+    <img width="275" alt="AdGuard Filters logo" src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking.svg" />
+</p>
+
 <h1 align="center">AdGuard Filters</h1>
 <h3 align="center">The place where ad trackers are actually blocked</h3>
 
 <p align="center">
-    <img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master"
-         alt="Linter workflow status" />
-    <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/GPL-3.0-only" alt="License: GPL-3.0-only" />
-    </a>
-</p>
-
-<p align="center">
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/adguard_filters.png" />
+    <a href="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml" target="_blank"><img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master" alt="AGLint status"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/AdguardTeam/AdguardFilters" alt="License"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/AdguardTeam/AdguardFilters" alt="GitHub contributors"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/graphs/commit-activity" target="_blank"><img src="https://img.shields.io/github/commit-activity/m/AdguardTeam/AdguardFilters" alt="GitHub commit activity"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/issues" target="_blank"><img src="https://img.shields.io/github/issues/AdguardTeam/AdguardFilters" alt="GitHub issues"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/issues?q=is%3Aissue+is%3Aclosed" target="_blank"><img src="https://img.shields.io/github/issues-closed/AdguardTeam/AdguardFilters" alt="GitHub closed issues"></a>
 </p>
 
 This is the place where we create filters for [AdGuard][adguard] and other
@@ -30,17 +31,13 @@ our filters, improve them, and keep them current.
 We are proud of the fact that AdGuard Filters are among the most actively
 developed content-blocking filter lists available, if not the most.
 
-<p>
-    <img src="https://cdn.adtidy.org/website/github.com/AdguardFilters/adguard_filters_strong.png" />
-</p>
-
 [adguard]: https://adguard.com/
 
 ## AdGuard Filters Policy
 
 Our filter policy is available [here][policy].
 
-[policy]: https://kb.adguard.com/general/adguard-filter-policy
+[policy]: https://adguard.com/kb/general/ad-filtering/filter-policy/
 
 ## Contributing to AdGuard
 
