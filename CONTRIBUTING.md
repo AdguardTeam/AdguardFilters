@@ -43,7 +43,7 @@ Here's what you need to do before you start working on the repo.
 11. If the review is successful, your changes will be merged into the `master`
     branch.
 
-Steps for maintainers:
+**Steps for maintainers:**
 
 1. Installation and initial setup are the same as for contributors, but you
    don't need to fork the repo.
