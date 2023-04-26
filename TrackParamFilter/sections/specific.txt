@@ -6,6 +6,16 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/148859
+||kmkk78.com^$removeparam=agentId
+! https://github.com/AdguardTeam/AdguardFilters/issues/148414
+$removeparam=ref,domain=shein.co.uk|shein.com
+$removeparam=from_country,domain=shein.co.uk|shein.com
+$removeparam=mallCode,domain=shein.co.uk|shein.com
+$removeparam=src_module,domain=shein.co.uk|shein.com
+$removeparam=src_tab_page_id,domain=shein.co.uk|shein.com
+$removeparam=phone_code,domain=shein.co.uk|shein.com
+$removeparam=ici,domain=shein.co.uk|shein.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148579
 ||nesine.com^$removeparam=adj_adgroup
 ||nesine.com^$removeparam=adj_creative
@@ -245,7 +255,7 @@ $removeparam=afid,domain=123chat.jp|kanochat.jp|live.fc2.com
 ||shopee.ph^$removeparam=stm_medium
 ||shopee.ph^$removeparam=stm_source
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131093
-||adguard.com^$removeparam=clid
+||adguard.$removeparam=clid
 ! Cognativex
 ||campaigns-serving.cognativex.com^$xmlhttprequest,removeparam=history_postids
 ||campaigns-serving.cognativex.com^$xmlhttprequest,removeparam=device_code
@@ -889,6 +899,9 @@ $removeparam=a_aid,domain=expressvpn.com|vpnarea.com
 ! ||amazon.*$removeparam=ie
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89163
 ! ||amazon.*/message-us$removeparam=origRef
+! https://github.com/AdguardTeam/AdguardFilters/issues/148958
+! Breaks navigation and removes choosed seller id on the item's page
+! ||amazon.*$removeparam=smid
 !
 ! ||amazon.*$removeparam=sr - breaks automatic jump to review details
 ! ||amazon.*$removeparam=s - breaks URLs which includes it to sort
@@ -930,7 +943,6 @@ $removeparam=a_aid,domain=expressvpn.com|vpnarea.com
 ||amazon.*$removeparam=qid
 ||amazon.*$removeparam=rdc
 ||amazon.*$removeparam=refRID
-||amazon.*$removeparam=smid
 ||amazon.*$removeparam=tag
 ||amazon.*$removeparam=ts_id
 ||amazon.*$removeparam=visitId
@@ -1127,3 +1139,11 @@ $removeparam=dclid
 ! Deezer
 ! https://github.com/AdguardTeam/AdguardFilters/pull/119475
 ||deezer.com^$removeparam=origin
+!
+! Special rules for AdGuard websites' test pages. The only purpose of these
+! rules is to make test pages work so that users could verify that AdGuard
+! is properly working.
+!
+!+ NOT_OPTIMIZED
+adguard.com,adguard.app##.hello_from_adguard_tracking_params
+!

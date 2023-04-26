@@ -1077,7 +1077,7 @@ overclockers.ru#@#.material-other-feed
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87125
 $cookie=/[0-9a-f]{32}/,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top
-$removeheader=location,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top
+$removeheader=location,domain=zannn.top|innal.top
 games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="dimisa"]
 games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
 games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet("prevent-setTimeout", "tick")
@@ -1473,6 +1473,9 @@ docviewer.yandex.ru,docviewer.yandex.by,docviewer.yandex.com,docviewer.yandex.co
 ||docviewer.yandex.ru/sw.js
 !#endif
 !
+! Yandex Games
+||yandex.*/games/$xmlhttprequest,jsonprune=\$..[rtb\, rtbAuctionInfo]
+!
 ! Yandex.Images
 ||yandex.*/images/$script,xmlhttprequest,replace=/^(.*?)"direct"\,(.*?)\$//
 !
@@ -1484,8 +1487,9 @@ docviewer.yandex.ru,docviewer.yandex.by,docviewer.yandex.com,docviewer.yandex.co
 ! Yandex.Weather
 /^https:\/\/www.yandex.\w+\/(weather|pogoda)\//$script,xmlhttprequest,jsonprune=\$.data.*.attributes,domain=yandex.*
 ! TODO: remove next two rules 2 weeks after release AdGuard apps with CL 1.11
-||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
-||yandex.*/pogoda/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=yandex.by|yandex.kz|yandex.ru
+||yandex.*/weather/$replace=/(^Ya\[\d+\]\(').*?"directTitle".*('\))\$/\$1\$2/,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
+||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
+||yandex.*/pogoda/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
 !
 !afisha.yandex.by,afisha.yandex.kz,afisha.yandex.ru#%#//scriptlet("abort-on-property-read", "window.IntersectionObserver")
 !+ PLATFORM(windows, mac, android)

@@ -6,6 +6,10 @@
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/149198
+isteshaltbar.de#?##secondary > .inner:has(div[class*="-hpa-atf"])
+! play3.de - left-over at top
+play3.de#?##pagewrapper__row > .container:has(> .row:only-child > div[data-borlabs-cookie-id="google-adsense"]:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148085
 cooknsoul.de#?#div[data-insertion-position]:has(> div > div[id^="traffective-ad"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146985
@@ -540,10 +544,11 @@ jetzt.de#?#.stream__list > li:has( > .teaser--spost)
 ! freundin.de - ads in teaser list and sponsored articles
 ! freundin.de#?#div[class]:has(> div[class] > div[class] > a[href*="e-commerce"])
 ! when style gets modified whole page is broken, therefore remove: true;
-freundin.de#$?#div[class]:-abp-has(> div[class] > div[class] > a[href*="e-commerce"]) { remove: true; }
+freundin.de#$?#div[class]:has(> div[class]:last-child > div[class] > div[class] > a[href*="e-commerce"]) { remove: true; }
 !
 freundin.de#?#.fullWidthPagePresenter > div[class] > div[class]:has(> div[class] > div[class] > div[class]:contains(Anzeige))
 freundin.de#?#div[class]:has(> div > div[class] > div[class] > div[class] > span:contains(Anzeige))
+freundin.de#?#div[class]:has(> div[class] > div[class] > a[rel] + div[class] svg[xmlns\:cc])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38629
 rennrad-news.de#?#.js-replyNewMessageContainer > .message--post[data-author="MTB-News.de"]:has(div[id^="div-gpt-ad"])
 ! winfuture-forum.de - ad category
@@ -694,6 +699,7 @@ pcgames.de#?#.column > .module:has(> div[class] > div[class] > .item > span > a[
 ! https://github.com/AdguardTeam/AdguardFilters/issues/8048
 wallstreet-online.de#?#.extract > strong:contains(Anzeige)
 !
+wetter.de#?#.article-teaser-list__articles > div > div.v-spacing-md:has(> div.showheroes-ad-slot)
 ww-kurier.de#?#.uk-width-1-4 > div.uk-panel:has(> div.uk-text-center > a.ads-link)
 ww-kurier.de,ak-kurier.de#?#.uk-article > div:has(> p.rubric-ads)
 win-10-forum.de#?#.fh-sidebar > div.block-container:has(> div.fh-sidebar-top)
