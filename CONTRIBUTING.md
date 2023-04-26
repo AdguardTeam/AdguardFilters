@@ -7,18 +7,61 @@ instructions below to make your ideas come to life faster!
 
 ### Prepare
 
-1. Install [nodejs][nodejs] and [yarn][yarn].
-2. Install [Visual Studio Code][vscode] with the
+Here's what you need to do before you start working on the repo.
+
+**Steps for contributors:**
+
+1. If you don't have a GitHub account, [create one][createaccount].
+2. Install [Git][git], [Node.js][nodejs] and [Yarn][yarn]. These are essential
+   tools for working with the repo.
+3. Install [Visual Studio Code][vscode] with the
    ["Adblock" syntax plugin][vscodeplugin]. We recommend using this editor to
    write filter rules.
-3. [Clone][clonerepo] (or fork and clone) this repo.
-4. Run `yarn install` to install necessary dependencies.
+4. Fork the original repo and clone *your fork* (since you don't have write
+   access to the original repo). If you don't know how to do it, please read
+   [this guide][clonerepo].
+5. Install dependencies by running `yarn` in the root of the repo. This will
+   install [AGLint][aglint] and [Husky][husky]. After the installation is
+   complete, it will also call `postinstall` script that will install Husky
+   pre-commit hook which will run AGLint on your changes before you commit
+   them and will prevent you from committing if there are any errors.
+6. Create a new branch for your changes. Please use the following naming
+   convention: `fix/123` where `123` is the issue number you're working on.
+7. Make your changes, test them and put them in the proper file or section
+   of the file. Please read the [Repository structure](#repository-structure)
+   section below to learn more about the structure of the repo.
+8. If everything is fine, commit your changes. Please always make separate
+   branches and commits for different issues and don't mix them in one. It
+   is easier to manage and review them that way.
+9. Push your new branch to your fork. This will create a new branch in your
+    fork with the same name as the one you created locally and doesn't affect
+    the original repo at this point.
+10. Create a pull request from your fork to this repo and wait for the review.
+    AGLint will run automatically on your PR and will report any errors.
+    If there are any errors, fix them and push your changes to your fork.
+    If AGLint passes, your PR will be reviewed by a maintainer.
+11. If the review is successful, your changes will be merged into the `master`
+    branch.
 
+**Steps for maintainers:**
+
+1. Installation and initial setup are the same as for contributors, but you
+   don't need to fork the repo.
+2. If you want to skip Husky pre-commit hook locally, use
+   `git commit --no-verify -m "commit message"`
+   but it is not recommended.
+3. If you want to skip check on GitHub Actions, add `[skip ci]` to the commit
+   message.
+
+[aglint]: https://github.com/AdguardTeam/AGLint
+[clonerepo]: https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository
+[createaccount]: https://github.com/signup
+[git]: https://git-scm.com/downloads
+[husky]: https://typicode.github.io/husky
 [nodejs]: https://nodejs.org/en/download
-[yarn]: https://classic.yarnpkg.com/en/docs/install
 [vscode]: https://code.visualstudio.com/download
 [vscodeplugin]: https://marketplace.visualstudio.com/items?itemName=adguard.adblock
-[clonerepo]: https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository
+[yarn]: https://classic.yarnpkg.com/en/docs/install
 
 ### Workflow
 
