@@ -8,6 +8,12 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/149137
+eromanga-numa.com#@#.ad_widget
+! https://github.com/AdguardTeam/AdguardFilters/issues/148073
+lemino.docomo.ne.jp#%#//scriptlet('prevent-xhr', 'doubleclick.net')
+||g.doubleclick.net/gampad/ads?$xmlhttprequest,redirect=nooptext,important,domain=lemino.docomo.ne.jp
+@@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=lemino.docomo.ne.jp
 ! densetsuav.blog.2nt.com,gjdsk2012.blog.2nt.com etc. anti-adb
 blog.2nt.com#@#.adspace
 ! https://twitter.com/CASI_TOSHI/status/1638937652375490561
@@ -183,8 +189,6 @@ coolpan.net#%#//scriptlet('set-constant', 'flgDisplay', 'false')
 coolpan.net#@#.ad-area
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=coolpan.net,important
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=coolpan.net
-! https://github.com/AdguardTeam/AdguardFilters/issues/96901
-itby.net#%#//scriptlet('abort-current-inline-script', 'onload', 'innerHTML')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=followcheck.itby.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96832
@@ -235,15 +239,15 @@ nordot.app#%#//scriptlet('abort-current-inline-script', 'document.createElement'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
-realtime-chart.info#?#.news_b table[border="0"][cellpadding="5"][style="background:#fff"] > tbody >  tr[bgcolor="#fff"] > td.newsarea[style] > a.wl[href^="https://a.r10.to"]:upward(2)
-realtime-chart.info#$?#div[id] > [id]:has(> [style="top:1636px"]) + * > [style="top:1636px"] > [onclick]:not(:has(td > a))  { pointer-events: none !important; }
-realtime-chart.info#$?#div[id] > [id]:has(> [style="top:1636px"]) + * > [style="top:1636px"] > [style*="font-size:"]:is(b, span, a):not(:has(td > a)) { font-size: 0 !important; pointer-events: none !important; }
+realtime-chart.info#?#.news_b table[border="0"][cellpadding="5"][style="background:#fff"] > tbody >  tr[bgcolor="#fff"] > td.newsarea[style] > a.wl[href^="https://a"][href*=".to/"]:upward(2)
+realtime-chart.info#$?#div[id] > [id]:has(> [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/"):matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/")) + * > [style^="top:1"] > [onclick]:not(:has(td > a))  { pointer-events: none !important; }
+realtime-chart.info#$?#div[id] > [id]:has(> [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/")) + * > [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/") > [style*="font-size:"]:is(b, span, a):not(:has(td > a)) { font-size: 0 !important; pointer-events: none !important; }
 realtime-chart.info#$?#td[style^="vertical-align"] div[style*="top"]:matches-attr("style"="/^\s*top\s*:\s*3\d{2}\.?\d*px;?\s*/") > a[id][onmousedown] { pointer-events: none !important; }
 realtime-chart.info#$?#td[style^="vertical-align: top"] [onclick*="()"][target="_blank"]:has([style*="background-image: url\(\"data:image/jpg;"]:matches-attr("style"="/height\s*:\s*[12]\d{2}\.?\d*px/")) { pointer-events: none !important; }
 realtime-chart.info#$?#td[style^="vertical-align"] [style*="top"]:matches-attr("style"="/^\s*top\s*:\s*3\d{2}\.?\d*px;?\s*/") > a[id][onmousedown] { pointer-events: none !important; }
 ||realtime-chart.info^$subdocument,domain=sekai-kabuka.com
 realtime-chart.info#$?#td[style^="vertical-align"] [onclick]:has(> img[src*="/clip_"] + b):not(:has(b td > a[href])) { pointer-events: none !important; }
-sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style="width: 281px;"]:contains(不具合が) { z-index: -1 !important; }
+sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style^="width: 2"]:matches-attr("style"="/width\s*:\s*2\d{2}\.?\d*px/"):contains(不具合が) { z-index: -1 !important; }
 sekai-kabuka.com#$?#table[width="762px"] table[width="100%"] td[align="center"] > div > div[style$="width:728px;line-height: 1.2;height: 90px;"]:has(> ins.adsbygoogle[style="display:inline-block;width:728px;height:90px;position:absolute"] > iframe#aswift_1) { height: 1px !important; }
 sekai-kabuka.com#$#div[id][class][style^="position:relative;background:#000;"][style*="width:729px;"][style*="height: 90px;"] { height: 1px !important; }
 sekai-kabuka.com#%#//scriptlet('remove-attr', 'onclick', 'div[data-js][style*="background"]', 'stay')
