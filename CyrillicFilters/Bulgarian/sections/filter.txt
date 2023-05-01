@@ -41,10 +41,12 @@ filmisub.com#%#//scriptlet('prevent-fetch', 'adskeeper')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7027
 @@||seirsanduk.com/ad-server.js
 seirsanduk.com#%#window.canRunAds = true;
-! https://github.com/AdguardTeam/AdguardFilters/issues/6311
-bg-gledai.tv##.squarebanner
-!+ PLATFORM(ios, ext_android_cb)
-@@||bg-gledai.tv^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/148045
+bg-gledai.*#%#//scriptlet('set-constant', 'chp_adblock_browser', 'noopFunc')
+!#if (adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bg-gledai.*
+@@||bg-gledai.$generichide
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101488
 kinofen.net#%#//scriptlet("set-constant", "noAdBlock", "true")
 @@||kinofen.net/templates/kinofen/adblock/*.js
@@ -64,6 +66,9 @@ blitz.bg#$#div[id^="div-gpt-ad"] { position: absolute!important; left: -3000px!i
 !
 ! NOTE: Specific
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/148045
+bg-gledai.*##.squarebanner
+bg-gledai.*##.featbox
 zamunda.*##a[href^="https://dmsbg.com/"]
 ||arenabg.com/ws.js
 arenabg.com##iframe[data-src="https://webcafe.bg/arena.html"]
