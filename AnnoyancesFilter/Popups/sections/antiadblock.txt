@@ -14,8 +14,6 @@
 !   SECTION: Anti-adblock - Yandex direct
 !   NOTE: Yandex
 !
-! Yandex Games
-[$path=/games]yandex.ru#%#//scriptlet('json-prune', 'rtb rtbAuctionInfo')
 ! main page
 yandex.*##._size_big > div.card-wrapersome
 ! turbopages
@@ -31,12 +29,16 @@ afisha.yandex.ru##div[style="width:100%;height:240px;display:block"]
 ! Yandex Games
 yandex.ru##div[class*="-R-A-"]
 yandex.ru##.stack > div[class^="sticky-"]
+! Yandex.Images
+yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
+!#if (!ext_ublock)
+! Yandex Games
+[$path=/games]yandex.ru#%#//scriptlet('json-prune', 'rtb rtbAuctionInfo')
 ! Yandex.Weather
 [$path=/pogoda]yandex.*##div[class*="Advert_fullScreenContainer__"]
 [$path=/weather]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 [$path=/pogoda]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 [$path=/pogoda]yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
-!#if (!ext_ublock)
 ! Yandex.Video, Dzen
 dzen.ru,yandex.*#%#//scriptlet("abort-on-property-write", "Object.prototype.adSystem")
 ! Yandex.TV
@@ -49,11 +51,10 @@ zen.yandex.*##.article-sticky-target > div.article__content.article__content_lim
 zen.yandex.ru,zen.yandex.by,zen.yandex.com,zen.yandex.com.tr,zen.yandex.fr,zen.yandex.kz,zen.yandex.md#%#//scriptlet("abort-on-property-read", "Object.prototype.adv")
 ! docviewer
 docviewer.yandex.*#%#//scriptlet("abort-on-property-read", "Object.prototype.YaAdtuneFeedbackType")
+! Yandex.Images
+[$path=/images/]yandex.*##div[data-state*="/image/new/serp/page/commercial/incut"]
 !#endif
 !
-! Yandex.Images
-yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
-[$path=/images/]yandex.*##div[data-state*="/image/new/serp/page/commercial/incut"]
 ! TODO: remove the hint below after this task is solved
 ! https://github.com/uBlockOrigin/uBlock-issues/issues/2465
 !+ NOT_PLATFORM(ext_ublock)
@@ -416,6 +417,7 @@ reddit.com,reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion#@#.Sid
 !
 ! Add same rules to the Admiral section of Tracking Protection filter
 !
+||longingtrees.com^$third-party
 ||knottyswing.com^$third-party
 ||beamvolcano.com^$third-party
 ||blackbrake.com^$third-party
@@ -585,12 +587,19 @@ w3resource.com#@#.ad-placement
 usatoday.com#@#.ad-slot
 @@||t-online.de/s/paper/public/js/ads/adfox/ad.js
 @@||t-online.de/s/paper/public/js/ads/adex.js
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=moto.it
 !#safari_cb_affinity
 !
 !
 ! SECTION: Anti-adblock - Regular rules
 ! Do not forget about '!#safari_cb_affinity' section for exclusions
 !
+vnexpress.net##.wrap-hd-adblock
+wooseotools.com##div[style^="position: fixed; width: 100vw;"][style$="z-index: 999999;"]
+smods.ru###ab-warning
+onlineshopping.flysas.com###AdBlockModal
+casper.tw##.container > div.row > div.rounded-top + div.d-lg-block
+boylove.cc##.blocked_hint_msg_pc
 videoaktiv.de###_su1
 videoaktiv.de###sp-rect
 strategium.ru#%#//scriptlet('prevent-setTimeout', 'adblock')
@@ -1293,7 +1302,7 @@ old-games.ru,cenakrasna.info###adb
 olegon.ru#%#AG_onLoad(function() { window.deta = function() {}; });
 olkino.com##.alert-block
 omaweetraad.nl##.banner-block
-one-click-tutorials.info,solvetube.site,getintopc.com#%#//scriptlet("set-constant", "pqdxwidthqt", "false")
+easy-learn-tech.info,one-click-tutorials.info,solvetube.site,getintopc.com#%#//scriptlet('set-constant', 'pqdxwidthqt', 'false')
 onehack.us##center.abb_parent
 oneman.gr#%#//scriptlet("abort-current-inline-script", "atob", "-10000px")
 onlinehashcrack.com#%#//scriptlet("set-constant", "canRunAds", "true")
@@ -1481,7 +1490,6 @@ ingles.com,spanishdict.com#%#//scriptlet("prevent-element-src-loading", "script"
 ingles.com,spanishdict.com##.whitelist-state-show
 ingles.com,spanishdict.com#%#//scriptlet("set-constant", "SD_BLOCKTHROUGH", "true")
 ingles.com,spanishdict.com#?#main > div[class*="-"] > div[class^="_"] > div[class^="_"] > div[class]:has(> div[class^="_"]:contains(Do your part to support us))
-spankwire.com###abMessage
 spoiler.net#?#.pull-right:has(> div.banner-ad)
 sport-express.ru##.se-adv-notice
 sportetstyle.fr##div[id^="cookie"][style="display: block;"]
