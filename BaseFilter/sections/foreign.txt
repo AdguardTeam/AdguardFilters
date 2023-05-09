@@ -1187,6 +1187,14 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/150409
+! Sometimes this video player only shows ads and then redirects to another video
+! so setting autoplay to true causes that it's redirected automatically
+! and videos without ads will not play automatically anyway
+media.joj.sk#%#//scriptlet('set-constant', 'settings.autoplay', 'true')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=media.joj.sk
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=media.joj.sk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149301
 pctuning.cz###sda-adb-checker
 pctuning.cz#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', '.detect()&&("true"!==')
