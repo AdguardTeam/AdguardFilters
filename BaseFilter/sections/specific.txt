@@ -167,14 +167,6 @@ youtube.com##ytm-promoted-sparkles-web-renderer
 ! This one might be needed when the page is loaded for the first time
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adPlacements', 'undefined')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'playerResponse.adPlacements', 'undefined')
-! This one handles an XHR request for YT player data
-! smart JSON override: https://gist.github.com/ameshkov/0c5148f243ffe9d8e40fd9ee11f142f4
-! smartJSONParseOverride('adPlacements', [], /.*/);
-! smartJSONParseOverride('playerAds', [], /.*/);
-! Use this rule until all clients update to 7.5 (currently there are some on old versions)
-! This rule has been disabled, but may come in useful in the future
-! !+ NOT_PLATFORM(ext_ff, ext_opera, ext_ublock)
-! youtube-nocookie.com,youtube.com#%#(function(){var overrideObject=function(obj,propertyName,overrideValue){if(!obj)return false;var overriden=false;for(var key in obj)if(obj.hasOwnProperty(key)&&key===propertyName){obj[key]=overrideValue;overriden=true}else if(obj.hasOwnProperty(key)&&typeof obj[key]==="object")if(overrideObject(obj[key],propertyName,overrideValue))overriden=true;if(overriden);return overriden};var jsonOverride=function(propertyName,overrideValue){JSON.parse=new Proxy(JSON.parse,{apply:function(){var obj=Reflect.apply.apply(Reflect,arguments);overrideObject(obj,propertyName,overrideValue);return obj}});Response.prototype.json=new Proxy(Response.prototype.json,{apply:function(){var promise=Reflect.apply.apply(Reflect,arguments);return new Promise(function(resolve,reject){promise.then(function(data){overrideObject(data,propertyName,overrideValue);resolve(data)})["catch"](function(error){return reject(error)})})}})};jsonOverride("adPlacements",[]);jsonOverride("playerAds",[])})();
 !
 ! Modify YT xhr responses
 !+ NOT_PLATFORM(ext_ublock)
