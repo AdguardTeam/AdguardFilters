@@ -5,13 +5,6 @@
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
 !
-! https://github.com/AdguardTeam/CoreLibs/issues/1763
-! Website checks Content-MD5 in response headers and if it's empty does not display a content
-! Something like:
-! var a="mck",c=new XMLHttpRequest;c.open("HEAD",window.location.href+(-1<(window.location.href+"").indexOf("?")?"&":"?")+"method=HEAD",!1),c.send(),a=200==c.status&&c.getResponseHeader("Content-MD5")?c.getResponseHeader("Content-MD5"):a;
-! "mck" != a && /* display content */
-! The rule below modifies the script, so content should be loaded even if there is no Content-MD5 in the response headers
-||devfaq.ru/js/lst_ans_att.js$replace=/"mck"!=a/1===1/,script,domain=devfaq.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145289
 ||swarm.video/uhdstream.js$replace=/_wm\.format\.popunder/a/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142397
