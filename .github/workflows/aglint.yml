@@ -59,4 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # Matrix is required if the fields contain job or took
+          # See https://action-slack.netlify.app/usage/fields/
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
         if: ${{ env.WORKFLOW_CONCLUSION == 'failure' }}
