@@ -14,67 +14,55 @@
 !   SECTION: Anti-adblock - Yandex direct
 !   NOTE: Yandex
 !
-! main page
-yandex.*##._size_big > div.card-wrapersome
-! turbopages
-turbopages.org#%#//scriptlet('json-prune', '*.blockId')
-turbopages.org,yandex.*#?#.unit_rect[data-log-node]:has(> div[class*="_type_partner "])
-turbopages.org,yandex.ru##.unit_rect[data-log-node] > div[class*="_type_partner "]
-yandex.*##.advert-js
-yandex.*#?#span.unit_rect > div.ext-embed:has(> iframe[src^="https://yastatic.net/s3/turbo-static"])
-! Yandex.Afisha
-afisha.yandex.ru#%#//scriptlet('prevent-eval-if', 'bidReqIdStr')
-afisha.yandex.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderRtbBlock')
-afisha.yandex.ru##div[style="width:100%;height:250px;display:block"]
-afisha.yandex.ru##div[style="width:100%;height:240px;display:block"]
-! Yandex Games
-yandex.ru##div[class*="-R-A-"]
-yandex.ru##.stack > div[class^="sticky-"]
 ! Yandex.Images
-yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
-!#if (!ext_ublock)
-! Yandex Games
-[$path=/games]yandex.*#%#//scriptlet('json-prune', 'rtb rtbAuctionInfo')
-[$path=/games]yandex.*##div[style="width: 240px; margin-top: -32px; height: 100vh;"]
-! Yandex.Weather
-[$path=/pogoda]yandex.*##div[class*="Advert_fullScreenContainer__"]
-[$path=/weather]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
-[$path=/pogoda]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
+[$path=/images]yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
+!
+! Yandex.Pogoda
 [$path=/pogoda]yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
-! Yandex.Video, Dzen
-dzen.ru,yandex.*#%#//scriptlet("abort-on-property-write", "Object.prototype.adSystem")
+!
+! Yandex.Video
+[$path=/video]yandex.*#%#//scriptlet('json-prune', 'seatbid')
+!
+! Yandex.Afisha
+afisha.yandex.*#%#//scriptlet('prevent-eval-if', 'bidReqIdStr')
+!
+! Yandex.Disk
+docviewer.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.YaAdtuneFeedbackType')
+!
+! Yandex.Mail
+mail.yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
+!
 ! Yandex.TV
-tv.yandex.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
-tv.yandex.ru##div[id^="adfox_"]
-! Yandex.Zen
+tv.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
+tv.yandex.*#%#//scriptlet('json-prune', 'rtb')
 !
-! docviewer
-docviewer.yandex.*#%#//scriptlet("abort-on-property-read", "Object.prototype.YaAdtuneFeedbackType")
-! Yandex.Images
-[$path=/images/]yandex.*##div[data-state*="/image/new/serp/page/commercial/incut"]
-!#endif
+! Yandex.Realty
+realty.ya.*#%#//scriptlet('json-prune', 'rtb direct')
 !
-! TODO: remove the hint below after this task is solved
-! https://github.com/uBlockOrigin/uBlock-issues/issues/2465
-!+ NOT_PLATFORM(ext_ublock)
-[$path=/images/]yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
-! kinopoisk.ru - media ads in trailers
+! Turbopages
+turbopages.org#%#//scriptlet('json-prune', '*.blockId')
+!
+! Yandex.Games
+[$path=/games]yandex.*#%#//scriptlet('json-prune', 'direct rtb')
+!
+! Yandex.Sport
+[$path=/sport]yandex.*#%#//scriptlet('json-prune', 'rtb seatbid')
+!
+! Yandex.Q
+[$path=/q]yandex.*#%#//scriptlet('json-prune', 'direct rtb')
+!
+! Kinopoisk
+www.kinopoisk.ru#%#//scriptlet('set-constant', 'Object.prototype.renderTo', 'undefined')
 www.kinopoisk.ru##div[class^="toaster-container"]
 www.kinopoisk.ru##div[class^="styles_adBlockWarningRoot"]
-www.kinopoisk.ru##div[class*="__AMNhR styles_"]
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.mediaAds")
-! www.kinopoisk.ru#%#//scriptlet("abort-on-property-read", "Object.prototype.createVideoBannerAdLite")
-www.kinopoisk.ru#%#//scriptlet('set-constant', 'Object.prototype.renderTo', 'undefined')
 !
-! Yandex.Turbo
-yandex.*##.page__result > p ~ div[class*="_type_partner "]
-!#endif
-! Yandex.Realty
-! breaks the map
-!realty.ya.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.direct')
-realty.ya.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderRtbBlock')
-realty.ya.ru##div[class^="OfferCard_"][class*="Ad"]
+! auto.ru
+auto.ru#%#//scriptlet('json-prune', 'ads')
+auto.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.RenderMarks')
+!
+! END: Yandex
+!
+!
 ! otzovik
 otzovik.com##td[colspan] > div[style^="background-color: #ffd2ca;"]
 otzovik.com#%#//scriptlet('prevent-eval-if', 'xored')
@@ -82,9 +70,6 @@ otzovik.com#%#//scriptlet("abort-on-property-read", "Object.prototype.RtbLoadDon
 otzovik.com#%#//scriptlet("abort-on-property-read", "Object.prototype.RtbBlockRenderStart")
 ! irecommend.ru
 irecommend.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
-! END: Yandex
-!
-!
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142800
 !+ NOT_PLATFORM(windows, mac, android)

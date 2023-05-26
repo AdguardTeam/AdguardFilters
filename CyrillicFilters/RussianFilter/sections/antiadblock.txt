@@ -1004,6 +1004,50 @@ tests24.ru#$#.g_rt { height: 1px!important;}
 ! https://github.com/AdguardTeam/AdguardFilters/issues/3197
 @@||awaps.yandex.net/*.js$domain=piter.tv
 !
+!
+! START: VK Group
+!
+!
+! old cookies: Bismuth|computer|discussion|^specific\$|^engineer|instruction|telecommunications|pronunciation|involved|^adequate
+! do not remove cookies that contain `sso_`
+$cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru
+!
+dzen.ru,auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
+! TODO: add domains auto.ru and kinopoisk.ru to the rule below after the next release of AG for macos (current 2.3.2)
+$cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
+! zen.yandex.ru - broken resources
+dzen.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
+!
+! Dzen main page
+[$path=/^\/$|\/\?/]dzen.ru###ya-dist
+dzen.ru##div[class^="dzen-desktop__link_bro-"]
+dzen.ru##div[class^="dzen-desktop__teaser-"]
+[$path=/a/]dzen.ru##div[class*="_position_"][class$="_direct"]
+!
+! Dzen News
+dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[class*="__loader "]
+[$path=/pogoda]dzen.ru##.adv_type_rtb
+!
+! Ad in Dzen articles
+[$path=/a/]dzen.ru##div[class*="_position_bottom "] > div > div[style="width: 100%;"]
+[$path=/a/]dzen.ru##div[class*="_position_inner "] > div > div[style="width: 100%;"]
+[$path=/a/]dzen.ru##div[class*="_position_right "][style*="max-height: 600px;"]
+dzen.ru##.ad-split-embed
+!
+! Yandex browser popup
+dzen.ru##.zen-page div[class^="loading-boundary-stacked-layout__content"] > div:not([class])
+!
+! Dzen feed
+dzen.ru##.card-rtb-one-column-stub
+[$path=/media]dzen.ru##div[class$="__ad-content"]
+!
+! Dzen Video
+dzen.ru##._is-header-after-player > div > div > link + iframe[width="100%"]
+dzen.ru##.video-card-stub-view
+! ad in the zen videos
+[$path=/video]dzen.ru##div[class$="sidebar__item"] div[class*="-sidebar__ad"]
+[$path=/video]dzen.ru##.panel-loadable-view__feed > div:not([class]):not([data-item-id])
+!
 ! Common rules
 ://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
 ||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
@@ -1029,6 +1073,9 @@ minigames.mail.ru$$script[tag-content="yandexSlot ="]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43985
 @@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19112
+!
+! END: VK Group
+!
 !
 !*
 !*****
@@ -1399,23 +1446,6 @@ satsis.ru##.adb
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32465
 sdamgia.ru$$script[tag-content="adb=1"]
 ||sdamgia.ru^$cookie=adb
-!
-! START: Yandex
-!
-! old cookies: Bismuth|computer|discussion|^specific\$|^engineer|instruction|telecommunications|pronunciation|involved|^adequate
-! do not remove cookies that contain `sso_`
-$cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
-!
-dzen.ru,auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
-! TODO: add domains auto.ru and kinopoisk.ru to the rule below after the next release of AG for macos (current 2.3.2)
-$cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|businessman.ru|dni.ru|e1.ru|echo.msk.ru|fb.ru|forexpf.ru|gismeteo.by|gismeteo.kz|gismeteo.md|gismeteo.ru|gorodrabot.ru|infoniac.ru|it-tehnik.ru|kakprosto.ru|liveinternet.ru|mk.ru|nkj.ru|ohotniki.ru|oko-planet.su|otzovik.com|rambler.ru|razlozhi.ru|sdamgia.ru|syl.ru|vz.ru
-$cookie=/^los\$/,domain=auto.ru
-! zen.yandex.ru - broken resources
-~passport.yandex.ru,dzen.ru,yandex.md,yandex.by,yandex.com,yandex.com.tr,yandex.fr,yandex.kz,yandex.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
-!
-! makes kinopoisk.ru redirect to sso.kinopoisk.ru and back endlessly
-! ||kinopoisk.ru^$cookie=/consultant|introductory|knowledge|transfer|technology|workplace/
-!
 ! gismeteo domains: gismeteo.ru,gismeteo.by,gismeteo.pl,gismeteo.lt,gismeteo.md,gismeteo.kz
 gismeteo.by#%#//scriptlet("abort-on-property-write", "yaads")
 !
@@ -1425,83 +1455,134 @@ echo.msk.ru,kakprosto.ru#%#//scriptlet('abort-on-property-read', 'Object.prototy
 echo.msk.ru$$script[tag-content="DisplayAcceptableAdIfAdblocked"]
 otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length="2500"]
 !
-! Yandex main page
-@@||awaps.yandex.net/*_.htm&link$domain=yandex.ru
-yandex.ru#$#.main > div.container__banner { pointer-events: none!important; cursor: default; }
 !
-! Yandex search
-@@//yandex.*/yandsearch?clid=$generichide
-@@//yandex.*/search/*$generichide
-@@//www.yandex.*/search/*$generichide
+! START: Yandex
 !
-! For all Yandex portals
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-||yastatic.net/*.bundles/*.js$replace=/var n=\{\};return/var n={};return;/,domain=~disk.yandex.ru
-! new style
-||static-mon.yandex.net/static/main.js?pid=yandex_news$replace=/result\.push\(String\.fromCharCode\(xored\)\);}return result\.join\(""\);/}return "this.init = function() { \/* Absolutely nothing *\/ }; ";/
-! old style
-! ||static-mon.yandex.net/static/main.js?pid=$replace=/function r\(e\,t\,n\){f\.u\(n\)\,p.detect/function r(e\,t\,n){return;var __x=/
-! changed old
-||afisha.yandex.*/static/main.js$replace=/function r\(e\,t\,n\)\{f\._e\(n\)\,p.detect/function r\(e\,t\,n\)\{return;var __x=/
-||static-mon.yandex.net/static/main.js?pid=$replace=/function r\(e\,t\,n\)\{f\._e\(n\)\,p.detect/function r\(e\,t\,n\)\{return;var __x=/
-||static-mon.yandex.net/static/main.js?pid=kinopoisk.ru$replace=/[\s\S]+/this.init=function(){}/,important
-||static-mon.yandex.net/static/main.js?pid=autoru$replace=/[\s\S]+/this.init=function(){}/,important
-! Main page
-||yastatic.net/www/*.js$replace=/home.getData\("adb.data"\);/home.getData("adb.data");return;/
-! other sites(+ 24smi.org)
-||e1.ru/static/build/js/main.js$replace=/"init":function\(t\)\{function i\(e\)/"init":function(t){function i(e){return;/
-||dni.ru/static/js/main.js$replace=/function\(e\,t\,n\)\{/function\(e\,t\,n\)\{return;/
-!#endif
 !
-! Yandex.Docviewer
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-docviewer.yandex.ru,docviewer.yandex.by,docviewer.yandex.com,docviewer.yandex.com.tr,docviewer.yandex.fr,docviewer.yandex.kz##.js-doc-html > div[class]:empty
-||docviewer.yandex.ru/sw.js
-!#endif
+! ya.ru - main page
+ya.ru##.banner
 !
-! Yandex Games
-||yandex.*/games/$xmlhttprequest,jsonprune=\$..[rtb\, rtbAuctionInfo]
+! Yandex.Search
+yandex.*##.mini-suggest__popup-content > li[data-type="nav"]
+[$path=/search]yandex.*#?#.serp-list > li.serp-item:has(> div[data-bem*="organic"] > div.organic__title-wrapper > a[href][data-event-required])
 !
 ! Yandex.Images
 ||yandex.*/images/$script,xmlhttprequest,replace=/^(.*?)"direct"\,(.*?)\$//
-!
-! yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
-!
-! Yandex.News
-://yandex.*/news/$replace=/(^\{.*"common":.+"stationaryConnection":.+"commonRtbVisibility".+)|(^.+"rtb":.+visibilitySettings.+)|(^.+"blockId":.+visibilitySettings.+)//,script,other,domain=yandex.by|yandex.kz|yandex.ru
-!
-! Yandex turbo-pages
-||turbopages.org^$xmlhttprequest,jsonprune=\$..[direct\, rtbAuctionInfo]
-!
-! Yandex.Weather
-/^https:\/\/www.yandex.\w+\/(weather|pogoda)\//$script,xmlhttprequest,jsonprune=\$.data.*.attributes,domain=yandex.*
-! TODO: remove next two rules 2 weeks after release AdGuard apps with CL 1.11
-||yandex.*/weather/$replace=/(^Ya\[\d+\]\(').*?"directTitle".*('\))\$/\$1\$2/,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
-||yandex.*/weather/*/*/$replace=/.renderBanner\(function\(\)\{return/.renderBanner\(function\(\)\{return;/,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
-||yandex.*/pogoda/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.com.tr|yandex.fr|yandex.kz|yandex.ru
-!
-!afisha.yandex.by,afisha.yandex.kz,afisha.yandex.ru#%#//scriptlet("abort-on-property-read", "window.IntersectionObserver")
-!+ PLATFORM(windows, mac, android)
-!afisha.yandex.by,afisha.yandex.kz,afisha.yandex.ru#%#AG_abortOnPropertyRead('window.IntersectionObserver');
+yandex.*#?#div[role="list"] div[class*="-Incut"]:has(div[id^="viewer_rim_direct"])
+yandex.*##.serp-list > div.incut
+yandex.*##.DirectInline
 !
 ! Yandex.Maps
+yandex.*##.search-advert-badge
+yandex.*##.card-header-media-view__list > div.card-header-media-view__advert-wrap
+yandex.*#?#.business-card-title-view__actions > div.business-card-title-view__advert
+yandex.*#?#.business-card-title-view__actions > div.business-card-title-view__advert + div.business-card-title-view__call-to-action
+[$path=/maps]yandex.*#?#.business-card-view__overview > div.business-card-view__section > div.business-card-view__offers:upward(1)
 !
-! Yandex.Mail
-||mail.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,important,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
+! Yandex.Pogoda
+||yandex-pogoda.static-storage.net/*/*/*$script,replace=/adblock//
 !
-! Yandex.TV
-tv.yandex.by,tv.yandex.kz,tv.yandex.ru$$script[tag-content="adblockDetected"][max-length="5000"]
+! Yandex.Market
+!
+! Yandex.Video
+||yandex.*/video/*/*/*/*_$script,replace=/Ya.*RtbBidReqID.*//
 !
 ! Yandex.Afisha
+||yandex-afisha.naydex.net/*/*/*_$script,replace=/eval\(decodeURIComponent\(.*//
+afisha.yandex.*##div[style="width:100%;height:250px;display:block"]
+afisha.yandex.*##div[style="width:100%;height:240px;display:block"]
+afisha.yandex.*##.adfox
 !
-! Yandex Radio and Music ads
-music.yandex.ru,music.yandex.by,music.yandex.kz#%#//scriptlet("abort-on-property-read", "Object.prototype.videoAdvertPopup")
-||music.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=music.yandex.ru|music.yandex.by|music.yandex.kz
-||radio.yandex.ru/api/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,~stylesheet,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru
-||awaps.yandex.ru/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=radio.yandex.by|radio.yandex.kz|radio.yandex.ru|music.yandex.ru|music.yandex.by|music.yandex.kz,important,~stylesheet
+! Yandex.Music
+||content.adfox.ru/*/branding*.html$domain=music.yandex.*
+||strm.yandex.*/get/$media,domain=vh.yandex.*
+||strm.yandex.*/get/$script,xmlhttprequest,other,redirect=noopvast-3.0,domain=yastatic.net|kinopoisk.ru|frontend.vh.yandex.*
+! Audio ad + popup
+||storage.mds.yandex.net/get-music/*/ad-exp/$media,domain=music.yandex.*
+/public/prerolls/*.mp3$domain=music.yandex.*
+music.yandex.*##.audio-advert__block
+music.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.videoAdvertPopup')
+music.yandex.*##div[class^="d-overhead"]
+music.yandex.*##.audio-advert__block
+music.yandex.*##.sidebar__placeholder .teaser ~ div
+!
+! Yandex.Disk
+disk.yandex.*##.direct
+||docviewer.yandex.*/sw.js
+!
+! Yandex.Mail
+||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.*
+mail.yandex.*##.ComposeDoneScreen-Ads
+!
+! Yandex.Raspisanie
+rasp.yandex.*##.Direct
+!
+! Yandex.TV
+! the rule also relates to Afisha and Realty
+||yandex-*.naydex.net/*/*/*_$script,replace=/adblock//,domain=tv.yandex.*|afisha.yandex.*|realty.ya.*
+!
 ! Yandex.Realty
+realty.ya.*##div[class*="PostBlocks__ad"]
 !
-! Yandex.Zen
+! Yandex.Travel
+!
+! Turbopages
+||turbopages.org^$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
+turbopages.org,yandex.*#?#.unit_rect[data-log-node]:has(> div[class*="_type_partner "])
+turbopages.org,yandex.*##.unit_rect[data-log-node] > div[class*="_type_partner "]
+yandex.*##.advert
+yandex.*#$?#.advert { remove: true; }
+! Yandex.Turbo (https://yandex.ru/turbo/***)
+yandex.*##body[data-bem*="turbo"] div[class*="_type_"][class*="aside-"][data-name][data-log-node]
+yandex.*##body[data-bem*="turbo"] div[class*="auto"][data-name][data-log-node]
+yandex.*##body[data-bem*="turbo"] div.turbo-advert
+yandex.*##body[data-bem*="turbo"] div[data-name="advert"]
+!
+! Yandex.Games
+||yandex.*/games/$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
+yandex.*##div[class*="-R-A-"]
+yandex.*##.stack > div[class^="sticky-"]
+[$path=/games]yandex.*##div[style="width: 240px; margin-top: -32px; height: 100vh;"]
+[$path=/games]yandex.*#%#//scriptlet('trusted-click-element', '.play-app div.promo-popup__close')
+[$path=/games]yandex.*#?#.play-app div.promo
+!
+! Yandex.Sport
+||yandex.*/sport/$replace=/.*"blockId":\s"[A-Z0-9-]+".*//,script,other,xmlhttprequest,domain=yandex.*
+[$path=/sport]yandex.*#?#.mg-grid__row > div.mg-grid__col:has(> div[class^="neo"]:matches-attr("/[a-z0-9]{10,}/"="/[a-z]?-/"))
+[$path=/sport]yandex.*#?#.mg-sticky__inner:has(> div.mg-grid__item > div[class^="neo-"]:matches-attr("/[a-z0-9]{10,}/"="/[a-z]?-/"))
+[$path=/sport]yandex.*#?#div[class^="neo-"][class*="_type_native"]
+!
+! Yandex.Q
+||yandex.*/q/$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
+[$path=/q]yandex.*##header ~ div#page > div[class]:not([id]) > div[class*=" "]:first-child + div[class*=" "] + div[class*=" "] > div[class] > div[style^="will-change:"] > div:not([class]) > div[class]:last-child
+[$path=/q]yandex.*#$?#body.page_qArticleRoute header ~ div#page > div[class]:not([id]) > div[class*=" "]:first-child + div[class*=" "] > section[class*=" "] > div[class] + div + div > span ~ div:not(:has(> div[class] button[data-role="button"] > svg)) { height: 0 !important; }
+[$path=/q]yandex.*#$?#body.page_qQuestionRoute header ~ div#page > div[class]:not([id]) > div[class*=" "]:first-child + div[class*=" "] > section[class*=" "] > div[class] + div + div > div[class] > span ~ div:not(:has(> div[class] button[data-role="button"] > svg)) { height: 0 !important; }
+!
+! Yandex.Internet
+yandex.*##.layout__banner
+!
+! Yandex Browser start page
+||yandex.ru/portal/ntp/banner$redirect=nooptext
+!
+! Kinopoisk
+/kinopoisk\.ru\/\w+\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]{100,}/$replace=/"attributes"/""/,script,domain=www.kinopoisk.ru
+www.kinopoisk.ru##div[class*="__AMNhR styles_"]
+www.kinopoisk.ru##div[id*="direct_R-A-"]
+www.kinopoisk.ru##.top-banner-container
+www.kinopoisk.ru##.media-post-page > div[class$="kinopoisk-media-container_height_250"]
+www.kinopoisk.ru##div[class*="listSuperBanner"]
+!
+! auto.ru
+||yastatic.net/naydex/autoru/$script,replace=/\.ads//,domain=auto.ru
+auto.ru###app .ym-hide-content
+!
+! bookmate.ru
+!
+! Common rules
+www.kinopoisk.ru,yandex.*#%#//scriptlet('abort-on-property-write', 'Object.prototype.adSystem')
+||yandex.ru/ads/system/context.js$script,xmlhttprequest,redirect-rule=noopjs
+!
+! END: Yandex
 !
 !
 liveinternet.ru$$script[wildcard="*ownerId*params*"][max-length="500"]
@@ -1514,10 +1595,6 @@ liveinternet.ru#%#Element.prototype.attachShadow = function(){};
 !+ PLATFORM(windows, mac, android)
 livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined")
 !
-! Kinopoisk
-||strm.yandex.ru/get/$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-||strm.yandex.ru/get/$script,xmlhttprequest,other,redirect=noopvast-3.0,domain=yastatic.net|kinopoisk.ru|frontend.vh.yandex.ru
 !
 ! drive2.ru
 ||drive2.ru/*/*/$xmlhttprequest,jsonprune=\$..[rtb\, direct]
@@ -1527,23 +1604,19 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 !
 ||ura.news/*/$xmlhttprequest,jsonprune=\$.data.*.attributes
 !
+! echo.msk.ru
+||echo.msk.ru^$replace=/AdvManager\.render/AdvManager._render/
+! other sites(+ 24smi.org)
+||e1.ru/static/build/js/main.js$replace=/"init":function\(t\)\{function i\(e\)/"init":function(t){function i(e){return;/
+||dni.ru/static/js/main.js$replace=/function\(e\,t\,n\)\{/function\(e\,t\,n\)\{return;/
+!
 !#if (!adguard_ext_firefox)
-||tv.yandex.*/*/*/*-$script,replace=/"RtbBidReqID"//
 ||sportmail.ru/-/*/js/cmpld/sport/*/base.js$replace=/SlotView\.mimic/a/
 ||rg.ru/*/*/$xmlhttprequest,replace=/"attributes"/""/
 ||home.imgsmail.ru/resplash/*/j/d-*.js$replace=/o\.default\.radar\("adblock"\)//
 ||dzen.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
 ||spletnik.ru/_$script,replace=/\/context_adb.*//
 ||echo.msk.ru^$replace=/Ya.*\[{"attributes".*"blockId".*//,script
-||yandex.*/sport/$replace=/.*"blockId":\s"[A-Z0-9-]+".*//,script,other,xmlhttprequest,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru
-||yandex.*/news/*$replace=/.*\[{"adm":{".*:{"imptrackers":.*//,xmlhttprequest,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru
-//yandex.*/news/*$replace=/^\{\"rtb\":.*//,script,other,domain=yandex.by|yandex.com|yandex.fr|yandex.kz|yandex.ru
-/kinopoisk\.ru\/\w+\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]{100,}/$replace=/"attributes"/""/,script,domain=www.kinopoisk.ru
-||mail.yandex.*$script,replace=/\,ab:e.blocker\,/\,/
-||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
-||mail.yandex.*/*/*-$replace=/(^{"rtb":.*)|^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=mail.yandex.by|mail.yandex.kz|mail.yandex.ru|mail.yandex.com|mail.yandex.com.tr
-||tv.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=tv.yandex.by|tv.yandex.kz|tv.yandex.ru
-||afisha.yandex.*/*/*-*-*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest,domain=afisha.yandex.by|afisha.yandex.kz|afisha.yandex.ru
 ||gismeteo.*/*/*/*_$replace=/"R-A-.*//,script,xmlhttprequest,other
 ||gorodrabot.ru/*/*/*_$replace=/^.*"blockId\":\s*\"R-A-.*//,script,xmlhttprequest,other
 ||24smi.org/*/*/*_$script,replace=/RTB//
@@ -1551,7 +1624,6 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||avito.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||fb.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||syl.ru/*/*/*/$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
-||auto.ru/*/*-*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||businessman.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||e1.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||forexpf.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
