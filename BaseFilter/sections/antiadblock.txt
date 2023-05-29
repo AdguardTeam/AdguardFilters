@@ -10,6 +10,11 @@
 ! .pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links is often used as a bait
 #$#.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display: block !important; }
 !
+! Common rules for 'www3.doubleclick.net' bait
+://www3.doubleclick.net^|$xmlhttprequest,redirect=noopjson
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@://www3.doubleclick.net^|$xmlhttprequest
+!
 ! Test rule (`/js/ads.`) Another exclusion should be removed if the rule will works fine
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7076
 ! https://forum.adguard.com/index.php?threads/23596/
@@ -921,7 +926,6 @@ webmatrices.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 kbjfree.com#%#//scriptlet('prevent-fetch', 'method:HEAD')
 $xmlhttprequest,redirect-rule=nooptext,domain=kbjfree.com
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
-@@||www3.doubleclick.net^|$xmlhttprequest,domain=kbjfree.com
 @@||slave.kbjfree.com^|$xmlhttprequest,domain=kbjfree.com
 @@||wyhifdpatl.com^|$xmlhttprequest,domain=kbjfree.com
 @@||d2qnx6y010m4rt.cloudfront.net^|$xmlhttprequest,domain=kbjfree.com
@@ -948,8 +952,6 @@ quackr.io#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=quackr.io
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151243
 ancientrom.xyz#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||www3.doubleclick.net^|$xmlhttprequest,domain=ancientrom.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151210
 branditechture.agency#?#body > div[class][id]:has(> div[class][id] > div[class][id] h4.adblock_title)
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -1032,7 +1034,6 @@ uservideo.xyz#%#//scriptlet('prevent-fetch', 'imasdk.googleapis.com')
 @@||imasdk.googleapis.com^$xmlhttprequest,domain=uservideo.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150287
 fulltime-predict.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
-@@||www3.doubleclick.net^|$xmlhttprequest,domain=fulltime-predict.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150243
 maxcheaters.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -2631,8 +2632,6 @@ darksoftware.net##body > div[class*=" "][style^="background"][style*="display: b
 @@||darksoftware.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125610
 vods.tv#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
-!+ PLATFORM(ios, ext_android_cb)
-@@||www3.doubleclick.net^|$xmlhttprequest,domain=vods.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125240
 freecatv.blogspot.com##.ADs-BG
 freecatv.blogspot.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -2659,7 +2658,6 @@ anycodings.com#$#body[style^="overflow:"] { overflow: auto !important; backgroun
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125597
 kiemlua24h.co###d7b2
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125455
-@@||www3.doubleclick.net^|$domain=smsonline.cloud
 smsonline.cloud#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125523
 onlinehacking.in#$##adblock_msg { display: none!important; }
@@ -2816,8 +2814,6 @@ spaldingtoday.co.uk,stratford-herald.com,granthamjournal.co.uk,fenlandcitizen.co
 @@.co.uk/wp-banners.js$domain=advertiserandtimes.co.uk|northern-scot.co.uk|suffolknews.co.uk|kentonline.co.uk|cambridgeindependent.co.uk|fenlandcitizen.co.uk|granthamjournal.co.uk|stratford-herald.com|spaldingtoday.co.uk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122659
 utils.surf#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
-!+ PLATFORM(ios, ext_android_cb)
-@@||www3.doubleclick.net^|$xmlhttprequest,domain=utils.surf
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122289
 palixi.net#%#//scriptlet("set-constant", "canRunAds", "true")
 palixi.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -2929,9 +2925,6 @@ freebitcoin.link#%#//scriptlet("abort-current-inline-script", "decodeURIComponen
 ||static.surfe.pro/js/net.js$script,xmlhttprequest,redirect=nooptext,domain=freebitcoin.link
 !+ PLATFORM(ios, ext_android_cb)
 @@||static.surfe.pro/js/net.js$domain=freebitcoin.link
-! lineups.fun anti-adb
-||www3.doubleclick.net^$xmlhttprequest,redirect=nooptext,domain=lineups.fun,important
-@@||www3.doubleclick.net^$xmlhttprequest,domain=lineups.fun
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120235
 gamepure.in#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb)
@@ -3126,7 +3119,6 @@ imagetotext.io#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=educationat.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116078
 mmastreams-100.tv,mlbstreams100.com,boxingstreams100.com,nbastreams-100.tv#%#//scriptlet('prevent-fetch', 'doubleclick.net')
-@@||www3.doubleclick.net^|$domain=mmastreams-100.tv|mlbstreams100.com|boxingstreams100.com|nbastreams-100.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115668
 bestjavporn.com#@#.ad-placement
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115815
@@ -3397,7 +3389,6 @@ blognews.in#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=blognews.in
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112280
 soccerstreams-100.tv#%#//scriptlet('prevent-fetch', 'doubleclick.net')
-@@||www3.doubleclick.net^|$domain=soccerstreams-100.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112175
 rajsayt.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -3985,7 +3976,6 @@ ravenmanga.xyz#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototy
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=romaniatv.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108192
 mac2sell.net#%#//scriptlet('prevent-fetch', 'doubleclick.net')
-@@||www3.doubleclick.net^|$domain=mac2sell.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98755
 sketchup.cgtips.org###owxjka-blanket
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98723
@@ -4122,7 +4112,6 @@ techbrij.com#%#//scriptlet("set-constant", "isadBlockRunning", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95444
 @@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=zoomtventertainment.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95368
-@@||www3.doubleclick.net/|$xmlhttprequest,domain=vn.trueid.net
 vn.trueid.net#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95010
 beatsnoop.com#%#//scriptlet("abort-current-inline-script", "document.createElement", "adblock")
@@ -4254,7 +4243,6 @@ universalfreecourse.com#%#//scriptlet('abort-current-inline-script', 'EventTarge
 @@||downloadfreecourse.com/ads-prebid.js
 downloadfreecourse.com#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '.style.display="block"')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92729
-@@||www3.doubleclick.net/|$xmlhttprequest,domain=shaalaa.com
 shaalaa.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91711
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=udemydownload.com
@@ -5860,7 +5848,6 @@ thetechrim.com##div[class^="blocker-"]
 fruitlab.com#%#//scriptlet("set-constant", "adBlockDetected", "noopFunc")
 ||secure.quantserve.com/quant.js$script,redirect=noopjs,domain=fruitlab.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111111
-@@||www3.doubleclick.net^|$xmlhttprequest,other,domain=thingiverse.com
 thingiverse.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60789
 clubpenguinhq.net#%#//scriptlet("abort-on-property-read", "adBlockDetected")
