@@ -796,7 +796,8 @@ papahd.club#%#//scriptlet("set-constant", "window.__cfRLUnblockHandlers", "true"
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129217
 javuncensored.watch,javcensored.net,javbake.com#%#//scriptlet('remove-class', 'adstrick', '.adstrick')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129251
-cnn.com#%#(()=>{window.FAVE=window.FAVE||{};window.FAVE=new Proxy(window.FAVE,{set:(a,b,c,d)=>(a?.settings?.ads?.ssai?.prod?.clips?.enabled&&(a.settings.ads.ssai.prod.clips.enabled=!1),Reflect.set(a,b,c,d))})})();
+cnn.com#%#//scriptlet('set-constant', 'Object.prototype._setAdsConfigurations', 'noopFunc')
+cnn.com#%#(()=>{window.FAVE=window.FAVE||{};const s={set:(s,e,n,a)=>{if(s?.settings?.ads?.ssai?.prod?.clips?.enabled&&(s.settings.ads.ssai.prod.clips.enabled=!1),s?.player?.instances)for(var i of Object.keys(s.player.instances))s.player.instances[i]?.configs?.ads?.ssai?.prod?.clips?.enabled&&(s.player.instances[i].configs.ads.ssai.prod.clips.enabled=!1);return Reflect.set(s,e,n,a)}};window.FAVE=new Proxy(window.FAVE,s)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129067
 tutele.nl#%#//scriptlet('prevent-window-open', '', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128820
