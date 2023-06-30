@@ -4891,42 +4891,43 @@ apps2app.com#@#.banner_ad
 ! Incase of DNS Filtering
 adzsafe.com#%#//scriptlet("set-constant", "chk_ads_block", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79989
-! Similar site in Japanese filter: rocketnews24.com
-@@||sst.soranews24.com/gtm.js$script,~third-party
+! Similar site in Japanese filter: rocketnews24.com, youpouch.com
 soranews24.com#%#//scriptlet('prevent-fetch', 'tpc.googlesyndication.com')
-||g.doubleclick.net/gampad/ads?$xmlhttprequest,removeparam=/^(cookie|ga_|u_)/,domain=soranews24.com
 soranews24.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-sidebottom')
 soranews24.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-footer')
 soranews24.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-pagebottom')
 soranews24.com#%#//scriptlet('remove-attr', 'id', '#div-gpt-ad-relatedbottom-1')
-soranews24.com#@#.ad
-@@||soranews24.com/wp-content/themes/rocketnews-en/js/prebid.js
-@@||googlesyndication.com/safeframe/$domain=soranews24.com
-@@||tpc.googlesyndication.com/simgad/$image,xmlhttprequest,domain=soranews24.com
-@@||doubleclick.net/tag/js/gpt.js$domain=soranews24.com
-@@||g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=soranews24.com
-@@||doubleclick.net/gampad/ads?$xmlhttprequest,domain=soranews24.com
-@@||googletagservices.com/tag/js/gpt.js$domain=soranews24.com
-@@||pagead2.googlesyndication.com/pagead/$script,domain=soranews24.com
-@@||fundingchoicesmessages.google.com^$script,domain=soranews24.com
-||googlesyndication.com/safeframe/$subdocument,redirect=noopframe,important,domain=soranews24.com
+@@||tpc.googlesyndication.com/simgad/$xmlhttprequest,domain=soranews24.com
 ||tpc.googlesyndication.com^$image,redirect=1x1-transparent.gif,domain=soranews24.com,important
-||pagead2.googlesyndication.com/pagead/$script,redirect=noopjs,important,domain=soranews24.com
-||googletagservices.com/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=soranews24.com
-soranews24.com#$#div[style="width: 1px; height: 1px; position: absolute; left: -10000px; top: -10000px; z-index: -10000;"] { display: block !important; }
+@@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=soranews24.com
+||g.doubleclick.net/gampad/ads?$xmlhttprequest,removeparam=/^(cookie|ga_|u_)/,domain=soranews24.com
+@@||sst.soranews24.com/gtm.js$script,~third-party
+@@||g.doubleclick.net/tag/js/gpt.js$domain=soranews24.com
+@@||g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=soranews24.com
+@@||fundingchoicesmessages.google.com^$script,domain=soranews24.com
+||pagead2.googlesyndication.com/pagead/$script,redirect=googlesyndication-adsbygoogle,domain=soranews24.com
+@@||youpouch.com^$generichide
+@@||soranews24.com^$generichide
+||googlesyndication.com/safeframe/$subdocument,redirect=noopframe,domain=soranews24.com
+||fundingchoicesmessages.google.com^$script,redirect-rule=noopjs,domain=soranews24.com
 !#if (adguard && !adguard_ext_firefox && !adguard_ext_opera)
-soranews24.com#%#//scriptlet('prevent-setTimeout', 'b.s.reject', '1000')
+soranews24.com#%#//scriptlet('abort-on-property-read', 'jQuery')
+||youpouch.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
 ||soranews24.com/_static/$replace=/(!1|!0!)=?==SCO\.imgLazyLoad/1===1/,script
 soranews24.com#%#AG_onLoad(function(){const a=document.querySelectorAll("img[data-sco-src]");a.forEach(a=>{const b=a.getAttribute("data-sco-src");a.setAttribute("src",b),a.style.opacity="1"})});
 !#endif
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||googlesyndication.com/safeframe/$domain=soranews24.com
+@@||tpc.googlesyndication.com/simgad/$image,domain=soranews24.com
+@@||adservice.google.com/adsid/integrator.js$domain=soranews24.com
+@@||soranews24.com/wp-content/themes/rocketnews/js/prebid.js$domain=soranews24.com
+@@||adservice.google.*/adsid/integrator.js$domain=soranews24.com
+@@||pagead2.googlesyndication.com/pagead/$script,domain=soranews24.com
+!#endif
 !#safari_cb_affinity(privacy)
-!+ NOT_OPTIMIZED
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=soranews24.com
-!+ NOT_OPTIMIZED
 @@||tpc.googlesyndication.com/simgad/$image,domain=soranews24.com
 !#safari_cb_affinity
-!+ PLATFORM(ios, ext_android_cb)
-@@||soranews24.com^$genericblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80392
 rollercoin.com##.adBlock-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/79516#issuecomment-816672313
