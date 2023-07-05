@@ -1108,11 +1108,14 @@ cordtpoint.co.in,mealcold.com###adb
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152277
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152199
 oko.sh,tii.la$$script[tag-content="adb_detected"]
+oko.sh,tii.la#%#//scriptlet('prevent-fetch', '/ads/load.js')
 oko.sh,tii.la#%#//scriptlet('prevent-setTimeout', 'getComputedStyle')
 oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'XMLHttpRequest', '.innerHTML')
 oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'document.createElement', '.innerHTML')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||inklinkor.com/tag.min.js$domain=oko.sh|tii.la
+@@/cloud_theme/ads/load.js$~third-party,xmlhttprequest,domain=oko.sh|tii.la
+!#endif
 ! https://github.com/uBlockOrigin/uAssets/discussions/17361#discussioncomment-6011881
 @@||shortlinks.tech^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151938
