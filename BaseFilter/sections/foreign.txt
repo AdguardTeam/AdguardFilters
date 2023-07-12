@@ -48,6 +48,12 @@ gjirafa.com##div[id^="an-holder-"]
 !---------------------------------------------------------------------
 ! NOTE: Arabian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/156122
+yokugames.com##body > a[target="_blank"]
+yokugames.com,cimaramadan.site##a[id^="ad"][target="_blank"]
+yokugames.com,cimaramadan.site#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cimaramadan.site|yokugames.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155205
 faselhd.vip###popup
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155001
@@ -1238,6 +1244,15 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/156017
+citroen-club.cz#@#.reklama
+citroen-club.cz#$##obalovydiv { display: block !important; }
+citroen-club.cz#%#//scriptlet('abort-on-property-read', 'gaFailedToLoad')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+!#safari_cb_affinity(privacy)
+@@||google-analytics.com/analytics.js$domain=citroen-club.cz
+!#safari_cb_affinity
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155130
 katerionews.com##body > div[id][style^="position: fixed;top:"][style*="z-index:"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155110
@@ -7382,6 +7397,8 @@ interia.pl#$#body[class*="body__ad-spons--"] { padding-top: 0 !important; }
 interia.pl#$#body[class*="body__ad-spons--"] .common-header { top: 0 !important; }
 interia.pl#$#body[class*="body__ad-spons--"] header { transform: none !important; }
 interia.pl#%#//scriptlet('remove-class', 'body__ad-spons--desktop-ph|body__ad-spons--mobile-ph', 'body[class*="body__ad-spons--"]')
+! https://github.com/AdguardTeam/AdguardFilters/issues/155900
+wydarzenia.interia.pl#?#div[class^="sc-"]:has(> div[data-iwa-viewability-name]:only-child > .ad:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139889
 sport.interia.pl#?#section[id^="react_component_"] > div:not([class], [id]) > div[class^="sc"]:has(> div[class^="sc"]:only-child > div[data-iwa-viewability-name="gora_srodek"]:only-child > .ad:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133132
@@ -8091,8 +8108,8 @@ abczdrowie.pl,allani.pl,autokrata.pl,autokult.pl,bloog.pl,dobreprogramy.pl,dziec
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53527
 pilot.wp.pl,polygamia.pl,abczdrowie.pl,money.pl,www.dobreprogramy.pl,o2.pl,gadzetomania.pl,komorkomania.pl,autocentrum.pl,pudelek.pl,vpolshchi.pl,parenting.pl,autokult.pl,fotoblogia.pl,dom.wp.pl,pogoda.wp.pl,gry.wp.pl,wroclaw.wp.pl,moto.wp.pl,wideo.wp.pl,kuchnia.wp.pl,facet.wp.pl,sportowefakty.wp.pl,turystyka.wp.pl,magazyn.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,tech.wp.pl,opinie.wp.pl,teleshow.wp.pl,gwiazdy.wp.pl,film.wp.pl,wiadomosci.wp.pl,finanse.wp.pl#%#(function(){Object.defineProperty=new Proxy(Object.defineProperty,{apply:(a,b,c)=>{const d=c[1];return d&&"VP"===d&&(c[2].get=function(){return function(){return!1}}),Reflect.apply(a,b,c)}})})();
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=videostar.pl|o2.pl|dobreprogramy.pl|polygamia.pl|genialne.pl|pysznosci.pl
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=videostar.pl|o2.pl|dobreprogramy.pl|polygamia.pl|genialne.pl|pysznosci.pl
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=videostar.pl|o2.pl|dobreprogramy.pl|polygamia.pl|genialne.pl|pysznosci.pl|benchmark.pl
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=videostar.pl|o2.pl|dobreprogramy.pl|polygamia.pl|genialne.pl|pysznosci.pl|benchmark.pl
 ||wp.hit.gemius.pl/gplayer.js$script,redirect=noopjs,domain=videostar.pl
 ||googletagmanager.com/gtm.js?id=$script,redirect=noopjs,domain=pilot.wp.pl
 ||hit.gemius.pl/xgemius.js$script,redirect=noopjs,domain=wp.pl|money.pl|o2.pl|pudelek.pl|komorkomania.pl|gadzetomania.pl|fotoblogia.pl|autokult.pl|abczdrowie.pl|parenting.pl|videostar.pl|autocentrum.pl
@@ -8810,10 +8827,11 @@ plejada.pl,auto-swiat.pl,newsweek.pl,onet.pl,medonet.pl,komputerswiat.pl###onet-
 pclab.pl#%#//scriptlet('prevent-setTimeout', 'document.body.getAttribute("abp")')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64295
 onet.pl#$#.insertedSlot { display: none !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/155987
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142349
-onet.pl#$#body { overflow: visible !important; }
-onet.pl#$#body div.fc-ab-root:not(#style_important) { display: none !important; }
-onet.pl#$#div[class*="ad" i][style="width: 1px; height: 1px; position: absolute; left: -10000px; top: -10000px; z-index: -10000;"] { display: block !important; }
+medonet.pl,onet.pl#$#body { overflow: visible !important; }
+medonet.pl,onet.pl#$#body div.fc-ab-root:not(#style_important) { display: none !important; }
+medonet.pl,onet.pl#$#div[class*="ad" i][style^="width: 1px; height: 1px; position: absolute; left: -10000px; top: -"] { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89329
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78860
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26613
@@ -10341,6 +10359,8 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 ! NOTE: Vietnamese
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/156210
+tinxahoivn.com##body > div[id^="myModal"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155653
 vgt.vn##.avgt-div
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154982
