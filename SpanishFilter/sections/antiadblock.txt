@@ -9,6 +9,14 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/156826
+teleculinaria.pt#%#//scriptlet('prevent-fetch', 'adsbygoogle')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=teleculinaria.pt
+! https://github.com/AdguardTeam/AdguardFilters/issues/156578
+meocloud.pt##.adblock_warning
+meocloud.pt#$#body .adblock_warning:not(#style_important) { position: absolute !important; left: -3000px !important; }
+meocloud.pt#%#//scriptlet('set-constant', 'blockAdBlock._options', 'noopFunc')
 ! https://github.com/uBlockOrigin/uAssets/issues/18907
 verasoul.com#%#//scriptlet('prevent-setTimeout', 'placebo')
 verasoul.com#@#[id^="google_ads_iframe"]
@@ -145,9 +153,12 @@ pobre.wtf#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pobre.wtf
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139850
-suaurl.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+suaurl.com#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|optad360\.io')
+||get.optad360.io^$xmlhttprequest,redirect=nooptext,domain=suaurl.com
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||get.optad360.io^$xmlhttprequest,domain=suaurl.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=suaurl.com
+!#endif
 suaurl.com#%#//scriptlet('prevent-setTimeout', 'Por favor, desative')
 suaurl.com#%#//scriptlet('prevent-setInterval', '/adblock|Por favor, desative|adsbygoogle\.js/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138774
