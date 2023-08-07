@@ -949,6 +949,12 @@ pornhub.com,pornhub.org,pornhub.net,pornhubthbh7ap3u.onion#%#//scriptlet('preven
 !
 ! START: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/158476
+app.neilpatel.com#%#//scriptlet('prevent-xhr', '/googletagmanager\.com\/gtm\.js|static\.hotjar\.com/')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||googletagmanager.com/gtm.js$xmlhttprequest,domain=app.neilpatel.com
+@@||static.hotjar.com/c/hotjar-*.js$xmlhttprequest,domain=app.neilpatel.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158247
 wionews.com#%#//scriptlet('set-constant', 'vgrAdBlock', 'false')
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=wionews.com
