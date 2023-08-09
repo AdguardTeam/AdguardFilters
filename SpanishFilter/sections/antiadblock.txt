@@ -166,16 +166,19 @@ pobre.wtf#%#//scriptlet('set-constant', 'adBlockerActive', 'false')
 pobre.wtf#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pobre.wtf
+! https://github.com/AdguardTeam/AdguardFilters/issues/158243
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139850
-suaurl.com#%#//scriptlet('prevent-fetch', 'method:HEAD')
-$xmlhttprequest,redirect-rule=nooptext,domain=suaurl.com
+@@||suaurl.com^$generichide
+@@||reidoplacar.com^$generichide
+$xmlhttprequest,redirect-rule=nooptext,domain=suaurl.com|reidoplacar.com
+reidoplacar.com,suaurl.com#%#//scriptlet('prevent-fetch', 'method:HEAD')
+reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setTimeout', 'Por favor, desative')
+reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setInterval', '/adblock|Por favor, desative|adsbygoogle\.js/')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||ad-delivery.net/px.gif$xmlhttprequest,domain=suaurl.com
-@@||get.optad360.io^$xmlhttprequest,domain=suaurl.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=suaurl.com
+@@||ad-delivery.net/px.gif$xmlhttprequest,domain=suaurl.com|reidoplacar.com
+@@||get.optad360.io^$xmlhttprequest,domain=suaurl.com|reidoplacar.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=suaurl.com|reidoplacar.com
 !#endif
-suaurl.com#%#//scriptlet('prevent-setTimeout', 'Por favor, desative')
-suaurl.com#%#//scriptlet('prevent-setInterval', '/adblock|Por favor, desative|adsbygoogle\.js/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138774
 ttlinks.live#@#.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138441
@@ -1274,8 +1277,12 @@ universoformulas.com#%#window.UFads = true;
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11384
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||novelasd.com^$generichide
+! https://github.com/AdguardTeam/AdguardFilters/issues/158672
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33396
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11279
+playview.io#%#//scriptlet('set-constant', 'runningAdsAllowed', 'true')
+@@||playview.io//ab/ads-prebid-wp-banners.js
+@@/fuckadblock.js$domain=playview.io
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||playview.io^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11255

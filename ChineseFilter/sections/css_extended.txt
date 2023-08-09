@@ -5,6 +5,10 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/158358
+lihkg.com#?#div[data-body-portal] > div[class^="_"] > div[class^="_"] > div[class^="_"] > div[class]:has(> div[class^="_"] ins.adsbygoogle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/158575
+forum.hkgolden.com#?#body > div[class^="jss"]:has(> div[class][style^="transform"]:only-child > div[class] > div[data-role="ad"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155467
 lihkg.com#?#div[id][class][data-post-id] + div[class]:not([id]):not([data-post-id]):has( > div[class]:only-child > div > div[id^="gam-"]:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155154
@@ -28,7 +32,8 @@ hdmoli.com#?#.row > div.myui-panel:has(div[style^="text-align:"] > a[href][targe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134240
 ! Do not hide .bili-video-card container to not mess up content, related - https://github.com/AdguardTeam/AdguardFilters/issues/147194#issuecomment-1500803042
 ! bilibili.com#?#.bili-video-card.is-rcmd > div > a[href*="cm.bilibili.com"][data-target-url]:not([data-target-url*=".bili"]) + .bili-video-card__info:upward(2)
-bilibili.com#?#.container > div[class*="-card"]:has(div[style="display: none !important;"])
+bilibili.com#$?#.container > div.floor-single-card:has(> div.skeleton) { remove: true; }
+bilibili.com#$?#.container > div[class*="-card"]:has(div[style="display: none !important;"]) { remove: true; }
 bilibili.com#?#.bili-video-card:has(.bili-video-card__info--ad) > .bili-video-card__wrap
 bilibili.com#?#.bili-video-card:has(.bili-video-card__info--creative-ad) > .bili-video-card__wrap
 bilibili.com#$?#.bili-video-card:has(.bili-video-card__info--ad) > .bili-video-card__skeleton { visibility: visible !important; }
@@ -77,6 +82,7 @@ nfmovies.com#$?#body > .hidden-xs > div[id]:has(> img[src^="/static/"][onclick*=
 nfmovies.com#$?#div[id^="aaaDiv"] { remove: true; }
 !
 !
+md.hkgolden.com#?##viewpage > .post:has(> :is(div[id^="div-gpt-"], .hkg-ad))
 ifeng.com#?#div[class^="index_yaowen_center"] div[class^="index_news_list_"]:has(a[target="_blank"] + img[src^="https://x0.ifengimg.com/feprod/"])
 dcard.tw#?#div[role="main"] div[class^="atm_26_"]:has(> div[class^="atm_26_"] > div[style="min-height:90px"] > div[id^="div-gpt-ad"])
 jiayongluyou.com#?#.widget_html_myimg:has(> ins.adsbygoogle)
