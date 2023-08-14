@@ -4549,13 +4549,14 @@ psychpoint.com##.adblockpopup
 @@||adservice.google.*/adsid/integrator.js$domain=paramountplus.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97148
-@@||maxstream.video^$generichide
+maxstream.video#%#//scriptlet('prevent-addEventListener', 'click', 'window.getComputedStyle')
 maxstream.video#$#div[id][style*="display"][style*="none"] { display: block !important; }
-maxstream.video#$#div[id*="ads" i] { height: 9px !important; }
 maxstream.video#%#//scriptlet("adjust-setTimeout", ".fadeIn()", "*", "0.02")
 maxstream.video#%#//scriptlet("adjust-setInterval", "counter", "*", "0.02")
-!+ PLATFORM(ios, ext_android_cb)
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||maxstream.video^$generichide
 @@||linkonclick.com/*/display.php$domain=maxstream.video
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96306
 mixfaucet.com#%#//scriptlet("abort-on-property-read", "adblockDetector")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97285
