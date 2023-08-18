@@ -5239,9 +5239,6 @@ tvnet.lv,apollo.lv#%#//scriptlet("prevent-setTimeout", "adblockNotif")
 tvnet.lv,apollo.lv#$#body > div[id] > div[style^="height: 1px; width: 1px; background-color: transparent;"] { display: block !important; }
 tvnet.lv,apollo.lv#@#.ad01
 tvnet.lv,apollo.lv#@#.dfp_ad
-! https://github.com/AdguardTeam/AdguardFilters/issues/119181
-delfi.lv##div[data-ad-placement]
-delfi.lv#?#section > div[style]:has(> span:contains(/^Реклама$|^Reklāma$/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118650
 ||jauns.lv/js/ad-zone.js
 ||jauns.lv/js/ad.js
@@ -5249,15 +5246,6 @@ jauns.lv##iframe[id$="_DFP"]
 jauns.lv##.ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109960
 inbox.lv##div[class^="AdContainer-"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/99686
-delfi.lv###adblock-popup
-delfi.lv#%#//scriptlet("set-constant", "Adform", "emptyObj")
-cloudycdn.services#%#//scriptlet("json-prune", "source.ads")
-||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=cloudycdn.services
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||1188lv.adocean.pl/*ad.xml$domain=embed.cloudycdn.services
-@@||1188lv.adocean.pl/files/*.mp4$domain=embed.cloudycdn.services
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/92122
 vipi.tv###top-banner
 @@||vipi.tv/ads.js
@@ -5296,6 +5284,20 @@ salidzini.lv###AM_giga
 balticlivecam.com##.vjs-poster
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34539
 autogidas.lt##.header-ann
+!
+! SECTION: delfi.ee,delfi.lt,delfi.lv
+! https://github.com/AdguardTeam/AdguardFilters/issues/119181
+delfi.lv##div[data-ad-placement]
+delfi.lv#?#section > div[style]:has(> span:contains(/^Реклама$|^Reklāma$/))
+! https://github.com/AdguardTeam/AdguardFilters/issues/99686
+delfi.lv###adblock-popup
+delfi.lv#%#//scriptlet("set-constant", "Adform", "emptyObj")
+cloudycdn.services#%#//scriptlet("json-prune", "source.ads")
+||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=cloudycdn.services
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||1188lv.adocean.pl/*ad.xml$domain=embed.cloudycdn.services
+@@||1188lv.adocean.pl/files/*.mp4$domain=embed.cloudycdn.services
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127741
 ||s3.delfi.ee/*/app.js$replace=/adFree:!1/adFree:!0/
 ||s3.delfi.ee/*/app.js$replace=/disableAds:!1/disableAds:!0/
@@ -5359,8 +5361,16 @@ delfi.lt#$##wallpaper-link-container { z-index: -999999!important; }
 vesti.lv###subscribe-banner
 vesti.lv##.banner
 ||vesti.lv/www/imgget/imgjs.php?
+!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
+delfi.lt##div[itemprop="articleBody"] > div[style="float:left;margin: 0 25px 25px 0;"]
+delfi.lt##body > #header-top-banner + [class]:not(div):not(iframe):not(span):not(table):not(form)
+delfi.lt##.row > .left + div[class]:not(.right):not([id]) > :not(iframe):not(span):not(table):not(form):not([class])
+!#endif
 !
 @@||ado.delfi.ee/files/js/ado.js$script,domain=delfi.ee
+! NOTE: delfi.ee,delfi.lt,delfi.lv end ⬆️
+! !SECTION: delfi.ee,delfi.lt,delfi.lv
+!
 !---------------------------------------------------------------------
 !------------------------------ Lithuanian ---------------------------
 !---------------------------------------------------------------------
@@ -5398,12 +5408,6 @@ filmux.org#@#.myTestAd
 @@||googleads.g.doubleclick.net/$xmlhttprequest,other,domain=filmux.org
 ! https://forum.adguard.com/index.php?threads/missed-ads-on-www-delfi-lt.33213/
 vaistai.lt###billboardwrapper
-! https://github.com/AdguardTeam/AdguardFilters/issues/35013
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
-delfi.lt##div[itemprop="articleBody"] > div[style="float:left;margin: 0 25px 25px 0;"]
-delfi.lt##body > #header-top-banner + [class]:not(div):not(iframe):not(span):not(table):not(form)
-delfi.lt##.row > .left + div[class]:not(.right):not([id]) > :not(iframe):not(span):not(table):not(form):not([class])
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33999
 lrt.lt##.banner-block
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31220
