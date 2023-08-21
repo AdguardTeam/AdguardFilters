@@ -165,9 +165,11 @@ youtube.com##ytm-promoted-sparkles-web-renderer
 !
 ! This one might be needed when the page is loaded for the first time
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.adPlacements', 'undefined')
+youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.playerAds', 'undefined')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'playerResponse.adPlacements', 'undefined')
 !
 ! Modify YT xhr responses
+||youtube.com/youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds]
 ! Commented out rule below causes adblock detection
 ! It looks like that YouTube is checking playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds in JSON.parse and Response.prototype.json to detect ad blockers
 ! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds')
@@ -182,6 +184,7 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 !youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.audioConfig.loudnessDb')
 !youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.streamSelectionConfig.maxBitrate')
 !youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.streamSelectionConfig.maxBitrate')
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.liveStreamability')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playabilityStatus.liveStreamability')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.adaptiveFormats.6')
@@ -190,7 +193,7 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'pl
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.captions.playerCaptionsTracklistRenderer')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.serviceTrackingParams.2')
 youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.responseContext.serviceTrackingParams.2')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.playerAds', 'undefined')
+!#endif
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81610
