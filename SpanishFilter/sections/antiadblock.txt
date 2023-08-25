@@ -193,14 +193,23 @@ pobre.wtf#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139850
 @@||suaurl.com^$generichide
 @@||reidoplacar.com^$generichide
-$xmlhttprequest,redirect-rule=nooptext,domain=suaurl.com|reidoplacar.com
-reidoplacar.com,suaurl.com#%#//scriptlet('prevent-fetch', '/^(?!.*(chrome-extension:)).*$/ method:HEAD')
-reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setTimeout', 'Por favor, desative')
-reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setInterval', '/adblock|Por favor, desative|adsbygoogle\.js/')
+@@||suaads.com^$generichide
+$xmlhttprequest,redirect-rule=nooptext,domain=suaurl.com|reidoplacar.com|suaads.com
+suaads.com,reidoplacar.com,suaurl.com#%#//scriptlet('prevent-fetch', '/^(?!.*(chrome-extension:)).*$/ method:HEAD')
+suaads.com,reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setTimeout', 'Por favor, desative')
+suaads.com,reidoplacar.com,suaurl.com#%#//scriptlet('prevent-setInterval', '/adblock|Por favor, desative|adsbygoogle\.js/')
+suaads.com,reidoplacar.com,suaurl.com#%#//scriptlet('set-constant', 'cdo', '0')
+suaads.com,reidoplacar.com,suaurl.com#%#//scriptlet('abort-current-inline-script', 'document.addEventListener', '.innerHTML')
+suaads.com,reidoplacar.com,suaurl.com#%#(function(){document.location.hostname&&AG_onLoad((function(){const d=document.createElement("div");d.classList.add("textads","banner-ads","banner_ads","ad-unit","ad-unit","ad-zone","ad-space","adsbox"),document.body.appendChild(d)}));})();
+||suaads.com^$replace=/document\.querySelector\('div\.textads\.banner-ads.banner_ads\.ad-unit\.ad-zone\.ad-space\.adsbox'\)/document.querySelector('body')/,document
+||reidoplacar.com^$replace=/document\.querySelector\('div\.textads\.banner-ads.banner_ads\.ad-unit\.ad-zone\.ad-space\.adsbox'\)/document.querySelector('body')/,document
+||suaurl.com^$replace=/document\.querySelector\('div\.textads\.banner-ads.banner_ads\.ad-unit\.ad-zone\.ad-space\.adsbox'\)/document.querySelector('body')/,document
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+||suaads.com/peel1-ad-300x250.js
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||ad-delivery.net/px.gif$xmlhttprequest,domain=suaurl.com|reidoplacar.com
-@@||get.optad360.io^$xmlhttprequest,domain=suaurl.com|reidoplacar.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=suaurl.com|reidoplacar.com
+@@||ad-delivery.net/px.gif$xmlhttprequest,domain=suaurl.com|reidoplacar.com|suaads.com
+@@||get.optad360.io^$xmlhttprequest,domain=suaurl.com|reidoplacar.com|suaads.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=suaurl.com|reidoplacar.com|suaads.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138441
 impactoespananoticias.com#%#//scriptlet('set-constant', 'canRunAds', 'true')
