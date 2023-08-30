@@ -165,24 +165,8 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 !
 ! Modify YT xhr responses
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
-! Commented out rule below causes adblock detection
-! It looks like that YouTube is checking playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds in JSON.parse and Response.prototype.json to detect ad blockers
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerConfig.audioConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerResponse.playerConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'auxiliaryUi.messageRenderers.enforcementMessageViewModel')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.enforcementMessageViewModel', 'undefined')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.audioConfig.loudnessDb')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.audioConfig.loudnessDb')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.streamSelectionConfig.maxBitrate')
-!youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.streamSelectionConfig.maxBitrate')
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.liveStreamability')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.playabilityStatus.liveStreamability')
-youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.playerAttestationRenderer.botguardData.interpreterSafeUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue')
+youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/\"adPlacements.*?\"\}\}\}\]\,/', '', 'player?key=')
 !#endif
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
@@ -281,6 +265,10 @@ $script,third-party,denyallow=statically.io|sharecast.ws|bunnycdn.ru|bootstrapcd
 !
 ! NOTE: Start specific rules
 !
+instacart.ca,instacart.com###store-wrapper img[alt^="• Sponsored:"]
+freepik.com##.detail__aside--left.detail__spr
+snaptik.app###modal-vignette
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=crunchyroll.com,important
 trakt.tv##.add-top
 cryptopolitan.com###sticky_sidebar_ads_parrent
 waifubitches.com##div[class^="grid"] > div[class^="grid-item"].mx-auto
@@ -300,6 +288,7 @@ kcrw.com###portlets-middle_ad
 online-qr-scanner.com##.appads
 soccerstats.com###hbanner
 soccerstats.com##.sidebar3
+poedb.tw###head_toolbar + .text-center > a > img[style]
 poedb.tw##.text-center > a[target="_blank"] > img
 alotporn.com##.list-videos > div > .item:empty
 alotporn.com##div[style^="font-style:italic;font-size:10px;color:#CCC;"]
@@ -11612,8 +11601,6 @@ multiup.org##.well.success.text-center
 unknowncheats.me###hmmk
 ncaa.com##.ncaa-top-ad-wrapper
 quora.com##.NewGridQuestionPage .linked_content
-/expla*.js^$important,domain=rarbgto.org.
-/expla*.js^$important,domain=rarbgway.org|rarbgcore.org|rarbgp2p.org|rarbgenter.org|rarbg2019.org|rarbgunblocked.org|rarbgproxied.org|rarbgmirrored.org|rarbgprx.org|rarbgtor.org|rarbgget.org|proxyrarbg.org|rarbgto.org|rarbgunblock.org|rarbg2018.org|rarbg.is|rarbg.to|rarbg.rarbg.unblocked.kim|rarbgaccess.org|rarbgmirror.com|rarbgmirror.org|rarbgmirror.xyz|rarbgproxy.com|rarbgproxy.org|rarbgaccessed.org
 ||totalcmd.net/images/japanese-used-cars
 totalcmd.net##td > center > a[target="_blank"] > img
 10minutemail.net###content > #right
@@ -14710,9 +14697,6 @@ turbobiyt.net,turbobit.net##center > a > img
 artima.com,turbobit.net###topbanner
 turbobit.net##.download-top-aplayer
 turbobit.net##body > a#body-link
-!
-! /expla*.js^$important,domain=rarbgto.org.
-! /expla*.js^$important,domain=rarbgway.org|rarbgcore.org|rarbgp2p.org|rarbgenter.org|rarbg2019.org|rarbgunblocked.org|rarbgproxied.org|rarbgmirrored.org|rarbgprx.org|rarbgtor.org|rarbgget.org|proxyrarbg.org|rarbgto.org|rarbgunblock.org|rarbg2018.org|rarbg.is|rarbg.to|rarbg.rarbg.unblocked.kim|rarbgaccess.org|rarbgmirror.com|rarbgmirror.org|rarbgmirror.xyz|rarbgproxy.com|rarbgproxy.org|rarbgaccessed.org
 !
 ! twitch.tv - streamer's ads
 twitch.tv##a[href^="https://ggbetpromo.com/"]

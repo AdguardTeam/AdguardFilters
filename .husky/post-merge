@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# See https://git-scm.com/docs/githooks#_post_merge
+
+# This function checks if a file has changed between the current HEAD and the previous HEAD
+# Source: https://jshakespeare.com/use-git-hooks-and-husky-to-tell-your-teammates-when-to-run-npm-install
+function changed {
+    # HEAD@{1} is the original position of HEAD before the merge
+    # HEAD is the new merge commit
+    # --name-only only shows the names of the changed files
+    # grep "^$1" only shows the files that match the first argument
+    git diff --name-only HEAD@{1} HEAD | grep "^$1" > /dev/null 2>&1
+}
+
+# If package.json or yarn.lock is changed, we should sync local dependencies
+if changed "package.json" || changed "yarn.lock"; then
+    echo "package.json or yarn.lock changed, running yarn install to sync dependencies"
+    yarn install --force
+fi
