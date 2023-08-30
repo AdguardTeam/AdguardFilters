@@ -165,24 +165,8 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 !
 ! Modify YT xhr responses
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
-! Commented out rule below causes adblock detection
-! It looks like that YouTube is checking playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds in JSON.parse and Response.prototype.json to detect ad blockers
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', '0.playerResponse.adPlacements 0.playerResponse.playerAds')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerConfig.audioConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', 'playerResponse.playerConfig')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'auxiliaryUi.messageRenderers.enforcementMessageViewModel')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.enforcementMessageViewModel', 'undefined')
-! youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.audioConfig.loudnessDb')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.audioConfig.loudnessDb')
-!youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.streamSelectionConfig.maxBitrate')
-!youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds adPlacements playerAds', '*.playerConfig.streamSelectionConfig.maxBitrate')
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.liveStreamability')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.playabilityStatus.liveStreamability')
-youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '*.playerAttestationRenderer.botguardData.interpreterSafeUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue')
+youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/\"adPlacements.*?\"\}\}\}\]\,/', '', 'player?key=')
 !#endif
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
