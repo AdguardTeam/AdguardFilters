@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 &nbsp;
 
 <p align="center">
@@ -15,6 +16,7 @@
     <a href="https://github.com/AdguardTeam/AdguardFilters/issues" target="_blank"><img src="https://img.shields.io/github/issues/AdguardTeam/AdguardFilters" alt="GitHub issues"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/issues?q=is%3Aissue+is%3Aclosed" target="_blank"><img src="https://img.shields.io/github/issues-closed/AdguardTeam/AdguardFilters" alt="GitHub closed issues"></a>
 </p>
+<!-- markdownlint-restore -->
 
 This is the place where we create filters for [AdGuard][adguard] and other
 ad-blocking software, such as uBlock Origin. Each filter consists of a set of
