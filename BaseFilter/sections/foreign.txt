@@ -1159,6 +1159,8 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !---------------------------------------------------------------------
 ! NOTE: Croatian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/160496
+zadarskiportal.com##.bn-content
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160497
 espreso.co.rs##body .ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160487
@@ -1527,8 +1529,8 @@ najserialy.to#%#AG_onLoad(function() {var b=new MutationObserver(function() {var
 najserialy.to#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158599
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96840
-@@||static.ads-twitter.com/uwt.js$domain=media.cms.nova.cz
-||static.ads-twitter.com/uwt.js$redirect=nooptext,domain=media.cms.nova.cz,important
+@@||static.ads-twitter.com/uwt.js$domain=cms.nova.cz
+nova.cz#%#//scriptlet('prevent-fetch', 'ads-twitter.com')
 nova.cz#%#//scriptlet('prevent-element-src-loading', 'script', 'trackad.cz')
 !+ NOT_OPTIMIZED
 ||trackad.cz/adtrack.php$script,other,redirect=noopjs,domain=nova.cz
@@ -4215,6 +4217,13 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/160809
+facciabuco.com##.bannerpost
+facciabuco.com#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|secure\.quantserve\.com/')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||secure.quantserve.com/|$xmlhttprequest,domain=facciabuco.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=facciabuco.com
+!#endif
 ! iodonna.it - adblock and ads
 ||components2.rcsobjects.it/rcs_anti-adblocker-verticali^
 iodonna.it##.adv-wrapper
@@ -7001,6 +7010,8 @@ chili.com#%#//scriptlet('prevent-xhr', '/ad-manager/avod/metadata')
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=chili.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99560
 @@||olx.org/ads/offer-eligibility$domain=olx.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/160779
+tabletowo.pl##div[id^="oa-360-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135222
 tabletowo.pl##.cbad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122186
@@ -8137,7 +8148,6 @@ dziennik.pl,forsal.pl,gazetaprawna.pl##.adCaptionContainer
 forsal.pl,gazetaprawna.pl#?#div[id^="miejsce"] > div[style*="text-align: center; color: grey; font-size: 10px;"]:contains(/^Reklama$/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140816
 ||interia-v.pluscdn.pl/poczta-newsfeed-*.mp4$domain=poczta.interia.pl
-poczta.interia.pl#?#.newsfeed-player:has(> a[href="https://polsatgo.pl"])
 interia.pl#%#//scriptlet("adjust-setTimeout", "location = '/#iwa_source=timeout'", "15000", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37781
 interia.pl#%#//scriptlet('adjust-setTimeout', 'location.href = "/#iwa_source=timeout"', '15000', '0.02')
@@ -8598,10 +8608,6 @@ mecze24.pl#?#div[class^="cool-stuff"]
 ! pluscdn.pl - antiadblock
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=pluscdn.pl
 pluscdn.pl#%#//scriptlet("json-prune", "ads.adBlockDetectionEnabled")
-! https://github.com/AdguardTeam/AdguardFilters/issues/91253
-! https://github.com/AdguardTeam/AdguardFilters/issues/26562
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=polsatgo.pl
-polsatgo.pl#%#//scriptlet("json-prune", "result.ads.adserver result.ads.adBlockDetectionEnabled")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57202
 ! anime-odcinki.pl - ads
 anime-odcinki.pl##.region-sidebar-second > .widget_text > .textwidget > center > div[id][style="width:300px;height:250px;"]:empty
@@ -9635,6 +9641,10 @@ a1.ro##.ima-ad-container
 !---------------------------------------------------------------------
 ! NOTE: Serbian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/160827
+kupujemprodajem.com#?##__next div[class^="Banner"]:has(a[href^="https://novi.kupujemprodajem.com/bClick.php"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/160828
+n1info.rs##.banner-promotion
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154351
 sd.rs##.sd-banners-zone-responsive-footer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151402
@@ -10603,6 +10613,10 @@ brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
 ! NOTE: Vietnamese
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/160774
+||animehay.city/720x80.gif
+animehay.city##body > div[style^="position: fixed; bottom: 0px; z-index:"]
+animehay.city#%#//scriptlet('set-constant', 'adsCatFish', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159620
 ||phimlongtieng.net/*.mp4
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159896
@@ -10917,7 +10931,6 @@ hataphim.com#%#//scriptlet("abort-on-property-read", "goToURL")
 truyenqq.net###left-banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155997
 ||linkneverdie.net/jquery$replace=/if \(!currentUrl\.includes\("huong-dan"\)\)/if \(!currentUrl\)/
-linkneverdie.net#%#//scriptlet('set-constant', 'window.setTimeout', 'noopFunc')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||gamma.cachefly.net/js/ad-exchange.js$domain=linkneverdie.net
 @@/email-decode.min.js$domain=linkneverdie.net
