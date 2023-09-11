@@ -940,6 +940,13 @@ schnittmuster-datenbank.de#%#//scriptlet("abort-on-property-read", "adsBlocked")
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/161312
+gamezoom.net#%#//scriptlet('prevent-fetch', 'ads.gamezoom.net')
+gamezoom.net#%#//scriptlet('set-constant', 'loadAntiWerber', 'noopFunc')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||ads.gamezoom.net/revive/www/delivery/avw.php?zoneid=$xmlhttprequest,domain=gamezoom.net
+@@||ads.gamezoom.net/revive/www/images/$xmlhttprequest,domain=gamezoom.net
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159343
 deutschekanale.com,riuria.beauty#%#//scriptlet('prevent-fetch', '/doubleclick\.net|imasdk\.googleapis\.com/')
 ||imasdk.googleapis.com^$xmlhttprequest,redirect=nooptext,domain=deutschekanale.com|riuria.beauty
