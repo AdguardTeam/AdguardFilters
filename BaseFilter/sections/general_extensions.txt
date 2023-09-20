@@ -285,6 +285,13 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/161263
+! Fixes video player, required in case of DNS filtering
+tyla.com#%#//scriptlet('set-constant', 'pbjs.rp', 'noopFunc')
+tyla.com#%#//scriptlet('set-constant', 'pbjs.rp.requestVideoBids', 'noopFunc')
+tyla.com#%#//scriptlet('prevent-element-src-loading', 'script', 'adsafeprotected')
+tyla.com#%#//scriptlet('adjust-setTimeout', 'e()', '3500', '0.001')
+tyla.com#%#(()=>{const c=function(){[...arguments].forEach((c=>{if("function"==typeof c)try{c(!0)}catch(c){console.debug(c)}}))},n=[];n.push=c,window.PQ={cmd:n,getTargeting:c}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162041
 animexin.vip#%#//scriptlet('abort-current-inline-script', 'onload', 'atob(link)')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161847
