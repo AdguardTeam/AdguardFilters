@@ -12452,9 +12452,16 @@ m.youtube.com#%#//scriptlet('set-cookie-reload', 'visitor', '1')
 ! https://gist.github.com/AdamWr/b32688adb0393d31525f445ee5ab4302#file-gistfile1-txt
 google.*,youtube.com#%#(function(){try{var time=(new Date).getTime();var cookieDate=new Date(time+1314E6);var hostname=location.host;var locSubString=null;if(!hostname.startsWith("google.")&&!hostname.startsWith("youtube."))locSubString=hostname.substring(hostname.indexOf(".")+1);var loc=locSubString||hostname;if(document.cookie.indexOf("CONSENT=YES")!==-1)return;document.cookie="CONSENT=YES+; domain="+loc+"; path=/; expires="+cookieDate.toUTCString()}catch(ex){console.error("AG: failed to set consent cookie: "+ex)}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161693
+! Desktop and mobile website have a different structure
+! For desktop
 www.google.*#%#//scriptlet('trusted-click-element', 'body > div > div div.GzLjMd > button + button[id="L2AGLb"] > div.QS5gu', '', '500')
-!+ PLATFORM(ios, ext_safari)
+! For mobile
+www.google.*#%#//scriptlet('trusted-click-element', 'body > div > div div.IKl7Q button[id="L2AGLb"] > div.QS5gu', '', '500')
+! The same as rules above but without "www.", due to this issue - https://github.com/AdguardTeam/AdguardForiOS/issues/1897
+!#if (adguard_app_ios || adguard_ext_safari)
 google.*#%#//scriptlet('trusted-click-element', 'body > div > div div.GzLjMd > button + button[id="L2AGLb"] > div.QS5gu', '', '500')
+google.*#%#//scriptlet('trusted-click-element', 'body > div > div div.IKl7Q button[id="L2AGLb"] > div.QS5gu', '', '500')
+!#endif
 ! Navigation to images in Google search is broken when the value 'CAESHA' is used, so it's necessary to use the real value
 ! Rules below causes that settings are not saved - https://github.com/AdguardTeam/AdguardFilters/issues/161778#issuecomment-1727832192
 ! www.google.*#%#//scriptlet('trusted-set-cookie', 'SOCS', 'CAESHAgCEhJnd3NfMjAyMzA5MTItMF9SQzIaAmVuIAEaBgiA4JOoBg')
