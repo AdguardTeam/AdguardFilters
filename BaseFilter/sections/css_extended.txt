@@ -6,6 +6,16 @@
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162571
+my.clevelandclinic.org#?#div[data-identity="article-sidebar"] div[style^="height: "]:has(div[class^="bg-gray-"] > div[data-identity="billboard-ad"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/162421
+11alive.com#?#.grid__content_full-width_false > .grid__main > .grid__cell.grid__cell_columns_1:has(> .grid__module_padding_full:only-child > .grid__module-sizer_name_ad > .ad)
+! https://github.com/AdguardTeam/AdguardFilters/issues/162412
+pxfuel.com#$?#.list_ads { remove: true; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/162101
+libhunt.com#?#.alternative-repos > ul > li.repo-component:not([id])
+! https://github.com/AdguardTeam/AdguardFilters/issues/162090
+dev.to#?#.crayons-layout__sidebar-right > .js-billboard-container:has(> div > .crayons-sponsorship > .crayons-sponsorship__header > div > span.crayons-sponsorship__indicator)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161903
 skysports.com#?#.site-layout-secondary > .grid__col.adaptive-content:has(> .advert:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161724
@@ -276,8 +286,9 @@ coolors.co#?##header > a[id][class]:has(> div[id] > span[id])
 bing.com#?#.slide:has(> .tobitem > a > .rtb_ad_caritem_mvtr)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135854
 swiggy.com#?##all_restaurants div[class]:has(> a > div[class] > div[class] > div[class][style*="transparent"] > div[class]:contains(Promoted))
-! https://github.com/AdguardTeam/AdguardFilters/issues/135880
-90min.com#?#.viewablity-block > figure:has(div#mm-player-placeholder-large-screen)
+! Minute Media
+! only for the sites with '/posts/' in article pathes
+catcrave.com,musketfire.com,bloggingdirty.com,90min.com,90min.de#?#.viewablity-block > figure:has(div#mm-player-placeholder-large-screen)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134180
 uploadrar.com#?#div[class^="download"][class*="page"] div[class^="banner"]:has(> .as_ads_guard:only-child)
 uploadrar.com#?#div[class^="download"][class*="page"] div[class^="banner"]:has(> script:first-child + .adsbygoogle)
@@ -340,7 +351,9 @@ gamesradar.com#?#.listingResults > div.listingResult > div.sponsored-post:upward
 silverspoon.site#?#table[style="width:100%; height:1200px"] > tbody > tr:first-child > td > div[data-ad-slot]:upward(2)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129515
 lesbian8.com#$?##int-over { remove: true; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/162351
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129491
+unsplash.com#?#.ripi6 > div:matches-property(/__reactFiber/.return.return.memoizedProps.ad)
 unsplash.com#?#div[data-test="search-photos-route"] > div[class] > div[class] > h2:contains(Browse premium images on iStock)
 unsplash.com#?#div[data-test="editorial-route"] div[style^="--column-gutter:"] > div[class] > div:has(> figure[data-test^="photo-grid-"] a[href="/brands"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129390
@@ -360,20 +373,23 @@ worldofgothic.de#?#div:has(> img[src^="/images/styles/wog/design/ad"][src*="supe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130049
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128592
 bitsearch.to,solidtorrents.to#?##alart-box > .view-box:has(> #alart-message > a[target="_blank"])
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128507
 ! sidebar
 duplichecker.com#?#.main-content ~ div[class] > *:has(> div > * a[target][rel] > img)
 ! main
-duplichecker.com#?#.main-content > div[class] > div:has(> div > * a[target][rel] > img)
+duplichecker.com#?#div[style]:has(> [style^="display: inline-block"] > a[target="blank"])
 ! below search similar image button
 duplichecker.com#?#.data_inbox > div:has(> div > span > span)
 ! above search similar image button
 duplichecker.com#?#.data_inbox > div:has(> * > span > div[data-ap-network])
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128138
 station-drivers.com#?#.container-sidebar-left > div.card > div.card-body > div.bannergroup:upward(2)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127967
 forge.plebmasters.de#?#.container > div.row--dense > div.col-sm-6:has(> div > div.v-card .v-toolbar__content span.v-chip__content:contains(Advertisement))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127650
+lightnovelpub.com#?#div[class] > div[id^="pf-"]:only-child:upward(1)
 lightnovelpub.vip,lightnovelpub.com,lightnovelspot.com,webnovelpub.com#?#.container > div[class]:has(> *:is([data-stpd], [id^="gpt_slot_"]))
 lightnovelpub.vip,lightnovelpub.com,lightnovelspot.com,webnovelpub.com#?#.comment-list > div[class]:has(> *:is([data-stpd], [id^="gpt_slot_"]))
 lightnovelpub.vip,lightnovelpub.com,lightnovelspot.com,webnovelpub.com#?##chapter-container > div[class]:has(> *:is([data-stpd], [id^="gpt_slot_"]))
@@ -910,7 +926,7 @@ tripadvisor.*#?##component_2 > div[class^="_"] > div > div[class^="iab_"][style=
 tripadvisor.*#?#.ui_container > div[class] > div[class^="_"] > .iab_medRec:only-child:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/86224
 latestlaws.com#?#.box > a[href^="https://us02web.zoom.us/meeting/register/"]:has(> div.row > div.col-md-12 > img[alt^="KD Lex Chambers LLP"])
-latestlaws.com#?#.front-sidebar > div.row:has(> div.col-md-12 > div.widget-border-none > a[target="_blank"][rel="nofollow"])
+latestlaws.com#?#.front-sidebar > div.row:has(> div.col-md-12 > div.widget-border-none > a[target="_blank"][rel="nofollow"]:not([href^="https://latestlaws.com/"]):not([href^="https://bit.ly/"]))
 latestlaws.com#?#.front-sidebar > div.row:has(> div.col-md-12 > div.widget-border-none > a[target="_blank"] > img[alt="Dee Gee"])
 latestlaws.com#?#.front-sidebar > div.row:has(> div.col-md-12 > div.widget-border > a[href^="https://nalsa.gov.in/"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85967
@@ -1417,9 +1433,12 @@ onepiece-online-manga.com#?#.code-block > center:contains(Advertisement)
 myviptuto.com#?#.articles > article.grid-25.np-mobile:has(> .epcl-banner)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56077
 primewire.li#?#.choose_tabs > .actual_tab > .movie_version:has(> tbody > tr > td > span > a[href^="/links/sponsored/"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/162643
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62629
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56778
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!+ NOT_OPTIMIZED
+mail.yahoo.com#?#a[data-test-id="bottom-sticky-pencil-ad"]
 !+ NOT_OPTIMIZED
 mail.yahoo.com#?#a[data-test-id="pencil-ad"]
 !+ NOT_OPTIMIZED
@@ -1964,8 +1983,6 @@ paksociety.com#?#.textwidget > p > b:contains(Advertisement)
 fpo.xxx#?#.block-video > .table:has(> .opt > [id^="mp_spot_"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17779
 ghanaweb.com#?##ads > .ad:has(>.adsbygoogle)
-! https://github.com/AdguardTeam/AdguardFilters/issues/16278
-lawlessrepublic.com,culturess.com,tomahawktake.com,mlsmultiplex.com,fansided.com,dawgpounddaily.com#?#.sidebar > .widget > .top-stories > li:not([class]):not([id]):has(> .fs_ad_widget-ad)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17307
 celebitchy.com#?##sidebar > .hotposts:contains(Advertisements)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16271
@@ -2107,6 +2124,14 @@ indiastudychannel.com#?#.main > div.row:has(> div.col-md-12 > div.item > div.row
 indiastudychannel.com#?##content_rightbar > div.roundedBlock:has(> div#HP-gpt-passback)
 indiastudychannel.com#?##content_rightbar > div.roundedBlock:has(> div[id^="div-gpt-ad-"])
 !
+torrentdownloads.pro#?#.inner_container > div:has(> div[style="float:left"])
+youporn.com#?#.playWrapper > #videoWrapper + div[class*=" "]:has(> div[id]:only-child > .adsbytrafficjunky)
+houstonchronicle.com#?#aside > .stickyWrapper:has(> .adModule)
+airalamo.com,thejetpress.com,thevikingage.com,titansized.com#?#main > div.viewablity-block > figure[class]:has(div[id^="mm-player-placeholder-"])
+rhymejunkie.com#?#main figure:has(> div > div[id^="mm-player-placeholder"])
+redgifs.com#?#ul.SideBar > li.SideBar-Item:has(> div[class] > div[class^="LiveButton_"])
+webstick.blog#?#.main > article > p:has(img[src^="images/images-ads/"])
+gptgo.ai#?#.main-page-wrapper > div.hero-banner + p[style^="text-align:"]:contains(ADVERTISEMENT)
 1tamilblasters.lat#?#.ipsWidget > .ipsWidget_inner:has(> p[style="text-align: center;"]:only-child > a[target="_blank"] > img)
 hypebeast.com#?#.sidebar-sticky-container:has(> .ad-skyscraper-container:only-child)
 hsreplay.net#?#.ads-container > div[class]:first-child:has(> div[style]:only-child > .vm-placement)
@@ -2133,7 +2158,9 @@ redgifs.com#$?#.topNav-wrap > div:not([class]):contains(/Explore.*Cams$|Watch Li
 porntrex.com#?#.content > div[class]:has(> div[style*="text-align"] > center > script)
 freshnewsasia.com#?#div[itemprop="articleBody"] > div[style]:has(> a[href*="/banner/"])
 freshnewsasia.com#?#.row-fluid > div#aside:has(a[href*="/banner/"])
-instacart.ca,instacart.com#?#header ~ div > div ul > li:has(div[aria-label="Product"] > div > div[data-sp-elllllligible] > span:contains(Sponsor))
+instacart.ca,instacart.com#?##store-wrapper div[class] > ul li:has(div[aria-label="Product"]:has(img[alt="Sponsored"]))
+instacart.ca,instacart.com#?##store-wrapper div[class] > ul li:has(div[aria-label="Product"]:has(div:contains(Sponsor)))
+instacart.ca,instacart.com#?##store-wrapper div.e-ijs5rh
 trakt.tv#?#div:has(> span[id^="adn"])
 yunjiema.top#?#.row.border-bottom.table-hover:has(ins.adsbygoogle)
 m3uiptv.com#?#.entry-content > p:has(> .adsbygoogle)

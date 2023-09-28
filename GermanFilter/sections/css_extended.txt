@@ -5,6 +5,10 @@
 ! Good: example.org#?#main > div.row:has(> div.ad)
 ! Bad: example.org##main > div.ad (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/61907
+chip.de#?#.wrapper-safe section .ButtonAuswahl + div:not([class], [id]) > div[class] > a[href*="https://www.chip.de/downloads/"]:has(> div[id]:contains(/^Anzeige$/))
+! https://github.com/AdguardTeam/AdguardFilters/issues/162543
+businessinsider.de#?#.sponsored:has(> .teaser-post__inner > .teaser-post__header .list-labels__item > .post-term-label:contains(Anzeige))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161920
 heise.de#?#body > div.a-layout:has(> div.a-layout__container div.ad-ldb-container)
 ! lieferando.de - sponsored entries
@@ -12,6 +16,7 @@ lieferando.de#?#div[data-dd-action-name="restaurant-card"]:has(a div[data-qa="sp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161299
 nydus.org#?##r600sky
 nydus.org#?##fplayer > div[id^="nbn"]
+nydus.org#?##fplayer + div > div[id^="nbn"]
 ! mein-mmo.de - ads main page
 mein-mmo.de#?#.article:has(> section > .content > .mmo-custom-label-wrapper > span[data-type="sponsored"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160976
@@ -23,8 +28,6 @@ infranken.de##img[data-cmp-src^="https://ir-de.amazon-adsystem.com"]
 android-hilfe.de#?#.js-replyNewMessageContainer > .message--post:not([data-author]):has(> .message-inner > .message-cell--user .message-name > a.username:contains(/^Anzeige$/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159553
 finanzen.net#?#.page-content__item:has(> div[class^="fin-ob-"])
-! https://github.com/AdguardTeam/AdguardFilters/issues/158876
-90min.de#?#main > div.viewablity-block > figure:has(> div > div#mm-player-placeholder-large-screen)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158739
 giga.de#?#article:has(.alice-teaser-intro > .deal)
 ! macwelt.de, pcwelt.de - ad on main site
@@ -142,7 +145,6 @@ krautundrueben.de#$?#.billboard { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137730
 sport.de#$?#.MoltenBundle { display: none !important; }
 ! pcgames.de ads on main page
-pcgames.de#?#.item:has( .textFrame .platformBar > .Firma)
 pcgames.de#?#.itemContainer:has(> div.item[style="display: none !important;"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137740
 manager-magazin.de#?#div[class*="min-h-"]:has(> div[style*="gujad"])

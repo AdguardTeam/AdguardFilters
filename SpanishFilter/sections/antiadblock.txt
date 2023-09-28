@@ -9,6 +9,16 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162478
+modescanlator.com#%#//scriptlet('prevent-fetch', 'ads_block.txt')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||modescanlator.com/ads_block.txt
+! https://github.com/AdguardTeam/AdguardFilters/issues/162260
+||cdn.jsdelivr.net/gh/MuriloWalker/javascript@main/AntiAdblock.js
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$redirect=googlesyndication-adsbygoogle,domain=xerifetech.com
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xerifetech.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161608
 ||bluf.online/js/adblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161248
@@ -124,10 +134,16 @@ negociosecommerce.com,puromarketing.com,todostartups.com#%#//scriptlet('prevent-
 negociosecommerce.com,puromarketing.com,todostartups.com#@#.adxs-vertisements
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=negociosecommerce.com|puromarketing.com|todostartups.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/162380
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148011
+hinatasoul.com#%#//scriptlet('abort-on-property-read', 'adBlockFunction')
 hinatasoul.com#%#//scriptlet('abort-current-inline-script', 'document.getElementsByTagName', 'adsbygoogle.js')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!+ NOT_PLATFORM(windows, mac, android)
+$script,redirect-rule=noopjs,domain=hinatasoul.com
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||arc.io/widget.min.js$domain=hinatasoul.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=hinatasoul.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146455
 niusdiario.es#@#.sponsored_ad
 niusdiario.es#%#//scriptlet('set-constant', '$MICROSITE_INFO.blockAdBlock', 'false')
@@ -658,10 +674,11 @@ elquintobeatle.com,empregoestagios.com,satcesc.com#%#//scriptlet("set-constant",
 @@||playtemporal.xyz/js/*/fuckadblock.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65649
 applesfera.com,bebesymas.com,compradiccion.com,diariodelviajero.com,directoalpaladar.com,elblogsalmon.com,espinof.com,genbeta.com,motorpasion.com,motorpasionmoto.com,pymesyautonomos.com,trendencias.com,trendenciashombre.com,vidaextra.com,vitonica.com,xataka.com,xatakaciencia.com,xatakafoto.com,xatakahome.com,xatakamovil.com,xatakandroid.com,xatakawindows.com#%#//scriptlet("set-constant", "WSL2.config.enableAdblockEcommerce", "0")
+! https://github.com/AdguardTeam/AdguardFilters/issues/162442
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129540
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65579
-doceru.com,docero.com.br#$?#iframe#doublebillboard-1 { remove: true; }
-doceru.com,docero.com.br#%#//scriptlet("set-constant", "ads_unblocked", "true")
+docer.com.ar,doceru.com,docero.com.br#$?#iframe#doublebillboard-1 { remove: true; }
+docer.com.ar,doceru.com,docero.com.br#%#//scriptlet("set-constant", "ads_unblocked", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64208
 outerspace.com.br#%#//scriptlet("abort-on-property-read", "ppAdblocks")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63889

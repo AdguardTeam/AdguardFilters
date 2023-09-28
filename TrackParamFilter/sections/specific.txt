@@ -6,6 +6,35 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! DuckDuckGo
+! https://duckduckgo.github.io/duckduckgo-help-pages/privacy/atb/
+! breaks redirect when their Extension is installed - https://github.com/AdguardTeam/AdguardFilters/issues/161751
+! ||duckduckgo.com^$removeparam=atb
+||duckduckgo.com^$removeparam=vis
+||duckduckgo.com^$removeparam=perf_id
+||duckduckgo.com^$removeparam=parent_perf_id
+! https://github.com/AdguardTeam/AdguardFilters/issues/162037
+||tutanota.com^$removeparam=t-src
+! donga.com - click an article at its main homepage. https://www.donga.com/
+||donga.com^$removeparam=ref
+! https://github.com/AdguardTeam/AdguardFilters/issues/162001
+||t.adcell.com/*?$removeparam=subId
+||track.webgains.com/click.html?$removeparam=clickref
+$removeparam=bid,domain=fafit24.de
+$removeparam=adcref,domain=fafit24.de
+$removeparam=cvrid,domain=decathlon.pl
+$removeparam=cvrpid,domain=decathlon.pl
+$removeparam=cvrsid,domain=decathlon.pl
+$removeparam=tag3,domain=ibood.com|decathlon.pl
+$removeparam=wgu,domain=ibood.com|decathlon.pl
+$removeparam=wgexpiry,domain=ibood.com|decathlon.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/162003
+||rapidgator.net^$removeparam=referer
+! https://github.com/AdguardTeam/AdguardFilters/issues/161972
+||donation.yahoo.co.jp^$removeparam=cpt_n
+||donation.yahoo.co.jp^$removeparam=cpt_s
+||donation.yahoo.co.jp^$removeparam=cpt_m
+||donation.yahoo.co.jp^$removeparam=cpt_c
 ! tinkoff.ru
 ||tinkoff.ru^$removeparam=dsp_click_id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161229
@@ -418,8 +447,6 @@ $removeparam=ici,domain=shein.co.uk|shein.com
 ||bbc.$removeparam=at_bbc_team
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138614
 ||jlcpcb.com^$removeparam=from
-! https://github.com/AdguardTeam/AdguardFilters/issues/138466
-||morhipo.com^$removeparam=srsltid
 ! https://event.hoken-mammoth.jp/sp/lps/event_promotion12/?s_mf=0901mamana
 ||event.hoken-mammoth.jp^$removeparam=s_mf
 ! internal links ex. https://www.cinematoday.jp/page/A0008622?g_clk=top_specials
@@ -1137,9 +1164,6 @@ $removeparam=igshid,domain=instagram.com|threads.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89345
 ||play.google.*^$removeparam=referrer
 ! Google Search
-! https://github.com/AdguardTeam/CoreLibs/issues/1464
-! Probably a bug
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 ! ||www.google.com/url?$removeparam=ved
 ! ||google.*/search$removeparam=ved
 ! Breaks codepage in Google Search https://yugioh-wiki.net/index.php
@@ -1156,7 +1180,7 @@ $removeparam=igshid,domain=instagram.com|threads.net
 ||google.*/search$removeparam=sourceid
 ||google.*/search$removeparam=ei
 ||google.*/search$removeparam=gs_lcp
-!#endif
+||google.*/search$removeparam=gs_lcrp
 !
 ! eBay tracking parameters
 ||www.ebay.$removeparam=_trkparms
@@ -1176,22 +1200,26 @@ $removeparam=igshid,domain=instagram.com|threads.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89163
 ! ||amazon.*/message-us$removeparam=origRef
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148958
-! Breaks navigation and removes choosed seller id on the item's page
+! Breaks navigation and removes chosen seller id on the item's page
 ! ||amazon.*$removeparam=smid
 !
 ! ||amazon.*$removeparam=sr - breaks automatic jump to review details
 ! ||amazon.*$removeparam=s - breaks URLs which includes it to sort
-! https://github.com/AdguardTeam/AdguardFilters/issues/110571 - disable rule if issue happens again: broke adding article to basket when viewing all offers
-!
 ! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-5867802
 $removeparam=asc_campaign,domain=aboutamazon.com|amazon.*|amzn.to
 $removeparam=asc_refurl,domain=aboutamazon.com|amazon.*|amzn.to
 $removeparam=asc_source,domain=aboutamazon.com|amazon.*|amzn.to
 !
-||amazon.*$removeparam=linkCode
-||amazon.*$removeparam=th
-||amazon.*$removeparam=linkId
 ||amazon.*$removeparam=adgrpid
+||amazon.*$removeparam=ascsubtag
+||amazon.*$removeparam=AssociateTag
+||amazon.*$removeparam=c
+||amazon.*$removeparam=camp
+||amazon.*$removeparam=content-id
+||amazon.*$removeparam=creative
+||amazon.*$removeparam=creativeASIN
+||amazon.*$removeparam=dchild
+||amazon.*$removeparam=field-lbr_brands_browse-bin
 ||amazon.*$removeparam=hvadid
 ||amazon.*$removeparam=hvbmt
 ||amazon.*$removeparam=hvdev
@@ -1201,16 +1229,10 @@ $removeparam=asc_source,domain=aboutamazon.com|amazon.*|amzn.to
 ||amazon.*$removeparam=hvrand
 ||amazon.*$removeparam=hvtargid
 ||amazon.*$removeparam=hydadcr
-||amazon.*$removeparam=AssociateTag
-||amazon.*$removeparam=ascsubtag
-||amazon.*$removeparam=c
-||amazon.*$removeparam=camp
-||amazon.*$removeparam=creative
-||amazon.*$removeparam=creativeASIN
-||amazon.*$removeparam=dchild
-||amazon.*$removeparam=field-lbr_brands_browse-bin
 ||amazon.*$removeparam=initialIssue
 ||amazon.*$removeparam=ingress
+||amazon.*$removeparam=linkCode
+||amazon.*$removeparam=linkId
 ||amazon.*$removeparam=pd_rd_i
 ||amazon.*$removeparam=pd_rd_r
 ||amazon.*$removeparam=pd_rd_w
@@ -1226,6 +1248,7 @@ $removeparam=asc_source,domain=aboutamazon.com|amazon.*|amzn.to
 ||amazon.*$removeparam=qid
 ||amazon.*$removeparam=rdc
 ||amazon.*$removeparam=refRID
+||amazon.*$removeparam=th
 ||amazon.*$removeparam=ts_id
 ||amazon.*$removeparam=visitId
 ||amazon.*$removeparam=vtr
