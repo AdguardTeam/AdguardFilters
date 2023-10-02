@@ -305,10 +305,6 @@ wot-lom.com#$##wrapfabtest { height: 1px!important; }
 @@||get.u-stream.in/start/$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63464
 lotzon.pro##body > [id][style^="z-index:"]:not([class])
-! https://github.com/AdguardTeam/AdguardFilters/issues/63329#issuecomment-690657867
-2ip.io,2ip.ru#@#.advMenuTab
-2ip.io,2ip.ru#$#.advMenuTab { visibility: hidden !important; }
-2ip.io,2ip.ru#$#a[href^="https://krot.io"] { visibility: hidden !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58704
 ||pcnews.ru/js/blockAdblock.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56859
@@ -1041,10 +1037,12 @@ dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
 ! Common rules
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||imgsmail.ru/octavius/*/app*.bundle.js$replace=/if\(i\.ENABLE_SMOKESCREEN/if\(\!i\.ENABLE_SMOKESCREEN/
 ://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
 ||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
 ||mail.ru^$~script,~xmlhttprequest,replace=/broker:/_broker:/
+!#endif
 !
 ! kino.mail.ru
 @@||ad.mail.ru/i*.gif$domain=kino.mail.ru

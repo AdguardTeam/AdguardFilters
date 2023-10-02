@@ -1078,6 +1078,8 @@ olke.az#$#.wrapper { top: 0!important; }
 !---------------------------------------------------------------------
 ! NOTE: Bengali
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162667
+haal.fashion#?#div:has(> div > div > div.dfp-ad-unit)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150880
 channel24bd.tv##.stickyAds
 channel24bd.tv##a[target="_blank"] > img[title="Advertisement"]
@@ -1282,6 +1284,10 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162997
+lupa.cz###adsGalleryDesktop
+lupa.cz##.design-page__content-row > .leaderboard-dynamic-height-wrapper
+lupa.cz#%#//scriptlet('set-constant', 'Gallery.prototype.setupAdsGallery', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160380
 zgonr.miliongames.com##.container_second
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159021
@@ -2255,22 +2261,10 @@ telsu.fi#%#!function(){const e={apply:(e,t,n)=>{if("prg"!==t?.id)return Reflect.
 !#if (!adguard_ext_android_cb && !ext_ublock)
 telsu.fi#$#.pb_t { display: none !important; }
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/115277
-! https://github.com/AdguardTeam/AdguardFilters/issues/143183
-ylilauta.org##div[data-a][data-d]
-ylilauta.org##div[data-src*="//fcdn.lauta.media/"].a
-ylilauta.org#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.append', '/#(contentLoadFailed|showFail)/')
-||fcdn.lauta.media^$domain=ylilauta.org
-/^https:\/\/es\.ylilauta\.org\/files\/[a-z0-9]+\/[a-z0-9]+\/[a-z0-9]+\.jpg/$domain=ylilauta.org
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-ylilauta.org#$#iframe.a { height: 0 !important; }
-||ylilauta.org/service-worker.js$replace=/&& event.request.integrity === ''/&& event.request.integrity === '0'/
-||static.ylilauta.org/js/*/Lauta.js$replace=/this\.checkTampering\(\)/!1/
-||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Lauta\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
-||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this\.#?(contentLoadFailed|showFail)\(\);//
-||ylilauta.org^$document,replace=/(<script src="https:\/\/static\.ylilauta\.org\/js\/.+?\/Module\/FrameLoader\.js" )integrity=".*?" (type="module"><\/script>)/\$1\$2/
-||ylilauta.org^$removeheader=link
-!#endif
+! https://github.com/uBlockOrigin/uAssets/issues/14204
+||es.ylilauta.org^
+||static.ylilauta.org/js/*/Module/FrameLoader.js
+ylilauta.org##.card.a
 ! ruutu.fi - video ads
 ||nelonenmedia-pmd-ads-*.nm-stream.nelonenmedia.fi/*.mp4$media,redirect=noopmp4-1s,domain=ruutu.fi
 ||v.fwmrm.net/ad/g/1?$replace=/(tv\.freewheel\.SDK\._instanceQueue\['Context_[\s\S]*?'\][\s\S]*?\.requestComplete\(\{)[\s\S]*\}\);/\$1\}\);/,domain=ruutu.fi
@@ -3017,6 +3011,8 @@ bb.is$$div[class="banner"]
 !---------------------------------------------------------------------
 ! NOTE: Indian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/163020
+kutchkhabar.com##div[id^="amazingcarousel"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159510
 ||kutchkhabar.com/images/advertise
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152259
@@ -5787,6 +5783,8 @@ roweroweporady.pl#@#.ad_container
 @@||request.dqst.pl^$domain=weszlo.com
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162705
+winnicalidla.pl#$#html.async-hide { opacity: 1 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162657
 infoprzasnysz.com##.ngemydow
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162115
@@ -7700,7 +7698,11 @@ interia.pl##body .ad-rectangle:not(#style_important)
 interia.pl#$#div[class^="box ad box"] { position: absolute !important; left: -3000px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67208
 tipy.interia.pl##.rekObokWstepu
+! https://github.com/AdguardTeam/AdguardFilters/issues/162718
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113851
+||poczta.interia.pl/next/adv,advKeyword$subdocument,important
+poczta.interia.pl##.top-ad-placement
+poczta.interia.pl##div.ad[nxt-ad-place]
 poczta.interia.pl##.ads-content
 poczta.interia.pl#?##main-container > .mail-frame-aside:has(> .ads-content)
 interia.pl#%#//scriptlet('remove-attr', 'style', '.mail-container[data-widget^="https://poczta.interia.pl/widget/"] > .mail-popup[style]')
@@ -9275,14 +9277,17 @@ iiv.pl#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.te
 @@||iiv.pl^$generichide
 ! https://github.com/MajkiIT/polish-ads-filter/issues/3175
 naszemiasto.pl#%#window.adBlockTest = true;
+! https://github.com/AdguardTeam/AdguardFilters/issues/162841
 ! https://github.com/AdguardTeam/AdguardFilters/issues/32398
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20613
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15353
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11323
+$script,third-party,denyallow=ckeditor.com|fastly.net|statically.io|sharecast.ws|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|polyfill.io|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io,_____,domain=shinden.pl
 shinden.pl###spolSticky
 shinden.pl##.spolecznoscinet
 shinden.pl##iframe[src^="https://reklama.shinden.eu/adpeeps.php?"]
 shinden.pl#$?#.ads { remove: true; }
+shinden.pl#%#//scriptlet('abort-current-inline-script', 'atob', 'getElementsByTagName')
 shinden.pl#%#//scriptlet("abort-on-property-read", "popjs.init")
 shinden.pl#%#//scriptlet("set-constant", "_pop", "noopFunc")
 shinden.pl#%#//scriptlet("abort-on-property-write", "AdservingModule")
@@ -9520,6 +9525,8 @@ interia.pl#%#document.cookie = "lltsg=1";
 !---------------------------------------------------------------------
 ! NOTE: Romanian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/162731
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=kanald.ro
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153162
 antena3.ro###ribbon
 antena3.ro##.bannerBox
@@ -10680,6 +10687,15 @@ daum.net##.box_banner
 ! http://forum.adguard.com/showthread.php?5403
 brandbuffet.in.th#@#.category-advertorial
 !---------------------------------------------------------------------
+!------------------------------ Uzbek --------------------------------
+!---------------------------------------------------------------------
+! NOTE: Uzbek
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/162988
+||yangi-kinolar.ru/*/pc.gif
+||yangi-kinolar.ru/vast/*.xml
+asilmedia.org###banner
+!---------------------------------------------------------------------
 !------------------------------ Vietnamese ---------------------------
 !---------------------------------------------------------------------
 ! NOTE: Vietnamese
@@ -11121,7 +11137,6 @@ fimfast.com#%#AG_onLoad(function() { store.set("preload-popup-2", new Date); });
 fshare.vn##div[class^="quang-cao-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56400
 ||game4v.com/*/banner-*.gif
-game4v.com###close-fixedban
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55957
 hentaivn.net###over
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54824
