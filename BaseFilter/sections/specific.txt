@@ -155,14 +155,14 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 .com/watch?v=$xmlhttprequest,jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?\"\}\}\}\]\,/', '', '/player\?key=|watch\?v=/')
+www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?\"\}\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 ! Multiple trusted-replace-xhr-response causes breakage on music.youtube.com when logged in
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adSlots.*?\}\]\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"playerAds.*?\}\}\]\,/', '', '/player\?key=|watch\?v=/')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/(GFEEDBACK.*?)"adSlots.*?\}\]\}\}\]\,/', '$1', 'player?key=')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/(GFEEDBACK.*?)"adPlacements.*?"\}\}\}\]\,/', '$1', 'player?key=')
-youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/(GFEEDBACK.*?)"playerAds.*?\}\}\]\,/', '$1', 'player?key=')
-music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots')
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"adSlots.*?SLOT_TYPE_PLAYER_BYTES.*?\}\]\}\}\]\,/', '', 'player?key=')
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"adPlacements.*?AD_PLACEMENT_KIND_START.*?\"\}\}\}\]\,/', '', 'player?key=')
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"playerAds.*?"enabledEngageTypes":"(\d{1,2},)+\d".*?\}\}\]\,/', '', 'player?key=')
+m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots')
 !#endif
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
