@@ -155,7 +155,16 @@ youtube.com#%#//scriptlet('set-constant', 'yt.config_.EXPERIMENT_FLAGS.ab_det_ge
 ! Modify YT xhr responses
 .com/watch?v=$xmlhttprequest,jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+! $replace rules for Firefox
+!#if (adguard_ext_firefox)
+.com/watch?v=$replace=/\"adPlacements.*?true.*?\"\}\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+/youtubei/v*/player?key=$replace=/\"adPlacements.*?true.*?\"\}\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+.com/watch?v=$replace=/\"adSlots.*?true.*?\}\]\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+/youtubei/v*/player?key=$replace=/\"adSlots.*?true.*?\}\]\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+.com/watch?v=$replace=/\"playerAds.*?true.*?\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+/youtubei/v*/player?key=$replace=/\"playerAds.*?true.*?\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
 youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?\"\}\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 ! Multiple trusted-replace-xhr-response causes breakage on music.youtube.com when logged in
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adSlots.*?\}\]\}\}\]\,/', '', '/player\?key=|watch\?v=/')
@@ -163,6 +172,8 @@ youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?\"\
 youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/(source=.*?)"adSlots.*?\}\]\}\}\]\,/', '$1', 'player?key=')
 youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/(source=.*?)"adPlacements.*?"\}\}\}\]\,/', '$1', 'player?key=')
 youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/(source=.*?)"playerAds.*?\}\}\]\,/', '$1', 'player?key=')
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots')
 !#endif
 ! This one may be unnecessary:
