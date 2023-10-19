@@ -38,6 +38,16 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/164104
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_opera)
+||cdn.segment.com^$script,redirect=noopjs,important,domain=reuters.com
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
+@@||cdn.segment.com/analytics.js/v*/*/analytics.min.js$domain=reuters.com
+@@||cdn.segment.com/v*/projects/*/settings$domain=reuters.com
+@@||cdn.segment.com/analytics-next/bundles/ajs-destination.bundle.*.js$domain=reuters.com
+@@||cdn.segment.com/analytics-next/bundles/schemaFilter.bundle.*.js$domain=reuters.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/163978
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
 @@||googletagmanager.com/gtm.js$domain=mobile01.com
