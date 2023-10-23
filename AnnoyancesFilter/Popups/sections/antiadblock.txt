@@ -2040,6 +2040,36 @@ ivi.ru#%#document.cookie = "adbNotice=1";
 ivi.ru#%#AG_onLoad(function() { document.cookie = "adbNotice=1"; });
 creativeuncut.com###abox-s_i
 creativeuncut.com###g_abox
+!
+! iqiyi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/74116
+iqiyi.com##iqpdiv[data-cupid=container]
+iqiyi.com##div[adid]
+! https://github.com/AdguardTeam/AdguardFilters/issues/101151
+! https://github.com/AdguardTeam/AdguardFilters/issues/79270
+! https://github.com/AdguardTeam/AdguardFilters/issues/44749
+! https://github.com/AdguardTeam/AdguardFilters/issues/38910
+! https://github.com/AdguardTeam/AdguardFilters/issues/22801
+! https://github.com/AdguardTeam/AdguardFilters/issues/14731
+! m.iqiyi.com#%#//scriptlet("set-constant", "QiyiPlayerLoader.Package.ad.adPlayerId", "") - doesn't work probably due to scriptlet bug
+! m.iqiyi.com#%#AG_defineProperty('QiyiPlayerLoader.Package.ad.adMap', { value: {}, writable: false }); - another working rule, but fixed by a scriptlet
+sports.iqiyi.com,m.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.adPlayerId", "")
+iqiyi.com#%#//scriptlet('set-constant', 'QiyiPlayerProphetData.a.data.originRes.adSlots', 'emptyObj')
+iqiyi.com#%#//scriptlet('set-constant', 'QiyiPlayerProphetData.a.data.showResponse.slots', 'emptyObj')
+iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.parseXML", "noopFunc")
+iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.blackscreenDuration", "1")
+||cupid.iqiyi.com/mixer?$domain=iqiyi.com
+||cupid.iqiyi.com/mixer?$jsonprune=\$..[adSlots]
+||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
+||data.video.iqiyi.com/videos/other/*$xmlhttprequest,~third-party,badfilter
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
+!#safari_cb_affinity(general)
+@@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
+!+ PLATFORM(ios)
+||t7z.cupid.iqiyi.com^$badfilter
+!#safari_cb_affinity
+!
 ! Youtube
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 www.youtube.com#%#//scriptlet('abort-on-stack-trace', 'btoa', '/[A-Za-z]lb \S+polymer/')
