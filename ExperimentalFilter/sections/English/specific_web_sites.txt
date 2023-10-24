@@ -12,3 +12,25 @@ www.youtube.com#$?##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-ri
 www.youtube.com#$?##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) { --ytd-rich-grid-items-per-row: 1 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96262
 developer.android.com,adssettings.google.com##sc-survey-survey-manager
+!
+!#if adguard_app_windows
+rule_for_adguard_app_windows
+! aglint-disable-next-line
+!#else
+adguard_NOT_app_windows
+!#endif
+!
+!#if (adguard_app_android || adguard_app_ios)
+rule_for_adguard_app_android_OR_adguard_app_ios
+! aglint-disable-next-line
+!#else
+rule_NOT_for_adguard_app_android_OR_adguard_app_ios
+!#endif
+!
+! Filters for adguard without safari
+!#if (adguard && !adguard_ext_safari)
+rule_for_adguard_NOT_adguard_ext_safari
+! aglint-disable-next-line
+!#else
+rule_NOT_for_adguard_NOT_adguard_ext_safari
+!#endif
