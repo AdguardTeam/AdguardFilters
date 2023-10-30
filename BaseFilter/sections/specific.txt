@@ -173,6 +173,8 @@ youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/(trackingParam":"k
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots')
 !#endif
+! TODO: use scriptlet when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/372
+youtube.com#%#!function(){const e={apply:(e,a,r)=>{if(Array.isArray(r)){const e=r[0];(e.playerAds||e.adPlacements||e.adSlots||e.adBreakHeartbeatParams||e.playerResponse)&&(r=[{}])}return Reflect.apply(e,a,r)}};window.Object.getOwnPropertyNames=new Proxy(window.Object.getOwnPropertyNames,e)}();
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81610
