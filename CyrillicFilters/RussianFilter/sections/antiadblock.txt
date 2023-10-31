@@ -1044,6 +1044,26 @@ dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
 ! adblock detection in videos
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
+! mail.ru - ad on main page
+[$path=/^\/$|\/\?/]mail.ru#%#//scriptlet('remove-node-text', 'script', 'Honeypot')
+! kino.mail.ru
+@@||ad.mail.ru/i*.gif$domain=kino.mail.ru
+@@||kino.mail.ru^$generichide
+! horo.mail.ru
+||auto.mail.ru/-/*/js/cmpld/auto/*/*.js$replace=/mimic_\d+_\d+\s*\&\&\s*mimic_\d+_\d+\(.*\)//
+||auto.mail.ru/sw-mobile.js
+! minigames.mail.ru - ads replacement script
+minigames.mail.ru$$script[tag-content="yandexSlot ="]
+!
+||ad.mail.ru/adp/?_SITEZONE=$replace=/"html"/"html_"/,domain=e.mail.ru|octavius.mail.ru
+! probably obsolete:
+/https:\/\/(e|octavius).mail.ru\/api\/v\d$/$replace=/"direct":{"ads"/"direct":{"ads_"/
+!
+! ok.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/43985
+@@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/19112
+!
 ! Common rules
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||imgsmail.ru/octavius/*/app*.bundle.js$replace=/ENABLE_SMOKESCREEN:function\(\){return ee}/ENABLE_SMOKESCREEN:function\(\){return}/
@@ -1051,27 +1071,6 @@ dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
 ||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
 ||mail.ru^$~script,~xmlhttprequest,replace=/broker:/_broker:/
 !#endif
-!
-! kino.mail.ru
-@@||ad.mail.ru/i*.gif$domain=kino.mail.ru
-@@||kino.mail.ru^$generichide
-! horo.mail.ru
-!
-||auto.mail.ru/-/*/js/cmpld/auto/*/*.js$replace=/mimic_\d+_\d+\s*\&\&\s*mimic_\d+_\d+\(.*\)//
-||auto.mail.ru/sw-mobile.js
-!
-!
-||ad.mail.ru/adp/?_SITEZONE=$replace=/"html"/"html_"/,domain=e.mail.ru|octavius.mail.ru
-! probably obsolete:
-/https:\/\/(e|octavius).mail.ru\/api\/v\d$/$replace=/"direct":{"ads"/"direct":{"ads_"/
-!
-! minigames.mail.ru - ads replacement script
-minigames.mail.ru$$script[tag-content="yandexSlot ="]
-!
-! ok.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/43985
-@@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/19112
 !
 ! END: VK Group
 !
