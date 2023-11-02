@@ -7736,6 +7736,10 @@ pobierzgrepc.com##a[href^="http://download-file.ml/"]
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=ottwow.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165103
 jeja.pl###top > .top-wrap
+! jeja.pl - skip ads in games
+jeja.pl#%#//scriptlet('set-constant', '_goad', '0')
+jeja.pl#%#//scriptlet('adjust-setTimeout', 'show_game', '*', '0.001')
+jeja.pl#%#AG_onLoad(function() { setTimeout(function() { if(typeof show_game_iframe === "function") { show_game_iframe(); } }, 1000); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/71410
 jeja.pl#@##bottomAd
 jeja.pl#%#//scriptlet('prevent-setTimeout', 'adBlockDetected')
@@ -8191,8 +8195,6 @@ superportal24.pl##img[class^="widget_"][class$="_mobile"][data-srcset]
 superportal24.pl#?#div[class="col-sm-6"] > .widget_article:has(> .content > a > img[srcset])
 superportal24.pl###top_above_menu
 superportal24.pl#$##main_content[style^="margin-top:"] { margin-top: 0!important; }
-! jeja.pl - skip ads in games
-jeja.pl#%#AG_onLoad(function() { setTimeout(function() { if(typeof show_game_iframe === "function") { show_game_iframe(); } }, 1000); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48429
 nick.com.pl#%#//scriptlet("set-constant", "gon.viacom_config.ads.game_ads.enabled", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70582
