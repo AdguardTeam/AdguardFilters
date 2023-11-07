@@ -172,7 +172,7 @@ youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?\"\
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adSlots.*?\}\]\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"playerAds.*?\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"adPlacements.*?privateDoNotAccessOrElseTrustedResourceUrlWrappedValue":"https:\/\/www\.youtube\.com\/aboutthisad\?pf=web&source=youtube&reasons=A.*?"\}\}\}\]\,/', '', 'player?key=')
-youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"adPlacements.*?"getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj.*?"\}\}\}\]\,/', '', 'player?key=')
+youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"adPlacements.*?("getAdBreakUrl":"https:\/\/www\.youtube\.com\/get_midroll_info\S+&token=ALHj|"(base)?[Uu]rl":"https:\/\/(secure)?pubads\.g\.doubleclick\.net).*?"\}\}\}\]\,/', '', 'player?key=')
 !#endif
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots')
@@ -277,6 +277,16 @@ $script,third-party,denyallow=fastly.net|statically.io|sharecast.ws|bunnycdn.ru|
 !
 ! NOTE: Specific rules
 !
+mobalytics.gg#?#div[class] > div[class]:has(> header > div > span:contains(Advertisement))
+independent.co.uk###taboola-mid-article-thumbnails-iii
+pixiv.net#?#aside > section[class^="sc-"]:has(> div[class^="sc-"] > iframe[width="100%"])
+softwareok.com##div[id^="SOK_TOP"] + table
+softwareok.com##table[width="200"] > tbody > tr[cellspacing="0"] ~ tr
+gelbooru.com##.footerAd
+christianity.com#?#.container > div.hidden:has(> div.flex > div[id^="desktop_header"])
+christianity.com##.a-250
+audi-sport.net##.samCodeUnit > .samItem
+audi-sport.net##div[data-widget-key="right_top_ad"]
 thejakartapost.com##.tjp-placeholder-ads
 eightforums.com##.p-body-pageContent > div[style^="min-height:"][class*="ad"]
 lawyersweekly.com.au###b-leaderboard-zoneunit > #leaderboard_wrapper
@@ -301,9 +311,9 @@ lovethemaldives.com##div[class*="-rectangle-"]
 allnovascotia.com##div[style="height:130px;text-align:center;background-color:#eef2f5"]
 tutlehd.xyz###overlayer
 portableapps.com##.ez-sidebar-wall
-check-host.net#?#div + div[class*=" "]:last-child:contains(/^(×|✕|✖|X|☓|x)$/):upward(2)
-check-host.net##div[id^="hosting"]
-/^https:\/\/check-host\.net\/images\/_?[0-9]+[a-z]+(_|[0-9]?[a-z-])+(sale|en|ru)?\.png\?[0-9]+$/$domain=check-host.net
+check-host.net#?#div + div[class*=" "]:last-child:contains(/^(×|✕|✖|X|☓|χ|x)$/):upward(2)
+check-host.net##div[id^="hostin"]
+/^https:\/\/check-host\.net\/images\/_{2}[0-9]+[a-z]+(_|[0-9]?[a-z-])+(sale|en|ru)?\.png\?[0-9]+$/$domain=check-host.net
 physicsandmathstutor.com###video-ad-sidebar
 gamertw.com##div[class^="Adsense_ad__"]
 australianaviation.com.au##.b-topLeaderboard
@@ -2105,7 +2115,6 @@ lingvanex.com##div[id^="adsbygoogle"]
 noodlemagazine.com##.menu > a[href^="https://theporndude.com/"]
 portableapps.com##.field-item > ins.adsbygoogle + script + h2
 portableapps.com##.field-item > ins.adsbygoogle + script + h2 + p
-dizifilmbox.pw##a[target="_blank"] > img[width="100%"][height="100%"]
 12tomatoes.com##.sheknows-infuse-ad-callout
 apartmenttherapy.com##.StickyBanner__content
 gab.com##.sticky-inner-wrapper > div > a[href^="https://grow.gab.com/go/"]
@@ -4627,7 +4636,7 @@ nung2uhd.com##.adcen
 ||bigwank.com/sw.js
 ||bigwank.com/extension/aine/
 bigwank.com###mobile_pop
-prostoporno.*,frprn.com##.spot-box
+pornheal.com,prostoporno.*,frprn.com##.spot-box
 ||ww2.ibomma.bar/cdn-cgi/apps/head/VTJKqbC8YI9GM58-GfGk85q6-xU.js
 coin360.com##.StickyCorner
 hindinut.com##iframe[data-src^="//ws-in.amazon-adsystem.com/"]

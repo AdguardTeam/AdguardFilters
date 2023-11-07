@@ -1287,6 +1287,8 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/165521
+techbyte.sk##body .code-block
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165040
 jablickar.cz###ad_popup
 jablickar.cz#?#.content  > p:has(> a[rel^="attachment"])
@@ -1300,6 +1302,7 @@ ekolist.cz##.reklama-rsticky
 zive.cz#@#.rklm
 zive.cz#@%#//scriptlet('ubo-aeld.js', 'beforeunload', '()')
 zive.cz#@%#//scriptlet('ubo-acis.js', 'window.addEventListener', ':visible')
+zive.cz#%#//scriptlet('prevent-eval-if', '/offset(Height|Width)|document\.getElementById/')
 zive.cz#%#//scriptlet('abort-on-stack-trace', 'document.querySelector', '/Object\.(go|run)/')
 zive.cz#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '/:visible|adblock/')
 zive.cz#%#AG_onLoad(function(){const el=document.body;const ce=document.createElement('div');ce.setAttribute('data-ar-id','204317');if(el){el.appendChild(ce);}});
@@ -4263,6 +4266,11 @@ fxp.co.il#@#iframe[width="300"][height="250"]
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/164802#issuecomment-1793366351
+! https://github.com/AdguardTeam/AdguardFilters/issues/164802#issuecomment-1793373741
+corriere.it##.boxpromo
+!+ PLATFORM(android, windows, mac)
+corriere.it#$?#.bck-adv { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164576
 jobrapido.com##.leaderboard-header-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164710
@@ -4353,7 +4361,10 @@ webassistanceita.com#%#//scriptlet('abort-on-stack-trace', 'document.createEleme
 moto.it#?#.d-none:has(> div.adv)
 moto.it##.aside-spacer:empty
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154833
-lascimmiapensa.com##.code-block
+lascimmiapensa.com#?#.code-block:not(:has(div:is(.brid,[class^="epx"])))
+lascimmiapensa.com#%#//scriptlet('set-constant', 'Brid.A9.prototype.runCMSBidding', 'noopPromiseResolve')
+lascimmiapensa.com#%#//scriptlet('set-constant', 'Brid.A9.prototype.runBackfillBidding', 'noopPromiseResolve')
+lascimmiapensa.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3.js')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154238
 youmath.it###CONT_T
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153845
@@ -9679,7 +9690,9 @@ interia.pl#%#document.cookie = "lltsg=1";
 !---------------------------------------------------------------------
 ! NOTE: Romanian
 !
-!
+! https://github.com/AdguardTeam/AdguardFilters/issues/165416
+autoblog.md##div[class^="PREFIX"][data-prefix-close-buttontrackid]
+! https://github.com/AdguardTeam/AdguardFilters/issues/163604
 sitefilme.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162731
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=kanald.ro
