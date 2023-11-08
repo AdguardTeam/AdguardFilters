@@ -860,6 +860,12 @@ generazionebio.com,arcadepunks.com,dtbps3games.com,bestsimsmods.com,chromeready.
 !
 ! Start regular
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/165486
+! To reproduce the anti-adblock message, it is necessary to click on a specific element, for example the search button
+sextb.net#@#.ad-placeholder
+sextb.net#$#body #detect[class] { display: block !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/165730
+mangoai.co#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165617
 audi-sport.net#@#.banner_728x90
 audi-sport.net#%#//scriptlet('abort-current-inline-script', '$', 'initDetection')
@@ -3877,6 +3883,7 @@ xfreehd.com#%#//scriptlet("abort-on-property-write", "axtest01")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125462
 @@||matystudios.github.io/banner_ad.png$domain=serialyzdarma.eu
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122282
+10play.com.au#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=10play.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125445
 @@||obagg.com/js/sailthru.js$domain=obagg.com
@@ -5252,10 +5259,13 @@ techbrij.com#%#//scriptlet("set-constant", "isadBlockRunning", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95368
 vn.trueid.net#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95010
+beatsnoop.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 beatsnoop.com#%#//scriptlet("abort-current-inline-script", "document.createElement", "adblock")
 ||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$script,xmlhttprequest,redirect=noopjs,domain=beatsnoop.com
-!+ PLATFORM(ios, ext_android_cb)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2019.js$domain=beatsnoop.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=beatsnoop.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95200
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=calculator-online.net,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136570
@@ -5602,8 +5612,6 @@ puzzles.msn.com#@#display-ad-component
 link1s.com,scratch247.info,azsoft.*,downfile.site#%#//scriptlet("abort-current-inline-script", "document.getElementById", "style.display")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/88037
 thepoorcoder.com#%#//scriptlet("set-constant", "adblockDetector", "noopFunc")
-! https://github.com/AdguardTeam/AdguardFilters/issues/85633
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=beatsnoop.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85312
 @@||audiotag.info/js/adblockDetectorWithGA.js
 audiotag.info#%#//scriptlet("set-constant", "canRunAds", "true")
@@ -5683,9 +5691,6 @@ thephoblographer.com###adblock-warning
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=fox.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83756
 @@||timebucks.com/publishers/js/prebid-ads.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/83483
-allsmo.com#@#.ad_box
-allsmo.com#%#//scriptlet('prevent-setTimeout', 'isHidden(advert)')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83518
 aiarticlespinner.co#%#AG_onLoad(function(){var b=document.body,a=document.createElement("div");b&&(b.appendChild(a),a.setAttribute("class","adsbygoogle"),a&&a.appendChild(document.createElement("div")))});
 !+ NOT_PLATFORM(windows, mac, android, ext_chromium)
@@ -7057,8 +7062,8 @@ moonbit.co.in,moondoge.co.in,moonliteco.in,moondash.co.in#@#iframe[src*="mellowa
 @@||mellowads.com/view^$~script,domain=moonbit.co.in|moondoge.co.in|moonliteco.in|moondash.co.in
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57596
-br0wsers.com,softwaresde.com#@#.ad_box
-br0wsers.com,softwaresde.com#%#//scriptlet("prevent-setTimeout", "isHidden(advert)")
+techyhit.com,allsmo.com,br0wsers.com,softwaresde.com#@#.ad_box
+techyhit.com,allsmo.com,br0wsers.com,softwaresde.com#%#//scriptlet("prevent-setTimeout", "isHidden(advert)")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57561
 @@||camarchive.tv/assets/ads.js
 camarchive.tv#%#//scriptlet("set-constant", "canads", "true")
@@ -7969,8 +7974,8 @@ creditcardrush.com#$##adWrap { display: block!important; height: 1px!important; 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70252
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39316
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39322
-1069jp.com,vertelenovelasonline.com,rpdrlatino.live,ntvid.online,playerhd.org,gledajvideo.top,tikzoo.xyz,filme-romanesti.ro,peliculas8k.com,vido.fun,europixhd.net,cuevana.*,cuevana3.*,javboys.cam,koreanbj.club,vpo.link,thisirussia.io,vf-film.vip,vaav.top,ddl-francais.com,cuevana4.cc,watch-series.site,multiup.us,hqq.tv#%#//scriptlet('set-constant', 'WebSocket', 'undefined')
-1069jp.com,vertelenovelasonline.com,rpdrlatino.live,ntvid.online,playerhd.org,gledajvideo.top,younetu.*,tikzoo.xyz,video.q34r.org,korall.xyz,porntoday.ws,tabooporns.com,netuplayer.top,wiztube.xyz,netu.ac,hqq.to,cumgloryhole.com,hqq.ac,zerknij.cc,speedporn.net,chillicams.net,meucdn.vip,yandexcdn.com,hindipix.in,hindipix.in,waaw1.tv,waaw.*,czxxx.org,newhost.me,scenelife.org,hqq.tv#%#//scriptlet("set-constant", "adblockcheck", "false")
+diziturk.club,1069jp.com,vertelenovelasonline.com,rpdrlatino.live,ntvid.online,playerhd.org,gledajvideo.top,tikzoo.xyz,filme-romanesti.ro,peliculas8k.com,vido.fun,europixhd.net,cuevana.*,cuevana3.*,javboys.cam,koreanbj.club,vpo.link,thisirussia.io,vf-film.vip,vaav.top,ddl-francais.com,cuevana4.cc,watch-series.site,multiup.us,hqq.tv#%#//scriptlet('set-constant', 'WebSocket', 'undefined')
+diziturk.club,1069jp.com,vertelenovelasonline.com,rpdrlatino.live,ntvid.online,playerhd.org,gledajvideo.top,younetu.*,tikzoo.xyz,video.q34r.org,korall.xyz,porntoday.ws,tabooporns.com,netuplayer.top,wiztube.xyz,netu.ac,hqq.to,cumgloryhole.com,hqq.ac,zerknij.cc,speedporn.net,chillicams.net,meucdn.vip,yandexcdn.com,hindipix.in,hindipix.in,waaw1.tv,waaw.*,czxxx.org,newhost.me,scenelife.org,hqq.tv#%#//scriptlet("set-constant", "adblockcheck", "false")
 younetu.*,chillicams.net,waaw.to,meucdn.vip,yandexcdn.com,hindipix.in,hindipix.in,waaw1.tv,waaw.tv,czxxx.org,newhost.me,scenelife.org,hqq.tv#%#//scriptlet("set-constant", "adBlockDetected", "noopFunc")
 @@/fuckadblock.js$domain=uniqueten.net|topcryptoz.net|allcryptoz.net|meucdn.vip|yandexcdn.com|scenelife.org|hqq.tv|newhost.me|czxxx.org|waaw.tv
 @@||cdn.jsdelivr.net/npm/videojs-contrib-ads/dist/videojs.ads.min.js$domain=scenelife.org|hqq.tv|newhost.me|czxxx.org|waaw.tv
