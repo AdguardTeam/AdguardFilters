@@ -6,6 +6,17 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166436
+||pcmag.com^$removeparam=taid
+! https://github.com/AdguardTeam/AdguardFilters/issues/166382
+||vkplay.ru$removeparam=_1ld
+||vkplay.ru$removeparam=_1lp
+! https://github.com/AdguardTeam/AdguardFilters/issues/166050
+||incogni.com^$removeparam=transaction_id
+||incogni.com^$removeparam=offer_id
+||incogni.com^$removeparam=affiliate_id
+||incogni.com^$removeparam=aff_sub
+||incogni.com^$removeparam=source
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165785
 ||coolapk.com^$removeparam=shareKey
 ||coolapk.com^$removeparam=shareUid
@@ -637,6 +648,8 @@ $removeparam=xptdk,domain=shopee.ph|shopee.co.th
 ||campaigns-serving.cognativex.com^$xmlhttprequest,removeparam=exc_ads
 ||campaigns-serving.cognativex.com^$xmlhttprequest,removeparam=history_adids
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129287
+||dzen.ru^$removeparam=clid
+||dzen.ru^$removeparam=yredirect
 ||dzen.ru^$removeparam=stid
 ||dzen.ru^$removeparam=persistent_id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130186
@@ -1369,12 +1382,12 @@ $removeparam=asc_source,domain=aboutamazon.com|amazon.*|amzn.to
 ||mp.weixin.qq.com^$removeparam=from
 ||mp.weixin.qq.com^$removeparam=aid
 ! Prevent tracking when request is unblocked
-||pixel.adsafeprotected.com/services/pub?$removeparam=slot
-||pixel.adsafeprotected.com/services/pub?$removeparam=sessionId
-||pixel.adsafeprotected.com/services/pub?$removeparam=anId
-||pixel.adsafeprotected.com/services/pub?$removeparam=wr
-||pixel.adsafeprotected.com/services/pub?$removeparam=sr
-||pixel.adsafeprotected.com/services/pub?$removeparam=url
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=slot
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=sessionId
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=anId
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=wr
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=sr
+||pixel.adsafeprotected.com/services/pub?$xmlhttprequest,removeparam=url
 ! Ads tracking
 ||cam4.com^$removeparam=act
 ||cam4.com^$removeparam=suid
@@ -1392,9 +1405,13 @@ $removeparam=at_medium,domain=bbc.com|bbc.co.uk
 ! insider.office.com
 ||office.com^$removeparam=ocid
 ! Embedded tweets
-||twitter.com$removeparam=refsrc
-||twitter.com$removeparam=ref_src
-||twitter.com$removeparam=ref_url
+$removeparam=refsrc,domain=twitter.com|x.com
+$removeparam=ref_src,domain=twitter.com|x.com
+$removeparam=ref_url,domain=twitter.com|x.com
+! Twitter
+$removeparam=cxt,domain=twitter.com|x.com
+$removeparam=t,domain=twitter.com|x.com
+$removeparam=s,domain=twitter.com|x.com
 !
 ||zerkalo.io^$removeparam=tg
 ||zerkalo.io^$removeparam=vk
