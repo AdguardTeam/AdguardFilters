@@ -9646,6 +9646,7 @@ teletoonplus.pl##iframe#nctop
 ||services.*.pl/belka/$domain=teletoonplus.pl
 !+ PLATFORM(windows, mac, android, ext_ff)
 ||redcdn.pl/*Adserver/*.mp4$media,redirect=noopmp4-1s,important
+! https://github.com/AdguardTeam/AdguardFilters/issues/166964
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148857
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142864
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74693
@@ -9654,11 +9655,13 @@ teletoonplus.pl##iframe#nctop
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21639
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11428
 ! https://forum.adguard.com/index.php?threads/10376/
+tvn24.pl#%#//scriptlet('prevent-fetch', '/adocean\.pl\/.*ad\.xml/')
 vod.pl##.advert[class*="advert--"]
 ||adocean.pl/*ad.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,domain=player.pl|miniminiplus.pl|teletoonplus.pl|tvnturbo.pl|tvn24.pl|tvn.pl|get.x-link.pl|vod.pl,important
+||recontent.services.tvn.pl/*ad.xml$xmlhttprequest,redirect=noopvast-2.0,domain=tvn24.pl
 @@||tvn.hit.gemius.pl/*redataredir?url=*tvn.adocean.pl*ad.xml$domain=player.pl|teletoonplus.pl|get.x-link.pl
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
-||tvn.adocean.pl/*ad.xml$xmlhttprequest,redirect=noopvast-2.0,domain=tvn24.pl
+||tvn.adocean.pl/*ad.xml$xmlhttprequest,redirect=noopvast-2.0,domain=tvn24.pl,important
 !+ NOT_PLATFORM(ext_ublock)
 @@||tvn.adocean.pl/*ad.xml$xmlhttprequest,domain=player.pl|get.x-link.pl
 @@||redcdn.pl/*/TVN-Adserver/*.mp4$xmlhttprequest,domain=miniminiplus.pl|teletoonplus.pl|tvnturbo.pl|tvn.pl
@@ -9676,7 +9679,7 @@ tvn24.pl##.video-player > .videoPlayer.player-initialized .vjs-switching .vjs-lo
 !+ NOT_PLATFORM(ext_ublock)
 @@||player.pl^$generichide
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=player.pl|vod.pl
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=player.pl|vod.pl,important
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=player.pl|vod.pl|tvn24.pl,important
 vod.pl,player.pl#%#//scriptlet('remove-class', 'async-hide', 'html')
 vod.pl,player.pl#%#//scriptlet('prevent-fetch', '/ad\.xml\?|tvn\.hit\.gemius\.pl/')
 vod.pl,player.pl#%#//scriptlet('prevent-xhr', 'tvn.adocean.pl')
