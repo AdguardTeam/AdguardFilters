@@ -33,11 +33,14 @@ modsforwot.ru,rubitcoin24.ru,vargr.ru,electric-house.ru,trialkeys.ru#@#img[width
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148093
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147394
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146771
-pikabu.ru$$script[wildcard="*let*=*new window*Ad*"][max-length="15000"]
+pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+||pikabu.ru^$cookie=mGNCV
+pikabu.ru#%#//scriptlet('trusted-replace-xhr-response', '/.*adblock.*/', '', '=')
+pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2505
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new window\[[XMLHtpRequs\'\+]{20,25}\][\s\S]+Ad[\s\S]+/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\s\'\+atob]+\])?\([a-zA-Z0-9\'\=]{15,30}\)\][\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1047,9 +1050,10 @@ dzen.ru##.card-rtb-one-column-stub
 [$path=/media]dzen.ru##div[class$="__ad-content"]
 !
 ! Dzen Video
-dzen.ru##._is-header-after-player > div[class$="-content__description"] ~ div > div[id^="D-A-"]
-dzen.ru##div[class$="-recommended"] div[id^="R-I-"]
-dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
+! Under the player
+dzen.ru##.viewer-layout__content > div[class*="-content"] > div[aria-label] div[class*="-placeholder__root-"]
+! Right feed
+dzen.ru##.viewer-layout__sidebar div[class*="__content"] > div[class*="__feed"] div[class^="video-card-stub-"]
 ! ad in the zen videos
 ||strm.yandex.*/get/$xmlhttprequest,redirect=noopvast-3.0,domain=dzen.ru
 [$path=/video]dzen.ru##div[class$="sidebar__item"] div[class*="-sidebar__ad"]
@@ -1060,9 +1064,9 @@ dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
 ! mail.ru
 mail.ru##div[class*="js-module"][class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
-mail.ru,sportmail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
+mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
 ! ad on main page
-mail.ru#?#div[slot="main-column"] > div:has(> svg[width="100%"][height="100%"])
+mail.ru##.micro-widgets + div.tgb-wrapper
 [$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('remove-node-text', 'script', '/\[a?d?gina?d?\]/')
 ! kino.mail.ru
 kino.mail.ru##.block_ad-text
@@ -1529,6 +1533,9 @@ music.yandex.*##.sidebar__placeholder .teaser ~ div
 ! Yandex.Disk
 disk.yandex.*##.direct
 ||docviewer.yandex.*/sw.js
+!
+! Yandex.Docs
+docviewer.yandex.*##div[class^="pages_"] > div > div[style="width: 100%;"]
 !
 ! Yandex.Mail
 ||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.*
