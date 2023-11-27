@@ -4,6 +4,10 @@
 ! Good: example.org###rek; ||example.com/ads/
 ! Bad: example.org#$##rek { display: none !important; } (for instance, should be in general_extensions.txt)
 !
+! propeller-tracking.com for CB
+! Requests lile https://almstda.tv/5/6202259
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+/\/[0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/$xmlhttprequest,script,third-party,domain=kinoger.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101190
 ||ihreapotheken.de^$third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93094
@@ -41,6 +45,15 @@ lkz.de##.nfy-row-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/84273
 ! Blocked service worker to fix filtering in apps
 ||obi.de/wrapper-sw.js
+!https://github.com/AdguardTeam/AdguardFilters/issues/158944
+chip.de##.fb-col-sm-12 > ul > li > a[href*="chip.de/downloads/"] img[src*="hash"]
+chip.de##li > a[href*="chip.de/downloads/"][target="_blank"]:has(img[src*="hash"])
+chip.de#?#a[href*="chip.de/downloads/"]:has(img[src*="hash"]:not([class], [data-src]))
+chip.de##a[href*="chip.de/downloads/"] img[src*="hash"]:not([class], [data-src])
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
+chip.de##li > a[href*="chip.de/downloads/"][class]:not([class*=" "]) img[src*="hash"]
+chip.de#?#li > a[href*="chip.de/downloads/"][class]:not([class*=" "]):has(img[src*="hash"])
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/61907
 ||chip.de/*.php*&$~third-party,script
 chip.de##.js_download_button > a[href^="https://x.chip.de/intern/dl/?url="][href*="&pageLayout=withinstaller|"]
@@ -124,6 +137,12 @@ formel1.de,krautundrueben.de,motorsport-total.com,traktorpool.de,fnweb.de,laborj
 !
 !
 !
+infranken.de#?#.listing-item:has(> article[class*="lp_partnerangebote"] .post-content > .post-location > span:contains(Anzeige))
+||07c225f3.online/fl1efsl/$script,subdocument,xmlhttprequest
+||07c225f3.online^$redirect=nooptext,important
+stol.it##div[class^="AdSuperBanner__SuperBannerContainer"]
+netdoktor.ch##.footer-ad-container
+lacrux.com##.lacruxtarget
 myhomebook.de#?#div[class]:has(> article a[href^="https://secure.adnxs.com"])
 myhomebook.de#?#section[data-type="sticky-bar"]:has(> a[rel*="sponsored"]:only-child)
 myhomebook.de#?#div[class][style*="min-width"][style*="min-height"]:has(> #mrec:only-child)
@@ -221,11 +240,6 @@ augsburger-allgemeine.de##.p-swatch_topdown-nice--ad
 augsburger-allgemeine.de##.p-block > .p-float_right.p-marg_t-xl
 n-tv.de##.lotto
 ||images.finanzen.net/images/b_fonds/Vanguard_Banner
-chip.de##.fb-col-sm-12 > ul > li > a[href*="chip.de/downloads/"] img[src*="hash"]
-chip.de##li > a[href*="chip.de/downloads/"][target="_blank"] img[src*="hash"]
-chip.de##li > a[href*="chip.de/downloads/"][target="_blank"]:has(img[src*="hash"])
-chip.de#?#a[href*="chip.de/downloads/"]:has(img[src*="hash"]:not([class], [data-src]))
-chip.de##a[href*="chip.de/downloads/"] img[src*="hash"]:not([class], [data-src])
 heise.de##div[id^="HEI_"][class]
 4fansites.de##div[style="text-align: center; min-height: 320px;"]
 4fansites.de##.spalten_33_twitch
@@ -1857,7 +1871,7 @@ stern.de##.m-kuco + a
 ||praxis-jugendarbeit.de/scripts/wf-unten-s.js
 waz-online.de,ostsee-zeitung.de,dnn.de,ostsee-zeitung.de,lvz.de,kn-online.de##.pdb-adplacement
 areamobile.de,buffed.de,videogameszone.de,pcgameshardware.de,pcgames.de##.schnaeppchenScrollAd
-netdoktor.de###header-ad-slot
+netdoktor.ch,netdoktor.de###header-ad-slot
 waz.de##.block-header--banner > a:not([href*="waz.de"])
 ||compact-online.de/wp-content/uploads/*/-anzeige-300x250
 wiwo.de##.c-teasergallery--ressort

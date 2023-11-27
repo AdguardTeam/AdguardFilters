@@ -4,6 +4,11 @@
 ! Good: ||example.org/video-links$replace=/vast":/vast_":/
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166619
+||dcs-vod.mp.lura.live/vod/*/*.m3u8$jsonprune=\$..[interstitials\, breaks],domain=vix.com
+||dcs-vod.mp.lura.live/vod/*/*.m3u8$hls=/type=ad/t,domain=vix.com
+||dcs-vod.mp.lura.live/vod/*/*.mpd$jsonprune=\$..[interstitials\, breaks],domain=vix.com
+||dcs-vod.mp.lura.live/vod/*/*.mpd$replace=/<Period.*?>[\s\S]{1\,500}<AdaptationSet.*? contentType="video".*?>[\s\S]{1\,3000}<\/AdaptationSet>[\s\S]*?<\/Period>//,domain=vix.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91363
 ||dve-streams.akamaized.net/ondemand/hls/content/*.m3u8$replace=/#EXTINF:(\d|\d\.\d+)\,\nhttps:\/\/redirector\.googlevideo\.com\/videoplayback\?[\s\S]*?&source=dclk_video_ads&[\s\S]*?\n//,domain=app.prende.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59758

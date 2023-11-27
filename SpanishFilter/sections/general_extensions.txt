@@ -9,6 +9,10 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166619
+vix.com#%#//scriptlet('trusted-replace-xhr-response', '/"(interstitials)":|"(breaks)":/', '"no_ads":', '/\.m3u8|\.mpd/')
+vix.com#%#//scriptlet('m3u-prune', 'type=ad', '.m3u8')
+vix.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="AdaptationSet"][@contentType="video"]])', '', '.m3u8')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165935
 infohojeonline.blogspot.com#%#//scriptlet('adjust-setInterval', 'getid', '*', '0.001')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166224
@@ -254,7 +258,6 @@ mrpiracy.top#%#//scriptlet("abort-on-property-read", "Redirecionar")
 mrpiracy.top#%#//scriptlet("abort-on-property-write", "pfcu1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/70252
 pepeliculas.org#%#//scriptlet("remove-attr", "href", "a[href]#clickfakeplayer")
-pepeliculas.org#%#AG_onLoad(function(){setTimeout(function(){var a=document.querySelector("a#clickfakeplayer");a&&a.click()},500)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69883
 verdragonball.online#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130882
@@ -338,8 +341,6 @@ descargaranimehentai.com#%#//scriptlet("abort-on-property-read", "pub")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44237
 redirdx.in#%#document.cookie = "tronador=aproved; path=/";
 redirdx.in#%#//scriptlet("prevent-window-open", "redirdx.in/go/")
-! https://github.com/AdguardTeam/AdguardFilters/issues/43603#issuecomment-553749336
-hentaihd.xyz#%#AG_onLoad(function() { setTimeout(function() { var el = document.querySelector('div.fluid_initial_play'); if(el) el.click(); }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41643
 hentai-id.tv#%#AG_onLoad(function(){var a=document.querySelectorAll('a[href*="://ouo.io/"][href*="=http"],a[href*="://ouo.io/"][href*="= http"]');for(var b,c=0;c<a.length;c++)b=a[c].getAttribute("href"),(b=b.split(/^https?:\/\/ouo\.io\/[\S]*?\?.=/))&&a[c].setAttribute("href",b[1])});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42381
@@ -376,6 +377,8 @@ newpct1.com#%#window.atob = function() { };
 !------- CSS fixes --------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166777
+portugues.com.br#$#.area-publi { height: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165936
 vidasaudavel.bio#$#.hided { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165940
