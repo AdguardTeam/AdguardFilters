@@ -1317,11 +1317,15 @@ decrypt.day#@#ins.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165068
 @@||static.doubleclick.net/instream/ad_status.js$domain=bloggingsathi.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bloggingsathi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/167075
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164439
-infinityscans.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,redirect=nooptext,domain=infinityscans.xyz
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+infinityscans.xyz$$script[wildcard="*async function(){const*fetch*throw Error*\x*"]
+infinityscans.xyz#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|intelligenceadx\.com/', 'emptyArr')
+$xmlhttprequest,third-party,redirect-rule=noopjs,domain=infinityscans.xyz
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||intelligenceadx.com/sequence-diagram-min.css$xmlhttprequest,domain=infinityscans.xyz
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=infinityscans.xyz
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164348
 porn4f.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
