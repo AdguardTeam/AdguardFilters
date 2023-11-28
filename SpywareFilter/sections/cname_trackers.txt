@@ -1,8 +1,12 @@
 !
 ! This section contains the list of the rules are against CNAME tracking networks.
 !
+! https://github.com/AdguardTeam/FiltersCompiler/issues/190
+! To avoid email links breakage, include email tracking lists with a modifier here:
+! https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/template.txt
+!
 ! Good: !#include https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/data/ad/adspyglass.txt
-! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
+! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !
 ! Dataunlocker : smartproxy.dataunlocker.com  disguised trackers
@@ -134,18 +138,5 @@
 ! Wizaly : wizaly.com disguised trackers
 !#include https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/data/trackers/wizaly.txt
 !
-!
-! NOTE: Fixing the issues
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/162672
-||explore.agilent.com^
-! https://github.com/AdguardTeam/AdguardFilters/issues/160473
-||go.oracle.com^$badfilter
-! https://github.com/hagezi/dns-blocklists/issues/1453
-||data.ubi.com^$badfilter
-! https://github.com/AdguardTeam/AdguardFilters/issues/159117
-||data-60d896f23d.radio.net^$badfilter
-! unblock https://form.ict-toshiba.jp/contact_form_recipewizard
-||form.ict-toshiba.jp^$badfilter
-! cart blocked at www.matsuzaka-steak.com
-||cart.matsuzaka-steak.com^$badfilter
+! Rule for detecting hidden trackers when the main domain cannot be blocked.
+|mailgun.org^$third-party

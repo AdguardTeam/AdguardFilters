@@ -8,6 +8,15 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166650
+jukenbbs.com#%#//scriptlet('prevent-addEventListener', 'load', 'delayCheckAdBlock')
+! https://github.com/uBlockOrigin/uAssets/issues/20629
+@@||shindanmaker.com^$generichide
+shindanmaker.com#$#div[id^="div-gpt-"] { min-height: 1px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/161822
+!#safari_cb_affinity(privacy)
+@@||clarity.ms^$domain=ganohr.net
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160241
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159769
 @@||freepdfcomic.com^$generichide
@@ -43,9 +52,6 @@ puzzle-ch.com#@##adframe:not(frameset)
 puzzle-ch.com#%#//scriptlet('prevent-setTimeout', 'getComputedStyle')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151651
 ||blog.seesaa.jp/visual/*/common/js/footer.js
-! shindanmaker.com anti-adb
-shindanmaker.com#@#.blog-ad
-shindanmaker.com#@#.blog_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149137
 eromanga-numa.com#@#.ad_widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148073
@@ -274,8 +280,6 @@ battlecats-db.com#$#body[style="display: none;"] { display: block !important; }
 @@||pagead2.googlesyndication.com/pagead/*/show_ads_impl_$domain=battlecats-db.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=battlecats-db.com
 !#endif
-! Admiral hard anti-adb
-nordot.app#%#//scriptlet('prevent-addEventListener', 'error', 'getadmiral.com')
 ! shopping-now.jp anti-adb
 @@||shopping-now.jp^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85791
@@ -284,11 +288,9 @@ nordot.app#%#//scriptlet('prevent-addEventListener', 'error', 'getadmiral.com')
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
 realtime-chart.info#?#.news_b table[border="0"][cellpadding="5"][style="background:#fff"] > tbody >  tr[bgcolor="#fff"] > td.newsarea[style] > a.wl[href^="https://a"][href*=".to/"]:upward(2)
-realtime-chart.info#$?#div[id] > [id]:has(> [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/")) + * > [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/") > [onclick]:not(:has(td > a))  { pointer-events: none !important; }
-realtime-chart.info#$?#div[id] > [id]:has(> [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/")) + * > [style^="top:1"]:matches-attr("style"="/top\s*:\s*1\d{3}\.?\d*px/") > [style*="font-size:"]:is(b, span, a):not(:has(td > a)) { font-size: 0 !important; pointer-events: none !important; }
-realtime-chart.info#$?#td[style^="vertical-align"] div[style*="top"]:matches-attr("style"="/^\s*top\s*:\s*3\d{2}\.?\d*px;?\s*/") > a[id][onmousedown] { pointer-events: none !important; }
+realtime-chart.info#$?#td[style^="vertical-align"] [id] [class]:matches-css(top: /^[4-8]\d{2}\.?\d*px$/) [onclick*=")"]:has(b):not(:has(td > a)) { pointer-events: none !important; }
+realtime-chart.info#$?#td[style^="vertical-align"] [id] [class]:matches-css(top: /^[4-8]\d{2}\.?\d*px$/) [onmousedown*=")"]:has(b):not(:has(td > a)) { pointer-events: none !important; }
 realtime-chart.info#$?#td[style^="vertical-align: top"] [onclick*="()"][target="_blank"]:has([style*="background-image: url\(\"data:image/jpg;"]:matches-attr("style"="/height\s*:\s*[12]\d{2}\.?\d*px/")) { pointer-events: none !important; }
-realtime-chart.info#$?#td[style^="vertical-align"] [style*="top"]:matches-attr("style"="/^\s*top\s*:\s*3\d{2}\.?\d*px;?\s*/") > a[id][onmousedown] { pointer-events: none !important; }
 ||realtime-chart.info^$subdocument,domain=sekai-kabuka.com
 realtime-chart.info#$?#td[style^="vertical-align"] [onclick]:has(> img[src*="/clip_"] + b):not(:has(b td > a[href])) { pointer-events: none !important; }
 sekai-kabuka.com#$?#table[width="762px"] > tbody > tr > td[class] > div[id][class] > div[style^="width: 2"]:matches-attr("style"="/width\s*:\s*2\d{2}\.?\d*px/"):contains(不具合が) { z-index: -1 !important; }

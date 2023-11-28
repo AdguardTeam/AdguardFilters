@@ -16,6 +16,10 @@ kicker.de,stern.de,desired.de,pcgames.de,t-online.de,vox.de,spieletipps.de,wette
 plus.rtl.de#%#//scriptlet('trusted-replace-xhr-response', 'true', 'false', 'homadClientConfig-plusrtlde.json')
 plus.rtl.de#%#//scriptlet('abort-on-stack-trace', 'Object.prototype.adReinsertion', 'createSdk')
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166369
+ddl-warez.cc#%#//scriptlet('prevent-window-open', 'af.php')
+! https://github.com/AdguardTeam/AdguardFilters/issues/164427
+3c-bap.gmx.ch,3c-bap.gmx.at,3c-bap.gmx.net,3c.web.de#%#//scriptlet('hide-in-shadow-dom', 'list-inbox-pga-ad-item')
 ! infranken.de - removing amazon link, so the incredients are visible in a recipe
 infranken.de#%#//scriptlet('remove-attr', 'href', 'a[rel*="sponsored"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154072
@@ -29,6 +33,8 @@ data-load.in#%#//scriptlet('set-cookie', '_xflora', '1')
 ! TODO: use scriptlet "inject-css-in-shadow-dom" when it will be available in apps
 ! gmx.net,gmx.at,web.de#%#//scriptlet('inject-css-in-shadow-dom', '.list-programmatic-ad-item--multi-line, .list-inbox-ad-item--multi-line { display: none !important; }')
 gmx.net,gmx.at,web.de#%#(()=>{const a=(a,b,c)=>{const d=Reflect.apply(a,b,c),e=".list-programmatic-ad-item--multi-line, .list-inbox-ad-item--multi-line { display: none !important; }";if("adoptedStyleSheets"in document){const a=new CSSStyleSheet;a.replaceSync(e),d.adoptedStyleSheets=[a]}else{const a=document.createElement("style");a.innerText=e,d.appendChild(a)}return d};window.Element.prototype.attachShadow=new Proxy(window.Element.prototype.attachShadow,{apply:a})})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/158944
+chip.de#%#AG_onLoad((function(){if(window.publisherAdsRp&&window.publisherAdsRp instanceof Object)try{Object.keys(publisherAdsRp).forEach((e=>document.querySelector(`.${e}`)?.remove()))}catch(e){}}));
 ! chip.de - ad popup when pressing download
 chip.de#%#//scriptlet('set-cookie', 'chipde-r2d2-view-state ', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135749
@@ -173,6 +179,8 @@ menshealth.de#%#function google_ad_request_done() {};
 !--------------------------------------!
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/164563
+ratgeber.bunte.de#$##G32 { --topbanner-height-min: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159998
 ! https://github.com/AdguardTeam/CoreLibs/issues/1800
 ! TODO: remove when/if it will be fixed in CoreLibs

@@ -10,6 +10,11 @@
 !--------------------------------------!
 ! SECTION: Chinese - JS
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/163538
+v.qq.com#%#//scriptlet('set-constant', 'CreativePlayerwebPlugin.AD_EVENT.AD_DESTROY', '')
+v.qq.com#%#//scriptlet('set-constant', 'CreativePlayerwebPlugin.AD_EVENT.AD_LOAD_START', '')
+! https://github.com/AdguardTeam/AdguardFilters/issues/163589
+jmcomic1.me#%#//scriptlet('remove-node-text', '#text', '中間廣告')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162373
 player.hboav.com#%#//scriptlet('set-constant', 'player.VastADPlugin', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162094
@@ -17,9 +22,11 @@ x99av.com#%#//scriptlet('set-constant', 'ADSOBJET', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160509
 embedrise.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158639
-aiyifan.tv,iyf.tv#%#//scriptlet('abort-on-stack-trace', 'Object.prototype.publicManager', 'invokeInterstitial')
-aiyifan.tv,iyf.tv#%#//scriptlet('abort-on-property-read', 'Object.prototype.ShouldPlayAds')
-aiyifan.tv,iyf.tv#%#//scriptlet('set-constant', 'Object.prototype.captions', 'emptyObj')
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+aiyifan.tv,iyf.tv#$#.bg-overlayer { pointer-events: unset !important; }
+aiyifan.tv,iyf.tv#%#//scriptlet('remove-class', 'publicplay', '#main-player')
+aiyifan.tv,iyf.tv#%#//scriptlet('abort-on-property-read', 'Object.prototype.ShouldLoadAds')
+!#endif
 ! https://github.com/uBlockOrigin/uAssets/issues/19027
 datapps.org#%#//scriptlet('remove-attr', 'onclick', 'a[href][onclick^="setpos"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154174
@@ -102,10 +109,10 @@ qciss.net#%#//scriptlet("prevent-window-open", "0", "qciss.net")
 88files.net#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19010
 subhd.com#%#//scriptlet('set-session-storage-item', 'hassession', '1')
-! https://github.com/AdguardTeam/AdguardFilters/issues/23597
-5278.cc#%#//scriptlet('remove-attr', 'onclick', 'a')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31004
 m.86kl.com#%#//scriptlet('abort-on-property-read', 'akumtagcc')
+! https://github.com/AdguardTeam/AdguardFilters/issues/166649
+new.qq.com#%#//scriptlet('json-prune', 'ads')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30701
 ~work.weixin.qq.com,qq.com#%#//scriptlet('json-prune', 'ad')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33510

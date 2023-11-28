@@ -8,6 +8,24 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/166740
+04647.club#%#//scriptlet('prevent-fetch', 'doubleclick.net')
+! https://github.com/AdguardTeam/AdguardFilters/issues/166155
+vxetable.cn#%#//scriptlet('abort-current-inline-script', 'decodeURIComponent', 'pagead')
+! https://github.com/AdguardTeam/AdguardFilters/issues/165865
+h-ciyuan.com#%#//scriptlet('abort-current-inline-script', 'document.write', 'adbyunion')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||cgns.l404k.com/o.js$domain=h-ciyuan.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/165775
+taiwanlibrarysearch.herokuapp.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
+! https://github.com/AdguardTeam/AdguardFilters/issues/166515
+! https://github.com/AdguardTeam/AdguardFilters/issues/164630
+wavse.com,kims3.xyz#@#.google-ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/164414
+pansearch.me#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
+pansearch.me#%#//scriptlet('prevent-xhr', 'adsbygoogle')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=pansearch.me
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158730
 1keydata.com#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'window.getComputedStyle')
 1keydata.com#$##detect.ad-placement { display: block !important; }
@@ -188,7 +206,10 @@ linovelib.com#$#body[style] { overflow: auto !important; }
 linovelib.com#%#//scriptlet('set-constant', 'adblock', '0')
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=linovelib.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/164798
 ! https://github.com/uBlockOrigin/uAssets/issues/10953
+@@||assets.tingfm.com/wp-content/themes/radio-hub/static/js/adpro.js$domain=tingfm.com
+tingfm.com#%#//scriptlet('set-constant', 'can_run_ads', 'true')
 tingfm.com#%#//scriptlet("prevent-setTimeout", "adblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102824
 movieclassic.net###billboard-modal
@@ -221,13 +242,17 @@ ruanyifeng.com#%#//scriptlet('prevent-setTimeout', 'checker')
 ruanyifeng.com#@#a[href*="?utm_source="]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52546
 pansci.asia#@#.ad-container
+! https://github.com/AdguardTeam/AdguardFilters/issues/166247
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120356
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26883
+linetv.tw#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 linetv.tw##.aspect-ratio > img.object-cover + .aspect-ratio-content + div[class^="absolute inset-"][class*="bg-brand"]
 ||itad.linetv.tw/api/v2/vmap?ad_id=$xmlhttprequest,redirect=nooptext
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,important,domain=linetv.tw
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=linetv.tw
 @@||cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/*/videojs.ads.min.js$domain=linetv.tw
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=linetv.tw
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30495
 @@||ez3c.tw/js/adblockDetector.js
 !+ PLATFORM(ios, ext_android_cb, ext_safari)

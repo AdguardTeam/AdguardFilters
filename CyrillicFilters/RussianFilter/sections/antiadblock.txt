@@ -28,6 +28,26 @@ modsforwot.ru,rubitcoin24.ru,vargr.ru,electric-house.ru,trialkeys.ru#@#img[width
 !
 !
 !
+! pikabu.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/164131#issuecomment-1784848634
+! https://github.com/AdguardTeam/AdguardFilters/issues/148093
+! https://github.com/AdguardTeam/AdguardFilters/issues/147394
+! https://github.com/AdguardTeam/AdguardFilters/issues/146771
+pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
+pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
+! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2505
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\s\'\+atob]+\])?\([a-zA-Z0-9\'\=]{15,30}\)\][\s\S]+Ad/')
+!#endif
+! sports.ru
+sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
+sports.ru#%#//scriptlet('set-constant', 'Ya.adfoxCode.create', 'noopFunc')
+sports.ru#%#//scriptlet('remove-node-text', 'script', 'AdBlocker present')
+! https://github.com/AdguardTeam/AdguardFilters/issues/164112
+||livejournal.com^$cookie=ab_d
+! https://github.com/AdguardTeam/AdguardFilters/issues/163682
+testserver.pro#%#//scriptlet('prevent-setTimeout', '.ayayay')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162627
 forum.ruboard.ru#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162184
@@ -796,7 +816,6 @@ api.yadoma.tv#@#.ad_content
 @@||blog.foolsoft.ru^$generichide
 ! https://forum.adguard.com/index.php?threads/27260/
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mathsolution.ru
-
 ! championat.com
 @@||st.championat.com/shared/advertise.js
 ! https://forum.adguard.com/index.php?threads/26683/
@@ -997,6 +1016,8 @@ $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|business
 dzen.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 !
 ! Dzen main page
+dzen.ru##div[class^="geo-and-currency"][class*="Wrapper"] + div
+dzen.ru##div[class*="bannerMain"]
 dzen.ru##div[class^="currency-rates_"] + div[class^="geo-and-currency-widget_"]
 dzen.ru#?#div[class*="_yandexSearchContainer-"] ~ div[class][id] > div[id] > div:has(> div > a[href^="https://yandex.ru/an/"])
 [$path=/^\/$|\/\?/]dzen.ru###ya-dist
@@ -1013,9 +1034,10 @@ dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[cl
 dzen.ru###article__bottom-embed
 dzen.ru##div[class^="article-right-placeholder_"]
 dzen.ru##.card-wrapper > div[class^="article-bottom-single-desktop-placeholder__"]
-[$path=/a/]dzen.ru#$#div[class*="_position_bottom "] > div > div:not([class]):not([id]) { transform: translate(-3000px) !important; position: fixed; }
-[$path=/a/]dzen.ru##div[class*="_position_inner "] > div > div[style^="width:"]
-[$path=/a/]dzen.ru##div[class*="_position_right "][style*="max-height:"]
+[$path=/a/]dzen.rudzen.ru##.article__content_limited div[class^="article-bottom-single-desktop-placeholder__"]
+![$path=/a/]dzen.ru#$#div[class*="_position_bottom "] > div > div:not([class]):not([id]) { transform: translate(-3000px) !important; position: fixed; }
+![$path=/a/]dzen.ru##div[class*="_position_inner "] > div > div[style^="width:"]
+![$path=/a/]dzen.ru##div[class*="_position_right "][style*="max-height:"]
 dzen.ru##.ad-split-embed
 !
 ! Yandex browser popup
@@ -1026,9 +1048,10 @@ dzen.ru##.card-rtb-one-column-stub
 [$path=/media]dzen.ru##div[class$="__ad-content"]
 !
 ! Dzen Video
-dzen.ru##._is-header-after-player > div[class$="-content__description"] ~ div > div[id^="D-A-"]
-dzen.ru##div[class$="-recommended"] div[id^="R-I-"]
-dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
+! Under the player
+dzen.ru##.viewer-layout__content > div[class*="-content"] > div[aria-label] div[class*="-placeholder__root-"]
+! Right feed
+dzen.ru##.viewer-layout__sidebar div[class*="__content"] > div[class*="__feed"] div[class^="video-card-stub-"]
 ! ad in the zen videos
 ||strm.yandex.*/get/$xmlhttprequest,redirect=noopvast-3.0,domain=dzen.ru
 [$path=/video]dzen.ru##div[class$="sidebar__item"] div[class*="-sidebar__ad"]
@@ -1036,34 +1059,42 @@ dzen.ru##.viewer-layout__sidebar div[id^="D-A-"]
 ! adblock detection in videos
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
-! Common rules
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-||imgsmail.ru/octavius/*/app*.bundle.js$replace=/if\(i\.ENABLE_SMOKESCREEN/if\(\!i\.ENABLE_SMOKESCREEN/
-://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
-||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
-||mail.ru^$~script,~xmlhttprequest,replace=/broker:/_broker:/
-!#endif
-!
+! mail.ru
+mail.ru##div[class*="rb-slot_plug"]
+mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
+mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
+! ad on main page
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('set-constant', 'Object.prototype.MimicTgb', 'undefined')
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#?#div:has(> a.traffic-widget) + div
 ! kino.mail.ru
+kino.mail.ru##.block_ad-text
+kino.mail.ru##button[class*="adv-marker"]
+kino.mail.ru##button[class*="adv-marker"] + div.text
+!
 @@||ad.mail.ru/i*.gif$domain=kino.mail.ru
 @@||kino.mail.ru^$generichide
 ! horo.mail.ru
-!
 ||auto.mail.ru/-/*/js/cmpld/auto/*/*.js$replace=/mimic_\d+_\d+\s*\&\&\s*mimic_\d+_\d+\(.*\)//
 ||auto.mail.ru/sw-mobile.js
-!
+! minigames.mail.ru - ads replacement script
+minigames.mail.ru$$script[tag-content="yandexSlot ="]
 !
 ||ad.mail.ru/adp/?_SITEZONE=$replace=/"html"/"html_"/,domain=e.mail.ru|octavius.mail.ru
 ! probably obsolete:
 /https:\/\/(e|octavius).mail.ru\/api\/v\d$/$replace=/"direct":{"ads"/"direct":{"ads_"/
 !
-! minigames.mail.ru - ads replacement script
-minigames.mail.ru$$script[tag-content="yandexSlot ="]
-!
 ! ok.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43985
 @@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19112
+!
+! Common rules
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||imgsmail.ru/octavius/*/app*.bundle.js$replace=/ENABLE_SMOKESCREEN:function\(\){return ee}/ENABLE_SMOKESCREEN:function\(\){return}/
+://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
+||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
+||mail.ru^$~script,~xmlhttprequest,replace=/broker:/_broker:/
+!#endif
 !
 ! END: VK Group
 !
@@ -1103,31 +1134,35 @@ overclockers.ru#@#.material-other-feed
 !#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87125
-$cookie=/[0-9a-f]{32}/,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top
+$cookie=/[0-9a-f]{32}/,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top
 $removeheader=location,domain=zannn.top|innal.top
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="dimisa"]
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('abort-on-property-write', 'dimisastop')
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="dimisa"]
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('abort-on-property-write', 'dimisastop')
 !+ PLATFORM(ios, ext_android_cb)
-@@||aj*.online^$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top,xmlhttprequest,script
+@@||aj*.online^$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top,xmlhttprequest,script
 !
 ! rustorka.com
-@@/printad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/prerollad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/pop_ads.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/pop_ad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/clickunder.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/pop-under.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-@@/popunder.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,monna2.top,zannn.top,innal.top$$script[tag-content="checkCookie"]
+@@/leftad.$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/lazyad.$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/layerad.$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/jspopunder.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/printad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/prerollad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop_ads.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop_ad.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/clickunder.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop-under.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/popunder.js$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,monna2.top,zannn.top,innal.top$$script[tag-content="checkCookie"]
 /rustorka.\w+\/forum\/(?!login.php)/$removeheader=location
 /naylo.top\/forum\/(?!login.php)/$removeheader=location
 /games-pc.top\/forum\/(?!login.php)/$removeheader=location
 $cookie=opt_js,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet("abort-current-inline-script", "checkCookie", "var _0x")
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('remove-cookie', '/^opt_js\d{1}$/')
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet("abort-current-inline-script", "checkCookie", "var _0x")
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('remove-cookie', '/^opt_js\d{1}$/')
 !+ PLATFORM(ext_safari)
-games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#window.checkCookie = undefined;
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#window.checkCookie = undefined;
 !
 tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
@@ -1438,6 +1473,7 @@ otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length
 ya.ru##.banner
 !
 ! Yandex.Search
+ya.ru##.Skeleton_type_ad_search
 [$path=/search]ya.ru,yandex.*##.AdvMedia
 ya.ru,yandex.*##li.mini-suggest__item > a[href^="http://yabs."][href*="/count/"]
 ya.ru,yandex.*##li.mini-suggest__item > a[href^="https://yabs."][href*="/count/"]
@@ -1471,6 +1507,8 @@ yandex.*#?#.business-card-title-view__actions > div.business-card-title-view__ad
 !
 ! Yandex.Video
 ||yandex.*/video/*/*/*/*_$script,replace=/Ya.*RtbBidReqID.*//
+! Video ad
+||strm.yandex.ru/get/$xmlhttprequest,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 !
 ! Yandex.Afisha
 ||yandex-afisha.naydex.net/*/*/*_$script,replace=/eval\(decodeURIComponent\(.*//
@@ -1494,6 +1532,9 @@ music.yandex.*##.sidebar__placeholder .teaser ~ div
 ! Yandex.Disk
 disk.yandex.*##.direct
 ||docviewer.yandex.*/sw.js
+!
+! Yandex.Docs
+docviewer.yandex.*##div[class^="pages_"] > div > div[style="width: 100%;"]
 !
 ! Yandex.Mail
 ||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.*
@@ -1577,6 +1618,8 @@ www.kinopoisk.ru,yandex.*#%#//scriptlet('abort-on-property-write', 'Object.proto
 liveinternet.ru$$script[wildcard="*ownerId*params*"][max-length="500"]
 liveinternet.ru#%#Element.prototype.attachShadow = function(){};
 !
+! comedy-radio.ru
+||comedy-radio.ru^$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
 ! kufar.by
 ||kufar.by^$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
 ! rg.ru
@@ -1626,7 +1669,6 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||kakprosto.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||livejournal.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||otzovik.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
-||pikabu.ru/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||razlozhi.ru/*/*/*/*-$script,replace=/({"rtb":.*)|(.*"blockId":.*"commonRtbVisibility":.*)//
 ! /*! v:808163 b:adblock c:loaders/context_adb */
 ||dzen.ru^$script,replace=/t.checkForEmptyAnswer=function\(e\){return/t.checkForEmptyAnswer=function(e){return;/
