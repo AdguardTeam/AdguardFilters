@@ -42,7 +42,7 @@ pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2505
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\s\'\+atob]+\])?\([a-zA-Z0-9\'\=]{15,30}\)\][\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new ((this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\"\s\'\+atob]+\])?\(decodeURIComponent?[a-zA-Z0-9\'\=\%\"\(\)]{15,30}\]|XMLHttpRequest)[\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1027,8 +1027,11 @@ dzen.ru#?#div[class*="_yandexSearchContainer-"] ~ div[class][id] > div[id] > div
 [$path=/^\/$|\/\?/]dzen.ru###ya-dist
 dzen.ru##div[class^="dzen-desktop__link_bro-"]
 dzen.ru##div[class^="dzen-desktop__teaser-"]
+! under the search
+dzen.ru##div[class*="__widgetWrapper-"] + div > div[id] > div[style^="padding-top:"]
+://dzen.ru^$cookie=rec-tech
 ! Empty blocks in the feed
-dzen.ru##.feed__item > div > div[class^="adaptive-card-grid__container-"] > article._full-height[aria-label] + article:not(article._full-height):not([aria-label])
+dzen.ru##div[class*="__isNewGridFloors"] > article._full-height[aria-label] + article:not(article._full-height):not([aria-label])
 !
 ! Dzen News
 dzen.ru#?#div[aria-label="Лента Дзена"] article.card-wrapper:has(div[class^="feed-single-desktop-floors-"])
@@ -1070,8 +1073,9 @@ mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
 ! ad on main page
-[$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('set-constant', 'Object.prototype.MimicTgb', 'undefined')
-[$path=/^\/$|mail\.ru\/\?/]mail.ru#?#div:has(> a.traffic-widget) + div
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('set-constant', 'Object.prototype.encrypted', 'undefined')
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#?#div:has(> div > a[href^="https://news.mail.ru/currency/"]) + div
+[$path=/^\/$|mail\.ru\/\?/]mail.ru##div[slot="main-column"] > div.tgb-wrapper
 ! kino.mail.ru
 kino.mail.ru##.block_ad-text
 kino.mail.ru##button[class*="adv-marker"]
@@ -1540,6 +1544,8 @@ disk.yandex.*##.direct
 ||docviewer.yandex.*/sw.js
 !
 ! Yandex.Docs
+docviewer.yandex.*#%#//scriptlet('json-prune', 'seatbid rtbAuctionInfo')
+docviewer.yandex.*##.js-doc-html > div[class^="pages_"] > div[class*=" "]:empty
 docviewer.yandex.*##div[class^="pages_"] > div > div[style="width: 100%;"]
 !
 ! Yandex.Mail

@@ -163,15 +163,26 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 ! $replace rules for Firefox
 !#if (adguard_ext_firefox)
+! https://github.com/AdguardTeam/AdguardFilters/issues/167440
+! The rule below causes breakage on tv.youtube.com, so tv.youtube.com is excluded from this rule
+! and simple workaround is used instead
+/youtubei/v*/player?key=$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com|~tv.youtube.com
+/youtubei/v*/player?key=$replace=/"adPlacements"/"no_ads"/,domain=tv.youtube.com
+!
 .com/watch?v=$replace=/\"adPlacements.*?\"\}\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-/youtubei/v*/player?key=$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 .com/watch?v=$replace=/\"adSlots.*?\}\]\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?key=$replace=/\"adSlots.*?\}\]\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 .com/watch?v=$replace=/\"playerAds.*?\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?key=$replace=/\"playerAds.*?\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 !#endif
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
-youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/', '', '/player\?key=|watch\?v=/')
+! https://github.com/AdguardTeam/AdguardFilters/issues/167440
+! The rule trusted-replace-xhr-response with '\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,' causes breakage on tv.youtube.com
+! The problem is that rules with '~' do not work correctly in Safari, the same might be for exceptions,
+! so requests from tv.youtube.com are excluded from this rule (the url part - '^(?!.*(\/\/tv\.youtube\.com)).*(player\?key=|watch\?v=)') and instead simple workaround is used
+youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/', '', '/^(?!.*(\/\/tv\.youtube\.com)).*(player\?key=|watch\?v=)/')
+tv.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '"adPlacements"', '"no_ads"', '/player\?key=|watch\?v=/')
+!
 ! Multiple trusted-replace-xhr-response causes breakage on music.youtube.com when logged in
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adSlots.*?\}\]\}\}\]\,/', '', '/player\?key=|watch\?v=/')
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"playerAds.*?\}\}\]\,/', '', '/player\?key=|watch\?v=/')
@@ -280,6 +291,20 @@ $script,third-party,denyallow=linkvertise.com|fastly.net|statically.io|sharecast
 !
 ! NOTE: Specific rules
 !
+||firesticktricks.com/wp-content/plugins/popup-builder/
+download.oxy.st###izobrazhenie-1
+123moviesx.org#?#aside[id^="sidebarid"]:has(> center > script)
+4wank.com#?#.related-videos > center:contains(Advertisement)
+definebabe.com##.videos > div.d-flex
+definebabe.com##.fp-ui > div[style^="position: absolute; inset: 0px; overflow: hidden;"]:not([class])
+forums.redflagdeals.com###primisPlayerContainerDiv
+smartkhabrinews.com###vipada
+topsporter.net##.aoa_overlay
+topsporter.net##.banner-ads
+topsporter.net#?#.card[style*="height"]:has(> div[class]:only-child > div[class]:only-child > div[id^="div-gpt"])
+topsporter.net#?#.card[style*="height"]:has(> div[class]:only-child > div[class]:only-child > #fl-ai-widget-placement)
+topsporter.net#?#.card:has(> div[class]:only-child > div[class]:only-child > div[class]:only-child > .banner-ads)
+smartpropertyinvestment.com.au##.b-leaderboard
 dev.to#?#article + div:has(div[data-async-url] .crayons-sponsorship)
 washerhouse.com##.adslot_fix
 top10vpn.com##.boxCTA
@@ -409,7 +434,7 @@ prothomalo.com#?#div[class]:has(> iframe[src*="2mdn.net/dfp"]:only-child)
 luxuretv.com##iframe[data-src^="https://networkmanag.com/"]
 luxuretv.com##a[href^="https://networkmanag.com/"]
 gaybb.net##.float-ck
-mangoai.co#?#.all_websites > .website_background:has(> .website_container > .adsbygoogle)
+sparkful.co,mangoai.co#?#.all_websites > .website_background:has(> .website_container > .adsbygoogle)
 mobalytics.gg#?#div[class] > div[class]:has(> header > div > span:contains(Advertisement))
 independent.co.uk###taboola-mid-article-thumbnails-iii
 pixiv.net#?#aside > section[class^="sc-"]:has(> div[class^="sc-"] > iframe[width="100%"])
@@ -1214,7 +1239,6 @@ glonaabot.eu##.advert-panel-top-horizontal-wrapper
 iseeyouandyouseeme.me##div[style^="position: absolute; left:120px;"]
 ||showboxmovies.net/ajax/banner
 123chill.to##div[style*="position: absolute"][style$="z-index: 2147483647;"]
-||i.imgur.com/f0FSNTu.jpg
 pregchan.com##iframe[src$="/pages/dlsite.html"]
 lena.lenovo.com##.slider-advertise
 pornhits.com##.video-right-top
@@ -1829,7 +1853,6 @@ fonewalls.com##div[style="min-height:90px;"]
 fonewalls.com##div[style^="color:#869aab;"][style*="font-size:10px;"]
 fonewalls.com##div[class^="midspot-"]
 ||i.imgur.com/LJBMhkQ.gif
-||i.imgur.com/vPU6ACq.gif
 mixkit.co##.elements-generic-banner__wrapper
 mixkit.co##.elements-video-items
 mixkit.co##.elements-pretty-banner__wrapper
@@ -1970,7 +1993,6 @@ vebma.com###btget center > a
 /pop_8/*$domain=its.sex|jav4tv.com|oksex.tv|sexjav.org|sexjav.tv|xhentai.tv
 windowsnoticias.com###special-sidebar-template
 ||hltv.org/img/newwidgets/ggbet/
-||i.imgur.com/KZbanJ2.gif
 terabox.app,4funbox.com,terabox.com##.patch-ad
 soccerstreams2.com##.content-area#primary ~ #right-sidebar
 cryptonews.com.au##.cna-bnr
@@ -2054,8 +2076,6 @@ vipbox1.com##div[id^="slot"]
 vipbox1.com##.menuTable td[colspan="4"][rowspan="3"]
 thumbnails.porncore.net##div[id][style$="height:200px;width:800px;"]
 nhentai.website##a[href^="https://1xbet.onelink.me"]
-||i.imgur.com/gYI09Mi.png
-||i.imgur.com/yAhc7hP.png
 thebestschools.org##sonic-qdf[url]
 meteomedia.com##div[data-testid^="div-gpt-ad-"]
 ||api.steampp.net/api/Advertisement/
@@ -2238,7 +2258,7 @@ portableapps.com##.field-item > ins.adsbygoogle + script + h2 + p
 apartmenttherapy.com##.StickyBanner__content
 gab.com##.sticky-inner-wrapper > div > a[href^="https://grow.gab.com/go/"]
 ifa.com.au###mmk-popup-screen
-defenceconnect.com.au,australianaviation.com.au,cyberdaily.au,cybersecurityconnect.com.au,ifa.com.au##.b-topLeaderboard
+worldofaviation.com,defenceconnect.com.au,australianaviation.com.au,cyberdaily.au,cybersecurityconnect.com.au,ifa.com.au##.b-topLeaderboard
 ifa.com.au##div[class^="b-gutterads__wrapper"]
 cyberdaily.au,ifa.com.au##div[id^="mm-azk"]
 mariskalrock.com##div[id^="simple_ads_manager"]
@@ -2645,7 +2665,6 @@ kbjrecord.com##div[style^="position:fixed;inset:0px"]
 kbjfree.com##iframe[src^="//slave.kbjfree.com/"]
 ||porndoe.com/movie/preroll$xmlhttprequest,redirect=nooptext
 paraphraser.io##div[style="position:sticky;top:10px;margin-top: 10px;"]
-||i.imgur.com/AW6QOE1.png
 top.gg###rewarded-video
 top.gg##div[class^="css-feed"] > div.chakra-stack
 hellmoms.com##.block-videos + h3[style="text-align: center;"]
@@ -3457,7 +3476,6 @@ mail.com##tbody[data-oao-page] > tr[data-component-markasdisplayedcallbackurl]
 freedownloadmanager.org##.aa-728
 omnicalculator.com##.contentPartPromo
 omnicalculator.com##.leftAndCenterPromo
-indy100.com##.body-description > div[id^="content_"]
 sports.yahoo.com###Col2-0-PromoImage-Proxy
 sports.yahoo.com##.Bgi\(sportsbook-header-bg\)
 kingdomfiles.com##.col-sm-12 > li
@@ -3833,7 +3851,7 @@ sonichits.com###lyrics-ad
 sonichits.com##div[style^="width: 100%; padding-bottom: calc"][style*="position:relative"]
 123moviess.pw##div[style*="height:250px;width:300px;"]
 xxxxvideo.uno##.sticky-elem
-xxxxvideo.uno##.place-wink
+xxx18.uno,xxxxvideo.uno##.place-wink
 /\/img\/(?!new).+\.gif/$image,~third-party,domain=jennylist.xyz
 111.90.150.149##.idmuvi-topbanner-aftermenu
 111.90.150.149##.theiaStickySidebar a[target="_blank"] > img
@@ -6097,7 +6115,7 @@ wowgame.tv##td[width="300"][align="center"]
 migranturus.com##.migra-adlabel
 aceofhacking.com,wikiwiki.in###media_image-3
 ||weraveyou.com/wp-content/*/Vokaal-GIF.gif
-jobsncareers.org,veporns.com,weraveyou.com,vermangasporno.com##a[href^="https://bit.ly"]
+jobsncareers.org,weraveyou.com,vermangasporno.com##a[href^="https://bit.ly"]
 vermangasporno.com##a[href*="http://www.ciberhentai.net"]
 vermangasporno.com##a[href*="www.gaming-adult.com/"]
 extramovies.shop##a[href^="/dlbutton.php?"][target="_blank"] > img
@@ -6308,7 +6326,6 @@ peoplematters.in##.alertBar
 lowendtalk.com##div[style="text-align: center"] > a[href="http://bsa.ly/moo"]
 ||api.discovery.com/v*/streaming/video/*&adNetworkId$removeparam=/^ad/,domain=hgtv.com
 lifestyle.livemint.com##.headerDeskAdv
-lifestyle.livemint.com##.sidebarAdv
 republicworld.com##.ads-decorator
 gadgetsnow.com###app div.container > div.clearfix + div.mb40
 xiaopan.co##p[style="text-align: center;"] > a[href*="?ref="] > img
@@ -7549,7 +7566,6 @@ hog.*##.player-block__line
 clockks.com##.bam-topbar
 sakurajav.com##.widget_advertising
 sakurajav.com##.sadDIV
-||turbobit.net/*/img/promo/320x100.gif$domain=dunjav.com
 ||assets.msn.com/bundles/v1/microsoftNews/latest/placement-manager.*.js$domain=microsoftnews.msn.com
 ||push.bdnewsx.com/sahil.js
 /tghr.js$domain=javhihi.me|mrdhan.com|raw.senmanga.com|zplayer.live
@@ -8699,7 +8715,7 @@ anyporn.com##.primary > .nopop > a[target="_blank"]
 pornrabbit.com,pornwatchers.com##.fluid_nonLinear_bottom
 ||pornwatchers.com/boom/*.html
 pornfay.org##a[href="http://pornfay.org/xxx/free-porn-videos.php"]
-lesbian8.com,pornfay.org##.kt-api-btn-start
+amateur8.com,lesbian8.com,pornfay.org##.kt-api-btn-start
 pornburst.xxx##.promo-gauleporno
 pornburst.xxx###footer-iframe
 podu.me##.adv-contanier
@@ -10155,7 +10171,6 @@ hdpornvideo.xxx##.lika
 superherohype.com##.wrapper > #js-leaderboard
 ||dailyimages.xyz/crackle/carouseal.js
 ||dailyimages.xyz/crackle/graduation.php
-||link.tl/js/mobilead.js
 ||1373837704.rsc.cdn77.org/mobilead.js
 ||1373837704.rsc.cdn77.org/entry2.js
 watchonetreehillonline.com,watchhowimetyourmother.online###contenedor > #keeper2
@@ -10292,18 +10307,13 @@ ashemale.one##iframe[src^="https://acdn.ashemale.one/ashm/frms/"]
 moviesand.com###ggf-aside > .inner-aside-af
 moviesand.com###ggf-aside > span[class^="af-"]
 moviesand.com###main-item > .loadMoreRelated[style^="display: inline-block;"]
-||link.tl/ax/impression^
-||link.tl/interstitial^$redirect=nooptext,important
 coub.com##.viewer__sad
 ibizaglobalradio.com##.banner-publi
 sexu.com###nv_ads
 ||sexu.com/ifrm/
-intoupload.net##.downppi
 ||watchonlinemovies.com.pk/wp-content/uploads/2016/10/logo.png$popup
 ||xxxkingtube.com/*/ban/json/
 ||pci.xxxkingtube.com/v*/a/*/js|
-uploadbuzz.org###wrapper > div[class^="downloadpage"] > .content > center
-uploadbuzz.org##.sideright > form > #downloadbtn ~ span.btn-primary
 gotporn.com##.sidebar > .image-group > .external-img-300x250 + span.caption
 stileproject.com##.sponsor-btn
 ||stileproject.com/frexo.js
@@ -10349,7 +10359,6 @@ fetishshrine.com,youfreeporntube.net,reallifecam.vip##.nav > li > a[target="_bla
 hdzog.com##.main-content > .block-thumbs:not([class*=" "])
 4tube.com###ad_player
 ||shaggyimg.pro/crackle/carouseal.js
-|https://$script,subdocument,third-party,xmlhttprequest,domain=upload4earn.org
 pornbimbo.com###kt_player > .fp-player + a[href$="?play=true"][target="_blank"][style]
 ||pornbimbo.com/player/html.php?aid=pause_html&*video_id=*&*referer=
 thescore.com##div[class^="Ad__bigbox--"]
@@ -10510,7 +10519,6 @@ a2zcrack.com###header-banner468
 googleitfor.me,a2zcrack.com##center > a[href][target="blank"] > img
 a2zcrack.com##a[href][target="blank"][rel="nofollow"] > h3
 uploadev.com##a[href^="https://wronsironhow.club/"]
-uploadbuzz.org##.sideright > form > #downloadbtn ~ a[rel="nofollow"][target="_blank"]
 imtranslator.net###topframe
 imtranslator.net##td[align]> div[style="padding:5px;margin:5px;border:1px solid #21497D;"]
 minecraftforum.net,gamepedia.com##.xt-placement
@@ -10769,7 +10777,6 @@ geeksultd.com##.theiaStickySidebar > #text-html-widget-3
 geeksultd.com##.theiaStickySidebar > #text-html-widget-4
 ||rsc.cdn77.org/*.html|$domain=telerium.tv
 apkpure.com##.left > .ad-left ~ div[style^="margin: 0 auto 20px auto;position: relative;width:100%;overflow: hidden;height: 150px; background: #fff;"]:not([class]):not([id])
-uploadbuzz.org##.content > center > div[class^="adunit"] ~ a[target="_blank"]
 gamecopyworld.com##iframe[src^="$_news.php?"]
 ||gamecopyworld.com/games/*.mp4
 ymovies.to###banner_publi
@@ -10811,7 +10818,6 @@ gceguide.com##.tringdad-main
 popculture.com##body .modernInContent > div[id^="oas_FC"]
 monoprice.com##body .global-adsense
 ||1373837704.rsc.cdn77.org/flash.js
-||link.tl/interstitial/flash-ad?$important
 thefappeningleak.com##a[href^="https://888celebs.com/"]
 mustangnews.net##.widget_thbadsingle > a[href] > img
 ||wing.kmplayer.com/cache/json/kmp_tvbox.json
@@ -11030,7 +11036,6 @@ eurogamer.net,eurogamer.de##.game-spotlight-advertising
 ||crazyshit.com/js/pu^
 ||crazyshit.com/static/js/ab^
 digit.in###sidebar > .advertisements + .scoPannel > .specs-box
-veporns.com##.glinks li > a:not([href*="veporns.com"]):not([href^="/"]):not([href="#"])
 tnaflix.com##.menu-paid-tab
 androidpolice.com###sbar-content > li#ai_widget-6 > .ains > a.no_ul[href^="http://andp.lc/"] > img
 androidpolice.com##a.no-style[href^="http://andp.lc/"][target="_blank"]
@@ -11259,7 +11264,6 @@ tetris.com##div[class^="verticalAxContainer"]
 tetris.com###gameAxDivContainer
 ||cluster-*.cdnjquery.com*sha256_$script,domain=theultralinx.com
 theultralinx.com##aside[phx-content-rail-ad-block]
-intoupload.net##a[href*="go.php"]
 cwtvembeds.com,caminspector.net##.hola_top_element
 caminspector.net##body > .footer ~ div[style*="background-color: rgb(0"][style*="opacity"]
 sexwebvideo.net,sexwebvideo.com,camsexvideo.net##.trailer-sponsor
@@ -11617,7 +11621,6 @@ intporn.com##iframe[src^="https://chaturbate.com/affiliates"]
 ||mangoporn.net/iamfront.js
 123movie.cc,fmovie.cc##.bannerR2x
 fmovie.cc##.top_podCon
-upload4earn.org##a[onclick^="window.open"]
 cartoon-sex.tv##.f-banner
 ||bigholestube.com/rotator/baner.php^
 ||bigholestube.com/wp-content/uploads/*/*banner
@@ -11700,8 +11703,6 @@ hgtv.ca##.featureEnhanced-ad-placeholder
 hgtv.ca###videoAd
 hgtv.ca##.video-drawer-bigBox
 hgtv.ca##.js-gptAd
-link.tl##.mobsplOverlay
-link.tl##.mobsplBox
 123freeavatars.com##div[align="center"] > div[align="center"][style*="border"]:first-child
 123freeavatars.com##div[style="float:left;"] > .hd[style]
 voyeurhit.com##.player-container > div[style] > span[class]
@@ -11786,7 +11787,6 @@ cambabe.video##.margin-fix[id^="list_videos_"] > noindex > .place
 ||ipsw.me/assets/images/external/slide.png
 global.americanexpress.com##.text-align-center.pad-tb
 ||watchop.io/*.html|
-||i.imgur.com/8y9RqZ4.png
 watchcartoononline.io##a[href*="/go?"]
 rgmechanicsgames.com*VPN.exe
 feed2allnow.eu,rgmechanicsgames.com###fanback
@@ -12123,8 +12123,6 @@ ncaa.com##.ncaa-top-ad-wrapper
 ||totalcmd.net/images/japanese-used-cars
 totalcmd.net##td > center > a[target="_blank"] > img
 10minutemail.net###content > #right
-veporns.com,fxporn.net##img[alt="remove ads"]
-ceporn.net##div[class^="adblock"]
 ||cdn1-static-extremetube.spankcdn.net/js/a/a.js
 teenpornb.com###sidebar #text-6
 ||teenpornb.com/1234.gif
@@ -13459,7 +13457,6 @@ steamcustomizer.com##.col-lg-3.collection-item.shown.as-ad
 gostream.is##.gomo-gtx-br
 games.iwin.com##.modals
 games.iwin.com###advertModal
-link.tl##.ad728x90
 ||geo*.hltv.org/rekl*.php
 csgostash.com##.col-lg-offset-2 > [class="well text-center"]
 csgostash.com##.adv-top-header-mobile
@@ -13496,8 +13493,6 @@ net-load.com##div[id^="heatmapthemead-"][id$="-sidebar"]
 greenbayphoenix.com##.stickyLeaderboard
 greenbayphoenix.com##.c-contentstream__ad
 1062804$domain=sockshare.net
-filehippo.com##div[id^="ad-slot-"]
-filehippo.com##div[id^="ad-slot-"]+div[style$="padding-bottom:10px"]
 ||bangaloremirror.indiatimes.com/bmdge/
 circa.com##.Page-ad
 dailymotion.com##.dmp_VideoView-ad-slot
@@ -14410,7 +14405,6 @@ xmissy.nl##.noclick-small-banner
 pornbb.org##.nodark
 watchseries.cr##.odd:nth-of-type(1)
 javhdx.tv##.onplayerADS
-filehippo.com##.outbrain-container
 online-games.co##.overlayVid
 christiantoday.com##.p402_premium > div[style$="float:left;margin:0 15px; 10px 0px;clear:left;"]
 tnaflix.com##.padAdv
@@ -14619,7 +14613,6 @@ google.com,google.ru##body > table[width="100%"][style^="border: 1px solid #"]
 gamepedia.com##body div#content > div#atflb
 gamepedia.com##body div#content > div#btflb
 gamepedia.com##body div#siderail > div#atfmrec
-yourtv.com.au##body span.channel-icon__ad-buffer
 nv.ua##body.branding > a[href*="/exec/bn/click.php"]
 procrackerz.org,torrentdownload.info,freeappstorepc.com,masseurporn.com,rennlist.com,f4freesoftware.com,sadeempc.com,workingkeys.org##center > a[rel="nofollow"] > img
 softasm.com##center > a[rel="nofollow"][onclick] > img
@@ -14628,9 +14621,7 @@ ah-me.com##div.DarkBg
 bosscast.net##div.bossPlayer#bossPlayer
 w4files.pw##div[align="center"] > a[href="/button/download.php"]
 extra.to##div[align="center"] > a[rel="nofollow"] > img
-yourtv.com.au##div[class$="-icon--ad"]
 adminsub.net##div[class$="_ad"]
-yourtv.com.au##div[class$="fixed-ad"]
 vidzi.tv##div[class$="vidzi_backscreen"]
 giveawayoftheday.com##div[class*="_ab aa-"]
 cpuid.com##div[class*="widget-advert-"]
@@ -14677,7 +14668,7 @@ download3k.com##div[id^="dl_google_"]
 forums.guru3d.com##div[id^="edit"] > div.vbmenu_popup + div[id^="edit"][style^="PADDING-RIGHT:"]
 mamahd.com##div[id^="html"][style]
 mangafox.la##div[id^="mfad"]
-decider.com,bgr.com,filehippo.com,skysports.com##div[id^="outbrain_widget"]
+decider.com,bgr.com,skysports.com##div[id^="outbrain_widget"]
 iphone-ticker.de##div[id^="page-"] > div[id^="verbraucherhinweis-"]
 pick-up-artist-forum.com##div[id^="popup"]
 gamovideo.com##div[id^="pu-"]
@@ -15591,7 +15582,7 @@ washingtontimes.com#?#.aside-inner > .block:has(> .block-content > .sponsored-co
 washingtontimes.com#?#.aside-inner > .block:has(> .block-content > script[data-paid-clicks])
 unity3diy.blogspot.com#?##sidebar > div.widget:has(> div.widget-content > ins.adsbygoogle)
 mangazuki.online#?#.body-wrap > .c-top-sidebar:not(:has(.widget-manga-popular-slider))
-18pussy.porn,tabooporn.tv,amateurporn.me,severeporn.com#?#.block-video > div.table:has(> div.opt)
+xxam.org,18pussy.porn,tabooporn.tv,amateurporn.me,severeporn.com#?#.block-video > div.table:has(> div.opt)
 imore.com#?#p > a[href^="/e?link="][href*="offer"][target="_blank"].norewrite + span[style^="text-align: center; padding: 2px; display"]
 codecs.forumotion.net#?##main-content > div[style]:has(> div[class] iframe[src^="https://adstune.com/"])
 codecs.forumotion.net#?##main-content > #p0.post:has(> .inner > .postprofile > dl > dt > strong:contains(/^Sponsored content$/))
@@ -16424,7 +16415,6 @@ filesmerge.com#?#.slider-body > div.slider_item:has(> div > h4:contains(/Ads|Wer
 rumormillnews.com#?#p:has(a[target="_blank"])
 m4maths.com#?#.m4_footer_container:has(> div:contains(Advertisements))
 researchgate.net#?#.lite-page__side > div.nova-o-stack > div.nova-o-stack__item:has(> div > div > div.lite-page-ad)
-veporns.com#?#.info:has(> a[href^="https://bit.ly"])
 5movies.to#?#.links > ul > li.download:contains(Download in HD)
 iplocation.net#?#section > div.container div.widget:has(> div.widget_title > h3:contains(Advertisement))
 wallpaperstudio10.com#?#.col-md-5 > div[class="card card-body"]:has(> div.text-center > ins.adsbygoogle)
@@ -16578,7 +16568,6 @@ kickassz.com#?#td[width="100%"] > style + div[id]:has(> div[id] > a[href="/k/?q=
 kickassz.com#?#.commentsLeftModule > style + div[id]:has(> div[id] > a[href="/k/?q=q"][target="_blank"])
 kickassz.com#?#td[width="100%"] > div:not([class]):not([id]) > style + div[id]:has(> div[id] > a[href="/k/?q=q"][target="_blank"])
 bleepingcomputer.com#?#.cz-post-comment-wrapp + .cz-related-article-wrapp:has(> .adsbygoogle)
-filehippo.com#?##content-main > h2[style]:contains(Recommended Web Apps)
 nsfwyoutube.com#?#.embed-container > h2:contains(Watch the Featured Video of the Day)
 vivatube.com#?#.container.mt15 > .c-title:has(> .c-normtitle-output:contains(Reklam))
 ccn.com#?#.theiaStickySidebar > #text-31:has(> .widget-title:contains(Advertisement))
@@ -17217,7 +17206,6 @@ xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadul
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##[class^="yld-pc"]
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##.banner-wrapper
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##div[class*="containerBottomSpot"]
-xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##.thumb-list > div:not(.thumb-list__item)
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##iframe[src^="https://vidsfull.online/"]
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##a[href^="https://faphouse.com/"]
 xhtab2.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhwide8.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.*,xhamster18.*,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.*,xhamster4.desi,xhamster20.com,xhamster22.com,xhamster23.com,xhamster25.com,xhamster26.com,xhamster27.com,openxh.com,xhamster31.com,xhamster32.com,xhamster34.com,xhamster35.com,xhamster36.com,xhamster37.com,xhamster38.com,xhamster500.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster39.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com##aside[data-role="yld-pcpromo"]
@@ -17250,8 +17238,9 @@ moonbit.co.in,moondoge.co.in,moonliteco.in,moondash.co.in##.flexAfter
 my.mail.ru###b-video-wrapper > div.b-video-html5__overlay-container
 !
 ! turbobit
+||turbobit.net/*/img/promo/320x100.gif
 ||turbobiyt.net/fd1/js/brinpopup.js
-/files/news/image/offer$domain=turbobyt.com|turbobyte.net|turbobiyt.net
+/files/news/image/offer$domain=turbobyt.com|turbobyte.net|turbobiyt.net|turbobit.net|turbobits.cc
 turbobyt.com###banner-place
 turbobiyt.net,turbobyte.net##a[href*="/ybrowser/"]
 ||tb.turbocap.net/*.js
@@ -17260,7 +17249,6 @@ turbobiyt.net,turbobyte.net##a[href*="/ybrowser/"]
 ||turbobit.net/files/news/image/big.png
 ||turbobit.net/*/60090.
 turbobyte.net,turbobit.net##div[style^="text-align:center;"] > a[target="_blanck"] > img
-||turbobit.net/files/news/image/offer
 ||turbobit.net/*/*_brand_$image
 ||turbobit.net/*/72890.png
 turbobit.net##a[href*="&campaign="] > img
@@ -17274,10 +17262,12 @@ turbobit.net##.brin-button
 ||turbobit.net/files/news/lords_turbobit$domain=turbobit.net
 ||turbobit.net/oexktl/
 ||turbobit.net/turbo?gaid=bn_gate
-turbobiyt.net,turbobit.net##center > a > img
+turbobits.cc,turbobiyt.net,turbobit.net##center > a > img
+turbobits.cc,turbobiyt.net,turbobit.net###adfrc_download_wrapper
 artima.com,turbobit.net###topbanner
 turbobit.net##.download-top-aplayer
 turbobit.net##body > a#body-link
+turbobit.net##img[width="600"][height="80"]
 !
 ! twitch.tv - streamer's ads
 twitch.tv##a[href^="https://ggbetpromo.com/"]
@@ -17367,6 +17357,17 @@ adultlingeriepics.com,adultlingeriepics.com,adultspankingtgp.com,allfeetporn.com
 /\.net\/[0-9a-f]+\.js$/$script,~third-party,domain=imgdrive.net
 !#endif
 !
+!
+!+ NOT_OPTIMIZED
+lifestyle.livemint.com##.sidebarAdv
+!+ NOT_OPTIMIZED
+yourtv.com.au##body span.channel-icon__ad-buffer
+!+ NOT_OPTIMIZED
+yourtv.com.au##div[class$="-icon--ad"]
+!+ NOT_OPTIMIZED
+yourtv.com.au##div[class$="fixed-ad"]
+!+ NOT_OPTIMIZED
+indy100.com##.body-description > div[id^="content_"]
 !+ NOT_OPTIMIZED
 stuff.tv##.wp-block-ad
 !+ NOT_OPTIMIZED
