@@ -84,7 +84,7 @@ phileweb.com#%#//scriptlet("remove-class", "has-topbanner", "body > header.has-t
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109086
 ! It looks like that website is checking Event.isTrusted, so $replace rule is required to make el.click() to works
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-avgle.com#%#AG_onLoad(function() { var el = document.querySelector("#player_3x2_close"); el&&el.click(); });
+avgle.com#%#//scriptlet('trusted-click-element', '#player_3x2_close')
 ||avgle.com/templates/frontend/avgle-main-ah.js$replace=/(:try{if\()!_0x[\s\S]*?(\){return;})/\$1 1===2 \$2/
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101637
@@ -159,6 +159,8 @@ avgle.com#%#//scriptlet('abort-current-inline-script', '__htapop')
 !-------CSS---------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/167699
+afsgames.com#$#.ad970x250 { visibility: hidden !important; height: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166591
 wpb.shueisha.co.jp#$?#ul.mod-grid2 > li.block-list-a-a__list__item:has(> div.block-banner-b-a) { display: none !important; }
 wpb.shueisha.co.jp#$?#ul.mod-grid2 > li.block-list-a-a__list__item:has(> div[class$="_InRecommend"]) { display: none !important; }

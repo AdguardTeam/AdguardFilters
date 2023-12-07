@@ -6,6 +6,13 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-7715888
+||announcements.bybit.com^$removeparam=pid
+||announcements.bybit.com^$removeparam=sa_utm_ci
+||announcements.bybit.com^$removeparam=sa_utm_channel
+||announcements.bybit.com^$removeparam=sa_utm_tcn
+! https://github.com/AdguardTeam/AdguardFilters/issues/167273
+||game-i.daa.jp/?cmd=ad_mode$removeparam=cmd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167051
 ||slickdeals.net/?adobeRef=$removeparam=adobeRef
 ||slickdeals.net/*&sdtid=$removeparam=sdtid
@@ -523,10 +530,32 @@ $removeparam=ici,domain=shein.co.uk|shein.com
 ||click.speee-ad.jp^$removeparam=sess_id
 ||click.speee-ad.jp^$removeparam=slot_index
 ||click.speee-ad.jp^$removeparam=v
+!! tiktok
 ! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-4978150
 ||tiktok.com^$removeparam=embed_source
 ||tiktok.com^$removeparam=referer_url
 ||tiktok.com^$removeparam=refer
+! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-1909327
+||tiktok.com^$removeparam=sec_uid
+||tiktok.com^$removeparam=web_id
+||tiktok.com^$removeparam=share_app_id
+||tiktok.com^$removeparam=share_author_id
+||tiktok.com^$removeparam=tt_from
+! email/copy link function
+||tiktok.com/@*/video/*$removeparam=is_from_webapp
+||tiktok.com/@*/video/*$removeparam=sender_device
+! Create effects link on main page and then clicking on a link
+||tiktok.com$removeparam=enter_method
+! login button on effect page
+||tiktok.com$removeparam=enter_from
+! searching a phrase and clicking on it
+||tiktok.com/search$removeparam=t
+||tiktok.com/@*/video/*$removeparam=q
+! ads.tiktok.com signup page
+||ads.tiktok.com/*/signup$removeparam=_source_
+||ads.tiktok.com/*/signup$removeparam=cacheSDK
+||ads.tiktok.com/*/signup$removeparam=region
+! tiktok end
 ! https://voicy.jp/channel/2964/451627?share.ref=https%3A%2F%2Ft.co%2F
 ||voicy.jp^$removeparam=share.ref
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141768
@@ -1021,12 +1050,6 @@ $removeparam=scid,domain=rakuten.co.jp|rakuten-wallet.co.jp
 ||adorama.com^$removeparam=bc_pid
 ! https://github.com/AdguardTeam/AdguardFilters/commit/920d973db052ded91b48fbb8c7ca3fe2fdeda237
 ||adjust.com^$removeparam=adgroup
-! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-1909327
-||tiktok.com^$removeparam=sec_uid
-||tiktok.com^$removeparam=web_id
-||tiktok.com^$removeparam=share_app_id
-||tiktok.com^$removeparam=share_author_id
-||tiktok.com^$removeparam=tt_from
 ! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-1899731
 ||reddit.app.link^$removeparam=adblock
 ||reddit.app.link^$removeparam=compact_view
@@ -1337,6 +1360,7 @@ $removeparam=asc_source,domain=aboutamazon.com|amazon.*|amzn.to
 ||amazon.*$removeparam=adgrpid
 ||amazon.*$removeparam=ascsubtag
 ||amazon.*$removeparam=AssociateTag
+||amazon.*/gp/buyagain$removeparam=ats
 ||amazon.*$removeparam=c
 ||amazon.*$removeparam=camp
 ||amazon.*$removeparam=content-id
@@ -1433,8 +1457,9 @@ $removeparam=refsrc,domain=twitter.com|x.com
 $removeparam=ref_src,domain=twitter.com|x.com
 $removeparam=ref_url,domain=twitter.com|x.com
 ! Twitter
+! Breaks redirects https://github.com/uBlockOrigin/uAssets/issues/20941
+! $removeparam=t,domain=twitter.com|x.com
 $removeparam=cxt,domain=twitter.com|x.com
-$removeparam=t,domain=twitter.com|x.com
 $removeparam=s,domain=twitter.com|x.com
 !
 ||zerkalo.io^$removeparam=tg

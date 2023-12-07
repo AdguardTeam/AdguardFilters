@@ -28,6 +28,10 @@ modsforwot.ru,rubitcoin24.ru,vargr.ru,electric-house.ru,trialkeys.ru#@#img[width
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/167379
+tragtorr.in#@#div[id^="yandex_rtb"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/167304
+||tests24.su^$cookie=/^ai/
 ! pikabu.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164131#issuecomment-1784848634
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148093
@@ -38,7 +42,7 @@ pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
 ! https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2505
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\s\'\+atob]+\])?\([a-zA-Z0-9\'\=]{15,30}\)\][\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new ((this|document\.defaultView|window)\[((this|document\.defaultView|window)\[[\"\s\'\+atob]+\])?\(decodeURIComponent?[a-zA-Z0-9\'\=\%\"\(\)]{15,30}\]|XMLHttpRequest)[\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1006,7 +1010,12 @@ tests24.ru#$#.g_rt { height: 1px!important;}
 !
 ! old cookies: Bismuth|computer|discussion|^specific\$|^engineer|instruction|telecommunications|pronunciation|involved|^adequate
 ! do not remove cookies that contain `sso_`
+$cookie=KIykI,domain=dzen.ru
 $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru
+dzen.ru#%#//scriptlet('prevent-xhr', 's3.dzeninfra.ru/zen-misc/aab/cod.txt')
+! /*! v:808163 b:adblock c:loaders/context_adb */
+||dzen.ru^$script,xmlhttprequest,replace=/detect:{links:\[\]\,custom:\[\]\,iframes:\[\]}/detect:{}/
+||dzen.ru^$script,xmlhttprequest,replace=/"cookieName":.?"\w+"\,/"cookieName": "nonexisting"\,/
 !
 dzen.ru,auto.ru,avito.ru,baby.ru,businessman.ru,dni.ru,e1.ru,echo.msk.ru,fb.ru,forexpf.ru,gismeteo.by,gismeteo.kz,gismeteo.md,gismeteo.ru,gorodrabot.ru,infoniac.ru,it-tehnik.ru,kakprosto.ru,kinopoisk.ru,liveinternet.ru,mathb-ege.sdamgia.ru,mk.ru,nkj.ru,ohotniki.ru,oko-planet.su,otzovik.com,razlozhi.ru,sdamgia.ru,syl.ru,vz.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 ! TODO: add domains auto.ru and kinopoisk.ru to the rule below after the next release of AG for macos (current 2.3.2)
@@ -1016,25 +1025,28 @@ $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|business
 dzen.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 !
 ! Dzen main page
-dzen.ru##div[class^="geo-and-currency"][class*="Wrapper"] + div
+dzen.ru$$script[tag-content="cookieOfTheDay"]
+dzen.ru#%#//scriptlet('abort-current-inline-script', 'XMLHttpRequest', 'cookieOfTheDay')
 dzen.ru##div[class*="bannerMain"]
-dzen.ru##div[class^="currency-rates_"] + div[class^="geo-and-currency-widget_"]
 dzen.ru#?#div[class*="_yandexSearchContainer-"] ~ div[class][id] > div[id] > div:has(> div > a[href^="https://yandex.ru/an/"])
 [$path=/^\/$|\/\?/]dzen.ru###ya-dist
 dzen.ru##div[class^="dzen-desktop__link_bro-"]
 dzen.ru##div[class^="dzen-desktop__teaser-"]
-[$path=/a/]dzen.ru##div[class*="_position_"][class$="_direct"]
+://dzen.ru^$cookie=rec-tech
+! Empty blocks in the feed
+dzen.ru##div[class*="__isNewGridFloors"] > article._full-height[aria-label] + article:not(article._full-height):not([aria-label])
 !
 ! Dzen News
-dzen.ru#?#div[aria-label="Лента Дзена"] article.card-wrapper:has(div[class^="feed-single-desktop-floors-v2__title-eI"]:empty)
+dzen.ru#?#div[aria-label="Лента Дзена"] article.card-wrapper:has(div[class^="feed-single-desktop-floors-"])
 dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[class*="__loader "]
 [$path=/pogoda]dzen.ru##.adv_type_rtb
 !
 ! Ad in Dzen articles
 dzen.ru###article__bottom-embed
 dzen.ru##div[class^="article-right-placeholder_"]
-dzen.ru##.card-wrapper > div[class^="article-bottom-single-desktop-placeholder__"]
-[$path=/a/]dzen.rudzen.ru##.article__content_limited div[class^="article-bottom-single-desktop-placeholder__"]
+dzen.ru##div[class^="article-bottom-single-desktop-placeholder__"]
+[$path=/a/]dzen.ru##.article__content_limited div[class^="article-bottom-single-desktop-placeholder__"]
+[$path=/a/]dzen.ru##div[class*="_position_"][class$="_direct"]
 ![$path=/a/]dzen.ru#$#div[class*="_position_bottom "] > div > div:not([class]):not([id]) { transform: translate(-3000px) !important; position: fixed; }
 ![$path=/a/]dzen.ru##div[class*="_position_inner "] > div > div[style^="width:"]
 ![$path=/a/]dzen.ru##div[class*="_position_right "][style*="max-height:"]
@@ -1064,8 +1076,9 @@ mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
 ! ad on main page
-[$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('set-constant', 'Object.prototype.MimicTgb', 'undefined')
-[$path=/^\/$|mail\.ru\/\?/]mail.ru#?#div:has(> a.traffic-widget) + div
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#%#//scriptlet('set-constant', 'Object.prototype.encrypted', 'undefined')
+[$path=/^\/$|mail\.ru\/\?/]mail.ru#?#div:has(> div > a[href^="https://news.mail.ru/currency/"]) + div
+[$path=/^\/$|mail\.ru\/\?/]mail.ru##div[slot="main-column"] > div.tgb-wrapper
 ! kino.mail.ru
 kino.mail.ru##.block_ad-text
 kino.mail.ru##button[class*="adv-marker"]
@@ -1465,6 +1478,8 @@ otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length
 ! START: Yandex
 !
 !
+||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/"cookieName":.?"\w+"\,/"cookieName": "nonexisting"\,/
+||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/detect:{links:\[\]\,custom:\[\]\,iframes:\[\]}/detect:{}/
 ! ad on chrome://newtab
 !+ PLATFORM(windows, mac)
 ||yandex.ru/*/*?ntp-sandwich*content=chromenewtab&statPath=chromenewtab
@@ -1534,6 +1549,8 @@ disk.yandex.*##.direct
 ||docviewer.yandex.*/sw.js
 !
 ! Yandex.Docs
+docviewer.yandex.*#%#//scriptlet('json-prune', 'seatbid rtbAuctionInfo')
+docviewer.yandex.*##.js-doc-html > div[class^="pages_"] > div[class*=" "]:empty
 docviewer.yandex.*##div[class^="pages_"] > div > div[style="width: 100%;"]
 !
 ! Yandex.Mail
@@ -1670,8 +1687,6 @@ livejournal.com#%#//scriptlet("set-constant", "begun_new_callbacks", "undefined"
 ||livejournal.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||otzovik.com/*/*/*-$replace=/^.*?"visibilitySettings":\s*\{[^}]*\}.*?(?:"direct":\s*\{[^}]*\})?.*\$//,script,other,xmlhttprequest
 ||razlozhi.ru/*/*/*/*-$script,replace=/({"rtb":.*)|(.*"blockId":.*"commonRtbVisibility":.*)//
-! /*! v:808163 b:adblock c:loaders/context_adb */
-||dzen.ru^$script,replace=/t.checkForEmptyAnswer=function\(e\){return/t.checkForEmptyAnswer=function(e){return;/
 !#endif
 !
 ! END: Yandex
