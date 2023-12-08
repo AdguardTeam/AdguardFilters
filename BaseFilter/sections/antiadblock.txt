@@ -3933,13 +3933,18 @@ woiden.id#@#.ad-box:not(#ad-banner)
 woiden.id#@#.ad-wrapper
 ! https://github.com/uBlockOrigin/uAssets/issues/14510
 xsz-av.com#@#.ad-content
+! https://github.com/AdguardTeam/AdguardFilters/issues/167992
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160924
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127937
 zeroupload.com###superadblocker
+zeroupload.com#$?#body > center[id]:has(> p:contains(Disable Your ad blocker)) { remove: true; }
+zeroupload.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 zeroupload.com#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '/nextFunction|google_ad_client|adsbygoogle\.js/')
 $script,redirect-rule=noopjs,domain=zeroupload.com
 !+ NOT_PLATFORM(windows, mac, android)
 @@||zeroupload.com^$generichide
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=zeroupload.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127547
 bitsfree.net#%#//scriptlet("abort-on-property-read", "adsBlocked")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127897
