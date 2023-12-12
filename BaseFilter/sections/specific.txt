@@ -152,13 +152,16 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 ! Modify YT xhr responses
 .com/watch?v=$xmlhttprequest,jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?key=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
+.com/playlist?list=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 ! $replace rules for Firefox
 !#if (adguard_ext_firefox)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167440
 ! The rule below causes breakage on tv.youtube.com, so tv.youtube.com is excluded from this rule
 ! and simple workaround is used instead
 /youtubei/v*/player?key=$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com|~tv.youtube.com
+.com/playlist?list=$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com|~tv.youtube.com
 /youtubei/v*/player?key=$replace=/"adPlacements"/"no_ads"/,domain=tv.youtube.com
+.com/playlist?list=$replace=/"adPlacements"/"no_ads"/,domain=tv.youtube.com
 !
 .com/watch?v=$replace=/\"adPlacements.*?\"\}\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 .com/watch?v=$replace=/\"adSlots.*?\}\]\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
@@ -172,7 +175,7 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 ! The problem is that rules with '~' do not work correctly in Safari, the same might be for exceptions,
 ! so requests from tv.youtube.com are excluded from this rule (the url part - '^(?!.*(\/\/tv\.youtube\.com)).*(player\?key=|watch\?v=)') and instead simple workaround is used
 youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,/', '', '/^(?!.*(\/\/tv\.youtube\.com)).*(playlist\?list=|player\?key=|watch\?v=)/')
-tv.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '"adPlacements"', '"no_ads"', '/player\?key=|watch\?v=/')
+tv.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '"adPlacements"', '"no_ads"', '/playlist\?list=|player\?key=|watch\?v=/')
 !
 ! Multiple trusted-replace-xhr-response causes breakage on music.youtube.com when logged in
 ! youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/\"adSlots.*?\}\]\}\}\]\,/', '', '/player\?key=|watch\?v=/')
