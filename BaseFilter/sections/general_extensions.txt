@@ -122,15 +122,10 @@ mangakita.net,westmanga.info#%#//scriptlet("set-constant", "puShown1", "true")
 139.45.197.153$network
 139.45.197.154$network
 /139.45.197.24\d/$network
-! TODO: use trusted-replace-xhr-response when fix for https://github.com/AdguardTeam/Scriptlets/issues/303 will be implemented
-! or xml-prune if this - https://github.com/AdguardTeam/Scriptlets/issues/325 will be fixed
-! amazon.co.jp,amazon.com#%#//scriptlet('trusted-replace-xhr-response', '/<Period.*?value="Ad".*?<\/Period>/', '', '.mpd')
-! amazon.co.jp,amazon.com#%#//scriptlet('trusted-replace-xhr-response', '/start="[0-9A-Z]+">/', '>', '.mpd')
-amazon.co.jp,amazon.com#%#//scriptlet("json-prune", "cuepointPlaylist")
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164615
-! Video is broken in Firefox, because :has() is not supported, xpath can be used when will be added
-!+ NOT_PLATFORM(windows, mac, android, ext_ff, ext_ublock)
-amazon.co.jp,amazon.com#%#//scriptlet('xml-prune', 'Period:\has([value="Ad"])', '', '.mpd')
+amazon.co.jp,amazon.com#%#//scriptlet('json-prune', 'cuepointPlaylist')
+amazon.co.jp,amazon.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start)', '[value="Ad"]', '.mpd')
 !
 ! go.oclasrv.com clickunder/ads ('zfgloaded')
 ! '$$script[tag-content="zfgloaded"][min-length="30000"][max-length="80000"]'
