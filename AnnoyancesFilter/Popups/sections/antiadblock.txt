@@ -3827,8 +3827,12 @@ web.de,gmx.net,gmx.at,gmx.ch,gmx.com#$##abd-container { display: block !importan
 !
 ! SECTION: Anti-adblock - Grouped rules for specific sites
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/168444
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165349
-getemoji.com#%#//scriptlet('abort-current-inline-script', 'JSON.parse', 'Adblock')
+getemoji.com#$#body [data-freestar-ad] { position: absolute !important; left: -9999px !important; }
+getemoji.com#$#body div.ad.banner-ad { display: block !important; }
+getemoji.com#%#//scriptlet('prevent-element-src-loading', 'script', '/a\.pub\.network|googletagservices\.com\/tag\/js\/gpt\.js/')
+||getemoji.com/scripts/apester.js
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 !#safari_cb_affinity(general,privacy)
 getemoji.com#@#[data-freestar-ad]
