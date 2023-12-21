@@ -8,6 +8,11 @@
 !
 !############### TEMPORARY ###############
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/168834 [Stealth Mode - User-agent]
+! BUG: https://github.com/AdguardTeam/CoreLibs/issues/1841
+! TODO: remove after release AdGuard apps with CoreLibs 1.14
+!+ PLATFORM(windows, mac, android)
+@@||account.adobe.com^$document,domain=services.adobe.com,stealth=useragent
 ! fix AdGuard account authorisation [Stealth Mode - TTL of first-party cookies = 0]
 ! current as of 20.09.2022
 !+ PLATFORM(android)
@@ -16,11 +21,8 @@
 !
 !
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/168834 [Stealth Mode - User-agent]
-! BUG: https://github.com/AdguardTeam/CoreLibs/issues/1841
-! TODO: remove after release AdGuard apps with CoreLibs 1.14
-!+ PLATFORM(windows, mac, android)
-@@||account.adobe.com^$document,domain=services.adobe.com,stealth=useragent
+! https://github.com/AdguardTeam/AdguardFilters/issues/168945 [Stealth Mode - IP hiding]
+@@||edge.api.brightcove.com/playback/v1/accounts/*/videos/$xmlhttprequest,domain=tver.jp,stealth=ip
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168846
 @@||platform.cloud.coveo.com^$stealth=3p-auth,domain=intel.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168667 [ Stealth Mode - Referrer]
