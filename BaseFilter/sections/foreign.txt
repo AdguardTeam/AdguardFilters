@@ -5470,7 +5470,10 @@ dap-news.com##.ads
 ! NOTE: Korean
 !
 !
-! TODO: remove the javascript rule if FiltersCompiler supports ignoreTrustLevel option or AdguardTeam/Scriptlets#382 is resolved.
+! https://github.com/AdguardTeam/AdguardFilters/issues/168392
+! 18moa
+/data/file/main_top_banner/thumb-
+! TODO: remove the javascript rule if FiltersCompiler supports ignoreTrustLevel option or https://github.com/AdguardTeam/Scriptlets/issues/382 is resolved.
 tv.nate.com#%#AG_onLoad(() => { var BuildObs, PlayerObs; let PlayerCall = (mutationList, observer) => { mutationList.forEach((e) => { if (Array.from(e.target.classList).some((e) => { return e === "ntv-ad-playing" })) { player.trigger("adended"); PlayerObs.disconnect() }})}; let BuildCall = (mutationList, observer) => { mutationList.forEach((e) => { Array.from(e.addedNodes).filter((o) => { return o.id === "natePlayer" }).forEach((k) => { PlayerObs = new MutationObserver(PlayerCall); PlayerObs.observe(k, { attributes: true }); BuildObs.disconnect() })})}; BuildObs = new MutationObserver(BuildCall); BuildObs.observe(document.querySelector(".player-wrapper"), { childList: true }) })
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132812
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -5666,10 +5669,11 @@ delfi.lt##img[alt="topsport"]
 ! Anti-adblock
 @@||s1.adform.net/banners/scripts/adx.js$domain=delfi.lt
 delfi.lt#%#//scriptlet('set-constant', '_dlf.adfree', '1')
-!#if (adguard_ext_firefox || adguard_ext_opera || adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
-delfi.lt##div[itemprop="articleBody"] > div[style="float:left;margin: 0 25px 25px 0;"]
-delfi.lt##body > #header-top-banner + [class]:not(div):not(iframe):not(span):not(table):not(form)
-delfi.lt##.row > .left + div[class]:not(.right):not([id]) > :not(iframe):not(span):not(table):not(form):not([class])
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+delfi.lt#@#.adSense
+delfi.lt#@#.adContent
+delfi.lt#@#.adBlock
+delfi.lt#@#.ad-text
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159415
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148522
@@ -5970,6 +5974,19 @@ roweroweporady.pl#@#.ad_container
 @@||request.dqst.pl^$domain=weszlo.com
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/168942
+epoznan.pl##a[href^="adsysClick?id="]
+! https://github.com/AdguardTeam/AdguardFilters/issues/168944
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+@@||onet.pl^$generichide,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/168695
+lublin112.pl##.boxa
+! https://github.com/AdguardTeam/AdguardFilters/issues/168694
+tysol.pl###ads-art-bill
+! https://github.com/AdguardTeam/AdguardFilters/issues/168780
+audiostereo.pl#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=audiostereo.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168726
 dziennikwschodni.pl##.l-content > div[style="display: flex; justify-content: center; margin-top: 15px; margin-bottom: 15px;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168607

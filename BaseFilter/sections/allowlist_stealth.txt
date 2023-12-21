@@ -8,6 +8,11 @@
 !
 !############### TEMPORARY ###############
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/168834 [Stealth Mode - User-agent]
+! BUG: https://github.com/AdguardTeam/CoreLibs/issues/1841
+! TODO: remove after release AdGuard apps with CoreLibs 1.14
+!+ PLATFORM(windows, mac, android)
+@@||account.adobe.com^$document,domain=services.adobe.com,stealth=useragent
 ! fix AdGuard account authorisation [Stealth Mode - TTL of first-party cookies = 0]
 ! current as of 20.09.2022
 !+ PLATFORM(android)
@@ -16,6 +21,10 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/168945 [Stealth Mode - IP hiding]
+@@||edge.api.brightcove.com/playback/v1/accounts/*/videos/$xmlhttprequest,domain=tver.jp,stealth=ip
+! https://github.com/AdguardTeam/AdguardFilters/issues/168846
+@@||platform.cloud.coveo.com^$stealth=3p-auth,domain=intel.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168667 [ Stealth Mode - Referrer]
 @@||dplayer64.site/multiplayer.php?v=$subdocument,stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168605 [ Stealth Mode - 3rd party cookie 0]
@@ -63,7 +72,7 @@
 @@/embed/$stealth=referrer,subdocument,domain=sportsonline.so|sportsonline.sx|sportstream.website|elixx.xyz
 @@/chunklist/*.m3u8$stealth=referrer,xmlhttprequest,domain=backfirstwo.com|hdfungamezz.xyz
 @@*.php?player=desktop$stealth=referrer,domain=feedzstream.com|cricplay2.xyz|antenatv.shop|virazo.sx
-@@/live/*.m3u8$xmlhttprequest,stealth=referrer,domain=weakspell.org|streamocean.online|gameshdlive.net
+@@/live/*.m3u8$xmlhttprequest,stealth=referrer,domain=weakspell.org|streamocean.online|gameshdlive.net|bestsolaris.com
 @@/live/*.ts|$xmlhttprequest,stealth=referrer,domain=weakspell.org|streamocean.online
 @@/live/*/jpeg|$xmlhttprequest,stealth=referrer,domain=weakspell.org
 @@/static/stream*.png$stealth=referrer,xmlhttprequest,domain=streamocean.online
@@ -360,9 +369,6 @@
 @@||bitvtom1000.xyz/public/subnhanhnet/video?vid=$stealth,domain=subnhanh.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148628 [Stealth Mode - Referrer]
 @@||accelcdn.com^$image,stealth,domain=mangaokutr.com
-! https://forum.adguard.com/index.php?threads/stealth-mode-disabling-cloudflare-checks.52297/ [Stealth Mode - IP hiding]
-@@&__cf_chl_tk=$stealth,~third-party
-@@cdn-cgi/challenge-platform/$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148592 [Stealth Mode - Referrer]
 @@||s.bstarstatic.com/ogv/subtitle/$stealth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148595

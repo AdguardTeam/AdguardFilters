@@ -49,7 +49,7 @@ pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window)\[[\"\s\'\+a-zA-Z]+\][\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window|top)\[[\"\s\'\+a-zA-Z]+\][\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1504,6 +1504,8 @@ ya.ru,yandex.*##li.mini-suggest__item > a[href^="https://yabs."][href*="/count/"
 ya.ru,yandex.*##li.mini-suggest__item > a[href^="http://yandex"][href*="/clck/"]
 yandex.*##body:not([data-bem*="pogoda"]) .mini-suggest__popup-content > li[data-type="nav"]
 [$path=/search]yandex.*#?#.serp-list > li.serp-item:has(> div[data-bem*="organic"] > div.organic__title-wrapper > a[href][data-event-required])
+! Right side, where usually shown useful content
+ya.ru,yandex.*###search-result-aside > div[class*="_right_yes"] > div[data-cid] div[data-vnl*="R-I-"]
 ! Breaks useful content
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168382
 ! ya.ru,yandex.*##.content__right .serp-item > *
