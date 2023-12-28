@@ -8,6 +8,16 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/169287
+techdiniz.com,trueliketop.org#%#//scriptlet('set-cookie', 'force_ad', '2')
+! https://github.com/AdguardTeam/AdguardFilters/issues/169277
+seriesemcena.com.br#%#//scriptlet('prevent-requestAnimationFrame', '.clientHeight')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+seriesemcena.com.br#@#.ad-250
+seriesemcena.com.br#@#ins.adsbygoogle
+seriesemcena.com.br#@#.ad-slot
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168718
 ||agregalink.net/js/adblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168376
@@ -273,8 +283,7 @@ nptmedia.tv#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168950
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142951
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142462
-netcine2.la#$#body { overflow: auto !important; padding-right: 0 !important; }
-netcine2.la#$#.swal2-container { display: none !important; }
+netcine2.la#%#//scriptlet('abort-on-stack-trace', 'alert', 'eval')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@$third-party,xmlhttprequest,domain=netcine2.la
 !#endif
