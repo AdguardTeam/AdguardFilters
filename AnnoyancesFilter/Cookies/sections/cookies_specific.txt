@@ -12742,8 +12742,8 @@ instagram.com#%#AG_onLoad(function(){if(-1==document.cookie.indexOf("ig_did")){c
 ! https://github.com/AdguardTeam/Scriptlets/issues/212
 ! TODO: replace the rule with a scriptlet `set-cookie-reload` when it is improved
 youtube.com#%#(function(){window.self!==window.top||document.cookie.includes("visitor=")||(document.cookie="visitor=1; path=/;",document.cookie&&location.reload())})();
-! revert this rule if the above rule breaks something
-! youtube.com#%#AG_onLoad(function(){if(document.cookie.indexOf('CONSENT=YES+yt.') === -1){var a=new MutationObserver(function(){var b=document.querySelector('.termlinks + div[class*="ytd-consent-bump-"] > ytd-button-renderer:last-child');b&&(a.disconnect(),b.click())});a.observe(document,{childList:!0,subtree:!0});setTimeout(function(){a.disconnect()},1E4)}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/169466
+[$path=/m]consent.youtube.com#%#//scriptlet('trusted-click-element', 'form[action="https://consent.youtube.com/save"][jsaction] button[jsname="b3VHJd"]')
 !+ PLATFORM(ios)
 m.youtube.com#%#//scriptlet('set-cookie-reload', 'visitor', '1')
 ! https://gist.github.com/AdamWr/b32688adb0393d31525f445ee5ab4302#file-gistfile1-txt
