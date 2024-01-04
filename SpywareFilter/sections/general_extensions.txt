@@ -178,12 +178,6 @@ cbssports.com#%#(()=>{window.admiral=function(d,a,b){if("function"==typeof b)try
 6play.fr#%#//scriptlet('set-local-storage-item', 'localDeviceId', '0')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131034
 imdb.com#%#//scriptlet("set-constant", "doWithAds", "noopFunc")
-! This rule is for suppressing Google Topics.
-! Read more about it here:
-! https://developer.chrome.com/docs/privacy-sandbox/topics/
-! TODO: replace with the 'no-topics' scriptlet later: https://github.com/AdguardTeam/Scriptlets/issues/214
-! #%#//scriptlet('no-topics')
-#%#//scriptlet('set-constant', 'Document.prototype.browsingTopics', 'undefined')
 ! https://github.com/AdguardTeam/AdguardFilters/pull/133054
 fmkorea.com#%#//scriptlet("set-constant", "link_url", "")
 ! https://github.com/AdguardTeam/AdguardFilters/pull/130514
@@ -341,6 +335,23 @@ citypizza.ru#%#window.yaCounter9890803 = { reachGoal: function() {} };
 apteka.ru#%#window.yaCounter14913877={ reachGoal: function() {} };
 ! https://forum.adguard.com/index.php?threads/resolved-accountkiller-com.16162/
 accountkiller.com#%#window.ga = function(){var a = arguments[5];a&&a.hitCallback&&a.hitCallback();}
+!
+! Start: Rules for Google "Privacy" Sandbox
+!
+! Suppressing Google's Topics API:
+! https://developers.google.com/privacy-sandbox/relevance/topics
+#%#//scriptlet('no-topics')
+!
+! Suppressing Google's "Protected" Audience API:
+! https://wicg.github.io/turtledove/
+! TODO: Add a scriptlet: https://github.com/AdguardTeam/Scriptlets/issues/395
+!
+! Suppressing both Google's Topics API and Topics API using Permissions policy
+! Works in CoreLibs-based AdGuard versions, the browser extension waits for https://github.com/AdguardTeam/tsurlfilter/issues/66
+$permissions=join-ad-interest-group=()\, run-ad-auction=()\, browsing-topics=()
+!
+! End: Rules for Google "Privacy" Sandbox
+!
 !-------------------
 !-------CSS---------
 !
