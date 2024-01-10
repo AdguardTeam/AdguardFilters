@@ -45,11 +45,12 @@ tragtorr.in#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148093
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147394
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146771
-pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
+pikabu.ru$$script:contains(/let[\s\S]+=[\s\S]+Math\.random[\s\S]+Ad/)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+pikabu.ru#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'createAd')
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window|top)\[[\"\s\'\+a-zA-Z]+\][\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window|top|XMLHttpRequest)(\[[\"\s\'\+a-zA-Z]+\])?[\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -60,7 +61,8 @@ sports.ru#%#//scriptlet('remove-node-text', 'script', 'AdBlocker present')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/163682
 testserver.pro#%#//scriptlet('prevent-setTimeout', '.ayayay')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162627
-forum.ruboard.ru#@#div[id^="yandex_rtb"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/170298
+ruboard.website,forum.ruboard.ru#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162184
 ||xcom-shop.ru/*/check-block-apps.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162030
@@ -1083,6 +1085,9 @@ dzen.ru##.viewer-layout__sidebar div[class*="__content"] > div[class*="__feed"] 
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
 ! mail.ru
+mail.ru##.box_double
+mail.ru##div[data-logger="partnerNews"]
+mail.ru##.mailru-visibility-check
 mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
