@@ -12746,6 +12746,11 @@ techzine.nl#%#AG_onLoad(function() { if(window.location.href.indexOf("cookiewet"
 thenewdaily.com.au#%#document.cookie = "tnd_subscribe_shown=true";
 trouw.nl#%#AG_onLoad(function() { var check = document.getElementsByClassName('site-tr bg-blur has-shadow')[0]; if (check){document.cookie = "nl_cookiewall_version=1"; location.reload();}; });
 ziekenhuis.nl#%#AG_onLoad(function() { setTimeout(function() {var check = document.getElementsByClassName('cookiewall')[0]; if (check){document.cookie = "acceptcookies=true"; location.reload();}; }, 300); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/170168
+! TODO: use trusted-click-element scriptlet when issues below are fixed
+! Support for clicking in shadow DOM - https://github.com/AdguardTeam/Scriptlets/issues/323
+! Support for longer delay - https://github.com/AdguardTeam/Scriptlets/issues/400
+bing.com#%#(()=>{if(!location.pathname.includes("/search"))return;const t={attributes:!0,childList:!0,subtree:!0},e=(t,e)=>{for(const n of t){const t=n.target.querySelector(".privacy-statement + .get-started-btn-wrapper > button.inline-explicit");t&&(t.click(),e.disconnect())}},n={apply:(n,o,c)=>{const r=Reflect.apply(n,o,c);if(o&&o.matches("cib-muid-consent")){new MutationObserver(e).observe(r,t)}return r}};window.Element.prototype.attachShadow=new Proxy(window.Element.prototype.attachShadow,n)})();
 ! TODO: remove when 'domain' parameter will be added https://github.com/AdguardTeam/Scriptlets/issues/389
 walmart.ca#%#document.cookie = "uxcon=enforce=false&p13n=false&ads=false; domain=.walmart.ca; path=/";
 ! https://github.com/AdguardTeam/AdguardFilters/issues/156057
