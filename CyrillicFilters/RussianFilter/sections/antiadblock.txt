@@ -45,11 +45,12 @@ tragtorr.in#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148093
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147394
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146771
-pikabu.ru$$script[wildcard="*let*=*Math.random*Ad*"][max-length="15000"]
+pikabu.ru$$script:contains(/let[\s\S]+=[\s\S]+Math\.random[\s\S]+Ad/)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+pikabu.ru#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'createAd')
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new (this|document\.defaultView|window|top)\[[\"\s\'\+a-zA-Z]+\][\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new \(?(this|document\.defaultView|window|top|XMLHttpRequest|true)(\[[\"\s\'\+a-zA-Z]+\])?[\s\S]+Ad/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -60,7 +61,8 @@ sports.ru#%#//scriptlet('remove-node-text', 'script', 'AdBlocker present')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/163682
 testserver.pro#%#//scriptlet('prevent-setTimeout', '.ayayay')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162627
-forum.ruboard.ru#@#div[id^="yandex_rtb"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/170298
+ruboard.website,forum.ruboard.ru#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162184
 ||xcom-shop.ru/*/check-block-apps.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162030
@@ -1052,7 +1054,7 @@ dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[cl
 [$path=/pogoda]dzen.ru##.adv_type_rtb
 !
 ! Ad in Dzen articles
-dzen.ru##div[class^="article"][class*="holder"]
+dzen.ru##body:not(.page_article-editor) div[class^="article"][class*="holder"]
 dzen.ru#?#div[id^="zen-row"] div.feed__item article:not([aria-label^="Карточка"]):matches-css(user-select: none)
 dzen.ru###article__bottom-embed
 [$path=/a/]dzen.ru##.article__content_limited div[class^="article-bottom-single-desktop-placeholder__"]
@@ -1083,6 +1085,9 @@ dzen.ru##.viewer-layout__sidebar div[class*="__content"] > div[class*="__feed"] 
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
 ! mail.ru
+mail.ru##.box_double
+mail.ru##div[data-logger="partnerNews"]
+mail.ru##.mailru-visibility-check
 mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
@@ -1183,10 +1188,7 @@ apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,na
 /naylo.top\/forum\/(?!login.php)/$removeheader=location
 /games-pc.top\/forum\/(?!login.php)/$removeheader=location
 $cookie=opt_js,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet("abort-current-inline-script", "checkCookie", "var _0x")
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('remove-cookie', '/^opt_js\d{1}$/')
-!+ PLATFORM(ext_safari)
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#window.checkCookie = undefined;
+apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('prevent-setTimeout', 'chessday')
 !
 tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
@@ -1515,11 +1517,12 @@ ya.ru,yandex.*###search-result-aside > div[class*="_right_yes"] > div[data-cid] 
 ! Yandex.Images
 ||ya.ru/images/_crpd/*/*/*_$script,replace=/\.?directBannerType//
 ||yandex.*/images/$script,xmlhttprequest,replace=/^(.*?)"direct"\,(.*?)\$//
-ya.ru,yandex.*##div[style^="max-width:"] > svg.ContentLoader
+ya.ru,yandex.*##div[style^="max-width:"] > svg[width="100%"]
 ya.ru,yandex.*##.serp-list > div.incut
 ya.ru,yandex.*##.DirectInline
 !
 ! Yandex.Maps
+[$path=/maps]yandex.*##.media-gallery > div.media-gallery__frame-wrapper:has(> div.media-gallery__frame > div > div[data-chunk="promo"])
 yandex.*##.banner-placeholder-view
 yandex.*##._advert
 yandex.*##.search-advert-badge

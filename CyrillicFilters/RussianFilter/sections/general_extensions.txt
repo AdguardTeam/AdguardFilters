@@ -9,6 +9,8 @@
 !------- JS ------------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/169980
+videocelebs.net,xcadr.online#%#//scriptlet('trusted-set-local-storage-item', 'kvsplayer_popunder_open', '2000000000000')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167485
 online-fix.me#%#//scriptlet('trusted-replace-node-text', '#text', 'РЕКЛАМНЫЙ БЛОК:', 'РЕКЛАМНЫЙ БЛОК:', '')
 ! gameguru.ru
@@ -167,8 +169,8 @@ sports.ru,ua.tribuna.com,by.tribuna.com#%#//scriptlet('remove-class', 'branding_
 flibusta.appspot.com#%#//scriptlet("set-constant", "String.prototype.charCodeAt", "undefined")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/59782
 trashbox.mobi#%#//scriptlet("set-constant", "landing_safe_showed", "1")
-! https://github.com/AdguardTeam/AdguardFilters/issues/59616
-porno-chiks.org#%#//scriptlet("set-constant", "flashvars.adv_pre_src", "undefined")
+! flashvars - clickunder or popunder
+videocelebs.net,xcadr.online,porno-chiks.org#%#//scriptlet('set-constant', 'flashvars.adv_pre_src', 'undefined')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/58845
 mag.relax.by#%#//scriptlet('remove-class', 'b-global-branding', 'html')
 ! https://forum.adguard.com/index.php?threads/44134/
@@ -434,6 +436,11 @@ disk.yandex.*#%#//scriptlet('remove-class', 'has-fullscreen-banner','.public__ro
 !------- CSS -----------
 !-----------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/170182
+soccer365.ru#$#body > div[style^="position:"][style*="z-index:"]:has(> a[rel="nofollow"][target="_blank"]) { display: none !important; }
+soccer365.ru#$#.header_top { margin-top: 0 !important;}
+! https://github.com/AdguardTeam/AdguardFilters/issues/169837
+lostfilm.space#$#.lstfml { background: #00003c !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169241
 yp.ru#$#.main-wrapper { padding-top: 0 !important; }
 yp.ru#$##content { margin-top: 50px !important; }
@@ -902,7 +909,7 @@ sovetromantica.com#$#.sbrand--back { background-image: none !important; }
 sovetromantica.com#$#.mainContainer { padding-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44207
 ! background is used for ads, so moved from Annoyances filter
-lostfilmtv5.site,lostfilm.pro,lostfilmtv.site,lostfilm.uno,lostfilm.run,lostfilm.today,lostfilm.tv#$#body { background: #000000!important; }
+lostfilm.download,lostfilmtv5.site,lostfilm.pro,lostfilmtv.site,lostfilm.uno,lostfilm.run,lostfilm.today,lostfilm.tv#$#body { background: #000000!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43591
 animevost-org.com#$#body > div#wrap { margin: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43330
