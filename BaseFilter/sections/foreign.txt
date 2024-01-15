@@ -151,12 +151,13 @@ lisanarb.com#%#//scriptlet('abort-current-inline-script', 'document.createElemen
 youm7.com###id-custom_banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142993
 aitnews.com###sidebar-primary-sidebar > div.widget:not([id^="bs-mix-listing-"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/170555
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142021
-books-lib.net##.adsenseHome
-books-lib.net##.BookAdsSide
-books-lib.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+lib-books.com,books-lib.net##.adsenseHome
+lib-books.com,books-lib.net##.BookAdsSide
+lib-books.com,books-lib.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=books-lib.net
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=books-lib.net|lib-books.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141626
 dimakids.com##.adblock-wrapper
 ||dimakids.com/popunder.js
@@ -6010,6 +6011,9 @@ roweroweporady.pl#@#.ad_container
 @@||request.dqst.pl^$domain=weszlo.com
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/170745
+odmiana.net,dowcip.net,antonim.net,krzyzowka.net,synonim.net,zagadkidladzieci.net##img[src^="/adr/"][onclick]
+/adr/*/*.webp$~third-party,image,domain=odmiana.net|dowcip.net|antonim.net|krzyzowka.net|synonim.net|zagadkidladzieci.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170058
 codziennypoznan.pl#@#img[width="600"][height="90"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170059
@@ -8690,8 +8694,8 @@ o2.pl#?#div[class*=" "] > img[src^="https://www.o2.pl/"]:first-child + div:last-
 wp.pl#?#div[class*=" "] > img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child:upward(1)
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169879
-deliciousmagazine.pl#?#style + div[class] > img[src^="https://v.wpimg.pl/"]:only-child:upward(1)
-deliciousmagazine.pl#?#style + div[class] > img[src^="https://v.wpimg.pl/"]:first-child + div:last-child:upward(1)
+deliciousmagazine.pl##style + div[class]:has(> img[src^="https://v.wpimg.pl/"]:only-child)
+deliciousmagazine.pl##style + div[class]:has(> img[src^="https://v.wpimg.pl/"]:first-child + div:last-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150824
 domodi.pl##.product-list__ad
 domodi.pl#?#article div[data-t][class]:has(> div[data-model*="wpId"])
@@ -8707,7 +8711,9 @@ turystyka.wp.pl#?#article div[class][data-reactid] > div[class]:has(> span > div
 turystyka.wp.pl#?#article div[class][data-reactid] > div[class]:has(> span:first-child:empty + span:last-child:empty)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144968
 genialne.pl##.adc
-genialne.pl#?#div[class][style] > div[class*=" "] > img[src$="/images/rekwp.webp"]:upward(2)
+genialne.pl##style + div[class]:has(> img[src^="https://v.wpimg.pl/"]:only-child)
+genialne.pl##style + div[class]:has(> img[src^="https://v.wpimg.pl/"]:first-child + div:last-child)
+genialne.pl##style + div[class]:has(> div:not([class]):first-child + img[src^="https://v.wpimg.pl/"] + div:last-child)
 ||std.wpcdn.pl/adv/config/inline/*.js$domain=pysznosci.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137324
 behealthymagazine.abczdrowie.pl##article a[href^="https://www.zabka.pl/?utm_source"]
@@ -9154,6 +9160,11 @@ kreskowkazone.pl#@#.myTestAd
 ||i.iplsc.com/twoje-zdrowie-banner^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23702
 dziennik.pl##.widget-list-ul > .infeed1
+! https://github.com/AdguardTeam/AdguardFilters/issues/170628
+wykop.pl#?#aside.tag-top > .hits-slider:matches-css(before, content: /^reklama$/)
+||r.wykop.pl/widget-api/*/widget$xmlhttprequest
+! Rule below fixes issue with loading content on - https://wykop.pl/tag/reklama
+@@||wykop.pl/api/v3/tags/reklama/$xmlhttprequest,~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140299
 ||wykop.pl/api/v*/ads
 wykop.pl##body .pub-slot-wrapper
