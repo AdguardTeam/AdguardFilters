@@ -288,6 +288,8 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/170766
+metrolagu.cam#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170497
 haes.tech#%#//scriptlet('prevent-window-open')
 ! scoresports*.com - frequently changed domains
@@ -311,10 +313,11 @@ hanime.tv#%#//scriptlet('set-cookie', 'in_d0', '1')
 hanime.tv#%#//scriptlet('set-cookie', 'in_d4', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169606
 idlixofficials.com#%#//scriptlet('trusted-set-constant', 'dtGonza.playeradstime', '"-1"')
+! https://github.com/AdguardTeam/AdguardFilters/issues/170688
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169878
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169492
-lootlinks.co,loot-links.com#%#//scriptlet('prevent-window-open', '', '5')
-lootlinks.co,loot-links.com#%#AG_onLoad((function(){"string"==typeof PUBLISHER_LINK&&PUBLISHER_LINK.startsWith("http")&&location.assign(PUBLISHER_LINK)}));
+loot-link.com,lootlinks.co,loot-links.com#%#//scriptlet('prevent-window-open', '', '5')
+loot-link.com,lootlinks.co,loot-links.com#%#AG_onLoad((function(){const t=PUBLISHER_LINK;if("string"==typeof t)if(t.startsWith("http"))location.assign(PUBLISHER_LINK);else{const n=((t,n=5)=>{try{const o=atob(t),r=o.substring(0,n),s=o.substring(n);let i="";for(let t=0;t<s.length;t++){const n=s.charCodeAt(t),o=n^r.charCodeAt(t%r.length);i+=String.fromCharCode(o)}return i}catch(t){return console.error(`Invalid input: ${t}`),null}})(t);n&&n.startsWith("http")&&location.assign(n)}}));
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169200
 player.euroxxx.net#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169304
@@ -332,7 +335,7 @@ eporner.com#%#//scriptlet('set-cookie', 'ADBp', 'yes')
 eporner.com#%#//scriptlet('abort-on-property-write', 'initEPNB')
 eporner.com#%#//scriptlet('prevent-setTimeout', '/click[\s\S]*?window.location.replace/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168442
-nba.com#%#//scriptlet('trusted-replace-xhr-response', '/#EXT-X-DATERANGE:ID="AD-BREAK:[\s\S]*?\.googlevideo\/[\s\S]*?#EXT-X-DISCONTINUITY/', '', '/nbalpng\.akamaized\.net\/vod-.*\/.*\/hls-.*\/.*\.m3u8/')
+nba.com#%#//scriptlet('trusted-replace-xhr-response', '/#EXT-X-DATERANGE:ID="AD-BREAK:[\s\S]*?(\.googlevideo\/|fwmrm\.net)[\s\S]*?#EXT-X-DISCONTINUITY/', '', '/nbalpng\.akamaized\.net\/vod-.*\/.*\/hls-.*\/.*\.m3u8/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168146
 ninja.io#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168149
@@ -1213,8 +1216,9 @@ tukipasti.com#%#//scriptlet("prevent-window-open")
 ier.ai#%#//scriptlet("prevent-window-open")
 ! popunder
 alrincon.com#%#//scriptlet("abort-current-inline-script", "onload", "window.open")
+! https://github.com/AdguardTeam/AdguardFilters/issues/170742
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135040
-wionews.com#%#(()=>{const a=function(){},b=function(c,a){if("function"==typeof a)try{a([])}catch(a){console.error(a)}};Object.defineProperty(window,"PWT",{value:{requestBids:b,generateConfForGPT:b,addKeyValuePairsToGPTSlots:a,generateDFPURL:a}})})();
+wionews.com#%#(()=>{let e,t=!1;const n=function(){},o=function(t,n){if("function"==typeof n)try{window.KalturaPlayer?n([]):e=n}catch(e){console.error(e)}};let r;Object.defineProperty(window,"PWT",{value:{requestBids:o,generateConfForGPT:o,addKeyValuePairsToGPTSlots:n,generateDFPURL:n}}),Object.defineProperty(window,"KalturaPlayer",{get:function(){return r},set:function(n){r=n,t||(t=!0,e([]))}})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125900
 dnaindia.com#%#(()=>{const a=function(){},b=function(c,a){if("function"==typeof a)try{a([])}catch(a){console.error(a)}};Object.defineProperty(window,"PWT",{value:{requestBids:b,generateConfForGPT:b,addKeyValuePairsToGPTSlots:a,generateDFPURL:a}})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122322
