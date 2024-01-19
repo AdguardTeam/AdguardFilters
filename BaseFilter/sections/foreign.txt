@@ -3895,8 +3895,12 @@ id.ytmp3.plus###ba
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75487
 ||bitball.b-cdn.net/video/*.mp4$media,redirect=noopmp4-1s,domain=185.145.131.204
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77871
-laksa19.github.io#%#//scriptlet("prevent-setInterval", "chkAds")
-laksa19.github.io#%#//scriptlet("prevent-setTimeout", "chkAds")
+||laksa19.github.io/assets/js/jroute.js$replace=/if \(!document.*?\).*?{/if(!1){/
+laksa19.github.io#%#//scriptlet('prevent-setInterval', '/chkAds|ads\.|!document\.querySelector/')
+laksa19.github.io#%#//scriptlet('prevent-setTimeout', '/chkAds|ads\.|!document\.querySelector/')
+laksa19.github.io#%#//scriptlet('prevent-xhr', 'doubleclick.net')
+laksa19.github.io#%#AG_onLoad((function(){if(location.href.includes("googleads"))return;const e=document.createDocumentFragment(),t=document.createElement("iframe");t.src="googleads",e.appendChild(t);const n=document.createElement("ins");n.classList.add("adsbygoogle"),e.appendChild(n);const d=document.createElement("div");d.setAttribute("title","Advertisement"),e.appendChild(d),document.body.appendChild(e)}));
+laksa19.github.io##iframe[src="googleads"]
 laksa19.github.io#$#.adsbygoogle { height: 1px !important; }
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=laksa19.github.io
