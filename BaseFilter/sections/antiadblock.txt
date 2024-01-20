@@ -1023,6 +1023,10 @@ pornhub.com,pornhub.org,pornhub.net#%#//scriptlet('prevent-setTimeout', '\x41\x6
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/171120
+forja.me#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'adsbygoogle.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=forja.me
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151173
 @@||stpd.cloud^$domain=freemcserver.net
 freemcserver.net#%#//scriptlet('set-constant', 'findCMP', 'noopFunc')
@@ -7568,8 +7572,9 @@ call2friends.com#%#//scriptlet("abort-current-inline-script", "onload", "Adblock
 *$script,redirect-rule=noopjs,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 *$image,redirect-rule=32x32-transparent.png,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 !
-@@||securepubads.g.doubleclick.net/pagead/ppub_config?ippd=$xhr,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
-@@||a2zapk.com^$script,xhr,3p,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
+@@/gettoken.php?$xmlhttprequest,domain=dropgalaxy.com
+@@||securepubads.g.doubleclick.net/pagead/ppub_config?ippd=$xmlhttprequest,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
+@@||a2zapk.com^$script,xmlhttprequest,third-party,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 @@||protagcdn.com/s/dropgalaxy.com/site.js$script,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 @@||services.vlitag.com/adv1/$script,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 @@||protagcdn.com/check-bot/index.html$subdocument,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
@@ -7584,10 +7589,12 @@ call2friends.com#%#//scriptlet("abort-current-inline-script", "onload", "Adblock
 !@@.jpg$image,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 !@@.png$image,domain=financemonk.net|rtxkeeda.com|houseofblogger.com|dropgalaxy.com|djxmaza.in|miuiflash.com|thecubexguide.com
 !
+dropgalaxy.com$$script[tag-content="#modalpop"]
 miuiflash.com,djxmaza.in,thecubexguide.com#$##featuredimage { height: 20px !important; }
 miuiflash.com,djxmaza.in,thecubexguide.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'antiAdBlockerHandler')
 miuiflash.com,djxmaza.in,thecubexguide.com#%#//scriptlet('prevent-xhr', '/adtrue\.com|eningspon\.com|freychang\.fun|orquideassp\.com|popunder/')
 miuiflash.com,djxmaza.in,thecubexguide.com#%#//scriptlet('prevent-fetch', '/a-mo\.net|adnxs\.com|prebid|creativecdn\.com|e-planning\.net|quantumdex\.io/')
+dropgalaxy.com#@#div[id^="div-gpt-ad"]
 financemonk.net,rtxkeeda.com,houseofblogger.com,dropgalaxy.com#@#.showads
 dropgalaxy.com#%#//scriptlet("set-constant", "_VLIOBJ", "emptyObj")
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
