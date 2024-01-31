@@ -1,0 +1,69 @@
+name: markdownlint
+
+env:
+  NODE_VERSION: 18
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "**/*.md"
+      - ".markdownlint.json"
+      - ".markdownlintignore"
+      - "package.json"
+      - "yarn.lock"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "**/*.md"
+      - ".markdownlint.json"
+      - ".markdownlintignore"
+      - "package.json"
+      - "yarn.lock"
+
+jobs:
+  lint:
+    name: Run markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out to repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # If the linter found any errors, it will exit with a non-zero code,
+      # which will cause the job to fail
+      - name: Run markdownlint
+        run: yarn markdownlint .
+
+  notify:
+    name: Send Slack notification on failure
+    runs-on: ubuntu-latest
+    # We should wait for the lint job to finish before handling the notification
+    needs: lint
+    # With always() we can run this job even if the previous job failed, but we also
+    # should check if the event is push or the PR is coming from the same repository
+    if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    steps:
+      # Get the workflow conclusion
+      - uses: technote-space/workflow-conclusion-action@v3
+
+      # Send a Slack notification if the conclusion is failure
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          fields: workflow, repo, message, commit, author, eventName, ref, job
+          job_name: Run markdownlint
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ env.WORKFLOW_CONCLUSION == 'failure' }}
