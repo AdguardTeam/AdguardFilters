@@ -33,9 +33,16 @@ qiuziti.com#@#.banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152815
 ! Last rule is required in case of DNS filtering, doubleclick.net is blocked on DNS level
 ! so another blocked request is used for redirection
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=line.me,important
-||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=line.me,important
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=line.me
+||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=line.me
 ||d.line-scdn.net/*/torimochi.js/*/torimochi.js$script,redirect=googletagservices-gpt,domain=line.me
+!#if (adguard_ext_android_cb || adguard_ext_safari || adguard_app_ios)
+!#safari_cb_affinity(other)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$script,domain=line.me
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$script,domain=line.me
+@@||d.line-scdn.net/*/torimochi.js/*/torimochi.js$script,domain=line.me
+!#safari_cb_affinity
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150114
 ||lensdump.com/i/*.gif$badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149526
