@@ -10288,6 +10288,11 @@ globalpublishers.co.tz#?#.listing > article:has(> div.item-inner a[href*="-chapr
 !---------------------------------------------------------------------
 ! NOTE: Swedish
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/171982
+! In AdGuard, the rule like below hides every element mentioned in rule - 'div[class=""]', 'a' etc.,
+! but in uBO it hides these elements only if contains 'annons' text, so a different rule is required
+samnytt.se#@#div[class=""], a, .sticky > div[style="display:grid"], .post-content > div.mx-auto:has-text(/annons/i)
+samnytt.se#?#:is(div[class=""], a, .sticky > div[style="display:grid"], .post-content > div.mx-auto):contains(/annons/i)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155106
 brollopstorget.se##.ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135037
