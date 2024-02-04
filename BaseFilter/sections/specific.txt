@@ -180,6 +180,11 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 /youtubei/v*/player?key=$replace=/\"playerAds.*?\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
 !#endif
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+! https://github.com/AdguardTeam/AdguardFilters/pull/170936
+youtube.com,~accounts.youtube.com,~m.youtube.com,~payments.youtube.com,~tv.youtube.com,~youtubekids.com,~youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', 'player?key=')
+youtube.com,~accounts.youtube.com,~m.youtube.com,~payments.youtube.com,~tv.youtube.com,~youtubekids.com,~youtube-nocookie.com#%#//scriptlet('trusted-replace-fetch-response', '/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{150}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{43}BwOcCE59TDtslLKPQ-SS"\})/', '$1$2', 'player?key=')
+youtube.com,~accounts.youtube.com,~m.youtube.com,~payments.youtube.com,~tv.youtube.com,~youtubekids.com,~youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', 'player?key=')
+youtube.com,~accounts.youtube.com,~m.youtube.com,~payments.youtube.com,~tv.youtube.com,~youtubekids.com,~youtube-nocookie.com#%#//scriptlet('trusted-replace-xhr-response', '/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{150}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{43}BwOcCE59TDtslLKPQ-SS"\})/', '$1$2', 'player?key=')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167440
 ! The rule trusted-replace-xhr-response with '\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,' causes breakage on tv.youtube.com
 ! The problem is that rules with '~' do not work correctly in Safari, the same might be for exceptions,
