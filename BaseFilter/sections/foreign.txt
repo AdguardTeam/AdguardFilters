@@ -2389,6 +2389,13 @@ telsu.fi#$#.pb_t { display: none !important; }
 ||static.ylilauta.org/js/*/Module/FrameLoader.js$replace=/this.#showFail\(\);//
 ||es.ylilauta.org^
 ylilauta.org##.card.a
+!#else
+ylilauta.org#%#//scriptlet('prevent-fetch', 'es.ylilauta')
+ylilauta.org#%#!function(){const t={apply:(t,e,i)=>{const n=i[0];if(!n||!n.toString().includes("this.#showFail"))return Reflect.apply(t,e,i)},get:(t,e,i)=>"toString"===e?t.toString.bind(t):Reflect.get(t,e,i)};window.setTimeout=new Proxy(window.setTimeout,t)}();
+ylilauta.org#$#iframe.a { position: absolute !important; left: -3000px !important; }
+! TODO: replace with 'spoof-css'
+! https://github.com/AdguardTeam/Scriptlets/issues/317
+ylilauta.org#%#(()=>{function spoofCSS(e,t,n){if(!e)return;const r=!("debug"!==t||!n),o=new Map;t&&n&&!r&&o.set(function(e){if(!e.includes("-"))return e;const t=e.split("-"),n=t[0],r=t[1];return`${n}${r[0].toUpperCase()}${r.slice(1)}`}(t),n);const i=(e,t)=>o.has(e)?o.get(e):t,s=(e,t,n)=>"toString"===t?e.toString.bind(e):Reflect.get(e,t,n),c={apply:(t,n,r)=>{const c=Reflect.apply(t,n,r);if(!r[0].matches(e))return c;const p=new Proxy(c,{get(e,t){const n=e[t];if("function"!=typeof n)return i(t,n||"");if("getPropertyValue"!==t)return n.bind(e);const r=new Proxy(n,{apply(e,t,n){const r=n[0],o=t[r];return i(r,o)},get:s});return r},getOwnPropertyDescriptor:(e,t)=>o.has(t)?{configurable:!0,enumerable:!0,value:o.get(t),writable:!0}:Reflect.getOwnPropertyDescriptor(e,t)});return p},get:s};window.getComputedStyle=new Proxy(window.getComputedStyle,c)}spoofCSS("iframe.a","position","static");spoofCSS("iframe.a","left","auto");})();
 !#endif
 ! ruutu.fi - video ads
 ||nelonenmedia-pmd-ads-*.nm-stream.nelonenmedia.fi/*.mp4$media,redirect=noopmp4-1s,domain=ruutu.fi
