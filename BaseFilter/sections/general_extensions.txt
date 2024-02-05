@@ -126,7 +126,7 @@ mangakita.net,westmanga.info#%#//scriptlet("set-constant", "puShown1", "true")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164615
 amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('json-prune', 'cuepointPlaylist')
 ! TODO: Remove hint when apps will support xpath in xml-prune scriptlet
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, ext_ublock)
 amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start)', '[value="Ad"]', '.mpd')
 !
 ! go.oclasrv.com clickunder/ads ('zfgloaded')
@@ -305,6 +305,7 @@ sssinstagram.com#%#//scriptlet('set-constant', 'clickAds.init', 'noopFunc')
 x-x-x.tube#%#//scriptlet('prevent-popads-net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171300
 pluto.tv#%#//scriptlet('json-prune', 'adBreaks.*')
+!+ NOT_PLATFORM(ext_ublock)
 pluto.tv#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"_ad")]] | //*[name()="Period"]/@start | //*[name()="Period"]/@duration', '', '.mpd')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171324
 bestgirlsexy.com#%#//scriptlet('abort-current-inline-script', 'String.fromCharCode', '_0x')
