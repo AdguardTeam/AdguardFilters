@@ -1655,7 +1655,6 @@ peak.cz#%#//scriptlet("abort-current-inline-script", "$", "adblock-modal")
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=peak.cz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95908
 najserialy.to#@#[id^="etarget"]
-najserialy.to#%#AG_onLoad(function() {var b=new MutationObserver(function() {var c=document.querySelector('div[id="etarget-hb-wrap"] > div.close-ad'); c&&(b.disconnect(),c.click()) });b.observe(document, {childList: !0,subtree: !0});setTimeout(function() {b.disconnect()}, 2E4)});
 najserialy.to#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158599
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96840
@@ -2394,7 +2393,7 @@ telsu.fi#$#.pb_t { display: none !important; }
 ylilauta.org##.card.a
 ylilauta.org#%#//scriptlet('prevent-fetch', 'es.ylilauta')
 ylilauta.org#$#iframe.a { position: absolute !important; left: -3000px !important; }
-ylilauta.org#%#!function(){const t={Reflect:window.Reflect,includes:String.prototype.includes},e=new Set(["confirm","setTimeout","String.prototype.match","String.prototype.includes","Element.prototype.append","Object.defineProperty"]),c=/(( ){4})?(at Reflect\.get \(<anonymous>\)\n|at Object\.get[\s\S]*?\n)/g,n="Proxy.<anonymous>",r="Function.caller",a="Proxy.value",o="Function.value",l="checkTampering",i=e=>new Proxy(e,{apply:(e,s,p)=>{const u=(new Error).stack,d=p[0],y=s;switch(e.name){case"confirm":if(d&&t.includes.call(d.toString(),"Error loading advertisements"))return;break;case"setTimeout":if(d&&(t.includes.call(d.toString(),"this.#test")||t.includes.call(d.toString(),"this.#showFail")))return;break;case"match":case"includes":if(y)return s=s.replaceAll(c,""),t.Reflect.apply(e,s,p);break;case"append":{const c=t.Reflect.apply(e,s,p);if(t.includes.call(u,l)&&d&&d.matches("iframe"))return p[0].contentWindow.String.prototype.includes=window.String.prototype.includes,p[0].contentWindow.String.prototype.match=window.String.prototype.match,c;break}case"defineProperty":t.includes.call(u,l)&&p[2]?.value&&(p[2].value=i(p[2].value))}try{return t.Reflect.apply(e,s,p)}catch(t){throw t.stack=t.stack.replaceAll(c,""),t.stack=t.stack.replace(n,r),t.stack=t.stack.replace(a,o),t}},get:(e,l,i)=>{if("toString"===l)return e.toString.bind(e);try{return t.Reflect.get(e,l,i)}catch(t){let e;"string"==typeof l&&(e=`Function.${l}`);const i=e||r;throw t.stack=t.stack.replaceAll(c,""),t.stack=t.stack.replace(n,i),t.stack=t.stack.replace(a,o),t}}});e.forEach((t=>{const e=t.split(".");e.reduce(((t,c,n)=>(n===e.length-1&&(t[c]=i(t[c])),t[c])),window)}))}();
+ylilauta.org#%#!function(){const t={Reflect:window.Reflect,includes:String.prototype.includes,match:String.prototype.match},e=new Set(["confirm","setTimeout","String.prototype.match","String.prototype.includes","Element.prototype.append","Object.defineProperty"]),c=/(( ){4})?(at Reflect\.get \(<anonymous>\)\n|at Object\.get[\s\S]*?\n)/g,n="Proxy.<anonymous>",a="Proxy.value",r="Function.value",o=/Proxy\.((?!.*(value|<anonymous>)).*?) /,l="checkTampering",i=e=>new Proxy(e,{apply:(e,o,s)=>{const p=(new Error).stack,u=s[0],d=o;switch(e.name){case"confirm":if(u&&t.includes.call(u.toString(),"Error loading advertisements"))return;break;case"setTimeout":if(u&&(t.includes.call(u.toString(),"this.#test")||t.includes.call(u.toString(),"this.#showFail")))return;break;case"match":case"includes":if(d)return o=o.replaceAll(c,""),t.Reflect.apply(e,o,s);break;case"append":{const c=t.Reflect.apply(e,o,s);if(t.includes.call(p,l)&&u&&u.matches("iframe"))return s[0].contentWindow.String.prototype.includes=window.String.prototype.includes,s[0].contentWindow.String.prototype.match=window.String.prototype.match,c;break}case"defineProperty":t.includes.call(p,l)&&s[2]?.value&&(s[2].value=i(s[2].value))}try{return t.Reflect.apply(e,o,s)}catch(t){throw t.stack=t.stack.replaceAll(c,""),t.stack=t.stack.replace(n,"Function.caller"),t.stack=t.stack.replace(a,r),t}},get:(e,l,i)=>{if("toString"===l)return e.toString.bind(e);try{return t.Reflect.get(e,l,i)}catch(e){let l,i;t.match.call(e.stack,o)&&(i=t.match.call(e.stack,o)[0],l=`Function.${t.match.call(e.stack,o)[1]}`);const s=l||"Function.<anonymous>",p=i||n;throw e.stack=e.stack.replaceAll(c,""),e.stack=e.stack.replace(p,s),e.stack=e.stack.replace(a,r),e}}});e.forEach((t=>{const e=t.split(".");e.reduce(((t,c,n)=>(n===e.length-1&&(t[c]=i(t[c])),t[c])),window)}))}();
 !#endif
 ! ruutu.fi - video ads
 ||nelonenmedia-pmd-ads-*.nm-stream.nelonenmedia.fi/*.mp4$media,redirect=noopmp4-1s,domain=ruutu.fi
@@ -4326,6 +4325,10 @@ mako.co.il#%#//scriptlet('set-constant', 'isBs', 'false')
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/172807
+player.it##.code-block
+! https://github.com/AdguardTeam/AdguardFilters/issues/172806
+bbva.it#$#html > body { opacity: 1 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172749
 ilgiorno.it##div[style="min-height:250px"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172406
@@ -10681,7 +10684,6 @@ doofree88.com##.js-ifram-google > div.text-center
 ||doofree88.com/storage/go/
 doofree88.com#%#//scriptlet("set-constant", "go.0.skip", "0")
 doofree88.com#%#//scriptlet("prevent-window-open", "openExternalBrowser")
-doofree88.com#%#AG_onLoad(function(){const b=new MutationObserver(function(){const a=document.querySelector(".ad-player-skip"),c=document.querySelector("#player video");a&&"block"===getComputedStyle(a).display&&c&&(setTimeout(()=>{const b=a.querySelector("button.js-btn-skip");b&&b.click()},1e3),c.currentTime=c.duration,b.disconnect())});b.observe(document,{childList:!0,subtree:!0})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116277
 series-dd.co,kserietv.com##div[id="ads728x90top"][onclick="clickStats()"]
 series-dd.co,kserietv.com###ads_fox_bottom
