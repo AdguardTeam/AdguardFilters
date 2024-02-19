@@ -3050,13 +3050,14 @@ iqiyi.com##div[adid]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14731
 ! m.iqiyi.com#%#//scriptlet("set-constant", "QiyiPlayerLoader.Package.ad.adPlayerId", "") - doesn't work probably due to scriptlet bug
 ! m.iqiyi.com#%#AG_defineProperty('QiyiPlayerLoader.Package.ad.adMap', { value: {}, writable: false }); - another working rule, but fixed by a scriptlet
-sports.iqiyi.com,m.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.adPlayerId", "")
+sports.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.adPlayerId", "")
 www.iqiyi.com#%#//scriptlet('set-constant', 'QiyiPlayerProphetData.a.data', 'emptyObj')
 www.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.parseXML", "noopFunc")
 www.iqiyi.com#%#//scriptlet("set-constant", "Object.prototype.blackscreenDuration", "1")
 www.iqiyi.com#%#//scriptlet('trusted-replace-node-text', 'script', 'window.QiyiPlayerProphetData', '/(QiyiPlayerProphetData=.*?"a":.*?")data(":{)/', '$1no_ads$2')
 www.iqiyi.com#%#!function(){const e={apply:(e,t,o)=>{const i=o[1];if(!i||"object"!=typeof i.QiyiPlayerProphetData)return Reflect.apply(e,t,o)}};window.Object.defineProperties=new Proxy(window.Object.defineProperties,e)}();
-||cupid.iqiyi.com/mixer?$domain=iqiyi.com
+||cupid.iqiyi.com/mixer?$domain=www.iqiyi.com
+||cupid.iqiyi.com/mixer?$replace=/"adSlots"/"no_ads"/
 ||cupid.iqiyi.com/mixer?$jsonprune=\$..[adSlots]
 ||iqiyi.com/show2?e=$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important,domain=iqiyi.com
 ||data.video.iqiyi.com/videos/other/*$xmlhttprequest,~third-party,badfilter
