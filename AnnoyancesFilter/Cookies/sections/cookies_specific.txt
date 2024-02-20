@@ -12451,7 +12451,6 @@ emuia1.gugik.gov.pl#%#//scriptlet("set-cookie", "cookieMessageHide", "true")
 gisgminny.pl#%#//scriptlet('set-cookie', 'cookiesDirective', '1')
 atlasbiomed.com,atlas.ru#%#//scriptlet('set-local-storage-item', 'privacyBannerShow', 'false')
 linternaute.com,lachainemeteo.com#%#//scriptlet('trusted-click-element', 'button.button__acceptAll')
-lefigaro.fr#%#AG_onLoad(function(){if("undefined"!=typeof localStorage)try{if(!localStorage.getItem("_pubcid")){var b=new MutationObserver(function(){var a=document.querySelector("#appconsent > iframe");a&&a.contentDocument&&(a=a.contentDocument.querySelector(".button__acceptAll"))&&(b.disconnect(),a.click())});b.observe(document,{childList:!0,subtree:!0,attributes:!0});setTimeout(function(){b.disconnect()},1E4)}}catch(a){}});
 totalcasino.pl#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("gdpr_popup", "true") } } catch (ex) {} })();
 login.e-dowod.gov.pl#%#document.cookie="acceptRodoSie=hide; path=/;";
 patienten.kvno.de#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("cookies-confirmed", "true") } } catch (ex) {} })();
@@ -12741,6 +12740,12 @@ techzine.nl#%#AG_onLoad(function() { if(window.location.href.indexOf("cookiewet"
 thenewdaily.com.au#%#document.cookie = "tnd_subscribe_shown=true";
 trouw.nl#%#AG_onLoad(function() { var check = document.getElementsByClassName('site-tr bg-blur has-shadow')[0]; if (check){document.cookie = "nl_cookiewall_version=1"; location.reload();}; });
 ziekenhuis.nl#%#AG_onLoad(function() { setTimeout(function() {var check = document.getElementsByClassName('cookiewall')[0]; if (check){document.cookie = "acceptcookies=true"; location.reload();}; }, 300); });
+! https://github.com/AdguardTeam/AdguardFilters/issues/173053
+! TODO: remove the hints, JS rule when the issue is fixed - https://github.com/AdguardTeam/Scriptlets/issues/407
+!+ NOT_PLATFORM(windows, mac, android)
+lefigaro.fr#%#//scriptlet('trusted-click-element', 'button.button__acceptAll')
+!+ PLATFORM(windows, mac, android)
+lefigaro.fr#%#AG_onLoad(function(){if("undefined"!=typeof localStorage)try{if(!localStorage.getItem("_pubcid")){var b=new MutationObserver(function(){var a=document.querySelector("#appconsent > iframe");a&&a.contentDocument&&(a=a.contentDocument.querySelector(".button__acceptAll"))&&(b.disconnect(),a.click())});b.observe(document,{childList:!0,subtree:!0,attributes:!0});setTimeout(function(){b.disconnect()},1E4)}}catch(a){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170168
 ! TODO: use trusted-click-element scriptlet when issues below are fixed
 ! Support for clicking in shadow DOM - https://github.com/AdguardTeam/Scriptlets/issues/323
