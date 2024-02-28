@@ -81,13 +81,17 @@ filecr.com#@#.text_ad
 ||googleads.g.doubleclick.net/pagead/id$domain=filecr.com,redirect=nooptext,important
 portable4pc.com##div[class^="mdpDeblocker-"]
 ! In case of DNS filtering
+alliptvlinks.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementsByTagName', '/[a-z]{5,20}.*\/plugins\/.*\.js/')
 emptycode.in,sachiepvien.net,libri.link#%#(function(){var b=document.addEventListener;document.addEventListener=function(c,a,d){if(a&&-1==a.toString().indexOf("adsBlocked"))return b(c,a,d)}.bind(window)})();
 ||filecr.com/wp-content/cache/autoptimize/js/autoptimize_*.js$replace=/adsSrc='[\s\S]*?';/adsSrc='';/
 ||filecr.com/wp-content/plugins/deblocker/js/deblocker.js$replace=/adsSrc='[\s\S]*?';/adsSrc='';/
 blisseyhusband.in,freecoursesite.com,novelmultiverse.com#%#//scriptlet("abort-current-inline-script", "decodeURIComponent", "String.fromCharCode")
 blisseyhusband.in,freecoursesite.com,novelmultiverse.com$$script[wildcard="*var *""slice""*return decodeURIComponent*"]
 ! Another possible solution for iOS, when the scriplets above do not work, and used DNS filtering
-!#if (adguard_app_ios)
+!#if (adguard_app_ios || adguard_ext_android_cb)
+alliptvlinks.com#$#body[class*="blur"] > * { filter: none !important; }
+alliptvlinks.com#$#body > div[class*="-blackout"] { display: none !important; }
+alliptvlinks.com#$#body > div[class*="-blackout"] + div[class*="-wrapper"] { display: none !important; }
 drakescans.com#%#//scriptlet('remove-class', 'mdpDeblocker-blur', 'body.mdpDeblocker-blur')
 drakescans.com#%#//scriptlet('remove-class', 'mdpDeblocker-wrapper', 'div[class^="mdpDeblocker-"]')
 drakescans.com#%#//scriptlet('remove-class', 'mdpDeblocker-blackout', 'div[class^="mdpDeblocker-"]')
@@ -1059,6 +1063,13 @@ pornhub.com,pornhub.org,pornhub.net#%#//scriptlet('prevent-setTimeout', '\x41\x6
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/173633
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=alliptvlinks.com
+@@||static.doubleclick.net/instream/ad_status.js$domain=alliptvlinks.com
+@@||googleads.g.doubleclick.net/pagead/html/*/zrt_lookup_nohtml_fy2021.html$domain=alliptvlinks.com
+@@||googleads.g.doubleclick.net/pagead/html/*/zrt_lookup_inhead_fy2021.html$domain=alliptvlinks.com
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2021.js$domain=alliptvlinks.com
+alliptvlinks.com#@#ins.adsbygoogle
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173728
 ! TODO: Check after 2024 May 1.
 webeducate.top#%#//scriptlet('set-constant', 'adsBlocked', 'undefined')
