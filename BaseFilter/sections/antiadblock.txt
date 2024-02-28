@@ -5277,10 +5277,16 @@ xfreehd.com#%#//scriptlet("abort-current-inline-script", "setTimeout", ".ad")
 xfreehd.com#@#.ad-title
 xfreehd.com##.abk_msg
 xfreehd.com#@#.ad-body
+! https://github.com/AdguardTeam/AdguardFilters/issues/173746
 ! https://github.com/AdguardTeam/AdguardFilters/issues/103540
 ||bizjournals.com/static/js/app/cxense.js
-bizjournals.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,xmlhttprequest,redirect=noopjs,domain=bizjournals.com
+bizjournals.com#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|cdn\.cxense\.com|securepubads\.g\.doubleclick\.net/')
+$xmlhttprequest,third-party,redirect-rule=noopjs,domain=bizjournals.com
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=bizjournals.com
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||cdn.cxense.com/cx.cce.js$xmlhttprequest,domain=bizjournals.com
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$xmlhttprequest,domain=bizjournals.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105554
 justwatch.com#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ads.text-ads.text-ad-links { display:block!important; }
 !#if (adguard_app_ios || adguard_ext_android_cb)
