@@ -1061,6 +1061,12 @@ pornhub.com,pornhub.org,pornhub.net#%#//scriptlet('prevent-setTimeout', '\x41\x6
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/174290
+||botrix.live/web_files/main-es2015.*.js$replace=/isUsingAdblock\(\){return window\.usingAdblock/isUsingAdblock(){return;/
+!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+botrix.live#%#//scriptlet('set-constant', 'Object.prototype.isAdblock', 'undefined')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=botrix.live
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173936
 @@||oddee.com/w_files/scripts/adblock.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174120
