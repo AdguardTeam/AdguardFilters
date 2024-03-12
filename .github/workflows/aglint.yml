@@ -1,7 +1,7 @@
 name: AGLint
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: 20
 
 on:
   push:
@@ -38,24 +38,27 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # If the linter found any errors, it will exit with a non-zero code,
-      # which will cause the job to fail
+      # If the linter found any errors, it will exit with a non-zero code, which will cause the job to fail
       - name: Run AGLint
         run: yarn lint
 
   notify:
     name: Send Slack notification on failure
     runs-on: ubuntu-latest
-    # We should wait for the lint job to finish before handling the notification
     needs: lint
-    # With always() we can run this job even if the previous job failed, but we also
-    # should check if the event is push or the PR is coming from the same repository
-    if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    # Run this job only if the previous job failed and the event was triggered by the 'AdguardTeam/AdguardFilters' repository
+    # Note: 'always()' is needed to run the notify job even if the lint job was failed
+    if:
+      ${{
+        always() &&
+        needs.lint.result == 'failure' &&
+        github.repository == 'AdguardTeam/AdguardFilters' &&
+        (
+          github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name == github.repository
+        )
+      }}
     steps:
-      # Get the workflow conclusion
-      - uses: technote-space/workflow-conclusion-action@v3
-
-      # Send a Slack notification if the conclusion is failure
       - uses: 8398a7/action-slack@v3
         with:
           status: failure
@@ -64,4 +67,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: ${{ env.WORKFLOW_CONCLUSION == 'failure' }}
