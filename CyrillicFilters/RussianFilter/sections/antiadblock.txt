@@ -34,8 +34,9 @@ volley.ru#%#//scriptlet('prevent-fetch', 'exchange.buzzoola.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172229
 @@||yandex.ru/ads/system/context.js$domain=tvzvezda.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171998
-tragtorr.in#%#//scriptlet('trusted-replace-node-text', 'script', 'function getCookie', '/var [a-zA-Z]{5,20} .*\s*if\([a-zA-Z]{5,20}\){\s*.*\s*\} else /', '')
-tragtorr.in#%#//scriptlet('trusted-replace-node-text', 'script', 'function getCookie', '/document\.getElementById\(.*\s*block = true;/', 'return;')
+tragtorr.in#%#//scriptlet("trusted-replace-node-text", "script", "function getCookie", "/html: \$\('#yandex_rtb_R-A-.*?'\)/", "html: $('body')")
+tragtorr.in#%#//scriptlet('adjust-setTimeout', 'antyadb', '5000', '0.001')
+tragtorr.in#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170949
 @@||textovod.com/images/728x90.png
 @@||textovod.com/images/ads.png
@@ -59,7 +60,7 @@ pikabu.ru$$script:contains(/let[\s\S]+=[\s\S]+Math\.random[\s\S]+xhr\.onreadysta
 pikabu.ru#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'createAd')
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/new \(?(this|document\.defaultView|window|top|XMLHttpRequest|true|false|[a-zA-Z]{9,10})(\[[\"\s\'\+a-zA-Z]+\])?[\s\S]+Ad/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', 'addTracker')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -98,8 +99,8 @@ reshuolymp.ru#%#//scriptlet('adjust-setTimeout', 'function(){return', '20000', '
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||yandex.ru/ads/system/context.js$domain=reshuolymp.ru
 ! sdamgia.ru
-||sdamgia.naydex.net/*/*/*_$script,replace=/adblock//
-sdamgia.ru#%#//scriptlet('prevent-setTimeout', '===getComputedStyle(')
+||sdamgia.ru^$cookie=bda
+sdamgia.ru#%#//scriptlet('adjust-setTimeout', 'f(!1)', '20000', '0.001')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150448
 litehd.tv#@#.ad-container
 litehd.tv#%#//scriptlet('set-constant', 'ya.videoAd.loadModule', 'noopPromiseResolve')
@@ -1084,40 +1085,40 @@ overclockers.ru#@#.material-other-feed
 !#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87125
-$cookie=/[0-9a-f]{32}/,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top
+$cookie=/[0-9a-f]{32}/,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top
 $removeheader=location,domain=zannn.top|innal.top
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('trusted-set-cookie-reload', 'godbayadblock', 'godbayadblock')
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('remove-node-text', 'script', '/var _\d?x/')
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="=document[_"]
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('prevent-setTimeout', '/[echaysd]+/')
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('trusted-set-cookie-reload', 'godbayadblock', 'godbayadblock')
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="=document[_"]
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('prevent-setTimeout', '/[echaysd]+/')
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#$##e7af0de8b4 { height: 16px !important; }
 !+ PLATFORM(ios, ext_android_cb)
-@@||aj*.online^$domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top,xmlhttprequest,script
+@@||aj*.online^$domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|zannn.top|innal.top|apad2.top,xmlhttprequest,script
 !
 ! rustorka.com
-@@/newad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/nativead.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/footerad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/linkadv.$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/leftad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/lazyad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/layerad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/jspopunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/printad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/prerollad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/pop_ads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/pop_ad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/clickunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/pop-under.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/popunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/footerads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-@@/nativeads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="checkCookie"]
+@@/pubads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/newad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/nativead.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/footerad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/linkadv.$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/leftad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/lazyad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/layerad.$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/jspopunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/printad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/prerollad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop_ads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop_ad.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/clickunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/pop-under.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/popunder.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/footerads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+@@/nativeads.js$~third-party,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script[tag-content="checkCookie"]
 /rustorka.\w+\/forum\/(?!login.php)/$removeheader=location
 /naylo.top\/forum\/(?!login.php)/$removeheader=location
 /games-pc.top\/forum\/(?!login.php)/$removeheader=location
-$cookie=opt_js,domain=games-pc.top|rustorka.com|rustorka.top|rustorka.net|rustorkacom.lib|naylo.top
-apad2.top,games-pc.top,rustorka.com,rustorka.top,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('prevent-setTimeout', 'chessday')
+$cookie=opt_js,domain=games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top
+apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top#%#//scriptlet('prevent-setTimeout', 'chessday')
 !
 tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
