@@ -109,9 +109,8 @@ a task comment or hints, put them next to the same structure in the file.
 - Purpose: this filter blocks various kinds of ads mostly on English-language
   and multilingual sites.
 - [Base folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/BaseFilter/sections)
-- Notes: The AdGuard Base filter includes [Easylist][easylist] if you use
-  AdGuard products, so there's no need to add rules which are already in
-  `Easylist`.
+- Notes: The AdGuard Base filter includes [Easylist][easylist],
+  so there's no need to add rules which are already in `Easylist`.
 
 [easylist]: https://github.com/easylist/easylist
 
@@ -200,9 +199,8 @@ a task comment or hints, put them next to the same structure in the file.
 
 - Purpose: this filter blocks various kinds of ads on Chinese-language sites.
 - [Chinese folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/ChineseFilter/sections)
-- Notes: The AdGuard Chinese filter includes [Easylist China][easylistchina]
-  if you use AdGuard products, so there's no need to add rules which are already
-  in `Easylist China`.
+- Notes: The AdGuard Chinese filter includes [Easylist China][easylistchina],
+  so there's no need to add rules which are already in `Easylist China`.
 
 [easylistchina]: https://github.com/easylist/easylistchina
 
@@ -215,9 +213,8 @@ a task comment or hints, put them next to the same structure in the file.
 
 - Purpose: this filter blocks various kinds of ads on French-language sites.
 - [French folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/FrenchFilter/sections)
-- Notes: The AdGuard French filter includes [Liste FR][listefr] if you use
-  AdGuard products, so there's no need to add rules which are already in
-  `Liste FR`.
+- Notes: The AdGuard French filter includes [Liste FR][listefr],
+  so there's no need to add rules which are already in `Liste FR`.
 
 [listefr]: https://github.com/easylist/listefr
 
@@ -225,9 +222,8 @@ a task comment or hints, put them next to the same structure in the file.
 
 - Purpose: this filter blocks various kinds of ads on German-language sites.
 - [German folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/GermanFilter/sections)
-- Notes: The AdGuard German filter includes [Easylist Germany][easylistgermany]
-  if you use AdGuard products, so there's no need to add rules which are already
-  in `Easylist Germany`.
+- Notes: The AdGuard German filter includes [Easylist Germany][easylistgermany],
+  so there's no need to add rules which are already in `Easylist Germany`.
 
 [easylistgermany]: https://github.com/easylist/easylistgermany
 
