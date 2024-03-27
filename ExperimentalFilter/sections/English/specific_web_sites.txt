@@ -4,9 +4,8 @@
 !
 ! remove anti-adb
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
-!www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let content=Reflect.apply(target,thisArg,args);if(content.includes('bkaEnforcementMessage')){const modifiedContent=content.replace('\n|\nGauxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel.displayType\x121ENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_POPUP\nM\nEauxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel.isVisible\x12\x04true','');return modifiedContent;}return content;};const handler={apply:wrapper};window.atob=new Proxy(window.atob,handler);})();
-! Breaks player, when a video is opened in a new tab (Ctrl+Click)
-!www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
+www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let content=Reflect.apply(target,thisArg,args);if(content.includes('bkaEnforcementMessage')){const modifiedContent=content.replace(/\n.\n[A-Z]auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n[A-Z]\n[A-Z]auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');return modifiedContent;}return content;};const handler={apply:wrapper};window.atob=new Proxy(window.atob,handler);})();
+www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
 !#endif
 ! main youtube page - changing view for the first row of elements
 www.youtube.com#$##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) > #contents:first-child { max-width: unset !important; }
