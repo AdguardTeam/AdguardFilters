@@ -3,9 +3,26 @@
 ! This section contain any type of rule grouped by domain.
 !
 ! remove anti-adb
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
 www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let content=Reflect.apply(target,thisArg,args);if(content.includes('bkaEnforcementMessage')){const modifiedContent=content.replace(/\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');return modifiedContent;}return content;};const handler={apply:wrapper};window.atob=new Proxy(window.atob,handler);})();
 www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
+.com/watch?v=$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
+.com/watch?v=$replace=/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{55}lLKPQ-SS"\})/\$1\$2/,domain=www.youtube.com
+.com/watch?v=$replace=/("trackingParam":"k5DfmPxhoXpR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{151}lLKPQGiS"\})/\$1\$2/,domain=www.youtube.com
+/youtubei/v*/player?$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
+/youtubei/v*/player?$replace=/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{55}lLKPQ-SS"\})/\$1\$2/,domain=www.youtube.com
+/youtubei/v*/player?$replace=/("trackingParam":"k5DfmPxhoXpR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{151}lLKPQGiS"\})/\$1\$2/,domain=www.youtube.com
+.com/playlist?list=$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
+.com/playlist?list=$replace=/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{55}lLKPQ-SS"\})/\$1\$2/,domain=www.youtube.com
+.com/playlist?list=$replace=/("trackingParam":"k5DfmPxhoXpR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{151}lLKPQGiS"\})/\$1\$2/,domain=www.youtube.com
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', 'player?')
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{55}lLKPQ-SS"\})/', '$1$2', 'player?')
+www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/("trackingParam":"k5DfmPxhoXpR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{151}lLKPQGiS"\})/', '$1$2', 'player?')
+www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', '/playlist\?list=|player\?|watch\?v=/')
+www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/("trackingParam":"kx_fmPxhoPZR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{55}lLKPQ-SS"\})/', '$1$2', '/playlist\?list=|player\?|watch\?v=/')
+www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/("trackingParam":"k5DfmPxhoXpR)[-_0-9A-Za-z]{50}[-_0-9A-Za-z]+?([-_0-9A-Za-z]{151}lLKPQGiS"\})/', '$1$2', '/playlist\?list=|player\?|watch\?v=/')
 !#endif
 ! Fix ads on https://www.youtube.com/shorts/
 ! TODO: If it does not cause any problems, move it to the Base filter
