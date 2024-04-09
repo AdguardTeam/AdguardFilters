@@ -232,6 +232,10 @@ m.youtube.com,music.youtube.com,youtubekids.com,youtube-nocookie.com#%#//scriptl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172033#issuecomment-1925290685
 ||googlevideo.com/initplayback?source=youtube&*&c=TVHTML5&oad=$xmlhttprequest,domain=youtube.com
 [$path=/tv]youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/https:\/\/www\.youtube\.com\/s\/player\/.*\/tv-player-ias\.vflset\/tv-player-ias\.js:/')
+! Fix ads on https://www.youtube.com/shorts/
+! https://github.com/AdguardTeam/AdguardFilters/issues/172033#issuecomment-1991263854
+! TODO: use scriptlet when this issue will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/183
+www.youtube.com#%#(()=>{window.JSON.parse=new Proxy(JSON.parse,{apply(r,e,t){const n=Reflect.apply(r,e,t);if(!location.pathname.startsWith("/shorts/"))return n;const a=n?.entries;return a&&Array.isArray(a)&&(n.entries=n.entries.filter((r=>{if(!r?.command?.reelWatchEndpoint?.adClientParams?.isAd)return r}))),n}});})();
 ! This one may be unnecessary:
 ||youtube.com/get_video_info?*=adunit&$important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81610
