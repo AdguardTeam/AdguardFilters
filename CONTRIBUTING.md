@@ -3,92 +3,76 @@
 If you want to make AdGuard better by creating new rules, follow the
 instructions below to make your ideas come to life faster!
 
-## How to work with the repo
+## Pre-requisites
 
-### Prepare
+- You need to have a [GitHub account][createaccount] to make contributions.
+- You need to have the following tools installed on your machine:
+  - [Git][git]
+  - [Node.js][nodejs] (we recommend using the latest LTS version)
+  - [Yarn][yarn] (you can install it using npm: `npm install -g yarn`)
+  - [Visual Studio Code][vscode] (we recommend using this editor)
+    - Install the recommended extensions for VSCode (listed in `.vscode/extensions.json`).
+      - At first launch, you will be prompted to install them. If not, press `CTRL+SHIFT+P` and type
+      `Show Recommended Extensions` and install them.
+      - Please note that, by default Comment Anchors does not know adblock-style comments (like `! this is a comment`),
+        so you'll need to add `!` as a match prefix in the `commentAnchors.tags.matchPrefix` setting
+        (File -> Preferences -> Settings -> Extensions -> Comment Anchors Configuration).
 
-Here's what you need to do before you start working on the repo.
-
-**Steps for contributors:**
-
-1. If you don't have a GitHub account, [create one][createaccount].
-2. Install [Git][git], [Node.js][nodejs] and [Yarn][yarn]. These are essential
-   tools for working with the repo.
-3. Install [Visual Studio Code][vscode] with the
-   ["Adblock" syntax plugin][vscodeplugin]. We recommend using this editor to
-   write filter rules.
-4. Fork the original repo and clone *your fork* (since you don't have write
-   access to the original repo). If you don't know how to do it, please read
-   [this guide][clonerepo].
-5. Install dependencies by running `yarn` in the root of the repo. This will
-   install [AGLint][aglint] and [Husky][husky]. After the installation is
-   complete, it will also call `postinstall` script that will install Husky
-   pre-commit hook which will run AGLint on your changes before you commit
-   them and will prevent you from committing if there are any errors.
-6. Create a new branch for your changes. Please use the following naming
-   convention: `fix/123` where `123` is the issue number you're working on.
-7. Make your changes, test them and put them in the proper file or section
-   of the file. Please read the [Repository structure](#repository-structure)
-   section below to learn more about the structure of the repo.
-8. If everything is fine, commit your changes. Please always make separate
-   branches and commits for different issues and don't mix them in one. It
-   is easier to manage and review them that way.
-9. Push your new branch to your fork. This will create a new branch in your
-    fork with the same name as the one you created locally and doesn't affect
-    the original repo at this point.
-10. Create a pull request from your fork to this repo and wait for the review.
-    AGLint will run automatically on your PR and will report any errors.
-    If there are any errors, fix them and push your changes to your fork.
-    If AGLint passes, your PR will be reviewed by a maintainer.
-11. If the review is successful, your changes will be merged into the `master`
-    branch.
-
-**Steps for maintainers:**
-
-1. Installation and initial setup are the same as for contributors, but you
-   don't need to fork the repo.
-2. If you want to skip Husky pre-commit hook locally, use
-   `git commit --no-verify -m "commit message"`
-   but it is not recommended.
-3. If you want to skip check on GitHub Actions, add `[skip ci]` to the commit
-   message.
-
-[aglint]: https://github.com/AdguardTeam/AGLint
-[clonerepo]: https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository
 [createaccount]: https://github.com/signup
 [git]: https://git-scm.com/downloads
-[husky]: https://typicode.github.io/husky
 [nodejs]: https://nodejs.org/en/download
 [vscode]: https://code.visualstudio.com/download
-[vscodeplugin]: https://marketplace.visualstudio.com/items?itemName=adguard.adblock
 [yarn]: https://classic.yarnpkg.com/en/docs/install
 
-### Workflow
+## Setting up the repository
 
-1. Make your changes and commit them.
-2. Each commit should be linked to an issue. The commit message should look
-   like the examples below. That way, the issue will be closed automatically
-   once the commit is merged into the `master` branch.
-   - `Fix #123 example.org` where `123` is the issue number and `example.org`
-     is the website from the issue.
-   - `Fix #123 comment` where `comment` is your comment for additional fixes in
-     the pull request.
+After you have installed the necessary tools, you need to set up the repository.
 
-## How to write filter rules
+1. Fork the original repository on GitHub. This will create a copy of the repository in your account.
+1. Clone remote repository from GitHub to your local machine.
+1. Install the dependencies by running the following command in the terminal:
+   ```bash
+   yarn install
+   ```
+   This will install necessary tools like [AGLint][aglint] and initialize [Husky][husky] hooks.
 
-Before you begin, please read and understand the current
-[filters policy][policy] we adhere to. One of its most important points is the
-[quality requirements][qualityrequirements].
+[aglint]: https://github.com/AdguardTeam/AGLint
+[husky]: https://typicode.github.io/husky
 
-The next step is creating rules.
+## Workflow for submitting changes
 
-- There is an [official documentation][documentation] that can help you.
-- When you're done with creating rules, please take a look at the similar ones
-  in the filters. This may help you to make a better version of the rule.
+1. Create a new branch for your changes. Please use the following naming convention:
+   `fix/123` where `123` is the issue number you're working on.
+1. Make your changes, test them and put them in the proper file or section of the file.
+   - You can learn how to write filtering rules in the [How to write filter rules][how-to-write-filters] section.
+   - Please read and understand the current [filters policy][policy] we adhere to.
+   - One of its most important points is the [quality requirements][qualityrequirements].
+   - When you're done with creating rules, please take a look at the similar ones in the filters.
+     This may help you to make a better version of the rule.
+   - Please read the [Repository structure](#repository-structure) section below
+     to learn more about the structure of the repo and where to put your rules.
+1. If everything is fine, commit your changes. Please try to separate branches and commits
+   for different issues and don't mix them in one. It is easier to manage and review them that way.
+   - Note: By default, Husky pre-commit hook will run AGLint on your changes and will prevent you from committing
+     if there are any errors in your changes.
+1. Push your new branch to your remote repository.
+1. Create a pull request from your branch to the `master` branch of the original repository.
+   AGLint will run automatically on your PR and will report any errors.
+   If there are any errors, fix them and push your changes to your fork.
+   If AGLint passes, your PR will be reviewed by a maintainer.
+1. If the review is successful, your changes will be merged into the `master` branch.
+
+### Skipping checks
+
+If you need to skip running checks, you can do it in the following ways.
+Please note that it is only allowed in special cases and should not be used as a regular practice.
+
+- Skip running Husky pre-commit hook: `git commit --no-verify -m "commit message"`.
+- Skip running checks on GitHub: add `[skip ci]` to the commit message as a prefix.
 
 [policy]: https://adguard.com/kb/general/ad-filtering/filter-policy/
 [qualityrequirements]: https://adguard.com/kb/general/ad-filtering/filter-policy/#quality-requirements-for-filtering-rules
-[documentation]: https://adguard.com/kb/general/ad-filtering/create-own-filters/
+[how-to-write-filters]: https://adguard.com/kb/general/ad-filtering/create-own-filters/
 
 ## Repository structure
 

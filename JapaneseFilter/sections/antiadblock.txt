@@ -9,6 +9,13 @@
 !
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/23212
+service.webgoto.net#%#//scriptlet('prevent-xhr', 'amazon')
+@@||m.media-amazon.com/images/I/$xmlhttprequest,domain=service.webgoto.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/176276
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=intaa.net
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=intaa.net
 ! anti-adb
 success-corp.co.jp#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=success-corp.co.jp
@@ -314,7 +321,7 @@ battlecats-db.com#$#body[style="display: none;"] { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
-sekai-kabuka.com#$#.浙勞く黴偸巓們氤佩亰靤甞 { pointer-events: none !important; }
+sekai-kabuka.com#$#td[width="160"] [style*="position"] [id][style] ~ [onclick] { pointer-events: none !important; }
 realtime-chart.info#$#td[style^="vertical-align"] [onmousedown]:has(> img[src*="/clip_"] + b):not(:has(b td > a[href])) { pointer-events: none !important; }
 realtime-chart.info#?#.news_b table[border="0"][cellpadding="5"][style="background:#fff"] > tbody >  tr[bgcolor="#fff"] > td.newsarea[style] > a.wl[href^="https://a"][href*=".to/"]:upward(2)
 realtime-chart.info#$?#td[style^="vertical-align"] [id] [class]:matches-css(top: /^[4-8]\d{2}\.?\d*px$/) [onclick*=")"]:has(b):not(:has(td > a)) { pointer-events: none !important; }
@@ -358,13 +365,13 @@ crefan.jp#%#//scriptlet('prevent-setTimeout', 'objDef.resolve')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=freemen.jp
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,important,domain=freemen.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87687
+@@||h-ken.net^$generichide
+h-ken.net#%#//scriptlet('set-constant', 'adBlockDetected', 'noopFunc')
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||js.ad-stir.com/js/adstir.js$domain=h-ken.net
 @@||ad.ad-stir.com/ad$domain=h-ken.net
 @@||js.ad-stir.com/js/adstir_magnify.js$domain=h-ken.net
 !#endif
-!+ PLATFORM(android, ext_chromium, ext_ff, ext_ublock)
-h-ken.net#%#//scriptlet("abort-current-inline-script", "onload", "ad")
 ! https://github.com/AdguardTeam/AdguardFilters/pull/61513/
 @@||my0nio.seesaa.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60864
