@@ -1091,6 +1091,14 @@ pornhub.com,pornhub.org,pornhub.net#%#//scriptlet('prevent-setTimeout', '\x41\x6
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/177060
+! It looks like that website allows to download files only from the specific website(s),
+! perhaps by checking header - referrer (setting document.referrer doesn't fix the problem).
+! So, the rule below adds a click event listener to the link, and when it's clicked then
+! it opens a new tab with one of the allowed website, the address of the website contains special parameter "cc" and encoded in Base64 link to file.
+! This "cc" parameter is checked and decoded by inline script from the opened website and then it redirects to the file.
+uploadbank.com#%#AG_onLoad((function(){const t=document.querySelector('a[href*="uploadbank.com/cgi-bin/dl.cgi/"]');if(t){const e=t.getAttribute("href");t.addEventListener("click",(t=>{try{const t=`{"link":"${e}"}`,c=`https://leasurepartment.xyz/?cc=${btoa(t)}`;window.open(c)}catch(t){console.debug(t)}}))}}));
+leasurepartment.xyz#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'onerror')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177077
 @@||afk.guide/wp-content/plugins/wordpress-popup/assets/js/ad.min.js
 afk.guide#%#//scriptlet('abort-on-stack-trace', 'Array.prototype.includes', 'adblockTrigger')
