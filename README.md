@@ -57,20 +57,23 @@ To submit a report, please use this [reporting tool][report].
 
 ### Suggest Filtering Rules
 
-You will find a lot of open issues, each one referencing a problem with some
+You will find a lot of [open issues][issues], each one referencing a problem with some
 website — a missed ad, a false positive etc. — choose any one and suggest your
-own rules in comments. AdGuard filter engineers will review your suggestions,
+own rules in comments or in a pull request. AdGuard filter engineers will review your suggestions,
 and if they find them correct, your rules will be added to AdGuard filters.
+To create a pull request, we suggest taking a look at our [Contribution Guide][contribute-github].
 
 Here is the [official documentation][documentation] on AdGuard filtering rules
 syntax. You'll need to read it before you'll be able to create your own
 filtering rules.
 
+[issues]: https://github.com/AdguardTeam/AdguardFilters/issues
+[contribute-github]: https://github.com/AdguardTeam/AdguardFilters/blob/master/CONTRIBUTING.md
 [documentation]: https://adguard.com/kb/general/ad-filtering/create-own-filters/
 
 ### Other ways to contribute
 
-Here is [a dedicated page][contribute] for people willing to contribute to
-AdGuard.
+Here is [a dedicated page][contribute-external] for people willing to contribute to
+AdGuard in a different way.
 
-[contribute]: https://adguard.com/contribute.html
+[contribute-external]: https://adguard.com/contribute.html
