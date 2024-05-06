@@ -4,7 +4,7 @@
 !
 ! remove anti-adb
 !#if (!adguard_ext_firefox)
-www.youtube.com#%#(()=>{const wrapper=(target,argumentsList,newTarget)=>{const result=Reflect.construct(target,argumentsList,newTarget);try{const decoded=new TextDecoder().decode(result);if(decoded.includes('bkaEnforcementMessage')){const modifiedContent=decoded.replace(/\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');const modifiedUint8Array=new TextEncoder().encode(modifiedContent);return modifiedUint8Array}}catch(e){} return result};const handler={construct:wrapper,};window.Uint8Array=new Proxy(window.Uint8Array,handler)})();
+www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let result=Reflect.apply(target,thisArg,args);try{const decoded=atob(result);if(decoded.includes('bkaEnforcementMessage')){const modifiedContent=decoded.replace(/\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');const encodeToBase64=btoa(modifiedContent);return encodeToBase64}}catch(e){} return result};const handler={apply:wrapper};window.Array.prototype.join=new Proxy(window.Array.prototype.join,handler)})();
 www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
 !#endif
 ! main youtube page - changing view for the first row of elements
