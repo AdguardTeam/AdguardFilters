@@ -1614,6 +1614,26 @@ reddit.com,reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion#@#.Sid
 ! NOTE: Admiral end ⬆️
 ! !SECTION: Anti-adblock - Admiral
 !
+! Prevent detection by various scripts which use common bait classes, including fingerprinting (for example "Freestar Recovered")
+! Blocked in Annoyances Popups filter according to the policy:
+! https://adguard.com/kb/general/ad-filtering/filter-policy/
+! Popups that encourage users to disable ad blocker and violate user’s privacy
+#@#.stickyads
+#@#.ads_banner
+##.stickyads:not([style^="width: 32px"], [style^="width: 33px"], [style*="left: -43px"]):not(:empty)
+##.ads_banner:not([style^="width: 32px"], [style^="width: 33px"])
+@@||adserver.adtech.advertising.com/pubapi/*/ADTECH;*;cmd=bid;cors=yes|$xmlhttprequest
+@@||static.adsafeprotected.com/skeleton.js?adslot=
+@@||static.adsafeprotected.com/skeleton.js?adspot_id=
+@@||static.adsafeprotected.com/skeleton.js?adunitid=
+@@||static.adsafeprotected.com/skeleton.js?bannnerid=
+@@||static.adsafeprotected.com/skeleton.js?*adid=
+@@||static.adsafeprotected.com/skeleton.gif?*adid=
+@@||static.adsafeprotected.com/skeleton.gif?*adslot=
+@@||static.adsafeprotected.com/skeleton.gif?*adunitid=
+@@||static.adsafeprotected.com/skeleton.gif?*bannnerid=
+@@||static.adsafeprotected.com/skeleton.gif?*zoneid=
+!
 ! SECTION: Anti-adblock - Freestar Recovered
 #$#body > div.ad.banner-ad.ad-siderail.stickyads[data-freestar-ad][style] { display: block !important; }
 ||a.pub.network/core/prebid-universal-creative.js$script,redirect=noopjs
