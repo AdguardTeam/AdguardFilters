@@ -395,7 +395,15 @@ fosspost.org,portalvirtualreality.ru,pingvin.pro,bonobono.com,curbsideclassic.co
 !#safari_cb_affinity
 !
 ! SECTION: Anti-adblock - Admiral
+! Blocked in Annoyances Popups filter according to the policy:
+! https://adguard.com/kb/general/ad-filtering/filter-policy/
+! Popups that encourage users to disable ad blocker and violate user’s privacy
 /htdocs/js/admiral/init.js
+! Used only as a bait
+! Exceptions are also required because these requests can be blocked by other rules
+||succeedscene.com^$badfilter
+@@||succeedscene.com/*/ads.load.js
+@@||succeedscene.com/ads/*/*.js
 ! https://github.com/AdguardTeam/AdguardFilters/pull/142877
 /^https:\/\/[0-9a-z]{7,25}\.com\/v2(?:\/0\/)?(?=[0-9a-z_-]{0,84}[A-Z])(?=[a-zA-Z_-]{0,84}[0-9])[0-9a-zA-Z_-]{54,85}(#\?v=[0-9a-f]{32})?$/$ping,script,xmlhttprequest,third-party,match-case
 ! can be closed
@@ -421,7 +429,6 @@ cbssports.com#%#//scriptlet('set-constant', 'loadAdmiral', 'noopFunc')
 ! bait - Admiral overlay
 howtogeek.com#%#//scriptlet('prevent-element-src-loading', 'script', 'nebulousgarden.com')
 ##body div.bOvWNQ
-@@||succeedscene.com/*/ads.load.js
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176079
 !+ PLATFORM(ios)
