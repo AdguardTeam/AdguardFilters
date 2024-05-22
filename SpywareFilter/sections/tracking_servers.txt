@@ -1547,7 +1547,6 @@
 ||piwik.pro^$third-party
 ||audiens.com^$third-party
 ||lift.acquia.com^$third-party
-||webtrekk.com^$third-party
 ||wcfbc.net^$third-party
 ||selfcampaign.com^$third-party
 ||upscore.com^$third-party
@@ -3664,10 +3663,6 @@
 ||webtrafficagents.com^$third-party
 ||webtraffiq.com^$third-party
 ||webtraxs.com^$third-party
-||webtrekk-asia.net^$third-party
-||webtrekk-us.net^$third-party
-||webtrekk.de^$third-party
-||webtrekk.net^$third-party
 ||webtrends.com^$third-party
 ||webtrendslive.com^$third-party
 ||webttracking.de^$third-party
@@ -3879,9 +3874,16 @@
 !+ NOT_PLATFORM(windows, mac, android)
 ||artfut.com^$redirect=nooptext,important
 !
-! This section contains the list of the rules are against CNAME tracking networks.
-! We include rules from AdGuard's cname-tracker repo here, and
-! add some additional rules when we can block whole CNAME domain, not only CNAME subdomains.
+! NOTE: CNAME disguised tracking networks
+! SECTION: CNAME disguised tracking networks
+!
+! This section contains the list of the rules are against CNAME disguised tracking networks.
+! We include rules from AdGuard's cname-tracker repo here, and add some additional
+! rules, which will be used during the optimization by /optimizeDomainBlockingRules option.
+!
+! https://github.com/AdguardTeam/FiltersRegistry/pull/937
+! To fix the issue with the CNAME trackers, add problematic domains here:
+! https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/exclusions.txt
 !
 ! https://github.com/AdguardTeam/FiltersCompiler/issues/190
 ! To avoid email links breakage, include email tracking lists with a modifier here:
@@ -4054,6 +4056,11 @@
 ! not included
 !
 ! Webtrekk : webtrekk.net disguised trackers
+||webtrekk.com^$third-party
+||webtrekk-asia.net^$third-party
+||webtrekk-us.net^$third-party
+||webtrekk.de^$third-party
+||webtrekk.net^$third-party
 !#include https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/data/trackers/webtrekk.txt
 !
 ! Wizaly : wizaly.com disguised trackers
@@ -4063,5 +4070,5 @@
 ! Rule for detecting hidden trackers when the main domain cannot be blocked.
 |mailgun.org^$third-party
 !
-! Fixing the issues
-!
+! NOTE: CNAME disguised tracking networks end ⬆️
+! !SECTION: CNAME disguised tracking networks
