@@ -1335,12 +1335,16 @@ dailyboulder.com,aclsports.com,route-one.net,prajwaldesai.com,stvincenttimes.com
 gearingcommander.com#%#//scriptlet('prevent-setTimeout', 'fnMaskAdBlock')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gearingcommander.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/179916
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175439
 veev.to#%#//scriptlet('set-constant', 'fapit.check', 'noopFunc')
+veev.to#%#//scriptlet('trusted-replace-xhr-response', '/"vast_ad":".*?"/', '"vast_ad":""', '=player_api')
+veev.to#%#//scriptlet('trusted-replace-xhr-response', '"disable_adb":1', '"disable_adb":0', '=player_api')
+veev.to#%#(()=>{const e={apply:(e,t,p)=>{const o=p[1];return o&&"string"==typeof o&&o.includes("adsbygoogle.js")&&(t.prevent=!0),Reflect.apply(e,t,p)}};window.XMLHttpRequest.prototype.open=new Proxy(window.XMLHttpRequest.prototype.open,e);const t={apply:(e,t,p)=>{if(!t.prevent)return Reflect.apply(e,t,p)}};window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,t)})();
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=veev.to
-! In case of DNS filtering
-!+ NOT_PLATFORM(ext_ff)
-||veev.to/assets/videoplayer/*.js$replace=/'baitUrl':'https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js'/'baitUrl':'https:\/\/veev.to\/assets\/videoplayer\/17c088d.js'/
+@@||securepubads.g.doubleclick.net/pagead/js/adsbygoogle.js$domain=veev.to
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175266
 @@||rddywd.com/advertising.js$domain=herokuapp.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175371
