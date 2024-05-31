@@ -623,6 +623,11 @@ tf1.fr#%#//scriptlet('set-constant', '__TF1_CONFIG__.adblock.serverRequest', 'fa
 tf1.fr,tf1info.fr#%#//scriptlet('prevent-fetch', 'static.adsafeprotected.com/favicon.ico method:HEAD')
 tf1.fr,tf1info.fr#%#//scriptlet('prevent-fetch', '/^https:\/\/ads\.stickyadstv\.com\/$/ method:HEAD')
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/180259
+tf1info.fr#%#//scriptlet('prevent-element-src-loading', 'script', '/hubvisor\.io|pbstck\.com|batch\.com|securepubads\.g\.oubleclick\.net|ownpage\.fr|teads\.tv/')
+$script,redirect-rule=noopjs,domain=tf1info.fr
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||a.teads.tv/analytics/tag.js$domain=tf1info.fr
 ! Allowed mainly for "adguard_app_ios" and "adguard_ext_android_cb" (fallback solution for others)
 !#safari_cb_affinity(privacy)
 @@||cdn.tagcommander.com/*/tc_TF1*.js$domain=tf1.fr|tf1info.fr
