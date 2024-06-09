@@ -12,6 +12,12 @@ www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliary
 /youtubei/v*/player?$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
 .com/playlist?list=$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
 !#endif
+! Fix for new ads
+! TODO: move to the Base filter if it doesn't break anything
+||youtube.com^$replace=/"visitorData":".*?"\,//,document
+youtube.com#%#//scriptlet('trusted-replace-node-text', 'script', 'ytplayer', '/"visitorData":".*?",/', '')
+youtube.com#%#(()=>{const e={apply:(e,t,o)=>{if(!(window.yt?.config_?.EXPERIMENT_FLAGS?.html5_enable_ssap_entity_id&&o[0]&&"X-Goog-Visitor-Id"===o[0]&&o[1]))return Reflect.apply(e,t,o)}};window.XMLHttpRequest.prototype.setRequestHeader=new Proxy(window.XMLHttpRequest.prototype.setRequestHeader,e)})();
+youtube.com#%#(()=>{const t={construct:(t,e,o)=>{if(window.yt?.config_?.EXPERIMENT_FLAGS?.html5_enable_ssap_entity_id){const t=e[0],o=e[1];if("https://www.youtube.com/"!==location.href&&t&&t.includes?.("/youtubei/"))try{delete o.headers["X-Goog-Visitor-Id"]}catch(t){console.trace(t)}if(o&&o.body?.includes("visitorData"))try{e[1].body=e[1].body.replace(/"visitorData":".*?",/,"")}catch(t){console.trace(t)}if(t&&t.includes?.("&sabr=1"))try{e[0]=e[0].replace("&sabr=1","")}catch(t){console.trace(t)}}return Reflect.construct(t,e,o)}};window.Request=new Proxy(window.Request,t)})();
 ! main youtube page - changing view for the first row of elements
 www.youtube.com#$##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) > #contents:first-child { max-width: unset !important; }
 www.youtube.com#$##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) ytd-rich-grid-media { max-width: unset !important; }
