@@ -12,9 +12,9 @@ youtube.com#%#(()=>{const t={construct:(t,e,o)=>{if(window.yt?.config_?.EXPERIME
 !#if (!adguard_ext_firefox)
 www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let result=Reflect.apply(target,thisArg,args);try{const decoded=atob(result);if(decoded.includes('bkaEnforcementMessage')){const modifiedContent=decoded.replace(/\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');const encodeToBase64=btoa(modifiedContent);return encodeToBase64}}catch(e){} return result};const handler={apply:wrapper};window.Array.prototype.join=new Proxy(window.Array.prototype.join,handler)})();
 www.youtube.com#%#//scriptlet('trusted-replace-fetch-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', 'player?')
-www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', '/playlist\?list=|player\?|watch\?v=/')
+www.youtube.com#%#//scriptlet('trusted-replace-xhr-response', '/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,/', '', '/playlist\?list=|player\?|watch\?[tv]=/')
 www.youtube.com#%#//scriptlet('set-constant', 'ytInitialPlayerResponse.auxiliaryUi.messageRenderers.bkaEnforcementMessageViewModel', 'undefined')
-.com/watch?v=$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
+.com/watch?$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
 /youtubei/v*/player?$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
 .com/playlist?list=$replace=/"auxiliaryUi":\{"messageRenderers":\{"bkaEnforcementMessageViewModel.*?e\}\}\}\,//,domain=www.youtube.com
 !#endif
