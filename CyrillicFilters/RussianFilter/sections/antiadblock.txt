@@ -1016,8 +1016,22 @@ mail.ru##.mailru-visibility-check
 mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~e.mail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
+! mail.ru main page - under the search
+mail.ru#?#div[slot="main-column"] > div:matches-css(height : /^90px/)
 ! ad on main page
 [$path=/^\/$|mail\.ru\/\?/]mail.ru##div[slot="main-column"] > div.tgb-wrapper
+!
+[$path]mail.ru#%#//scriptlet('json-prune', '[].slot')
+!
+my.mail.ru##.l-music__banner-728x90
+my.mail.ru##.sp-video__billboard
+my.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.isAdblockEnable', 'noopFunc')
+!
+love.mail.ru#?##app-wrapper > div:has(> div[class] > div[class] > div[class] > a[href*="/tips/?tip=DisableAdblock"])
+love.mail.ru###adblock-in-browser
+!
+e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', 'SMOKESCREEN')
+e.mail.ru,octavius.mail.ru#%#//scriptlet('json-prune', '[].slot')
 ! kino.mail.ru
 kino.mail.ru##.block_ad-text
 kino.mail.ru##button[class*="adv-marker"]
@@ -1030,14 +1044,24 @@ kino.mail.ru##button[class*="adv-marker"] + div.text
 ||auto.mail.ru/sw-mobile.js
 ! minigames.mail.ru - ads replacement script
 minigames.mail.ru$$script[tag-content="yandexSlot ="]
+minigames.mail.ru#%#//scriptlet("abort-current-inline-script", "$", "advBlock")
+minigames.mail.ru#%#//scriptlet("abort-current-inline-script", "$", "showAd")
+!
+otvet.mail.ru#%#//scriptlet('json-prune', 'baits css direct *.slot')
 !
 ||ad.mail.ru/adp/?_SITEZONE=$replace=/"html"/"html_"/,domain=e.mail.ru|octavius.mail.ru
 e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', '())),v.Z.themes.on("themes:')
+@@||e.mail.ru^$generichide
+@@||octavius.mail.ru^$generichide
 ! Fix for the mobile version, when used #%#//scriptlet('prevent-setTimeout', '())),v.Z.themes.on("themes:')
 !+ PLATFORM(android, ios)
 octavius.mail.ru#$?#html.mobile .letter-list__react div.ReactVirtualized__Grid__innerScrollContainer { margin-top: var(--vkui--octavius_size_portal-menu_height--regular); }
 !
 ! ok.ru
+ok.ru#%#//scriptlet('json-prune', 'result.body.direct')
+||ok.ru/res/js/app/FriendsOnline4thColumn_*.js$replace=/fourthColumnWrapper//
+||ok.ru/res/js/app/RightColumn_*.js
+ok.ru##.dialogWrapperBanner
 ! брендинг страницы авторизации
 ok.ru##.anonym_login_w+div.prl_txt
 ||st.mycdn.me/res/css/prod/login/login_megafon.*.css
