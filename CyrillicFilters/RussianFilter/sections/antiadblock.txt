@@ -24,6 +24,12 @@ modsforwot.ru,vargr.ru,trialkeys.ru#@#img[width="728"][height="90"]
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/181707
+anidubonline.com#%#//scriptlet('prevent-xhr', '/(vast|getCode)\?/')
+!#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
+@@||yandex.ru/ads/$domain=anidubonline.com
+@@||ad.moe.video/vast$domain=anidubonline.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181132
 ||v*.plrjs.org/*.xml$xmlhttprequest,redirect=nooptext,domain=volley.ru
 !+ PLATFORM(ios, ext_android_cb)
@@ -60,13 +66,14 @@ positiverecords.ru#@#.ad-google
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167304
 ||tests24.su^$cookie=/^ai/
 ! pikabu.ru
+pikabu.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.getYaContext')
 pikabu.ru#%#//scriptlet('abort-on-property-write', 'Ya')
-pikabu.ru$$script:contains(/let[\s\S]+=[\s\S]+Math\.random[\s\S]+xhr\.onreadystatechange[\s\S]+/)
+pikabu.ru$$script:contains(/.innerHTML.*cancelAnimationFrame/)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-||pikabu.ru^$cookie=__vA11
+||pikabu.ru^$cookie=btId
 pikabu.ru#%#//scriptlet('prevent-setTimeout', '_sendAnalytics')
 pikabu.ru#%#//scriptlet('json-prune', 'data', 'errors')
-pikabu.ru#%#//scriptlet("remove-node-text", "script", "/let\s{1,10}?[a-zA-Z0-9_]{6,15}\s{1,2}?= 'https:\/\/pikabu\.ru\/[a-zA-Z0-9]{5,10}\/[a-zA-Z0-9]{5,10}\//")
+pikabu.ru#%#//scriptlet("remove-node-text", "script", "/.innerHTML.*cancelAnimationFrame/")
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1080,7 +1087,7 @@ ok.ru##.exit-popup > *
 !
 ! Common rules
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-||imgsmail.ru/octavius/*/app*.bundle.js$replace=/ENABLE_SMOKESCREEN:function\(\){return [a-z]{2}}/ENABLE_SMOKESCREEN:function\(\){return}/
+||imgsmail.ru/octavius/*/app*.bundle.js$replace=/SMOKESCREEN_LOCATORS:function\(\){return [a-z]{2}}/SMOKESCREEN_LOCATORS:function\(\){return}/
 ://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
 ||mail.ru/*/fast-slot.js$replace=/&&t.mimic.setup.broker//
 ||mail.ru^$~script,~xmlhttprequest,replace=/broker:/_broker:/
