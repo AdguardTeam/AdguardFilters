@@ -378,9 +378,17 @@ fosspost.org,portalvirtualreality.ru,pingvin.pro,bonobono.com,curbsideclassic.co
 ! Exceptions are also required because these requests can be blocked by other rules
 !#safari_cb_affinity(general)
 ||succeedscene.com^$badfilter
-@@||succeedscene.com/*/ads.load.js
-@@||succeedscene.com/ads/*/*.js
-@@||succeedscene.com/admr/site-adbanner.js
+! File paths can change daily and generic url blocking rules can block them
+@@||succeedscene.com^$script,third-party
+! If site must be blocked:
+! ||succeedscene.com^$important,domain=
+!
+!@@||succeedscene.com/_adslot/
+!@@||succeedscene.com/pagead/ads?ad=
+!@@||succeedscene.com/*/ads.load.js
+!@@||succeedscene.com/ads/*/*.js
+!@@||succeedscene.com/admr/site-adbanner.js
+!@@||succeedscene.com/customads/custom_ads.js
 !#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/pull/142877
 /^https:\/\/[0-9a-z]{7,25}\.com\/v2(?:\/0\/)?(?=[0-9a-z_-]{0,84}[A-Z])(?=[a-zA-Z_-]{0,84}[0-9])[0-9a-zA-Z_-]{54,85}(#\?v=[0-9a-f]{32})?$/$ping,script,xmlhttprequest,third-party,match-case
@@ -406,6 +414,8 @@ dailyvoice.com,сnbc.com#%#//scriptlet('abort-current-inline-script', 'Object.fr
 slashfilm.com#%#//scriptlet('abort-current-inline-script', 'String.fromCharCode', '/admiral|String\.fromCharCode\(97,( )*?100,( )*?109,( )*?105,( )*?114,( )*?97,( )*?108\)|a%64%6d%69%72%61%6c|adm%69%72%61l|%61%64m%69r%61l|-engaged[\s\S]*?googletag[\s\S]*?decodeURI/')
 ! #%#//scriptlet('set-constant', 'loadAdmiral', 'noopFunc')
 cbssports.com#%#//scriptlet('set-constant', 'loadAdmiral', 'noopFunc')
+! #%#//scriptlet('set-constant', 'admrlLoaded', 'true')
+mlive.com#%#//scriptlet('set-constant', 'admrlLoaded', 'true')
 ! bait - Admiral overlay
 howtogeek.com#%#//scriptlet('prevent-element-src-loading', 'script', 'nebulousgarden.com')
 ##body div.bOvWNQ
@@ -1707,6 +1717,9 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! Do not forget about '!#safari_cb_affinity' section for exclusions:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#general
 !
+gaystream.pw##.notice-bar
+betaseries.com#?#.faceboxDisplay:has(> div#facebox > form > p > img[src$="/facebox_adblock.jpg"])
+betaseries.com#$#body[style*="overflow:"] { overflow: auto !important; padding-right: 0 !important; }
 4spn.github.io#?##oframepreroll pjsdiv:has(> pjsdiv[style^="position: absolute;"]:contains(ADBLOCK))
 redv.co##div[data-reactroot] > div[class] > form + div[class^="sc-"]:has(> ins.adsbygoogle[data-ad-client])
 playnow.pl###js-player-wrapper > .c-adblock-popup
@@ -3666,7 +3679,6 @@ wvgazettemail.com,ceogelisim.com#@#.adSense
 @@||static.criteo.net/js/px.js^$domain=lequipe.fr
 @@||static.diep.io/*.js$~third-party
 @@||static.doubleclick.net/instream/ad_status.js$domain=dailyvoice.com|malaysiastock.biz
-@@||static.fore.4pcdn.de/premium/ads/delivery/ajs.php?$domain=4players.de
 @@||static.game-state.com/js/adblock.js
 @@||static.icy-veins.com/javascript/*adsense
 @@||static.irk.ru/static/js/apps-js/adv/*.js
@@ -4178,6 +4190,7 @@ utsports.com##body > div[class][aria-label="Ad Blocker Detected"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109655
 !#safari_cb_affinity(general,privacy)
 @@||meteoblue.com/build/website/gpt.js
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=meteoblue.com
 !#safari_cb_affinity
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/100714
