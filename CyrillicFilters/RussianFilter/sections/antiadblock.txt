@@ -1023,10 +1023,7 @@ mail.ru##.mailru-visibility-check
 mail.ru##div[class*="rb-slot_plug"]
 mail.ru,sportmail.ru##div[class*="m-fixed-panel__box"]
 mail.ru,sportmail.ru,~e.mail.ru,~my.mail.ru,~touch.mail.ru#%#//scriptlet('set-constant', 'Object.prototype.mimic', 'null')
-! mail.ru main page - under the search
-mail.ru#?#div[slot="main-column"] > div:matches-css(height : /^(90|89\.5).*px/)
 ! ad on main page
-mail.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.ssr_ads')
 [$path=/^\/$|mail\.ru\/\?/]mail.ru##div[slot="main-column"] > div.tgb-wrapper
 !
 [$path]mail.ru#%#//scriptlet('json-prune', '[].slot')
@@ -1039,8 +1036,6 @@ love.mail.ru#?##app-wrapper > div:has(> div[class] > div[class] > div[class] > a
 love.mail.ru###adblock-in-browser
 !
 e.mail.ru##.layout__column_right:has(> div > div.advert-column)
-e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', 'SMOKESCREEN')
-e.mail.ru,octavius.mail.ru#%#//scriptlet('json-prune', '[].slot')
 ! kino.mail.ru
 kino.mail.ru##.block_ad-text
 kino.mail.ru##button[class*="adv-marker"]
@@ -1060,10 +1055,11 @@ minigames.mail.ru#%#//scriptlet("abort-current-inline-script", "$", "showAd")
 otvet.mail.ru#%#//scriptlet('json-prune', 'baits css direct *.slot')
 !
 ||ad.mail.ru/adp/?_SITEZONE=$replace=/"html"/"html_"/,domain=e.mail.ru|octavius.mail.ru
-e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', '())),v.Z.themes.on("themes:')
 @@||e.mail.ru^$generichide
 @@||octavius.mail.ru^$generichide
-! Fix for the mobile version, when used #%#//scriptlet('prevent-setTimeout', '())),v.Z.themes.on("themes:')
+! Fixing the first letter for the mobile version
+!+ PLATFORM(android, ios)
+e.mail.ru,octavius.mail.ru#$?#html.mobile .letter-list__react div.ReactVirtualized__Grid__innerScrollContainer { margin-top: var(--vkui--octavius_size_portal-menu_height--regular); }
 !
 ! ok.ru
 ok.ru#%#//scriptlet('json-prune', 'result.body.direct')
@@ -1474,6 +1470,7 @@ ya.ru,yandex.*###search-result-aside > div[class*="_right_yes"]:not([aria-label]
 !
 ! Yandex.Images
 /images/_crpd/*/*/*_$script,replace=/\.?directBannerType//,domain=ya.ru|yandex.*
+ya.ru,yandex.*##.ImagesViewer-SidebarAdv
 ya.ru,yandex.*##div[style^="max-width:"] > svg[width="100%"]
 ya.ru,yandex.*##.serp-list > div.incut
 ya.ru,yandex.*##.DirectInline

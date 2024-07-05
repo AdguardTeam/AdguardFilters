@@ -17,6 +17,10 @@ capital.fr#@#.plainAd
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/182577
+tvaplus.ca#%#!function(){const e={apply:(e,t,n)=>(n&&n[1]&&"useAdBlockerDetector"===n[1]&&n[2]&&n[2].get&&(n[2].get=function(){return function(){return!1}}),Reflect.apply(e,t,n))};window.Object.defineProperty=new Proxy(window.Object.defineProperty,e)}();
+! https://github.com/AdguardTeam/AdguardFilters/issues/182488
+||cdn.assets02.nicematin.com/build/js/viewpay.*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178842
 @@||cinemaclock.com/adpartner.min.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176244
@@ -124,14 +128,19 @@ ebookdz.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementById', 'Blocking Ads')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147842
-japscan.lol$$script:contains(/ApoZow|'(map'|\/imgs\/|ads?-\d+|ad-img-slot|ad_inview_area|div-leader-ad)|\['style'\]\['display'\]/)
+japscan.lol$$script:contains(/ApoZow|'(map'|\/imgs\/|ads?-\d+|ad-img-slot|ad_inview_area|div-leader-ad)|\['style'\]\['display'\]|\.length;var|\.substr\(0|\.reduce\(\(acc, curr\)/)
 japscan.lol#@#.ad_slot
 japscan.lol#@##ad-img-slot
 japscan.lol#@##banner-top-right
 japscan.lol##.blur-background
 japscan.lol##.notice-message
 japscan.lol###promo.sticky-top
-japscan.lol#%#//scriptlet("remove-node-text", "script", "/ApoZow|'(map'|\/imgs\/|ads?-\d+|ad-img-slot|ad_inview_area|div-leader-ad)|\['style'\]\['display'\]/")
+japscan.lol#%#//scriptlet("remove-node-text", "script", "/ApoZow|'(map'|\/imgs\/|ads?-\d+|ad-img-slot|ad_inview_area|div-leader-ad)|\['style'\]\['display'\]|\.length;var|\.substr\(0|\.reduce\(\(acc, curr\)/")
+japscan.lol#%#!function(){const t={apply:(t,n,o)=>{if(n&&n.match?.(/_\$_|innerHTML|DklzSoz|_adbn_/))throw Error();return Reflect.apply(t,n,o)}};window.String.prototype.split=new Proxy(window.String.prototype.split,t)}();
+! Fixes popups
+japscan.lol#%#//scriptlet("prevent-addEventListener", "DOMContentLoaded", "/\['classList'\][\s\S]*?\['target'\]/")
+! Fixes incorrect blocking - search does not work
+||japscan.lol/ujs/$script,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147701
 trustmyscience.com##.adb-border
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146165
