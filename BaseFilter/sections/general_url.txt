@@ -9,7 +9,6 @@
 ! This is a part of the URL used by an Indian ISP called BSNL
 ! to inject ads into HTTP pages
 ! Example URL: http://117.254.84.212:3000/getjs?nadipdata=%7B%22url%22%3A%22%2F%22%2C%22referer%22%3A%22%22%2C%22host%22%3A%22h2020.myspecies.info%22%2C%22categories%22%3A%5B100%5D%2C%22reputations%22%3A%5B1%5D%2C%22nadipdomain%22%3A1%2C%22policyid%22%3A0%7D&screenheight=1120&screenwidth=1792&tm=1603925840327&lib=true&method2=true
-!
 /getjs?nadipdata$third-party,replace=/[\s\S]+openOriginalUrl[\s\S]+/openOriginalUrl()/
 !
 ! https://github.com/AdguardTeam/AdguardFilters/commit/76971ea821a06ab04ada21f1291e6081ad54c428#commitcomment-104226681
@@ -51,9 +50,11 @@
 /?pl=*&sm=$document
 ! Lucky visitor and video scam ex. https://1821.antbenjaw.live/jiehxxgr/?u=1nup806&o=0wywy2l&t=...
 .live/web/?sid=t*~$document
-/^https?:\/\/[0-9a-z]*\.?[-0-9a-z]{4,}\.[a-z]{2,11}\/(?:[0-9a-z]{6,10}\/)?\/?(?:article\d{4}\.doc)?\?[ou]=[0-9a-z]{7}&[ou]=[0-9a-z]{7}/$document,match-case
+! https://urlscan.io/result/fb21aa1b-9c79-4ac4-8e82-386403964206/
+/?u1=*&o1=*&sid=t*~$document
+/^https?:\/\/[0-9a-z]*\.?[-0-9a-z]{4,}\.[a-z]{2,11}\.?[a-z]{0,7}\/(?:[0-9a-z]{6,10}\/)?\/?(?:article\d{4}\.doc)?\?(?:cid=[0-9a-z]+&)?[ou]=[0-9a-z]{7}(?:&t=\d+)?&[ou]=[0-9a-z]{7}/$document,match-case
 !+ PLATFORM(ios, ext_safari)
-/^https?:\/\/[0-9a-z]*\.?[-0-9a-z][-0-9a-z][-0-9a-z][-0-9a-z]+\.[a-z][a-z]+\/([0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z]+\/)?\/?\?[ou]=[0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z]&[ou]=[0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z]/$document,match-case
+/^https?:\/\/[0-9a-z]*\.?[-0-9a-z][-0-9a-z][-0-9a-z][-0-9a-z]+\.[a-z][a-z]+\.?[a-z]*\/([0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z]+\/)?\/?(article[0-9][0-9][0-9][0-9]\.doc)?\?(cid=[0-9a-z]+&)?[ou]=[0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z](&t=[0-9]+)?&[ou]=[0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z][0-9a-z]/$document,match-case
 !
 ! PopAds
 .com/*=3&*,1|$script,third-party
@@ -119,7 +120,7 @@ errx01USAHTML/?bcda=$document
 &subAffId={SUBAFFID}^$script,subdocument,third-party
 &subAffId=tall^$script,subdocument,third-party
 /?rb=*&zoneid=$all,third-party
-&rb=*&zoneid=$script,xmlhttprequest,third-party
+&rb=*&zoneid=$all
 &zoneid=*&rb=$all,third-party
 /?request_ab*&zoneid=*&rb=$all
 /avo/includes/js/jquery.js
@@ -133,6 +134,8 @@ _clickunder&pb=$popup
 /rtb/r/?token=$script
 .com/pw/waWQiOjEw
 ! Clickadu
+! ex. https://kaqppajmofte.com/en/owh/avw?spfrctux=ude&qdsp=jzub&dce=808204&jvkcce=391260&iilmwn=auge&id=1971897
+/^https:\/\/[a-z]{8,12}\.com\/[\/a-z]{2,}\?(?:[a-z]+=(?:\d+|[a-z]+)&)*?id=[12]\d{6}/$script,third-party,match-case,header=x-js-ab2
 ?zoneid=*&ab=1|$script,third-party
 /get/*?zoneid=*&jp=$script
 ! https://github.com/AdguardTeam/AdguardFilters/pull/83787
@@ -241,6 +244,7 @@ _ad_content.
 !+ NOT_PLATFORM(ext_safari, ios)
 /tghr.js$script
 !
+%3C?php%20echo%20substr(md5(microtime())$popup
 .com/C.ashx|$third-party
 /zone/*?frame=0&ancestorOrigins=$all
 /direct-link?pubid=$all
