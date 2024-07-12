@@ -8,6 +8,10 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/183017
+fsbot.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fsbot.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182114
 ftchinese.com#@#.AdsBox
 ftchinese.com#%#//scriptlet('prevent-setTimeout', '.offsetHeight')
@@ -174,6 +178,7 @@ rjno1.com#%#function preventError(d){window.addEventListener("error",function(a)
 !+ NOT_PLATFORM(windows, mac, android)
 ||126.net^$script,redirect=noopjs,domain=rjno1.com
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
+rjno1.com#@#ins.adsbygoogle[data-ad-client]
 rjno1.com#@#ins.adsbygoogle[data-ad-slot]
 @@||hm.baidu.com/hm.js$domain=rjno1.com
 @@||cpro.baidu.com^$script,domain=rjno1.com
