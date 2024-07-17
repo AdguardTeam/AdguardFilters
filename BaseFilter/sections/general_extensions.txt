@@ -482,7 +482,7 @@ x-x-x.tube#%#//scriptlet('prevent-popads-net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171300
 pluto.tv#%#//scriptlet('json-prune', 'adBreaks.*')
 !+ NOT_PLATFORM(ext_ublock)
-pluto.tv#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"_ad")]] | //*[@type="static"]//*[name()="Period"]/@start | //*[@type="static"]//*[name()="Period"]/@duration', '', '.mpd')
+!pluto.tv#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"_ad")]] | //*[@type="static"]//*[name()="Period"]/@start | //*[@type="static"]//*[name()="Period"]/@duration', '', '.mpd')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171081
 musichq.pe#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170495
@@ -1392,8 +1392,6 @@ eegybest.xyz#%#//scriptlet('remove-attr', 'href', '#clickfakeplayer')
 player.theplatform.com#%#(()=>{window.XMLHttpRequest.prototype.open=new Proxy(window.XMLHttpRequest.prototype.open,{apply:async(a,b,c)=>{const d=c[1];return"string"!=typeof d||0===d.length?Reflect.apply(a,b,c):(d.match(/manifest\..*\.theplatform\.com\/.*\/.*\.m3u8\?.*|manifest\..*\.theplatform\.com\/.*\/*\.meta.*/)&&b.addEventListener("readystatechange",function(){if(4===b.readyState){const a=b.response;Object.defineProperty(b,"response",{writable:!0}),Object.defineProperty(b,"responseText",{writable:!0});const c=a.replaceAll(/#EXTINF:.*\n.*tvessaiprod\.nbcuni\.com\/video\/[\s\S]*?#EXT-X-DISCONTINUITY|#EXT-X-VMAP-AD-BREAK[\s\S]*?#EXT-X-ENDLIST/g,"");b.response=c,b.responseText=c}}),Reflect.apply(a,b,c))}})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126547
 maxstream.video#%#//scriptlet("prevent-window-open")
-! https://github.com/AdguardTeam/AdguardFilters/issues/124322
-itv.com#%#//scriptlet('json-prune', 'Playlist.ContentBreaks')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136960
 hurawatch.at#%#//scriptlet('abort-current-inline-script', 'window.onclick', 'https')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126253
@@ -2173,8 +2171,6 @@ jacquieetmicheltv.net#%#//scriptlet('set-constant', 'showPopunder', 'noopFunc')
 influencersgonewild.com#%#//scriptlet('abort-current-inline-script', 'onload', 'puHref')
 ! popup
 hoastie.com#%#//scriptlet("abort-on-property-read", "open")
-! https://github.com/AdguardTeam/AdguardFilters/issues/80254
-vladan.fr#%#//scriptlet("abort-on-property-read", "wpsite_clickable_data")
 ! popup on click
 sportbet.tips#%#//scriptlet("abort-on-property-read", "_wm")
 ! auto redirect after click
