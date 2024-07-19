@@ -12,9 +12,8 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183713
 javball.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ダウンロード', '/if \(.+?\{\n(.+innerHTML = \'<a .+)\n\}/', '$1')
-exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ブロック', '/[0-9A-z]{20,}\.innerHTML === \'<span.+>\'/', '1')
-exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ブロック', '/\{\n.{20,}\.innerHTML = \'<span.+>\';/g', '{')
+exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ブロック', '/\([0-9A-z]{20,}\.innerHTML === \'<span.+?>\'\)/g', '(1)')
+exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ブロック', '/\{[0-9A-z]{20,}\.innerHTML = \'<span.+?span>\';\}?/g', '{}')
 !+ NOT_PLATFORM(ios, ext_android_cb)
 exploader.net#%#//scriptlet('prevent-xhr', '.js')
 !+ PLATFORM(ios, ext_android_cb)
