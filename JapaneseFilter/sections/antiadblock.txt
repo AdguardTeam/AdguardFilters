@@ -10,8 +10,8 @@
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', '$.ajax', '/if \(\!window\.load_daotag\) \{let nodeList[\S\s]*/', 'window.load_daotag = true;')
-!+ NOT_PLATFORM(ios, ext_android_cb)
+exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'location', '/(if \(top \!= self\))/', 'window.load_daotag = true;$1')
+exploader.net#%#//scriptlet('prevent-element-src-loading', 'script', 'exploader.net/js/')
 exploader.net#%#//scriptlet('prevent-xhr', '.js')
 !+ PLATFORM(ios, ext_android_cb)
 @@||daotag.com^$script,domain=exploader.net
