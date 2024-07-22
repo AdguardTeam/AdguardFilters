@@ -11,6 +11,8 @@
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
 exploader.net#%#AG_onLoad((async function(){const t="undefined"!=typeof dl_link?Object.values(dl_link):null,e=document.querySelector('a.dl_button[href*="?"]');if(!t||!e)return;const n=e.getAttribute("href");let l=null;t.forEach((async t=>{const e=n.replace(/\?.*/,`?${t}`);await(async t=>{const e=await fetch(t);return!(await e.text()).includes("広告ブロック")})(e)&&(l=t,document.querySelectorAll('a.dl_button[href*="?"]').forEach((t=>{let e=t.getAttribute("href");e=e.replace(/\?.*/,`?${l}`),t.setAttribute("href",e)})))}))}));
+!+ PLATFORM(ext_ff)
+exploader.net#%#//scriptlet('trusted-replace-node-text', 'script', 'ダウンロード', '/(window\.[0-9A-z]+[\S\s]+ele\.outerHTML;\})/', '$1;document.addEventListener("DOMContentLoaded", (async function(){const t="undefined"!=typeof dl_link?Object.values(dl_link):null,e=document.querySelector("a.dl_button[href*=\"?\"]");if(!t||!e)return;const n=e.getAttribute("href");let l=null;t.forEach((async t=>{const e=n.replace(/\?.*/,`?${t}`);await(async t=>{const e=await fetch(t);return!(await e.text()).includes("広告ブロック")})(e)&&(l=t,document.querySelectorAll("a.dl_button[href*=\"?\"]").forEach((t=>{let e=t.getAttribute("href");e=e.replace(/\?.*/,`?${l}`),t.setAttribute("href",e)})))}))}));')
 exploader.net#%#//scriptlet('prevent-element-src-loading', 'script', 'exploader.net/js/')
 exploader.net#%#//scriptlet('prevent-xhr', '.js')
 !+ PLATFORM(ios, ext_android_cb)
