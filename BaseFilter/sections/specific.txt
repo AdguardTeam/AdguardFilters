@@ -187,26 +187,7 @@ youtubekids.com,youtube-nocookie.com,youtube.com#%#//scriptlet('set-constant', '
 .com/watch?$xmlhttprequest,jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 /youtubei/v*/player?$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
 .com/playlist?list=$jsonprune=\$..[adPlacements\, adSlots\, playerAds],domain=youtubekids.com|youtube-nocookie.com|youtube.com
-! $replace rules for Firefox
-!#if (adguard_ext_firefox)
-! https://github.com/AdguardTeam/AdguardFilters/issues/167440
-! The rule below causes breakage on tv.youtube.com, so tv.youtube.com is excluded from this rule
-! and simple workaround is used instead
-! According to documentation, comma in {2,4} should be escaped, but it breaks video player, it works fine if it's not escaped
-! aglint-disable-next-line invalid-modifiers
-/youtubei/v*/player?$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2,4})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com|~tv.youtube.com
-! aglint-disable-next-line invalid-modifiers
-.com/playlist?list=$replace=/\"adPlacements.*?([A-Z]"\}|"\}{2,4})\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com|~tv.youtube.com
-/youtubei/v*/player?$replace=/"adPlacements"/"no_ads"/,domain=tv.youtube.com
-.com/playlist?list=$replace=/"adPlacements"/"no_ads"/,domain=tv.youtube.com
-!
-.com/watch?$replace=/\"adPlacements.*?\"\}\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-.com/watch?$replace=/\"adSlots.*?\}\]\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-/youtubei/v*/player?$replace=/\"adSlots.*?\}\]\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-.com/watch?$replace=/\"playerAds.*?\}\}\]\,//,xmlhttprequest,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-/youtubei/v*/player?$replace=/\"playerAds.*?\}\}\]\,//,domain=youtubekids.com|youtube-nocookie.com|youtube.com
-!#endif
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox && !ext_ublock)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !ext_ublock)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167440
 ! The rule trusted-replace-xhr-response with '\"adPlacements.*?([A-Z]"\}|"\}{2})\}\]\,' causes breakage on tv.youtube.com
 ! The problem is that rules with '~' do not work correctly in Safari, the same might be for exceptions,
@@ -361,6 +342,13 @@ $xmlhttprequest,third-party,denyallow=authkong.com|rsc.cdn77.org|linkvertise.com
 !
 ! NOTE: Specific rules
 !
+javeng.com##center > form > a[target="_blank"]
+javeng.com##iframe[src*="/NativeBanner.html"]
+olympics.com#$?##header-adv-banner { remove: true; }
+olympics.com#$#header.-sticky { top: 0 !important; }
+eurosport.com##.d3-top-advert
+eurosport.com##.d3-side-advert
+news18.com##.adbox
 thebarentsobserver.com##div[class*="field-name-adsense"]
 livemint.com##.rightblockAd
 pornwex.tv#%#//scriptlet('prevent-addEventListener', 'click', 'fp-screen')
@@ -2569,8 +2557,8 @@ dev.miuiflash.com##div[class^="stickyads"]
 fapnado.com##iframe[width="95%"][height="400"]
 soyacincau.com##.scadslot-widget
 hentaifreak.org###site-header-main > .text-center
-||unpkg.com/videojs-vast-vpaid$important,domain=video.q34r.org|korall.xyz|porntoday.ws|tabooporns.com|netuplayer.top|wiztube.xyz|netu.ac|zerknij.cc|speedporn.net|chillicams.net|meucdn.vip|yandexcdn.com|waaw1.tv|waaw.*|czxxx.org|scenelife.org|hqq.*|peliculas8k.com|filme-romanesti.ro|tikzoo.xyz|gledajvideo.top|playerhd.org|ntvid.online|rpdrlatino.live|vertelenovelasonline.com|1069jp.com|diziturk.club|stbnetu.xyz|mundosinistro.com|younetu.org|playvideohd.com|vzlinks.com|javboys.cam|xz6.top|fsohd.pro|playertoast.cloud|pupupul.site|shitcjshit.com|cinecalidad.vip|fansubseries.com.br|vapley.top|player.streaming-integrale.com|rpdrlatino.com|xtapes.to|player.igay69.com|troncha.lol|vpge.link|opuxa.lat|ztnetu.com|filmcdn.top|animeyt2.es|asdasd1231238das.site
-/js/script_*.js?$~third-party,domain=video.q34r.org|korall.xyz|porntoday.ws|tabooporns.com|netuplayer.top|wiztube.xyz|netu.ac|zerknij.cc|speedporn.net|chillicams.net|meucdn.vip|yandexcdn.com|waaw1.tv|waaw.*|czxxx.org|scenelife.org|hqq.*|tikzoo.xyz|gledajvideo.top|playerhd.org|ntvid.online|rpdrlatino.live|vertelenovelasonline.com|1069jp.com|diziturk.club|stbnetu.xyz|mundosinistro.com|younetu.org|playvideohd.com|vzlinks.com|javboys.cam|xz6.top|fsohd.pro|playertoast.cloud|pupupul.site|shitcjshit.com|cinecalidad.vip|fansubseries.com.br|vapley.top|player.streaming-integrale.com|rpdrlatino.com|xtapes.to|player.igay69.com|troncha.lol|vpge.link|opuxa.lat|ztnetu.com|filmcdn.top|animeyt2.es|asdasd1231238das.site
+||unpkg.com/videojs-vast-vpaid$important,domain=video.q34r.org|korall.xyz|porntoday.ws|tabooporns.com|netuplayer.top|wiztube.xyz|netu.ac|zerknij.cc|speedporn.net|chillicams.net|meucdn.vip|yandexcdn.com|waaw1.tv|waaw.*|czxxx.org|scenelife.org|hqq.*|peliculas8k.com|filme-romanesti.ro|tikzoo.xyz|gledajvideo.top|playerhd.org|ntvid.online|rpdrlatino.live|vertelenovelasonline.com|1069jp.com|diziturk.club|stbnetu.xyz|mundosinistro.com|younetu.org|playvideohd.com|vzlinks.com|javboys.cam|xz6.top|fsohd.pro|playertoast.cloud|pupupul.site|shitcjshit.com|cinecalidad.vip|fansubseries.com.br|vapley.top|player.streaming-integrale.com|rpdrlatino.com|xtapes.to|player.igay69.com|troncha.lol|vpge.link|opuxa.lat|ztnetu.com|filmcdn.top|animeyt2.es|asdasd1231238das.site|tmdbcdn.lat
+/js/script_*.js?$~third-party,domain=video.q34r.org|korall.xyz|porntoday.ws|tabooporns.com|netuplayer.top|wiztube.xyz|netu.ac|zerknij.cc|speedporn.net|chillicams.net|meucdn.vip|yandexcdn.com|waaw1.tv|waaw.*|czxxx.org|scenelife.org|hqq.*|tikzoo.xyz|gledajvideo.top|playerhd.org|ntvid.online|rpdrlatino.live|vertelenovelasonline.com|1069jp.com|diziturk.club|stbnetu.xyz|mundosinistro.com|younetu.org|playvideohd.com|vzlinks.com|javboys.cam|xz6.top|fsohd.pro|playertoast.cloud|pupupul.site|shitcjshit.com|cinecalidad.vip|fansubseries.com.br|vapley.top|player.streaming-integrale.com|rpdrlatino.com|xtapes.to|player.igay69.com|troncha.lol|vpge.link|opuxa.lat|ztnetu.com|filmcdn.top|animeyt2.es|asdasd1231238das.site|tmdbcdn.lat
 ||hqq.tv/js/script_*.js
 ||hqq.tv/js/script-*.js
 wsj.com##div[class^="style--column"] div[style="height:100%"] div[style^="top:"][style*="position:"][style*="sticky"]
@@ -6623,7 +6611,7 @@ gab.com##article[data-id^="gab-ad-status-timeline-injection-"]
 /assets/jquery/p1adult.js$domain=kamehamehaa.xyz
 /assets/jquery/*main*.js?v=$domain=vidhidepre.com
 /assets/jquery/p1anime.js$domain=fdewsdc.sbs
-/assets/jquery/ap*.js$domain=anime7u.com|anime4low.sbs|cdnwish.com|moviekhhd.online|jodwish.com|recordplay.biz|swdyu.com|kamehaus.net
+/assets/jquery/ap*.js$domain=anime7u.com|anime4low.sbs|cdnwish.com|moviekhhd.online|jodwish.com|recordplay.biz|swdyu.com|kamehaus.net|strwish.com
 /assets/jquery/main*.js?v=$domain=streamhide.to|guccihide.com|filelions.to|mwish.pro|javplaya.com|sub123.xyz|awish.pro|wishfast.top|cabecabean.lol|sfastwish.com|fviplions.com|fsdcmo.sbs|obeywish.com
 /assets/jquery/adult*.js$domain=javb1.com|streamwish.to|louishide.com|ahvsh.com|filelions.to|trafficdepot.re|streamxxx.online|streamvid.top|javhahaha.us|javsw.me|javlion.xyz|embedwish.com|leakslove.net|gaystream.cloud
 /assets/*.min.js?*=*&$domain=sbspeed.com|streamsss.net|sblanh.com|faptiti.com|anigogo.net|mm9844.*|sbanh.com|sbthe.com|sblongvu.com|javbigo.xyz|sbrulz.xyz|sbchill.com|sbbrisk.com|sbhight.com|rbtstream.info|sbface.com|lvturbo.com|streaamss.com|sbrapid.com|sblona.com|streamsb.click|sbrity.com
