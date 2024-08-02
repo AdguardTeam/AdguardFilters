@@ -282,7 +282,6 @@ tjpr.jus.br###politica-privacidade-tjpr
 cuvva.com###cuvva-app-injection-site > div:has(> div button[data-testid="accept-cookies"])
 sheepesports.com##body > .fixed.bottom-0.right-0:has(> .border > .flex > p.text-sm > a[href="/terms"])
 chrono24.*#%#//scriptlet('trusted-set-cookie-reload', 'c24-consent', 'AAEAIwEq')
-xe.com###__next > div[class^="__variable_"] > div[style^="position:"] ~ div > section
 hornet.com#%#//scriptlet('set-cookie', '_consent_ads', '0')
 hornet.com#%#//scriptlet('set-cookie', '_consent_analytics', '0')
 airstop.sk,airstop.cz,airstop.pl#$#body[style^="overflow:"] { overflow: auto !important; }
@@ -11814,10 +11813,11 @@ harmonie-im-garten.de,jimdosite.com##main + div:last-child
 ! It seems that for some reason search bar and "add to cart" button doesn't work when cookie notice is just hidden
 obi-de.app.baqend.com,obi.de#$?#.colorbox-cookiepolicy { remove: true; }
 obi-de.app.baqend.com,obi.de#$#.colorbox-cookiepolicy { position: absolute !important; left: -3000px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/184799
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83583
-! Website is broken if "display: none" is used - ##div[class*="ConsentBannerstyles_"]
-xe.com#$#div[class*="ConsentBannerstyles_"] { position: absolute !important; left: -3000px !important; }
-accounts.xe.com#$#body > div#cookieBannerContainer > * { position: absolute !important; left: -3000px !important; }
+! Website is broken if "display: none" is used
+xe.com#$##__next > div[class^="__variable_"] > div[style^="position:"] ~ div > section { position: absolute !important; left: -3000px !important; }
+account.xe.com#$#.consentCardOverlay { position: absolute !important; left: -3000px !important; }
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/81056
 ||consent.gameforge.com/cookiebanner.js$important
