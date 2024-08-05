@@ -4,6 +4,13 @@
 ! Good: example.org###rek; ||example.com/ads/
 ! Bad: example.org#@##banner_ad (for instance, should be in allowlist.txt or in antiadblock.txt)
 !
+! ### Temporary ###
+!
+! https://github.com/AdguardTeam/AdGuardExtra/issues/529
+chip.de#$?#main[role="main"] { grid-row: 2 !important; }
+!
+! ### Temporary END ###
+!
 ! propeller-tracking.com for CB
 ! Requests lile https://almstda.tv/5/6202259
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -49,7 +56,8 @@ lkz.de##.nfy-row-ad
 ! Blocked service worker to fix filtering in apps
 ||obi.de/wrapper-sw.js
 !https://github.com/AdguardTeam/AdguardFilters/issues/158944
-chip.de##li > a[href*="chip.de/downloads/"][target="_blank"]:has(img[src*="hash"])
+! breaks download button at https://www.chip.de/news/Google-verschenkt-praktische-Organizer-App-Werbefreie-Pro-Version-statt-369-Euro-jetzt-kostenlos_161805364.html
+! chip.de##li > a[href*="chip.de/downloads/"][target="_blank"]:has(img[src*="hash"])
 chip.de#?#a[href*="chip.de/downloads/"]:has(img[src*="hash"]:not([class], [data-src]))
 chip.de##a[href*="chip.de/downloads/"] img[src*="hash"]:not([class], [data-src])
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
@@ -145,6 +153,17 @@ formel1.de,krautundrueben.de,motorsport-total.com,traktorpool.de,fnweb.de,laborj
 !
 !
 !
+sir-apfelot.de##.entry-content > .code-block:has(> div[style] > a:contains(Werbung))
+sir-apfelot.de##a[rel*="sponsored"]
+chip.de##.Button--Clickout
+||watchmdh.to/banners^
+watchdirty.to##.block-video > .table:first-child
+watchdirty.to##.fp-player + div[style*="position: absolute"]
+watchdirty.to##.fp-ui > a[target="_blank"]
+watchdirty.to#%#//scriptlet('trusted-set-local-storage-item', 'kvsplayer_popunder_open', '1722070261175')
+watchdirty.to##.top-links
+watchdirty.to##.primary > li > a:not([id^="item"])
+chip.de##div[data-vr-zone^="hp-aquamarin-"]
 cosmopolitan.de##div[data-ad-slot-id]:not([data-ad-slot-id^="teaser"])
 cosmopolitan.de##div[class*="bx-ada--superbanner"]
 xboxdynasty.de###globalsun
@@ -165,7 +184,7 @@ promobil.de##.va-commercial-container
 focus.de##div[id*="AdSlot"]
 focus.de##.Ad-Slot
 t-online.de#?#div[data-tb-region-item]:has(> article:only-child > .grid > span:contains(ANZEIGE))
-chip.de##aside[role="complementary"]:has(> .Ad:only-child)
+chip.de##aside:has(> .Ad:only-child)
 nordbayern.de##.modul--newsticker-more:has(> div[id^="traffective-ad-"]:first-child + div[id^="traffective-ad-"]:last-child)
 nordbayern.de###traffective-ad-Billboard
 mydealz.de##.listLayout-main > div:not([id], [class])
@@ -2113,8 +2132,6 @@ echo-online.de###rightbar > .powered + .box
 silicon.de###div-gpt-ad-DESKTOP_MEGA-1 > .dfp_word
 silicon.de##div[id^="div-gpt-ad"]:not([id^="div-gpt-ad-DESKTOP_MEGA"])
 heise.de,nzz.ch##.recommendations
-winfuture.de###news_content > div[class^="ws_contentAd"] + br + br
-winfuture.de###news_content > div[class^="ws_contentAd"] + br
 pcwelt.de###outer > .info-section
 ||vodafone.de/csp/csp.php?b_id=$third-party
 blauenarzisse.de##.blaue-widget
