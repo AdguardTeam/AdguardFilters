@@ -176,8 +176,9 @@ mail.ru#%#//scriptlet('set-constant', 'Object.prototype.hideTgbAd', '', '', 'asR
 e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', '/\(\)=>[a-z]{1}\(\)$/')
 ! dzen.ru
 ! Under the search
-dzen.ru#%#//scriptlet('set-constant', 'Ya.Neo.dataSource.news.isAdvertEnabled', 'false')
+dzen.ru##div:matches-attr("data-*"="ad-banner")
 ! Ads in news
+dzen.ru##div[class^="news-"][class$="_banner"]
 dzen.ru##.news-app-layout-redesign__content > div[class*="_position_tsar news-"]
 ! Ads in the feed
 dzen.ru#$?#.feed__item > article._with_big_card_height._dzen-feed._carousel:contains(/[реклама]{7,10}/) { remove: true; }
@@ -190,6 +191,9 @@ dzen.ru##div[class^="float-interview__float-"]
 [$path=/a/]dzen.ru#?#.zen-page div.feed__item article:matches-css(align-items: center)
 !
 ! Video
+dzen.ru#%#//scriptlet('set-constant', 'Object.prototype.rtb', 'undefined')
+[$path=/video]dzen.ru##div[class*="item-info__videoViewerItemInfo-"] + div:not([class])
+[$path=/video]dzen.ru##div[class^="video-view-sidebar"] div[class]:matches-attr("aria-label"=/[Рр]екламная карта/)
 dzen.ru##.viewer-layout__sidebar div[aria-label*="екламная карта"]
 !
 ! END: VK group
