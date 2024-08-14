@@ -4,6 +4,10 @@
 ! Good: ||example.org/video-links$replace=/vast":/vast_":/
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/186249
+! Website is sometimes malformed and if it happens then content script is not injected, rule below should fixes it
+!+ PLATFORM(windows, mac, android)
+||4khd.com/content/$replace=/^((?!<style>)[\s\S])*<\/style>\n<style/<style/,document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184328
 ! Generic fix for disqus_recommendations leftovers
 ||disqus.com/recommendations.js$replace=/\.width="calc\(100% - 310px\)":/.width="100%":/
