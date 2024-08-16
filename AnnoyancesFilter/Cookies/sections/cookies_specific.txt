@@ -280,6 +280,7 @@ stern.de#%#//scriptlet('trusted-click-element', '#decline-nid-consent')
 !
 ! NOTE: Regular rules
 !
+[$path=/^((?!\/privacy\/consent).)*$/]tumblr.com##body #cmp-app-container
 adventica.lt###gdpr_full_content
 minimeal.com#$#body { overflow: auto !important; padding-right: 0 !important; }
 minimeal.com#$##id_cookie_banner ~ div.offcanvas-backdrop { display: none !important; }
@@ -12653,7 +12654,6 @@ hintertuxergletscher.at#%#//scriptlet('trusted-click-element', '.bh-cookies-popu
 alpenverein-muenchen-oberland.de#%#//scriptlet('trusted-click-element', '.cookieConfirmAll')
 edeka.de#%#document.cookie="EDEKA_PRIVACY=@0@0@2%2C3%2C7@0@0;path=/";
 comingsoon.it,beachcam.meo.pt#%#//scriptlet('trusted-click-element', '.qc-cmp2-summary-buttons > button[mode]:last-child')
-tumblr.com#%#//scriptlet('trusted-click-element', '.cmp__dialog-footer-buttons > button.components-button.is-primary')
 chase.co.uk#%#//scriptlet('trusted-click-element', '#consent-manager-modal button.tw-bg-primary')
 spoint.spox.com,cmpv2.berliner-zeitung.de#%#//scriptlet('trusted-click-element', 'button[title="Zustimmen"]')
 cmp.computerbild.de,cmp-sp.siegener-zeitung.de,cmp-sp.sportbuzzer.de#%#//scriptlet('trusted-click-element', 'button[title^="Alle akzeptieren"]')
@@ -13552,6 +13552,11 @@ virginaustralia.com#%#AG_onLoad(function(){if(-1==document.cookie.indexOf("virgi
 linternaute.com,lachainemeteo.com,journaldesfemmes.fr,lefigaro.fr#%#//scriptlet('trusted-click-element', 'button.button__acceptAll')
 !+ PLATFORM(windows, mac, android)
 linternaute.com,lachainemeteo.com,journaldesfemmes.fr,lefigaro.fr#%#AG_onLoad(function(){if("undefined"!=typeof localStorage)try{if(!localStorage.getItem("_pubcid")){var b=new MutationObserver(function(){var a=document.querySelector("#appconsent > iframe");a&&a.contentDocument&&(a=a.contentDocument.querySelector(".button__acceptAll"))&&(b.disconnect(),a.click())});b.observe(document,{childList:!0,subtree:!0,attributes:!0});setTimeout(function(){b.disconnect()},1E4)}}catch(a){}});
+! https://github.com/AdguardTeam/AdguardFilters/issues/186422
+!+ NOT_PLATFORM(windows, mac, android)
+tumblr.com#%#//scriptlet('trusted-click-element', '.cmp__dialog-footer-buttons > button.cmp-components-button.is-primary')
+!+ PLATFORM(windows, mac, android)
+tumblr.com#%#AG_onLoad((function(){if(location.href.includes("/privacy/consent/"))try{var t=new MutationObserver((function(){var e=document.querySelector(".cmp-components-modal__frame > iframe");e&&e.contentDocument&&(e=e.contentDocument.querySelector(".cmp__dialog-footer-buttons > .cmp-components-button.is-primary"))&&(t.disconnect(),e.click())}));t.observe(document,{childList:!0,subtree:!0,attributes:!0}),setTimeout((function(){t.disconnect()}),1e4)}catch(t){}}));
 ! https://github.com/uBlockOrigin/uAssets/issues/24060
 lephoceen.fr#%#AG_onLoad(function(){if("undefined"!=typeof localStorage)try{if(!localStorage.getItem("fastCMP-customConsent")){var b=new MutationObserver(function(){var a=document.querySelector("iframe#fast-cmp-iframe");a&&a.contentDocument&&(a=a.contentDocument.querySelector(".fast-cmp-home-accept > .fast-cmp-button-primary"))&&(b.disconnect(),a.click())});b.observe(document,{childList:!0,subtree:!0,attributes:!0});setTimeout(function(){b.disconnect()},1E4)}}catch(a){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170168
