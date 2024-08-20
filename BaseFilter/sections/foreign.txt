@@ -1294,6 +1294,10 @@ mob.hr##.side_banner
 !
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
+! https://github.com/AdguardTeam/AdguardFilters/issues/186448
+! https://github.com/AdguardTeam/AdguardFilters/issues/185657
+! TODO: remove when it will be fixed in EasyList Czech and Slovak
+@@||aktualne.cz/embed_iframe/$csp=child-src *
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184095
 lidovky.cz##body .r-main
 lidovky.cz###content > .col-a > #selfart-box > #selfart:has(> .r-body)
@@ -6199,6 +6203,14 @@ gospodarkamorska.pl##.Home_categories_box > div.polecamy-slider > div[class*="po
 instalki.pl##center > a.gofollow > img
 onet.pl##a[href^="https://milionymonet.onet.pl/"]
 pograne.eu###custom_html-8
+! https://github.com/AdguardTeam/AdguardFilters/issues/186743
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=halorzeszow.pl
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=halorzeszow.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/186289
+boop.pl##aside > div.sticky:has(> div[id]:only-child > .adTitle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/185967
+standardy.pl##div[class^="banner-"]:not(.banner-swiper-cls)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185789
 fashionbiznes.pl##.cmpgn_adslot.slot_art_half > *
 fashionbiznes.pl##.cmpgn_adslot:not(.slot_art_half)
@@ -6354,6 +6366,8 @@ well.pl##.sda-container
 well.pl##.partners-box
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178095
 hejto.pl##a[href^="https://clk.tradedoubler.com/click?"]
+! Fixes incorrect blocking on https://www.hejto.pl/wiadomosci
+hejto.pl#@#[class$="-ads"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177568
 ceneo.pl###body > section.store-zones
 ceneo.pl##.highlighted-offers
@@ -6559,6 +6573,15 @@ esportway.pl##img[alt*="Reklama"]
 esportway.pl##a[href*="_adserwer.php"]
 esportway.pl#?#.sidebar > div[id^="custom_html-"]:has(> .widget-title:contains(Reklama))
 esportway.pl#?#.sidebar > div[id^="custom_html-"]:has(> .widget-title:contains(Reklama)) + div[id^="block-"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/186722
+! Probably related to original issue - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2890
+! TODO: check if these rules are still needed when version 4.4 will be released
+!#if (adguard_ext_chromium || adguard_ext_firefox || adguard_ext_opera)
+@@||r.linksprf.com/v1/redirect?type=url$domain=pepper.pl
+@@||track.webgains.com/click.html?$domain=pepper.pl
+@@||clk.tradedoubler.com/click?$domain=pepper.pl
+@@||ad.doubleclick.net/ddm/clk/$domain=pepper.pl
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173600
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164394
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162001
@@ -8378,7 +8401,6 @@ mambiznes.pl##.a-zone
 skmedix.pl###__nuxt > div > .text-center[style^="position: fixed; bottom:"][style*="background-color"]
 skmedix.pl#@#[id^="aswift_"]
 skmedix.pl#@#ins.adsbygoogle[data-ad-slot]
-skmedix.pl#$#.adsbygoogle { height: 3px !important; display: block !important; }
 skmedix.pl#$#body .textads.adsbox { display: block !important; height: 2px !important; }
 skmedix.pl#%#AG_onLoad(function(){var a=document.querySelector("body");document.location.hostname.includes("skmedix.pl")&&a&&a.insertAdjacentHTML("beforeend",'<ins class="adsbygoogle" data-ad-status="filled"><div id="aswift_" style="position: absolute !important; left: -3000px !important;"><iframe id="aswift_"></iframe></div></ins><iframe src="/aframe"></iframe>')});
 skmedix.pl#%#//scriptlet('set-constant', 'skl', 'true')
@@ -8387,6 +8409,8 @@ skmedix.pl#%#//scriptlet('set-constant', 'skl', 'true')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=skmedix.pl
 @@||pagead2.googlesyndication.com/pagead/js/r*/show_ads_impl_with_ama_fy2019.js$domain=skmedix.pl
 !#endif
+!+ NOT_PLATFORM(ext_ublock)
+skmedix.pl#$#.adsbygoogle { height: 3px !important; display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/78855
 straganzdrowia.pl##.strag-widget
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127044
@@ -11024,6 +11048,8 @@ vatantat.ru##a[href="https://pobeda.onf.ru/"]
 !---------------------------------------------------------------------
 ! NOTE: Thai
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/185902
+animeyuzu.com##div[id^="animekimiads"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185735
 i-loadzone.com##div[id^="custom_html-"][class^="widget_text widget"]
 i-loadzone.com###i-loadzone_com_678x280_main_top_responsive
@@ -11677,6 +11703,8 @@ asilmedia.org###banner
 !---------------------------------------------------------------------
 ! NOTE: Vietnamese
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/186315
+||nhutgg.io.vn/js/ads-blocked.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185123
 /script/oneAds.js|
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184486
