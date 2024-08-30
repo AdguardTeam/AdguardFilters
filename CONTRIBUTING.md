@@ -226,3 +226,10 @@ a task comment or hints, put them next to the same structure in the file.
 
 - Purpose: this filter blocks various kinds of ads on Turkish-language sites.
 - [Turkish folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/TurkishFilter/sections)
+
+### AdGuard Quick Fixes filter
+
+- Purpose: This filter serves as a quick-response solution, ensuring that AdGuard MV3 extension
+  users experience minimal disruption while awaiting updates of the extension with static filters.
+- [Quick Fixes folder](https://github.com/AdguardTeam/AdguardFilters/tree/master/QuickFixesFilter/sections)
+- Notes: Used in MV3 extension only.

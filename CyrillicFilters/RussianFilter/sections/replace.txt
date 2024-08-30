@@ -4,9 +4,6 @@
 ! Good: ||example.org/video-links$replace=/vast":/vast_":/
 ! Bad:  ||example.org/video-links (should be in specific.txt)
 !
-! https://github.com/AdguardTeam/CoreLibs/issues/1720
-! https://github.com/AdguardTeam/AdguardFilters/issues/176738
-||copycenter.online^$replace=/head>/head><meta charset="utf-8">/,document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66827
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"exchange"\,"normal"/"normal"/
 ||relap.io/api/*/init?$xmlhttprequest,replace=/"ad"\,"normal"/"normal"/
@@ -21,13 +18,8 @@
 ||wasd.tv/ssp/roll$xmlhttprequest,other,~script,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/49088
 ||vast*.kinogo.by/code/video-steam/?id=$xmlhttprequest,other,~script,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-! https://github.com/AdguardTeam/AdguardFilters/issues/58733
-||online.anidub.com/player/index.php?vid=$replace=/if \(!ad\.isDone\)/if (ad.isDone)/
-||anime.anidub.life/player/index.php?vid=$replace=/if \(!ad\.isDone\)/if (ad.isDone)/
 ! oneseasons.club - preroll ads
 ||oneseasons.club/*.xml$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
-! anidub.com
-||exchange.buzzoola.com/adv/*/jsvpaid$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/39998
 !+ PLATFORM(windows,mac,android)
 ||otvet.mail.ru/*/|$replace=/\{\s*(\"css\"\s:\s*".*"\,)|(\"baits\"\s:\s*".*"\,)//

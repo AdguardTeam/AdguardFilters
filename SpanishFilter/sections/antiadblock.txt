@@ -9,6 +9,17 @@
 !
 !
 !
+! https://github.com/uBlockOrigin/uAssets/issues/24987
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=animefire.info|animesonlinecc.us|animesup.info|animeyabu.net|animeyabu.org|drstonebr.com|goanimes.vip|goyabu.us|meuanime.info|otakuanimess.net
+@@||popads.net/js/adblock.js$xmlhttprequest,domain=animefire.info|animesonlinecc.us|animesup.info|animeyabu.net|animeyabu.org|drstonebr.com|goanimes.vip|goyabu.us|meuanime.info|otakuanimess.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/186815
+@@||popads.net/js/adblock.js$xmlhttprequest,domain=isekaibrasil.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=isekaibrasil.com
+@@||ads.anitube.vip^|$xmlhttprequest
+@@||ads.anitube.vip/*.php|$xmlhttprequest
+@@||ads.anitube.vip/?token=$xmlhttprequest
+! https://github.com/uBlockOrigin/uAssets/issues/24938
+financeiropronto.vip#%#//scriptlet('set-local-storage-item', 'last_ads', 'yes')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186247
 turismando.net#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=turismando.net
@@ -18,9 +29,9 @@ istigo.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=istigo.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186243
-cozinhabr.top#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+cozinhabr.top#%#//scriptlet('prevent-setTimeout', 'hasAdblock')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cozinhabr.top
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=cozinhabr.top
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186245
 /js/antiads.js$domain=dicasgeeks.net|dicasdereceitas.net
 dicasdereceitas.net,dicasgeeks.net#$#body { overflow: auto !important; }
@@ -49,8 +60,6 @@ cinelatino.net#%#//scriptlet('set-constant', 'checkAdBlock', 'noopFunc')
 cinelatino.net#@#.ad-space
 cinelatino.net#@#.ad-unit
 cinelatino.net#@#.ad-zone
-cinelatino.net#@#.banner-ads
-cinelatino.net#@#.banner_ads
 cinelatino.net#@#div[id^="div-gpt-"]
 cinelatino.net#@#[id^="div-gpt-ad"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183544
@@ -779,18 +788,21 @@ seriesretro.com#%#//scriptlet("abort-on-property-read", "gothamBatAdblock")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/80724
 audiotools.in##div[id^="chp_ads_blocker-"]
 audiotools.in#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'blocker_detector')
+! https://github.com/AdguardTeam/AdguardFilters/issues/186776
+caroloportunidades.com.br#$##player { display: block !important; }
+caroloportunidades.com.br#%#//scriptlet('prevent-xhr', 'popads.net')
+caroloportunidades.com.br#%#//scriptlet('prevent-setTimeout', 'hasAdblock')
+@@||popads.net/js/adblock.js$xmlhttprequest,domain=caroloportunidades.com.br
+! https://github.com/AdguardTeam/AdguardFilters/issues/186902
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184038
 /asb1.js$domain=anitube.vip|hinatasoul.com
-@@||ads.anitube.vip^$xmlhttprequest,domain=anitube.vip|hinatasoul.com
-@@||popads.net/js/adblock.js$xmlhttprequest,domain=anitube.vip|hinatasoul.com
+@@||ads.anitube.vip^$xmlhttprequest,domain=anitube.vip|hinatasoul.com|dattebayo-br.com
+@@||popads.net/js/adblock.js$xmlhttprequest,domain=anitube.vip|hinatasoul.com|dattebayo-br.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=anitube.vip|hinatasoul.com|dattebayo-br.com
 anitube.vip,hinatasoul.com#%#//scriptlet('set-constant', 'detectedAdblock', 'noopFunc')
-anitube.vip,hinatasoul.com#%#//scriptlet('prevent-xhr', '/pagead2\.googlesyndication\.com|outbrain\.com|adligature\.com|quantserve\.com|srvtrck\.com/')
-anitube.vip,hinatasoul.com#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|outbrain\.com|adligature\.com|quantserve\.com|srvtrck\.com/')
-! Scriptlets are injected too late - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2855
-! and $redirect rule doesn't work because responseURL is checked and it doesn't return original URL
-! TODO: change hint to PLATFORM(ios, ext_android_cb, ext_safari) when issue will be fixed
-!+ NOT_PLATFORM(windows, mac, android, ext_ublock)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=anitube.vip|hinatasoul.com
+anitube.vip,hinatasoul.com#%#//scriptlet('prevent-fetch', '/outbrain\.com|adligature\.com|quantserve\.com|srvtrck\.com/')
+! Fix for DNS filtering
+dattebayo-br.com,anitube.vip,hinatasoul.com#%#(()=>{let e="";const t={apply:(t,o,n)=>(n[1]&&n[1].includes("//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")&&(o.prevent=!0,e=n[1]),Reflect.apply(t,o,n))};window.XMLHttpRequest.prototype.open=new Proxy(window.XMLHttpRequest.prototype.open,t);const o={apply:async(t,o,n)=>{if(o.prevent){const t=()=>Promise.resolve(o).then((e=>{try{e.responseText||Object.defineProperty(e,"responseText",{value:"google_plmetrics"}),"function"==typeof e.onload&&e.onload(),"function"==typeof e.onreadystatechange&&(Object.defineProperty(e,"status",{value:200}),Object.defineProperty(e,"readyState",{value:4}),e.onreadystatechange())}catch(e){console.trace(e)}}));try{const o=await fetch(e);if((await o.text()).length<2e3)return t()}catch(e){return t()}}return Reflect.apply(t,o,n)}};window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,o)})();
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||cdn.adligature.com/work.ink/prod/rules.css$domain=anitube.vip|hinatasoul.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/157756
@@ -1449,8 +1461,6 @@ bmwfaq.org#%#AG_onLoad(function() { XenForo.rellect.AdBlockDetectorParams = {}; 
 @@||bmwfaq.org^$generichide
 !+ PLATFORM(ext_ff, ext_opera)
 bmwfaq.org#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/6305
-vizer.tv#@#.banner_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/12421
 @@||gamersclub.com.br^*/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6175
