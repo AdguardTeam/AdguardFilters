@@ -1113,6 +1113,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/188873
+||drawize.com/Scripts/ads234.js
+drawize.com#%#//scriptlet('set-constant', 'recreateAds', 'noopFunc')
+drawize.com#%#//scriptlet('set-constant', 'firstAdLoadPassed', 'true')
+drawize.com#%#//scriptlet('set-constant', 'showVideoAd', 'noopFunc')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||cdn.intergient.com/*/ramp.js$domain=drawize.com
+@@||cdn.intergient.com/ramp_core.js$domain=drawize.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188234
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=ewrc-results.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188653
