@@ -8925,6 +8925,7 @@ filezip.cc#$##blockblockA { display: none!important; }
 bing.com#%#//scriptlet('json-prune', 'relatedAds')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44788 - bing.com - it seems that bing.com is using some kind of ad reinjection script and displays different ads if below elements are blocked
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116297
+! https://github.com/AdguardTeam/AdguardFilters/issues/188911
 ! 27.04.2022 - It looks like that website is checking "document.querySelector('li.b_ad').offsetHeight < 1 || document.querySelector('li.b_ad').offsetWidth < 1 || document.querySelector('li.b_ad').offsetLeft < 0" (and some other elements) and
 ! if it returns true, then ABDEF cookie is set to "V=13&ABDV=13" and then display a different ads, if returns false then to "V=13&ABDV=11" and ad reinjection is not called, if I'm not wrong
 ! bing.com##.sb_adTA
@@ -8940,6 +8941,7 @@ bing.com#$#body .b_adLastChild { display: block !important; position: absolute !
 bing.com#$#.b_ad { display: block !important; position: absolute !important; top: -9999px !important; }
 bing.com#$?#.b_restorableLink { remove: true; }
 ||bing.com^$cookie=ABDEF
+bing.com#%#!function(){const e={apply:(e,l,t)=>{const o=t[0];return o?.includes(".b_ad,")?t[0]="#b_results":o?.includes(".b_restorableLink")&&(t[0]=".b_algo"),Reflect.apply(e,l,t)}};window.Element.prototype.querySelectorAll=new Proxy(window.Element.prototype.querySelectorAll,e)}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44634
 @@||androiddownload.net/themes/*/js/advertisement.js
 androiddownload.net#%#//scriptlet("abort-current-inline-script", "document.getElementById", "bannerad")
