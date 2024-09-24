@@ -17998,6 +17998,15 @@ circleofcricket.com#$##myModal { display: none !important; }
 circleofcricket.com##div.container-full.add:has(> a[href]:first-child)
 ||circleofcricket.com/assets/adv/
 !
+! Hulu video ads
+hulu.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"/ads-")]] | //*[name()="Period"]/@start)', 'Period[id^="Ad"i]', '.mpd')
+hulu.com#%#//scriptlet('json-prune', 'breaks pause_ads')
+hulu.com#%#//scriptlet('set-constant', 'Object.prototype.isAdPeriod', 'falseFunc')
+hulu.com#%#//scriptlet("set-constant", "Object.prototype._parseVAST", "noopFunc")
+hulu.com#%#//scriptlet("set-constant", "Object.prototype.createAdBlocker", "noopFunc")
+! aglint-disable-next-line invalid-modifiers
+/manifest.mpd$xmlprune=/MPD/Period[contains(@id\,'ad-')],domain=hulu.com
+!
 ! fc.lc / fc-lc.xyz
 fitdynamos.com###content a[target="_blank"] > img[style]
 fitdynamos.com##body > a > img
