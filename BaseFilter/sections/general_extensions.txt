@@ -300,6 +300,14 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/189322
+! A fix for issue with constantly loading website, it's required when DNS filtering is enabled
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_opera)
+wsj.com#%#//scriptlet('google-ima3')
+wsj.com#%#//scriptlet('prevent-element-src-loading', 'script', '/static\.adsafeprotected\.com|imasdk\.googleapis\.com\/js\/sdkloader\/ima3\.js/')
+wsj.com#%#(()=>{window.googleImaVansAdapter={init(){},dispose(){}};})();
+wsj.com#%#(()=>{let t=window?.__iasPET?.queue;Array.isArray(t)||(t=[]);const s=JSON.stringify({brandSafety:{},slots:{}});function e(t){try{t?.dataHandler?.(s)}catch(t){}}for(t.push=e,window.__iasPET={VERSION:"1.16.18",queue:t,sessionId:"",setTargetingForAppNexus(){},setTargetingForGPT(){},start(){}};t.length;)e(t.shift())})();
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188594
 marketjs.cdn.start.gg#%#(()=>{const e={apply:(e,t,o)=>(o[0]=!0,Reflect.apply(e,t,o))};let t,o=!1;Object.defineProperty(window,"ig",{get:function(){return"function"!=typeof t?.RetentionRewardedVideo?.prototype?.rewardedVideoResult||o||(t.RetentionRewardedVideo.prototype.rewardedVideoResult=new Proxy(t.RetentionRewardedVideo.prototype.rewardedVideoResult,e),o=!0),t},set:function(e){t=e}})})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187638
