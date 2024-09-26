@@ -19294,6 +19294,13 @@ thepostmillennial.com###leader-mot
 thepostmillennial.com##.surfsharkcontent
 !+ NOT_OPTIMIZED
 masalaseen.com##a[target="_blank"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/186928
+! youtubeunblocked.live - website uses many different IPs, so it's necessary to use rules with $url modifier
+! Match any IP with specific path
+[$url=/^https?:\/\/\d{1\,3}\.\d{1\,3}\.\d{1\,3}\.\d{1\,3}\/.*(\?|&)__cpo=aHR0c/]#%#//scriptlet('set-constant', '__Cpn.prototype.showAds', 'false')
+[$url=/^https?:\/\/\d{1\,3}\.\d{1\,3}\.\d{1\,3}\.\d{1\,3}\/.*(\?|&)__cpo=aHR0c/]#%#//scriptlet('abort-on-stack-trace', 'addEventListener', '/attachEvent[\s\S]*?Popup[\s\S]*?register/')
+! aglint-disable-next-line invalid-modifiers
+/^https?:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/.*(\?|&)__cpo=aHR0c/$replace=/__Cpn.prototype.showAds = true;/__Cpn.prototype.showAds = false;/,document,domain=/^\d{1\,3}\.\d{1\,3}\.\d{1\,3}\.\d{1\,3}\$/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188028
 ! https://github.com/AdguardTeam/AdguardFilters/issues/122383
 wiki.fextralife.com#$#@media (min-width: 1200px) { #sidebar-wrapper { display: none !important; } }
