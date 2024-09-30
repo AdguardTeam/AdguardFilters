@@ -1119,11 +1119,6 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
-! koramaup.com - antiadblock
-! Website checks content of the "pagead2.googlesyndication.com" request
-koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', '200===r.status', '0===r.status')
-koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', 'return r.responseText', 'return `{return a.google_ad_client?String(a.google_ad_client):X(a).head_tag_slot_vars?.google_ad_client??a.document.querySelector(".adsbygoogle[data-ad-client]")?.getAttribute("data-ad-client")??""};var.navigator?.userAgentData?.getHighEntropyValues!=="function")||a.getAttribute("data-ad-client")||"")}`')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189898
 alliancex.org#@#.ad-spot
 alliancex.org#%#//scriptlet('prevent-setTimeout', 'offsetHeight===0')
@@ -6544,20 +6539,18 @@ mixfaucet.com#%#//scriptlet("abort-on-property-read", "adblockDetector")
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pigeonburger.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176137
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96899
-1cloudfile.com#%#//scriptlet('prevent-fetch', 'cloudfront.net/?')
-1cloudfile.com#%#//scriptlet("abort-current-inline-script", "document.getElementById", "adblockEnabled")
-1cloudfile.com#%#//scriptlet("abort-on-property-read", "cdnasset")
-1cloudfile.com#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
-1cloudfile.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
-1cloudfile.com#%#(()=>{const e={apply:async(e,t,a)=>{if(a[0]&&a[0]?.match(/adsbygoogle|doubleclick/)){const e=(e="{}",t="",a="opaque")=>{const n=new Response(e,{statusText:"OK"}),o=String((s=50800,r=50900,Math.floor(Math.random()*(r-s+1)+s)));var s,r;return n.headers.set("Content-Length",o),Object.defineProperties(n,{type:{value:a},status:{value:0},statusText:{value:""},url:{value:""}}),Promise.resolve(n)};return e("{}",a[0])}return Reflect.apply(e,t,a)}};window.fetch=new Proxy(window.fetch,e)})();
-@@/^https?:\/\/(?:www\.|[a-z0-9]{7,10}\.)?[a-z0-9-]{5,}\.(?:com|bid|link|live|online|top|club)\/\/?(?:[a-z0-9]{2}\/){2,3}[a-f0-9]{32}\.js/$script,xmlhttprequest,third-party,domain=1cloudfile.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com
+! 1cloudfile.com, koramaup.com - antiadblock
+! Website checks content of the "pagead2.googlesyndication.com" request, information is stored in ArrayBuffer
+1cloudfile.com,koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', '200===r.status', '0===r.status')
+1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', 'return r.responseText', 'return `a.getAttribute("data-ad-client")||""`')
 ||cloudfront.net/?*=$script,xmlhttprequest,redirect=noopjs,domain=1cloudfile.com
 ||cloudfront.net/?rwlrd=$redirect=noopframe,domain=1cloudfile.com
 1cloudfile.com#@#.advert-wrapper
 1cloudfile.com#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 1cloudfile.com#$#body .advert-wrapper { position: absolute !important; left: -3000px !important; display: block !important; }
-!#if (adguard_app_ios || adguard_ext_android_cb)
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com
 @@||cloudfront.net/?*=$domain=1cloudfile.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96586
