@@ -1434,12 +1434,21 @@ bong.ink##body > div[style^="position: fixed; top:"][style*="z-index:"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186146
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182240
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181596
+! https://github.com/AdguardTeam/AdguardFilters/issues/179829
+! https://github.com/AdguardTeam/AdguardFilters/issues/157512
+! https://github.com/AdguardTeam/AdguardFilters/issues/144268
+@@||sportnews.to^$generichide
+@@||topsporter.net^$generichide
+sportnews.to,topsporter.net#%#//scriptlet('prevent-xhr', 'pubads.g.doubleclick.net/pagead/js/adsbygoogle.js')
+sportnews.to,topsporter.net#%#//scriptlet('abort-current-inline-script', '$', 'keepChecking')
+sportnews.to,topsporter.net#%#//scriptlet('prevent-xhr', 'static.doubleclick.net/instream/ad_status.js')
 sportnews.to#%#//scriptlet('set-constant', 'document.write', 'undefined')
-@@||static.doubleclick.net/instream/ad_status.js$domain=sportnews.to
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=sportnews.to
 *$xmlhttprequest,redirect-rule=nooptext,domain=sportfacts.net|sportshub.to
 sportfacts.net,sportshub.to##.popSc
 !#if (adguard_app_ios || adguard_ext_android_cb)
+@@||pubads.g.doubleclick.net/pagead/js/adsbygoogle.js$domain=sportshub.to
+@@||static.doubleclick.net/instream/ad_status.js$domain=topsporter.net|sportnews.to
 @@||googleads.g.doubleclick.net/pagead/js/adsbygoogle.js$domain=sportshub.to
 @@||static.cloudflareinsights.com/beacon.min.js^$domain=sportshub.to
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js^$domain=sportshub.to
@@ -4086,15 +4095,6 @@ staige.tv#%#//scriptlet('prevent-xhr', '/adblock/advert')
 viu.tv#@#.ad-placement
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145284
 /wp-content/plugins/best-ads-block-detector/*
-! https://github.com/AdguardTeam/AdguardFilters/issues/179829
-! https://github.com/AdguardTeam/AdguardFilters/issues/157512
-! https://github.com/AdguardTeam/AdguardFilters/issues/144268
-@@||sportnews.to^$generichide
-@@||topsporter.net^$generichide
-sportnews.to,topsporter.net#%#//scriptlet('abort-current-inline-script', '$', 'keepChecking')
-sportnews.to,topsporter.net#%#//scriptlet('prevent-xhr', 'static.doubleclick.net/instream/ad_status.js')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||static.doubleclick.net/instream/ad_status.js$domain=topsporter.net|sportnews.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145039
 pentafaucet.com,simplebits.io,getitall.top,satoshilabs.net,hitbits.io#%#//scriptlet('prevent-element-src-loading', 'script', '/(googlesyndication|coinzillatag|cpx-research)\.com/')
 pentafaucet.com,simplebits.io,getitall.top,satoshilabs.net,hitbits.io#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -6539,18 +6539,20 @@ mixfaucet.com#%#//scriptlet("abort-on-property-read", "adblockDetector")
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pigeonburger.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176137
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96899
-! 1cloudfile.com, koramaup.com - antiadblock
-! Website checks content of the "pagead2.googlesyndication.com" request, information is stored in ArrayBuffer
-1cloudfile.com,koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', '200===r.status', '0===r.status')
-1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', 'return r.responseText', 'return `a.getAttribute("data-ad-client")||""`')
+1cloudfile.com#%#//scriptlet('prevent-fetch', 'cloudfront.net/?')
+1cloudfile.com#%#//scriptlet("abort-current-inline-script", "document.getElementById", "adblockEnabled")
+1cloudfile.com#%#//scriptlet("abort-on-property-read", "cdnasset")
+1cloudfile.com#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
+1cloudfile.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+1cloudfile.com#%#(()=>{const e={apply:async(e,t,a)=>{if(a[0]&&a[0]?.match(/adsbygoogle|doubleclick/)){const e=(e="{}",t="",a="opaque")=>{const n=new Response(e,{statusText:"OK"}),o=String((s=50800,r=50900,Math.floor(Math.random()*(r-s+1)+s)));var s,r;return n.headers.set("Content-Length",o),Object.defineProperties(n,{type:{value:a},status:{value:0},statusText:{value:""},url:{value:""}}),Promise.resolve(n)};return e("{}",a[0])}return Reflect.apply(e,t,a)}};window.fetch=new Proxy(window.fetch,e)})();
+@@/^https?:\/\/(?:www\.|[a-z0-9]{7,10}\.)?[a-z0-9-]{5,}\.(?:com|bid|link|live|online|top|club)\/\/?(?:[a-z0-9]{2}\/){2,3}[a-f0-9]{32}\.js/$script,xmlhttprequest,third-party,domain=1cloudfile.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com
 ||cloudfront.net/?*=$script,xmlhttprequest,redirect=noopjs,domain=1cloudfile.com
 ||cloudfront.net/?rwlrd=$redirect=noopframe,domain=1cloudfile.com
 1cloudfile.com#@#.advert-wrapper
 1cloudfile.com#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 1cloudfile.com#$#body .advert-wrapper { position: absolute !important; left: -3000px !important; display: block !important; }
-!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com
+!#if (adguard_app_ios || adguard_ext_android_cb)
 @@||cloudfront.net/?*=$domain=1cloudfile.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96586
