@@ -1119,6 +1119,11 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
+! koramaup.com - antiadblock
+! Website checks content of the "pagead2.googlesyndication.com" request
+koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', '200===r.status', '0===r.status')
+koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', 'return r.responseText', 'return `{return a.google_ad_client?String(a.google_ad_client):X(a).head_tag_slot_vars?.google_ad_client??a.document.querySelector(".adsbygoogle[data-ad-client]")?.getAttribute("data-ad-client")??""};var.navigator?.userAgentData?.getHighEntropyValues!=="function")||a.getAttribute("data-ad-client")||"")}`')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189898
 alliancex.org#@#.ad-spot
 alliancex.org#%#//scriptlet('prevent-setTimeout', 'offsetHeight===0')
