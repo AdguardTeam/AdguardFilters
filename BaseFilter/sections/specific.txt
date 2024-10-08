@@ -19445,12 +19445,15 @@ forbes.com#$#body .current-page.ads-loaded { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166545
 ! Rule $referrerpolicy is required for apps, because source of ad servers is not detected and due to this regexp rules are not applied
 ||onejav.com^$referrerpolicy=origin
+! https://github.com/AdguardTeam/AdguardFilters/issues/189854
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166718
 ! Home timeline ads
 /i/api/graphql/*/HomeLatestTimeline$jsonprune=\$.data.home.home_timeline_urt.instructions..entries..[?(key-substr 'entryId' 'promoted-tweet-')],domain=twitter.com|x.com
 /i/api/graphql/*/HomeTimeline$jsonprune=\$.data.home.home_timeline_urt.instructions..entries..[?(key-substr 'entryId' 'promoted-tweet-')],domain=twitter.com|x.com
 ! Thread ads
 /i/api/graphql/*/TweetDetail$jsonprune=\$.data.threaded_conversation_with_injections_v2.instructions..entries.[?(has "\$.content.items..item.itemContent.promotedMetadata.advertiser_results")],domain=twitter.com|x.com
+! Media timeline ads
+/i/api/graphql/*/ImmersiveMedia$jsonprune=\$.data.immersiveMedia.timeline.instructions..entries..[?(key-substr 'entryId' 'promoted-tweet-')],domain=twitter.com|x.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179384
 !+ PLATFORM(windows, mac, android)
 darkreading.com#?#.Ad
