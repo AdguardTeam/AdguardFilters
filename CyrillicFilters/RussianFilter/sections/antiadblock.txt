@@ -58,8 +58,6 @@ leingpt.ru#@#div[id^="yandex_rtb"]
 volley.ru#%#//scriptlet('prevent-fetch', 'exchange.buzzoola.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||exchange.buzzoola.com/adv/$xmlhttprequest,domain=volley.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/172368
-@@||ads.vk.com^$~image,domain=ads.vk.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172229
 @@||yandex.ru/ads/system/context.js$domain=tvzvezda.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171998
@@ -939,6 +937,7 @@ $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|business
 dzen.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 !
 ! Dzen main page
+dzen.ru##div[class^="dzen-desktop--top-micro-app__"]:matches-attr("data-*"="ad-banner")
 dzen.ru###ya-dist-splashscreen
 dzen.ru###ya-dist-popup
 dzen.ru###ya-dist-teaser
@@ -1103,9 +1102,8 @@ overclockers.ru#@#.material-other-feed
 !#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87125
-monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,zannn.top,innal.top###chess
-monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,zannn.top,innal.top###chessday
-monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,zannn.top,innal.top###as_script
+monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,zannn.top,innal.top###chess2day
+monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top,naylo.top,zannn.top,innal.top###as2_script
 rustorka.com,rustorka.net,rustorkacom.lib,rustorka.top##body > div[style*="background-color:"][style*="max-width:"][style*="height:"]
 $cookie=/[0-9a-f]{32}/,domain=monna2.top|apad2.top|games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|rustorka.top|naylo.top|zannn.top|innal.top
 $removeheader=location,domain=zannn.top|innal.top
@@ -1406,6 +1404,7 @@ otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length
 ! START: Yandex
 !
 !
+||yandex.$script,xmlhttprequest,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "settings"]
 yandex.*#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=yandex.*
 ||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/"cookieName":.?"\w+"\,/"cookieName": "nonexisting"\,/
@@ -1415,6 +1414,7 @@ $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=yandex.*
 ||yandex.ru/*/*?ntp-sandwich*content=chromenewtab&statPath=chromenewtab
 !
 ! ya.ru - main page
+ya.ru##.i-mini-bem:has(> div[data-hydration-id] > div > div.direct-close-block)
 ya.ru##.main-home-banner
 !
 ! Yandex.Search
@@ -1500,7 +1500,6 @@ market.yandex.*##div[data-apiary-widget-id*="/headerPromo"]
 ! Yandex.Afisha
 ||yandex-afisha.naydex.net/*/*/*_$script,replace=/eval\(decodeURIComponent\(.*//
 afisha.yandex.*##.adfox_type_branding
-afisha.yandex.*#?#.grid__container:has(.grid__inner > div[class]:matches-attr("/[a-z0-9]{6,12}/"="/R-A-[0-9]{6}/"))
 afisha.yandex.*##div[style="width:100%;height:250px;display:block"]
 afisha.yandex.*##div[style="width:100%;height:240px;display:block"]
 afisha.yandex.*##.adfox
