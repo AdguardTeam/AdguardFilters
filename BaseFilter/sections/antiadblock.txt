@@ -1121,6 +1121,12 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/191271
+live-tv-channels.org#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+live-tv-channels.org#%#//scriptlet('trusted-replace-node-text', 'script', 'adsbygoogle.js', '/&&!!.\.headers\.get\("Content-Length"\)/', '')
+||live-tv-channels.org^$replace=/&&!!.\.headers\.get\("Content-Length"\)//,document
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=live-tv-channels.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191119
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rockradio.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191105
