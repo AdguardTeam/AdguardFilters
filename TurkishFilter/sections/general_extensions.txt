@@ -147,8 +147,6 @@ fullhdfilmizle.*#%#//scriptlet('set-constant', 'reklamsayisi', '0')
 fullhdfilmizle.*#%#//scriptlet('adjust-setInterval', 'reklam', '*', '0.02')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139369
 search.donanimhaber.com#%#//scriptlet("json-prune", "productAds")
-! https://github.com/AdguardTeam/AdguardFilters/issues/139304
-sokgazetesi.com.tr#%#AG_onLoad(function(){document.querySelector('meta[http-equiv="refresh"]')&&setTimeout(function(){window.stop()},6E3)});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138835
 tv8.com.tr#%#//scriptlet('prevent-xhr', 'spotxchange.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159524
@@ -254,37 +252,15 @@ aydindenge.com.tr#%#//scriptlet("set-constant", "start", "1")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34999
 dreamfancy.org#%#(function() { window.open_ = window.open; var w_open = window.open, regex = /itemsultan\.com/; window.open = function(a, b) { if (typeof a !== 'string' || !regex.test(a)) { w_open(a, b); } }; })();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18946
-milligazete.com.tr#%#AG_onLoad(function() { var _setInterval=setInterval(function(){removeAd()},500);function removeAd(){var a=$('ul.row[role="tablist"] > li > a[href^="/service/advertclick"]');a.length&&($('ul.row[role="tablist"] > li > a[href^="/service/advertclick"]').closest('li').remove(),$('div.slick-track > a[href^="/service/advertclick"]').closest('a').remove())}setTimeout(function(){clearInterval(_setInterval)},5e3); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/16695
-ahaber.com.tr#%#AG_onLoad(function() { setTimeout(function() { var elements = document.querySelectorAll(".slick-slider li > a[href*='http']:not([href*='ahaber.com.tr'])"); for(var i =0 ; i < elements.length; i++){ elements[i].closest('li').remove(); } ; var elements = document.querySelectorAll(".mansetSlider > .slick-slider .slick-dots > li > a"); for(var i =0 ; i < elements.length; i++){ elements[i].innerHTML = i+1; } ; }, 300); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/16473
-aksam.com.tr#%#AG_onLoad(function() { document.querySelectorAll("a[data-slide-index][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); document.querySelectorAll("ul.bxslider > li > a[target='_blank'][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); document.querySelectorAll("a[data-slide-index][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); document.querySelectorAll("ul.bxslider > li > a[target='_blank'][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); document.querySelectorAll("a[data-slide-index][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); document.querySelectorAll("ul.bxslider > li > a[target='_blank'][href*='http']:not([href*='www.aksam.com.tr'])")[0].closest('li').remove(); var elements = document.querySelectorAll("#slider4-pager a[data-slide-index]"); for(var i =0 ; i < elements.length; i++){ elements[i].setAttribute("data-slide-index",[i]); elements[i].innerHTML = elements[i].innerHTML = i+1; };});
-! https://github.com/AdguardTeam/AdguardFilters/issues/16066
-ademocut.com#%#AG_onLoad(function() { document.getElementsByClassName("yazi-icerik")[0].innerHTML = document.getElementsByClassName("yazi-icerik")[0].innerHTML.replace("Sponsorlu Bağlantılar", ''); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/15889
-gazetevatan.com#%#AG_onLoad(function() { setTimeout(function() { $(".haberler").each(function() { if($(this).children(".child").length == 0) { $(this).hide(); } }) }, 100); });
+milligazete.com.tr#$?#ul.row[role="tablist"] > li:has(> a[href^="/service/advertclick"]) { remove: true; }
+milligazete.com.tr#$?#div.slick-track > a[href^="/service/advertclick"] { remove: true; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11430
 mobile.donanimhaber.com#%#//scriptlet('set-session-storage-item', 'pageCount', '0')
 mobile.donanimhaber.com#%#if(window.sessionStorage) { window.sessionStorage.pageCount = 0; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10975
 izlesene.com#%#window.open = function() {};
-! https://github.com/AdguardTeam/AdguardFilters/issues/9804
-superfb.com#%#AG_onLoad(function() { if (window.location.href.indexOf("/index_prestitial.php") != -1) { window.location.href = "/" }; });
-! https://forum.adguard.com/index.php?threads/resolved-t24-com-tr.26365/
-t24.com.tr#%#AG_onLoad(function() { $('.sliders > a[onclick^="trackOutboundLink"]').remove(); $('.slide-wrapper > a[onclick^="trackOutboundLink"]').remove(); });
-! https://forum.adguard.com/index.php?threads/yenisafak-com.22134/
-yenisafak.com#%#AG_onLoad(function(){if(0==location.pathname.indexOf("/foto-galeri/")){var a;(a=document.getElementById("pagination-link-next"))&&a.setAttribute("href",a.getAttribute("href").replace(/\?page=0/,function(){var a="?page=";location.search.split(/(?:\?|&)/).forEach(function(b){"page"==b.slice(0,b.indexOf("="))&&(a+=Number(b.slice(b.indexOf("=")+1))+1)});return a}))}});
-! https://forum.adguard.com/index.php?threads/akgazete-com-tr.20391/#post-131661
-akgazete.com.tr#%#AG_onLoad(function(){document.querySelector("body>div>#timerText")&&(document.location.href="http://"+window.location.hostname)});
-! https://forum.adguard.com/index.php?threads/9745/
-ajans32.com#%#AG_onLoad(function() { setTimeout(function() {if(window.location.href.indexOf("interstitial.php") != -1) {document.cookie="interstitial_banner_2500=1";document.cookie="prestitial_banner_2500=1"; var pathArray = window.location.href.split( '%2F'); var url = pathArray[1].split('%3F'); if (url[0] === "") {  window.location.href = "http://www.ajans32.com/?interstitial=true"; } else {  window.location.href = url[0] + "?interstitial=true"; }}}, 300); });
-!
-! https://forum.adguard.com/index.php?threads/24149/
-t24.com.tr#%#AG_onLoad(function() { $('a[href^="http://t24.com.tr/haber/advertorial"]').closest('li[itemprop$="itemListElement"]').remove(); $('a[href^="http://t24.com.tr/images/counter.php?ad"]').remove(); });
 ! http://forum.adguard.com/showthread.php?7046
 mackolik.com,sahadan.com#%#setTimeout ("HideFloatAdBanner()", 1000);
-! https://forum.adguard.com/index.php?threads/21052/
-finikeakdeniz.com.tr#%#AG_onLoad(function() { if (window.location.href.indexOf("/reklam.asp") != -1) { window.location.href = "/" }; });
 !--------------------------------------!
 !------- CSS fixes --------------------!
 !--------------------------------------!
