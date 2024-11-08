@@ -908,9 +908,6 @@ gaminplay.com#%#//scriptlet("adjust-setInterval", "yuidea-", "*", "0.02")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130155
 digworm.io#%#//scriptlet("adjust-setInterval", "timer--", "*", "0.02")
 zertalious.xyz#%#//scriptlet("adjust-setTimeout", "status.innerHTML", "*", "0.02")
-! https://github.com/AdguardTeam/AdguardFilters/issues/130034
-sub2unlock.com,linkgenie.me#%#//scriptlet("remove-attr", "href", "a[href].unlock-step-link.check")
-sub2unlock.com,linkgenie.me#%#AG_onLoad(function(){const a=document.querySelector("a.getlink");if(a)try{const a=document.querySelectorAll("script");let b;[...a].some(a=>{if(a.innerText.includes("a[id=\"link\"]"))return b=a.innerText.match(/\('a\[id="link"\]'\)\.attr\('href', '([\s\S]*?)'\)/)[1],!0}),b&&b.startsWith("http")&&location.assign(b)}catch(a){}});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130181
 xatakamovil.com#%#//scriptlet('remove-attr', 'style', '.js-dailymotion')
 xatakamovil.com#$#.close-corner { display: none !important; }
@@ -1952,17 +1949,11 @@ linkvertise.com#%#!function(){const t={apply:(t,e,n)=>{const a=Reflect.apply(t,e
 pandora.com.tr#%#AG_onLoad(function() { setTimeout(function() { var link1=document.getElementById("urunDetayKapak"); var link2=document.getElementById("urun-detay"); if(link1 || link2){link1.ondragstart=function(){return!0},link1.oncontextmenu=function(){return!0},link1.onselectstart=function(){return!0},link2.ondragstart=function(){return!0},link2.oncontextmenu=function(){return!0},link2.onselectstart=function(){return!0},$("#urunDetayKapak").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"),$(".urunAciklama").css("MozUserSelect","all").unbind("selectstart").unbind("mousedown").unbind("contextmenu"); } }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31050
 kisalt.xyz#%#//scriptlet("set-constant", "count", "0")
-! https://github.com/AdguardTeam/AdguardFilters/issues/28165
-leechall.download#%#AG_onLoad(function(){var i=document.body.textContent.match(/(?<=href=").+?(?=")/);if(i)location=i});
-leechall.com#%#!function(){if(-1<location.pathname.indexOf("/redirect.php")){location=location.href.split("/redirect.php?url=")[1];}}();
-leechall.com#%#AG_onLoad(function() { if(location.href.includes("/ads/")) { var el = document.querySelector('li > a[href]'); if(el) { location=el.href; } }});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25825
 bankier.pl,claudia.pl,dyskusje24.pl,edziecko.pl,haps.pl,infozdrowie24.pl,kobieta.pl,moto.pl,gazeta.pl,tokfm.pl,sport.pl,plotek.pl#%#//scriptlet("set-constant", "ONTVminiatureBlocked", "trueFunc")
-! fm.tuba.pl - disable annoying confirm window
-fm.tuba.pl#%#AG_onLoad(function() { if (window.location.pathname.indexOf('/play/') > -1) { window.confirm_=window.confirm;var c=window.confirm,d=/Czy chcesz prze\u0142\u0105czy\u0107 na radio/;window.confirm=function(e,f){return"string"==typeof e&&d.test(e)||void c(e,f)} } });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16740
 !+ NOT_PLATFORM(windows, mac, android)
-doviz.com#%#AG_onLoad(function() { setTimeout(function() { if(typeof player.pause != 'undefined') { player.pause(); } }, 3000); });
+doviz.com#%#(() => {document.addEventListener("DOMContentLoaded", (() => {setTimeout(function() { if(typeof player.pause != 'undefined') { player.pause(); } }, 3000);}));})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14682
 cocoleech.com#%#//scriptlet("set-constant", "width", "100")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/14668
@@ -1977,10 +1968,6 @@ urlbluemedia.*,bluemediadownload.*,bluemediaurls.lol,bluemedialink.online,dl.pcg
 urlbluemedia.*,bluemediadownload.*,bluemediaurls.lol,bluemedialink.online,dl.pcgamestorrents.org,bluemediafile.*,bluemediafiles.*#%#(function(){var a="http"+(new URL(window.location.href)).searchParams.get("xurl");try{new URL(a);var b=!0}catch(c){b=!1}if(b)try{window.location=a}catch(c){}})();
 urlbluemedia.*,bluemediadownload.*,bluemediaurls.lol,bluemedialink.online,dl.pcgamestorrents.org,bluemediafile.*,bluemediafiles.*,get-url.com#%#//scriptlet("adjust-setInterval", "i--", "", "0.02")
 urlbluemedia.*,bluemediadownload.*,bluemediaurls.lol,bluemedialink.online,dl.pcgamestorrents.org,bluemediafile.*,bluemediafiles.*,get-url.com#%#//scriptlet('set-constant', 'Time_Start', '0')
-! https://github.com/AdguardTeam/AdguardFilters/issues/11164
-s24.themeslide.com#%#AG_onLoad(function() { setTimeout(function() { $('.downloadbtn').attr('disabled', false); $('#countdown').css('visibility', 'hidden'); }, 500); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/10073 https://github.com/AdguardTeam/AdguardFilters/issues/10466 https://github.com/AdguardTeam/AdguardFilters/issues/10923
-gesundheitsfrage.net,finanzfrage.net,gutefrage.net#%#AG_onLoad(function() { setTimeout(function() {var dc = document.querySelectorAll('gf-deferred-content.u-invisible');     for (var i = 0; i < dc.length; i ++) {       dc[i].setAttribute('class', dc[i].getAttribute('class').replace('u-invisible', ''));} }, 300); });
 ! dailypost.co.uk - stop autoplay
 dailypost.co.uk#%#//scriptlet('trusted-click-element', 'span.autoplay-cancel', '', '3300')
 ! rutracker.org - allow pages preview in NewsFox RSS reader in FireFox
