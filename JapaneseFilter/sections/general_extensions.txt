@@ -16,16 +16,13 @@ akibablog.blog.jp#%#//scriptlet('abort-current-inline-script', 'document.write',
 ! Leftover
 kasegeru.blog.jp#%#//scriptlet('remove-node-text', '#text', '/スポンサードリンク：?|楽天広告：/')
 ! Ads
-blog.livedoor.jp#%#//scriptlet('abort-current-inline-script', 'Array.prototype.join', 'amazon')
+blog.livedoor.jp#%#//scriptlet('remove-node-text', 'script', 'selectRandomProduct')
 ! overlay
 erommd-street.com#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'overview')
-! https://github.com/uBlockOrigin/uAssets/issues/23285
-twivideo.net#%#//scriptlet('prevent-addEventListener', 'load', 'interstitialAd')
-!#if (adguard_app_ios || adguard_ext_android_cb)
-twivideo.net#@##interstitialAd
-@@||ratel-ad.com/file/box/$domain=twivideo.net
-@@||serving.stat-rock.com/v1/placements/$domain=twivideo.net
-!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/192076
+twivideo.net#%#//scriptlet('abort-current-inline-script', 'document.getElementById', 'imageUrls')
+twivideo.net#%#//scriptlet('prevent-addEventListener', 'load', 'videoInstArea')
+twivideo.net$$script:contains(/videoInstArea|randomImageUrl/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176598
 ac-illust.com,photo-ac.com#%#//scriptlet('abort-current-inline-script', '$', 'google_ads_iframe_')
 ! ad-leftover on click
@@ -87,12 +84,12 @@ uraaka-joshi.com#%#//scriptlet('prevent-addEventListener', 'playing', 'VAST_TARG
 ! skip ad
 collepic.net#%#//scriptlet('adjust-setInterval', '.run()}', '1000')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/68275
-javcup.com,yavtube.com#%#//scriptlet("prevent-setTimeout", "getAdCookie")
+javcup.com#%#//scriptlet("prevent-setTimeout", "getAdCookie")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133218
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114915
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111968
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94170
-ideal2ch.livedoor.biz,seikeidouga.blog.jp,tcg-bloglife.com,ch-review.net,gametohkenranbu.sakuraweb.com,jisakuhibi.jp,rank1-media.com,resizer.myct.jp#%#//scriptlet('remove-node-text', '#text', '/スポンサード?リンク/')
+kabegami.jpn.org,ideal2ch.livedoor.biz,seikeidouga.blog.jp,tcg-bloglife.com,ch-review.net,gametohkenranbu.sakuraweb.com,jisakuhibi.jp,rank1-media.com,resizer.myct.jp#%#//scriptlet('remove-node-text', '#text', '/スポンサード?リンク/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/113729
 phileweb.com#%#//scriptlet("remove-class", "has-topbanner", "body > header.has-topbanner")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101637
@@ -208,7 +205,6 @@ dengekionline.com#$#.gPr.u-mtbM  { margin-top: 0 !important; }
 dengekionline.com#$#.gPr_title.u-ttl01  { margin-top: 0 !important; }
 dengekionline.com#$#.p-dol .gNews_title.u-ttl01 { margin-top: 0 !important; }
 jikayosha.jp#$#@media (min-width: 641px) { .wym-v2022__header.is-scroll-up ~ .wym-v2022__footer-fixed.is-pc-bottom { bottom: 0 !important; } }
-picrew.me#$#.view_pc div[class] > div.play-Imagemaker { max-height: 100% !important; height: 100% !important; }
 friday.kodansha.co.jp#$#div[class^="detail_photo_"] { height: 100% !important; max-height: calc(100vh - 70px - 20px) !important; }
 friday.kodansha.co.jp#$#img[class^="detail_mainImage"] { max-height: calc(100vh - 70px - 20px) !important; }
 ekr.chosunonline.com,life.chosunonline.com#$#.csh_main { padding-top: 30px !important; }

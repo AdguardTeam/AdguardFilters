@@ -17,15 +17,33 @@ capital.fr#@#.plainAd
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/192425
+m6.fr#%#//scriptlet('prevent-xhr', 'v.fwmrm.net')
+@@||v.fwmrm.net/|$xmlhttprequest,domain=m6.fr
+! https://github.com/AdguardTeam/AdguardFilters/issues/191519
+||cdn.jokerly.com/scripts/LPF_abChoice.js
+petitfute.com###cadreJokerlyADSContainer
+petitfute.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+! https://github.com/AdguardTeam/AdguardFilters/issues/191116
+||minenode.fr/dashboard/function/js/AzurHOSTS/pubs.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/191055
+marieclaire.fr#@#.AdsBox
+marieclaire.fr#$#body { overflow: auto !important; }
+marieclaire.fr#$##overlay { display: none !important; }
+marieclaire.fr#$?#.qiota_onboard:has(> div.AdBlockModal) { display: none !important; }
+||static.qiota.com/assets/getQiota.js$domain=marieclaire.fr
+! https://github.com/AdguardTeam/AdguardFilters/issues/190815
+larvf.com#@#.AdsBox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188979
 sekai.one###adblock-modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186309
 ||statics.liberation.fr/newsite/js/cmp/gtm.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185935
-adala-news.fr#@#.sidebar-ad
-adala-news.fr#@#.Ad-Container
-adala-news.fr#%#//scriptlet('abort-current-inline-script', 'jQuery', 'adblocker')
-adala-news.fr#%#//scriptlet('set-constant', 'penci_options_set.ad_blocker_detector', 'false')
+! https://github.com/AdguardTeam/AdguardFilters/issues/192538
+equinoxmagazine.fr,adala-news.fr#@#.sidebar-ad
+equinoxmagazine.fr,adala-news.fr#@#.Ad-Container
+equinoxmagazine.fr,adala-news.fr#%#//scriptlet('abort-current-inline-script', 'jQuery', 'adblocker')
+equinoxmagazine.fr,adala-news.fr#%#//scriptlet('set-constant', 'penci_options_set.ad_blocker_detector', 'false')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183492s
 @@||soins-infirmiers.com/*/adblocker.blogads.css
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182577
@@ -146,9 +164,13 @@ ebookdz.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementById', 'Blocking Ads')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147842
-japscan.lol#%#//scriptlet('abort-current-inline-script', 'RegExp', 'www.japscan.lol')
-japscan.lol#$#.navbar-nav > li#navpromo2.nav-item > a[href^="https://www.origoclick.com"] { text-indent: -5000px !important; }
-japscan.lol#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', '/^_.+\+\'\);\'\)\( ?\);\}catch/')
+japscan.lol#%#//scriptlet('prevent-element-src-loading', 'script', 'acscdn.com')
+japscan.lol#%#//scriptlet('prevent-setTimeout', 'getElementById')
+japscan.lol#%#//scriptlet('prevent-addEventListener', 'load', 'setTimeout')
+japscan.lol#%#//scriptlet('remove-node-text', 'script', '/7([\'"`]\+[\'"`])?2([\'"`]\+[\'"`])?8([\'"`]\+[\'"`])?x([\'"`]\+[\'"`])?9([\'"`]\+[\'"`])?0|replaceChildren/')
+japscan.lol#$#.navbar-nav > li#navpromo2.nav-item > a[href^="http://www.toueapo.shop/"] { text-indent: -5000px !important; }
+japscan.lol#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'iPhone')
+||japscan.lol/zjs/$script,replace=/function iPhone\(\)\{.+?\}\}\}//
 $script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol
 @@$image,domain=japscan.lol
 @@||japscan.lol^$image,xmlhttprequest,script,~third-party
@@ -215,11 +237,12 @@ radio.fr$$script[tag-content="Flags."][min-length="20000"][max-length="300000"]
 !+ PLATFORM(ios, ext_android_cb)
 @@||radio.fr^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/125261
-animationdigitalnetwork.fr#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,important,domain=animationdigitalnetwork.fr
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=animationdigitalnetwork.fr
-!+ PLATFORM(ios, ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=animationdigitalnetwork.fr
+animationdigitalnetwork.com,animationdigitalnetwork.fr#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,important,domain=animationdigitalnetwork.fr|animationdigitalnetwork.com
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=animationdigitalnetwork.fr|animationdigitalnetwork.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=animationdigitalnetwork.fr|animationdigitalnetwork.com
+!#endif
 ! pianoweb.fr
 pianoweb.fr#%#//scriptlet('set-cookie', 'warnadb', '1')
 pianoweb.fr#%#//scriptlet('set-constant', 'noPub', '1')

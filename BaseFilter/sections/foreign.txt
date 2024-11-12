@@ -51,6 +51,21 @@ gjirafa.com##div[id^="an-holder-"]
 !---------------------------------------------------------------------
 ! NOTE: Arabian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/192622
+m.gameshop4u.com#%#//scriptlet('prevent-element-src-loading', 'script', 'headerbidding.ai')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||headerbidding.ai^$domain=m.gameshop4u.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/192136
+mogardfakra.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=mogardfakra.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/190502
+egyfalcons.com##.popSc
+egyfalcons.com#%#//scriptlet('abort-on-property-write', 'checkAdsStatus')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190373
+wecima.click##a[href*="&utm_medium=banner"] > img
+||wecima.click/static/js/adBlock.js
+wecima.click#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189206
 cinema-3d.xyz##.popSc
 cinema-3d.xyz#%#//scriptlet('abort-on-property-write', 'checkAdsStatus')
@@ -68,10 +83,11 @@ flixscans.net##.adblock
 news-724.com#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=news-724.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/191157
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179687
-egybest.fun#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+iegybest.club,egybest.fun#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=egybest.fun
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=egybest.fun|iegybest.club
 ! https://github.com/uBlockOrigin/uAssets/issues/23394
 @@||cimanow.cc/wp-content/themes/Cima%20Now%20New/Assets/js/gpt.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176859
@@ -90,10 +106,24 @@ technoarabi.com#@#.ad-slot
 technoarabi.com#@#.Ad-Container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175443
 lesite24.com##div[id^="pum-"][data-popmake*="ads"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/190365
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177741
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173657
 $script,third-party,domain=faselhd.cafe|faselhd-watch.shop,badfilter
 $third-party,xmlhttprequest,domain=faselhd.cafe|faselhd-watch.shop,badfilter
+! According to https://github.com/AdguardTeam/tsurlfilter/tree/epic/tswebextension/packages/tsurlfilter/src/rules/declarative-converter#badfilter
+! $badfilter works only within the scope of one static filter or within the scope of all dynamic rules (custom filters with user rules).
+! Problematic rules comes from Liste AR, and it looks like that $badfilter does not work in this case in MV3 extension when it's loaded from Base filter (works fine in user rules),
+! so we need to use exception rules for MV3 extension.
+!#if (adguard_ext_chromium_mv3)
+@@||unpkg.com/swiper*.js$domain=faselhd.cafe
+@@||cdn.jsdelivr.net/npm/*.js$domain=faselhd.cafe
+@@/stream/*/*.ts$xmlhttprequest,domain=faselhd.cafe
+@@/stream/*/*.m3u8$xmlhttprequest,domain=faselhd.cafe
+@@||ssl.p.jwpcdn.com/player/v/*/*.js$domain=faselhd.cafe
+@@||cdnjs.cloudflare.com/ajax/libs/*/*.js$domain=faselhd.cafe
+||ssl.p.jwpcdn.com/player/v/*/vast.js$important,domain=faselhd.cafe
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172834
 nabd.com##div[id^="nb-ad-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171153
@@ -202,6 +232,7 @@ dimakids.com##.adblock-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141094
 series4pack.com###blc-wrap
 series4pack.com#%#//scriptlet("abort-current-inline-script", "mMcreateCookie")
+! https://github.com/AdguardTeam/AdguardFilters/issues/191500
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175152
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174866
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173591
@@ -214,18 +245,22 @@ series4pack.com#%#//scriptlet("abort-current-inline-script", "mMcreateCookie")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158596
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140805
 ! arabseed.ink, asd.quest
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me###ad
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me###adxbox
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##.div-over
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[id^="fixedban"]
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##body > #sticky
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="adbn"][class*="wrap"]
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="rts"][class*="-urts"]
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="dr"][class*="-udr"]
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##body > div[class^="content"][class*="-block"]
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-element-src-loading', 'script', '/profitsence\.com|pagead2\.googlesyndication\.com|doubleclick\.net|headerbidding\.ai/')
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-fetch', 'method:HEAD')
-reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-setTimeout', '/new Request[\s\S]*?Promise\.all[\s\S]*?\.status|function _0x|\.onerror/')
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me###ad
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me###adxbox
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##.div-over
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[id^="fixedban"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##body > #sticky
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##.visible-block
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="adbn"][class*="wrap"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="rts"][class*="-urts"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##div[class^="dr"][class*="-udr"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##body > div[class^="content"][class*="-block"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me##center > a[target="_blank"] > button[onclick="hideButton()"]
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-addEventListener', 'click', 'window.open(_0x')
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('abort-on-property-write', 'openPopUnder')
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-element-src-loading', 'script', '/profitsence\.com|pagead2\.googlesyndication\.com|doubleclick\.net|headerbidding\.ai/')
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-fetch', 'method:HEAD')
+regenzi.site,hegra.cam,migration.cam,reviewpalace.net,techplanet.cam,techland.live,gameplanet.cam,topgames.cam,techsoul.cam,gamehub.cam,gameland.click,gamestation.cam,gamezone.cam,gamesera.online,free-games.cam,top-games.live,gulftech.live,reviewhub.vip,reviewtech.me,pcreview.me#%#//scriptlet('prevent-setTimeout', '/new Request[\s\S]*?Promise\.all[\s\S]*?\.status|function _0x|\.onerror|\.style\.display|=== .none./')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139730
 arabic-toons.com###ads-blocked
 arabic-toons.com#%#//scriptlet('abort-on-property-read', 'adsBlocked')
@@ -471,9 +506,6 @@ orangespotlight.com#%#//scriptlet("abort-on-property-read", "adBlockDetected")
 !+ PLATFORM(ios, ext_android_cb)
 @@||deloplen.com/tag.min.js$domain=eg.arblionz.tv
 ||deloplen.com^$redirect=nooptext,domain=eg.arblionz.tv,important
-! https://github.com/AdguardTeam/AdguardFilters/issues/37579
-nabmovie.com#%#window.open=function(){};
-nabmovie.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35921
 ||aflamfree.top/tv/BoxO.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34349
@@ -643,6 +675,7 @@ auto.am##.azd-top
 ##.ainsyndication
 az##.makerekframe
 !
+oxu.az##.right-bnr
 baku.ws##.banners-right
 modern.az##.wrap_top_bnr
 modern.az##.bnr_300_250
@@ -1118,6 +1151,8 @@ fofmyanmar.com##center > a[rel="noopener noreferrer"] > img
 !---------------------------------------------------------------------
 ! NOTE: Croatian
 !
+telegram.hr##.banner-separator + div.full
+telegram.hr##.banner-separator
 ||a.mabipa.com^
 ||klik-slider.morgancode.com^
 ||linker.hr^
@@ -1174,8 +1209,6 @@ jockantv.com###Toast1
 jockantv.com###Dialog1
 jockantv.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149285
-||traffic.styria.hr^
-||widget.admiral.hr^
 vecernji.hr##.single-article__row--top-offer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149276
 rezultati.com##.detailLeaderboard
@@ -1268,6 +1301,18 @@ mob.hr##.side_banner
 !---------------------------------------------------------------------
 ! NOTE: Czech and Slovakian
 !
+idos.cz##.r-main
+idos.cz##.advert-leader-board-container
+moulik.cz##.col-xl-fixed-right:has(> div[class]:only-child > .aab-lite:first-child + div[id*="-square-"]:last-child)
+moulik.cz##.text-center:has(> div[id*="-leader-"])
+moulik.cz##div[class*="-square-multiple"]
+moulik.cz##.Articles-banner > div:only-child
+zeny.tiscali.cz##.exchange-box
+nasepenize.cz,startupinsider.cz##.desktop-square-top
+nasepenize.cz,startupinsider.cz##.desktop-leader-top
+zestolu.cz##div[style="min-height: 150px;"]
+zestolu.cz##div[style="min-height: 200px;"]
+zestolu.cz,osobnosti.cz##div[class^="desktop-"]
 volnamista.cz##.MuiBox-root:has(> .MuiBox-root > .MuiBox-root > .sssp-posCont > div[data-cy="ad-content"])
 jablickar.cz#$?#a[id^="branding"] { remove: true; }
 rychlost.cz##.t-info-ban
@@ -1276,6 +1321,26 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
+! https://github.com/AdguardTeam/AdguardFilters/issues/192685
+lexusclub.cz#@#.reklama
+lexusclub.cz#$##obalovydiv { display: block !important; }
+||lexusclub.cz/aaa.php
+! https://github.com/AdguardTeam/AdguardFilters/issues/191715
+tiscali.cz$$iframe[srcdoc="XMLHttpRequest"]
+tiscali.cz#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.querySelectorAll', 'about:srcdoc')
+! https://github.com/AdguardTeam/AdguardFilters/issues/191562
+peniaze.sk#$##main { margin-top: 0 !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/191560
+finmag.cz##.leaderboardbg
+finmag.cz###PX_outstream__wrap
+! https://github.com/AdguardTeam/AdguardFilters/issues/191563
+heroine.cz##.n-ads-branding-spacer
+! https://github.com/AdguardTeam/AdguardFilters/issues/191564
+footballclub.cz##.n-ads-leaderboard
+! https://github.com/AdguardTeam/AdguardFilters/issues/190728
+creditlose.com##div[id*="-ad-container"]
+! https://github.com/AdguardTeam/FiltersRegistry/pull/1007
+playzone.cz#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.appendChild', 'loadAab')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188761
 vareni.cz###cpex-remove-overflow
 vareni.cz###brand-a div[class^="sc-"] > div:not([class]):has(> div > a[class] > img[alt="Reklama"])
@@ -1397,7 +1462,6 @@ nextech.sk##.promo-zone
 ||nextech.sk/files/photo/*left.jpg
 ||nextech.sk/files/photo/*right.jpg
 nextech.sk##a[href^="https://www.canon.sk/offers/"]
-nextech.sk##.promo-zone
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165598
 nikee.net#?#td > div[style*="width:"]:has(> div[style]:contains(/Reklama|AONN.cz/))
 ||alza.cz^$domain=nikee.net
@@ -1417,6 +1481,10 @@ ireceptar.cz##.ad
 cnews.cz##.design-advert-placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164722
 ekolist.cz##.reklama-rsticky
+! https://github.com/AdguardTeam/AdguardFilters/issues/166393
+zive.cz##div[class^="ad-list-"]
+zive.cz##aside > .sidebar-content:has(> div[class^="ad-position--"])
+zive.cz##aside > .sidebar-content:has(> .sidebar-content__slider-wrapper > .cnc_side_ad_position)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164433
 zive.cz##.cnc-ads
 mobilmania.cz,zive.cz#%#//scriptlet('set-constant', 'pp_gemius_cnt', '1')
@@ -1614,6 +1682,7 @@ seznam.cz##li[data-analytics-entity-type="nativeSspAdvert"]
 ||seznam.cz/*/static/js/ssp.js
 www.seznam.cz#%#//scriptlet("set-constant", "sssp", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135127
+seznamzpravy.cz##div[data-e2e="ogm-branding"] > div:has(> div > div > div[data-e2e="mol-advert"])
 seznamzpravy.cz##div[style^="max-width:"][style*="970px;"]
 seznamzpravy.cz##div[style^="max-width:"][style*="300px;"]
 seznamzpravy.cz##div[style^="max-width:"][style*="480px;"]
@@ -1948,22 +2017,32 @@ dama.cz##.ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45896
 denik.cz##.reklama-box-leaderboard
 denik.cz##div[class^="reklama-box"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191713
+fights.cz#?#.d-none.d-xl-block:matches-css(after, content: Reklama)
+fights.cz##.inner-column-left > .text-center:has(> #gad_bellow_article)
+fights.cz#%#//scriptlet('set-constant', 'px2', 'undefined')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190520
+antiyoutuber.cz##body .r-main
+antiyoutuber.cz##a[href^="https://a.1gr.cz/"][href*="adclick"]
+antiyoutuber.cz#%#//scriptlet('abort-on-property-read', 'Object.prototype.Branding')
+antiyoutuber.cz#%#//scriptlet('abort-on-stack-trace', 'String', '/uniqueId[\s\S]*?Iframe/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165900
 expres.cz#@%#//scriptlet('ubo-aeld.js', 'beforeunload', '()')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190520
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188077
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186794#issuecomment-2317024916
-expres.cz,idnes.cz###waiting-screen
-expres.cz,idnes.cz#%#//scriptlet('prevent-setTimeout', 'checkCookie(++')
+antiyoutuber.cz,expres.cz,idnes.cz###waiting-screen
+antiyoutuber.cz,expres.cz,idnes.cz#%#//scriptlet('prevent-setTimeout', 'checkCookie(++')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147038
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146543
 idnes.cz,expres.cz#%#//scriptlet("abort-on-property-read", "_1gif")
 ! adbDetect
-$cookie=kolbda,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz
-$cookie=adb,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz
-$cookie=/adb\.key/,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz
-expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('remove-cookie', '/^adb$|adb\.key|^[a-z]{5,11}$/')
-expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'kununu_mul')
-expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet("abort-on-property-read", "Object.prototype.kununu_mul")
+$cookie=kolbda,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz|antiyoutuber.cz|fights.cz
+$cookie=adb,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz|antiyoutuber.cz|fights.cz
+$cookie=/adb\.key/,domain=expres.cz|televizeseznam.cz|ahaonline.cz|extra.cz|mobilmania.cz|idnes.cz|aktuality.sk|aktualne.cz|blesk.cz|centrum.cz|cnews.cz|e15.cz|karaoketexty.cz|novinky.cz|sport.cz|super.cz|tiscali.cz|zive.cz|antiyoutuber.cz|fights.cz
+fights.cz,antiyoutuber.cz,expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,karaoketexty.cz,novinky.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('remove-cookie', '/^adb$|adb\.key|^[a-z]{5,11}$/')
+fights.cz,antiyoutuber.cz,expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'kununu_mul')
+fights.cz,antiyoutuber.cz,expres.cz,televizeseznam.cz,ahaonline.cz,extra.cz,mobilmania.cz,idnes.cz,aktuality.sk,aktualne.cz,auto.cz,blesk.cz,centrum.cz,cnews.cz,e15.cz,sport.cz,super.cz,tiscali.cz,zive.cz#%#//scriptlet("abort-on-property-read", "Object.prototype.kununu_mul")
 ! novinky.cz requires different rule, because rule above breaks video player
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
 novinky.cz#%#!function(){if(location.pathname.indexOf("/iframe/player")===-1){Object.defineProperty(Object.prototype, 'kununu_mul', { get: function(){ throw null; }, set: function(){ throw null; }});}}();
@@ -2235,7 +2314,7 @@ rozzlobenimuzi.com##body > a
 !------------------
 !---- JS rules ----
 !------------------
-mobilmania.cz#%#AG_onLoad(function() { window.VIDEO_AD_FORCE_YT = true; });
+!
 !------------------
 !---- CSS fixes ---
 !------------------
@@ -2245,6 +2324,11 @@ cez.cz#$#body { background: #333!important; }
 !---------------------------------------------------------------------
 ! NOTE: Danish
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/189667
+feltet.dk##body > div[style="width: 100%;height: 80vh;background-color: #ccc; overflow: hidden;"]
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=feltet.dk
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=feltet.dk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184557
 ||stads.dot-e.dk^$domain=senest.dk
 senest.dk#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -2335,6 +2419,7 @@ nordschleswiger.dk##.TopAdvertising-Content-Wrapper
 !---------------------------------------------------------------------
 ! NOTE: Estonian
 !
+||services.postimees.ee/rest/v1/articles/multiple?ids=
 ! delfi.ee
 @@||ado.delfi.ee/files/js/ado.js$script,domain=delfi.ee
 delfi.ee###city24_precom
@@ -2545,6 +2630,10 @@ autopapa.ge##.top-rek
 !---------------------------------------------------------------------
 ! NOTE: Greek
 !
+gizchina.gr##.widget_vw_widget_image_banner:not([id="vw_widget_image_banner-9"])
+gizchina.gr###vw_widget_custom_text-10
+atlantea.news##div[class^="atlan-"]
+sportal.gr##div[class^="nx"]
 tovima.gr##.das-billboard
 ||parallaximag.gr/infeeds/sponsored.txt
 parallaximag.gr##div[class*="nx-ad-"]
@@ -2791,6 +2880,11 @@ gom.ge##a[href="http://topkinoebi.com/"]
 !---------------------------------------------------------------------
 ! NOTE: Hebrew
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/192104
+ynet.co.il#$#body { overflow: auto !important; }
+ynet.co.il#$#.singleColumnGrid::after { display: none !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/189226
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=mako.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184829
 ||target.hidabroot.org^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183108
@@ -2846,9 +2940,9 @@ sdarot.tv##div[class="row nomar"] > div.col-md-12 > a[target="_blank"] > img
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/62416
 !Start: walla.co.il
-walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("sdfgh45678", "") } } catch (ex) {} })();
-walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("__leslieData", "") } } catch (ex) {} })();
-walla.co.il#%#(function() { try { if ("undefined" != typeof localStorage) { localStorage.setItem("__leslie_dynamic", "") } } catch (ex) {} })();
+walla.co.il#%#//scriptlet('set-local-storage-item', 'sdfgh45678', '')
+walla.co.il#%#//scriptlet('set-local-storage-item', '__leslieData', '')
+walla.co.il#%#//scriptlet('set-local-storage-item', '__leslie_dynamic', '')
 !
 walla.co.il##iframe[src^="https://campaigns.yad2.co.il/"]
 ||campaigns.yad2.co.il^$domain=walla.co.il
@@ -3010,9 +3104,6 @@ ynet.co.il##.block.B1.spacer div.general-image
 hometheater.co.il##div[style="width:728px; height:90px;"]
 !+ NOT_OPTIMIZED
 hometheater.co.il##td[width="900"][align="center"][valign="top"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/4112
-@@||themarker.com/dclk/dfp/test/
-themarker.com#%#AG_onLoad(function() { hasadblock = false; });
 ! https://forum.adguard.com/index.php?threads/18644/
 mako.co.il#%#//scriptlet('set-constant', 'isBs', 'false')
 ! https://forum.adguard.com/index.php?threads/14514/
@@ -3455,8 +3546,6 @@ urbanlegends.hu##.posts-ad
 gamestar.hu##a[href*="ad.adverticum.net"]
 gamestar.hu#$#.ad-skin-space { height: 50px!important; }
 gamestar.hu##.background
-zsibvasar.hu#%#AG_onLoad(function() { $('a[target="_blank"]:not([href*="zsibvasar.hu"]').closest('.item').remove(); $('.carousel-inner > .item')[0].classList.add("active") });
-zsibvasar.hu##a[href^="http://optimusnumizmatika"]
 hazipatika.com###box-humanmeteorologia
 ||media.hazipatika.com/szponzor_hatter^
 hazipatika.com###panel > noindex
@@ -3487,11 +3576,13 @@ bb.is$$div[class="banner"]
 !---------------------------------------------------------------------
 ! NOTE: Indian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/189489
+sinhasannews.com##figure[class="wp-block-image"]
+sinhasannews.com###the-post figure[class^="wp-block-image"]:has(> img[alt^="Img"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185497
 ||jamuna.tv/ad/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185130
 jagonews24.com##div.text-center:has(> div[id^="div-gpt-ad-"])
-jagonews24.com##.featured-inImage-ad-unit
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182968
 nagpurtoday.in##aside[id^="custom_html-"][class*="widget"]:has(img + .popup)
 nagpurtoday.in###header-sidebar
@@ -3705,11 +3796,6 @@ sexpussynude.com##.sidebar > section[id^="custom_html-"]
 ||sexpussynude.com/wp-content/plugins/da-unblock^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11663
 oralhoes.com###vid-ads
-! https://github.com/AdguardTeam/AdguardFilters/issues/11664
-||sextubehub.com/js/htpop.js
-||sextubehub.com/xx/o.php$redirect=nooptext
-sextubehub.com#%#window.open = function() {};
-sextubehub.com#%#var _st = window.setTimeout; window.setTimeout = function(a, b) { if(!/window\.location\.href = '\/xx\/o\.php/.test(a)){ _st(a,b);}};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11731
 aajtak.intoday.in##.aaspassContainerAd
 @@||smedia2.intoday.in/aajtak/*/resources/advertisement_zedo_banner_zedo_google/atitg.js
@@ -3800,12 +3886,25 @@ indiatimes.com##.last8brdiv > div.sponsor_block
 !
 ! NOTE: Indonesian
 !
+fomo.id#?#div.block > div > div > div.relative > div.cursor-pointer:has(> div.border > div > div.items-start p.text-primary-gray:contains(Sponsored))
+semprot.com##.f_floating_div
+shinigami06.com##.lepopup-animated
+||img.shinigami.ae/*.gif
 ||176.119.30.88/img/nexia88.png
 ||176.119.30.88/img/*.gif
 ||176.119.30.88/wp-content/uploads/*-Banner-*.gif
 176.119.30.88###tv-play
 176.119.30.88##.footer1
 duniaku.idntimes.com##amp-script[script="parallax-script"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191291
+anichin.co.id###floatcenter
+anichin.co.id#%#//scriptlet('abort-current-inline-script', '$', 'window.open(')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190100
+||alene.info/cdn/mv/js/newitem.js
+||alene.info/cdn/mv/js/protect.js
+gamingweb.xyz#%#//scriptlet('prevent-setTimeout', 'location.replace(')
+! https://github.com/AdguardTeam/AdguardFilters/issues/189421
+cosmic1.co##.kln
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187407
 ||cdnfgo.xyz/wp-content/uploads/*.gif$domain=komiktap.info
 komiktap.info###bannerhomefooter
@@ -3819,17 +3918,16 @@ idlixofficialx.*,idlixplus.*#%#//scriptlet('abort-on-stack-trace', 'DOMTokenList
 rejabar.republika.co.id##img[width="320px"][height="100px"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173572
 ||amp.lk21official.mom/xjs.js
-playeriframe.shop###admad
-playeriframe.shop###donate
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172466
 rumahperjaka.live##div[id^="floatbanner"]
 ||rumahperjaka.live/wp-content/uploads/*/*.gif
 rumahperjaka.live###elementor-popup-modal-873
 rumahperjaka.live###floating_banner_top
 rumahperjaka.live##.elementor-widget-wrap > section[data-id][data-element_type].elementor-inner-section
+! https://github.com/AdguardTeam/AdguardFilters/issues/191017
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172122
-lk21official.life,sekedarinfo.*,jujijaji.*###donate
-lk21official.life,playeriframe.shop###admad
+lk21official.life,sekedarinfo.*,jujijaji.*,playeriframe.*###donate
+lk21official.life,playeriframe.*###admad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172422
 nontonhentai.top##.kln
 nontonhentai.top##div[id^="teaser"]
@@ -3839,7 +3937,6 @@ nontonhentai.top##.extend
 doujindesu.tv#?#center:has(> a[target="_blank"] > img)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172425
 minioppai.org###btm_banner
-minioppai.org##.kln
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172298
 ggwp.id##.sticky-footer
 ggwp.id##a[href^="https://www.threads.net/"]
@@ -3960,8 +4057,6 @@ westmanga.info##.kln
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38345#issuecomment-1584886448
 nomat.*##.popup
 nomat.*##.section > a [src*=".gif"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/145402
-link.idblog.eu.org#%#//scriptlet('remove-attr', 'href', '.atas > a[href*="/redirect"][onclick]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144790
 $script,redirect-rule=noopjs,domain=173.249.8.3
 173.249.8.3#%#//scriptlet('prevent-window-open')
@@ -4327,10 +4422,6 @@ semprotyuk.com,semprot.com##.semprotnenenmontok_adalah_pujaan_hatiku > div[style
 telset.id##.footer_sticky
 ! https://github.com/AdguardTeam/AdguardFilters/issues/41992
 kuyhaa-me.com##.entry-content > center > input[src]
-! https://github.com/AdguardTeam/AdguardFilters/issues/40401#issuecomment-536183740
-mangacanblog.com###topbar
-mangacanblog.com#%#window.open = function() {};
-mangacanblog.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40633
 depokpos.com##.newkarma-core-topbanner
 depokpos.com##.newkarma-core-floatbanner
@@ -4469,10 +4560,17 @@ movie76.com##img[alt="ads"]
 !---------------------------------------------------------------------
 ! NOTE: Italian
 !
+corriere.it##div[style="min-height: 1500px;"]
+corriere.it###box_mkt_hp_spalla_dx
+corriere.it###pno_manina_2024_inline
+everyeye.it##.p-dealLink
+mangaworld.ac##.col-sm-12 > div.row:has(> div.col-md-12 > div.ads)
+gamelegends.it##div[id^="gamelegends-dsk_"]
+iphoneitalia.com##div[id^="addendoContainer_"]
 subito.it##.dynamic-atf-container
 spazioplay.it##.stream-item
 spazioplay.it##.stream-item-widget
-tuttoandroid.net##.article-banner-container
+tuttotech.net,tuttoandroid.net##.article-banner-container
 skdesu.com##.inside-article > div.gb-container:has(> center > ins.adsbygoogle)
 ||api.everyeye.it/amazon/topskin/
 telefonino.forumfree.it##div[style]:has(> div.OUTBRAIN)
@@ -4482,6 +4580,14 @@ smellyfisher.com##.providers
 bestmovie.it,treccani.it##.gmp
 forum.fibra.click##.FibraClickAds-fake-poststream-item
 open.online##a[rel="sponsored"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191419
+afdigitale.it##.herald-da > a[target="_blank"] > img
+afdigitale.it##.herald-below-header:has(> a[target="_blank"])
+afdigitale.it##.herald-sidebar .textwidget > a[target="_blank"] > img
+||afdigitale.it/wp-content/uploads/2024/04/BANNER-Goldenear-2.gif
+||afdigitale.it/wp-content/uploads/2024/10/Animazione_Thesis-copia-esec.gif
+! https://github.com/AdguardTeam/AdguardFilters/issues/191080
+video.sky.it##.c-adv-generic
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188802
 tv8.it##main div[type="atf-btf"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188839
@@ -4708,7 +4814,6 @@ tiscali.it##.ofrtsrc
 arte.sky.it##.adv-section-side
 ! https://github.com/AdguardTeam/AdguardFilters/issues/163210
 tomshw.it##.adv
-tomshw.it#$#@media (min-width: 1024px) { div.min-h-screen[class*="lg:mt-24"] { margin-top: 0 !important; } }
 forum.tomshw.it###leaderboard1
 forum.tomshw.it#$#.uix_pageWrapper--fixed > .p-pageWrapper#top { margin-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160768
@@ -5482,12 +5587,6 @@ gamesvillage.it##.post-detail-row > br
 @@||googletagservices.com/dcm/dcmads.js$domain=italiamac.it
 @@||adspremium.it/adserver/www/delivery/lg.php?$domain=italiamac.it
 @@||adspremium.it/adserver/www/delivery/ajs.php?zoneid=$domain=italiamac.it
-! https://github.com/AdguardTeam/AdguardFilters/issues/18377
-! https://github.com/AdguardTeam/AdguardFilters/issues/32311
-||macitynet.it/wp-content/uploads/*/gearbest
-macitynet.it#$#body { background:none!important; }
-macitynet.it#%#window.open = function() {};
-||macitynet.it/wp-content/uploads/2019/04/macitynetbig.jpg
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18118
 tg.la7.it##.region > #block-block-21
 tg.la7.it##div[id^="rcsad_Frame"]
@@ -5580,8 +5679,6 @@ speedvideo.net##a[href*="/fhud/"]
 eurostreaming.video##a[href*="/ads?key="]
 speedvideo.net###playerstart
 speedvideo.net###preparevideo
-!! https://github.com/AdguardTeam/AdguardFilters/issues/11258
-shrink-service.it#%#AG_onLoad(function() { setTimeout(function() {var loc = document.querySelectorAll('[value]')[0]; if (loc.type="hidden" && loc.value!="") {document.location.href = loc.value;}; }, 300); });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11000
 ||static.androidiani.com/wp-content/themes/androidianiv*/js/fckblock.js
 androidiani.com###sidebar > ul > #text-5
@@ -5720,6 +5817,7 @@ dap-news.com##.ads
 !---------------------------------------------------------------------
 ! NOTE: Korean
 !
+web.humoruniv.com###naver_adpost_wrap
 !
 !---------------------------------------------------------------------
 !------------------------------ Latvian ------------------------------
@@ -5811,6 +5909,8 @@ delfi.lv#?#section > div[style]:has(> span:contains(/^Реклама$|^Reklāma$
 !------------------------------ Lithuanian ---------------------------
 !---------------------------------------------------------------------
 ! NOTE: Lithuanian
+! https://github.com/AdguardTeam/AdguardFilters/issues/192182
+15min.lt##div[class*=" "] > div[class*=" "] > img[src^="https://s1.15min.lt/static/cache/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153109
 play.tv3.lt#%#//scriptlet('set-constant', 'Object.prototype.isNoAds', 'trueFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151120
@@ -6046,9 +6146,14 @@ annapurnapost.com##.sticky-footer
 !---------------------------------------------------------------------
 ! NOTE: Norwegian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/191960
+embed.viaplay.com#%#//scriptlet('prevent-fetch', 'v.fwmrm.net/ad/g/1')
+!+ PLATFORM(ext_android_cb, ios)
+@@||v.fwmrm.net/ad/g/1$domain=embed.viaplay.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188809
 dagens.no##.column > div[data-type="generic-widget"]:has(> div.group > div.code-element > a[href^="https://www.partner-ads.com/"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175518
+gamer.no##[data-uname^="gamer_skyskraper_"]
 gamer.no#%#//scriptlet('set-constant', 'ads', 'emptyObj')
 gamer.no##.container > div[class]:has(> [data-size-mapping="toppbanner"])
 gamer.no##header ~ * > [class]:has(> [data-name="gamer_toppbanner"])
@@ -6121,28 +6226,13 @@ tu.no##.col-full-width > .products-carousel.daily-offers
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21961
 ||nakenprat.com/adfirst*.js
 ||nakenprat.com/adlast*.php^
-! https://github.com/AdguardTeam/AdguardFilters/issues/20808
-itavisen.no##.banner
-! https://github.com/AdguardTeam/AdguardFilters/issues/16687
-finn.no##iframe#easyad
-finn.no##iframe#smallEasyAd
-finn.no##.banner-skyscraper-container
-finn.no##div.banners[style^="height: 150px"]
-finn.no##.banners[data-banner-pos="topbanner"]
-finn.no##div.external-banner-board.adsbox[data-controller]
-finn.no##.banners.adsbox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11958
 @@||advert.vg.no/1v*.js?v=$domain=e24.no
 @@||advertisement.vg.no/1v*.js?v=$domain=e24.no
 e24.no#%#//scriptlet("set-constant", "__AB__", "noopFunc")
-e24.no##.ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/10383
 @@||advert.vg.no/1v*.js?v=$~third-party
 @@||advertisement.vg.no/1v*.js?v=$~third-party
-vg.no##.ad
-vg.no##.inline-ad-text
-vg.no##.advert
-vg.no##.finn-placeholder
 !+ PLATFORM(windows, mac, android)
 ||no-vg.videoplaza.tv/proxy/distributor/$domain=vgtv.no|vg.no,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7960
@@ -6153,14 +6243,12 @@ tv2.no##.tv2-ad
 ||tv2.no/s/misc/homad/homadConfigTV2Live.json$replace=/"enabled":\strue\,/"enabled": false\,/i
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6064
 vgtv.no###player.pulse-isPauseAdVisible > .jw-overlays
-!
-itavisen.no##div[id^="ad-"]
-vg.no###ad-topboard
 !---------------------------------------------------------------------
 !------------------------------ Persian ------------------------------
 !---------------------------------------------------------------------
 ! NOTE: Persian
 !
+zoomit.ir##div[class^="sc-"]:has(> div[width="100%"][height="100%"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186949
 ||tajrobe.wiki/images/ads/
 tajrobe.wiki##.ads
@@ -6208,6 +6296,25 @@ roweroweporady.pl#@#.ad_container
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
 !
+dobreprogramy.pl##div[data-container="true"] > div:has(> div > div > img:not([alt]))
+wiadomoscihandlowe.pl##.container--break-00
+fanipogody.pl##div[id^="oa_placeholder"]
+ppe.pl##body .navbar__ad-opera
+mjakmalopolska.pl##div.text-center:has(> div.d-inline-block-not-important > small)
+mjakmalopolska.pl##.widget-advert_centralplacement
+primemovies.pl##center > a[target="_blank"] > img
+primemovies.pl##div[data-insertion-position]
+magazif.com##.div-coffebreak-header
+magazif.com##div[id^="magid-"]
+zycie.pl##.grid__container > div.grid__row:has(> div.grid__col > div.card > div.box > div.box__container > div[id^="bills_in_rotation_"])
+zycie.pl##.adv
+zycie.pl##.grid__ad
+zycie.pl##.news__read-more
+forex-nawigator.biz##.ads
+defence24.pl##main > section.block:has(> div > a > span > figure > figcaption:contains(Reklama))
+xyz.pl##.promoBar
+xyz.pl##.partnersBox
+well.pl##.noads
 widzewtomy.net##.banner-height
 tko.pl##article[class^="post-"] > div[id^="tdi_"] > div.tdc_zone > div.tdc-row > div.vc_row > style + div.vc_column > div.wpb_wrapper > div.vc_row_inner:not(:has(div.td_block_wrap))
 tko.pl##div[id^="nol24-"]
@@ -6219,6 +6326,48 @@ gospodarkamorska.pl##.Home_categories_box > div.polecamy-slider > div[class*="po
 instalki.pl##center > a.gofollow > img
 onet.pl##a[href^="https://milionymonet.onet.pl/"]
 pograne.eu###custom_html-8
+! https://github.com/AdguardTeam/AdguardFilters/issues/191855
+mybank.pl###rek_gora
+! https://github.com/AdguardTeam/AdguardFilters/issues/191854
+zloteprzeboje.pl###onnetwork--html:empty
+zloteprzeboje.pl##.display--desktop:has(> .advert-container:only-child)
+! https://github.com/AdguardTeam/AdguardFilters/issues/191853
+rybnik.com.pl##.ppl-cnt
+! https://github.com/AdguardTeam/AdguardFilters/issues/191725
+wprost.pl##.bli-ad
+wprost.pl##.page-layout > .page-box:has(> .ad-aside:only-child)
+wprost.pl##.page-layout > .page-box:has(> .wrapper:only-child > .ad-slider-svr)
+wprost.pl##.page-layout > .page-box:has(> .wrapper:only-child > .ad-aside:only-child)
+! https://github.com/AdguardTeam/AdguardFilters/issues/191407
+fcbarca.com##.latest-news__big > div[style*="min-height:320px;"]
+fcbarca.com##.top-bukmacher-box
+fcbarca.com##.bukmacher-ranking-box
+fcbarca.com##.banner__block
+fcbarca.com##.bets-container
+fcbarca.com##.article__content div[style]:has(> div:contains(/^REKLAMA$/))
+fcbarca.com##.news__list > div[style]:has(> div[style] > div:contains(/^REKLAMA$/))
+! https://github.com/AdguardTeam/AdguardFilters/issues/191092
+||wiocha.pl/js/placements.js
+||wiocha.pl/js/plmnts/mrec*.js
+wiocha.pl##div[id^="wiocha_pl_"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191088
+espresso.com.pl##.espresso-reklama
+espresso.com.pl##.espresso-wrapper:has(.espresso-inner > .adsbygoogle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/190967
+realmadryt.pl#@#fieldset
+! https://github.com/AdguardTeam/AdguardFilters/issues/190883
+ing.pl##.wrapped_adocean_banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/190658
+||cowzdrowiu.pl/images/abbot-banner.jpg
+cowzdrowiu.pl##.container > .mt-3 > div[style="width: 100%;"] > a:not([href*="cowzdrowiu.pl"]) > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/190089
+||forum.nissanklub.pl/public/700x150.gif
+forum.nissanklub.pl##footer .ipsResponsive_inlineBlock > a[target="_blank"] > img
+forum.nissanklub.pl###ipsLayout_contentWrapper > center > a[target="_blank"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/189576
+ikorektor.pl##.adx1
+! https://github.com/AdguardTeam/AdguardFilters/issues/189462
+nowiny.pl##.ad_async_placeholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188407
 po-bandzie.com.pl##.elementor-widget-container > a:not([href*="po-bandzie.com.pl"], [href^="/"]) > img:is([alt=""], [alt*="_290x300"])
 po-bandzie.com.pl##.elementor-widget-container > aside > a:not([href*="po-bandzie.com.pl"], [href^="/"]) > img:is([alt=""], [alt*="_290x300"])
@@ -6338,7 +6487,9 @@ tvs.pl##.main-content > div[id^="tie-block_"].mag-box > .container-wrapper > .ma
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182841
 biztime.pl,geekblog.pl,wrc.net.pl##.wrc-slot
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182266
+!+ NOT_OPTIMIZED
 polskieradio24.pl##div[class^="Article_googleAd_"]
+!+ NOT_OPTIMIZED
 polskieradio24.pl##section[class^="WtgWrapper_container"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181787
 infoprzasnysz.com##.mcnv
@@ -6434,6 +6585,7 @@ itbiznes.pl###main > div.code-block > a[target="_blank"] > img
 olsztynnews.com.pl##.a-wrap
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178160
 radiojura.pl##.sec-promo
+! https://github.com/AdguardTeam/AdguardFilters/issues/119676
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178162
 well.pl##.sda-container
 well.pl##.partners-box
@@ -6607,6 +6759,7 @@ tyna.info.pl##.baner
 ! https://github.com/uBlockOrigin/uAssets/issues/20320
 uwaga.tvn.pl##.ad-ph
 uwaga.tvn.pl#%#//scriptlet('set-constant', 'Berry.waitFor', 'noopPromiseResolve')
+tvn.pl#%#//scriptlet('set-constant', 'Berry.waitForScripts', 'noopPromiseResolve')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||tvn.hit.gemius.pl/gstream.js$domain=uwaga.tvn.pl
 @@||tvn.hit.gemius.pl/xgemius.js$domain=uwaga.tvn.pl
@@ -6646,11 +6799,12 @@ esportway.pl##img[alt*="Reklama"]
 esportway.pl##a[href*="_adserwer.php"]
 esportway.pl#?#.sidebar > div[id^="custom_html-"]:has(> .widget-title:contains(Reklama))
 esportway.pl#?#.sidebar > div[id^="custom_html-"]:has(> .widget-title:contains(Reklama)) + div[id^="block-"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/192795
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186722
-! Probably related to original issue - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2890
-! TODO: check if these rules are still needed when version 4.4 will be released
+@@||r.linksprf.com/v$domain=pepper.pl
+!+ PLATFORM(ext_chromium_mv3)
+||linksprf.com^$document,badfilter
 !#if (adguard_ext_chromium || adguard_ext_firefox || adguard_ext_opera)
-@@||r.linksprf.com/v1/redirect?type=url$domain=pepper.pl
 @@||track.webgains.com/click.html?$domain=pepper.pl
 @@||clk.tradedoubler.com/click?$domain=pepper.pl
 @@||ad.doubleclick.net/ddm/clk/$domain=pepper.pl
@@ -6709,18 +6863,21 @@ megane.com.pl#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=megane.com.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159778
 nieznany-numer.pl##.content div[style="height:280px"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191098
+! https://github.com/AdguardTeam/AdguardFilters/issues/191097
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174032
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174033
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169786
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168285
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168272
 ! Speed up loading video player
-pacjenci.pl,rolnikinfo.pl,turysci.pl,portalparentingowy.pl,biznesinfo.pl,lelum.pl,goniec.pl#%#//scriptlet('adjust-setTimeout', '/moviesetdelayed|0x|waitingForUserConsent/', '*', '0.001')
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=goniec.pl|lelum.pl|biznesinfo.pl|portalparentingowy.pl|pacjenci.pl|rolnikinfo.pl|turysci.pl
-pacjenci.pl,rolnikinfo.pl,turysci.pl,portalparentingowy.pl,biznesinfo.pl,lelum.pl,goniec.pl#?#div:is(.w-full, .col-span-3) > .items-center[style*="min-height:"]:has(> .ad-placeholder)
-portalparentingowy.pl###anchor
+aleklasa.pl,domekiogrodek.pl,swiatzwierzat.pl,smakosze.pl,pacjenci.pl,rolnikinfo.pl,turysci.pl,portalparentingowy.pl,biznesinfo.pl,lelum.pl,goniec.pl#%#//scriptlet('adjust-setTimeout', '/moviesetdelayed|0x|waitingForUserConsent/', '*', '0.001')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=goniec.pl|lelum.pl|biznesinfo.pl|portalparentingowy.pl|pacjenci.pl|rolnikinfo.pl|turysci.pl|smakosze.pl|swiatzwierzat.pl|domekiogrodek.pl|aleklasa.pl
+aleklasa.pl,domekiogrodek.pl,swiatzwierzat.pl,smakosze.pl,pacjenci.pl,rolnikinfo.pl,turysci.pl,portalparentingowy.pl,biznesinfo.pl,lelum.pl,goniec.pl##div:is(.w-full, .col-span-3) > .items-center[style*="min-height:"]:has(> .ad-placeholder)
+domekiogrodek.pl,portalparentingowy.pl###anchor
+domekiogrodek.pl,swiatzwierzat.pl##.scrollAd
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=goniec.pl|lelum.pl|biznesinfo.pl|portalparentingowy.pl|pacjenci.pl|rolnikinfo.pl|turysci.pl
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=goniec.pl|lelum.pl|biznesinfo.pl|portalparentingowy.pl|pacjenci.pl|rolnikinfo.pl|turysci.pl|smakosze.pl|swiatzwierzat.pl|domekiogrodek.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159703
 goniec.pl#?#.col-span-3 > .justify-center:has(> .ad-placeholder:only-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159250
@@ -6748,18 +6905,21 @@ wiadomoscihandlowe.pl,wiadomoscikosmetyczne.pl,halowies.pl,tygodnik-rolniczy.pl#
 @@||androidowy.pl^$generichide
 androidowy.pl#@#[class^="ad-"]
 !#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/189917
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174954
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173530
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171504
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171860
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164486
 ! https://github.com/AdguardTeam/AdguardFilters/issues/156438
+wdi24.pl##.custom-html-box p > a[href="https://pansim.edu.pl/"] > img
+wdi24.pl##a[href^="https://wdi24.pl/static/files/gallery"][href*="-reklama-"]
 zambrow.org##div[id^="bills_in_rotation_"] > a > img
 zambrow.org##.custom-html-box center > a[target="_blank"] > img
-tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.sticky_anchor
-tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.grid__ad
-tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.adv
-tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##div[style="min-height: 362px;"]
+wdi24.pl,tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.sticky_anchor
+wdi24.pl,tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.grid__ad
+wdi24.pl,tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##.adv
+wdi24.pl,tulegnica.pl,tygodnikregionalna.pl,regionalna24.pl,lowicz24.eu,skarzyski.eu,zambrow.org,24jgora.pl,karkonoszego.pl,24wroclaw.pl,zyciekalisza.pl,nswiecie.pl,debica24.eu##div[style="min-height: 362px;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155184
 silesia24.pl##.vertical__ad
 silesia24.pl##.horizontal__ad
@@ -6859,9 +7019,11 @@ stacja7.pl##.st7-products
 stacja7.pl##.st7-ad-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146353
 disco-polo.eu#?#.elementor-widget-container > div[style*="width"]:has(> center > ins.adsbygoogle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/191037
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146065
-press.pl##.banner_holder
 press.pl#?#.posts_day_container:has(> .wide_big_post > .post_slider > .post_slide > div[style^="position: absolute;"]:contains(/^REKLAMA$/))
+!+ NOT_OPTIMIZED
+press.pl##.banner_holder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145357
 e-pity.pl##.AdvertBanner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145525
@@ -7250,6 +7412,8 @@ rdc.pl##.advertisement_holder_box
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130565
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139582
 histmag.org,inzynieria.com##.w2g-rodzic
+! https://github.com/AdguardTeam/AdguardFilters/issues/189542
+planetagracza.pl##.ad__in
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130337
 planetagracza.pl##.discounts-block
 planetagracza.pl##.discounts--partner
@@ -7605,8 +7769,6 @@ xgp.pl###hdrbnr
 xgp.pl##div[id^="xgppl-"] > a[target="_blank"] > img
 xgp.pl##div[class^="adslot_"]
 xgp.pl##.entry-content  > div[class$="-target"][style^="margin-left: auto; margin-right: auto; text-align: center;"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/119676
-well.pl##.sda-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119489
 donald.pl##ins[class^="staticpubads"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119486
@@ -7939,7 +8101,9 @@ skipol.pl#?##content > aside > h2:contains(/^Reklama$/)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/101181
 winterszus.pl###text-8
 winterszus.pl##.sidebar-banner
+! https://github.com/AdguardTeam/AdguardFilters/issues/190133
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164460
+!+ NOT_OPTIMIZED
 weszlo.com##.re-box-wrap
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155370
 weszlo.com##p > a[href^="https://l.facebook.com/l.php?u=https%3A%2F%2Fcan.al%2F"]
@@ -8113,6 +8277,8 @@ exsites.pl#@##ad-slot
 exsites.pl#$#.adsbox#ad-slot { display: block !important; }
 exsites.pl#%#//scriptlet('prevent-setTimeout', '.offsetHeight')
 exsites.pl##body > div[style^="display: block; box-sizing: border-box; padding:"][style*="font-weight: bold; font-size:"][style*="text-align: center; position: fixed;"][style*="z-index:"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/191895
+android.com.pl#?#.wp-block-acp-post-feed:has(> h2:contains(Promocje i oferty polecane przez redakcję))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159043
 android.com.pl#@#[class$="-ads"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128896
@@ -8311,6 +8477,7 @@ pornofan.pl##.PublicitaDestra
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89573
 pit.pl##.padded > div[id^="sas_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132544
+antyweb.pl##.block.uppercase.font-bold.text-2xs.tracking-base:has(+ .banner--placeholder)
 !+ NOT_OPTIMIZED
 antyweb.pl##.banner
 !+ NOT_OPTIMIZED
@@ -8637,20 +8804,15 @@ pomponik.pl##body .ad-rectangle:not(#style_important)
 pomponik.pl##.box.ad
 pomponik.pl###feed_grupa.ad
 pomponik.pl##.article-body__ad-gora-srodek
+! https://github.com/AdguardTeam/AdguardFilters/issues/191859
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182414
-zielona.interia.pl###ad-adsearch
-zielona.interia.pl###ad-dol_srodek
-zielona.interia.pl##div[id^="ad-box"]
-zielona.interia.pl##div[id^="ad-gora_"]
-zielona.interia.pl##div[id^="ad-banner_"]
-zielona.interia.pl##div[id^="ad-rectangle"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/175157
-kobieta.interia.pl###ad-adsearch
-kobieta.interia.pl###ad-dol_srodek
-kobieta.interia.pl##div[id^="ad-box"]
-kobieta.interia.pl##div[id^="ad-gora_"]
-kobieta.interia.pl##div[id^="ad-banner"]
-kobieta.interia.pl##div[id^="ad-rectangle"]
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl###ad-adsearch
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl###ad-dol_srodek
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl##div[id^="ad-box"]
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl##div[id^="ad-gora_"]
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl##div[id^="ad-banner_"]
+styl.interia.pl,zielona.interia.pl,kobieta.interia.pl##div[id^="ad-rectangle"]
 kobieta.interia.pl#$##portal-container > div[class^="sc-"][class*=" "]:has(a[href*="interia.pl/horoskop-"]) { margin-top: 100px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170328
 interia.pl##div[width] > div[class^="sc"][style*="overflow: auto;"]:has(> #feed_grupa:only-child > div > .ad)
@@ -8735,9 +8897,8 @@ perelki.net#%#//scriptlet("prevent-setTimeout", "aderror_new")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64569
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||a.allegroimg.com^$domain=allegro.pl
-! https://github.com/AdguardTeam/AdguardFilters/issues/64289
-film.org.pl##.advertise-wide
-||film.org.pl/wp-content/uploads/*/*/*-banner-nad-tekstem-*.jpg
+! https://github.com/AdguardTeam/AdguardFilters/issues/190874
+film.org.pl##div[class^="advads-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63583
 ! https://github.com/AdguardTeam/AdguardFilters/issues/63580
 !#safari_cb_affinity(privacy)
@@ -8878,6 +9039,7 @@ gazeta.pl##section ~ .newspapers
 gazeta.pl###c2c-widget-hp:empty
 next.gazeta.pl##[class^="ban"]
 tokfm.pl,avanti24.pl,gazeta.pl,wyborcza.biz,wyborcza.pl,wysokieobcasy.pl##body .adviewDFPBanner:not(#style_important)
+tokfm.pl,avanti24.pl,gazeta.pl,wyborcza.biz,wyborcza.pl,wysokieobcasy.pl#$#body .adviewDFPBanner { position: absolute !important; left: -3000px !important; }
 edziecko.pl###DFP_PREMIUMBOARD
 domiporta.pl##.sponsored_article
 tuba.pl##.ban001_wrap
@@ -8990,10 +9152,19 @@ voxfm.pl,se.pl,urzadzamy.pl,muratordom.pl#@#.sponsored-article
 vibefm.pl,radiosupernova.pl,voxfm.pl,eska.pl,eskarock.pl###adblock-detector-wrapper
 vibefm.pl,radiosupernova.pl,voxfm.pl,eska.pl,eskarock.pl#%#//scriptlet('set-constant', 'adblockBait', '')
 @@/media/*/js/adblock_detector.js$domain=eska.pl|eskarock.pl|voxfm.pl|vibefm.pl|radiosupernova.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/190880
+player.eska.pl#$##onn-control-button[style*="display: none"] { display: block !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/191361
+muratordom.pl#@#.promo.main_page.container, .player-block-info
+muratordom.pl#$#.adsbox.doubleclick.ad-placement { display: block !important; }
+muratordom.pl#%#//scriptlet('prevent-setTimeout', '/offsetWidth[\s\S]*?sponsored[\s\S]*?\.parentNode\.removeChild/')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190890
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139046
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl|vibefm.pl
+||idm.hit.gemius.pl/gplayer.js$script,redirect=gemius,domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl|vibefm.pl|urzadzamy.pl|mediateka.pl|muratordom.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/139046
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl|vibefm.pl|urzadzamy.pl|mediateka.pl|muratordom.pl
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl|vibefm.pl
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl|vibefm.pl|urzadzamy.pl|mediateka.pl|muratordom.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128456
 ! https://github.com/AdguardTeam/AdguardFilters/issues/118484
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117822
@@ -9007,6 +9178,7 @@ radiosupernova.pl,eska.pl,mjakmama24.pl,se.pl,eskarock.pl,voxfm.pl,radioplus.pl,
 @@||smart.idmnet.pl/prebidBoilerplate.js$domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl
 @@||smart.idmnet.pl/*/smartConfig_*.js$domain=poradnikzdrowie.pl|mjakmama24.pl|se.pl|eskarock.pl|voxfm.pl|radioplus.pl|eska.pl|radiosupernova.pl
 !#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/191362
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153725
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106657
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102140
@@ -9021,7 +9193,7 @@ vibefm.pl,voxfm.pl,eskarock.pl##.zpr_top_1
 vibefm.pl,voxfm.pl,eska.pl,se.pl,urzadzamy.pl##.zpr_box_topboard
 vibefm.pl,radiosupernova.pl,muratordom.pl,mjakmama24.pl,se.pl,eskarock.pl,voxfm.pl,radioplus.pl,poradnikzdrowie.pl##.zpr_combo
 vibefm.pl,radiosupernova.pl,muratordom.pl,urzadzamy.pl,mjakmama24.pl,se.pl,eskarock.pl,voxfm.pl,radioplus.pl,poradnikzdrowie.pl##div[class^="zpr_box_half_page"]
-mjakmama24.pl,radioplus.pl,poradnikzdrowie.pl,radiosupernova.pl,muratorplus.pl,eskarock.pl,se.pl,voxfm.pl##.article__placement
+vibefm.pl,mjakmama24.pl,radioplus.pl,poradnikzdrowie.pl,radiosupernova.pl,muratorplus.pl,eskarock.pl,se.pl,voxfm.pl##.article__placement
 vibefm.pl,poradnikzdrowie.pl,radioplus.pl,urzadzamy.pl,radiosupernova.pl,voxfm.pl,mjakmama24.pl,eska.pl,se.pl#$#.adsbox.ad { display: block !important; }
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||vibefm.pl^$generichide
@@ -9264,6 +9436,7 @@ naekranie.pl##.interia-ad
 @@||xboxforum.pl^$generichide
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 xboxforum.pl##.adsbygoogle
+! https://github.com/AdguardTeam/AdguardFilters/issues/189915
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172647
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172192
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171543
@@ -9274,11 +9447,12 @@ xboxforum.pl##.adsbygoogle
 /js/html2canvas.min.js$domain=wpu24.pl|ddwloclawek.pl|ddtorun.pl|gostyn24.pl|gorlice24.pl|mojakruszwica.pl|expresskaszubski.pl|gniewkowo.eu|iszczecinek.pl|mielec.pl|grudziadz365.pl|esopot.pl|lowiczanin.info|gwarek.com.pl|tyna.info.pl|tusochaczew.pl|myglogow.pl|plonskwsieci.pl|spotradomsko.pl|portalsremski.pl|ekstrasierpc.pl|ki24.info|uniejow.net.pl|e-krajna.pl|gwio.pl|faktypilskie.pl|swiecie24.pl
 esopot.pl,lowiczanin.info,gwarek.com.pl,tyna.info.pl,tusochaczew.pl,myglogow.pl,plonskwsieci.pl,spotradomsko.pl,portalsremski.pl,ekstrasierpc.pl,ki24.info,uniejow.net.pl,e-krajna.pl,gwio.pl,faktypilskie.pl,swiecie24.pl,grudziadz365.pl,mielec.pl,iszczecinek.pl,gniewkowo.eu,mojakruszwica.pl,expresskaszubski.pl,gorlice24.pl,gostyn24.pl,wpu24.pl,ddwloclawek.pl,ddtorun.pl#%#//scriptlet('set-constant', 'arePiratesOnBoard', 'false')
 esopot.pl,lowiczanin.info,gwarek.com.pl,tyna.info.pl,tusochaczew.pl,myglogow.pl,plonskwsieci.pl,spotradomsko.pl,portalsremski.pl,ekstrasierpc.pl,ki24.info,uniejow.net.pl,e-krajna.pl,gwio.pl,faktypilskie.pl,swiecie24.pl,grudziadz365.pl,mielec.pl,iszczecinek.pl,gniewkowo.eu,mojakruszwica.pl,expresskaszubski.pl,gorlice24.pl,gostyn24.pl,wpu24.pl,ddwloclawek.pl,ddtorun.pl#%#//scriptlet('set-constant', 'isAdBlockerEnabled', 'false')
-esopot.pl,lowiczanin.info,gwarek.com.pl,tyna.info.pl,tusochaczew.pl,myglogow.pl,plonskwsieci.pl,spotradomsko.pl,portalsremski.pl,ekstrasierpc.pl,ki24.info,uniejow.net.pl,e-krajna.pl,gwio.pl,faktypilskie.pl,swiecie24.pl,grudziadz365.pl,mielec.pl,iszczecinek.pl,gniewkowo.eu,mojakruszwica.pl,expresskaszubski.pl,gorlice24.pl,gostyn24.pl,wpu24.pl,ddwloclawek.pl,ddtorun.pl#%#//scriptlet('set-constant', 'adInitializer', 'undefined')
+ostrowiecka.pl,esopot.pl,lowiczanin.info,gwarek.com.pl,tyna.info.pl,tusochaczew.pl,myglogow.pl,plonskwsieci.pl,spotradomsko.pl,portalsremski.pl,ekstrasierpc.pl,ki24.info,uniejow.net.pl,e-krajna.pl,gwio.pl,faktypilskie.pl,swiecie24.pl,grudziadz365.pl,mielec.pl,iszczecinek.pl,gniewkowo.eu,mojakruszwica.pl,expresskaszubski.pl,gorlice24.pl,gostyn24.pl,wpu24.pl,ddwloclawek.pl,ddtorun.pl#%#//scriptlet('set-constant', 'adInitializer', 'undefined')
 wpu24.pl,ddwloclawek.pl,ddtorun.pl##.TOPNewsB
 wpu24.pl,ddwloclawek.pl,ddtorun.pl##.topLayer
 wpu24.pl,ddwloclawek.pl,ddtorun.pl##baner
 wpu24.pl,ddwloclawek.pl,ddtorun.pl##.banner--toplayer
+/pl/js/new-system.js$domain=ostrowiecka.pl
 /js/adInitializer.js$domain=ddwloclawek.pl|ddtorun.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120932
 mamazone.pl#?#.row div[class][style*="border-bottom"][style*="max-height:"] > div[style]:contains(REKLAM):upward(1)
@@ -9796,21 +9970,21 @@ gazeta.pl###alternativeNewsSource
 gazeta.pl##.o-section__adform
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139975
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139973
-e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl#?#.componentsPromotionsPromotedList[data-event-position-context^="marketing_"]:not(:has(> .atomsHeader > h2.atomsHeader__title > span:contains(Quizy)))
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl#?#.componentsPromotionsPromotedList[data-event-position-context^="marketing_"]:not(:has(> .atomsHeader > h2.atomsHeader__title > span:contains(Quizy)))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121975
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121876
-e-ogrodek.pl,stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,echodnia.pl,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gra.pl,gs24.pl,i.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,strefaedukacji.pl,stronakobiet.pl,stronazdrowia.pl,to.com.pl,wspolczesna.pl##.componentsListingLargeRow__content > div[data-turn-on-display] > .atomsListingArticleTileWithSeparatedLink > a[title="Reklama"]
-e-ogrodek.pl,stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,echodnia.pl,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gra.pl,gs24.pl,i.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,strefaedukacji.pl,stronakobiet.pl,stronazdrowia.pl,to.com.pl,wspolczesna.pl#?#.componentsListingLargeRow__content > div[data-turn-on-display]:has(> .atomsListingArticleTileWithSeparatedLink > .adsSlotContainer)
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,echodnia.pl,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gra.pl,gs24.pl,i.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,strefaedukacji.pl,stronakobiet.pl,stronazdrowia.pl,to.com.pl,wspolczesna.pl##.componentsListingLargeRow__content > div[data-turn-on-display] > .atomsListingArticleTileWithSeparatedLink > a[title="Reklama"]
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,stronakuchni.pl,stronapodrozy.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,echodnia.pl,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gra.pl,gs24.pl,i.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,strefaedukacji.pl,stronakobiet.pl,stronazdrowia.pl,to.com.pl,wspolczesna.pl#?#.componentsListingLargeRow__content > div[data-turn-on-display]:has(> .atomsListingArticleTileWithSeparatedLink > .adsSlotContainer)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/131526
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124290
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124289
-e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsListWithTabs
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsListWithTabs
 ! https://github.com/AdguardTeam/AdguardFilters/issues/121404
 ! https://github.com/AdguardTeam/AdguardFilters/issues/124259
-e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.layoutsGrid__right > [style="height: 900px; padding-bottom: 20px;"]
-e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsArticlePromotedList
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.layoutsGrid__right > [style="height: 900px; padding-bottom: 20px;"]
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.componentsPromotionsArticlePromotedList
 ! https://github.com/AdguardTeam/AdguardFilters/issues/23631
-e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.promoContainer
+strefaobrony.pl,shownews.pl,e-ogrodek.pl,gra.pl,stronakuchni.pl,stronapodrozy.pl,strefaedukacji.pl,i.pl,stronazdrowia.pl,naszahistoria.pl,regiodom.pl,dziennikbaltycki.pl,dzienniklodzki.pl,dziennikpolski24.pl,dziennikzachodni.pl,echodnia.eu,expressbydgoski.pl,expressilustrowany.pl,gazetakrakowska.pl,gazetalubuska.pl,gazetawroclawska.pl,gk24.pl,gloswielkopolski.pl,gol24.pl,gp24.pl,gs24.pl,katowice.naszemiasto.pl,kurierlubelski.pl,motofakty.pl,naszemiasto.pl,nowiny24.pl,nowosci.com.pl,nto.pl,polskatimes.pl,pomorska.pl,poranny.pl,sportowy24.pl,strefaagro.pl,strefabiznesu.pl,stronakobiet.pl,telemagazyn.pl,to.com.pl,wspolczesna.pl##.promoContainer
 ||s-gr.cdngr.pl/assets/gratka/v*/css/pages/promoButton.css
 ||ppstatic.pl/assets/gratka/v*/css/pages/promoButton.css$domain=~naszemiasto.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161859
@@ -10011,6 +10185,11 @@ money.pl#$#body { overflow: visible!important; }
 ||wp.pl^$replace=/(^.{1\,150}\(\{).*?"bunch".*?"bidRequestId".*(}\);)/\$1\$2/,script
 ||wp.pl^$replace=/^\n.*"spin".*"dfpConfig".*"slot".*//,script
 ||wp.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)//,script
+||jastrzabpost.pl^$replace=/(^.{1\,150}\(\{).*?"bunch".*?"bidRequestId".*(}\);)/\$1\$2/,script
+||jastrzabpost.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)//,script
+||jastrzabpost.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
+||jastrzabpost.pl^$replace=/(aabv\d[\s\S]*?.=function\(\)\{)return .===.(\}\,)/\$1return\$2/,script
+||jastrzabpost.pl^$replace=/(aabv\d[\s\S]*?.=\(\)=>).===.(\,)/\$1{return}\$2/,script
 ||pysznosci.pl^$replace=/(^.{1\,150}\(\{).*?"bunch".*?"bidRequestId".*(}\);)/\$1\$2/,script
 ||pysznosci.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)//,script
 ||pysznosci.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
@@ -10059,6 +10238,7 @@ money.pl#$#body { overflow: visible!important; }
 ||autocentrum.pl^$replace=/(aabv\d[\s\S]*?.=function\(\)\{)return .===.(\}\,)/\$1return\$2/,script
 ||autocentrum.pl^$replace=/(aabv\d[\s\S]*?.=\(\)=>).===.(\,)/\$1{return}\$2/,script
 ||autocentrum.pl^$replace=/(\,).===.(&&[\s\S]*?\(\)\})/\$1false\$2/,~script,~stylesheet,~xmlhttprequest,~other
+||dobreprogramy.pl^$replace=/^var wp_gaf_rv[\s\S]*?\n.*"spin".*"dfpConfig".*"slots?".*//,script
 ||dobreprogramy.pl^$replace=/(^.{1\,150}\(\{).*?"bunch".*?"bidRequestId".*(}\);)/\$1\$2/,script
 ||dobreprogramy.pl^$replace=/(^(WP\.[\s\S]*?\.bodies)=WP\.[\s\S]*?\.bodies\|\|\{\};[\s\S]*)//,script
 ||dobreprogramy.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
@@ -10145,6 +10325,7 @@ pilot.wp.pl##.wp-player > .adpause > .plchldr
 jastrzabpost.pl,pysznosci.pl,genialne.pl,polygamia.pl,abczdrowie.pl,autokult.pl,dobreprogramy.pl,fotoblogia.pl,gadzetomania.pl,komorkomania.pl,money.pl,parenting.pl,pudelek.pl,o2.pl,wp.pl#%#!function(){const r={apply:(r,o,e)=>(e[0]?.includes?.("</VAST>")&&(e[0]=""),Reflect.apply(r,o,e))};window.DOMParser.prototype.parseFromString=new Proxy(window.DOMParser.prototype.parseFromString,r)}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144971
 open.fm#%#//scriptlet('set-constant', 'Object.prototype.adv', 'false')
+!+ NOT_PLATFORM(ext_ff)
 ||ofmweb.wpcdn.pl/dist/*/static/chunks/*.js$replace=/adv:!.\,/adv:!1\,/,domain=open.fm
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95566
 !+ NOT_PLATFORM(windows, mac, android, ext_ff)
@@ -10205,8 +10386,8 @@ portel.pl#$#iframe[src*="/R1"][src$=".html"][style*="display:block !important;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137190
 auto-swiat.pl##.asideAds
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185362
-komputerswiat.pl##.ods-ads__ph
-||komputerswiat.pl/*/*/tags?domain=$xmlhttprequest
+auto-swiat.pl,komputerswiat.pl##.ods-ads__ph
+.pl/*/*/tags?domain=$~third-party,xmlhttprequest,domain=komputerswiat.pl|auto-swiat.pl
 ! komputerswiat.pl - ad leftovers
 plejada.pl,auto-swiat.pl,newsweek.pl,onet.pl,medonet.pl,komputerswiat.pl###onet-ad-flat-belkagorna
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48819
@@ -10237,9 +10418,15 @@ auto-swiat.pl,businessinsider.com.pl,fakt.pl,medonet.pl,noizz.pl,onet.pl,plejada
 @@||fakt.pl^$generichide,badfilter
 @@||komputerswiat.pl^$generichide,badfilter
 !#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/191790
+filmweb.pl#%#(()=>{const t={construct:(t,n,o)=>{const e=n[0],s=e?.toString(),c=s?.includes("await this.whenGDPRClosed()");return c&&(n[0]=t=>t(!0)),Reflect.construct(t,n,o)}};window.Promise=new Proxy(window.Promise,t)})();
+!+ PLATFORM(ext_ff)
+filmweb.pl#%#//scriptlet('trusted-replace-node-text', 'script', 'globals.module.WaitingModule.setPartLoaded("STATIC_FOOTER_BOTTOM");', 'globals.module.WaitingModule.setPartLoaded("STATIC_FOOTER_BOTTOM");', 'globals.module.WaitingModule.setPartLoaded("STATIC_FOOTER_BOTTOM");(()=>{const t={construct:(t,n,o)=>{const e=n[0],s=e?.toString(),c=s?.includes("await this.whenGDPRClosed()");return c&&(n[0]=t=>t(!0)),Reflect.construct(t,n,o)}};window.Promise=new Proxy(window.Promise,t)})();')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190460
+filmweb.pl##.HomePromotedSection
+filmweb.pl#%#//scriptlet('abort-on-stack-trace', 'Array.prototype.filter', 'HomePageAds')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185924
 filmweb.pl##body > .faSponsoring
-filmweb.pl#%#//scriptlet('set-constant', 'globals.module.AdsRichContentModule', 'undefined')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/157455
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155134
 filmweb.pl#%#//scriptlet('set-constant', 'rodo.canProfileVisitor', 'noopPromiseReject')
@@ -10623,6 +10810,11 @@ exsite.pl#%#window.ab = false;
 !---------------------------------------------------------------------
 ! NOTE: Romanian
 !
+monitorulsv.ro##.btop
+monitorulsv.ro###advscr
+monitorulsv.ro##div[class^="add_"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/189979
+playtech.ro#@#.mg-top-20
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186989
 stirileprotv.ro#%#//scriptlet('trusted-set-constant', 'flowplayer', '{"ads":{"ui":{}}}')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -10750,6 +10942,7 @@ ziarulevenimentul.ro##a[href^="/app/adclick.php?id="]
 csid.ro#%#//scriptlet("abort-on-property-read", "__yget_ad_list")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77506
 @@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$important,domain=digi24.ro
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$important,domain=digi24.ro
 @@||pubads.g.doubleclick.net/ssai/event/*/master.m3u8$domain=digi24.ro
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74095
 romaniataramea.com#$#.sgpb-popup-overlay { display: none !important; }
@@ -10816,6 +11009,9 @@ a1.ro##.ima-ad-container
 !---------------------------------------------------------------------
 ! NOTE: Serbian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/191334
+nin.rs##.bnr
+||ocdn.eu/mis/wrapper/nin.rs/*/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160827
 kupujemprodajem.com#?##__next div[class^="Banner"]:has(a[href^="https://novi.kupujemprodajem.com/bClick.php"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160828
@@ -10928,7 +11124,10 @@ globalpublishers.co.tz#?#.listing > article:has(> div.item-inner a[href*="-chapr
 !------------------------------ Swedish ------------------------------
 !---------------------------------------------------------------------
 ! NOTE: Swedish
+! blocket.se - ad when searching for a car
+blocket.se##a[href^="https://wheelaway.se"][href*="campaign"]
 !
+omni.se##div[class^="Ad_placement__"]
 aftonbladet.se#%#//scriptlet('set-cookie', 'abMegaAd', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178121
 omni.se##.group--sponsored
@@ -11133,6 +11332,9 @@ vatantat.ru##a[href="https://pobeda.onf.ru/"]
 !---------------------------------------------------------------------
 ! NOTE: Thai
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/190860
+.gif$image,domain=javhd168.com
+javhd168.com#%#//scriptlet('set-constant', 'asVideoJson', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187604
 ||playerembed-lb.blackboxsys.net/images/banners^$image,domain=dooball66s.com
 ||schedule.hunter-news.com^$media,redirect=noopmp3-0.1s,domain=blackboxsys.net
@@ -11627,13 +11829,7 @@ doofree88.com##.go-hard
 dufree4k.com#%#//scriptlet("abort-on-property-read", "player_0")
 dufree4k.com#$##player_ads_0 { display: none !important; }
 dufree4k.com#$##player_movie { display: block !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/53779
-movie2ufree.com##.ad-float
-movie2ufree.com##.sidebar-banner
-movie2ufree.com##.adcen > .adb:not(:last-child)
-movie2ufree.com#$#.adcen > .adb:last-child { visibility: hidden!important; }
-movie2ufree.com#%#AG_onLoad(function() { $('#group-url').show(); playMovie(); });
-! https://github.com/AdguardTeam/AdguardFilters/issues/51221
+ https://github.com/AdguardTeam/AdguardFilters/issues/51221
 ||doomovie-hd.com/assets/img/banner-new/
 doomovie-hd.com##.floating_ads_bt-mid_container
 doomovie-hd.com##.horizontal-ad-bar
@@ -11766,8 +11962,6 @@ javboss.me###preroll
 2510porn.com#$##sgcboxOverlay { display: none!important; }
 2510porn.com#$#body[style="overflow: hidden;"] { overflow: visible!important; }
 2510porn.com#%#AG_onLoad(function() { jQuery(function() { jQuery('body, a').unbind('click'); }); });
-! http://forum.adguard.com/showthread.php?7076
-daum.net##.box_banner
 ! http://forum.adguard.com/showthread.php?7078
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=voicetv.co.th
 ! http://forum.adguard.com/showthread.php?5788
@@ -11795,6 +11989,21 @@ asilmedia.org###banner
 !---------------------------------------------------------------------
 ! NOTE: Vietnamese
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/192655
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=danet.vn
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=danet.vn
+! https://github.com/AdguardTeam/AdguardFilters/issues/191689
+sign.codevn.net#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
+! https://github.com/AdguardTeam/AdguardFilters/issues/190278
+tvhay.*##.banner-ads
+tvhay.*#$#body > #wrapper + center { height: 2px !important; }
+||tvhay.*/ads/popup-tt.js$~third-party,script
+! https://github.com/AdguardTeam/AdguardFilters/issues/190173
+tvphim.*##.banner-ads
+! https://github.com/AdguardTeam/AdguardFilters/issues/189409
+biphim.mx###footer_fixed_ads
+||biphim.mx/public/prom_ad/prom_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188938
 ||phimmoisz.org/wp-content/uploads/tvc/*.xml
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187670
@@ -12346,10 +12555,6 @@ kingphim.net##a[href^="https://bit.ly/"][target="_blank"] > div[style]
 ||kingphim.net/play/*.xml|
 ||iamcdn.net/players/jwplayer/*/plugins/vast.js$domain=kingphim.net
 kingphim.net#%#//scriptlet("abort-on-property-read", "popunder")
-! https://github.com/AdguardTeam/AdguardFilters/issues/41731
-! https://github.com/AdguardTeam/AdguardFilters/issues/40545
-animetvn.tv#%#//scriptlet("prevent-window-open", "banner")
-animetvn.tv#%#AG_onLoad(function() { dh_popup = function() {}; });
 ! https://github.com/AdguardTeam/AdguardFilters/issues/40336
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=fptplay.vn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/38288

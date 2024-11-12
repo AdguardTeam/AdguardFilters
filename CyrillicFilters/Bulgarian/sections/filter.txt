@@ -19,17 +19,22 @@
 !
 ! NOTE: Anti-adblock
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/191545
+! https://github.com/AdguardTeam/AdguardFilters/issues/190807
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187565
-businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-control-bar { z-index: 1; }
-businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-continue-watching-bar { display: none !important; }
-businessnovinite.bg,btv.bg,btvsport.bg#$?##leading_video_player_autoplay_wrapper { remove: true; }
-businessnovinite.bg,btv.bg,btvsport.bg#$##leading_video_player_autoplay_main_wrapper { display: block !important; }
-businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('set-constant', 'isEnhancedContentAvailable', 'undefined')
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=businessnovinite.bg|btv.bg|btvsport.bg
+btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-control-bar { z-index: 1; }
+btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-continue-watching-bar { display: none !important; }
+btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$?##leading_video_player_autoplay_wrapper { remove: true; }
+btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$##leading_video_player_autoplay_main_wrapper { display: block !important; }
+btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('set-constant', 'isEnhancedContentAvailable', 'undefined')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=businessnovinite.bg|btv.bg|btvsport.bg|btvplus.bg|btvnovinite.bg
+! https://github.com/AdguardTeam/AdguardFilters/issues/190638
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178821
-play.nova.bg#%#//scriptlet('prevent-xhr', 'adsbygoogle')
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
+play.nova.bg#%#//scriptlet('prevent-xhr', '/adsbygoogle|googima\.js/')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=play.nova.bg
+@@||ssl.p.jwpcdn.com/player/v/*/googima.js$xmlhttprequest,domain=play.nova.bg
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171750
 pik.bg#%#//scriptlet('prevent-element-src-loading', 'script', 'ima3.js')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -61,8 +66,6 @@ bg-gledai.*#%#//scriptlet('set-constant', 'chp_adblock_browser', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64914
 @@||play.nova.bg/prebid-ads.js
 play.nova.bg#%#//scriptlet("set-constant", "_spabia", "true")
-!
-! NOTE: Advanced rules (JS, CSS, HTML)
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60574
 blitz.bg#$#div[id^="div-gpt-ad"] { position: absolute!important; left: -3000px!important; }
