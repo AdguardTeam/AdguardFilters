@@ -160,21 +160,6 @@ api-video.khl.ru#%#//scriptlet('prevent-xhr', 'an.yandex.ru')
 @@||olegon.ru/ads/advert.js
 olegon.ru###okmenu > div[style^="font-weight: bold;"]
 olegon.ru###someshith
-! https://github.com/AdguardTeam/AdguardFilters/issues/140815
-!#if (adguard_app_ios || adguard_ext_android_cb)
-docs-python.ru#@#div[id^="yandex_rtb"]
-@@||yandex.ru/ads/$domain=docs-python.ru
-!#endif
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
-docs-python.ru#%#//scriptlet('prevent-setTimeout', 'resolve')
-docs-python.ru#%#AG_onLoad(function(){document.querySelectorAll('pre').forEach(function(a){a.classList.add('highlight')})});
-docs-python.ru#$#nav { visibility: visible !important; }
-docs-python.ru#$#aside { visibility: visible !important; }
-docs-python.ru#$##container-share-error { visibility: visible !important; }
-docs-python.ru#$##donate-row { visibility: visible !important; }
-docs-python.ru#$#pre { color: #212529 !important; user-select: text !important; }
-!#endif
-||docs-python.ru^$~script,~stylesheet,~other,replace=/sss===false\|\|v===true/sss===undefined/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138822
 @@||staticmv.mediavitrina.ru/yastatic/ads.js$domain=player.mediavitrina.ru
 ! antiadblock
@@ -399,13 +384,6 @@ helpsetup.ru$$script[tag-content="adBlockFunction"][max-length="1600"]
 @@||mc.yandex.ru/metrika/tag.js$domain=helpsetup.ru
 @@||an.yandex.ru/system/context.js$domain=helpsetup.ru
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/63514
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-pronpic.org$$script[tag-content="ad_nodes"][max-length="1200"]
-pronpic.org#%#AG_onLoad(function(){let a = document.querySelector('.adblock_loock');let b = document.querySelector('#format');if (a && b) {a.style.setProperty('display', 'none', 'important');b.style.setProperty('display', 'block', 'important');let c = document.querySelector('#small_img');const docfunc = () => {document.location = location.href + '1/';};if(c)c.onclick = docfunc;}});
-!#endif
-!+ NOT_PLATFORM(windows, mac, android)
-pronpic.org#$##teaser + div[id] { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74166
 balticlivecam.com#%#//scriptlet("prevent-setTimeout", "isAdsBlock", "5000")
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -1077,7 +1055,7 @@ vk.city4me.com#$##goo_rekm { height: 101px!important; position: absolute!importa
 !
 overclockers.ru$$script[tag-content="enable_page_level_ads"]
 ||forums.overclockers.ru$replace=/(script.onerror = function\(\)\{)/\$1return;/,important
-forums.overclockers.ru#%#AG_onLoad(function() { window.chkA = function() {}; window.chkB = function() {}; });
+forums.overclockers.ru#%#//scriptlet('set-constant', 'chkA', 'noopFunc')
 ~forums.overclockers.ru,overclockers.ru#%#//scriptlet("abort-on-property-read", "cardinals")
 !
 ||overclockers.ru/static/js/app-pip.js|$script,redirect=noopjs,important
@@ -1171,9 +1149,6 @@ qq-new.ru##.xenOverlay
 @@||svetmonet.ru^$generichide
 ! https://forum.adguard.com/index.php?threads/11090/
 brazzers-hd.com#%#var isadblock=1;
-! https://forum.adguard.com/index.php?threads/11020/
-info-mage.ru###helpme
-info-mage.ru#%#AG_onLoad(function() { window.onload = function() {}; });
 ! kinogb.net
 ||kinogb.net/js/lev-lisun.js
 ! https://forum.adguard.com/index.php?threads/17789/
@@ -1326,11 +1301,6 @@ smugenom.clan.su#%#window.setTimeout=function() {};
 @@||37.220.36.15^$elemhide
 ! remoteshaman.com - anti-adblock message
 @@||remoteshaman.com/*/ads.js
-! megogo.net
-megogo.net##.Overlay_adb
-megogo.net##.brand__shifter
-megogo.net#$##player_object { display: block!important; }
-megogo.net#%#AG_onLoad(function() { window.adBlock = false; });
 ! http://forum.adguard.com/showthread.php?6038
 spec-komp.com##.adb
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/651
