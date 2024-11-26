@@ -9275,9 +9275,6 @@ matzoo.pl#%#//scriptlet("prevent-setTimeout", "adblock")
 wirtualnemedia.pl##.partner-news-wrapper
 ! party.pl - ads
 ||edipresse.pl/script/init.js
-! nfspolska.pl - ads
-nfspolska.pl#$#.carousel-item > a[href^="https://eu.puma.com/"] { visibility: hidden!important; }
-nfspolska.pl#%#AG_onLoad(function(){document.querySelectorAll('.carousel-item > a[href^="https://eu.puma.com/"]').forEach(function(a){a.parentNode.remove()});document.querySelectorAll('#carouselExampleIndicators > div.carousel-inner > div[class="carousel-item"]').forEach(function(a){a.classList.add("active")})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51720
 @@||bham.pl/templates/bham_res/js/adsbygoogle.js
 bham.pl#%#//scriptlet("abort-on-property-read", "TestPage")
@@ -10473,9 +10470,6 @@ jastrzabpost.pl,pysznosci.pl,genialne.pl,polygamia.pl,abczdrowie.pl,autokult.pl,
 open.fm#%#//scriptlet('set-constant', 'Object.prototype.adv', 'false')
 !+ NOT_PLATFORM(ext_ff)
 ||ofmweb.wpcdn.pl/dist/*/static/chunks/*.js$replace=/adv:!.\,/adv:!1\,/,domain=open.fm
-! https://github.com/AdguardTeam/AdguardFilters/issues/95566
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
-dobreprogramy.pl#%#AG_onLoad(function(){(new MutationObserver(function(){var a=document.querySelector('.wp-player__video-container > video[src^="https://v.wpimg.pl/"]');var b=(b=document.querySelector(".wp-player .bcontrols > .ainfo > .atime > span"))&&b.innerText.includes("Reklama")?!0:void 0;b&&a&&a.duration&&(a.currentTime=a.duration)})).observe(document,{childList:!0,subtree:!0})});
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75066
 ||amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,domain=wp.pl|money.pl|open.fm
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
@@ -10926,7 +10920,8 @@ stooq.pl##div[onclick*="window.open('http://stooq.pl/ads/"]
 ! shinden.pl - anti-adblock
 @@||shinden.pl^$generichide
 ! czasbajki.pl - skip timer
-czasbajki.pl#%#AG_onLoad(function() { $('#kFinal').removeClass('kHidden'); $('#kSplash').remove(); });
+czasbajki.pl#%#//scriptlet('remove-class', 'kHidden', '#kFinal')
+czasbajki.pl#$?##kSplash { remove: true; }
 ! wp.pl - anti-adblock
 @@||adv.wp.pl/bar.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127297
@@ -11622,10 +11617,10 @@ stream037hd.xyz#%#//scriptlet("set-constant", "Object.prototype.ads", "emptyArr"
 playulti.com##.banner
 playulti.com##section[style="text-align: center;"] > section > a[target="_blank"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130111
+thaihubx.tv###spin-r
 siamblockchain.com##.ads
 player.octopusbanner.com#$##ads { display: none !important; }
-player.octopusbanner.com#$##main { display: block !important; }
-player.octopusbanner.com#%#AG_onLoad(function(){"function"==typeof window.load_jpw&&window.load_jpw()});
+thaihubx.tv,player.octopusbanner.com#$##main { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128945
 anime-masters.com##.banner-close
 anime-masters.com##center > p > a[target="_blank"] > img
@@ -11653,7 +11648,6 @@ anime-suba.com##img[src^="https://www.anime-suba.com/Anime-Suba/Admin/imgAnadver
 ||anime-suba.com/Anime-Suba/Admin/imgAnadvertisement/
 ||googles.video^$media,redirect=noopmp3-0.1s,domain=anime-suba.com
 ||cdend.com/*.mp4$media,redirect=noopmp3-0.1s,domain=anime-suba.com
-anime-suba.com#%#AG_onLoad(function(){if(-1!=window.location.href.indexOf("/player/")&&"undefined"!=typeof kosana&&"function"==typeof kosana.skipAd){var a=0;const b=function(b,c){var d=document.querySelector(".skip-btn");d&&10>a?(a++,kosana.skipAd()):c.disconnect()},c=new MutationObserver(b);c.observe(document,{childList:!0,attributes:!0,subtree:!0})}});
 ||anime-suba.com/dist/banner/setkosana/$replace=/({ 'ad': \[)[\s\S]*?(\]\,)/\$1\$2/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120461
 @@||static.bigc.co.th/media/bannerads/images/$domain=bigc.co.th
@@ -11876,13 +11870,6 @@ doomovie-hd.com##.side_floating_ad
 xn--72czp7a9bc4b9c4e6b.video##.ads-player
 xn--72czp7a9bc4b9c4e6b.video##.ads-comment
 xn--72czp7a9bc4b9c4e6b.video#$#div[class^="ads-"][class$="-player"] { visibility: hidden !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/93991
-hdd.porn2uhd.com,hdd.movie365-hd.com,hdd.movies-store.com,hdd.nung2uhd.com,hdd.movie22hd.com#%#AG_onLoad(function(){document.querySelector("#moviePlayer")&&"string"===typeof playAds&&"play"===playAds&&(playAds="donplay")});
-||hdd.porn2uhd.com/*?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
-||hdd.movie365-hd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
-||hdd.movies-store.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
-||hdd.nung2uhd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
-||hdd.movie22hd.com/player?id=$replace=/"MU_ads":"true"/"MU_ads":"false"/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93989
 /wp-content/uploads/*.gif$domain=moviedee24.com|123-hd.com|movie2uhd.com|nung2uhd.com|nung2hdd.com|movieshdfree.com|newseries-hd.com|movie22hd.com|moviehdfree.net|dooseries2uhd.com|newseries24.com|serieshd24.com
 ||bp.blogspot.com/*.gif$domain=nung2hdd.com|nanamovies.me
@@ -12109,16 +12096,6 @@ jav777.cc##div[aria-describedby="myaabpfun12dialog"]
 javboss.me#%#clientSide.player.play(true);
 !+ NOT_PLATFORM(ios, ext_android_cb)
 javboss.me###preroll
-! https://forum.adguard.com/index.php?threads/https-www-2510avporn-com-nsfw.25516/
-||2510porn.com/banner/
-||xxxthhd.com/wp-content/uploads/banner
-||2510porn.com/wp-content/uploads/*/banner
-||2510porn.com/wp-content/uploads/2017/09/2510avporn-960x100.jpg
-2510porn.com##[id^="banner"]
-2510porn.com#$##sgcolorbox { display: none!important; }
-2510porn.com#$##sgcboxOverlay { display: none!important; }
-2510porn.com#$#body[style="overflow: hidden;"] { overflow: visible!important; }
-2510porn.com#%#AG_onLoad(function() { jQuery(function() { jQuery('body, a').unbind('click'); }); });
 ! http://forum.adguard.com/showthread.php?7078
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=voicetv.co.th
 ! http://forum.adguard.com/showthread.php?5788
