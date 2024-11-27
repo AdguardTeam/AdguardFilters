@@ -40,32 +40,23 @@ mytry.jp#$#body > #container { display: block !important; }
 !+ NOT_PLATFORM(windows, mac, android, ext_ff, ext_chromium_mv3)
 wiki.yjsnpi.nu#%#//scriptlet('abort-current-inline-script', 'onload', 'catch')
 !#if (!adguard_ext_chromium_mv3 && !ext_ublock)
+wiki.yjsnpi.nu#%#//scriptlet('abort-on-stack-trace', 'Function.prototype.toString', '/[A-z]+\s.+comments\.js/')
 $script,~third-party,redirect-rule=noopjs,domain=wiki.yjsnpi.nu
 wiki.yjsnpi.nu#%#//scriptlet("prevent-setTimeout", "/\+'.+catch/", "!0")
-!wiki.yjsnpi.nu#%#//scriptlet('prevent-element-src-loading', 'script', '/\/w\/load\.php$/')
 wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) { font-size: 0 !important; }
 wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) img { height: 0 !important; }
 wiki.yjsnpi.nu#%#//scriptlet('prevent-eval-if', '/catch.+catch/')
 wiki.yjsnpi.nu#%#//scriptlet('remove-node-text', 'script', '/catch.+catch/')
 !#endif
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium_mv3 && !ext_ublock)
-
-!||wiki.yjsnpi.nu^$script
-/\/w\/load\.php\?lang=ja&modules=codex-search-styles(?:%2C)?$/$script,~third-party,domain=wiki.yjsnpi.nu,important
-||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=startup&only=scripts&raw=1&skin=|$script,~third-party,important
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=ext.cite.ux-enhancements$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=ext.categoryTree$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=codex-search-styles$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=ext.visualEditor$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=jquery$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=mediawiki.Uri$script,~third-party
-@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=startup$script,~third-party
+||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=codex-search-styles$script,~third-party
+@@||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=codex-search-styles%2Cjquery%2Coojs%2*&skin=vector-2022&version=$script,~third-party
 !#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
 wiki.yjsnpi.nu$$script:contains(/catch.+catch/)
 ||wiki.yjsnpi.nu/w/load.php?lang=ja&modules=$script,replace=/\((?:function)?\s*\([\$\w]*[\W\s]+?(const|function)[\S\s]+?catch[\S\s]+?catch[\S\s]+?catch[\S\s]+?\)\([\$\w]*\);?\s*\$//
 ||wiki.yjsnpi.nu/yjsnpi.js$replace=/^[\S\s]*(\,)[\S\s]*/function copyToClipboad(e){navigator.clipboard.writeText(this.caller.dataset.text).then((()=>{mw.notify("クリップボードにコピーしました")\$1gtag("event"\$1"clipboard"\$1{wgTitle:RLCONF.wgTitle\$1clipboard_status:"done"})})\$1(()=>{mw.notify("クリップボードにコピーできませんでした…")\$1gtag("event"\$1"clipboard"\$1{wgTitle:RLCONF.wgTitle\$1clipboard_status:"failed"})}))}function searchProduct(e){var t="";if("FANZA"===this.caller.dataset.asp){{const e="https:\/\/www.dmm.co.jp\/digital\/videoa\/-\/list\/search\/=\/?searchstr="+encodeURI(RLCONF.wgPageName);t="https:\/\/al.dmm.co.jp\/?lurl="+encodeURI(e)+"&af_id=takayama-001&ch=toolbar&ch_id=link"}window.open(t\$1"_blank")\$1gtag("event"\$1"search_products"\$1{wgTitle:RLCONF.wgTitle\$1asp:this.caller.dataset.asp})}}function sfw(e){this.caller.classList.remove("nsfw")\$1gtag("event"\$1"nsfw"\$1{wgTitle:RLCONF.wgTitle})}function getAbsolutePath(e){const t=location.href;return new URL(e\$1t).href}document.querySelectorAll(".copy_to_clipboard").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:copyToClipboad})}))\$1document.querySelectorAll(".search_products").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:searchProduct})}))\$1document.querySelectorAll(".share_button").forEach((e=>{e.addEventListener("click"\$1(async e=>{const t={title:RLCONF.wgTitle+" - 真夏の夜の淫夢Wiki"\$1text:RLCONF.wgTitle+" - 真夏の夜の淫夢Wiki"\$1url:getAbsolutePath("\/wiki\/"+encodeURI(RLCONF.wgPageName))};if(navigator.canShare&&navigator.canShare(t))try{await navigator.share(t)\$1mw.notify("シェアしました")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"share"\$1share_status:"done"})}catch(e){mw.notify("シェアできませんでした…")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"share"\$1share_status:"cancelled"})}else navigator.clipboard.writeText(t.text+" "+t.url).then((()=>{mw.notify("クリップボードにコピーしました")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"clipboard"\$1share_status:"done"})})\$1(()=>{mw.notify("クリップボードにコピーできませんでした…")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"clipboard"\$1share_status:"failed"})}))}))}))\$1document.querySelectorAll(".nsfw").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:sfw})}));/
-||wiki.yjsnpi.nu/comments/$script,replace=/function ([A-Za-z]+)\(\)\{[A-Za-z]+\(\)\,\1=([A-Za-z]+\,)\1\(\);\}/function \$1(){\$1=\$2\$1()}/
+||wiki.yjsnpi.nu/comments/$script,replace=/function ([A-Za-z]+)\(\)\{const [0-9A-z]+=[A-Za-z]+.+\1=[A-Za-z]+;\}//m
 !#endif
 $subdocument,redirect-rule=noopframe,domain=wiki.yjsnpi.nu
 @@||wiki.yjsnpi.nu^$image,xmlhttprequest,~third-party
