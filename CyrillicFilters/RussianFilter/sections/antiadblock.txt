@@ -1035,6 +1035,17 @@ ok.ru##.exit-popup > *
 @@||ad.mail.ru/adq/?callback=mailruEnabled$domain=ok.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19112
 !
+! VK.com
+@@||vk.com^$generichide
+vk.com#%#//scriptlet('prevent-fetch', '/(\.com|\.ru)$/ method:HEAD')
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
+!#safari_cb_affinity(general,privacy)
+@@||ads.vk.com^|$xmlhttprequest,~third-party
+@@||top-fwz1.mail.ru^|$xmlhttprequest,domain=vk.com
+@@||tns-counter.ru^|$xmlhttprequest,domain=vk.com
+!#safari_cb_affinity
+!#endif
+!
 ! Common rules
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ://mail.ru^$~script,~xmlhttprequest,replace=/a=mr.mimicEnabled?/a=mr.mimic_Enabled?/
