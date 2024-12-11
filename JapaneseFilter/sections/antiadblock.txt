@@ -37,13 +37,18 @@ yourfones.net#%#//scriptlet('spoof-css', 'ins.adsbygoogle', 'display', 'block')
 mytry.jp#@#.ad_box
 mytry.jp#$#body > #container { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190943
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||imp-adedge.i-mobile.co.jp/script/v1/spot.js$domain=wiki.yjsnpi.nu
+@@||ssp-bidapi.i-mobile.co.jp/api/v1/spot.ashx$domain=wiki.yjsnpi.nu
+@@||spnativeapi-tls.i-mobile.co.jp/api/ad_spot.ashx$domain=wiki.yjsnpi.nu
+wiki.yjsnpi.nu#@##mw-content-text > div.ad.top[style*="min-height:"]
+wiki.yjsnpi.nu#@##mw-content-text > div[style*="min-height:"]:has(> div[id^="im-"] > script)
+wiki.yjsnpi.nu###mw-content-text > div > div[style^="position:fixed; bottom:0;left:0;right:0;width:100%;background:"]
+!#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
 ||local.adguard.org/?type=content-script|$domain=wiki.yjsnpi.nu,important
 @@||local.adguard.org^$redirect=noopjs,domain=wiki.yjsnpi.nu
 !#endif
-!+ NOT_PLATFORM(windows, mac, android, ext_ff, ext_chromium_mv3)
-wiki.yjsnpi.nu#%#//scriptlet('abort-current-inline-script', 'onload', 'catch')
-!#if (!adguard_ext_chromium_mv3 && !ext_ublock)
 wiki.yjsnpi.nu#%#//scriptlet('prevent-element-src-loading', 'script', '/w/load.php?lang=ja&modules=codex-search-styles')
 wiki.yjsnpi.nu#%#//scriptlet("prevent-setTimeout", "()=>k(S(4")
 $script,~third-party,redirect-rule=noopjs,domain=wiki.yjsnpi.nu
@@ -51,10 +56,7 @@ wiki.yjsnpi.nu#%#//scriptlet('spoof-css', '#mw-content-text div[style] a:is([hre
 wiki.yjsnpi.nu#%#//scriptlet('spoof-css', '#mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) img', 'height', '128px')
 wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) { font-size: 0 !important; }
 wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) img { height: 0 !important; }
-!#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
-wiki.yjsnpi.nu$$script:contains(/catch.+catch/)
-||wiki.yjsnpi.nu/yjsnpi.js$replace=/^[\S\s]*(\,)[\S\s]*/function copyToClipboad(e){navigator.clipboard.writeText(this.caller.dataset.text).then((()=>{mw.notify("クリップボードにコピーしました")\$1gtag("event"\$1"clipboard"\$1{wgTitle:RLCONF.wgTitle\$1clipboard_status:"done"})})\$1(()=>{mw.notify("クリップボードにコピーできませんでした…")\$1gtag("event"\$1"clipboard"\$1{wgTitle:RLCONF.wgTitle\$1clipboard_status:"failed"})}))}function searchProduct(e){var t="";if("FANZA"===this.caller.dataset.asp){{const e="https:\/\/www.dmm.co.jp\/digital\/videoa\/-\/list\/search\/=\/?searchstr="+encodeURI(RLCONF.wgPageName);t="https:\/\/al.dmm.co.jp\/?lurl="+encodeURI(e)+"&af_id=takayama-001&ch=toolbar&ch_id=link"}window.open(t\$1"_blank")\$1gtag("event"\$1"search_products"\$1{wgTitle:RLCONF.wgTitle\$1asp:this.caller.dataset.asp})}}function sfw(e){this.caller.classList.remove("nsfw")\$1gtag("event"\$1"nsfw"\$1{wgTitle:RLCONF.wgTitle})}function getAbsolutePath(e){const t=location.href;return new URL(e\$1t).href}document.querySelectorAll(".copy_to_clipboard").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:copyToClipboad})}))\$1document.querySelectorAll(".search_products").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:searchProduct})}))\$1document.querySelectorAll(".share_button").forEach((e=>{e.addEventListener("click"\$1(async e=>{const t={title:RLCONF.wgTitle+" - 真夏の夜の淫夢Wiki"\$1text:RLCONF.wgTitle+" - 真夏の夜の淫夢Wiki"\$1url:getAbsolutePath("\/wiki\/"+encodeURI(RLCONF.wgPageName))};if(navigator.canShare&&navigator.canShare(t))try{await navigator.share(t)\$1mw.notify("シェアしました")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"share"\$1share_status:"done"})}catch(e){mw.notify("シェアできませんでした…")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"share"\$1share_status:"cancelled"})}else navigator.clipboard.writeText(t.text+" "+t.url).then((()=>{mw.notify("クリップボードにコピーしました")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"clipboard"\$1share_status:"done"})})\$1(()=>{mw.notify("クリップボードにコピーできませんでした…")\$1gtag("event"\$1"share"\$1{wgTitle:RLCONF.wgTitle\$1share_type:"clipboard"\$1share_status:"failed"})}))}))}))\$1document.querySelectorAll(".nsfw").forEach((e=>{e.addEventListener("click"\$1{caller:e\$1handleEvent:sfw})}));/
 ||wiki.yjsnpi.nu/comments/$script,replace=/(;\}\}function [A-Za-z]+\([A-Za-z]?\)\{const [a-z]+=[A-Z]\,(?:const )?[a-z]+=[A-Z]).{500\,2000}\]\(\);\}\}/\$1}/
 ||wiki.yjsnpi.nu/comments/$script,replace=/(\);\}\}function [A-Za-z]+\([A-Za-z]?\)\{const [a-z]+=[A-Z]\,(?:const )?[a-z]+=[A-Z]).{500\,2000}\]\(\)\)\);\}/\$1}/
 !#endif
@@ -68,8 +70,15 @@ gunauc.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188965
 ||kuji.xth.jp/ad-x-check.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-exploader.net#%#//scriptlet('spoof-css', 'a[style*="display:"][href^="https://al.dmm.co.jp"]', 'display', 'flex !important')
-exploader.net##a[style*="display:"][href^="https://al.dmm.co.jp"]
+||daotag.com/tag/$script,replace=/if\(images\[i_key\]\.parentNode\.offsetHeight<rand\)/if(0)/,domain=exploader.net
+||daotag.com/tag/$script,replace=/if\(rand\+'px'!=dev_height\)/if(0)/,domain=exploader.net
+!+ NOT_PLATFORM(ext_chromium_mv3, ext_ublock)
+exploader.net#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.getBoundingClientRect', 'set_daotag')
+exploader.net#%#//scriptlet('spoof-css', 'a[style*="display:"][href^="https://al.dmm.co.jp"] img', 'height', '20px')
+exploader.net#%#//scriptlet('spoof-css', 'a[style*="display:"][href^="https://al.dmm.co.jp"] img', 'display', 'block')
+exploader.net##a[style*="display:"][href^="https://al.dmm.co.jp"] img
+exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] > div:has(img) { height: 20px !important; }
+exploader.net##a[style*="display:"][href^="https://al.dmm.co.jp"] span
 @@||daotag.com/tag/$script,domain=exploader.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181591
 iwb.jp#%#//scriptlet('prevent-setTimeout', 'getComputedStyle(a).height')
