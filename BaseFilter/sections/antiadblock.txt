@@ -3741,7 +3741,8 @@ ontools.net#%#//scriptlet('prevent-fetch', '/google-analytics\.com|adblockanalyt
 canirunthegame.com##div[class^="blocker-"]
 canirunthegame.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153796
-rekidai-info.github.io#%#//scriptlet('prevent-setTimeout', '()=>{var')
+rekidai-info.github.io#%#//scriptlet('prevent-setTimeout', '/\(\)=>\{(?:const|let|var)|location/')
+rekidai-info.github.io#%#//scriptlet('prevent-setTimeout', '', '3000')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rekidai-info.github.io
 @@||pagead2.googlesyndication.com^$xmlhttprequest,domain=rekidai-info.github.io
 @@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_$script,domain=rekidai-info.github.io
@@ -9915,7 +9916,7 @@ sonycrackle.com#$#.cracklePlayer > div > div { display: block!important; }
 @@||justlightnovels.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28514
 @@||earnz.xyz/js/adsbygoogle.js
-earnz.xyz#%#window.canRunAds = true;
+earnz.xyz#%#//scriptlet('set-constant', 'canRunAds', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28466
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari, ext_ublock)
 @@||oldskool.vip^$generichide
@@ -10465,21 +10466,6 @@ mhtviewer.booogle.net,kmlviewer.nsspot.net,epubreader.1bestlink.net,imagetotext.
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20544
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||eveningtimes.co.uk^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/23800
-! https://github.com/AdguardTeam/AdguardFilters/issues/20917
-reuters.com#%#//scriptlet("abort-current-inline-script", "navigator", "Flags.autoRecov")
-reuters.com#%#//scriptlet("abort-on-property-read", "Object.prototype.autoRecov")
-reuters.com$$script[tag-content="Flags.networkListener"][min-length="20000"][max-length="150000"]
-reuters.com#%#window.uabpdl = window.uabInject = window.uabpDetect = true;
-@@||reuters.com/ads.js|
-!#if (adguard_app_ios || adguard_ext_android_cb)
-reuters.com##div[id^="google_ads_iframe_"]
-reuters.com##.DPSlot_container[data-ad-type]
-@@||adservice.google.*/adsid/integrator.js$domain=reuters.com
-@@||securepubads.g.doubleclick.net/gpt/pubads_impl_$domain=reuters.com
-@@||securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1$domain=reuters.com
-@@||tpc.googlesyndication.com/safeframe/*/html/container.html$domain=reuters.com
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20786
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||europeanclassiccomic.blogspot.com^$generichide
@@ -10511,7 +10497,7 @@ watoday.com.au#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.tex
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20219
 @@||sexwebvideo.me/js/advertising.js
-sexwebvideo.me#%#window.canRunAds = true;
+sexwebvideo.me#%#//scriptlet('set-constant', 'canRunAds', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20262
 happyfor.win#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/adblock.html/.test(a.toString()))return b(a,c)};})();
 !#if (adguard_ext_firefox || adguard_ext_opera || adguard_app_ios || adguard_ext_android_cb)
@@ -11707,7 +11693,7 @@ nydailynews.com#%#window.Adv_ab = false;
 @@||cf.http.anno.channel4.com^$domain=channel4.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6404
 @@||wallpapersite.com/scripts/ads.js
-wallpapersite.com#%#window.canRunAds = true;
+wallpapersite.com#%#//scriptlet('set-constant', 'canRunAds', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6382
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||sat-universe.com^$generichide
@@ -12020,7 +12006,7 @@ bicycling.com,menshealth.com,prevention.com,rodalesorganiclife.com,rodalewellnes
 @@||googletagservices.com/tag/js/gpt.js$domain=citationmachine.net
 @@||cdn.springserve.com/assets/0/playerJS/chegg_unlocked_cm.js$domain=citationmachine.net
 @@||snippets.studybreakmedia.com/doubleclick/ads.js
-citationmachine.net#%#window.canRunAds = true;
+citationmachine.net#%#//scriptlet('set-constant', 'canRunAds', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4578
 @@||sportbikerider.us^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/4513
@@ -12068,9 +12054,6 @@ sonichits.com#@#.right-ad
 ! https://forum.adguard.com/index.php?threads/20675/
 @@||pubads.g.doubleclick.net/gampad/ad?$domain=nbc.com
 @@||tpc.googlesyndication.com/pagead/imgad?id=$domain=nbc.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/4182
-nbc.com#%#window.canRunAds = true;
-@@||nbc.com/generetic/scripts/ads.js
 ! https://forum.adguard.com/index.php?threads/pornve-com-nsfw.18962/
 @@||fistfast.com/pop.js
 ! https://forum.adguard.com/index.php?threads/18804/
@@ -12382,8 +12365,6 @@ theguardian.com##.js-adblock-sticky
 @@||mamahd.com^$generichide
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1738
 ||macos-app.com/wp-content/uploads/an-temp/
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/1580
-birminghammail.co.uk#%#window.checkState = function() {};
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1697
 @@||kingofshrink.com^$generichide
 ! http://forum.adguard.com/showthread.php?9268
@@ -12447,7 +12428,7 @@ pixiz.com###adblock-detected
 ! http://forum.adguard.com/showthread.php?5714
 ||z0r.de/inc/adb.js
 ! http://www.comss.ru/disqus/page.php?id=1888#comment-2054564210
-bitcoinspace.net#%#window.canRunAds = true;
+bitcoinspace.net#%#//scriptlet('set-constant', 'canRunAds', 'true')
 foxfaucet.com#%#window.setTimeout=function() {};
 ! http://forum.adguard.com/showthread.php?5563
 microimg.biz#%#window.setTimeout=function() {};
