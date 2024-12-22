@@ -64,9 +64,10 @@ gunauc.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188965
 ||kuji.xth.jp/ad-x-check.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-||daotag.com/tag/$script,replace=/if\s*\(!(window\.[0-9a-z]{20\,})\)[\S\s]+/if(!\$1&&typeof \$1==='undefined'||\$1!==false){\$1=true}/,domain=exploader.net
+||daotag.com/tag/$script,replace=/(if\s*\(!window.[0-9a-f]{20\,}\))[\S\s]+(if\(typeof window\.[0-9a-f]{20\,}==='undefined'\)\{window.[0-9a-f]{20\,}=true;\})\s*(if\(typeof window\.[0-9a-f]{20\,}==='undefined'\)\{window.[0-9a-f]{20\,}=true;\})/\$1{\$2\$3}/,domain=exploader.net
 !#if (!adguard_ext_chromium_mv3 && !ext_ublock)
-exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] { width: 27px !important; }
+exploader.net#$#article > div[style*="1120px"] > div { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
+exploader.net#%#//scriptlet('spoof-css', 'article > div[style*="1120px"] > div', 'clip', '')
 !#endif
 @@||daotag.com/tag/$script,domain=exploader.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181591
