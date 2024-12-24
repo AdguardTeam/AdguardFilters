@@ -3067,10 +3067,17 @@ globes.co.il#%#//scriptlet("set-constant", "____ads_js_blocked", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48600
 @@||player.ynet.co.il/*/flowplayer.ads.*.ynet.js$domain=ynet.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45799
+! https://github.com/AdguardTeam/AdguardFilters/issues/194951
+themarker.com#@#div[data-adunit]
+themarker.com#@#.banner-ad
+themarker.com#$#.advert { height: 1px !important; }
+themarker.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ NOT_PLATFORM(windows, mac, android)
 themarker.com#%#//scriptlet("prevent-addEventListener", "load", "hblocked?returnTo")
 !+ PLATFORM(windows, mac, android)
 themarker.com#%#(function(){var b=window.addEventListener;window.addEventListener=function(c,a,d){if(a&&-1==a.toString().indexOf("hblocked?returnTo"))return b(c,a,d)}.bind(window)})();
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/$domain=themarker.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45669
 @@||admedia.com/images/cross_channel_arrows.png$domain=weather2day.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42344
