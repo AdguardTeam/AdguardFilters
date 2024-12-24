@@ -572,10 +572,6 @@ video.khl.ru#%#//scriptlet("set-constant", "Object.prototype.adblockers_detector
 ||ognennoetv.ru/wp-content/uploads/*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/18564
 @@||static.doubleclick.net/instream/ad_status.js$domain=center-yf.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/18554
-unit-car.com#%#window.blockAdBlock = function() {};
-!+ NOT_OPTIMIZED PLATFORM(ext_ff, ext_opera, ios, ext_android_cb)
-@@||unit-car.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17204
 @@||поискслов.рф^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17003
@@ -868,7 +864,7 @@ iomedia.ru$$script[tag-content="if (jQuery('.adsbygoogle"][max-length="1200"]
 !+ NOT_PLATFORM(windows, mac, android)
 iomedia.ru#@#.desktop_ad
 @@||iomedia.ru/static/adsbygoogle.js
-iomedia.ru#%#window.canRunAds = true;
+iomedia.ru#%#//scriptlet('set-constant', 'canRunAds', 'true')
 cybergame.tv###abwarn
 ! https://forum.adguard.com/index.php?threads/17426/
 @@||pwcats.info/advert.js
@@ -922,7 +918,7 @@ dzen.ru##div[class^="dzen-desktop__widgetContainer-"] div[class*=" dzen-desktop_
 dzen.ru##div[class*="--top-micro-app__"] > div[style$="position: relative; height: 0;"] > div[style^="margin-top:"] > div:not([style])
 dzen.ru#$#div[class*="--top-micro-app__"] > div[style$="position: relative; height: 0;"] { padding-top: 0 !important; }
 ! Banners in the feed
-dzen.ru##.dzen-feed__item article[aria-label="Карточка этажа"] ~ article:not([aria-label="Карточка этажа"])
+dzen.ru#$#article[class*="rtb__zenadCardRtb"] { content-visibility: hidden !important; }
 !
 ! Dzen News
 dzen.ru##div[class^="BrandingAdvert"]
@@ -1217,8 +1213,6 @@ juwelir.info#%#window.google_jobrunner = function() {};
 @@||donbassforum.net^$generichide
 ! http://forum.adguard.com/showthread.php?9692
 @@||avcore.ru^$generichide
-! http://forum.adguard.com/showthread.php?9691
-postila.ru#%#window.blockAdBlock = function() {};
 ! http://forum.adguard.com/showthread.php?9675
 @@||new4.me/adblock.js
 ! http://forum.adguard.com/showthread.php?9610
@@ -1235,8 +1229,6 @@ php5lab.com##html > div[style*="width:100%; height:100%; z-index:999999"]
 @@||apollocdn.cc/*/iframe$elemhide
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1358
 @@||kinomassa.net/js/advert.js
-! http://forum.adguard.com/showthread.php?8493
-@@||postila.ru/js/libs/blockadblock.js
 ! http://forum.adguard.com/showthread.php?8426
 @@||vtomske.ru/js/adv*.js
 ! http://forum.adguard.com/showthread.php?8432
@@ -1576,6 +1568,7 @@ yandex.*#?#div[class^="layout__top"] > div[class^="layout_"]:has(> div[style] > 
 !
 ! Kinopoisk
 /kinopoisk\.ru\/\w+\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]{100,}/$replace=/"attributes"/""/,script,domain=www.kinopoisk.ru
+www.kinopoisk.ru#%#//scriptlet('set-constant', 'Object.prototype.renderTo', 'undefined')
 www.kinopoisk.ru##.underheader-superbanner-wrapper
 www.kinopoisk.ru##div[class*="__AMNhR styles_"]
 www.kinopoisk.ru##div[id*="direct_R-A-"]

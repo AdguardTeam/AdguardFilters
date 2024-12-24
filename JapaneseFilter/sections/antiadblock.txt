@@ -64,11 +64,9 @@ gunauc.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188965
 ||kuji.xth.jp/ad-x-check.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-||daotag.com/tag/$script,replace=/if\s*\(!(window\.[0-9a-z]{20\,})\)[\S\s]+/if(!\$1&&typeof \$1==='undefined'||\$1!==false){\$1=true}/,domain=exploader.net
 !#if (!adguard_ext_chromium_mv3 && !ext_ublock)
-exploader.net#%#//scriptlet('spoof-css', 'a[style*="display:"][href^="https://al.dmm.co.jp"] img,a[style*="display:"][href^="https://al.dmm.co.jp"] span', 'clip', '')
-exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] img { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
-exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] span { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
+exploader.net#$#article > div[style*="1120px"] > div { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
+exploader.net#%#//scriptlet('spoof-css', 'article > div[style*="1120px"] > div', 'clip', '')
 !#endif
 @@||daotag.com/tag/$script,domain=exploader.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181591
@@ -416,6 +414,8 @@ battlecats-db.com#$#body[style="display: none;"] { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/85641
 modalina.jp#%#//scriptlet('abort-on-property-read', 'AdBlockLimitation')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/116093
+sekai-kabuka.com#$##amajmpid { pointer-events: none !important; }
+sekai-kabuka.com#$##amajmpid [style*="font-size"] { font-size: 0 !important; }
 sekai-kabuka.com#$#td[width="160"] [style*="position"] [id][style] ~ [onclick] { pointer-events: none !important; }
 realtime-chart.info#$#td[style^="vertical-align"] [onmousedown]:has(> img[src*="/clip_"] + b):not(:has(b td > a[href])) { pointer-events: none !important; }
 realtime-chart.info#?#.news_b table[border="0"][cellpadding="5"][style="background:#fff"] > tbody >  tr[bgcolor="#fff"] > td.newsarea[style] > a.wl[href^="https://a"][href*=".to/"]:upward(2)

@@ -1319,6 +1319,9 @@ mob.hr##.side_banner
 !
 ! NOTE: Czech and Slovakian
 !
+smartmania.cz###leaderboard-wrapper
+||titulky.com/mybanalter/
+titulky.com##div[id^="bny"]
 rychlost.cz##a[href^="/_pub/"]
 bombuj.si##div[id^="zatvorit-rekllamu"]
 idos.cz##.r-main
@@ -1341,6 +1344,10 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
+! https://github.com/AdguardTeam/AdguardFilters/issues/194647
+titulky.com#%#//scriptlet('set-constant', 'showFairUser', 'true')
+!+ PLATFORM(ios, ext_android_cb)
+@@||titulky.com/ads/titulky-ads-banner.js$domain=titulky.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194536
 info.cz##.i-ads-wrap
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194095
@@ -2682,6 +2689,8 @@ autopapa.ge##.top-rek
 !
 ! NOTE: Greek
 !
+ipaidia.gr##.inarticle-add
+mononews.gr##.header-banner
 newsbomb.gr##.inread-banner
 gizchina.gr##.widget_vw_widget_image_banner:not([id="vw_widget_image_banner-9"])
 gizchina.gr###vw_widget_custom_text-10
@@ -2942,7 +2951,9 @@ hasolidit.com##div[data-widget-id="16"]
 hasolidit.com##div[data-widget-id="18"]
 hasolidit.com##.banner-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192104
+!+ NOT_OPTIMIZED
 ynet.co.il#$#body { overflow: auto !important; }
+!+ NOT_OPTIMIZED
 ynet.co.il#$#.singleColumnGrid::after { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189226
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=mako.co.il
@@ -3057,10 +3068,17 @@ globes.co.il#%#//scriptlet("set-constant", "____ads_js_blocked", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/48600
 @@||player.ynet.co.il/*/flowplayer.ads.*.ynet.js$domain=ynet.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45799
+! https://github.com/AdguardTeam/AdguardFilters/issues/194951
+themarker.com#@#div[data-adunit]
+themarker.com#@#.banner-ad
+themarker.com#$#.advert { height: 1px !important; }
+themarker.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ NOT_PLATFORM(windows, mac, android)
 themarker.com#%#//scriptlet("prevent-addEventListener", "load", "hblocked?returnTo")
 !+ PLATFORM(windows, mac, android)
 themarker.com#%#(function(){var b=window.addEventListener;window.addEventListener=function(c,a,d){if(a&&-1==a.toString().indexOf("hblocked?returnTo"))return b(c,a,d)}.bind(window)})();
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/$domain=themarker.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45669
 @@||admedia.com/images/cross_channel_arrows.png$domain=weather2day.co.il
 ! https://github.com/AdguardTeam/AdguardFilters/issues/42344
@@ -3646,6 +3664,8 @@ bb.is$$div[class="banner"]
 !
 ! NOTE: Indian
 !
+ap7am.com##.tb-dt
+ap7am.com##.prk1
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189489
 sinhasannews.com##figure[class="wp-block-image"]
 sinhasannews.com###the-post figure[class^="wp-block-image"]:has(> img[alt^="Img"])
@@ -3888,8 +3908,6 @@ alphashoppers.co##.sponsered-links
 ! https://github.com/AdguardTeam/AdguardFilters/issues/9117
 /vqa^$domain=pagalguy.com
 pagalguy.com##iframe[id^="vqa:ads:"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/4787#issuecomment-316871958
-bombaytimes.com,businessinsider.in,gizmodo.in,iamgujarat.com,in.techradar.com,lifehacker.co.in,mensxp.com,indiatimes.com,samayam.com,idiva.com#%#Object.defineProperty(window,'trev',{get:function(){return function(){var a=document.currentScript;if(!a){var c=document.getElementsByTagName('script');a=c[c.length-1]}if(a&&/typeof\sotab\s==\s'function'/.test(a.textContent)){var d=a.previousSibling,b=d;while(b=b.previousSibling)if(b.nodeType==Node.COMMENT_NODE&&/\d{5,}\s\d{1,2}/.test(b.data)){d.style.setProperty('display','none','important');return}}}},set:function(){}});
 ! https://forum.adguard.com/index.php?threads/resolved-m-indiatimes-com-missed-ads-ios.20774/#post-140718
 ||media.indiatimes.in/idthat/
 ! https://forum.adguard.com/index.php?threads/22437/
@@ -3934,15 +3952,7 @@ mensxp.com###rhsLatestCont > div[class]:not(.ListingBlock)
 mensxp.com##.cont.blk + style:not([type]) + style[type="text/css"] + div[class]
 mensxp.com###section_WhatsHot > div:not([id])
 mensxp.com###right_panel > style[type="text/css"] + div[class]:not([id]):not([style])
-! https://forum.adguard.com/index.php?threads/lifehacker-co-in-missed-ads-windows.19297/#post-125419
-lifehacker.co.in##.articlelist1 > article.article:not([id^="btm_"])
-lifehacker.co.in##.top-content.list1 > li > style[type="text/css"] + div[class]:not([id]):not([style]):not([class*=" "])
-lifehacker.co.in###colombiaAdBox
-lifehacker.co.in##.rhs_widget_h > h3.heading2 + ul > li[style^="display:"][style$="inline-block;"]:not([data-id])
-||lifehacker.co.in/lhega/$image
 ! https://forum.adguard.com/index.php?threads/colombia-ads-missed-ads-windows.19238/
-in.techradar.com##style[type="text/css"] + div[class]:not([id]):not([style]):not([class*=" "])
-||in.techradar.com/trcdem/
 indiatimes.com##.last8brdiv > div.sponsor_block
 ||indiatimes.com/toiitpic/
 ! https://forum.adguard.com/index.php?threads/15978/
@@ -4884,11 +4894,6 @@ aranzulla.it###ad97090
 ||googletagmanager.com/gtm.js$script,redirect=googletagmanager-gtm,domain=lastampa.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161841
 geopop.it##.cp_banner-native
-! Rule below fixes embedded Tweets, for example - https://www.geopop.it/schianto-frecce-tricolori-a-torino-le-possibili-cause-e-il-bird-strike/
-! TODO: use redirect resource when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/328
-geopop.it#%#(()=>{let t=window?.__iasPET?.queue;Array.isArray(t)||(t=[]);const s=JSON.stringify({brandSafety:{},slots:{}});function e(t){try{t?.dataHandler?.(s)}catch(t){}}for(t.push=e,window.__iasPET={VERSION:"1.16.18",queue:t,sessionId:"",setTargetingForAppNexus(){},setTargetingForGPT(){},start(){}};t.length;)e(t.shift())})();
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_opera)
-@@||cdn.adsafeprotected.com/iasPET.1.js$domain=geopop.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161755
 [$path=/forum/]hwupgrade.it##.page-content td[style="padding-left:10px; width:300px;"]:not([class],[id])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/161706
@@ -6406,6 +6411,8 @@ roweroweporady.pl#@#.ad_container
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
 !
+lca.pl##.baner
+lca.pl##body.toplayer-visible .new-toplayer
 polskieradio24.pl##div[class^="Screening_"]
 bialystokonline.pl##.firma.premium
 wirtualnemedia.pl##div[id^="wtg_"]
@@ -9969,13 +9976,13 @@ kurnik.pl#$#body ins.adsbygoogle[data-ad-slot] { display: block !important; heig
 kurnik.pl#%#//scriptlet('abort-on-property-write', 'abask')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28506
 @@||static.gazetaprawna.pl/js/adverts.js
-dziennik.pl#%#window.canRunAds = true;
+dziennik.pl#%#//scriptlet('set-constant', 'canRunAds', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28403
 spottedskarzysko.pl##p[style="text-align: center;"] > a[rel="noopener noreferrer"] > img
 spottedskarzysko.pl##p[align="center"] > a[target="_blank"][rel="noopener noreferrer"] > img
 ||spottedskarzysko.pl/images/data/*/UNINET-MAJ2.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28035
-forsal.pl#%#window.canRunAds = true;
+forsal.pl#%#//scriptlet('set-constant', 'canRunAds', 'true')
 @@||static.forsal.pl/js/adverts.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25773
 skapiec.pl#?##content > .content-wrapper > h2.before-popularshops:has(> .advertisement)
@@ -12120,6 +12127,10 @@ asilmedia.org###banner
 !
 ! NOTE: Vietnamese
 !
+animevietsub.video##center > a[target="_blank"] > img
+cliphotnews.com###vl-underplayer-adx
+cliphotnews.com##.ads-catfish-desktop
+cliphotnews.com##a[href="javascript:x_catfish();"]
 ||truyensex.moe/anh/
 ||newoneinoldoneout.pro^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192655

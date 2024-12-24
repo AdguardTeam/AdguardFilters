@@ -21,6 +21,76 @@
 ! TODO: remove this only when the issue above is fixed
 ||npttech.com/advertising.js$important,script,redirect=noopjs,domain=~vijesti.me,badfilter
 !
+! NOTE: 24-12-2024
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/192282
+||cf.adxcel.com^$media,~xmlhttprequest,redirect=noopmp4-1s,domain=spotify.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/195188
+||19706903.xyz^$domain=ap7am.com
+ap7am.com##.tb-dt
+ap7am.com##.prk1
+! https://github.com/AdguardTeam/AdguardFilters/issues/194817
+eshentai.tv#%#//scriptlet('set-constant', 'adsBlocked', 'noopFunc')
+! AS
+autoby.jp,daily.co.jp,j-town.net,wetteronline.de#%#//scriptlet('remove-node-text', 'script', '.slice(-2);return decodeURIComponent')
+! https://github.com/AdguardTeam/AdguardFilters/issues/195130
+altema.jp###sidebar-in > div.widget_text:has(.tuika-widget > a[href*="utm_"])
+altema.jp##.koukoku_common_tag
+! https://github.com/AdguardTeam/AdguardFilters/issues/186185
+@@||html-load.com^$script,domain=winfuture.de
+winfuture.de#@%#//scriptlet('prevent-element-src-loading', 'script', 'html-load.com')
+winfuture.de#@%#//scriptlet('remove-node-text', 'script', 'error-report.com')
+winfuture.de#@%#//scriptlet('abort-on-stack-trace', 'document.getElementById', 'onerror')
+!
+! NOTE: 23-12-2024
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/195148
+! from EasyList
+nytimes.com##[class]:has(> [id="ad-top"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/195045
+nnmclub.to#%#//scriptlet('abort-on-property-write', 'v')
+!
+! NOTE: 20-12-2024
+!
+! YT
+youtube.com#%#//scriptlet('json-prune-xhr-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|\/player(?!.*(get_drm_license))|watch\?[tv]=|get_watch\?/')
+youtube.com#%#//scriptlet('json-prune-fetch-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|player\?|watch\?[tv]=|get_watch\?/')
+youtube.com#@%#//scriptlet('json-prune-xhr-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|\/player(?!.*(get_drm_license))|watch\?[tv]=/')
+youtube.com#@%#//scriptlet('json-prune-fetch-response', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/playlist\?list=|player\?|watch\?[tv]=/')
+! AS
+#@$?#span[id^="img_"][class^="img_"] > div[style*="justify-content"][style*="align-items"][style*="relative"][style*="center"] > iframe[src][marginwidth][width][style] { position: relative !important; right: 10000px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/194984
+||widget.info-*.ru/js/init.js?t=$script,third-party
+! https://github.com/List-KR/List-KR/commit/38a52755e6f8b52339dca504bc5fe2f7cef8afd9
+dinfo.3dpchip.com#%#//scriptlet('set-constant', 'linkPass', 'true')
+! https://t.me/adguardko/9/282
+chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/gfp')
+chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/call')
+chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/vas')
+!
+! NOTE: 19-12-2024
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/194664
+izmirdesondakika.com.tr###video-gallery-widget
+! https://github.com/AdguardTeam/AdguardFilters/issues/194927
+||easybell.de/typo3temp/assets/compressed/cookieman-theme-min.js.gz
+! https://github.com/AdguardTeam/AdguardFilters/issues/194895
+@@||res.ads.nicovideo.jp/assets/js/ads2.js$domain=sp.nicovideo.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/194920
+pirelli.com#$#body { overflow: auto !important; }
+!
+! NOTE: 18-12-2024
+!
+! AS
+#@$?#span[id^="img_"][class^="img_"] > style:first-child + div[style*="align-items"][style*="relative"][style*="center"] > iframe[src][marginwidth][width][style] { transform: translateX(-10000px) !important; }
+#@$?#span[id^="img_"][class^="img_"] > div[style*="justify-content:"][style*="align-items:"][style*="relative"][style*="center"] > iframe[src][marginwidth][width][style] { margin-right: -5000px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/194647
+||titulky.com/mybanalter/
+titulky.com##div[id^="bny"]
+titulky.com#%#//scriptlet('set-constant', 'showFairUser', 'true')
+! https://github.com/AdguardTeam/AdguardFilters/issues/194619
+www.kinopoisk.ru#%#//scriptlet('set-constant', 'Object.prototype.renderTo', 'undefined')
+!
 ! NOTE: 17-12-2024
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194791
@@ -77,7 +147,7 @@ syosetu.com#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194419
 yourbittorrent.com##.card-footer > div.row > div.text-center > a[href^="http://"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194505
-*$script,third-party,denyallow=fastlycdn.com|doodcdn.co|intensedebate.com|vixcloud.co|cdn.plyr.io|authkong.com|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|polyfill.io|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|cloudflare.net|rabbitstream.net|x.com,_____,domain=mixdrop.ps|mixdrop.is
+*$script,third-party,denyallow=fastlycdn.com|doodcdn.co|intensedebate.com|vixcloud.co|cdn.plyr.io|authkong.com|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|cloudflare.net|rabbitstream.net|x.com,_____,domain=mixdrop.ps|mixdrop.is
 ! medjugorje-news.com, ultimateclassicrock.com - anti-adblock
 medjugorje-news.com#%#//scriptlet("set-constant", "tie.ad_blocker_detector", "")
 ultimateclassicrock.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -209,7 +279,7 @@ infinityscans.org#%#//scriptlet('trusted-replace-node-text', 'script', 'catch', 
 fle-rvd0i9o8-moo.com#%#//scriptlet('prevent-window-open')
 fle-rvd0i9o8-moo.com#%#//scriptlet('abort-on-property-read', 'Cuba')
 fle-rvd0i9o8-moo.com#%#//scriptlet('abort-on-property-read', 'popns')
-*$script,third-party,denyallow=fastlycdn.com|doodcdn.co|intensedebate.com|vixcloud.co|cdn.plyr.io|authkong.com|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|polyfill.io|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|cloudflare.net|rabbitstream.net|x.com,_____,domain=noxx.to
+*$script,third-party,denyallow=fastlycdn.com|doodcdn.co|intensedebate.com|vixcloud.co|cdn.plyr.io|authkong.com|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|raincaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|cloudflare.net|rabbitstream.net|x.com,_____,domain=noxx.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194276
 madmaxworld.tv,banned.video,freeworldnews.tv#%#//scriptlet('set-constant', 'Object.prototype.nopreroll_', 'true')
 madmaxworld.tv,banned.video,freeworldnews.tv#%#//scriptlet('set-constant', 'Object.prototype.startLinearAdMode', 'undefined')
@@ -229,32 +299,20 @@ tuwroclaw.com##div[style="min-height: 362px;"]
 !
 ! NOTE: Frequently updated sites
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/153796
+rekidai-info.github.io#%#//scriptlet('prevent-setTimeout', '/\(\)=>\{(?:const|let|var)|location/')
+rekidai-info.github.io#%#//scriptlet('prevent-setTimeout', '', '2000')
+rekidai-info.github.io#@%#//scriptlet('prevent-setTimeout', '', '3000')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192558
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div.page_block.mailru-visibility-check)
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div.page_block > div._post_content div.ads_ad_snippet)
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div.page_block > div._post_content span.ads_ad_avatar)
-vk.com,vk.ru#?##feed_rows > div[class="feed_row "] > div.page_block > div._post_content div.ads_wall_text:upward(#feed_rows > div[class="feed_row "])
-vk.com,vk.ru#?##feed_rows > div[class="feed_row "] > div.page_block > div._post_content > div.ads_light_container:upward(#feed_rows > div[class="feed_row "])
-vk.com,vk.ru#?##feed_rows > div[class^="feed_row"] > div.page_block div.PostHeaderSubtitle__item > span:not([class]):contains(/[Реклама]/):upward(#feed_rows > div[class^="feed_row"])
-vk.com,vk.ru#?##feed_rows > div[class^="feed_row"]:has(> ._post > ._post_content .PostHeaderInfo .PostHeaderSubtitle__item:contains(Реклама в сообществе))
-vk.com,vk.ru###feed_rows > div.feed_row > div.post:has(a[data-ad-details-link])
-@@||vk.com^$generichide
-vk.com#%#//scriptlet('prevent-fetch', '/(\.com|\.ru)$/ method:HEAD')
+vk.com,vk.ru#?##feed_rows > div.feed_row:has(.PostHeaderSubtitle__item:contains(/Реклама в|Реклама от/))
+vk.com,vk.ru#?##feed_rows > div[class^="feed_row"] > div.page_block .PostHeaderSubtitle__item > span:not([class]):contains(/[Реклама]/):upward(#feed_rows > div[class^="feed_row"])
+vk.com,vk.ru#?#.wall_posts > div.post:has(.PostHeaderSubtitle__item:contains(Реклама в сообществе))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-exploader.net#%#//scriptlet('spoof-css', 'a[style*="display:"][href^="https://al.dmm.co.jp"] img,a[style*="display:"][href^="https://al.dmm.co.jp"] span', 'clip', '')
-exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] img { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
-exploader.net#$#a[style*="display:"][href^="https://al.dmm.co.jp"] span { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/190943
-wiki.yjsnpi.nu#%#//scriptlet('abort-on-stack-trace', 'Function.prototype.toString', '/w/load.php?lang=ja&modules=codex-search-styles%2Cjquery%2Coojs%2C&skin=vector-2022&version=L58hf')
-wiki.yjsnpi.nu#%#//scriptlet("prevent-setTimeout", "()=>k(S(4")
-$script,~third-party,redirect-rule=noopjs,domain=wiki.yjsnpi.nu
-wiki.yjsnpi.nu#%#//scriptlet('spoof-css', '#mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"])', 'font-size', '14px')
-wiki.yjsnpi.nu#%#//scriptlet('spoof-css', '#mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) img', 'height', '128px')
-wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) { font-size: 0 !important; }
-wiki.yjsnpi.nu#$##mw-content-text div[style] a:is([href*="contents.fc2.com"],[href*="dmm.co.jp"]) img { height: 0 !important; }
+exploader.net#$#article > div[style*="1120px"] > div { position: absolute !important; clip:rect(1px,1px,1px,1px) !important; }
+exploader.net#%#//scriptlet('spoof-css', 'article > div[style*="1120px"] > div', 'clip', '')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189567
-japscan.lol#%#//scriptlet('spoof-css', '.navbar-nav > li#navpromo2.nav-item', 'width', 'auto')
-japscan.lol#$#.navbar-nav > li#navpromo2.nav-item { width: 0 !important; overflow: hidden !important; }
-japscan.lol#@$#.navbar-nav > li#navpromo2.nav-item > a[href^="http://www.toueapo.shop/"] { text-indent: -5000px !important; }
-japscan.lol#%#//scriptlet("prevent-addEventListener", "DOMContentLoaded", "/function\s*\(\s*\)\s*\{[$\w]+\s*\(function\s*\(\s*\)|Porita|getComputedStyle'|getAttribute'|#Roi'\+|\+'pr|\(Lol|Niger|Charger|GoodDay|funct'|t'\+'y/")
-japscan.lol#%#//scriptlet("prevent-addEventListener", "load", "/navpromo|clipPath|0p'\+/")
+japscan.lol#@%#//scriptlet('remove-node-text', 'script', 'Roiyehe')
+japscan.lol#$#.navbar-nav > li#navpromo2.nav-item { opacity: 0.1 !important; }
+japscan.lol#%#//scriptlet('trusted-set-attr', '.navbar-nav > li#navpromo2.nav-item > a', 'href', ' ')
+japscan.lol#%#//scriptlet("prevent-addEventListener", "DOMContentLoaded", "/Niger|Charger|GoodDay|funct'|t'\+'y/")
+japscan.lol#%#//scriptlet("prevent-addEventListener", "/DOMContentLoaded|load/", "/function\s*\(\s*\)\s*\{\s*[^s][\"',;=`\s\w]*[^s][$\w]+\s*\(\s*function\s*\(\s*\)\s*\{\s*[a-z]+\s|Hobaba|na'\+|clip-path'|='\/'\+/")
