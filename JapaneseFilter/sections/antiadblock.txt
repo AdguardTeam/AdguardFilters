@@ -69,12 +69,14 @@ gunauc.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188965
 ||kuji.xth.jp/ad-x-check.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
-!#if (!adguard_ext_chromium_mv3 && !ext_ublock)
-exploader.net#$#a[style*="display:"][target="_blank"] { width: 90px !important; }
+!#if (!adguard_ext_chromium_mv3 && !ext_ublock && !adguard_ext_firefox)
+exploader.net#%#(()=>{const e="広告ブロックをしていると画像プレビューを使用できません。広告ブロックを解除してダウンロードページをリロードしてください";let t=!1,n="";const o=new Set,c=c=>{c.preventDefault();const l=c.target.href,r=window.open(l,"_blank");r.addEventListener("load",(c=>{if(c.target.documentElement.innerText.includes(e)){const c=o.values().next().value;n=c,o.delete(c);const l=setInterval((()=>{if(r.document.documentElement?.innerText.includes(e)){const e=o.values().next().value;n=e,o.delete(e),r.location.replace(r.location.href.replace(/\?.*/,`?${e}`))}if(!t&&r.document.getElementById("preview_images")){document.querySelectorAll(".dl_button[href]").forEach((e=>e.href=e.href.replace(/\?.*/,`?${n}`))),t=!0,clearInterval(l)}}),500);r.location.replace(r.location.href.replace(/\?.*/,`?${c}`))}}))};document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector("body script").textContent.match(/"] = '(.*?)'/g);if(!e)return;e.forEach((e=>{const t=e.replace(/.*'(.*?)'/,"$1");o.add(t)}));const t=document.querySelector('.dl_button[href*="preview"]').href.split("?")[1];o.has(t)&&o.delete(t);document.querySelectorAll(".dl_button[href]").forEach((e=>e.addEventListener("click",c)))}))})();
+exploader.net#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '.innerHTML')
+exploader.net##article > div[style*="1120px"]
+!#endif
 $image,redirect-rule=32x32-transparent.png,domain=exploader.net
 ||daotag.com^$image,redirect=32x32-transparent.png,domain=exploader.net
 exploader.net#%#//scriptlet('remove-attr', 'href', 'a[style*="display:"][href^="https://al.dmm.co.jp"]', 'complete')
-!#endif
 @@||daotag.com/tag/$script,domain=exploader.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181591
 iwb.jp#%#//scriptlet('prevent-setTimeout', 'getComputedStyle(a).height')
