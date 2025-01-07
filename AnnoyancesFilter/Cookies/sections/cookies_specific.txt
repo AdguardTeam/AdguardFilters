@@ -317,7 +317,6 @@ freenet.de#%#//scriptlet('remove-class', 'fn-sp', 'body.fn-sp')
 fastwebvodafone.it##iframe.ck_if
 ||fastwebvodafone.it/cookie-center/
 smarteru.com#%#//scriptlet('trusted-click-element', '#accept_cookie')
-regio-guide.de#%#//scriptlet('abort-on-stack-trace', 'DOMTokenList.prototype.add', 'openConsentLayerNavigationModal')
 webhallen.com#%#//scriptlet('set-local-storage-item', 'necessaryConsent', 'true')
 webhallen.com#%#//scriptlet('set-local-storage-item', 'marketingConsent', 'false')
 webhallen.com#%#//scriptlet('set-local-storage-item', 'personalisationConsent', 'false')
@@ -12574,6 +12573,13 @@ forum.gamer.com.tr#?#.p-body-inner > .notices > .notice:has(> .notice-content > 
 bethesda.net#?#visor-alert > div > div > div:last-child:has(> a[href$="/cookie-policy"])
 maximum.com.tr#?#.sticky_cookie_warning:has(> a[href^="/TR/gizlilik-politikamiz/Sayfalar/gizlilik-politikamiz.aspx"])
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/195498
+!#if (!adguard_app_ios && !adguard_ext_android_cb)
+regio-guide.de##.consent-layer-modal
+||regio-guide.de/*/consent-layer-view.*.
+!#endif
+regio-guide.de#%#//scriptlet('abort-on-stack-trace', 'DOMTokenList.prototype.add', 'openConsentLayerNavigationModal')
+regio-guide.de#%#//scriptlet('trusted-click-element', '.consent-layer-modal #consent-layer-modal-nav ion-footer button.consent-layer__footer__button[aria-label="Weiter mit essenziellen Einstellungen"] > span')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184455
 !+ PLATFORM(ext_ublock)
 all-inkl.com#$?##ai-hinweis { remove: true; }
@@ -13053,10 +13059,6 @@ befestigungsfuchs.de,jawoll.de,cafe-royal.com,campingplus.de,bikebox-shop.de,mli
 !
 !+ NOT_OPTIMIZED
 f-secure.com##.fs-consent
-!+ NOT_OPTIMIZED
-regio-guide.de##.consent-layer-modal
-!+ NOT_OPTIMIZED
-||regio-guide.de/*/consent-layer-view.*.
 !+ NOT_OPTIMIZED
 p.sokai.jp,xinedome.de,japannews.yomiuri.co.jp###consentModal
 !+ NOT_OPTIMIZED
