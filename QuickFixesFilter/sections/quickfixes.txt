@@ -23,6 +23,13 @@
 !
 ! NOTE: 14-01-2025
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/196152
+||manytoon.com/wp-content/uploads/*/adxad_*.mp4$domain=manhwahentai.me
+manhwahentai.me##a[target="_blank"] > video
+manhwahentai.me#%#//scriptlet('prevent-window-open')
+manhwahentai.me#%#//scriptlet('abort-on-property-write', 'ClickNotifier')
+manhwahentai.me#%#//scriptlet('prevent-addEventListener', 'click', 'popMagic')
+manhwahentai.me#%#//scriptlet('abort-current-inline-script', 'document.querySelectorAll', 'popMagic')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196223
 upfiles.app#@#.ad-inner
 upfiles.app#@#.ad-element
@@ -33,7 +40,8 @@ upfiles.app#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ||tinypng.com/static/images/paid-banner/
 tinypng.com##.pwfil2d:has(> #advertisment-label)
 ! namu.wiki
-namu.wiki#?##app div[class*=" "] > div[class*=" "]:has(div[id][class] iframe[id^="google_ads_iframe_"]):matches-css(margin-bottom: /[0-9]{2,}/)
+namu.wiki#@?##app div[class*=" "] > div[class*=" "]:has(div[id][class] iframe[id^="google_ads_iframe_"]):matches-css(margin-bottom: /[0-9]{2,}/)
+namu.wiki#?##app div[class*=" "] > div[class*=" "]:has(iframe[id^="google_ads_iframe_"]):matches-css(margin-bottom: /[0-9]{2,}/)
 ! en.namu.wiki
 namu.wiki#@#div[id][class]:empty
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196304
@@ -674,6 +682,7 @@ dogdrip.net#$?#html[lang="ko"] [id^="img_"][style]:has(iframe[frameborder="0"][s
 infinityfree.com#$?#html[lang][dir="ltr"] [id^="img_"][style]:has(iframe[frameborder="0"][style]) { clip-path: circle(0) !important; }
 smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[frameborder="0"][style]) { clip-path: circle(0) !important; }
 ! Ad-Shield generic rules exception
+07c225f3.online,content-loader.com,css-load.com,html-load.com,img-load.com#@$?#body > *:not(pre) { filter: opacity(0) !important; pointer-events: none !important; }
 dogdrip.net,infinityfree.com,smsonline.cloud#@$?#body > div[id^="img_"][class^="img_"][style^="width"]:first-child { position: absolute !important; top: -100000px !important; }
 dogdrip.net,infinityfree.com,smsonline.cloud#@$?#body > div:first-child > script + div[id^="img_"][class^="img_"] { position: absolute !important; top: -100000px !important; }
 dogdrip.net,infinityfree.com,smsonline.cloud#@$?#body > a:only-child > div[id^="img_"][class^="img_"] { height: 0px !important; width: 0px !important; filter: opacity(0) !important; }
@@ -700,6 +709,7 @@ vk.com,vk.ru#?#.wall_posts > div.post:has(.PostHeaderSubtitle__item:contains(Ð Ð
 $image,redirect-rule=32x32-transparent.png,domain=exploader.net
 exploader.net#%#//scriptlet('remove-attr', 'href', 'a[style*="display:"][href^="https://al.dmm.co.jp"]', 'complete')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189567
+japscan.lol#%#//scriptlet("prevent-addEventListener", "load", "/Boh|Happy|='\/'|11'\+|'height|left'|^.{4700,10000}$/")
 japscan.lol#%#//scriptlet('remove-attr', 'href', '.navbar-nav > li#navpromo2.nav-item > a', 'complete')
 japscan.lol##.navbar-nav > li#navpromo2.nav-item > a:not([href])
 japscan.lol##body > div.container > #blare-inter[style*="position"]
