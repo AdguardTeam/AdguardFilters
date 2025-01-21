@@ -12,6 +12,20 @@
 ! - Limited lifetime: All rules added to this file are temporary will be removed 14 days after they are added.
 ! - Flexibility: Rules can be added to resolve critical issues quickly, with no restrictions based on the source of the problem.
 !
+! Limitations:
+! Since version 5.0.185, when adding JS or scriptlet rules to custom filters, user rules, or Quick Fixes filter, only rules
+! already present in the pre-installed filters will be applied. This means that before applying a rule, the engine will
+! compare it to the rules in the pre-installed filters. If the body of the rule matches an existing rule in those filters,
+! it will be applied. Otherwise, the engine will discard the rule.
+!
+! For example:
+!  * If the Base filter contains the rule `#%#//scriptlet('set-constant', 'canRunAds', 'true')` with any list of domains to which it applies, the engine will accept rules like `example.com#%#//scriptlet('set-constant', 'canRunAds', 'true')` or `#%#//scriptlet('set-constant', 'canRunAds', 'true')`.
+!  * However, a rule like `#%#//scriptlet('set-constant', 'canRunAds123', 'true')`, which does not match any rule, will be rejected.
+!
+!  In general, matching is done on a character-by-character basis. For example, these rules are not equal because of the different quotes:
+!  - `#%#//scriptlet('set-constant', 'canRunAds123', 'true')`
+!  - `#%#//scriptlet("set-constant", "canRunAds123", "true")`
+!
 ! To make it easier to delete rules in the future, they must be added with their date of addition.
 ! When adding the first rule in a day, you must add a comment with a date.
 !
