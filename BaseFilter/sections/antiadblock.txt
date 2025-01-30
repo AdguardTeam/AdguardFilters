@@ -6738,20 +6738,21 @@ maxstream.video#%#//scriptlet("adjust-setInterval", "counter", "*", "0.02")
 @@||c.adsco.re/|$script,domain=hotfrog.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102882
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pigeonburger.xyz
+! https://github.com/AdguardTeam/AdguardFilters/issues/197354
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176137
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96899
 ! 1cloudfile.com, koramaup.com - antiadblock
 ! Website checks content of the "pagead2.googlesyndication.com" request, information is stored in ArrayBuffer
-1cloudfile.com,koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', '200===r.status', '0===r.status')
-1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', 'getNextDownloadPageLink', 'return r.responseText', 'return `a.getAttribute("data-ad-client")||""`')
+bowfile.com,1cloudfile.com,koramaup.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+bowfile.com,1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', '/getNextDownloadPageLink|download-timer/', '200===r.status', '!0')
+bowfile.com,1cloudfile.com,koramaup.com#%#//scriptlet('trusted-replace-node-text', 'script', '/getNextDownloadPageLink|download-timer/', 'return r.responseText', 'return `a.getAttribute("data-ad-client")||""`')
 ||cloudfront.net/?*=$script,xmlhttprequest,redirect=noopjs,domain=1cloudfile.com
 ||cloudfront.net/?rwlrd=$redirect=noopframe,domain=1cloudfile.com
 1cloudfile.com#@#.advert-wrapper
 1cloudfile.com#$#.adsbygoogle { position: absolute!important; left: -3000px!important; }
 1cloudfile.com#$#body .advert-wrapper { position: absolute !important; left: -3000px !important; display: block !important; }
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com|koramaup.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1cloudfile.com|koramaup.com|bowfile.com
 @@||cloudfront.net/?*=$domain=1cloudfile.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96586
@@ -6821,7 +6822,6 @@ beatsnoop.com#%#//scriptlet("abort-current-inline-script", "document.createEleme
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95200
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=googlesyndication-adsbygoogle,domain=calculator-online.net,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136570
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bowfile.com
 ||cloudfront.net/?rwlrd=$redirect=noopframe,domain=bowfile.com
 !#if (adguard_app_ios || adguard_ext_android_cb)
 @@||d192r5l88wrng7.cloudfront.net^$subdocument,domain=bowfile.com
