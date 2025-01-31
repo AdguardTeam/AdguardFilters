@@ -1112,6 +1112,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/197502
+in91vip.win#%#//scriptlet('trusted-replace-node-text', 'script', 'detectAdsenseBlock', '/if \(isAdsenseBlocked\)/', 'if (!isAdsenseBlocked)')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+in91vip.win#@#iframe[width="728"][height="90"]
+@@||a.magsrv.com^$domain=in91vip.win
+in91vip.win#$##ad-banner { height: 1px !important; }
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197404
 bitcotasks.com#%#//scriptlet('remove-attr', 'onerror', 'script[src^="https://www.googletagmanager.com/gtag/js?"]')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
