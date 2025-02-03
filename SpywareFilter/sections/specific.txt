@@ -76,6 +76,17 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||cdn.shopify.com/*/assets/ba_pop_tracking.js
+||cd-ladsp-com.s3.amazonaws.com/script/pixel.js
+||facebook.com/privacy_sandbox/pixel/
+||support.google.com/apis/logjourney
+||google.*/log-moltron-interaction?
+||coincarp.com/cdn-cgi/trace
+||coincarp.com/script/events.js
+||api.spresso.com/pim/public/events
+||hoyoverse.com/device-fp/
+||hoyoverse.com/dora/lib/sentry/
+||hoyoverse.com/dora/biz/*-h5log/
 temu.com#%#//scriptlet('set-local-storage-item', '_nano_fp', '$remove$')
 ||temu.com/api/phantom/$xmlhttprequest
 ||us-central*-shopify-instrumentat-*.cloudfunctions.net/telemetry
@@ -90,8 +101,9 @@ temu.com#%#//scriptlet('set-local-storage-item', '_nano_fp', '$remove$')
 ||otlp-http-production.shopifysvc.com/v1/logs|
 ||otlp-http-production.shopifysvc.com/v1/metrics|
 ||order.buywithprime.amazon.com/log|
-||execute-api.us-west-2.amazonaws.com/prod/api/v*/viewer-events|
-||execute-api.us-east-2.amazonaws.com/prod/collect|
+||execute-api.us-*.amazonaws.com/trackingPixelProcessing?
+||execute-api.us-*.amazonaws.com/prod/api/v*/viewer-events|
+||execute-api.us-*.amazonaws.com/prod/collect|
 ||arclight.vimeo.com/add/player-stats
 ||arclight.vimeo.com/player-events/
 ||themescientist.app/*/event.json
@@ -122,7 +134,7 @@ coomer.su,kemono.su#%#//scriptlet('set-local-storage-item', 'plausible_ignore', 
 ||cdn-assets.dzcdn.net/common/js/gdpr-appliance.js
 ||cdn.builder.io/api/v1/pixel
 ||dell.com/*/clickstream/collect
-/\.coupang\.com\/(?!resources)[A-Za-z0-9-_]+\/(?!cart)(?!product)[A-Za-z0-9-_]+\/[A-Za-z0-9-_]+\/[A-Za-z0-9-_]+\/(?!products)[A-Za-z0-9-_]+/$domain=coupang.com,script,xmlhttprequest,method=get
+/\.coupang\.com\/(?!resources)[A-Za-z0-9-_]+\/(?!cart)(?!product)[A-Za-z0-9-_]+\/[A-Za-z0-9-_]+\/[A-Za-z0-9-_]+\/(?!products)[A-Za-z0-9-_]+/$domain=coupang.com|~mc.coupang.com,script,xmlhttprequest,method=get
 ||tripadvisor.*/wm/record
 ||tripadvisor.*/PVLog
 nike.com#%#//scriptlet('set-local-storage-item', 'pi_pageview_count', '$remove$')
@@ -1151,7 +1163,6 @@ fudge.jp##.ratio-wrapper
 ||nicovideo.jp/api/counter/
 ||vesseltracker.com/assets/js/leaflet-ais-trackingsymbols/
 ||apl.roskomsvoboda.org/js/script.js
-||cdn.shopify.com/shopifycloud/shopify/assets/shop_events_listener-*.js
 ||haes.tech/cdn-cgi/trace
 ||pornbest.org/site/stat?
 ||jsv3.recruitics.com^$script
@@ -3297,7 +3308,6 @@ abp?type=js&session$domain=prosieben.de|sat1.de|kabeleins.de|sixx.de|prosiebenma
 ||x.interia.pl/inpl/inpl.klmcounter.*.js
 ||iwa.iplsc.com/iwa.js
 ||l.iplsc.com/logger/
-||events.onet.pl/v*/?_ac=kropka-
 ||global.canon/00cmn/js/en/analytics.js
 ||bemail.it/audiens.php?
 ||fcmatch.youtube.com/pixel
@@ -4344,6 +4354,8 @@ link.gmapp*.net$image
 ! it's problematic that due to how Gmail proxy work, these domains aren't even exposed on the network level
 ! fortunately, extensions can see them (Gmail puts the real URL in the location.hash part of the src)
 !
+! mercari.jp
+bmo.mercari.jp/?s$image
 ! aozorabank.co.jp
 aozorabank.co.jp/r/*/open/$image
 aozorabank.co.jp%2Fr%2F*%2Fopen%2F$image
