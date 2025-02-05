@@ -35,6 +35,13 @@
 ! TODO: remove this only when the issue above is fixed
 ||npttech.com/advertising.js$important,script,redirect=noopjs,domain=~vijesti.me,badfilter
 !
+! NOTE: 05-02-2025
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/197835
+||syosetu.org/js/ad_
+syosetu.org##div[id^="ad_"]
+syosetu.org##div[style^="display:block;margin:0 auto;padding:0 10px;height:250px"]
+!
 ! NOTE: 04-02-2025
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197819
@@ -310,14 +317,17 @@ rekidai-info.github.io#%#//scriptlet('trusted-create-element', 'body', 'iframe',
 rekidai-info.github.io#%#//scriptlet('trusted-suppress-native-method', 'Document.prototype.querySelector', '/^iframe/', 'abort')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192558
 vk.com,vk.ru###feed_rows > div[class="feed_row "]:has(div[class^="PostHeaderTitle "] > div.PostHeaderTitle__authorBlock span.PostHeaderTitle__authorName)
+vk.com,vk.ru#?##feed_rows > div:has(> div:not([tabindex]):matches-attr("/[a-z0-9]{7}/"))
 vk.com,vk.ru#?##feed_rows > div:has(div[class] > *:matches-css(before, content: /[Реклама]|^•$/))
-vk.com,vk.ru#?##feed_rows > div[class^="feed_row"] > div[class] .PostHeaderSubtitle:contains(/[Реклама]/):upward(#feed_rows > div[class^="feed_row"])
+vk.com,vk.ru#?##feed_rows > div:has(div[class] > *:matches-css(after, content: /[Реклама]|^•$/))
+vk.com,vk.ru#?##feed_rows > div[class^="feed_row"]:has(> div[class] .PostHeaderSubtitle:contains(/[Реклама]/))
 vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div[class*="ads_block_data"])
 vk.com,vk.ru#?#.wall_posts > div.post:has(.PostHeaderSubtitle__item:contains(Реклама в сообществе))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183252
 $image,redirect-rule=32x32-transparent.png,domain=exploader.net
 exploader.net#%#//scriptlet('remove-attr', 'href', 'a[style*="display:"][href^="https://al.dmm.co.jp"]', 'complete')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189567
+japscan.lol#@#body > style + .container > .row > #main + #sidebar.col-md-3 > .card.mt-1 > .card[style="margin: 0px auto; display: block;"] > a.aikoi.donate[href^="http"][target="_blank"][rel="noopener noreferrer nofollow"]:not([href^="http://japscan.lol"]) > img
 japscan.lol#@#body > .container.text-center > div.mt-3[style="margin: 0px auto; display: block;"] > a.Aikoi.donate[target="_blank"][href^="https://www."][href*="/?utm_source=manga&utm_"]:not([href^="https://www.google"]):not([href^="https://www.japscan"]):not([href^="https://www.example"]) > img.img-fluid[src^="/imgs/onc/"]
 japscan.lol#@#body > style + .container > .row > #main.col-md-9 > .card > #chapters.tab-content > .row.justify-content-center.align-items-center > a.image-box.donate[href^="http"][target="_blank"][rel="noopener noreferrer nofollow"]:not([href^="http://japscan.lol"]) > img
 japscan.lol#@#body > .container.text-center > .mb-2.mt-2[style="margin: 0px auto; display: block;"] > .text-center > a.donate[href^="http"][target="_blank"][rel="noopener noreferrer nofollow"]:not([href^="http://japscan.lol"]) > img
