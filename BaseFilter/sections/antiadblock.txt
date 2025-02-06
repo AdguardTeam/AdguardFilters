@@ -1111,6 +1111,20 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/197991
+pokemon-project.com#%#//scriptlet('google-ima3')
+pokemon-project.com#%#//scriptlet('set-constant', 'videojsAdPlayed', 'true')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=pokemon-project.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/197952
+winshell.org#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=winshell.org
+! https://github.com/AdguardTeam/AdguardFilters/issues/197592
+avdbapi.com#%#//scriptlet('prevent-fetch', '/vast.js')
+||ssl.p.jwpcdn.com/player/plugins/vast/v/*/vast.js$xmlhttprequest,redirect=noopjs,domain=avdbapi.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||ssl.p.jwpcdn.com/player/plugins/vast/v/8.9.4/vast.js$xmlhttprequest,domain=avdbapi.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197538
 ! EZ4Short.com
 !#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
@@ -2336,11 +2350,12 @@ sportshub.to###player ~ div.modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/193243
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172971
 dgb.lol#%#//scriptlet('set-constant', 'findCMP', 'noopFunc')
-dgb.lol#%#//scriptlet('prevent-element-src-loading', 'script', '/adlightning\.com|cloudfront\.net\/publishers\//')
+dgb.lol#%#//scriptlet('prevent-element-src-loading', 'script', '/adlightning\.com|cloudfront\.net\/publishers\/|pagead2\.googlesyndication\.com/')
 ||tagan.adlightning.com/setupad-hai/op.js$script,redirect=noopjs,domain=dgb.lol
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@||stpd.cloud/saas/5274$domain=dgb.lol
 @@||tagan.adlightning.com/setupad-hai/op.js$domain=dgb.lol
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=dgb.lol
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173052
 uflash.tv#%#//scriptlet('prevent-fetch', '/\/code\.js|xadsmart\.com/')
@@ -4866,13 +4881,13 @@ shareus.site#%#//scriptlet('prevent-setTimeout', '_0x')
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137947
 ! UpFiles.com
-upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#@#.ad-element
-upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#@#.ad-inner
-upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+haxi.online,upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#@#.ad-element
+haxi.online,upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#@#.ad-inner
+haxi.online,upfiles.app,upfiles-urls.com,falpus.com,fooak.com,plknu.com,nexnoo.com,simana.online,upfilesurls.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! BUG: https://github.com/AdguardTeam/tsurlfilter/issues/131
 ! TODO: enable the hint after fixing
 !!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fooak.com|plknu.com|nexnoo.com|simana.online|upfilesurls.com|falpus.com|upfiles-urls.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fooak.com|plknu.com|nexnoo.com|simana.online|upfilesurls.com|falpus.com|upfiles-urls.com|haxi.online
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138484
 @@||citynews.ca/*/get_ad_$domain=citynews.ca
@@ -6858,6 +6873,8 @@ cdkm.com#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
 @@||smartnator.com/assets/js/prebid-ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/93416
 cryptofans.news#%#//scriptlet('prevent-setTimeout', 'swal')
+! https://github.com/AdguardTeam/AdguardFilters/issues/197642
+hentaihaven.xxx#%#//scriptlet('trusted-create-element', '.related-reading-wrap ins[data-revive-zoneid]', 'div')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183483
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166834
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158258
