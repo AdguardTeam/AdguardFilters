@@ -15,6 +15,8 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197276
 ! Possible bug: error in console "Uncaught Error: Minified React error #***" and site does not load
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+! Do not merge `$replace` rules into one, because it will not work on seiska.fi, `$referrerpolicy=origin` does not work help
+||seiska.fi/_next/static/chunks/*.js$replace=/throw Error\(i\((329|418)\)\)/null/
 ||yf.com.tr/_next/static/chunks/*.js$replace=/throw Error\(i\((329|418)\)\)/null/
 /obj/lemon8-web-*/lemon8_web/master/vendors/*.js$replace=/throw Error\(.\(418\)\);/null;/,domain=lemon8-app.com
 !#endif
