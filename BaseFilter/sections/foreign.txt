@@ -2753,6 +2753,14 @@ sportday.gr##div[data-ocm-ad]
 @@||player.ex.co/player/$domain=sportday.gr
 @@||cdn.ex.co/player/*.js$domain=sportday.gr
 @@||cdn.ex.co/transformations/production/$domain=sportday.gr
+! https://github.com/AdguardTeam/AdguardFilters/issues/197907
+! Video player from connatix.com is blocked by a rule from third-party filter
+! The problem is that apps do not detect source of the request and
+! rules below fix that issue
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||sport24.gr^$replace=/((.)\.src='javascript:false';)/\$1\$2.srcdoc='';/,document
+||sport-fm.gr^$replace=/((.)\.src='javascript:false';)/\$1\$2.srcdoc='';/,document
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196914
 sport24.gr##html > body [id^="ros"]:not(#style_important)
 @@||player.ex.co/config$domain=sport24.gr
