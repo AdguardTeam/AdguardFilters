@@ -1366,17 +1366,18 @@ echo.msk.ru,kakprosto.ru#%#//scriptlet('abort-on-property-read', 'Object.prototy
 ||echo.msk.ru^$replace=/AdvManager\.render/AdvManager._render/
 echo.msk.ru$$script[tag-content="DisplayAcceptableAdIfAdblocked"]
 otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length="2500"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/198288
+shedevrum.ai#%#//scriptlet('set-constant', 'window.yaContextCb', 'emptyArr')
+shedevrum.ai##.flex.items-center.justify-center.relative.w-full:has(> div[id]:empty)
 !
 !
 ! START: Yandex
 !
 !
-||ya.ru$script,xmlhttprequest,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
-||yandex.$script,xmlhttprequest,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
+! Add Yandex owned sites to `jsonprune` rule
+$script,xmlhttprequest,domain=ya.ru|yandex.*|shedevrum.ai,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
 yandex.*#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=yandex.*
-||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/"cookieName":.?"\w+"\,/"cookieName": "nonexisting"\,/
-||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/detect:{links:\[\]\,custom:\[\]\,iframes:\[\]}/detect:{}/
 ! ad on chrome://newtab
 !+ PLATFORM(windows, mac)
 ||yandex.ru/*/*?ntp-sandwich*content=chromenewtab&statPath=chromenewtab
