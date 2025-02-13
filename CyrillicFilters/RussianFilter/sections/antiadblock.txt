@@ -900,7 +900,7 @@ $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=dzen.ru|baby.ru|business
 !
 ://dzen.ru^$document,replace=/"isAdvertEnabled":true/"isAdvertEnabled":false/
 ://dzen.ru^$document,replace=/Ya.\w+.\w+.render/Ya.render/
-$script,xmlhttprequest,domain=dzen.ru|shedevrum.ai,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
+$script,xmlhttprequest,domain=dzen.ru,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
 dzen.ru#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 !
 ! Dzen main page
@@ -1374,12 +1374,10 @@ shedevrum.ai##.flex.items-center.justify-center.relative.w-full:has(> div[id]:em
 ! START: Yandex
 !
 !
-||ya.ru$script,xmlhttprequest,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
-||yandex.$script,xmlhttprequest,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
+! Add Yandex owned sites to `jsonprune` rule
+$script,xmlhttprequest,domain=ya.ru|yandex.*|shedevrum.ai,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "seatbid"]
 yandex.*#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=yandex.*
-||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/"cookieName":.?"\w+"\,/"cookieName": "nonexisting"\,/
-||static-mon.yandex.net/static/main.js$script,xmlhttprequest,replace=/detect:{links:\[\]\,custom:\[\]\,iframes:\[\]}/detect:{}/
 ! ad on chrome://newtab
 !+ PLATFORM(windows, mac)
 ||yandex.ru/*/*?ntp-sandwich*content=chromenewtab&statPath=chromenewtab
