@@ -11100,9 +11100,19 @@ purepc.pl#@#.reklama
 @@||cdntvn.pl/adscript.js?_=$domain=tvnturbo.pl
 @@||cdn.behavioralengine.com/scripts/btest/advertisement.js$domain=tvnturbo.pl
 @@||s.tvn.pl/tools/_ads/advert.js$domain=tvnturbo.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/198568
+stooq.pl,stooq.com$$script:contains(adsbygoogle.push)
+stooq.pl,stooq.com#%#//scriptlet('abort-current-inline-script', 'Object.defineProperties', 'adsbygoogle.push')
+stooq.pl,stooq.com#?##f13 > table[bgcolor]:has(> tbody:only-child > tr:only-child > td:only-child > b:contains(/^Sponsorowane$/))
+stooq.pl,stooq.com#?##f13 > table[bgcolor][style*="display: none !important"] + div + table[style]:has(> tbody > tr > td > a[href^="?"])
+stooq.pl,stooq.com##div[style*="position:"][style*="relative;"][style*="width:"][style*="300px;"][style*="height:"][style*="250px"]:has(> iframe[src*="/ads/"])
+!+ PLATFORM(windows, mac, android)
+||stooq.*/ads/$subdocument,redirect=noopframe,domain=stooq.pl|stooq.com
+!+ NOT_PLATFORM(windows, mac, android)
+||stooq.*/ads/$subdocument,domain=stooq.pl|stooq.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51605
 stooq.pl,stooq.com##td[align="center"] > table[width="100%"] > tbody > tr > td > .adsbygoogle + script + table[width="100%"] div[style="position:relative;width:970px;height:250px"]
-stooq.pl#?#td[valign="top"] > table[width="100%"][style="position:relative;z-index:1"] > tbody > tr > td[align="center"] > table[height="250"][cellpadding="0"][align="center"]:has(> tbody > tr > td[style="background-color:ffffff"] > .adsbygoogle)
+stooq.pl##td[valign="top"] > table[width="100%"][style="position:relative;z-index:1"] > tbody > tr > td[align="center"] > table[height="250"][cellpadding="0"][align="center"]:has(> tbody > tr > td[style="background-color:ffffff"] > .adsbygoogle)
 ! https://forum.adguard.com/index.php?threads/9809/
 stooq.pl##div[onclick*="window.open('http://stooq.pl/ads/"]
 ! shinden.pl - anti-adblock
