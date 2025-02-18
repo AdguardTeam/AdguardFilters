@@ -303,15 +303,20 @@ pansci.asia#@#.ad-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166247
 ! https://github.com/AdguardTeam/AdguardFilters/issues/120356
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26883
+linetv.tw#%#//scriptlet('set-constant', 'google_tag_manager', 'emptyObj')
+linetv.tw#%#//scriptlet('prevent-element-src-loading', 'script', '/fbevents.js')
 linetv.tw#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-linetv.tw#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+linetv.tw#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|\/fbevents\.js/')
 linetv.tw#%#//scriptlet('set-constant', 'google.ima.AdError', 'noopFunc')
 linetv.tw##.aspect-ratio > img.object-cover + .aspect-ratio-content + div[class^="absolute inset-"][class*="bg-linetv"][class*="-emphasis"]
 ||itad.linetv.tw/api/v2/vmap?ad_id=$xmlhttprequest,redirect=nooptext
+||connect.facebook.net/en_US/fbevents.js$script,redirect=noopjs,domain=linetv.tw
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,important,domain=linetv.tw
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=linetv.tw
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||connect.facebook.net/en_US/fbevents.js$domain=linetv.tw
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=linetv.tw
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30495
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||ez3c.tw^$generichide
