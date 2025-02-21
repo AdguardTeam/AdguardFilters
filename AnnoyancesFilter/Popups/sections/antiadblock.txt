@@ -27,7 +27,7 @@
 ! In all results
 [$path=/images]ya.ru,yandex.*#$?#.RelatedImages [style="max-width: 100%; max-height: 250px;"] { remove: true; }
 ! When open a specific image
-[$path=/images]ya.ru,yandex.*#$?#.ImagesViewer-SidebarAdv [style^="max-width: 100%; max-height:"] { remove: true; }
+ya.ru,yandex.*#$?#div[class^="ImagesViewer-"][style^="height:"] { remove: true; }
 !#endif
 !
 ! Yandex.Music
@@ -213,8 +213,6 @@ dzen.ru##div[class^="float-interview__float-"]
 [$path=/video]dzen.ru##div[class^="video-view-sidebar"] div[class]:matches-attr("aria-label"=/[Рр]екламная карта/)
 dzen.ru##.viewer-layout__sidebar div[aria-label*="екламная карта"]
 !
-! Test. Ads in the feed
-vk.com,vk.ru#%#//scriptlet('trusted-replace-xhr-response', '/banner:/g', '_banner:', 'feed', 'true')
 ! END: VK group
 !   NOTE: VK group end ⬆️
 !   !SECTION: Anti-adblock - VK group
@@ -495,6 +493,8 @@ reddit.com,reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion#@#.Sid
 !
 ! Add without $third-party, so apps are blocking them too
 !
+||newartreview.com^
+||thejavalane.com^
 ||curbminers.com^
 ||punyplant.com^
 ||jubilanttempest.com^
@@ -1842,6 +1842,8 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! Do not forget about '!#safari_cb_affinity' section for exclusions:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#general
 !
+925-1000.com#%#//scriptlet('abort-on-property-read', 'justDetectAdblock')
+925-1000.com###phpbb-aJHwDeoSqLhW
 lewdzone.com##main > div.alert:has(> a[href="https://lzmods.com/68/how-to-whitelist-an-website-in-adblock-plugins/"])
 tv.latinlucha.es##.zak-overlay-wrapper + div[id][class*=" "]
 androidworld.nl#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'adBlocker')
@@ -2234,7 +2236,7 @@ rentanadviser.com##.reklamcontainer
 ||forumnulled.com/uploads/set_resources_8/*_zozEabb204.js
 ||blink.net/iframe.html$domain=dailyprincetonian.com
 18comic.*#%#//scriptlet("set-constant", "nerverblock_callback", "noopFunc")
-multiup.eu,multiup.org#?#.content-body > .text-center:has(> a[href*="list_adblock.txt&"])
+goflix.sbs,multiup.eu,multiup.org##.content-body > .text-center:has(> a[href*="list_adblock.txt&"])
 ||cdn.iphoneincanada.ca/wp-content/themes/iphone/js/JDAB.js
 craftpip.github.io#%#//scriptlet('set-local-storage-item', 'adsok', 'true')
 redark.pl##[class^="adBlockDetector"]
@@ -2701,7 +2703,7 @@ multifilemirror.com,smplace.com##.blockContainer
 multifilemirror.com##.jbanner
 multifilemirror.com##.noticeContainer
 multiup.org##.alert.alert-success
-multiup.io,multiup.org#$#.mfp-ready { display: none !important; }
+goflix.sbs,multiup.io,multiup.org#$#.mfp-ready { display: none !important; }
 myshows.me##.likewiki
 mysmsbox.ru##div[ng-if="status.adBlockerActive"]
 nachrichten.at###iab_overlay
@@ -4216,8 +4218,6 @@ promote.telegram.org#@#.ads-content
 ! script checks these elements even if rules changed
 ! .responsive-sky-scraper
 ! .header-link-exaroton
-aternos.org#$#.placement { transform: rotate3d(1, 1, 0, 90deg) !important; }
-aternos.org#$#.header-link-exaroton-link { transform: rotate3d(1, 1, 0, 90deg) !important; }
 @@||aternos.org^$generichide
 !#safari_cb_affinity(general)
 @@||securepubads.g.doubleclick.net/gampad/ads?pvsid=$domain=aternos.org
