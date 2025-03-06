@@ -1115,6 +1115,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/200161
+jam3h.net#@#.ad-unit:not(.textads)
+jam3h.net#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'getComputedStyle')
+! https://github.com/AdguardTeam/AdguardFilters/issues/200141
+missavtv.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||www3.doubleclick.net^$domain=missavtv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200093
 get-to.link###genesis-modal
 get-to.link#%#//scriptlet('prevent-element-src-loading', 'script', 'prebid.revbid.net')
@@ -1162,7 +1169,7 @@ keyguardian.org#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199449
 dreamdth.com#%#//scriptlet('prevent-eval-if', '/return decodeURIComponent\(atob/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199450
-streambtw.com#@#.ad-unit:not(.textads)
+flstv.online,streambtw.com#@#.ad-unit:not(.textads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199353
 ghbrisk.com###adbd
 ghbrisk.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3.js')
@@ -1463,9 +1470,10 @@ redvido.com#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', 'on
 3dsfree.org#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/193130
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192945
-sf.upns.xyz,showflix.upns.one,upns.online#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3.js')
+isekaitube.cfd,sf.upns.xyz,showflix.upns.one,upns.online#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3.js')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=noopjs,domain=upns.online|sf.upns.xyz|showflix.upns.one|isekaitube.cfd
 !+ PLATFORM(ios, ext_android_cb)
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=upns.online|sf.upns.xyz|showflix.upns.one
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=upns.online|sf.upns.xyz|showflix.upns.one|isekaitube.cfd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192841
 oromoyo.ai#%#//scriptlet('prevent-setTimeout', 'await', '5000')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -3183,9 +3191,9 @@ urlcut.ninja#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167165
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166454
 ! cuty.io
-jixo.online,exe-urls.com,cuty.me,evernia.site,gamco.online,olkuj.com,ijvam.com,mrgec.com,emxaw.com,cety.app,cutnet.net,cutado.com,cutlink.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+cutyion.com,jixo.online,exe-urls.com,cuty.me,evernia.site,gamco.online,olkuj.com,ijvam.com,mrgec.com,emxaw.com,cety.app,cutnet.net,cutado.com,cutlink.net#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=jixo.online|cutlink.net|cutado.com|cutnet.net|cety.app|emxaw.com|mrgec.com|ijvam.com|olkuj.com|gamco.online|evernia.site|cuty.me|exe-urls.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cutyion.com|jixo.online|cutlink.net|cutado.com|cutnet.net|cety.app|emxaw.com|mrgec.com|ijvam.com|olkuj.com|gamco.online|evernia.site|cuty.me|exe-urls.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166266
 hax.co.id#%#//scriptlet('prevent-addEventListener', 'load', 'AdBlock')
 hax.co.id#%#//scriptlet('prevent-fetch', 'adsbygoogle')
@@ -3759,6 +3767,8 @@ rewayatcafe.com###adb
 ! TODO: use redirect resource when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/401
 southparkstudios.com#%#(()=>{const e=new Map,t=function(){},o=t;o.prototype.dispose=t,o.prototype.setNetwork=t,o.prototype.resize=t,o.prototype.setServer=t,o.prototype.setLogLevel=t,o.prototype.newContext=function(){return this},o.prototype.setParameter=t,o.prototype.addEventListener=function(t,o){t&&(console.debug(`Type: ${t}, callback: ${o}`),e.set(t,o))},o.prototype.removeEventListener=t,o.prototype.setProfile=t,o.prototype.setCapability=t,o.prototype.setVideoAsset=t,o.prototype.setSiteSection=t,o.prototype.addKeyValue=t,o.prototype.addTemporalSlot=t,o.prototype.registerCustomPlayer=t,o.prototype.setVideoDisplaySize=t,o.prototype.setContentVideoElement=t,o.prototype.registerVideoDisplayBase=t,o.prototype.submitRequest=function(){const t={type:tv.freewheel.SDK.EVENT_SLOT_ENDED},o=e.get("EVENT_SLOT_ENDED");o&&setTimeout((()=>{try{o(t)}catch(e){console.error(e)}}),1)},window.tv={freewheel:{SDK:{Ad:t,AdManager:o,AdListener:t,_instanceQueue:{},setLogLevel:t,EVENT_SLOT_ENDED:"EVENT_SLOT_ENDED"}}}})();
 southparkstudios.com#%#//scriptlet('prevent-fetch', 'imasdk.googleapis.com')
+southparkstudios.com#%#//scriptlet('google-ima3')
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=southparkstudios.com
 ||imasdk.googleapis.com/pal/sdkloader/pal.js$script,redirect=noopjs,domain=southparkstudios.com
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=southparkstudios.com
 !+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_opera)
@@ -3881,7 +3891,7 @@ linuxcapable.com#%#//scriptlet('set-constant', 'nitroAds.abp', 'true')
 hqq.to#%#//scriptlet('abort-on-stack-trace', 'olplayer.error', 'Be.o.dispatcher.o.dispatcher')
 hqq.to#%#//scriptlet('set-constant', 'adblockcheck', 'false')
 ! Clickadu reinjection
-poapan.xyz,nudogram.com,watchadsontape.com,streamtape.com,18comic.vip,18comic-gquu.vip,mitaku.net,hitomi.la,klmanga.app,mangarawjp.tv,coomer.su,kemono.su,safestream.cc,javmix.tv,hentai2read.com,sxyprn.com,xmoviesforyou.com,fapfappy.com,jav.direct,syosetu.*,telorku.xyz,kissjav.li,lovingsiren.com,mesex.pro,vlxyz.tv,xanimeporn.com#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
+missavtv.com,poapan.xyz,nudogram.com,watchadsontape.com,streamtape.com,18comic.vip,18comic-gquu.vip,mitaku.net,hitomi.la,klmanga.app,mangarawjp.tv,coomer.su,kemono.su,safestream.cc,javmix.tv,hentai2read.com,sxyprn.com,xmoviesforyou.com,fapfappy.com,jav.direct,syosetu.*,telorku.xyz,kissjav.li,lovingsiren.com,mesex.pro,vlxyz.tv,xanimeporn.com#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
 /aas/r45d/vki/*$script,redirect=noopjs
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155761
 wellness4live.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
