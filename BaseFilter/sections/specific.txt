@@ -11,13 +11,15 @@
 !### Temporary ###
 ! SECTION: Temporary
 !
+! BUG: https://github.com/AdguardTeam/CoreLibs/issues/1953
+! Fixing error in console with CoreLibs apps: "Uncaught Error: Minified React error #***" when site does not load or broken
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197113
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197276
-! Possible bug: error in console "Uncaught Error: Minified React error #***" and site does not load
+! https://github.com/AdguardTeam/AdguardFilters/issues/200752
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
-! Do not merge `$replace` rules into one, because it will not work on seiska.fi, `$referrerpolicy=origin` does not work help
-||seiska.fi/_next/static/chunks/*.js$replace=/throw Error\(i\((329|418)\)\)/null/
-||yf.com.tr/_next/static/chunks/*.js$replace=/throw Error\(i\((329|418)\)\)/null/
+||planetscale.com/assets/components-*.js$replace=/if\(Na\(e\)\)throw _d\(\)\,Error\(D\(418\)\);//
+||planetscale.com/assets/components-*.js$replace=/throw Error\(\w\((418|423)\)\)/null/
+/_next/static/chunks/*.js$replace=/throw Error\(i\((329|418)\)\)/null/,domain=yf.com.tr|orient-express.com|seiska.fi
 /obj/lemon8-web-*/lemon8_web/master/vendors/*.js$replace=/throw Error\(.\(418\)\);/null;/,domain=lemon8-app.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/195088
@@ -89,7 +91,7 @@ thesaurus.net#%#//scriptlet('prevent-setTimeout', 'loader.min.js')
 mlbpark.donga.com,tweaksforgeeks.com#%#//scriptlet('remove-node-text', 'script', 'KCgpPT57bGV0IGU')
 ! Stylesheet is loaded by html-load.com script, so we need to add it manually
 tenasia.hankyung.com#%#//scriptlet('trusted-create-element', 'head', 'link', 'rel="stylesheet" https://hkstatic.hankyung.com/css/rel/tenasia/w/common.css"')
-slashdot.org,dogdrip.net,smsonline.cloud,infinityfree.com#%#(()=>{const e="loader.min.js",t={includes:String.prototype.includes,filter:Array.prototype.filter},l=()=>(new Error).stack,n={construct:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&o[0]&&t.includes.call(o[0],"adshield")&&(o[0]=["(function(){})();"]),Reflect.construct(n,o,r)}};window.Blob=new Proxy(window.Blob,n);const o={apply:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&r[0]&&t.includes.call(r[0],"new Error")&&(r[0]=()=>{}),Reflect.apply(n,o,r)}};window.setTimeout=new Proxy(window.setTimeout,o);const r={apply:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&r[0]&&o?.includes?.("setTimeout")&&(o=t.filter.call(o,(e=>!t.includes.call(e,"setTimeout")))),Reflect.apply(n,o,r)}};window.Array.prototype.filter=new Proxy(window.Array.prototype.filter,r)})();
+sportalkorea.com,slashdot.org,dogdrip.net,smsonline.cloud,infinityfree.com#%#(()=>{const e="loader.min.js",t={includes:String.prototype.includes,filter:Array.prototype.filter},l=()=>(new Error).stack,n={construct:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&o[0]&&t.includes.call(o[0],"adshield")&&(o[0]=["(function(){})();"]),Reflect.construct(n,o,r)}};window.Blob=new Proxy(window.Blob,n);const o={apply:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&r[0]&&t.includes.call(r[0],"new Error")&&(r[0]=()=>{}),Reflect.apply(n,o,r)}};window.setTimeout=new Proxy(window.setTimeout,o);const r={apply:(n,o,r)=>{const c=l();return t.includes.call(c,e)&&r[0]&&o?.includes?.("setTimeout")&&(o=t.filter.call(o,(e=>!t.includes.call(e,"setTimeout")))),Reflect.apply(n,o,r)}};window.Array.prototype.filter=new Proxy(window.Array.prototype.filter,r)})();
 ! Workaround also for iOS, where we cannot apply url blocking rule
 ! Related to https://github.com/AdguardTeam/FiltersCompiler/issues/226
 ! After implementation, we could add any rules for AdGuard for iOS only with Advanced Protection
@@ -115,20 +117,14 @@ infinityfree.com#$?#html[lang][dir="ltr"] [id^="img_"][style]:has(iframe[framebo
 smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[frameborder="0"][style]) { clip-path: circle(0) !important; }
 ! Common rules, which partially hide banners
 !#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari)
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud##html[class^="img_"][amp4ads=""][i-amphtml-layout=""][i-amphtml-no-boilerplate=""][amp-version="2502032353000"]
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://07c225f3.online/contents/"] img { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://content-loader.com/contents/"] img { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://css-load.com/contents/"] img { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://html-load.com/contents/"] img { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://html-load.com/contents/"] video { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#a[href^="https://img-load.com/contents/"] img { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#div[id^="img_"] > div[id^="img_"][style="margin: 0px; padding: 0px; display: block; position: fixed; left: 0px; bottom: 0px; width: 100%; z-index: 2147483647; transition: 0.3s ease-in-out;"] { opacity: 0 !important; height: 1px !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#div[id^="img_"][style^="margin: 0px; padding: 0px; display: block; position: fixed;"] { height: 0 !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#body > div[class^="img_"][style="display:inline"] { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud#$?#div[id^="img_"][style^="margin:0;padding:0;display:block;position:fixed;"] { visibility: hidden !important; }
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud##div[id^="img_"][style^="transform: scale(calc(1."][style$="transform-origin: center top;"]
-~dogdrip.net,~infinityfree.com,~slashdot.org,~smsonline.cloud##div[id^="img_"][style^="position: fixed; bottom: 0"][style*="width: 100%; z-index:2147483647;"]
-07c225f3.online,content-loader.com,css-load.com,html-load.com,img-load.com#$?#body:not(:has(> [id^="img_"][class^="img_"][width]:only-child)) { filter: opacity(0) !important; pointer-events: none !important; }
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##html[class^="img_"][amp4ads=""][i-amphtml-layout=""][i-amphtml-no-boilerplate=""][amp-version="2502032353000"]
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##a[href^="https://07c225f3.online/contents/"]:not([href*="/-1/"])
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##a[href^="https://content-loader.com/contents/"]:not([href*="/-1/"])
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##a[href^="https://css-load.com/contents/"]:not([href*="/-1/"])
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##a[href^="https://html-load.com/contents/"]:not([href*="/-1/"])
+~dogdrip.net,~infinityfree.com,~smsonline.cloud##a[href^="https://img-load.com/contents/"]:not([href*="/-1/"])
+$domain=07c225f3.online|content-loader.com|css-load.com|html-load.com|img-load.com
+@@/-1/*$domain=07c225f3.online|content-loader.com|css-load.com|html-load.com|img-load.com
 !#endif
 !#if (adguard_app_ios || adguard_ext_android_cb)
 ##a[target="_blank"][rel="noopener noreferrer"]:has(> div#container > div.img_container > img[src^="https://asset.ad-shield.cc"])
@@ -178,6 +174,7 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ##div[id^="img_"] > div[style^="margin:0;padding:0;"]
 ##div[id^="img_"] > svg[style$="overflow:visible;z-index:0;box-shadow:none;"]
 ##div[id^="img_"]:first-child > div[aria-hidden="true"] + div[id^="img_"]
+##div[id^="img_"][class^="img_"][lang][style="overflow: hidden; width: 100%; height: 100%;"]
 ##div[id^="img_"][coupang]
 ##div[id^="img_"][ggnoclick]
 ##div[id^="img_"][ontouchend$="touchEnd(event)"]
@@ -190,12 +187,11 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ##div[id^="img_"][style="cursor: pointer;"]
 ##div[id^="img_"][style="overflow:hidden;"]
 ##div[id^="img_"][style="width: 300px;"]
-##div[id^="img_"][style="width: auto;"]
 ##div[id^="img_"][style="width:300px;height:200px;"]
 ##div[id^="img_"][style^="display: flex; justify-content: center; align-items: center; width: 300px;"]
 ##div[id^="img_"][style^="height: 250px; width: 300px;"]
 ##div[id^="img_"][style^="margin: 0px; padding: 0px; position: fixed; top: 0px; left: 0px; width: 100%; z-index: 2147483647;"]
-##div[id^="img_"][style^="margin:0;padding:0;display:block;position:fixed;"]
+##div[id^="img_"][style^="margin:0;padding:0;display:block;position:fixed;left:0;"]
 ##div[id^="img_"][style^="position: fixed; bottom: 0; left: 0; width: 100%; z-index:2147483647;"]
 ##div[id^="img_"][style^="position: fixed; bottom: 0px; left: 0px; width: 100%; z-index: 2147483647;"]
 ##div[id^="img_"][style^="position:absolute;width:100%;height:100%;"]
@@ -253,7 +249,6 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ##style + title + script + div[id^="img_"]
 ##video[class^="img_"][playsinline]
 ##video[poster*=".html-load.com/contents/"]
-@@||slashdot.org^$generichide
 @@||infinityfree.com^$generichide
 @@||smsonline.cloud^$generichide
 @@||dogdrip.net^$generichide
@@ -561,6 +556,10 @@ $subdocument,third-party,denyallow=disqus.com,domain=welovemanga.one
 ! NOTE: Specific rules
 !
 !
+wago.io###stream-player
+apkmoddone.phongroblox.com###fakeDown
+autoblog.com##div[id^="ad-in_content-"]
+thesciencetoday.com##div[id^="custom_html-"]:has(> div.textwidget > ins.adsbymahimeta)
 apkcombo.app##div[style^="margin-bottom"]:has(> script[data-cfasync])
 apkcombo.app##.diseanmevrtt
 myanimelist.net##a[href^="/c/u/"][target="_blank"]
@@ -577,7 +576,7 @@ pornl.com##.underplayer > section
 pornl.com##section[style="padding: 20px;"]
 pornl.com###tags-scroll > h3.tag__item:has(> a[target="_blank"][href])
 ||pornl.com/static/ivideo.html?video=
-ptcgp.raenonx.cc##.grid.w-full.grid-cols-1:has(#nitro-ptcgp-wide-page-top-a)
+raenonx.cc,raenonx.cc##div[class="flex flex-col place-content-center place-items-center text-center w-full h-\[100px\]"]
 redd.tube###closeable_widget
 ||static.xraws.com/min/*/xraws/script.js
 ||static.xraws.com/min/*/xraws/p/
@@ -4654,7 +4653,6 @@ mywishboard.com##.MwbPagesWish__banner
 mirchi9.com##body .ads-wrap-qqq
 ||image.mangabtt.com//Upload/Content/images/chapter/top
 mangabtt.com##div[class] > div[style*="height:"]
-mail.proton.me##.bg-promotion
 allaboutbirds.org##.campad-side
 adultdvdtalk.com###top-elements > div[style^="float:right;"]
 adultdvdtalk.com##div[style^="position: fixed; margin"][style*="text-align: center;"]
@@ -5665,7 +5663,6 @@ pornlist.tv##iframe[src="/myvids/showx.php"]
 charlieintel.com###desktopleader
 okmagazine.com##div[data-field="ad"]
 okmagazine.com##div[style="font-size:x-small;text-align:center"]
-music.apple.com##.upsell-banner
 editingcorp.com##.default-sidebar > section[id^="block-"]
 7starhd.*##div[style^="clear:both;float:left;width:100%;"] > a[target="_blank"] > img
 ||shrinkme.io/banners/ref/$third-party
