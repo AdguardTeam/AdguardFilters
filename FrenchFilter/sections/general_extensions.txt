@@ -43,13 +43,14 @@ occasions.decathlon.fr#%#//scriptlet('set-constant', 'FastClick.attach', 'noopFu
 lessentiel.lu,20min.ch#%#//scriptlet('adjust-setTimeout', 'setTimeoutIds_', '*', '0.001')
 lessentiel.lu,20min.ch#%#(()=>{window.TATM=window.TATM||{},TATM.init=()=>{},TATM.initAdUnits=()=>{},TATM.pageReady=()=>{},TATM.getVast=function(n){return new Promise((n=>{n()}))},TATM.push=function(n){if("function"==typeof n)try{n()}catch(n){console.debug(n)}};})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182538
+empire-streaming.*#%#//scriptlet('remove-attr', 'href', '.content-propose > a[href].btn-ad-iframe')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('trusted-create-element', 'body', 'iframe')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.isAdbActive', 'false')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.directHideAds', 'undefined')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremium.film', '0')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremium.serie', '0')
-empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumMore.film', '0')
-empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumMore.serie', '0')
+empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumMore.film.count', '0')
+empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumMore.serie.count', '0')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumaccount.film', '0')
 empire-streaming.*,empire-anime.com,empire-streamz.fr,empire-stream.*#%#//scriptlet('set-constant', 'empire.countpremiumaccount.serie', '0')
 ! empire-anime.com
@@ -61,7 +62,8 @@ empire-streaming.*,empire-anime.com#%#//scriptlet('set-constant', 'empire.mediaD
 ! Rule below adds "click" event listener to the button that opens the popup and then dispatches "visibilitychange" event to the top document,
 ! and then changes "document.hidden" to "true" and then back to "false" after 100ms
 ! TODO: maybe find a better way to change "document.hidden" value
-empire-anime.com#%#(()=>{document.location.href.includes("/pop_advisor")&&AG_onLoad((function(){const e=new CustomEvent("visibilitychange"),t=t=>{Object.defineProperty(t.view.top.document,"hidden",{value:!0,writable:!0}),t.view.top.document.dispatchEvent(e),setTimeout((()=>{Object.defineProperty(t.view.top.document,"hidden",{value:!1,writable:!0}),t.view.top.document.dispatchEvent(e)}),100)},n=document.querySelector("button.btn-continu");n&&n.addEventListener("click",t)}));})();
+empire-anime.com#%#(()=>{document.location.href.includes("/pop_advisor")&&window.addEventListener("load",()=>{const e=new CustomEvent("visibilitychange"),t=t=>{Object.defineProperty(t.view.top.document,"hidden",{value:!0,writable:!0}),t.view.top.document.dispatchEvent(e),setTimeout((()=>{Object.defineProperty(t.view.top.document,"hidden",{value:!1,writable:!0}),t.view.top.document.dispatchEvent(e)}),100)},n=document.querySelector("button.btn-continu");n&&n.addEventListener("click",t)});})();
+empire-streaming.*#%#(()=>{document.location.href.includes("/iframe_ad")&&window.addEventListener("load",(()=>{const e=new CustomEvent("visibilitychange"),t=()=>{Object.defineProperty(document,"hidden",{value:!0,writable:!0}),document.dispatchEvent(e),setTimeout((()=>{Object.defineProperty(document,"hidden",{value:!1,writable:!0}),document.dispatchEvent(e)}),100)},n=document.querySelector("a.btn-ad-iframe");n&&n.addEventListener("click",t)}));})();
 ! https://github.com/uBlockOrigin/uAssets/issues/19339
 e-player-stream.*#%#//scriptlet('set-constant', 'adsConfig', 'emptyArr')
 empire-anime.com,empire-streamz.fr,empire-streaming.*,empire-stream.*#%#//scriptlet('prevent-window-open')
