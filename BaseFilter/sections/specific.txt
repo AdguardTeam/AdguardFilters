@@ -111,6 +111,13 @@ kreuzwortraetsel.de,petitfute.com,tportal.hr,cool-style.com.tw,forsal.pl,economi
 ||content-loader.com/loader.min.js$domain=issuya.com|dziennik.pl|inven.co.kr|sourceforge.net|economictimes.com
 !#endif
 !
+! Workaround for Firefox extension in the case when scriptlets are injected too late
+!#if (adguard_ext_firefox)
+||nikkan-gendai.com^$replace=/<script>\(function\(\){function[\s\S]*?report\.error-report\.com\/modal[\s\S]*\(\);<\/script>//,document
+||sourceforge.net^$replace=/\.src = "https:\/\/as\.sourceforge\.net\/loader\.min\.js";/.src=""/,document
+||sourceforge.net^$replace=/(.setAttribute\(')(?:onload|onerror)('. "!async function[\s\S]*?report\.error-report\.com\/modal)/\$1null\$2/,document
+!#endif
+!
 ! Problematic sites
 quefaire.be###banner
 quefaire.be##.gpt_box
