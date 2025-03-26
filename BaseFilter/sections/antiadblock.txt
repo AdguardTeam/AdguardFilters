@@ -1127,6 +1127,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/200905
+qrcodemonkey.net#%#//scriptlet('prevent-setTimeout', '#ad_blocker_detector')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=qrcodemonkey.net,xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/201713
+proboxtv.com##body > div[style^="position: fixed; top:"][style*="z-index:"][style*="display: flex;"]
+proboxtv.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3.js')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201682
 foodtechnos.in###adblock-modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201162
@@ -1267,7 +1274,7 @@ crazygames.com#$#.adsbox.advertisement.pub_300x250.pub_300x250m.pub_728x90.text-
 @@||crazygames.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201327
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199124
-pvpoke-re.com#%#//scriptlet('prevent-addEventListener', '', '/\(\s*\)\s*=>.*_0x/')
+pvpoke-re.com#%#//scriptlet('prevent-addEventListener', '/click|key|mouse|scroll|touch/', '/\(\s*\)\s*=>.+_0x|function\s*\(\s*\)\s*\{\s*function.+_0x/')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=pvpoke-re.com
 @@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl$script,domain=pvpoke-re.com
@@ -1635,7 +1642,11 @@ edumail.icu#%#//scriptlet('remove-node-text', 'script', 'enable_ad_block_detecto
 edumail.icu$$script:contains(enable_ad_block_detector)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190738
 ||g.doubleclick.net/pagead/ads?gdpr=$subdocument,redirect=noopframe,domain=decrypt.day
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+||googleads.g.doubleclick.net/pagead/html/*.html$subdocument,redirect-rule=noopframe,domain=decrypt.day
+@@||googletagmanager.com/gtag/js?id=$domain=decrypt.day
+||pagead2.googlesyndication.com/getconfig/sodar?$xhr,important,domain=decrypt.day
+@@||googleads.g.doubleclick.net/pagead/ads?gdpr=$subdocument,domain=decrypt.day
+decrypt.day#$#iframe[id^="aswift_"] { transform: matrix3d(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1); }
 @@||g.doubleclick.net/pagead/ads?gdpr=$subdocument,domain=decrypt.day
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=decrypt.day
 @@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_*.js$domain=decrypt.day
@@ -1932,7 +1943,7 @@ win7simu.visnalize.com#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||snigelweb.com^$domain=editpad.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183599
-! #protection.protection message
+! #protection.protection / div.protection message
 javbee.me,fikfok.net,javsunday.com,kin8-av.com,555fap.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=javsunday.com|kin8-av.com|fikfok.net|javbee.me
