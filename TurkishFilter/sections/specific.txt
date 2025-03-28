@@ -3958,8 +3958,12 @@ dizilla.nl##.player > .flex:has(> div:only-child > img[alt*="ad"])
 dizilla.nl###router-view > div > div > div[class]:has(> div:only-child > ad)
 !
 ! selcuksportshd*.xyz - frequently changed domains
-! aglint-disable-next-line invalid-modifiers
-||video.twimg.com/ext_tw_video/*/*.m3u8$domain=/^[a-zA-Z]{1,6}\.[a-zA-Z0-9]{15,}.*\d+.*\.click$/
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+! aglint-disable invalid-modifiers, unknown-hints-and-platforms
+!+ NOT_VALIDATE
+||video.twimg.com/ext_tw_video/*/*.m3u8$domain=/^[a-zA-Z]{1\,6}\.[a-zA-Z0-9]{15\,}.*\d+.*\.click$/
+! aglint-enable invalid-modifiers, unknown-hints-and-platforms
+!#endif
 ! aglint-disable-next-line invalid-modifiers
 ||googleusercontent.com/img/*/crt$domain=/selcuksportshd\d+\.xyz/
 ! TODO: remove "NOT_VALIDATE" hint when this issue is fixed - https://github.com/AdguardTeam/FiltersCompiler/issues/237
