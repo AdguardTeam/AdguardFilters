@@ -19,9 +19,12 @@ $replace=/head>/head><meta charset="utf-8">/,document,domain=podhale24.pl|copyce
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184328
 ! Generic fix for disqus_recommendations leftovers
 ||disqus.com/recommendations.js$replace=/\.width="calc\(100% - 310px\)":/.width="100%":/
+! https://github.com/AdguardTeam/AdguardFilters/issues/202114
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180648
-!+ PLATFORM(windows, mac, android)
-||giphy.com^$replace=/"adsEnabled\\":true/"adsEnabled\\":false/,document
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||giphy.com^$replace=/"htlAds\\":\[\\".{1\,5}\\".*?\]/"htlAds\\":\[\]/,document
+||giphy.com^$replace=/"hasTopLeaderboardAd\\":true/"hasTopLeaderboardAd\\":false/,document
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172486
 ||players.brightcove.net/*/default_default/index.min.js$replace=/if\(.\.getPlugin\("ssai"\)\)/if(!0)/,domain=nhl.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165930
