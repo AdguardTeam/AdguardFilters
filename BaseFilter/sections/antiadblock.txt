@@ -1135,6 +1135,10 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/202302
+ipacrack.com#%#//scriptlet('prevent-fetch', 'thaudray.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||thaudray.com^|$xmlhttprequest,domain=ipacrack.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201891
 scimagojr.com#@#.ad-zone:not(.textads)
 scimagojr.com#%#//scriptlet('prevent-addEventListener', 'load', 'msg_adblock_title')
@@ -5333,12 +5337,6 @@ upshrink.com,kiktu.com,techcyan.com#?#section#xx:has(> span:contains(Detected))
 upshrink.com,kiktu.com,techcyan.com#%#//scriptlet("prevent-addEventListener", "DOMContentLoaded", "/_0x|\\x|google_ads_iframe/")
 upshrink.com,kiktu.com,techcyan.com#@##ads-text
 upshrink.com#$#a.get-link { display: block !important; }
-! https://github.com/AdguardTeam/AdguardFilters/issues/130225
-ipacrack.com#%#//scriptlet("prevent-setInterval", "", "3000")
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||jsc.adskeeper.co.uk/i/p/ipacrack.com.*.js$domain=ipacrack.com
-ipacrack.com#@##custom_html-2
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136237
 @@||cnt.streamz.ws/count.php
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150379
@@ -5394,14 +5392,6 @@ editpad.org#%#//scriptlet('prevent-addEventListener', 'error', 'blockedUrl')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135568
 ||s1cdn.vnecdn.net/*/production/modules/home.defer.js$domain=vnexpress.net
 vnexpress.net##a[data-event-label="Button-TatAdblock"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/135567
-ipacrack.com#$##myTestAdd { height: 1px !important; }
-ipacrack.com#%#//scriptlet("prevent-setTimeout", ".clientHeight")
-!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
-ipacrack.com#@##custom_html-2
-ipacrack.com#@#div[id*="ScriptRoot"]
-@@||jsc.adskeeper.co.uk/*/ipacrack.com.*.js$domain=ipacrack.com
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135219
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js|$domain=noor-book.com
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,redirect=noopjs,domain=noor-book.com,important
