@@ -192,7 +192,8 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
-@@||acscdn.com/script/advertising.js$script,third-party,domain=japscan.lol,important
+/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol
+@@||acscdn.com/script/advert$script,third-party,domain=japscan.lol,important
 @@.shop/*/invoke.js$script,third-party,domain=japscan.lol,important
 japscan.lol#%#//scriptlet('set-constant', 'AndYouMe', '1')
 !#endif
@@ -203,7 +204,6 @@ japscan.lol#%#//scriptlet('trusted-set-attr', '.navbar-nav > li#navpromo2.nav-it
 japscan.lol#%#//scriptlet('prevent-requestAnimationFrame', '/^.*/')
 ||japscan.lol/zjs/$script,replace=/function GoodDay\(\)\{.+?\}\}\}//
 !#endif
-japscan.lol#%#//scriptlet('prevent-element-src-loading', 'script', 'acscdn.com')
 $script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol
 @@$image,domain=japscan.lol
 @@||japscan.lol^$image,xmlhttprequest,script,~third-party
