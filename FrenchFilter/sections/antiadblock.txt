@@ -192,9 +192,11 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
-@@||acscdn.com/script/ads.js$script,third-party,domain=japscan.lol,important
+/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol
+@@||acscdn.com^$script,third-party,domain=japscan.lol
 @@.shop/*/invoke.js$script,third-party,domain=japscan.lol,important
-japscan.lol#%#//scriptlet('set-constant', 'AndYouMe', '1')
+japscan.lol##a[href^="https://www.touribora.shop/"]
+japscan.lol###main > div.card.copinness:has(> div.tab-content.my-0 > div.manga_list.d-flex.flex-wrap.m-2 > div.p-2[style] > a.donate[target="_blank"][rel="noopener noreferrer nofollow"][href^="https://www.touribora.shop/manga/?type="] > img)
 !#endif
 japscan.lol#@#div.container > [href]
 japscan.lol#@##main > .card:has(a[href*="/manga/?type="][href*="&content="][target="_blank"])
@@ -203,7 +205,6 @@ japscan.lol#%#//scriptlet('trusted-set-attr', '.navbar-nav > li#navpromo2.nav-it
 japscan.lol#%#//scriptlet('prevent-requestAnimationFrame', '/^.*/')
 ||japscan.lol/zjs/$script,replace=/function GoodDay\(\)\{.+?\}\}\}//
 !#endif
-japscan.lol#%#//scriptlet('prevent-element-src-loading', 'script', 'acscdn.com')
 $script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol
 @@$image,domain=japscan.lol
 @@||japscan.lol^$image,xmlhttprequest,script,~third-party
