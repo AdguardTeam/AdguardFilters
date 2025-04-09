@@ -1159,8 +1159,22 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/202712
+classace.io#%#//scriptlet('prevent-fetch', 'doubleclick.net')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||www3.doubleclick.net^$domain=classace.io
+! https://github.com/AdguardTeam/AdguardFilters/issues/202536
+xmalay1.net#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'isAdBlockActive')
+@@||xmalay1.net/nativeads-v2.js$script,domain=xmalay1.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/202266
+business-standard.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
+! https://github.com/AdguardTeam/AdguardFilters/issues/202597
+porn4f.org#%#//scriptlet('prevent-fetch', 'adsbygoogle')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=porn4f.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202487
-royalroad.com#%#//scriptlet('set-constant', 'nitroAds.version', '1')
+royalroad.com#%#//scriptlet('trusted-dispatch-event', 'nitroAds.loaded')
+royalroad.com#%#//scriptlet('trusted-set-constant', 'nitroAds.version', '"20250402 de32690"')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202341
 kissanime.sx#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -1362,7 +1376,7 @@ crazygames.com#$#.adsbox.advertisement.pub_300x250.pub_300x250m.pub_728x90.text-
 @@||crazygames.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201699
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199124
-pvpoke-re.com#%#//scriptlet('abort-on-stack-trace', 'Object.assign', '.js?v=')
+pvpoke-re.com#%#//scriptlet('abort-on-stack-trace', 'Object.create', '/\s+[0-9A-Za-z]{8,12}\W.+[0-9A-Za-z]{3}\d[0-9A-Za-z]{4,8}\.js\?v=\d\.\d{2}\.\d\.\d{2}:1/')
 pvpoke-re.com#%#//scriptlet('remove-attr', 'style', 'html,body')
 pvpoke-re.com#$#html { overflow-y: auto !important; }
 pvpoke-re.com#$#body { overflow-y: auto !important; }
@@ -1999,8 +2013,8 @@ whatsafterthemovie.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196410
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191501
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185379
-rubyvidhub.com,streamruby.com##body > div[class][oncontextmenu][style="display: block;"]
-rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com#%#//scriptlet('abort-on-property-read', 'showADBOverlay')
+savefiles.com,rubyvidhub.com,streamruby.com##body > div[class][oncontextmenu][style="display: block;"]
+savefiles.com,rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com#%#//scriptlet('abort-on-property-read', 'showADBOverlay')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185133
 fullboys.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -4095,7 +4109,7 @@ linuxcapable.com#%#//scriptlet('set-constant', 'nitroAds.abp', 'true')
 hqq.to#%#//scriptlet('abort-on-stack-trace', 'olplayer.error', 'Be.o.dispatcher.o.dispatcher')
 hqq.to#%#//scriptlet('set-constant', 'adblockcheck', 'false')
 ! Clickadu reinjection
-animeworld.*,natomanga.com,play.playkrx18.site,missavtv.com,poapan.xyz,nudogram.com,watchadsontape.com,streamtape.com,18comic.vip,18comic-gquu.vip,mitaku.net,hitomi.la,klmanga.app,mangarawjp.tv,coomer.su,kemono.su,safestream.cc,javmix.tv,hentai2read.com,sxyprn.com,xmoviesforyou.com,fapfappy.com,jav.direct,syosetu.*,telorku.xyz,kissjav.li,lovingsiren.com,mesex.pro,vlxyz.tv,xanimeporn.com#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
+xmalay1.net,animeworld.*,natomanga.com,play.playkrx18.site,missavtv.com,poapan.xyz,nudogram.com,watchadsontape.com,streamtape.com,18comic.vip,18comic-gquu.vip,mitaku.net,hitomi.la,klmanga.app,mangarawjp.tv,coomer.su,kemono.su,safestream.cc,javmix.tv,hentai2read.com,sxyprn.com,xmoviesforyou.com,fapfappy.com,jav.direct,syosetu.*,telorku.xyz,kissjav.li,lovingsiren.com,mesex.pro,vlxyz.tv,xanimeporn.com#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
 natomanga.com#%#//scriptlet('prevent-setTimeout', 'this.ast')
 /^https:\/\/www\.natomanga\.com\/js\/[a-f0-9]{32}\.js$/$script,domain=natomanga.com
 /aas/r45d/vki/*$script,redirect=noopjs
