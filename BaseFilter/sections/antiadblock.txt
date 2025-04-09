@@ -3977,6 +3977,20 @@ emulatorgames.onl###cg > #button
 emulatorgames.onl#%#//scriptlet('set-constant', 'aiptag.adplayer', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/157372
 rewayatcafe.com###adb
+! https://github.com/AdguardTeam/AdguardFilters/issues/157392
+! TODO: use redirect resource when it will be added - https://github.com/AdguardTeam/Scriptlets/issues/401
+southpark.*,southparkstudios.*#%#(()=>{const e=new Map,t=function(){},o=t;o.prototype.dispose=t,o.prototype.setNetwork=t,o.prototype.resize=t,o.prototype.setServer=t,o.prototype.setLogLevel=t,o.prototype.newContext=function(){return this},o.prototype.setParameter=t,o.prototype.addEventListener=function(t,o){t&&(console.debug(`Type: ${t}, callback: ${o}`),e.set(t,o))},o.prototype.removeEventListener=t,o.prototype.setProfile=t,o.prototype.setCapability=t,o.prototype.setVideoAsset=t,o.prototype.setSiteSection=t,o.prototype.addKeyValue=t,o.prototype.addTemporalSlot=t,o.prototype.registerCustomPlayer=t,o.prototype.setVideoDisplaySize=t,o.prototype.setContentVideoElement=t,o.prototype.registerVideoDisplayBase=t,o.prototype.submitRequest=function(){const t={type:tv.freewheel.SDK.EVENT_SLOT_ENDED},o=e.get("EVENT_SLOT_ENDED");o&&setTimeout((()=>{try{o(t)}catch(e){console.error(e)}}),1)},window.tv={freewheel:{SDK:{Ad:t,AdManager:o,AdListener:t,_instanceQueue:{},setLogLevel:t,EVENT_SLOT_ENDED:"EVENT_SLOT_ENDED"}}}})();
+southpark.*,southparkstudios.*#%#//scriptlet('prevent-fetch', 'imasdk.googleapis.com')
+southpark.*,southparkstudios.*#%#//scriptlet('google-ima3')
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=southpark.*|southparkstudios.*
+||imasdk.googleapis.com/pal/sdkloader/pal.js$script,redirect=noopjs,domain=southpark.*|southparkstudios.*
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=southpark.*|southparkstudios.*
+!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_opera)
+@@||mssl.fwmrm.net/libs/adm/*/AdManager.js$domain=southpark.*|southparkstudios.*
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||imasdk.googleapis.com/pal/sdkloader/pal.js$domain=southpark.*|southparkstudios.*
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=southpark.*|southparkstudios.*
+!#endif
 ! #abDetectorModal
 okpeliz.com,ftuapps.dev,onehack.us#$#.adsbox.doubleclick.ad-placement { display: block !important; }
 okpeliz.com,ftuapps.dev,onehack.us#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
