@@ -215,9 +215,13 @@ news.mail.ru##body > div:has(> div[id] > div > div.title:contains(блокиро
 ! Main page
 dzen.ru##div[aria-label="Лента Дзена"] article:has(> div[data-ad-type="direct"])
 ! Ads in news
+dzen.ru#%#//scriptlet('set-constant', 'Object.prototype.protect', 'undefined')
+dzen.ru##div[class^="content"][class*="placeholder_"]
+dzen.ru###top-banner
+dzen.ru##div[class^="content--article-item__rightAdWrapper"]
+dzen.ru##div[data-testid="bottom-ad"]
 dzen.ru##div[class*="__advertItem "]
 dzen.ru##.news-page-layout__content > div.news-page-layout__rubricator + div[id][class]:has(div[class*="-redesign-placeholder__"])
-dzen.ru#%#//scriptlet('set-constant', 'Object.prototype.config.rtbRequestViaScript', 'undefined')
 dzen.ru#%#//scriptlet('json-prune', 'ssrData.exportResponse.feedData.adItems')
 dzen.ru#%#//scriptlet('set-constant', 'Object.prototype.ssrBanner', 'undefined')
 dzen.ru#%#//scriptlet('abort-on-stack-trace', 'Promise', 'initContext')
@@ -239,6 +243,9 @@ dzen.ru##div[class^="float-interview__float-"]
 [$path=/video]dzen.ru##div[class*="item-info__videoViewerItemInfo-"] + div:not([class])
 [$path=/video]dzen.ru##div[class^="video-view-sidebar"] div[class]:matches-attr("aria-label"=/[Рр]екламная карта/)
 dzen.ru##.viewer-layout__sidebar div[aria-label*="екламная карта"]
+!
+! Pogoda
+[$path=/pogoda]dzen.ru##div[data-bem*="segment-details"] > article.card ~ div[class]
 !
 ! END: VK group
 !   NOTE: VK group end ⬆️
@@ -1883,6 +1890,9 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! Do not forget about '!#safari_cb_affinity' section for exclusions:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#general
 !
+||glav.su/js/libs/abd/abd.js
+||protectsubrev.com^$third-party
+medicatusb.com##.text-center[role="alert"][class*="text-red-"]
 ||gulper.io^$cookie=play_cnt
 gulper.io###adinplay-video-ad
 gulper.io##.banner-area
@@ -4208,6 +4218,9 @@ web.de,gmx.net,gmx.at,gmx.ch,gmx.com#$##abd-container { display: block !importan
 ! SECTION: Anti-adblock - Grouped rules for specific sites
 !
 ! chzzk.naver.com
+chzzk.naver.com##body > div[class^="popup_dimmed__"]:has(a[href^="https://help.naver.com/service/23946/contents/23806"])
+chzzk.naver.com#@#.banner_ad_wrapper
+chzzk.naver.com#@#.banner_ad
 chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/gfp')
 chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/call')
 chzzk.naver.com#%#//scriptlet('prevent-xhr', 'veta.naver.com/vas')
