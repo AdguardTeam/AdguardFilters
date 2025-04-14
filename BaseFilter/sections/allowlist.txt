@@ -132,6 +132,18 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/202912
+! Website is broken when blocked scripts and images are removed from the page,
+! so as a workaround, "redirect-rule" is used.
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+$script,redirect-rule=noopjs,domain=playpilot.com
+$image,redirect-rule=1x1-transparent.gif,domain=playpilot.com
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/202413
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=theglobeandmail.com
+@@||securepubads.g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=theglobeandmail.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/202582
+@@||go.redirectingat.com^$document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202130
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||tickle.porn/player/html.php?aid=pre_roll$subdocument,domain=tickle.porn
@@ -144,10 +156,6 @@ allmusic.com#@##show_ads
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201500
 @@||logitech.com^$content
 @@||logicool.co.jp^$content
-! ign.com - videos not playing
-@@||c.aps.amazon-adsystem.com/apstag.js$domain=ign.com
-@@||cdn.ziffstatic.com/pg/ign.js$domain=ign.com
-@@||cdn.ziffstatic.com/pg/ign.prebid.js$domain=ign.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201251
 @@||i.cdn.turner.com/ads/adfuel/$domain=bleacherreport.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200868
@@ -3336,10 +3344,6 @@ slogen.ru#@##ad_text:not(textarea)
 @@||kijiji.ca/b-search.html
 ! https://github.com/AdguardTeam/AdguardFilters/issues/17181
 virgintrainseastcoast.com#@#.banner-top
-! https://github.com/AdguardTeam/AdguardFilters/issues/16741
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=ign.com
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=ign.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16827
 @@||ads.aiir.net/rf/feed?callback=jQuery
 ! https://github.com/AdguardTeam/AdguardFilters/issues/16767
