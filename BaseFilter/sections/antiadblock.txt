@@ -1164,6 +1164,10 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 animehub.ac#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=animehub.ac
+! https://github.com/AdguardTeam/AdguardFilters/issues/203426
+javbee.*#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=javbee.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203310
 ||ticketmaster.sg/js/ads.js
 ticketmaster.sg#%#//scriptlet('prevent-setInterval', '++failCount')
@@ -1408,7 +1412,9 @@ keyguardian.org#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 @@||file-upload.net/include/werbebanner-ad.js
 @@||file-upload.net/include/adserver.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199449
-dreamdth.com#%#//scriptlet('prevent-eval-if', '/return decodeURIComponent\(atob/')
+dreamdth.com#%#//scriptlet('prevent-addEventListener', 'load', 'document.createElement')
+!+ PLATFORM(ios, ext_android_cb)
+@@||dreamdth.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199450
 flstv.online,streambtw.com#@#.ad-unit:not(.textads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199353
@@ -1420,7 +1426,9 @@ crazygames.com#$#.adsbox.advertisement.pub_300x250.pub_300x250m.pub_728x90.text-
 @@||crazygames.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201699
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199124
-pvpoke-re.com#%#//scriptlet('abort-on-property-read', 'Element.prototype.textContent')
+||pvpoke-re.com/*.js?v=$script,replace=/&&([0-9A-Za-z]{8\,12})\(\);?\}function \1\(\)\{const _0x[\S\s]+?\1\(\);?\}\}let /&&\$1()}function \$1(){}let /
+||pvpoke-re.com/*.js?v=$script,replace=/(\]=[0-9A-Za-z]{8\,12};function [0-9A-Za-z]{8\,12}\(\)\{)const _0x[0-9a-f]+=\{[\S\s]+?\);?\}\}const/\$1}const/
+pvpoke-re.com#%#//scriptlet('abort-on-property-read', 'HTMLElement.prototype.textContent')
 pvpoke-re.com#%#//scriptlet('set-constant', 'scrollTo', 'noopFunc')
 pvpoke-re.com#%#//scriptlet('abort-on-stack-trace', 'Array.from', '/\s+[0-9A-Za-z]{3}\d[0-9A-Za-z]{4,8}\W.+[0-9A-Za-z]{3}\d[0-9A-Za-z]{4,8}\.js\?v=|_tick/')
 pvpoke-re.com#%#//scriptlet('prevent-addEventListener', '/keydown|scroll|touchmove|touchstart|wheel/', 'function(_0x')
