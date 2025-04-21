@@ -50,6 +50,10 @@ triblive.com###storyContent > div[data-type="float"][data-stn-player]
 ! START: Ad-Shield ad reinsertion
 ! ad-shield.cc CNAME ex. https://www.47206262.xyz/script/jmty.jp.js
 /^https:\/\/www\.[0-9a-z-]{8,}\.xyz\/script\/[-.0-9A-Za-z]+\.[A-Za-z-]{2,30}\.js$/$script,third-party,match-case
+!#if (adguard_ext_chromium_mv3)
+://www.*.xyz/script/*.de.js|$script,third-party
+://www.*.xyz/script/*.jp.js|$script,third-party
+!#endif
 !+ PLATFORM(ios, ext_safari)
 /^https:\/\/www\.[0-9a-z-][0-9a-z-][0-9a-z-][0-9a-z-][0-9a-z-][0-9a-z-][0-9a-z-][0-9a-z-]+\.xyz\/script\/[0-9A-Za-z.-]+\.[A-Za-z-][A-Za-z-]+\.js$/$script,third-party,match-case
 ! For all platforms including iOS
@@ -66,9 +70,11 @@ buzzfeed.com,buzzfeednews.com,winfuture.de#%#//scriptlet('trusted-suppress-nativ
 dolldivine.com$$script[tag-content="adrecover.com"]
 dolldivine.com#%#//scriptlet('remove-node-text', 'script', 'adrecover.com')
 ||bg-mania.jp/assets/js/anymanagerrecover.js
-://www.*.xyz/script/$script,third-party,domain=jmty.jp|dolldivine.com|knowt.com|bbs.animanch.com|thefreebieguy.com|blogmura.com|gruene-zitate.de|myforecast.com|nlab.itmedia.co.jp|jawapos.com|picks.my|gamewith.jp
-nlab.itmedia.co.jp,myforecast.com,gruene-zitate.de,blogmura.com,thefreebieguy.com,infor.pl,bbs.animanch.com,knowt.com,jmty.jp,picks.my,gamewith.jp$$script[tag-content="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/="]
-nlab.itmedia.co.jp,myforecast.com,gruene-zitate.de,blogmura.com,thefreebieguy.com,infor.pl,bbs.animanch.com,knowt.com,jmty.jp,picks.my,gamewith.jp#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=')
+! Ad-Shield Essentials
+://www.*.xyz/script/$script,third-party,domain=jmty.jp|dolldivine.com|knowt.com|bbs.animanch.com|thefreebieguy.com|blogmura.com|gruene-zitate.de|myforecast.com|nlab.itmedia.co.jp|jawapos.com|picks.my|gamewith.jp|motor-talk.de
+motor-talk.de,gamewith.jp,picks.my,nlab.itmedia.co.jp,myforecast.com,gruene-zitate.de,blogmura.com,thefreebieguy.com,infor.pl,bbs.animanch.com,knowt.com,jmty.jp$$script[tag-content="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/="]
+motor-talk.de,gamewith.jp,picks.my,nlab.itmedia.co.jp,myforecast.com,gruene-zitate.de,blogmura.com,thefreebieguy.com,infor.pl,bbs.animanch.com,knowt.com,jmty.jp#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=')
+!
 gazetaprawna.pl$$script[src="html-load.com/loader.min.js"]
 lacuarta.com#%#//scriptlet('abort-current-inline-script', 'console.log', 'carga de script')
 autoby.jp,daily.co.jp,j-town.net,wetteronline.de$$script[tag-content=".slice(-2);return decodeURIComponent"]
@@ -132,6 +138,10 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ! Common rules, which partially hide banners
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##html[class^="img_"][amp4ads=""][i-amphtml-layout=""][i-amphtml-no-boilerplate=""][amp-version="2502032353000"]
 !#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari && !adguard_ext_chromium_mv3)
+! aglint-disable-next-line invalid-modifiers
+||07c225f3.online/script/*.js?h=$urltransform=/script.+/loader.min.js/
+! aglint-disable-next-line invalid-modifiers
+||html-load.com/script/*.js?h=$urltransform=/script.+/loader.min.js/
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://content-loader.com/content"]
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://html-load.com/content"]
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://07c225f3.online/content"]
@@ -619,6 +629,12 @@ $subdocument,third-party,denyallow=disqus.com,domain=welovemanga.one
 ! NOTE: Specific rules
 !
 !
+foxhq.com#%#//scriptlet('prevent-addEventListener', 'load', 'crakPopInParams')
+foxhq.com##body > div[style]:has(> #popinContentDiv)
+foxhq.com##.full-text:has(> h2 > a[href][target="_blank"] img)
+foxhq.com##.menu > ul > li:not(:has(> a[href^="https://www.foxhq.com/"]))
+foxhq.com##.menu > ul > li:has(> a.sponsor)
+foxhq.com##.bar-items-block
 go.linkify.ru###push
 hotscope.tv#?#main > div:has(> h1:contains(Live Cams))
 hotscope.tv#?#main > div:has(> h1:contains(Live Cams)) + div.grid
