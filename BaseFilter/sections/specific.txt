@@ -550,7 +550,7 @@ watchmoviesss.*###bread + div[style^="width:"]
 /.com\/[a-z0-9][a-z0-9]\/[a-z0-9][a-z0-9]\/.*.js$/$third-party,domain=mac-torrents.io|ling.online|pelisplushd.net|bestjavporn.com|bitchyx.it|fzmovies.net|fzmovies.host|raw.senmanga.com|onejav.com|extreme-down.live|animepahe.org|animepahe.com|animepahe.ru
 ! https://prevotch.com/r8WLKGtgCSjddY/11983
 !+ PLATFORM(ios, ext_safari, ext_chromium_mv3)
-/\/[0-9][0-9][0-9][0-9][0-9]$/$third-party,script,domain=toonily.com|japscan.me|animepahe.org|animepahe.com|animepahe.ru|chapmanganato.com|lilymanga.net|megacanais.com|putlocker.*|yomovies.*|sukidesuost.info|manhuatop.org|animeworld.so|mangaworld.*|viprow.nu|reliabletv.me
+/\/[0-9][0-9][0-9][0-9][0-9]$/$third-party,script,domain=toonily.com|japscan.me|animepahe.org|animepahe.com|animepahe.ru|chapmanganato.com|lilymanga.net|megacanais.com|putlocker.*|yomovies.*|sukidesuost.info|manhuatop.org|animeworld.so|mangaworld.*|viprow.nu|reliabletv.me|pandra.ma
 ! https://gw.cerealsromana.com/tktjGkgmOuc7g/110472
 !+ PLATFORM(ios, ext_safari, ext_chromium_mv3)
 /\/[0-9][0-9][0-9][0-9][0-9][0-9]$/$third-party,script,domain=69shuba.cx|igetintopc.com|broflix.ci|animepahe.ru|dramago.in|manhuatop.org
@@ -629,6 +629,13 @@ $subdocument,third-party,denyallow=disqus.com,domain=welovemanga.one
 ! NOTE: Specific rules
 !
 !
+cpmlink.net#%#//scriptlet('prevent-window-open')
+poki.com###game-player ~ div:not(:has(*))
+apps.jeurissen.co##.cja-landing__content > .cja-sqrimage:not(#style_important)
+apps.jeurissen.co##div[class="cja-btmimage cja-card"]:not(#style_important)
+||porn3dx.com/iframe-ads
+porn3dx.com##iframe[src="https://porn3dx.com/iframe-ads"]
+porn3dx.com##.flex:has(> div > iframe[src^="https://adserver.juicyads.com/"])
 coosavalleynews.com##.widget_block:has(> a:only-child > img)
 coosavalleynews.com##.coosa-widget
 coosavalleynews.com##.widget_media_image:has( a > img)
@@ -7028,9 +7035,6 @@ hancinema.net##.ad_article
 indiatoday.in##iframe[height="90"][width="100%"]
 ||akm-img-a-in.tosshub.com/sites/test/ipl/2022/index.html$domain=indiatoday.in
 fellowsfilm.com##article[data-author="Advertisement"]
-apps.jeurissen.co##img[height="250"][width="300"]
-apps.jeurissen.co##.cja-partner
-apps.jeurissen.co##div[class="cja-btmimage cja-card"]
 xmegadrive.com##body > div[style^="position: fixed; inset: 0px; z-index:"]
 parade.com,bringmethenews.com,thespun.com,thestreet.com,si.com##.m-outbrain
 /im_jerky?vlmi=$domain=redgifs.com
@@ -10003,9 +10007,6 @@ playporngames.com##div[style*="width: 330px; height: 100%;"]
 ||hentai-gamer.com/pics/
 nationalfile.com##.code-block > a[href*="&utm_medium=sitebanner"][target="_blank"] > img
 ehotpics.com,upicsz.com##figure[style^="width: 310px;"]
-m-hentai.net##.leaderboardcontainer
-m-hentai.net##.landingpageadcontainer_iframe_300
-||m-hentai.net/JS/exoclick%20popunder.js
 ||gaysearch.com/gs*/gs.js
 ||vidxhot.net/out.php?$popup
 ||hqtube.xxx/api/pu/
@@ -19077,8 +19078,8 @@ chfi.com,1067rock.ca,921citi.ca,q92timmins.com,q92sudbury.com,star959.ca,977rock
 ||utility.rogersmedia.com/utility.js$script,redirect=noopjs,domain=chfi.com|1067rock.ca|921citi.ca|q92timmins.com|q92sudbury.com|star959.ca|977rock.ca|979rock.ca|chez106.com|chymfm.com|country1011.com|country1043.com|country1067.com|country1071.com|country1073.ca|country600.com|country933.com|country935.ca|easy1013.ca|jack1023.com|jack929.com|jack969.com|jack969.ca|krock1057.ca|sonic1029.com|sonicradio.ca|starfm.com|kiss1023.ca|kiss925.com|kissnorthbay.com|kissottawa.com|kissottawa.com|kisssudbury.com|kisstimmins.com|kiss917.com
 !
 ! Hulu video ads
-hulu.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"/ads-")]] | //*[name()="Period"]/@start)', 'Period[id^="Ad"i]', '.mpd')
-hulu.com#%#//scriptlet('json-prune', 'breaks pause_ads')
+hulu.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"/ads-")]] | //*[name()="Period"][starts-with(@id,"ad")] | //*[name()="Period"][starts-with(@id,"Ad")] | //*[name()="Period"]/@start)', 'Period[id^="Ad"i]', '.mpd')
+hulu.com#%#//scriptlet('json-prune', 'breaks custom_breaks_data pause_ads')
 hulu.com#%#//scriptlet('set-constant', 'Object.prototype.isAdPeriod', 'falseFunc')
 hulu.com#%#//scriptlet("set-constant", "Object.prototype._parseVAST", "noopFunc")
 hulu.com#%#//scriptlet("set-constant", "Object.prototype.createAdBlocker", "noopFunc")
@@ -19884,6 +19885,12 @@ adultlingeriepics.com,adultlingeriepics.com,adultspankingtgp.com,allfeetporn.com
 !
 !
 !
+!+ NOT_OPTIMIZED
+m-hentai.net##.galleryleftadcontainer
+!+ NOT_OPTIMIZED
+m-hentai.net##.leaderboardcontainer
+!+ NOT_OPTIMIZED
+||m-hentai.net/img/Native%20Ads/
 !+ NOT_OPTIMIZED
 hawk.live##div[class*="-layout__"]:has(> div:only-child:is(.info-small, .info-medium, .info-large) > .info-text > span.info-text__contact)
 !+ NOT_OPTIMIZED
