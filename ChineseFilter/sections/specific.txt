@@ -41,6 +41,9 @@ $script,third-party,denyallow=ilfcdn.li|bytecdntp.com|fastlycdn.com|doodcdn.co|i
 !
 ! NOTE: Specific rules
 !
+wxsck.com###content > div[style^="clear:"]
+wxsck.com##.fixed-btn ~ div[style^="position:fixed; bottom:"]
+wxsck.com#$#.footer { margin-top: 0px !important; }
 ||sudugu.com/config/v7.js
 lkvod.me##.ec-ad-img
 biquge345.com##div[style^="position:fixed;"]
@@ -1757,6 +1760,19 @@ csdn.net###footerRightAds
 ||s3.amazonaws.com/dmas-public/sitemaji/vast.xml$domain=dailymotion.com
 ||c.mipcdn.com/static/*/mip-ad/mip-ad.js
 ||mycodes.net/js/*.js
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/202277
+! https://publicwww.com/websites/%22app_tj%22/
+! Including mobile. Also generic $$ in general_extensions.txt
+! Periodically updated, so placed in this filter
+##.app > div.app_tj
+##body > div.zdhf
+##body > div.dbfh
+##body > div[style$=";background: #000;opacity:0.01;"]
+!#if (adguard_app_android)
+$$script:contains(_mJd5Y2FNOfYm62LY5FuY7O5Yc6)
+$$script:contains(/document\.write[^|&%$#@!]{0,400}:8007"\+"\/cc\//)
+!#endif
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190832
 hanime1.me#%#//scriptlet("trusted-replace-node-text", "script", "popunder", "/window\.open\('(.*?)',.*?\);\n.*location.href = '.*';/", "location.assign('$1');")
