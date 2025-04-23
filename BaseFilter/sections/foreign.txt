@@ -56,6 +56,9 @@ gjirafa.com##div[id^="an-holder-"]
 !
 ! NOTE: Arabian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/203334
+dlfox.com##p > a[target="_blank"] > img
+dlfox.com##div:not(.product_image) > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200321
 anime3rb.com#%#//scriptlet('prevent-setTimeout', '/open-modal|AdscoreInit/')
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
@@ -370,8 +373,9 @@ teamxnovel.com##.body-wrap > div[style^=" padding:50px "]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99417
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199845
 ||new.cimanow.online/judo.js
-freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*$$script:contains(/\.__proto__\.constructor\.name|decompressFromUTF16/)
-freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*#%#//scriptlet('remove-node-text', 'script', '/\.__proto__\.constructor\.name|decompressFromUTF16/')
+freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*#%#//scriptlet('prevent-element-src-loading', 'script', '/judo.js')
+freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*$$script:contains(/\.__proto__\.constructor\.name|decompressFromUTF16|\)\.substr\(0/)
+freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*#%#//scriptlet('remove-node-text', 'script', '/\.__proto__\.constructor\.name|decompressFromUTF16|\)\.substr\(0/')
 freex2line.online,cimanow.cc,cimanow.*##body > a[target="_blank"]
 freex2line.online,cimanow.cc,cimanow.*#@#.ad-slot
 @@||flashtalking.com/oba/icon/consumer-privacy-logo.png$domain=cimanow.*|freex2line.online
@@ -3884,6 +3888,14 @@ bb.is$$div[class="banner"]
 !
 ap7am.com##.tb-dt
 ap7am.com##.prk1
+ap7am.com##.first-ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/203567
+m9.news###single-top-ad
+m9.news##.main-content > p:has(> ins.adsbygoogle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/203525
+andhrajyothy.com##div[class^="ads"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/203533
+sakshi.com##.column_right > div[style]:has(> a[href^="https://orion.edu/"] > img)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/195546
 dhakapost.com##.w-full > div.container-section:has(> div.common-header-ad)
 dhakapost.com##.w-full:has(> div[class*="h-"][class*="250px"] iframe[id*="google_ads_iframe"])
@@ -4879,7 +4891,17 @@ movie76.com##img[alt="ads"]
 !
 ! NOTE: Italian
 !
-lanazione.it##div[class$=" amp__watermark"]
+ambiente.tiscali.it###wp-dtop
+ambiente.tiscali.it##.cnt-text-article .vsb-block:has(> #veeplayer > ins)
+ambiente.tiscali.it##.cnt-text-article .vsb-block:has(> #wid-middle > .OUTBRAIN)
+ambiente.tiscali.it##.col-lg-4 .text-center > .entry-pos-vsb:has(> div:is(#skyscraper, [id^="admpu"], [id^="dotnAd-"]))
+leggo.it##.right_articolo > div.strip_html:has(> div > iframe[src^="https://www.ilmessaggerocasa.it/"])
+leggo.it##.right_articolo > div.strip_html:has(> div.noddus-content-card)
+lespresso.it##.custom-divider > div.hidden:has(> div.w-full > div.gptslot)
+lespresso.it##div.block:has(> div.w-full > div.gptslot)
+liberoquotidiano.it##div[id^="evo"]
+punto-informatico.it##.table-layout > .fixed-width-300:has(> .sidebanner-single)
+lanazione.it,ilgiorno.it,ilrestodelcarlino.it,quotidiano.net##div[class*=" amp__watermark"]
 ilsole24ore.com##.abox
 ilsole24ore.com##.col--stretch:has(> .container:only-child > .abox:only-child)
 ilsole24ore.com##.col--stretch:has(> .abox:only-child)
@@ -4924,6 +4946,19 @@ smellyfisher.com##.providers
 bestmovie.it,treccani.it##.gmp
 forum.fibra.click##.FibraClickAds-fake-poststream-item
 open.online##a[rel="sponsored"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/203799
+tomshw.it##div[wire\:snapshot*="offer"]
+tomshw.it##div[wire\:id] > .relative:has(> .banner-vendor-link)
+tomshw.it#%#//scriptlet('json-prune-fetch-response', 'components.[-].snapshot.[=]./www\.amazon\./', '', 'livewire/update')
+! https://github.com/AdguardTeam/AdguardFilters/issues/203816
+virgilio.it##aside > .hp_300x1
+virgilio.it##aside > .hp_300x1 + hr
+||virgilio.it/public/*/js/adv.min.js
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=virgilio.it
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=virgilio.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/203390
+@@||js.datadome.co/tags.js$domain=thefork.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198437
 ||j2.res.24o.it/js/2022/chkablock*.min.js
 ilsole24ore.com#%#//scriptlet('set-constant', 'ablocktemplate', 'noopFunc')
@@ -8743,6 +8778,8 @@ chili.com#%#//scriptlet('prevent-xhr', '/ad-manager/avod/metadata')
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=chili.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99560
 @@||olx.org/ads/offer-eligibility$domain=olx.pl
+! https://github.com/AdguardTeam/AdguardFilters/issues/203467
+tabletowo.pl#@#a[href^="https://ad.doubleclick.net/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/160779
 tabletowo.pl##div[id^="oa-360-"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135222
