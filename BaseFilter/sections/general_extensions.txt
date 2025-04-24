@@ -108,6 +108,10 @@ primevideo.com#%#//scriptlet('json-prune', 'cuepointPlaylist vodPlaybackUrls.res
 [$path=/gp/video]amazon.co.uk,amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('json-prune', 'cuepointPlaylist vodPlaybackUrls.result.playbackUrls.cuepoints')
 !+ NOT_PLATFORM(ext_ublock)
 primevideo.com,amazon.co.uk,amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start)', '[value="Ad"]', '.mpd')
+! aglint-disable invalid-modifiers
+!+ NOT_VALIDATE PLATFORM(windows, mac, android)
+.mpd$xmlprune=//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start,xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
+! aglint-enable invalid-modifiers
 !
 ! go.oclasrv.com clickunder/ads ('zfgloaded')
 ! '$$script[tag-content="zfgloaded"][min-length="30000"][max-length="80000"]'
