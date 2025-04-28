@@ -9,10 +9,14 @@
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202439
-mcappx.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+mcappx.com#%#//scriptlet('abort-on-stack-trace', 'alert', '.onerror')
+mcappx.com#%#//scriptlet('prevent-element-src-loading', 'script', '/pagead2\.googlesyndication\.com|r\.bat\.bing\.com\/\?ld=/')
+||r.bat.bing.com/?ld=$script,redirect=noopjs,domain=mcappx.com
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=mcappx.com
-!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||r.bat.bing.com/?ld=test$domain=mcappx.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mcappx.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201354
 !+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
 @@||yeeach.com^$generichide,badfilter
