@@ -143,11 +143,15 @@ infinityfree.com#$?#html[lang][dir="ltr"] [id^="img_"][style]:has(iframe[framebo
 smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[frameborder="0"][style]) { clip-path: circle(0) !important; }
 ! Common rules, which partially hide banners
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##html[class^="img_"][amp4ads=""][i-amphtml-layout=""][i-amphtml-no-boilerplate=""][amp-version="2502032353000"]
-!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari && !adguard_ext_chromium_mv3)
-! aglint-disable-next-line invalid-modifiers
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+! aglint-disable invalid-modifiers
+!+ NOT_VALIDATE
 ||07c225f3.online/script/*.js?h=$urltransform=/script.+/loader.min.js/
-! aglint-disable-next-line invalid-modifiers
+!+ NOT_VALIDATE
 ||html-load.com/script/*.js?h=$urltransform=/script.+/loader.min.js/
+! aglint-enable invalid-modifiers
+!#endif
+!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari && !adguard_ext_chromium_mv3)
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://content-loader.com/content"]
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://html-load.com/content"]
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://07c225f3.online/content"]
@@ -19077,10 +19081,10 @@ nhregister.com###ad
 copilot.microsoft.com##div[data-ads-rg]
 copilot.microsoft.com#%#//scriptlet('json-prune', 'ads')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/193716#issuecomment-2507446337
-! aglint-disable invalid-modifiers, unknown-hints-and-platforms
+! aglint-disable invalid-modifiers
 !+ NOT_VALIDATE PLATFORM(windows, mac, android)
 ||af.gog.com/game/$urltransform=/^https:\/\/af\.gog\.com\/game\//https:\/\/www.gog\.com\/game\//
-! aglint-enable invalid-modifiers, unknown-hints-and-platforms
+! aglint-enable invalid-modifiers
 pcgamingwiki.com#%#(()=>{document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll('a[href^="https://af.gog.com/game/"]').forEach((t=>{const e=t.getAttribute("href").replace("https://af.gog.com/","https://www.gog.com/");t.setAttribute("href",e)}))}));})();
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||track.adtraction.com/t/*&url=*://www.gog.com/$domain=pcgamingwiki.com
