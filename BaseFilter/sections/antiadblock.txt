@@ -5217,11 +5217,15 @@ schaken-mods.com#%#//scriptlet('prevent-setTimeout', 'adblockdetector_')
 writedroid.eu.org###anti-ad-blocker
 writedroid.eu.org#%#//scriptlet('abort-current-inline-script', 'Defer', 'adsbygoogle.js')
 writedroid.eu.org#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'adblocker')
+! https://github.com/AdguardTeam/AdguardFilters/issues/204565
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139932
 secretflying.com#$##abd-ad-iframe { display: block !important; visibility: visible !important; }
-secretflying.com#%#//scriptlet('abort-current-inline-script', 'jQuery', 'showAdbMsg')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+secretflying.com#%#//scriptlet('prevent-setInterval', 'adsbygoogle')
+secretflying.com#%#//scriptlet('abort-current-inline-script', 'jQuery', '/showAdbMsg|AdsContent/')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||secretflying.com/abd/adserver/adlogger_tracker.php
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=secretflying.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139888
 av-th.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
