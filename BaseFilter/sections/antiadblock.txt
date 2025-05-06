@@ -1290,12 +1290,13 @@ call-bomber.info#%#//scriptlet('trusted-set-constant', 'document.visibilityState
 call-bomber.info#%#//scriptlet('prevent-setTimeout', 'checkAds')
 call-bomber.info#%#//scriptlet('adjust-setTimeout', '', '*', '0.02')
 call-bomber.info#%#//scriptlet('adjust-setInterval', '', '*', '0.02')
+! https://github.com/AdguardTeam/AdguardFilters/issues/204410#issuecomment-2855256390
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201832
-||zone.msn.com^$replace=/"adsFree\\":false/"adsFree\\":true/,document
-||zone.msn.com^$replace=/"preroll\\":true/"preroll\\":false/,document
+||msn.com^$replace=/"adsFree\\":false/"adsFree\\":true/,document
+||msn.com^$replace=/"preroll\\":true/"preroll\\":false/,document
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=zone.msn.com
 ||cdn.jsdelivr.net/gh/magiclen/adblock-checker^$domain=zone.msn.com
-zone.msn.com#%#(()=>{const e={apply:(e,o,t)=>(null===t[0]&&(t[0]={isUserSubscriber:!0}),Reflect.apply(e,o,t))},o={apply:(o,t,n)=>{const r=n[0];return"function"==typeof r&&r.toString().includes("AdBlockDetector")&&(n[0]=()=>{}),"function"==typeof r&&r.toString().includes("Preroll Ad")&&(n[0]=new Proxy(n[0],e)),Reflect.apply(o,t,n)}};window.Promise.prototype.then=new Proxy(window.Promise.prototype.then,o)})();
+msn.com#%#(()=>{const e={apply:(e,o,t)=>(null===t[0]&&(t[0]={isUserSubscriber:!0}),Reflect.apply(e,o,t))},o={apply:(o,t,n)=>{const r=n[0];return"function"==typeof r&&r.toString().includes("AdBlockDetector")&&(n[0]=()=>{}),"function"==typeof r&&r.toString().includes("Preroll Ad")&&(n[0]=new Proxy(n[0],e)),Reflect.apply(o,t,n)}};window.Promise.prototype.then=new Proxy(window.Promise.prototype.then,o)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201669
 dotacoach.gg#%#//scriptlet('prevent-element-src-loading', 'img', '&adslot=')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
