@@ -16,13 +16,25 @@
 ##iframe[id="google-one-tap-iframe"][allow="identity-credentials-get"]
 ! TODO: remove "/.*/" part when this issue - https://github.com/AdguardTeam/FiltersCompiler/issues/229 will be fixed
 ! TODO: remove document modifier when this issue is fixed - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2954
+!#if (!ext_ublock)
 /.*/$permissions=identity-credentials-get=(),document
-! TODO: remove the rule below 18.09.24 if it doesn't break anything (two lines)
-! The rule for sites, where URL blocking rule blocks also Google's log in button
-! investing.com,tradingview.com,cnn.com,g123.jp,binance.com,boredpanda.com#%#//scriptlet('set-constant', 'navigator.credentials.get', 'noopPromiseReject')
+!#endif
 !
 ! SECTION: Popups - Regular rules
 !
+imdb.com#%#//scriptlet('set-local-storage-item', 'videopage_autoplay_policy_tooltip_dismissed', 'true')
+snapedit.app###modal-landscape
+web-design.academy#$#.popup-webinar { display: none !important; }
+web-design.academy#$#body { position: static !important; }
+kwiky.com#$#body { overflow: auto !important; }
+kwiky.com#$#div[class^="Modal-rootVariables-"] { display: none !important; }
+academia.edu##.ds-signup-banner
+filecr.com#$#body { overflow: auto !important; padding-right: 0 !important; }
+filecr.com#$#body > #modal:has(> div[class^="modal_wrap_"] > div[class^="modal_content_"] > div[class^="dp_body_"] > a[href*="/extension/install"][target="_blank"]) { display: none !important; }
+mqihuan.bookresource.qq.com##.fixed.bottom-48px
+mqihuan.bookresource.qq.com##.fixed.inset-0
+pcloud.com#%#//scriptlet('set-cookie', 'openedExitIntentRegistrationModal', 'true')
+rp-online.de###personalLocationToolTip
 hostadvice.com#%#//scriptlet('set-cookie', 'popup_exit_intent_1', '1')
 gigabaito.com##.popup-wrap:has(> div.onetime_popup)
 thegirl.ru##.article-notification-inset
@@ -907,7 +919,7 @@ nerdwallet.com###contextual-reg-modal-container
 yanusy.com#?#.overlay-box:has(> a[href*="campaign"])
 thestar.com.my##.freeModal
 diepresse.com###abocontainer-f
-||autofill.yandex.ru^$domain=pikabu.ru|ru.hexlet.io|rnk.ru|ig-store.ru
+||autofill.yandex.ru^$domain=pikabu.ru|ru.hexlet.io|rnk.ru|ig-store.ru|fishki.net
 ||id.vk.com/floating_one_tap_auth$domain=pikabu.ru
 pikabu.ru##div[data-test-id="floatingOneTap"]
 pikabu.ru##.popup-button-promo
@@ -2714,7 +2726,7 @@ qobuz.com##.store-launch-injector
 qobuz.com##.modal-backdrop
 noklapja.hu#$#.blurry { filter: none !important; }
 noklapja.hu#$#.m-fbPopup { display: none !important; }
-shikiho.toyokeizai.net,tospo-keiba.jp,nikkan-spa.jp,tokyo-sports.co.jp,my-golfdigest.jp,mapple.net###pianoj_slidein
+president.jp,shikiho.toyokeizai.net,tospo-keiba.jp,nikkan-spa.jp,tokyo-sports.co.jp,my-golfdigest.jp,mapple.net###pianoj_slidein
 kyobun.co.jp,bunshun.jp,mainichi.jp,nikkei.com,news.mynavi.jp###pianoj_ribbon
 0154.by,0312.ua,032.ua,0332.ua,0342.ua,0352.ua,0362.ua,0372.ua,0382.ua,0412.ua,04141.com.ua,0432.ua,04563.com.ua,04597.com.ua,04598.com.ua,0462.ua,0472.ua,048.ua,04868.com.ua,0512.com.ua,05136.com.ua,0522.ua,0532.ua,05366.com.ua,0542.ua,05447.com.ua,0552.ua,056.ua,0564.ua,0566.com.ua,0569.com.ua,057.ua,061.ua,06153.com.ua,0619.com.ua,06236.com.ua,06237.com.ua,06239.com.ua,06242.ua,06252.com.ua,06267.com.ua,06272.com.ua,06274.com.ua,06277.com.ua,0629.com.ua,0642.ua,06452.com.ua,1rnd.ru,3849.com.ua,44.ua,4594.com.ua,5692.com.ua,62.ua,6262.com.ua,6264.com.ua,65.media,7152.kz,7232.kz,8422city.ru,8692.ru,city04.kz,city41.ru,citydomodedovo.ru,go31.ru,go61.ru,go7812.ru,gorod3466.ru,inaktau.kz,inalmaty.kz,inastana.kz,inatyrau.kz,inkaragandy.kz,inshymkent.kz,karelia.news,kaskelenec.kz,qapshagai-city.kz,uralskcity.kz##.push-panel
 video.laxd.com##.noLoginSticker
@@ -4519,8 +4531,8 @@ globalvoices.org###colorbox[style*="width: 448px; height: 366px;"]
 globalvoices.org##body > div#cboxOverlay
 interia.pl##.survey-popup-container
 ||interia.pl/j/*-surveyPopup-*.js
-troypoint.com#$#html { overflow: visible !important; }
-troypoint.com#$#.cp-popup-container { display: none !important; }
+runtothefinish.com,troypoint.com#$#html { overflow: visible !important; }
+runtothefinish.com,troypoint.com#$#.cp-popup-container { display: none !important; }
 open-minds.it,iptvwire.com,my-stuwe.de,udemydownload.com##.cp-popup-container
 ibtimes.com,medicaldaily.com,catalea.de,player.one##.grwf2_backdrop
 ibtimes.com,medicaldaily.com,catalea.de,player.one##.grwf2-wrapper
@@ -7282,6 +7294,8 @@ kurashiru.com#$#html.dly-modal-active { overflow: auto !important; }
 ! SECTION: Popups - Mobile sites only
 !#if (adguard_app_android || adguard_app_ios || adguard_ext_android_cb || ext_ublock)
 !
+theatlantic.com##div[data-zephr-sdk-feature-slug]
+aajtak.in##.tapBoxCls
 paircare.jp#$#main > div.lg\:hidden:has(> div.fixed.z-30.inset-0.overflow-y-auto) { display: none !important; }
 paircare.jp#$#.suppress-scroll { overflow: auto !important; }
 economictimes.indiatimes.com##div[id="grx_image_wrapper"][style^="z-index: 100000; position: fixed;"]

@@ -9,10 +9,14 @@
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202439
-mcappx.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+mcappx.com#%#//scriptlet('abort-on-stack-trace', 'alert', '.onerror')
+mcappx.com#%#//scriptlet('prevent-element-src-loading', 'script', '/pagead2\.googlesyndication\.com|r\.bat\.bing\.com\/\?ld=/')
+||r.bat.bing.com/?ld=$script,redirect=noopjs,domain=mcappx.com
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,domain=mcappx.com
-!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||r.bat.bing.com/?ld=test$domain=mcappx.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mcappx.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201354
 !+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
 @@||yeeach.com^$generichide,badfilter
@@ -84,6 +88,8 @@ bilinovel.com#%#//scriptlet('abort-current-inline-script', 'document.createEleme
 !#if (adguard_app_ios || adguard_app_android)
 bilinovel.com#%#//scriptlet('set-constant', 'checkAndHandleAdBlock', 'undefined')
 bilinovel.com#@#.adv-box
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bilinovel.com
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/*/show_ads_impl_fy2021.js$domain=bilinovel.com
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176112
 ||174.127.195.66/bbs/include/javascript/adblock.js
@@ -96,6 +102,8 @@ caq98i.top#%#//scriptlet('abort-on-property-read', 'alertadmodal')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170882
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169925
 nodejs.cn#%#//scriptlet('set-constant', '_AdBlockInit', 'noopFunc')
+nodejs.cn#%#//scriptlet('set-constant', 'adsbygoogle', 'emptyObj')
+||cdn.wwads.cn/js/makemoney.js$script,redirect=noopjs,domain=nodejs.cn,important
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||cdn.wwads.cn/js/makemoney.js$domain=nodejs.cn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169356

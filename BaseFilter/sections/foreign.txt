@@ -721,6 +721,8 @@ auto.am##.azd-top
 ##.ainsyndication
 az##.makerekframe
 !
+avtosfer.az##div[class^="top_banner_"]
+avtosfer.az##div[class^="banner-"]
 dublaj.az##.bn-lg-sidebar:has(> .row > div[id^="yandex_rtb"])
 dublaj.az##.post-content > section.bn-lg:has(> .row > div[id^="yandex_rtb"])
 dublaj.az#?##sidebar > .row > .col-sm-12 > .sidebar-widget:has(> .widget-head > h4.title:contains(Reklam))
@@ -822,7 +824,8 @@ report.az##.feed-col > div[style^="height:"]
 ||player.bax.tv/vast/$xmlhttprequest,redirect=nooptext
 arenda.az,globalinfo.az,sfera.az,metbuat.az##.ainsyndication
 metbuat.az##.wh_box a[href="https://livescore.az"]
-replay.az##div[align="center"][style^="padding-top:"]
+replay.az#$#div[align="center"][style^="padding-top:"] { height: 0 !important; }
+replay.az##.widget-ad-unit
 ||replay.az/share2.jpg
 qiymeti.net##.float-ad
 boss.az,turbo.az##.lotriver-top-banner
@@ -1404,6 +1407,7 @@ mob.hr##.side_banner
 !
 ! NOTE: Czech and Slovakian
 !
+ta3.com##.banner_bottom:has(> div[id^="div-gpt-ad-"])
 zosveta.com###floating-ad-container
 svetandroida.cz##.bg-center[class*="img/ads.png"]
 svetandroida.cz##.sveta-target[data-sveta-trackid]:has(> .sveta-adlabel)
@@ -2846,6 +2850,9 @@ autopapa.ge##.top-rek
 !
 ! NOTE: Greek
 !
+||x.grxchange.gr/ad/
+workenter.gr##iframe[src^="https://x.grxchange.gr/ad/"]
+workenter.gr##.mt-20:has(> div > iframe[id^="google_ads_"])
 alfavita.gr##.main__top
 ||dimokratiki.gr/wp-content/banners/
 dimokratiki.gr##.widget:has(> div[class^="g"] a[href][target="_blank"] > img[src^="https://www.dimokratiki.gr/wp-content/banners/"])
@@ -3889,6 +3896,7 @@ bb.is$$div[class="banner"]
 !
 ! NOTE: Indian
 !
+tupaki.com##div[id^="ad_"]:not(#style_important)
 hindustantimes.com##.oyoAd
 telugu.hindustantimes.com##.logoBandAdBox
 telugu.hindustantimes.com##.advMasterSlot
@@ -4898,6 +4906,11 @@ movie76.com##img[alt="ads"]
 !
 ! NOTE: Italian
 !
+ilmattino.it##.strip-.lgw
+vistanet.it#$#body { padding-top: 0px !important; }
+vistanet.it#$#body > div.full_100 { margin-top: 0px !important; }
+vistanet.it#$#body > div.full_100 > div.full_box { margin-top: 0px !important; }
+||vistanet.it/*/wp-content/plugins/vistanet-plugins/js/clienti_adv.js
 tgcom24.mediaset.it#?#.bd-area-sidebar > div[class*="sportMediaset"] > div[data-testid="section"]:has(div[data-testid="footer-card-elements"] > span:contains(contenuto sponsorizzato))
 macitynet.it##div[id^="div-flx-intext-container-"]
 dday.it##div[id^="offer-"][id$="-slider"]
@@ -5169,8 +5182,12 @@ automoto.it,moto.it##.crm-unit
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=highlights.legaseriea.it
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=highlights.legaseriea.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/204010
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165897
+fritzbox-forum.com##main > div > div[style*="min-height:"][class]:has(> .banniere)
 fritzbox-forum.com##div[style*="max-height: 90px; min-width: 728px;"]
+!+ PLATFORM(windows, mac, android)
+fritzbox-forum.com#$#div[style*="max-height: 90px; min-width: 728px;"] { position: absolute !important; left: -3000px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165835
 ilfattoquotidiano.it#?#.fq-extra-pushbar__content:has(> div.ifq-dfp > div.ifq-adv)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164802#issuecomment-1793373741
@@ -5615,7 +5632,7 @@ ideegreen.it#?##sidebar > div.widget_text:has(> div.textwidget > center > font >
 ||startmag.it/wp-content/uploads/Skin_StartMeg-1.jpg
 startmag.it#$##outer-wrap > #page { padding-top: 0 !important; }
 startmag.it#$#body #outer-wrap { background-image: none !important; }
-startmag.it#%#//scriptlet("abort-on-property-read", "wpsite_clickable_data")
+startmag.it#%#//scriptlet('abort-on-property-read', 'wpsite_clickable_data')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77957
 paesenews.it##.pum-overlay
 paesenews.it##.shailan_banner_widget
@@ -6889,7 +6906,10 @@ matzoo.pl#%#//scriptlet('prevent-setInterval', 'bait.offsetParent')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199566
 podhaleregion.pl#$#header > .logo-container { margin-top: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199281
-epiotrkow.pl#%#//scriptlet('set-constant', 'adbfunct', 'noopFunc')
+epiotrkow.pl##body .in-ad
+epiotrkow.pl##.sidebar-item:has(> .make-me-sticky > .rek)
+epiotrkow.pl##.box-ra:has(ins:is(.adsbygoogle, [data-revive-zoneid]))
+epiotrkow.pl#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '/\/asyncjs\.php|adBlock/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197804
 poradnikprzedsiebiorcy.pl###bottomBar
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197403
@@ -7385,11 +7405,13 @@ tyna.info.pl##.baner
 ! https://github.com/uBlockOrigin/uAssets/issues/20320
 uwaga.tvn.pl##.ad-ph
 uwaga.tvn.pl#%#//scriptlet('set-constant', 'Berry.waitFor', 'noopPromiseResolve')
-tvn.pl#%#//scriptlet('set-constant', 'Berry.waitForScripts', 'noopPromiseResolve')
+tvn24.pl,tvn.pl#%#//scriptlet('set-constant', 'Berry.waitForScripts', 'noopPromiseResolve')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||edge.permutive.app/*-web.js$domain=tvn24.pl
+@@||tvn.hit.gemius.pl/gplayer.js$domain=tvn24.pl
 @@||tvn.hit.gemius.pl/gstream.js$domain=uwaga.tvn.pl
 @@||tvn.hit.gemius.pl/xgemius.js$domain=uwaga.tvn.pl
-@@||tvn.hit.gemius.pl/*/redot.js$domain=uwaga.tvn.pl
+@@||tvn.hit.gemius.pl/*/redot.js$domain=uwaga.tvn.pl|tvn24.pl
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164441
 rentola.pl#?#.relative:has(> div[data-ezoic--main-target="placeholder"])
@@ -8616,10 +8638,6 @@ wiocha.pl##iframe[src^="https://www.wiocha.pl/subpages/"][src*=".php"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/104601
 zoonews.pl##.bsaProItem
 zoonews.pl#?#.elementor-text-editor > span:contains(/^Reklama$/)
-! https://github.com/AdguardTeam/AdguardFilters/issues/104475
-! https://github.com/AdguardTeam/AdguardFilters/issues/104474
-! https://github.com/AdguardTeam/AdguardFilters/issues/104472
-beskidslaski24.pl,slaskaopinia.pl##div[class$="-adlabel"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/106396
 pasazer.com##.adv_body
 pasazer.com##article .adv_in_art
@@ -11056,8 +11074,6 @@ medonet.pl,plejada.pl,onet.pl,auto-swiat.pl,komputerswiat.pl##.ods-ads__ph
 .pl/*/*/tags?domain=$~third-party,xmlhttprequest,domain=komputerswiat.pl|auto-swiat.pl
 ! komputerswiat.pl - ad leftovers
 plejada.pl,auto-swiat.pl,newsweek.pl,onet.pl,medonet.pl,komputerswiat.pl###onet-ad-flat-belkagorna
-! https://github.com/AdguardTeam/AdguardFilters/issues/48819
-pclab.pl#%#//scriptlet('prevent-setTimeout', 'document.body.getAttribute("abp")')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64295
 onet.pl#$#.insertedSlot { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155987
@@ -11490,7 +11506,11 @@ exsite.pl#%#window.ab = false;
 !
 ! NOTE: Romanian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/204488
+||player.desenefaine.net/js/script_*.js
+!
 emisiuni.live##a[target="_blank"] > img
+!
 monitorulsv.ro##.btop
 monitorulsv.ro###advscr
 monitorulsv.ro##div[class^="add_"]
@@ -12046,6 +12066,7 @@ vatantat.ru##a[href="https://pobeda.onf.ru/"]
 ##.right-menu > div.adhl
 !
 !
+123-hd.com##div[id^="banner_"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200270
 ||adsok.co^$third-party
 .gif^$image,domain=dooporn24.com
