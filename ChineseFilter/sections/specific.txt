@@ -41,6 +41,12 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 ! NOTE: Specific rules
 !
+zcool.com.cn##.advlongDefault
+puresys.net##.sidebar > .widget:has(> .item > a[target="_blank"] > img)
+||mesh.if.iqiyi.com/player/lw/lwplay/accelerator.js
+||mesh.if.iqiyi.com/tvg/v2/lw/base_info?entity_id=*&ad_ext=
+iqiyi.com#%#//scriptlet('adjust-setInterval', 'adUI', '1000', '0.02')
+news.mydrivers.com##.kkjgoods
 uaa.com##.place_holder_box
 ||cdn.uameta.ai/file/bucket-media/image/advertisement/
 ddys.*,ddrk.me##.entry div[id] > a[target="_blank"] > img
@@ -377,11 +383,11 @@ nodejs.cn###pagead
 gvm.com.tw##.promotion_ad
 gvm.com.tw##.promotion > .sp-txt
 huya.com##.room-sidebar #public-screen-ab
-vidhub1.cc,vidhub.me,vidhub.tv##div[class^="ad"]:has(> div[class^="prom"][style] > img[onclick^="window.open"])
+vidhub1.cc,vidhub.me,vidhub.tv##div[class^="prom"][style] > img[onclick^="window.open"]
+vidhub1.cc,vidhub.me,vidhub.tv##div:is([class^="ad"], [class*="pwc"]):has(> div[class^="prom"][style] > img[onclick^="window.open"])
 vidhub1.cc,vidhub.me,vidhub.tv##.adpwc
 vidhub1.cc,vidhub.me,vidhub.tv##.adwap
-vidhub1.cc,vidhub.me,vidhub.tv##.promolnk
-vidhub1.cc,vidhub.me,vidhub.tv##.promotelink
+vidhub1.cc,vidhub.me,vidhub.tv##div[class^="prom"][class*="nk"][style]
 technews.tw##.inside_AD
 tw100s.com##div[class="ui_adblock"]
 heho.com.tw##div[id^="heho-ml-"]
@@ -1070,7 +1076,7 @@ mmff30.com##span[id$="_gg"]
 mmff30.com##a[href$="/ref.html"]
 mmff30.com##.titletablediv .titletablecell > a[target="_blank"]:not([href$="html"]):not([target="_self"])
 ||css.mangabz.com/*/mangabz/js/mobile/newyb.js
-php.cn,v2ex.com,233tw.com##.wwads-cn
+zcool.com.cn,php.cn,v2ex.com,233tw.com##.wwads-cn
 ntp.msn.cn##recommended-sites
 423down.com##.content > h3 > a[rel="external nofollow"][target="_blank"]
 segmentfault.com###gridAd
@@ -1879,6 +1885,7 @@ netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177520
 !+ PLATFORM(windows, mac, android)
 /gmu-download.oss-$image,redirect-rule=1x1-transparent.gif,domain=voflix.vip
+! https://github.com/AdguardTeam/AdguardFilters/issues/204700
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202922
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176103
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134240
@@ -1887,7 +1894,7 @@ netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
 ! bilibili.com#?#.bili-video-card.is-rcmd > div > a[href*="cm.bilibili.com"][data-target-url]:not([data-target-url*=".bili"]) + .bili-video-card__info:upward(2)
 search.bilibili.com##.video-list > div:has(> .bili-video-card > .bili-video-card__wrap > .bili-video-card__info > .bili-video-card__info--right > .ad-feedback-entry)
 bilibili.com##.bili-video-card.is-rcmd:has(> div.bili-video-card__wrap div.bili-video-card__stats > div.bili-video-card__stats--left:empty + span.bili-video-card__stats--text)
-bilibili.com#$?#.container > .feed-card:has(>.bili-video-card.is-rcmd > div.bili-video-card__wrap div.bili-video-card__stats > div.bili-video-card__stats--left:empty + span.bili-video-card__stats--text) { remove: true; }
+bilibili.com#$#.container > .feed-card:has(>.bili-video-card.is-rcmd > div.bili-video-card__wrap div.bili-video-card__stats > div.bili-video-card__stats--left:empty + span.bili-video-card__stats--text)  { position: absolute!important; left: -4000px!important; }
 bilibili.com#$#.container > div[class*="-card"]:has(div[style="display: none !important;"]) { position: absolute !important; left: -3000px !important; }
 bilibili.com#%#//scriptlet('json-prune', 'data.cm_info.ads')
 bilibili.com##.container > div.bili-video-card.is-rcmd:not(:has(> *))
