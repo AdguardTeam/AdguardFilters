@@ -373,7 +373,7 @@ teamxnovel.com##.body-wrap > div[style^=" padding:50px "]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171857
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99417
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199845
-||new.cimanow.online/judo.js
+||new.cimanow.online/judo.js$redirect=noopjs
 freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*#%#//scriptlet('prevent-element-src-loading', 'script', '/judo.js')
 freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*$$script:contains(/\.__proto__\.constructor\.name|decompressFromUTF16|\)\.substr\(0/)
 freex2line.online,cimanowtv.com,cnvids.com,cimanow.cc,cimanow.*#%#//scriptlet('remove-node-text', 'script', '/\.__proto__\.constructor\.name|decompressFromUTF16|\)\.substr\(0/')
@@ -1443,16 +1443,20 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
-! https://github.com/AdguardTeam/AdguardFilters/issues/203518
-titulky.com#%#//scriptlet('set-constant', 'noadb', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201753
 ||storage.googleapis.com/pravda-ad-script/
 pravda.sk##.perex-adblock-warning
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196693
 zdopravy.cz###container-ads
 zdopravy.cz##body .otherAds
+! https://github.com/AdguardTeam/AdguardFilters/issues/204872
+! https://github.com/AdguardTeam/AdguardFilters/issues/203518
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194647
+||titulky.com^$replace=/let noadbl=0;/let noadbl=1;/,document
+titulky.com#%#//scriptlet('trusted-replace-node-text', 'script', 'noadbl', 'let noadbl=0;', 'let noadbl=1;')
+titulky.com#%#//scriptlet('set-constant', 'noadb', '1')
 titulky.com#%#//scriptlet('set-constant', 'showFairUser', 'true')
+@@||titulky.com/ads/revgen.js$domain=titulky.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||titulky.com/ads/titulky-ads-banner.js$domain=titulky.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194536
@@ -4277,15 +4281,12 @@ cosmic1.co##.kln
 komiktap.info###bannerhomefooter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185298
 maid.my.id##.iniiklan
-! https://github.com/AdguardTeam/AdguardFilters/issues/193178
-idlix.asia#%#//scriptlet('trusted-set-constant', 'dtGonza.playeradstime', '"-1"')
-idlix.asia##.asgdc
-idlix.asia#$#body[class*="-style-"] > * { filter: none !important; }
-idlix.asia#$#body[class*="-style-"] > div[class$=" active"][style] { display: none !important; }
-idlix.asia#$#body[class*="-style-"] > div[class$=" active"][style] + div[class*="-"]:has(>div[class$=" active"][style]) { display: none !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/204915
+idlixvip.asia#%#//scriptlet('trusted-set-constant', 'dtGonza.playeradstime', '"-1"')
+idlixvip.asia##.asgdc
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||cdn.ocmhood.com/sdk/hood.js$xmlhttprequest,domain=idlix.asia
-@@||ssl.p.jwpcdn.com/player/v/*/vast.js$xmlhttprequest,domain=idlix.asia
+@@||cdn.ocmhood.com/sdk/hood.js$xmlhttprequest,domain=idlixvip.asia
+@@||ssl.p.jwpcdn.com/player/v/*/vast.js$xmlhttprequest,domain=idlixvip.asia
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182103
 idlixofficialx.*,idlixplus.*#%#//scriptlet('trusted-set-constant', 'dtGonza.playeradstime', '"-1"')
