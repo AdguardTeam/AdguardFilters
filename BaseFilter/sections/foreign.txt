@@ -1443,16 +1443,20 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
-! https://github.com/AdguardTeam/AdguardFilters/issues/203518
-titulky.com#%#//scriptlet('set-constant', 'noadb', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201753
 ||storage.googleapis.com/pravda-ad-script/
 pravda.sk##.perex-adblock-warning
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196693
 zdopravy.cz###container-ads
 zdopravy.cz##body .otherAds
+! https://github.com/AdguardTeam/AdguardFilters/issues/204872
+! https://github.com/AdguardTeam/AdguardFilters/issues/203518
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194647
+||titulky.com^$replace=/let noadbl=0;/let noadbl=1;/,document
+titulky.com#%#//scriptlet('trusted-replace-node-text', 'script', 'noadbl', 'let noadbl=0;', 'let noadbl=1;')
+titulky.com#%#//scriptlet('set-constant', 'noadb', '1')
 titulky.com#%#//scriptlet('set-constant', 'showFairUser', 'true')
+@@||titulky.com/ads/revgen.js$domain=titulky.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||titulky.com/ads/titulky-ads-banner.js$domain=titulky.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194536
