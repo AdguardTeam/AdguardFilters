@@ -9,7 +9,6 @@ instructions below to make your ideas come to life faster!
 - You need to have the following tools installed on your machine:
   - [Git][git]
   - [Node.js][nodejs] (we recommend using the latest LTS version)
-  - [Yarn][yarn] (you can install it using npm: `npm install -g yarn`)
   - [Visual Studio Code][vscode] (we recommend using this editor)
     - Install the recommended extensions for VSCode (listed in `.vscode/extensions.json`).
       - At first launch, you will be prompted to install them. If not, press `CTRL+SHIFT+P` and type
@@ -22,7 +21,6 @@ instructions below to make your ideas come to life faster!
 [git]: https://git-scm.com/downloads
 [nodejs]: https://nodejs.org/en/download
 [vscode]: https://code.visualstudio.com/download
-[yarn]: https://classic.yarnpkg.com/en/docs/install
 
 ## Setting up the repository
 
@@ -32,7 +30,7 @@ After you have installed the necessary tools, you need to set up the repository.
 1. Clone remote repository from GitHub to your local machine.
 1. Install the dependencies by running the following command in the terminal:
    ```bash
-   yarn install
+   npm install
    ```
    This will install necessary tools like [AGLint][aglint] and initialize [Husky][husky] hooks.
 

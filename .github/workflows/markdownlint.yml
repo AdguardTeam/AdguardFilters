@@ -12,7 +12,7 @@ on:
       - ".markdownlint.json"
       - ".markdownlintignore"
       - "package.json"
-      - "yarn.lock"
+      - "package-lock.json"
   pull_request:
     branches:
       - master
@@ -21,7 +21,7 @@ on:
       - ".markdownlint.json"
       - ".markdownlintignore"
       - "package.json"
-      - "yarn.lock"
+      - "package-lock.json"
 
 jobs:
   lint:
@@ -35,14 +35,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
+          cache: npm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       # If the linter found any errors, it will exit with a non-zero code, which will cause the job to fail
       - name: Run markdownlint
-        run: yarn markdownlint .
+        run: npm run markdownlint
 
   notify:
     name: Send Slack notification on failure
