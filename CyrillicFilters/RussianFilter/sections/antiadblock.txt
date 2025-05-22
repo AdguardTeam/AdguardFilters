@@ -24,6 +24,16 @@ modsforwot.ru,vargr.ru,trialkeys.ru#@#img[width="728"][height="90"]
 !#endif
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/205665
+tragtorr.in#%#//scriptlet('prevent-element-src-loading', 'script', 'yandex.ru/ads/system/context.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||yandex.ru/ads/system/context.js$domain=tragtorr.in
+! https://github.com/AdguardTeam/AdguardFilters/issues/205179
+s3.gamepush.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'checkAdblock')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+s3.gamepush.com#@##text_ad
+! https://github.com/AdguardTeam/AdguardFilters/issues/204523
+volley.ru##pjsdiv[style*="opacity: 1; font-size: 14px; line-height: 1em; pointer-events: none; display: block; visibility: visible;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199584
 ritsatv.ru$$script:contains(script.onerror)
 ritsatv.ru#%#//scriptlet('remove-node-text', 'script', 'script.onerror')
@@ -58,18 +68,10 @@ anidubonline.com#%#//scriptlet('prevent-xhr', '/(vast|getCode)\?/')
 @@||yandex.ru/ads/$domain=anidubonline.com
 @@||ad.moe.video/vast$domain=anidubonline.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/181132
-||v*.plrjs.org/*.xml$xmlhttprequest,redirect=nooptext,domain=volley.ru
-!+ PLATFORM(ios, ext_android_cb)
-@@||v*.plrjs.org/*.xml$domain=volley.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176423
 leingpt.ru#@#div[id^="yandex_rtb"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176044
 @@||yandex.ru/ads/system/context.js$domain=trychatgpt.ru
-! https://github.com/AdguardTeam/AdguardFilters/issues/173207
-volley.ru#%#//scriptlet('prevent-fetch', 'exchange.buzzoola.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||exchange.buzzoola.com/adv/$xmlhttprequest,domain=volley.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172229
 @@||yandex.ru/ads/system/context.js$domain=tvzvezda.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171998
@@ -936,6 +938,7 @@ dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[cl
 [$path=/pogoda]dzen.ru##.adv_type_rtb
 !
 ! Ad in Dzen articles
+dzen.ru##div[class^="content--dzen-pro-article-banner"]
 [$path]dzen.ru##.feed__item article[class*="_is"]:not([class*="__card"]):not(:has(> div.short-video-carousel-view))
 dzen.ru##body:not(.page_article-editor) div[class^="article"][class*="holder"]
 dzen.ru###article__bottom-embed
@@ -1133,10 +1136,10 @@ game4you.top,monna2.top,apad2.top,games-pc.top,rustorka.com,rustorka.net,rustork
 @@/report_ad.js$~third-party,domain=game4you.top|games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
 $cookie=opt_js,domain=game4you.top|games-pc.top|rustorka.com|rustorka.net|rustorkacom.lib|rustorka.top|naylo.top
 !
+rustorka.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'ads_script')
+rustorka.com###debil
 rustorka.com#%#//scriptlet('prevent-setInterval', 'puk')
 rustorka.com#%#//scriptlet('trusted-create-element', 'body', 'div', 'class="e7af0de8b4"')
-rustorka.com##div[id^="kukansd"]
-tapochek.net#%#//scriptlet("set-constant", "antiadblock", "undefined")
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
 ! tapochek.net - fixing first click
 tapochek.net#%#//scriptlet("set-constant", "window.b0", "null")
@@ -1399,6 +1402,7 @@ ya.ru##.main-home-banner
 ya.ru,yandex.*##.DirectFeature
 ya.ru##div[data-hydration-id] > style + div[style^="--image-aspect-ratio:"]
 ||yandex.ru/search/_crpd/*/*/*_$script,replace=/\.?directBannerType//
+ya.ru,yandex.*##.services-feed > div[style^="--height-ratio:"]
 ya.ru,yandex.*##.services-feed_banner_yes
 ya.ru##.Skeleton_type_ad_search
 [$path=/search]ya.ru,yandex.*##.AdvMedia
@@ -1521,7 +1525,9 @@ mail.yandex.*##.DirectLine
 !
 ! Yandex.Raspisanie
 rasp.yandex.*##.Direct
-rasp.yandex.ru##.ThreadLayout__topDirect
+rasp.yandex.*##.ThreadLayout__topDirect
+rasp.yandex.*##.Personal__vtbPromoBadge
+rasp.yandex.*##.SearchSegmentsDirect
 !
 ! Yandex.TV
 ! the rule also relates to Afisha, Realty, Video

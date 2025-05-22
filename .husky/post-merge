@@ -10,8 +10,8 @@ function changed {
     git diff --name-only HEAD@{1} HEAD | grep "^$1" > /dev/null 2>&1
 }
 
-# If package.json or yarn.lock is changed, we should sync local dependencies
-if changed "package.json" || changed "yarn.lock"; then
-    echo "package.json or yarn.lock changed, running yarn install to sync dependencies"
-    yarn install --force
+# If package.json or package-lock.json is changed, we should sync local dependencies
+if changed "package.json" || changed "package-lock.json"; then
+    echo "package.json or package-lock.json changed, running npm install to sync dependencies"
+    npm install --force
 fi
