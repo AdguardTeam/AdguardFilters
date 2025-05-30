@@ -12,6 +12,12 @@ ankarakampkafasi.com,zamaninvarken.com,kredi.biz.tr,kriptoradar.com,bakimlikadin
 teknop.net,ozgunbilgi.com#%#//scriptlet("set-constant", "adblock.check", "noopFunc")
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/206305
+haber3.com###hbr3-ad-notice
+haber3.com#%#//scriptlet('set-constant', 'App.detectAdBlock', 'noopFunc')
+! https://github.com/AdguardTeam/AdguardFilters/issues/205689
+!+ PLATFORM(ext_ublock)
+@@||forumsitesi.com.tr^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201678
 ||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=noopjs,domain=tabii.com,important
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=tabii.com
@@ -36,6 +42,7 @@ gecmisi.com.tr#@#div[id^="aswift_"]
 @@||gecmisi.com.tr^$cookie=_ym_uid
 gecmisi.com.tr#%#//scriptlet('trusted-create-element', 'footer', 'iframe', 'src="about:srcdoc"')
 gecmisi.com.tr#%#(()=>{const o=Math.floor(1e5+9e5*Math.random()),a=`${Date.now()}${o}`;var t,e,m,$;t="_ym_uid",e=a,m="/",$=".gecmisi.com.tr",document.cookie=`${t}=${e};path=${m};domain=${$};`})();
+gecmisi.com.tr#%#(()=>{document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector(".adsbygoogle:not(.adsbygoogle-noablate)"),t=document.createElement("div");t.textContent=".".repeat(3e3),e.appendChild(t)}));})();
 !+ PLATFORM(ext_ff)
 gecmisi.com.tr#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const o=Math.floor(1e5+9e5*Math.random()),a=`${Date.now()}${o}`;var t,e,m,$;t="_ym_uid",e=a,m="/",$=".gecmisi.com.tr",document.cookie=`${t}=${e};path=${m};domain=${$};`})();')
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
@@ -132,10 +139,11 @@ kuponuna170.top,kuponuna171.top,kuponuna172.top,kuponuna173.top,kuponuna174.top,
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145451
 ! canlitribun*.live - frequently changed domains
-canlitribun237.live,canlitribun238.live,canlitribun239.live,canlitribun240.live,canlitribun241.live,canlitribun242.live,canlitribun243.live,canlitribun244.live,canlitribun245.live,canlitribun246.live#%#//scriptlet('prevent-xhr', '/advert.js')
 [$domain=/(^\|.+\.)canlitribun\d+\.live/]#%#//scriptlet('prevent-xhr', '/advert.js')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@/cdn/advert.js$domain=canlitribun237.live|canlitribun238.live|canlitribun239.live|canlitribun240.live|canlitribun241.live|canlitribun242.live|canlitribun243.live|canlitribun244.live|canlitribun245.live|canlitribun246.live|canlitribun247.live|canlitribun248.live|canlitribun249.live|canlitribun250.live|canlitribun251.live|canlitribun252.live|canlitribun253.live|canlitribun254.live|canlitribun255.live|canlitribun256.live|canlitribun257.live|canlitribun258.live|canlitribun259.live|canlitribun260.live
+!#if (adguard_app_ios || adguard_ext_safari)
+canlitribun642.top,canlitribun643.top,canlitribun644.top,canlitribun645.top,canlitribun646.top,canlitribun647.top,canlitribun648.top,canlitribun649.top,canlitribun650.top,canlitribun651.top,canlitribun652.top,canlitribun653.top,canlitribun654.top,canlitribun655.top,canlitribun656.top,canlitribun657.top,canlitribun658.top,canlitribun659.top,canlitribun660.top,canlitribun661.top#%#//scriptlet('prevent-xhr', '/advert.js')
+@@/cdn/advert.js$domain=canlitribun642.top|canlitribun643.top|canlitribun644.top|canlitribun645.top|canlitribun646.top|canlitribun647.top|canlitribun648.top|canlitribun649.top|canlitribun650.top|canlitribun651.top|canlitribun652.top|canlitribun653.top|canlitribun654.top|canlitribun655.top|canlitribun656.top|canlitribun657.top|canlitribun658.top|canlitribun659.top|canlitribun660.top|canlitribun661.top
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145198
 raindropteamfan.com#%#//scriptlet('prevent-fetch', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -358,7 +366,7 @@ osxinfo.net#%#//scriptlet("abort-current-inline-script", "$", "!document.getElem
 turkdenizcileri.com,bilgalem.blogspot.com#%#//scriptlet("set-constant", "koddostu_com_adblock_yok", "null")
 turkdenizcileri.com,bilgalem.blogspot.com$$script[tag-content="adblock"][max-length="300"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203121
-tekniknot.com#%#//scriptlet('abort-on-property-read', 'workfile')
+tekniknot.com#%#//scriptlet('abort-on-stack-trace', 'document.querySelector', 'window.onload')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 ||tekniknot.com/code.html$xmlhttprequest
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=tekniknot.com
