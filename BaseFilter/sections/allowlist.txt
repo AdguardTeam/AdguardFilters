@@ -10,11 +10,10 @@
 ! ATTENTION: The rules in this section must be accompanied by a link of an issue, where the problem will be fixed
 ! or with clear description what to do next
 !
-
-! https://github.com/AdguardTeam/PopupBlocker/issues/336
-! TODO: remove after fixing
-! aglint-disable-next-line invalid-modifiers
-@@||reddit.com^$extension="AdGuard Popup Blocker"|"AdGuard Popup Blocker (Beta)"
+! Incorrect blocking in Phishing URL Blocklist
+! https://x.com/mekabuto/status/1926147501595283528
+! TODO: check 02.06.2025 and remove if fixed
+||sbisec.co.jp/etgate/^$all,badfilter
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187875#issuecomment-2361917970
 ! Problem occurs only in Brave browser with MV3 extension
 ! TODO: remove it when this issue - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2954 is fixed
@@ -118,6 +117,15 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/206470
+britannica.com#%#//scriptlet('googletagservices-gpt')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||ay.delivery/manager/$domain=britannica.com
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=britannica.com
+@@||securepubads.g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=britannica.com
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/205617
+nareshalka.com#@##adModal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205390
 @@||wpnrtnmrewunrtok.xyz^$domain=camwhores.ru.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204824
@@ -4209,8 +4217,6 @@ ecostream.tv#@#.adwrapper
 @@||amazon-adsystem.com/e/dtb/bid^$domain=kino.de
 ! Yandex projects - broken trailer player
 @@||yastatic.net/awaps-ad-sdk-js$domain=kinopoisk.ru|video.yandex.ru,script
-! https://github.com/AdguardTeam/AdguardFilters/issues/2519
-@@||ncbi.nlm.nih.gov^$jsinject
 ! https://github.com/AdguardTeam/AdguardFilters/issues/2314
 ! sellercentral.amazon.com - broken by Adguard injections
 @@||sellercentral.amazon.com/hz/inventory/$elemhide,jsinject

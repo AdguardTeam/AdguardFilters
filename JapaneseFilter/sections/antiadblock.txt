@@ -9,6 +9,23 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/206406
+||2ch.logpo.jp/Scripts/bab.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/206330
+rkd3.dev#%#//scriptlet('set-constant', 'navigator.brave', 'undefined')
+rkd3.dev#%#//scriptlet('prevent-fetch', 'adsbygoogle.js')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=rkd3.dev
+! GFC
+||response.jp/feature/adb/
+! https://github.com/AdguardTeam/AdguardFilters/issues/205611
+tokyo-sports.co.jp#$#.tp-backdrop { display: none !important; }
+tokyo-sports.co.jp#$#.tp-modal { display: none !important; }
+tokyo-sports.co.jp#$#body.tp-modal-open { overflow: visible !important; height: auto !important; touch-action: auto !important; }
+tokyo-sports.co.jp#$#html.tp-scroll-prevented { overflow: visible !important; height: auto !important; touch-action: auto !important; }
+! fab
+gigafile.nu#%#//scriptlet('prevent-addEventListener', 'load', 'adBlockDetected')
+||gigafile.nu/js/guard.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204335
 mtgames.jp#@#.adspace
 ! anti-adb
@@ -524,11 +541,12 @@ h-ken.net#%#//scriptlet('set-constant', 'adBlockDetected', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/60864
 /modal-dist/index.js$script,domain=ananweb.jp|newsweekjapan.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137690
-coron.tech#%#//scriptlet('remove-attr', 'class', '[id][role] > [id] > [class] > section')
+coron.tech#%#//scriptlet('remove-attr', 'class', 'article[itemprop="articleBody"]', 'stay')
 connect.coron.tech#%#//scriptlet('abort-current-inline-script', 'jQuery', 'decodeURIComponent')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||ad.jp.ap.valuecommerce.com/servlet/jsbanner$domain=coron.tech
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=coron.tech
+coron.tech#@#.quigo
 coron.tech#@#ins.adsbygoogle[data-ad-client]
 coron.tech#@#ins.adsbygoogle[data-ad-slot]
 !#endif
