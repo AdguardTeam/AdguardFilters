@@ -1465,6 +1465,9 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 impuls.cz##.r-main
+! https://github.com/AdguardTeam/AdguardFilters/issues/206129
+! Domains with the player changed frequently, no common parts in URLs
+##.ad-container > button.close-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201753
 ||storage.googleapis.com/pravda-ad-script/
 pravda.sk##.perex-adblock-warning
@@ -2883,6 +2886,8 @@ autopapa.ge##.top-rek
 !
 ! NOTE: Greek
 !
+pelop.gr##div[id^="inline"][style^="min-height:"]
+pelop.gr###article_end
 enimerotiko.gr##.homepage-roh:has(> .nx-placeholder-ad)
 ||x.grxchange.gr/ad/
 workenter.gr##iframe[src^="https://x.grxchange.gr/ad/"]
@@ -6848,6 +6853,8 @@ roweroweporady.pl#@#.ad_container
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
 !
+trans.info##a[href*="_banner_ad"][target="_blank"] > img
+trans.info##.font-normal:has(+ .hidden > a[href*="_banner_ad"][target="_blank"] > img)
 ||naszemiasto.pl/ads/_uuid/?id=pubcid
 well.pl##.sad
 well.pl##.p-top
@@ -6965,6 +6972,8 @@ bieganie.pl#?#.biega-nb-paris > DIV[style^="text-align:"]:contains(Reklama)
 gospodarkamorska.pl##.Home_categories_box > div.polecamy-slider > div[class*="poster-dnone-"]
 onet.pl##a[href^="https://milionymonet.onet.pl/"]
 pograne.eu###custom_html-8
+! https://github.com/AdguardTeam/AdguardFilters/issues/206590
+mapy.meteo.pl#@#.project-title.control-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205628
 strimov.site#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb)
@@ -8293,8 +8302,6 @@ portal-polski.pl##.entry-content > figure[id^="attachment_"][style^="width:"]
 portal-polski.pl#?##secondary > aside[id^="block-"]:has(> a[href^="https://webep1.com/"] > img)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127354
 miejscawewroclawiu.pl##rs-module-wrap
-! https://github.com/AdguardTeam/AdguardFilters/issues/127347
-trans.info#?#.container > div.text-center:has(> ins[class^="staticpubads"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146650
 meczyki.pl##.page-wrapper > .container > .box > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/127359
@@ -11082,7 +11089,7 @@ money.pl#$#body { overflow: visible!important; }
 ||o2.pl^$replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,xmlhttprequest,other,~script
 www.wp.pl#$#body > #root { opacity: 1 !important; }
 www.wp.pl##.grid > div:not([class]):has(> div[class*=" "]:only-child > div[class*=" "]:first-child + div[class*=" "]:last-child > div:empty:first-child + img[src*="://v.wpimg.pl/"][alt][role="presentation"]:last-child)
-www.wp.pl##div[class*=" "]:has(> img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child)
+www.wp.pl##div[class*=" "]:has(> img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child:empty)
 wp.pl##[class^="_"]:has(> img[src*=".wp.pl"])
 wp.pl$$script:contains(/var wp_gaf_rv[\s\S]*?\n.*"spin".*"dfpConfig".*"slots?"/)
 pudelek.pl,abczdrowie.pl,pysznosci.pl,o2.pl,autokult.pl,jastrzabpost.pl,genialne.pl,polygamia.pl,money.pl,wp.pl#%#//scriptlet('trusted-prune-inbound-object', 'Object.entries', '*.slots')
