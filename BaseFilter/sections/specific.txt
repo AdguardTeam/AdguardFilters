@@ -57,12 +57,15 @@ triblive.com###storyContent > div[data-type="float"][data-stn-player]
 !##################
 !
 ! START: Ad-Shield ad reinsertion
-! TODO: Remove, when prevent-innerHTML is released: https://github.com/AdguardTeam/Scriptlets/issues/488 [06.03.2025]
+! TODO: Replace, when prevent-innerHTML is released: https://github.com/AdguardTeam/Scriptlets/issues/488 [03.06.2025]
 !#if (!adguard_app_ios && !adguard_ext_safari && !adguard_ext_android_cb && !adguard_ext_firefox && !adguard_ext_chromium_mv3 && !ext_ublock)
-||html-load.com^$script,redirect=noopjs,domain=lifehacker.jp
-lifehacker.jp#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
 lifehacker.jp#%#!function(){var e=Object.getOwnPropertyDescriptor(Element.prototype,"innerHTML").set;Object.defineProperty(Element.prototype,"innerHTML",{set:function(t){return t.includes("html-load.com")?e.call(this,""):e.call(this,t)}})}();
+lifehacker.jp#%#//scriptlet('remove-node-text', 'script', 'html-load.com')
 !#endif
+!+ NOT_PLATFORM( ios, ext_safari, ext_android_cb, ext_chromium_mv3, ext_ublock)
+||html-load.com^$script,redirect=noopjs,domain=lifehacker.jp
+!+ PLATFORM(ext_ff)
+lifehacker.jp#%#//scriptlet('trusted-replace-node-text', 'script', 'html-load.com', '/[\S\s]+html-load.com[\S\s]+/', '!function(){var e=Object.getOwnPropertyDescriptor(Element.prototype,"innerHTML").set;Object.defineProperty(Element.prototype,"innerHTML",{set:function(t){return t.includes("html-load.com")?e.call(this,""):e.call(this,t)}})}();')
 ! ad-shield.cc CNAME ex. https://www.47206262.xyz/script/jmty.jp.js
 /^https:\/\/www\.[0-9a-z-]{8,}\.xyz\/script\/[-.0-9A-Za-z]+\.[A-Za-z-]{2,30}\.js$/$script,third-party,match-case
 !#if (adguard_ext_chromium_mv3)
