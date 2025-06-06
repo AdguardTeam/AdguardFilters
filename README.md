@@ -10,6 +10,10 @@
 
 <p align="center">
     <a href="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml" target="_blank"><img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master" alt="AGLint status"></a>
+    <a href="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/pages/pages-build-deployment" target="_blank"><img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/pages/pages-build-deployment/badge.svg?branch=master" alt="GitHub Pages deployment"></a>
+</p>
+
+<p align="center">
     <a href="https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/AdguardTeam/AdguardFilters" alt="License"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/AdguardTeam/AdguardFilters" alt="GitHub contributors"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/graphs/commit-activity" target="_blank"><img src="https://img.shields.io/github/commit-activity/m/AdguardTeam/AdguardFilters" alt="GitHub commit activity"></a>
