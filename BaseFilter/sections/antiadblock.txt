@@ -1171,6 +1171,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/208036
+@@||friv.com/z/assets/scripts/$domain=friv.com
+friv.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'determineVisibility')
+friv.com#%#//scriptlet('prevent-setTimeout', 'determineVisibility')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+friv.com#@##lba
+friv.com#$##lba { min-height: 0 !important; height: 0 !important; }
+friv.com#$#body .prmelmt { display: inline-block !important; }
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207883
 111.90.150.10#%#//scriptlet('prevent-addEventListener', 'load', 'detectAdBlock')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207726
