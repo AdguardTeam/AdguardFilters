@@ -1180,10 +1180,14 @@ ads.luarmor.net#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ads.luarmor.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208014
+||nontonx.com^$replace=/if \(blocked\)/if(!1)/,document
 nontonx.com#$#body .adsbygoogle.ad-unit:not(#style_important) { display: block !important; }
 nontonx.com#%#//scriptlet('prevent-fetch', '/cdn-cgi/rum?adsbygoogle&_=')
 nontonx.com#%#//scriptlet('trusted-create-element', 'body', 'iframe', 'src="https://www.google.com/recaptcha/api2/aframe"')
-nontonx.com#%#//scriptlet('trusted-replace-node-text', 'script', 'showModal', 'if (!results.bait || !results.rum || !results.recaptcha)', 'if(!1)')
+nontonx.com#%#//scriptlet('trusted-replace-node-text', 'script', 'AdBlock', 'if (blocked)', 'if(!1)')
+nontonx.com#%#(()=>{window.addEventListener("load",(()=>{setTimeout((()=>{!document.querySelector(".plyr--video video")&&"function"==typeof window.playerr&&window.playerr.toString().includes("hls.loadSource")&&window.playerr()}),1e3)}));})();
+!+ PLATFORM(ext_ff)
+nontonx.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{window.addEventListener("load",(()=>{setTimeout((()=>{!document.querySelector(".plyr--video video")&&"function"==typeof window.playerr&&window.playerr.toString().includes("hls.loadSource")&&window.playerr()}),1e3)}));})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207608
 @@||seelen.io/jquery.ad.js$domain=seelen.io
 seelen.io#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
