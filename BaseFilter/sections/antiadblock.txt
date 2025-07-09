@@ -1210,8 +1210,13 @@ ads.luarmor.net#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ads.luarmor.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208014
-nontonx.com###rules-nontonx
 ||raw.githubusercontent.com/*.txt?$domain=nontonx.com
+nontonx.com###rules-nontonx
+nontonx.com##body > div[style]:has(> div[style] > button[onclick="location.reload()"])
+||nontonx.com^$replace=/if \([a-zA-Z\d]+\(\)\) \{/if(!0){/,document
+nontonx.com#%#//scriptlet('trusted-replace-node-text', 'script', 'toString', '/if \([a-zA-Z\d]+\(\)\) \{/g', 'if(!0){')
+||nontonx.com^$replace=/!results\.bait \|\| !results\.rum \|\| !results\.recaptcha/!1/,document
+nontonx.com#%#//scriptlet('trusted-replace-node-text', 'script', 'toString', '/!results\.bait \|\| !results\.rum \|\| !results\.recaptcha/!1/g', '!1')
 ||nontonx.com^$replace=/if \(!.+\(\)\) return;//,document
 nontonx.com#%#//scriptlet('trusted-replace-node-text', 'script', 'toString', '/if \(!.+\(\)\) return;/g', '')
 ||nontonx.com^$replace=/if \(.\.. === null\) return;//,document
