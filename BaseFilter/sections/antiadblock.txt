@@ -3583,8 +3583,17 @@ nabzclan.vip#%#//scriptlet('set-constant', 'adsbygoogle', 'emptyObj')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=nabzclan.vip
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164213
+$script,redirect-rule=noopjs,domain=anisearch.*
+$stylesheet,redirect-rule=noopcss,domain=anisearch.*
+anisearch.*#%#//scriptlet('prevent-element-src-loading', 'link', 'cdntrf.com')
 anisearch.*#$#.pagewidth > div.pcenter[id] { display: block !important; }
 @@||anisearch.*^$generichide
+||anisearch.com/media/js/*/*/*.js$replace=/(\.onerror=\(\)=>\{.\()!0(\);)/\$1!1\$2/
+! JS rule is required for apps because apps cannot inject script to "about:blank" iframe
+!+ PLATFORM(windows, mac, android)
+anisearch.*#%#(()=>{const e=Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,"src"),t=Object.getOwnPropertyDescriptor(HTMLLinkElement.prototype,"href"),o=e=>{Object.defineProperty(e.contentWindow.HTMLLinkElement.prototype,"href",{get(){return t.get.call(this)},set(e){t.set.call(this,e),setTimeout((()=>{const e=new Event("load");this.dispatchEvent(e)}),0)}})},n={apply:(t,n,r)=>{const i=Reflect.apply(t,n,r);return r[0]&&r[0]instanceof HTMLIFrameElement&&""===r[0].src&&Object.defineProperty(r[0],"src",{get(){return e.get.call(this)},set(t){"about:blank"===t&&this.onload?.toString().includes("document.body.removeChild")?setTimeout((()=>{o(this);const e=new Event("load");this.dispatchEvent(e)}),0):e.set.call(this,t)}}),i}};window.Node.prototype.appendChild=new Proxy(window.Node.prototype.appendChild,n)})();
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||cdntrf.com/css/anisearch.css$domain=anisearch.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/164103
 ||thesimsresource.com/js/ad-loader.js
 thesimsresource.com#%#//scriptlet('set-constant', 'isAdBlocked', 'false')
