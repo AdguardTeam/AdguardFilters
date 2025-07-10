@@ -901,6 +901,7 @@ gearspace.com#@#a[onclick]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146971
 zol.com.cn#@##search_ad
 ! connect.ubisoft.com - unable to see entered login and not able to link accounts to e. g. Amazon
+!+ PLATFORM(windows, mac, android)
 @@||connect.ubisoft.com/oauth/*?redirectUrl$jsinject
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146765
 @@||pub.pixels.ai/prebid_standard.js$domain=standard.co.uk
@@ -2766,8 +2767,6 @@ rawstory.com#@#div[id^="div-gpt-ad"]
 optifine.net#@#.tableAds
 ! https://github.com/AdguardTeam/AdguardFilters/issues/36094
 @@||cdn.honor.ru/pms/pages/adsImages/$domain=honor.ru
-! netbk.co.jp - broken by AdGuard injections
-@@||netbk.co.jp^$jsinject
 ! square-enix.com register redirect not working
 @@||weblet.square-enix.com/banner.php^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35353
@@ -2775,9 +2774,6 @@ optifine.net#@#.tableAds
 @@||cdnjs.cloudflare.com/ajax/libs/*.min.js$domain=audioz.download
 ! https://github.com/AdguardTeam/AdguardFilters/issues/35179
 uk.ign.com#@#.ad-wrapper
-! msn.com - fixing Edge version of the site(page not load)
-! Sample URL: https://www.msn.com/spartan/dhp?locale=ru-RU&market=RU&enableregulatorypsm=0&enablecpsm=0&ishostisolationenforced=0&targetexperience=default
-@@||msn.com/spartan/dhp$jsinject
 ! gamesplaza.com - fixing broken game feature
 @@||media.oadts.com/www/delivery/afv.php$domain=games.gamesplaza.com
 @@||media.oadts.com/www/delivery/le.php*&dist.prerollDone$domain=media.oadts.com
@@ -4280,8 +4276,6 @@ multiup.org#@#.ADBAR
 @@||guru3d.com/core_javaload/$document
 ! pixelfederation.com - loading failed
 @@||portal.pixelfederation.com/*/login.php^$document
-! Disable Assistant in Hangouts
-@@||talkgadget.google.com^$jsinject
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/656
 @@||payeer.com/bitrix/components/payeer/system.auth.form/$document,xmlhttprequest
 ! Opera 12 - fixing developer tools
@@ -4350,12 +4344,6 @@ oregonlive.com#@##adv_header
 @@||adm.fwmrm.net^$domain=nhl.com
 ! http://forum.adguard.com/showthread.php?4235-faberlic-com
 @@||faberlic.com/images/banners/
-! http://forum.adguard.com/showthread.php?4139-www-omegle-com
-@@||omegle.com^$jsinject
-! https://github.com/AdguardTeam/ExperimentalFilter/issues/328
-@@||roleplayer.me/adframe_
-! Otherwise we'll inject our code into skype
-@@||apps.skype.com$jsinject
 ! http://forum.adguard.com/showthread.php?3603
 @@||onvasortir.com/advertisement.html
 onvasortir.com#@##my-smartadserver
@@ -4373,7 +4361,6 @@ ionomusic.com#@#object[width="300"][height="300"]
 ! http://forum.adguard.com/showthread.php?3549
 @@_ad_300.$domain=bleacherreport.com
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/242
-@@||keep.google.com^$jsinject
 @@||omtrdc.net^$domain=amazon.co.uk|amazon.com
 ! JRO-840-86973
 @@||bankofamerica.com^*?adx=
@@ -4544,8 +4531,6 @@ zippyshare.com#@##share_button
 trovi.com#@#.ads_wrapper
 ! Fixing language selector on bestbuy
 @@||images.bestbuy.com^$domain=bestbuy.com
-! Do not need injecting js to youtube embedded player
-! @@||youtube.com/embed/$jsinject
 ! Fix your own youtube video "promote" button
 @@||youtube.com/my_video_ad$document
 ! Fixing video player on naftemporiki.gr
@@ -4589,8 +4574,6 @@ sportsdirect.com#@#.ads:not(body)
 @@||money.cnn.com/*/ad_policy.xml
 ! Fixing video on hlntv.com
 @@||hlntv.com/*/ad_policy.xml
-! Fixing myfoxchicago.com/category/237044/live-stream
-@@||new.livestream.com^$jsinject
 ! banner on the main page
 @@||ramnode.com/images/
 ! Start: fixing video on http://www.nbcphiladelphia.com/video/ and other nbc* sites
@@ -4602,8 +4585,6 @@ sportsdirect.com#@#.ads:not(body)
 @@doubleclick.net/ads/preferences/
 @@||google.com/settings/ads/onweb$urlblock
 @@||wips.com/*/Banners/
-! fixing audio player
-@@jamendo.com$jsinject
 !
 @@||choice.microsoft.com/*/opt-out$urlblock
 @@||content.googleapis.com$document
@@ -4615,18 +4596,11 @@ sportsdirect.com#@#.ads:not(body)
 @@||image.mp3.zdn.vn/banner/
 @@||imagebam.com/gallery-organizer$document
 ! White-listing oauth providers
-@@||id.vk.com/auth$jsinject
 @@||oauth.vk.com$document
 @@||accounts.google.com^$jsinject,generichide
 @@||facebook.com/dialog/oauth$document
-@@||static.softlayer.com^
 @@||tiles.mapbox.com^$document
 implbits.com#@#.banner_container
-! Fixing problems with IE10
-@@||plus.googleapis.com/*/comments$document
-! Testing hiding rules [ @@||pixlr.com^$content,elemhide,jsinject ]
-!+ PLATFORM(windows, mac, android)
-@@||pixlr.com^$content,jsinject
 !
 @@||anti-virus4u.com/v/
 @@||imasdk.googleapis.com^$domain=cnet.com
@@ -4649,7 +4623,6 @@ implbits.com#@#.banner_container
 @@||yimg.com/*/css/
 @@||ytimg.com^*_banner$domain=youtube.com
 !
-@@||feedly.com/i/^$jsinject
 @@||s-plugins.wordpress.org
 @@||s1.wp.com^
 ! start: because anti-adblocker script
