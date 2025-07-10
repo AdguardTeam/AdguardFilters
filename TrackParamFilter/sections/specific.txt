@@ -6,6 +6,17 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/209120
+||operanewsapp.com^$removeparam=from
+||operanewsapp.com^$removeparam=request_id
+||operanewsapp.com^$removeparam=share_from
+! https://github.com/AdguardTeam/AdguardFilters/issues/209002
+||sprinklr.com/api/livechat/event/$removeparam=cursor
+! hepsiburada.com
+||hepsiburada.com^$removeparam=wt_pc
+! akakce.com
+! u = UTM here
+||akakce.com/r/?c=$removeparam=u
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208654
 ||domclick.ru^$removeparam=from
 ! buydomains.com
@@ -16,8 +27,11 @@
 ||duckduckgo.com/y.js$removeparam=click_metadata
 ||duckduckgo.com/y.js$removeparam=vqd
 ||duckduckgo.com/y.js$removeparam=iurl
-||duckduckgo.com/d.js?q=$script,removeparam=bing_market
-||duckduckgo.com/d.js?q=$script,removeparam=host_region
+! https://github.com/AdguardTeam/AdguardFilters/issues/208130#issuecomment-3042351235
+! Removing "bing_market" parameter causes that search results are not localized
+! and results are displayed for "All regions"
+! ||duckduckgo.com/d.js?q=$script,removeparam=bing_market
+! ||duckduckgo.com/d.js?q=$script,removeparam=host_region
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208058
 ||olybet.lv^$removeparam=ref
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207414#issuecomment-2969009233
@@ -872,9 +886,6 @@ $removeparam=from,domain=doujinnomori.com|shinshi-manga.net|echiman.com|dojin-na
 ||bizhint.jp^$removeparam=trcd
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166582
 ||teknosa.com^$removeparam=adj_adgroup
-||teknosa.com^$removeparam=adj_campaign
-||teknosa.com^$removeparam=adj_creative
-||teknosa.com^$removeparam=adj_t
 ||teknosa.com^$removeparam=adp_cid
 ||teknosa.com^$removeparam=adp_oid
 ||teknosa.com^$removeparam=shopId
@@ -1302,7 +1313,6 @@ $removeparam=phone_code,domain=shein.co.uk|shein.com
 $removeparam=ici,domain=shein.co.uk|shein.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148579
 ||nesine.com^$removeparam=adj_adgroup
-||nesine.com^$removeparam=adj_creative
 ||nesine.com^$removeparam=adjust_t
 ||nesine.com^$removeparam=glid
 ||nesine.com^$removeparam=rlid
@@ -1940,9 +1950,7 @@ $removeparam=scid,domain=rakuten.co.jp|rakuten-wallet.co.jp
 ||adj.st^$removeparam=adjust_deeplink
 ||adj.st^$removeparam=pt
 ||adj.st^$removeparam=pd
-||adj.st^$removeparam=adj_campaign
 ||adj.st^$removeparam=adj_adgroup
-||adj.st^$removeparam=adj_creative
 ||adj.st^$removeparam=adj_adnomia_click_id
 ||adj.st^$removeparam=pfx
 ||adj.st^$removeparam=adj_deeplink
