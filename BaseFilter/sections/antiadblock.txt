@@ -1166,6 +1166,16 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/209552
+olamovies.cam#%#//scriptlet('set-constant', 'adsbygoogle', 'emptyObj')
+olamovies.cam#%#//scriptlet("prevent-setTimeout", "window['getComputedStyle']")
+olamovies.cam#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+olamovies.cam#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+olamovies.cam#$#div.Ad-Container[id^="adblock-bait-element-"] { display: block !important; }
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
+@@||olamovies.cam^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=olamovies.cam
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209773
 easyocrconverter.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209681
