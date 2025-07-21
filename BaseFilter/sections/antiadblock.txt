@@ -1166,6 +1166,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/209668
+hydrogen.lat#%#//scriptlet('prevent-fetch', 'method:HEAD mode:no-cors')
+hydrogen.lat#%#//scriptlet('prevent-addEventListener', 'load', '&&')
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
+@@||acscdn.com/script/aclib.js$domain=hydrogen.lat
+@@||marketingplatform.google.com/about/enterprise/$domain=hydrogen.lat
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209721
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=playerp2p.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
