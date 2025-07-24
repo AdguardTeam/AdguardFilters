@@ -209,37 +209,55 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
-japscan.lol#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop": false}')
-japscan.lol#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
-japscan.lol#%#//scriptlet("remove-node-text", "script", "/Y[a-z][a-z]?k[a-z]\d|'\|\|typeof [0-9A-z]+!==_0x|function nawNA/")
-/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol
-@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol
-@@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.lol
-@@||acscdn.com^$script,third-party,domain=japscan.lol
-@@.shop/*/invoke.js$script,third-party,domain=japscan.lol,important
+japscan.*#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop": false}')
+japscan.*#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
+japscan.*#%#//scriptlet("remove-node-text", "script", "/Y[a-z][a-z]?k[a-z]\d|'\s*\|\|\s*typeof\s*[0-9A-z]+\s*!==\s*_0x|function nawNA/")
 !#endif
-japscan.lol#@#div.container > [href]
-japscan.lol#@##main > .card:has(a[href*="/manga/?type="][href*="&content="][target="_blank"])
+japscan.*#@#div.container > [href]
+japscan.*#@##main > .card:has(a[href*="/manga/?type="][href*="&content="][target="_blank"])
 !#if (!ext_ublock)
-japscan.lol#%#//scriptlet('trusted-set-attr', '.navbar-nav > li#navpromo2.nav-item > a', 'onclick', 'let a=function(){};return false;')
-japscan.lol#%#//scriptlet('prevent-requestAnimationFrame', '/^.*/')
-||japscan.lol/zjs/$script,replace=/function GoodDay\(\)\{.+?\}\}\}//
+japscan.*#%#//scriptlet('trusted-set-attr', '.navbar-nav > li#navpromo2.nav-item > a', 'onclick', 'let a=function(){};return false;')
+japscan.*#%#//scriptlet('prevent-requestAnimationFrame', '/^.*/')
+||japscan.*/zjs/$script,replace=/function GoodDay\(\)\{.+?\}\}\}//
 !#endif
-$script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol
-@@$image,domain=japscan.lol
-@@||japscan.lol^$image,xmlhttprequest,script,~third-party
-japscan.lol#@#.tangoai
-japscan.lol#@#[class^="copine"]
-@@||japscan.lol^$generichide
-@@||googletagmanager.com/gtag/js$domain=japscan.lol
-@@||githack.com^$script,domain=japscan.lol
-@@||statically.io^$script,domain=japscan.lol
-@@||netlify.app^$script,domain=japscan.lol
-@@||iili.io^$xmlhttprequest,domain=japscan.lol
-@@||imageshack.com^$xmlhttprequest,domain=japscan.lol
-@@||drive.google.com^$xmlhttprequest,domain=japscan.lol
-@@||postimg.cc^$xmlhttprequest,domain=japscan.lol
-@@||i.ibb.co^$xmlhttprequest,domain=japscan.lol
+@@||japscan.$image,xmlhttprequest,script,~third-party
+japscan.*#@#.tangoai
+japscan.*#@#[class^="copine"]
+@@||japscan.$generichide
+!#if (adguard_ext_chromium_mv3)
+/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol|japscan.si
+@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||acscdn.com^$script,third-party,domain=japscan.lol|japscan.si
+@@.shop/*/invoke.js$script,third-party,domain=japscan.lol|japscan.si,important
+$script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol|japscan.si
+@@$image,domain=japscan.lol|japscan.si
+@@||googletagmanager.com/gtag/js$domain=japscan.lol|japscan.si
+@@||githack.com^$script,domain=japscan.lol|japscan.si
+@@||statically.io^$script,domain=japscan.lol|japscan.si
+@@||netlify.app^$script,domain=japscan.lol|japscan.si
+@@||iili.io^$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||imageshack.com^$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||drive.google.com^$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||postimg.cc^$xmlhttprequest,domain=japscan.lol|japscan.si
+@@||i.ibb.co^$xmlhttprequest,domain=japscan.lol|japscan.si
+!#endif
+/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.*
+@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.*
+@@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.*
+@@||acscdn.com^$script,third-party,domain=japscan.*
+@@.shop/*/invoke.js$script,third-party,domain=japscan.*,important
+$script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.*
+@@$image,domain=japscan.*
+@@||googletagmanager.com/gtag/js$domain=japscan.*
+@@||githack.com^$script,domain=japscan.*
+@@||statically.io^$script,domain=japscan.*
+@@||netlify.app^$script,domain=japscan.*
+@@||iili.io^$xmlhttprequest,domain=japscan.*
+@@||imageshack.com^$xmlhttprequest,domain=japscan.*
+@@||drive.google.com^$xmlhttprequest,domain=japscan.*
+@@||postimg.cc^$xmlhttprequest,domain=japscan.*
+@@||i.ibb.co^$xmlhttprequest,domain=japscan.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147701
 trustmyscience.com##.adb-border
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146165
