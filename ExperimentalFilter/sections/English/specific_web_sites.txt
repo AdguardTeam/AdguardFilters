@@ -2,6 +2,10 @@
 ! Rules that are restricted to one or more domains.
 ! This section contain any type of rule grouped by domain.
 !
+! Fix fake buffering on the initial load
+! If there will not be any issues with these rules, they perhaps can be moved to the Base filter
+www.youtube.com#%#(()=>{const e={apply:(e,t,c)=>{try{const e=c[0];e&&e.includes('"clientScreen"')&&!e.includes('"clientScreen":"ADUNIT"')&&(c[0]=e.replace('"clientScreen":"WATCH_FULL_SCREEN"','"clientScreen":"ADUNIT"'))}catch(e){console.trace("Error occurred:",e)}return Reflect.apply(e,t,c)}};window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,e)})();
+www.youtube.com#%#(()=>{window.addEventListener("load",(()=>{const e=document.querySelector(".html5-video-player"),a=window.location.search,t=new URLSearchParams(a).get("v"),n=new URLSearchParams(a).get("t")??0;if(!e||!t)return;const o=parseInt(n,10);e.loadVideoById(t,o)}));})();
 ! remove anti-adb
 ! !#if (!adguard_ext_firefox)
 ! www.youtube.com#%#(()=>{const wrapper=(target,thisArg,args)=>{let result=Reflect.apply(target,thisArg,args);try{const decoded=atob(result);if(decoded.includes('bkaEnforcementMessage')){const modifiedContent=decoded.replace(/\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.displayType.\dENFORCEMENT_MESSAGE_VIEW_MODEL_DISPLAY_TYPE_[A-Z]+\n.\n.auxiliaryUi\.messageRenderers\.bkaEnforcementMessageViewModel\.isVisible.{2}(?:tru|fals)e/,'');const encodeToBase64=btoa(modifiedContent);return encodeToBase64}}catch(e){} return result};const handler={apply:wrapper};window.Array.prototype.join=new Proxy(window.Array.prototype.join,handler)})();
