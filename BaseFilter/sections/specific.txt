@@ -579,6 +579,7 @@ www.youtube.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(
 ||googlevideo.com/initplayback?source=youtube&*&c=TVHTML5&oad=$xmlhttprequest,domain=youtube.com
 [$path=/tv]youtube.com#%#//scriptlet('json-prune', 'playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots', '', '/https:\/\/www\.youtube\.com\/s\/player\/.*\/tv-player-ias\.vflset\/tv-player-ias\.js:/')
 ! Partial fix for buffering issue
+www.youtube.com#%#//scriptlet('trusted-replace-outbound-text', 'JSON.stringify', 'isWebNativeShareAvailable":true}}', 'isWebNativeShareAvailable":true},"clientScreen":"ADUNIT"}')
 www.youtube.com#%#//scriptlet('trusted-replace-outbound-text', 'JSON.stringify', '"clientScreen":"WATCH"', '"clientScreen":"ADUNIT"')
 ! Fix for case when JSON.stringify is not writable
 www.youtube.com#%#(()=>{if(Object.getOwnPropertyDescriptor(window.JSON,"stringify").writable)return;const e={construct:(e,c,r)=>{try{const e=c[0],r=c[1]?.body;e?.includes("youtubei")&&r?.includes('"clientScreen":"WATCH"')&&(c[1].body=r.replace('"clientScreen":"WATCH"','"clientScreen":"ADUNIT"'))}catch(e){console.trace("Error occurred:",e)}return Reflect.construct(e,c,r)}};window.Request=new Proxy(window.Request,e)})();
