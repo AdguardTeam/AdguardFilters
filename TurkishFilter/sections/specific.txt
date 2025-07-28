@@ -4747,12 +4747,16 @@ yandex.com.tr##.DirectInline
 !
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/210045
-hdfilmsitesi.*#%#//scriptlet('trusted-replace-node-text', 'script', 'window.lazyLoadOptions', 'window.lazyLoadOptions = ', 'ilk_part_getir();window.lazyLoadOptions =')
+hdfilmsitesi.*#%#//scriptlet('adjust-setTimeout', 'ifrld', '*', '0.001')
 hdfilmsitesi.*#$##ifrld { display: block !important; }
 hdfilmsitesi.*#$#body { background-image: none !important; }
 hdfilmsitesi.*#$#div[style^="position: absolute; z-index: 1999999;"] { display: none !important; }
 hdfilmsitesi.*#$#.duyuru_kutusu { display: none !important; }
 hdfilmsitesi.*#$#.pageskin .oblong { margin-top: 0 !important; }
+!+ NOT_PLATFORM(ext_chromium_mv3, ext_ff)
+hdfilmsitesi.*#%#(()=>{window.addEventListener("load",(()=>{"function"==typeof window.ilk_part_getir&&window.ilk_part_getir()}));})();
+!+ PLATFORM(ext_chromium_mv3, ext_ff)
+hdfilmsitesi.*#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{window.addEventListener("load",(()=>{"function"==typeof window.ilk_part_getir&&window.ilk_part_getir()}));})();')
 !+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
 ||hdfilmsitesi.me/?vr_set=1
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209767
