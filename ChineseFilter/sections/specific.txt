@@ -238,8 +238,6 @@ m.mobile01.com##.u-gapNextV--lg.u-height280
 damon624.pixnet.net##.article-content-inner > p:has(> span > a[href] > ins.adsbygoogle)
 ||static.huaren.live/ads/
 huaren.live##.action-ad
-huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
-huaren.live#%#//scriptlet('set-constant', 'ConFig.config.ads', 'emptyObj')
 wiki.mbalib.com###ad-fold
 wiki.mbalib.com##div[id^="p-ad-"]
 wiki.mbalib.com##.tool-bar > a[target="_blank"]
@@ -1829,6 +1827,13 @@ netfly.*,netfly.tv##.player-box > div.player-tt-rmm
 netfly.*,netfly.tv##.module-tg-box
 netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] > img
 netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
+! https://github.com/AdguardTeam/AdguardFilters/issues/210237
+huaren.live#%#//scriptlet('set-constant', 'ConFig.config.ads', 'emptyObj')
+! TODO: remove hints when this issue is resolved - https://github.com/AdguardTeam/Scriptlets/issues/517
+!+ NOT_PLATFORM(windows, mac, android)
+huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
+!+ PLATFORM(windows, mac, android)
+||huaren.live/player/$replace=/let ConFig/var ConFig/,document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177520
 !+ PLATFORM(windows, mac, android)
 /gmu-download.oss-$image,redirect-rule=1x1-transparent.gif,domain=voflix.vip
