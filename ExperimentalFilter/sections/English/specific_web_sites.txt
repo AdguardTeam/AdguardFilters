@@ -2,6 +2,9 @@
 ! Rules that are restricted to one or more domains.
 ! This section contain any type of rule grouped by domain.
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/204233#issuecomment-3138200296
+! TODO: move to the Base filter if there will be no issues with this rule
+facebook.com,facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion#%#(()=>{const e={apply:(e,t,r)=>{try{if(r[2]?.[0]&&r[2][0]?.includes?.("MarketplaceFeedAdStory")){const e=r[2][0],t=e.split(/\r?\n|\r/).map((e=>JSON.parse(e)));t.forEach((e=>{e.data?.viewer?.marketplace_feed_stories?.edges&&(e.data.viewer.marketplace_feed_stories.edges=e.data.viewer.marketplace_feed_stories.edges.filter((e=>!e.node?.__typename?.includes("MarketplaceFeedAdStory"))))}));const a=t.map((e=>JSON.stringify(e))).join("\r\n");r[2][0]=a}return Reflect.apply(e,t,r)}catch(a){return console.trace(a),Reflect.apply(e,t,r)}}};window.Function.prototype.call=new Proxy(window.Function.prototype.call,e)})();
 ! Fix fake buffering on the initial load
 ! If there will not be any issues with these rules, they perhaps can be moved to the Base filter
 www.youtube.com#%#(()=>{const e={apply:(e,t,c)=>{try{const e=c[0];e&&e.includes('"clientScreen"')&&!e.includes('"clientScreen":"ADUNIT"')&&(c[0]=e.replace('"clientScreen":"WATCH_FULL_SCREEN"','"clientScreen":"ADUNIT"'))}catch(e){console.trace("Error occurred:",e)}return Reflect.apply(e,t,c)}};window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,e)})();
