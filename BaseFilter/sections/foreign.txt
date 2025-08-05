@@ -1353,7 +1353,6 @@ mob.hr##.side_banner
 idnes.cz##.r-head
 idnes.cz##.r-head + div.r-body
 heureka.cz##div[class^="c-premium-gam"]
-@@||titulky.com/exitpop.js
 @@||vlm-ads.aimatch.com/vlm/jserver/$domain=titulky.com
 titulky.com#$##head > div[style^="margin: auto; width: "] { max-height: 20px !important; }
 titulky.com##a[href="/internetova-reklama/"]
@@ -1408,11 +1407,17 @@ zdopravy.cz##body .otherAds
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204872
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203518
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194647
-||titulky.com^$replace=/let( +)noadbl( *)=( *)0( *);/let noadbl=1;/,document
-titulky.com#%#//scriptlet('trusted-replace-node-text', 'script', 'noadbl', '/let( +)noadbl( *)=( *)0( *);/', 'let noadbl=1;')
+titulky.com##.bnx
+||titulky.com/myban/
+||titulky.com/mybanal/ads-section.js
+||titulky.com^$replace=/let( +)noadbl( *)=( *)(0|1)( *)\*?( *)(false( *))?;/let noadbl=1;/,document
+titulky.com#%#//scriptlet('trusted-replace-node-text', 'script', 'noadbl', '/let( +)noadbl( *)=( *)(0|1)( *)\*?( *)(false( *))?;/', 'let noadbl=1;')
+||titulky.com^$replace=/:noadbl/:1/,document
+titulky.com#%#//scriptlet('trusted-replace-node-text', 'script', '$.get', ':noadbl', ':1')
 titulky.com#%#//scriptlet('set-constant', 'noadb', '1')
 titulky.com#%#//scriptlet('set-constant', 'showFairUser', 'true')
 @@||titulky.com/ads/*.js$domain=titulky.com
+@@||titulky.com/exitpop*.js$domain=titulky.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||titulky.com/ads/titulky-ads-banner.js$domain=titulky.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194536
