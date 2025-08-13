@@ -2,8 +2,6 @@
 ! Rules that are restricted to one or more domains.
 ! This section contain any type of rule grouped by domain.
 !
-! TODO: If there will not be any issues with this rule, replace similar rule in Base filter with this rule
-www.youtube.com#%#(()=>{const e={construct:(e,t,c)=>{try{const n=t[0];let r=t[1]?.body;if(!n?.includes("youtubei")||!r)return Reflect.construct(e,t,c);if((r.includes('"contentPlaybackContext"')||r.includes('"adSignalsInfo"'))&&(!r.includes('"params":"yAEB')||!r.includes('"clientScreen":"ADUNIT"'))){const n=JSON.parse(r);if(!n.context?.client)return Reflect.construct(e,t,c);n.context.client.clientScreen="ADUNIT",n.playbackContext&&(n.params=`yAEB${n.params?n.params:""}`),n.playerRequest&&(n.playerRequest.params=`yAEB${n.playerRequest.params?n.playerRequest.params:""}`),r=JSON.stringify(n),t[1].body=r}}catch(e){console.trace("Error occurred:",e)}return Reflect.construct(e,t,c)}};window.Request=new Proxy(window.Request,e)})();
 ! Fix fake buffering on the initial load
 ! If there will not be any issues with these rules, they perhaps can be moved to the Base filter
 www.youtube.com#%#(()=>{const e={apply:(e,t,n)=>{try{let c=n[0];if(!c)return Reflect.apply(e,t,n);const r=Array.isArray(c),a=r?c[0]:c;if((c.includes('"contentPlaybackContext"')||c.includes('"adSignalsInfo"'))&&(!a.includes('"params":"yAEB')||!a.includes('"clientScreen":"ADUNIT"'))){const c=JSON.parse(a);if(!c.context?.client)return Reflect.apply(e,t,n);c.context.client.clientScreen="ADUNIT",c.playbackContext&&(c.params=`yAEB${c.params?c.params:""}`);const o=JSON.stringify(c);r?n[0][0]=o:n[0]=o}}catch(e){console.trace("Error occurred:",e)}return Reflect.apply(e,t,n)}};window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,e)})();
