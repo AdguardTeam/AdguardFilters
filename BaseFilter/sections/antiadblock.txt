@@ -22,8 +22,10 @@
 ! Common rules for 'www3.doubleclick.net' bait
 !+ NOT_PLATFORM(ext_chromium_mv3, ext_chromium, ext_opera)
 ://www3.doubleclick.net^|$xmlhttprequest,redirect=noopjson
+!#safari_cb_affinity(privacy)
 !+ PLATFORM(ios, ext_android_cb, ext_safari, ext_chromium_mv3, ext_chromium, ext_opera)
 @@://www3.doubleclick.net^|$xmlhttprequest
+!#safari_cb_affinity
 ! Common rules for 'static.ads-twitter.com/uwt.js' bait
 ||static.ads-twitter.com/uwt.js$xmlhttprequest,redirect=noopjs
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -1564,8 +1566,6 @@ minorpatch.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=minorpatch.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202712
 classace.io#%#//scriptlet('prevent-fetch', 'doubleclick.net')
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||www3.doubleclick.net^$domain=classace.io
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202536
 xmalay1.net#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'isAdBlockActive')
 @@||xmalay1.net/nativeads-v2.js$script,domain=xmalay1.net
@@ -1715,8 +1715,6 @@ jam3h.net#@#.ad-unit:not(.textads)
 jam3h.net#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'getComputedStyle')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200141
 missavtv.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||www3.doubleclick.net^$domain=missavtv.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200093
 get-to.link###genesis-modal
 get-to.link#%#//scriptlet('prevent-element-src-loading', 'script', 'prebid.revbid.net')
@@ -1932,8 +1930,6 @@ watch.plex.tv#%#//scriptlet('prevent-fetch', '/doubleclick\.com/ method:HEAD', '
 @@://doubleclick.com/|$xmlhttprequest,domain=watch.plex.tv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196454
 @@||sshkit.com^$generichide
-!+ PLATFORM(ios, ext_android_cb)
-@@://www3.doubleclick.net^|$xmlhttprequest,domain=sshkit.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196200
 @@||superpsx.com^$generichide
 superpsx.com#%#//scriptlet('prevent-element-src-loading', 'script', 'contextual.media.net/dmedianet.js')
@@ -6864,7 +6860,6 @@ hentaihaven.xxx#%#//scriptlet('prevent-fetch', '/ads-twitter\.com|pagead|googlea
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||google.com/pagead/|$xmlhttprequest,domain=hentaihaven.xxx
 @@||googleads.github.io/|$xmlhttprequest,domain=hentaihaven.xxx
-@@||www3.doubleclick.net/|$xmlhttprequest,domain=hentaihaven.xxx
 @@||pagead2.googlesyndication.com/|$xmlhttprequest,domain=hentaihaven.xxx
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=hentaihaven.xxx
 !#endif
