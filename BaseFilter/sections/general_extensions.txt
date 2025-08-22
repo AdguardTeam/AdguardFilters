@@ -296,6 +296,16 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/211922
+! TODO: remove hints when this issue is resolved and new scriptlets library is added for apps - https://github.com/AdguardTeam/Scriptlets/issues/517
+!#if (adguard_app_windows || adguard_app_android || adguard_app_mac || adguard_ext_firefox)
+||workora.space^$replace=/let seconds = \d+;/let seconds = 0;/,document
+||workora.space^$replace=/(function playContent\(\) \{[\s\S]*?adMessage[\s\S]*?\})/\$1;playContent();/,document
+!#endif
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+workora.space#%#//scriptlet('trusted-replace-node-text', 'script', 'playContent', '/let seconds = \d+;/', 'let seconds = 0;')
+workora.space#%#//scriptlet('trusted-replace-node-text', 'script', 'playContent', '/(function playContent\(\) \{[\s\S]*?adMessage[\s\S]*?\})/', '$1;playContent();')
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211507
 fullboys.com#%#//scriptlet('trusted-replace-node-text', 'script', 'full-video', 'timeLeftfull > 0', 'false')
 fullboys.com#%#//scriptlet('trusted-replace-node-text', 'script', 'full-video', '/timefull == \d/', 'true')
