@@ -1182,9 +1182,18 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 ! NOTE: Regular rules
 !
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/211681
-tpi.li#%#//scriptlet('remove-node-text', 'script', 'checkAdblockUser')
-tpi.li$$script:contains(checkAdblockUser)
+! https://github.com/AdguardTeam/AdguardFilters/issues/211964
+vectorizer.kiwi#%#//scriptlet("trusted-replace-node-text", "script", "messageHTML", "if (typeof adsbygoogle === 'undefined')", "if (typeof adsbygoogle !== 'undefined')")
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=vectorizer.kiwi
+! https://github.com/AdguardTeam/AdguardFilters/issues/211954
+streamecho.top#$#body { overflow: auto !important; }
+streamecho.top#$##adLockScreen { display: none !important; }
+streamecho.top#$##adblock-warning { display: none !important; }
+streamecho.top#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '/adblock|createLockScreen/')
+! https://github.com/AdguardTeam/AdguardFilters/issues/211876
+kalileaks.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+kalileaks.com###nindo-popup-portal:has(> .nindo-popup .nindo-popup-content-wrapper a[href*="/adblocker-detector"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211673
 skidrowreloaded.com#%#//scriptlet('prevent-addEventListener', '/click|contextmenu/', 'isExternal')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211322
@@ -1595,10 +1604,6 @@ porn4f.org#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202487
 royalroad.com#%#//scriptlet('trusted-dispatch-event', 'nitroAds.loaded')
 royalroad.com#%#//scriptlet('trusted-set-constant', 'nitroAds.version', '"20250402 de32690"')
-! https://github.com/AdguardTeam/AdguardFilters/issues/202341
-kissanime.sx#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=kissanime.sx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202302
 ipacrack.com#%#//scriptlet('prevent-fetch', 'thaudray.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -3317,12 +3322,14 @@ brainly.com,brainly.com.br,brainly.co.id,brainly.in,brainly.ph,brainly.pl,brainl
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=omegatv.com.cy
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=omegatv.com.cy
+! https://github.com/AdguardTeam/AdguardFilters/issues/211920
+! https://github.com/AdguardTeam/AdguardFilters/issues/202341
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168493
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168351
-kissanime.com.ru,kissanime.co#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-kissanime.com.ru,kissanime.co#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+kissanime.is,kissanime.sx,kissanime.com.ru,kissanime.co#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
+kissanime.is,kissanime.sx,kissanime.com.ru,kissanime.co#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=kissanime.com.ru|kissanime.co
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=kissanime.com.ru|kissanime.co|kissanime.sx|kissanime.is
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204877
 ! TODO: remove this rule when MV3 extension will use newer version of the scriptlets library,
 ! currently it uses v1.12.1 and generic redirect rule causes that wrong URL is set in "prevent-xhr"
@@ -4404,6 +4411,8 @@ uprot.net#$##butok { display: block !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152260
 mealcold.com###adb
 ! Link shorteners - oko.sh, tii.la
+! https://github.com/AdguardTeam/AdguardFilters/issues/211950
+! https://github.com/AdguardTeam/AdguardFilters/issues/211681
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171361
 ! Health2Wealth
 ! oko.sh,tii.la#%#//scriptlet('prevent-eval-if', '/document[\s\S]*?_0x/')
@@ -4415,6 +4424,8 @@ mealcold.com###adb
 ! oko.sh,tii.la#$#.banner-inner > * { visibility: hidden !important; }
 ! oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'adb_detected')
 ! oko.sh,tii.la$$script[tag-content="adb_detected"]
+oii.la,tpi.li$$script:contains(checkAdblockUser)
+oii.la,tpi.li#%#//scriptlet('remove-node-text', 'script', 'checkAdblockUser')
 oko.sh,tii.la#%#//scriptlet('prevent-xhr', '/^(?!.*(oko\.sh|tii\.la)).*/ method:GET')
 tpi.li,oii.la,tpi.li,tvi.la,aii.sh,oko.sh,tii.la#$#.banner-inner { display: block; width: 0 !important; }
 oko.sh,tii.la#$#.myads > a { visibility: hidden !important; }
