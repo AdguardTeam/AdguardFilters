@@ -17,8 +17,6 @@ cinefil.com#$#.sweet-ads { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208343
 gamekult.com##.banana-block
 gamekult.com#%#//scriptlet('prevent-setTimeout', 'displayCookieWallBanner')
-! https://github.com/AdguardTeam/AdguardFilters/issues/202350
-@@||micro.rubiconproject.com/prebid/dynamic/$domain=tvaplus.ca
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199778
 @@||cutcaptcha.*/captcha/*.js$domain=filecrypt.cc|filecrypt.co
 ! https://github.com/uBlockOrigin/uAssets/issues/27208
@@ -89,11 +87,18 @@ equinoxmagazine.fr,adala-news.fr#%#//scriptlet('abort-current-inline-script', 'j
 equinoxmagazine.fr,adala-news.fr#%#//scriptlet('set-constant', 'penci_options_set.ad_blocker_detector', 'false')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183492s
 @@||soins-infirmiers.com/*/adblocker.blogads.css
+! https://github.com/AdguardTeam/AdguardFilters/issues/211979
+! https://github.com/AdguardTeam/AdguardFilters/issues/202350
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182577
-tvaplus.ca#%#//scriptlet('set-constant', 'ima', 'emptyObj')
-tvaplus.ca#%#!function(){const e={apply:(e,t,n)=>(n&&n[1]&&"useAdBlockerDetector"===n[1]&&n[2]&&n[2].get&&(n[2].get=function(){return function(){return!1}}),Reflect.apply(e,t,n))};window.Object.defineProperty=new Proxy(window.Object.defineProperty,e)}();
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||imasdk.googleapis.com/js/sdkloader/ima3_debug.js$domain=tvaplus.ca
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=qub.ca
+qub.ca,tvaplus.ca#%#//scriptlet('set-constant', 'ima', 'emptyObj')
+qub.ca,tvaplus.ca#%#!function(){const e={apply:(e,t,n)=>(n&&n[1]&&"useAdBlockerDetector"===n[1]&&n[2]&&n[2].get&&(n[2].get=function(){return function(){return!1}}),Reflect.apply(e,t,n))};window.Object.defineProperty=new Proxy(window.Object.defineProperty,e)}();
+!+ PLATFORM(ext_ff)
+qub.ca,tvaplus.ca#%#//scriptlet('trusted-create-element', 'head', 'script', '', '!function(){const e={apply:(e,t,n)=>(n&&n[1]&&"useAdBlockerDetector"===n[1]&&n[2]&&n[2].get&&(n[2].get=function(){return function(){return!1}}),Reflect.apply(e,t,n))};window.Object.defineProperty=new Proxy(window.Object.defineProperty,e)}();')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||micro.rubiconproject.com/prebid/dynamic/$domain=tvaplus.ca|qub.ca
+@@||imasdk.googleapis.com/js/sdkloader/ima3_debug.js$domain=tvaplus.ca|qub.ca
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187802
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182488
 ||cdn.assets*.nicematin.com/build/js/viewpay.*.js
