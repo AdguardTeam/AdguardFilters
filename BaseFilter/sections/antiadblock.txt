@@ -6774,13 +6774,8 @@ mmacore.tv#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98491
 streamta.*#@#.google-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/210238
-embed.wcostream.com#%#(()=>{if(!location.href.includes("://embed.wcostream.com/inc/embed/index.php?file="))return;const e=`/inc/embed/video-js.php${location.search}`;location.href=e})();
-||embed.wcostream.com^$replace=/if \(closeBtn\.disabled\) return;//,subdocument,document
-||embed.wcostream.com^$replace=/hideAll\(\);/hideAll();try{if(typeof doClose==="function"){doClose();}}catch(e){};/,subdocument,document
-||embed.wcostream.com^$replace=/const MAX_CLOSES = \d+;/const MAX_CLOSES = 0;/,subdocument,document
-embed.wcostream.com#%#//scriptlet('trusted-replace-node-text', 'script', 'MAX_CLOSES', 'if (closeBtn.disabled) return;', '')
-embed.wcostream.com#%#//scriptlet('trusted-replace-node-text', 'script', 'MAX_CLOSES', '/hideAll\(\);/g', 'hideAll();try{if(typeof doClose==="function"){doClose();}}catch(e){};')
-embed.wcostream.com#%#//scriptlet('trusted-replace-node-text', 'script', 'MAX_CLOSES', '/const MAX_CLOSES = \d+;/', 'const MAX_CLOSES = 0;')
+embed.wcostream.com#%#(()=>{if(!location.href.includes("://embed.wcostream.com/inc/embed/index.php?file=")||navigator.userAgent.toLowerCase().includes("firefox"))return;const e=`/inc/embed/video-js.php${location.search}`;location.href=e})();
+embed.wcostream.com#%#//scriptlet('prevent-fetch', 'pubadx-ad.js')
 wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com#$#.ad-unit.ad-banner.adsbox { display: block !important; }
 wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com#$##wrapfabtest { height: 1px !important; }
 wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com#%#//scriptlet("prevent-setTimeout", "AdBlock")
@@ -6795,9 +6790,10 @@ wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com
 @@/inc/embed/suv4.js$domain=wcostream.org|watchanimesub.net|wco.tv|wcostream.net|wcostream.com|wcoforever.tv
 @@||embed.watchanimesub.net/inc/embed/kampyle.js
 @@||embed.watchanimesub.net/inc/embed/ads.js
+@@||embed.wcostream.com^$generichide
 !#if (!ext_ublock)
-embed.wcostream.com#$##announcement { display: none !important; }
-embed.wcostream.com#$#.announcement-backdrop { display: none !important; }
+embed.wcostream.com#$##announcement { display: block !important; }
+embed.wcostream.com#$#.announcement-backdrop { display: block !important; }
 !#endif
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||wco.tv^$generichide
