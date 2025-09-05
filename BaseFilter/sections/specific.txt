@@ -191,8 +191,13 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ! aglint-disable-next-line unknown-hints-and-platforms
 !+ NOT_PLATFORM(ios, ext_android_cb, ext_safari, ext_chromium_mv3, windows, mac, cli, android)
 ://html-load.com/loader.min.js
-!+ PLATFORM(ext_chromium)
+!
+!#if (adguard_ext_chromium)
 @@://html-load.com/loader.min.js$domain=dogdrip.net|infinityfree.com|smsonline.cloud
+! https://github.com/AdguardTeam/AdguardFilters/issues/210870#issuecomment-3256924331
+@@||as.sourceforge.net/loader.min.js$domain=sourceforge.net
+!#endif
+!
 !#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari)
 /^https:\/\/(?:as(?:loader)?|loader)\.[-0-9A-Za-z]+\.[-A-Za-z]{2,16}\/loader\.min\.js$/$script,~third-party
 ~dogdrip.net,~infinityfree.com,~smsonline.cloud##*:not(body) > a[href^="https://content-loader.com/players"]
