@@ -6775,7 +6775,6 @@ mmacore.tv#$#.pub_300x250.pub_300x250m.pub_728x90.text-ad.textAd.text_ad.text_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98491
 streamta.*#@#.google-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/210238
-embed.wcostream.com#%#(()=>{if(!location.href.includes("://embed.wcostream.com/inc/embed/index.php?file=")||navigator.userAgent.toLowerCase().includes("firefox"))return;const e=`/inc/embed/video-js.php${location.search}`;location.href=e})();
 embed.wcostream.com#%#//scriptlet('prevent-fetch', 'pubadx-ad.js')
 wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com#$#.ad-unit.ad-banner.adsbox { display: block !important; }
 wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com#$##wrapfabtest { height: 1px !important; }
@@ -6792,6 +6791,11 @@ wcoforever.tv,wcostream.org,watchanimesub.net,wco.tv,wcostream.net,wcostream.com
 @@||embed.watchanimesub.net/inc/embed/kampyle.js
 @@||embed.watchanimesub.net/inc/embed/ads.js
 @@||embed.wcostream.com^$generichide
+||embed.wcostream.com/inc/embed/*.php$cookie=PHPSESSID
+!+ NOT_PLATFORM(ext_ff)
+embed.wcostream.com#%#(()=>{if(!location.href.includes("://embed.wcostream.com/inc/embed/index.php?file="))return;const e=`/inc/embed/video-js.php${location.search}`;location.href=e})();
+!+ PLATFORM(ext_ff)
+embed.wcostream.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{if(!location.href.includes("://embed.wcostream.com/inc/embed/index.php?file="))return;const e=`/inc/embed/video-js.php${location.search}`;location.href=e})();')
 !#if (!ext_ublock)
 embed.wcostream.com#$##announcement { display: block !important; }
 embed.wcostream.com#$#.announcement-backdrop { display: block !important; }
