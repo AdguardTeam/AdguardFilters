@@ -10,6 +10,18 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/213035
+dtf.ru#%#(()=>{const c={construct:(c,o,r)=>{try{o[0]?.detectAdblock&&(o[0].detectAdblock=!1)}catch(c){}return Reflect.construct(c,o,r)}};window.Proxy=new Proxy(window.Proxy,c)})();
+||dtf.ru/assets/index-*.js$replace=/"assets\/Blocker-[\d\w]+\.js"\,//
+||dtf.ru/assets/index-*.js$replace=/detectAdblock:/detectNoAdblock:/
+!#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
+@@||yandex.ru/ads/system/context.js$domain=dtf.ru
+@@||ssp.rambler.ru/capirs_async.js$domain=dtf.ru
+dtf.ru#@#.rotator
+dtf.ru#@#.supbar--top
+dtf.ru#@#.content-list > div.content ~ div[style]:has(> div.skeleton-content)
+dtf.ru#@#div[style*="layout-sidebar-banner-"]
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/212306
 blitzfoxhub.com#%#//scriptlet('remove-node-text', 'script', 'detect-modal')
 blitzfoxhub.com$$script:contains(detect-modal)
@@ -110,6 +122,7 @@ cdnmovies-stream.online#%#//scriptlet("prevent-fetch", "covivado.club/vast3/")
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||covivado.club/vast3/$domain=cdnmovies-stream.online
 ! https://github.com/AdguardTeam/AdguardFilters/issues/157688
+@@||russia-tv.online/yandex.ru/ads/system/adsdk.gif
 @@||yandex.ru/ads/system/context.js$domain=russia-tv.online
 @@||russia-tv.online^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/156353
@@ -1394,6 +1407,7 @@ market.yandex.*###banner-streamer
 ! Yandex.Video
 ||yandex.*/video/*/*/*/*_$script,replace=/Ya.*RtbBidReqID.*//
 [$path=/video]ya.ru,yandex.*##.Viewer-Content div[class$="Block_bottomRounded"]
+[$path=/video]ya.ru,yandex.*##div[class*="-Direct_"]
 ! Video ad
 ||strm.yandex.ru/get/$xmlhttprequest,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! ads near the player
