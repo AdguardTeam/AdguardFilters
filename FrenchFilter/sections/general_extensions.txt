@@ -12,8 +12,10 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213146
 ! Fixes loading video player and delay in video playback start
 ! Apps cannot inject script into iframe with "about:blank" src, so a workaround is required
-!+ PLATFORM(windows, mac, android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+supersoluce.com#%#(()=>{window.addEventListener("load",(()=>{document.querySelector(".vsly-player")&&(()=>{const e=document.createElement("script");e.id="xieg6Sie",e.src="https://cdn.viously.com/js/sdk/boot.js",document.head.appendChild(e)})()}));})();
 supersoluce.com#%#(()=>{const e={apply:(e,t,o)=>{try{const e=o[0],t=o[1];"function"==typeof e&&e.toString().includes("event_listener_timeout")&&0!==t&&(o[1]=0)}catch(e){console.trace(e)}return Reflect.apply(e,t,o)}};window.setTimeout=new Proxy(window.setTimeout,e);const t={apply:(e,t,o)=>{try{const e=t;if(e&&e.matches?.(".viously")){const e=t.querySelector("iframe");e&&e.matches?.(".viously-iframe")&&(e.contentWindow.setTimeout=window.setTimeout)}}catch(e){console.trace(e)}return Reflect.apply(e,t,o)}};window.Node.prototype.appendChild=new Proxy(window.Node.prototype.appendChild,t)})();
+!#endif
 !+ NOT_PLATFORM(windows, mac, android)
 supersoluce.com#%#//scriptlet('adjust-setTimeout', 'event_listener_timeout', '*', '0.001')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb || adguard_ext_chromium || adguard_ext_chromium_mv3)
