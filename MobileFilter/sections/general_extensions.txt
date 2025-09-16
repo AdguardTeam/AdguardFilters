@@ -9,6 +9,12 @@
 !-------JS----------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/213295#issuecomment-3295974288
+! On mobile Firefox when autoplay is disabled and ads are blocked, the video stucks on loading screen sometimes,
+! so as a workaround we disable autoplay
+dailymotion.com#%#//scriptlet('set-constant', 'DMP_IS_AUTOPLAY_ENABLED', 'false')
+dailymotion.com#%#//scriptlet('trusted-set-constant', '__PLAYER_CONFIG__.player.autostart', '"off"')
+dailymotion.com#%#(()=>{const a={apply:(a,t,r)=>{try{!0===r[0]?.parameters?.[1]?.autoplay&&(r[0].parameters[1].autoplay=!1)}catch(a){console.trace(a)}return Reflect.apply(a,t,r)}};window.JSON.stringify=new Proxy(window.JSON.stringify,a)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211867
 wuxianxiaoshuowang.com#%#//scriptlet("abort-on-property-read", "createApp")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/195011
