@@ -43,11 +43,17 @@ btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#div[id^="leading_video_p
 btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('abort-on-property-read', 'branDetective')
 btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('set-constant', 'isEnhancedContentAvailable', 'undefined')
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=businessnovinite.bg|btv.bg|btvsport.bg|btvplus.bg|btvnovinite.bg
+! https://github.com/AdguardTeam/AdguardFilters/issues/213815
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204147
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190638
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178821
 play.nova.bg#%#//scriptlet('prevent-fetch', '/adsbygoogle|googima\.js/')
 play.nova.bg#%#//scriptlet('prevent-xhr', '/adsbygoogle|googima\.js/')
+play.nova.bg#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+!+ NOT_PLATFORM(ext_ff)
+play.nova.bg#%#(()=>{const t={apply:(t,e,n)=>"data:text/javascript;base64,KCk9Pnt9"!==e&&Reflect.apply(t,e,n)};window.String.prototype.includes=new Proxy(window.String.prototype.includes,t)})();
+!+ PLATFORM(ext_ff)
+play.nova.bg#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const t={apply:(t,e,n)=>"data:text/javascript;base64,KCk9Pnt9"!==e&&Reflect.apply(t,e,n)};window.String.prototype.includes=new Proxy(window.String.prototype.includes,t)})();')
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=play.nova.bg
 @@||ssl.p.jwpcdn.com/player/v/*/googima.js$xmlhttprequest,domain=play.nova.bg
