@@ -766,6 +766,10 @@ $third-party,script,domain=klto9.com|f2movies.to|hacamchicac.com|yourporngod.com
 !
 ! NOTE: Specific rules
 !
+spankbang.com##.play_cover > .absolute:has(> span > a[href][target="_blank"])
+spankbang.com###main_video_player > span:has(> a[href][target="_blank"])
+spankbang.com##.ad_button
+||spankbang.com/api/*?ad_zone=
 indianexpress.com###taboola-right-article-personalisation
 indianexpress.com##.ad-spacer
 ||freesoft.net/sponsored/
@@ -19122,6 +19126,14 @@ circleofcricket.com#$#.modal-backdrop { display: none !important; }
 circleofcricket.com#$##myModal { display: none !important; }
 circleofcricket.com##div.container-full.add:has(> a[href]:first-child)
 ||circleofcricket.com/assets/adv/
+!
+! https://github.com/AdguardTeam/AdguardFilters/issues/214618
+!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari)
+||assets.sb-cd.com/static/common/js/bjssu_$domain=spankbang.com
+spankbang.com#%#//scriptlet('set-constant', 'BJSShowUnder', 'emptyObj')
+spankbang.com#%#//scriptlet('set-constant', 'BJSShowUnder.bindTo', 'noopFunc')
+spankbang.com#%#//scriptlet('set-constant', 'BJSShowUnder.add', 'noopFunc')
+!#endif
 !
 ! https://github.com/uBlockOrigin/uAssets/issues/23691
 !+ NOT_PLATFORM(ext_ff, ext_ublock)
