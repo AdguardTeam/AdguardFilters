@@ -17,22 +17,20 @@ cdntvpotok.com#%#(()=>{document.addEventListener("DOMContentLoaded",(()=>{if(typ
 cdntvpotok.com##.player-button
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213035
 dtf.ru#@#.ad.banner
-dtf.ru#%#//scriptlet('prevent-element-src-loading', 'script', '/ads\/system\/context\.js|configs\/sites\/dtf\.js|capirs_async\.js/')
-dtf.ru#%#(()=>{const c={construct:(c,o,r)=>{try{o[0]?.detectAdblock&&(o[0].detectAdblock=!1)}catch(c){}return Reflect.construct(c,o,r)}};window.Proxy=new Proxy(window.Proxy,c)})();
+dtf.ru#%#//scriptlet('prevent-fetch', '/ssp\.rambler\.ru\/capirs_async\.js|wi-fi\.ru\/mtt\/configs\/sites\/dtf\.js|yandex\.ru\/ads\//')
+dtf.ru#%#(()=>{const t=window.Map.prototype.values,a={apply:(a,e,p)=>{try{const a=Array.from(t.call(e))[0];(a?.parentElement?.matches(".supbar")||a?.matches?.(".rotator"))&&(e=new Map)}catch(t){}return Reflect.apply(a,e,p)}};window.Map.prototype.values=new Proxy(window.Map.prototype.values,a)})();
 ||dtf.ru/assets/index-*.js$replace=/"assets\/Blocker-[\d\w]+\.js"\,//
 ||dtf.ru/assets/index-*.js$replace=/detectAdblock:/detectNoAdblock:/
 ! TODO: remove when this issues will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/514
 !+ PLATFORM(windows, mac, android)
 dtf.ru#%#(()=>{void 0===window.TrustedScriptURL&&(window.TrustedScriptURL=()=>{});})();
 !#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
+@@||s3.wi-fi.ru/mtt/configs/sites/dtf.js$domain=dtf.ru
 @@||yandex.ru/ads/system/context.js$domain=dtf.ru
 @@||ssp.rambler.ru/capirs_async.js$domain=dtf.ru
-dtf.ru#@#.rotator
-dtf.ru#@#.supbar--top
-dtf.ru#@#.content-list > div.content ~ div[style]:has(> div.skeleton-content)
-dtf.ru#@#div[style*="layout-sidebar-banner-"]
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/212306
+blitzfoxhub.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'AnalyticsMonitor')
 blitzfoxhub.com#%#//scriptlet('remove-node-text', 'script', 'detect-modal')
 blitzfoxhub.com$$script:contains(detect-modal)
 !#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
@@ -114,7 +112,7 @@ positiverecords.ru#@#.ad-google
 pikabu.ru#%#//scriptlet('abort-on-property-write', 'Ya')
 pikabu.ru$$script:contains(/\.getPropertyPriority.*=requestAnimationFrame/)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/xhr\.setRequestHeader\(_{0,2}[request]{0,6}[hHxX]?[a-zA-Z0-9_]{1,2}[a-zA-Z0-9_]{1,3}_?[a-zA-Z0-9]?[a-zA-Z0-9_]?[RrpP]/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/xhr\.setRequestHeader\(_{0,2}[a-z]{0,6}[hHxX]?[a-zA-Z0-9_]{1,2}[a-zA-Z0-9_]{1,3}_?[a-zA-Z0-9]?[a-zA-Z0-9_]?[RrpP]/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -1414,6 +1412,7 @@ yandex.*#?#.business-card-title-view__actions > div.business-card-title-view__ad
 ||yandex-pogoda.static-storage.net/*/*/*$script,replace=/adblock//
 !
 ! Yandex.Market
+market.yandex.*##div[data-apiary-widget-name="@light/RecomMediaAdv"]
 market.yandex.*##div[data-apiary-widget-name="@monetize/HeroBannerCarousel"]
 market.yandex.*##div[data-zone-name="headerPromo"]
 market.yandex.*###banner-streamer
