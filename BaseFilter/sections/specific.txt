@@ -779,8 +779,6 @@ lovingsiren.com###banner-rotativo
 lovingsiren.com##div[class^="netloop-ad"]
 sxyporn.*#%#//scriptlet('abort-on-property-read', 'PopURL')
 express.co.uk###web-strip-banner
-mirror.co.uk#%#//scriptlet('trusted-replace-node-text', 'script', 'imageViewerBigAdRepeatEvery', '/\\"imageViewerBigAdRepeatEvery\\":\d+/', '\"imageViewerBigAdRepeatEvery\":100')
-||mirror.co.uk^$document,replace=/\\"imageViewerBigAdRepeatEvery\\":\d+/\"imageViewerBigAdRepeatEvery\":100/
 nytimes.com##div[data-ad-element]
 coveragemap.com##.placement-wrapper
 ||akirabox.com/js/akira-ads*.js
@@ -20809,6 +20807,16 @@ thepostmillennial.com###leader-mot
 thepostmillennial.com##.surfsharkcontent
 !+ NOT_OPTIMIZED
 masalaseen.com##a[target="_blank"] > img
+! https://github.com/AdguardTeam/AdguardFilters/issues/215137
+! TODO: remove hints for scriptlets and use first rule below when all extensions will use the latest scriptlets library
+!+ PLATFORM(windows, mac, android, ios, ext_chromium_mv3)
+mirror.co.uk#%#//scriptlet('trusted-replace-node-text', 'script', 'imageViewerBigAdRepeatEvery', '/\\\"imageViewerBigAdRepeatEvery\\\":\d+/g', '\\"imageViewerBigAdRepeatEvery\\":100')
+!+ PLATFORM(ext_ff, ext_chromium, ext_edge, ext_opera, ext_safari)
+mirror.co.uk#%#//scriptlet('trusted-replace-node-text', 'script', 'imageViewerBigAdRepeatEvery', '/\\"imageViewerBigAdRepeatEvery\\":\d+/', '\"imageViewerBigAdRepeatEvery\":100')
+!+ PLATFORM(windows, mac, android)
+||mirror.co.uk^$document,replace=/\\"imageViewerBigAdRepeatEvery\\":\d+/\\"imageViewerBigAdRepeatEvery\\":100/
+!+ PLATFORM(ext_ff)
+||mirror.co.uk^$document,replace=/\\"imageViewerBigAdRepeatEvery\\":\d+/\"imageViewerBigAdRepeatEvery\":100/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/194402
 softpedia.com#%#//scriptlet('set-constant', 'ads_skipped_due_policy', 'true')
 ! filmy4wap.co.in - popups and ads redirection
