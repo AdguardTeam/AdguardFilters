@@ -9,6 +9,12 @@
 !-------JS----------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/213295#issuecomment-3295974288
+! On mobile Firefox when autoplay is disabled and ads are blocked, the video stucks on loading screen sometimes,
+! so as a workaround we disable autoplay
+dailymotion.com#%#//scriptlet('set-constant', 'DMP_IS_AUTOPLAY_ENABLED', 'false')
+dailymotion.com#%#//scriptlet('trusted-set-constant', '__PLAYER_CONFIG__.player.autostart', '"off"')
+dailymotion.com#%#(()=>{const a={apply:(a,t,r)=>{try{!0===r[0]?.parameters?.[1]?.autoplay&&(r[0].parameters[1].autoplay=!1)}catch(a){console.trace(a)}return Reflect.apply(a,t,r)}};window.JSON.stringify=new Proxy(window.JSON.stringify,a)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211867
 wuxianxiaoshuowang.com#%#//scriptlet("abort-on-property-read", "createApp")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/195011
@@ -44,15 +50,11 @@ plus.rtl.de#%#//scriptlet("set-constant", "cbcAdvertisingAdapter.smartClientCore
 plus.rtl.de#%#//scriptlet("set-constant", "cbcAdvertisingAdapter.smartClientCoreFacade.homad.playerConfig.unsupportedAdvertisingConfig.adReinsertion.homad.enabled", "false")
 !+ PLATFORM(ios, ext_android_cb)
 plus.rtl.de#%#//scriptlet("set-constant", "cbcAdvertisingAdapter.smartClientCoreModule.smartClientCoreApi.globalConfig.adReinsertion.homad.enabled", "false")
-! https://github.com/AdguardTeam/AdguardFilters/issues/152463
-uraaka.com#%#//scriptlet('prevent-addEventListener', 'touchmove', 'preventDefault')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/149559
 ragalahari.com#%#//scriptlet('trusted-click-element', 'html:not([class]) > body[bgcolor="#ffffff"] div#rglandingad a[style^="float:right;"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147201
 ! TODO: use inject-css-in-shadow-dom scriptlet when it will be available in apps
 timesnownews.com#%#(()=>{const a=(a,b,c)=>{const d=Reflect.apply(a,b,c),e="div[id^='atf']:empty { display: none !important; }";if("adoptedStyleSheets"in document){const a=new CSSStyleSheet;a.replaceSync(e),d.adoptedStyleSheets=[a]}else{const a=document.createElement("style");a.innerText=e,d.appendChild(a)}return d};window.Element.prototype.attachShadow=new Proxy(window.Element.prototype.attachShadow,{apply:a})})();
-! https://github.com/AdguardTeam/AdguardFilters/issues/143820
-ura.news#%#//scriptlet("abort-on-property-read", "yaContextCb")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139461
 sensatsiya.com#%#//scriptlet('remove-in-shadow-dom', '[data-container*="ScriptRoot"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136536
@@ -62,8 +64,12 @@ m.proporn.com#%#//scriptlet("set-cookie", "no_postitial_content", "1")
 timesnownews.com#%#//scriptlet('hide-in-shadow-dom', '.aftAd')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/134894
 pornhub.com,pornhub.org,pornhub.net#%#//scriptlet('set-constant', 'abp1', '0')
+! https://github.com/AdguardTeam/AdguardFilters/issues/213603
 ! https://forum.adguard.com/index.php?threads/12443/
 ||pornhub.com^$cookie=views
+pornhub.com#%#//scriptlet('remove-cookie', 'views')
+pornhub.com#%#//scriptlet('adjust-setTimeout', 'continueToVideoUrl', '*', '0.001')
+pornhub.com#%#//scriptlet('abort-current-inline-script', 'JSON.parse', '/interstitial?viewkey=')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130689
 tech.hindustantimes.com#%#//scriptlet('hide-in-shadow-dom', '.ampAds')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/129754
@@ -137,7 +143,7 @@ m.iyf.tv#%#//scriptlet("adjust-setInterval", "isPeriodic", "", "0.02")
 www.ixbt.com#%#//scriptlet('remove-class', 'branding', 'body[id="pagebody"]')
 ! xhamster.com - ad redirect
 !#if !ext_ublock
-colourxh.site,xhamster43.desi,fullxh.com,interxh.site,xhaccess.com,xhofficial.com,seexh.com,taoxh.life,xhamster42.desi,xhvid.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.com,xhamster18.com,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.desi,xhamster4.desi,xhamster22.com,xhamster27.com,openxh.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com#%#//scriptlet('set-cookie-reload', 'popSeen', 'true')
+aawweb.beauty,colourxh.site,xhamster43.desi,fullxh.com,interxh.site,xhaccess.com,xhofficial.com,seexh.com,taoxh.life,xhamster42.desi,xhvid.com,xhamster20.desi,xhamster19.desi,xhwebsite2.com,xhamster18.desi,xhadult3.com,xhadult2.com,xhmoon5.com,xhwide1.com,xhamster3.com,xhplanet2.com,megaxh.com,xhamster16.*,hamsterix.*,xhamster.com,xhamster2.com,xhamster7.com,xhamster8.com,xhamster9.com,xhamster10.com,xhamster12.com,xhamster13.*,xhamster14.com,xhamster15.com,xhamster17.com,xhamster18.com,xhamster19.com,xhamster1.desi,xhamster2.desi,xhamster3.desi,xhamster4.desi,xhamster22.com,xhamster27.com,openxh.com,xhamster5.desi,xhopen.com,openxh1.com,xhamster40.com,xhamster.one,xhamster.desi,stripchat.com#%#//scriptlet('set-cookie-reload', 'popSeen', 'true')
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/47222
 gotporn.com#%#//scriptlet("set-constant", "PopUnder.bindEvent", "noopFunc")
@@ -154,6 +160,9 @@ tube8.com#%#//scriptlet('trusted-click-element', 'a[href].continue-to-video')
 !-------CSS---------
 !-------------------
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/216062
+! Fixes dailymotion.com video player when autoplay is disabled by scriptlets
+mein-mmo.de#$#.player-wrapper > .dailymotion-player-root + .thumbnail { display: none !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200684
 financial-field.com#$#body.jackbanner { margin-top: 0 !important; padding-bottom: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198853

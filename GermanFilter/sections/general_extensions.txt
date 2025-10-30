@@ -18,6 +18,11 @@ fitforfun.de,plus.rtl.de#%#//scriptlet('trusted-replace-xhr-response', 'true', '
 fitforfun.de,brigitte.de#%#//scriptlet('trusted-replace-xhr-response', 'true', 'false', 'global_config.json')
 fitforfun.de,plus.rtl.de#%#//scriptlet('abort-on-stack-trace', 'Object.prototype.adReinsertion', 'createSdk')
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/212667
+!+ NOT_PLATFORM(ext_ff)
+player.motorsport-magazin.com#%#(()=>{document.addEventListener("DOMContentLoaded",(()=>{"function"==typeof initPage&&initPage()}));})();
+!+ PLATFORM(ext_ff)
+player.motorsport-magazin.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{document.addEventListener("DOMContentLoaded",(()=>{"function"==typeof initPage&&initPage()}));})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198374
 ! It looks like that PHPSESSID is checked on the server side
 ! I guess that it works like that - if specific PHPSESSID was registered and few/several seconds passed (I suppose 10 seconds or so)
@@ -87,7 +92,7 @@ chip.de#%#(()=>{document.addEventListener('DOMContentLoaded',()=>{const o=[];[..
 chip.de#%#//scriptlet('set-cookie', 'chipde-r2d2-view-state ', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135749
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135687
-giga.de#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest.prototype.open', 'hd-main.js')
+giga.de#%#//scriptlet('abort-on-stack-trace', 'document.dispatchEvent', 'requestAds')
 giga.de,spiegel.de,welt.de,t-online.de#%#(()=>{window.XMLHttpRequest.prototype.send=new Proxy(window.XMLHttpRequest.prototype.send,{apply:(a,b,c)=>{const d=b.urlCalled;return"string"!=typeof d||0===d.length?Reflect.apply(a,b,c):d.match(/\.damoh\./)?void 0:Reflect.apply(a,b,c)}})})();
 !+ PLATFORM(ext_ff)
 giga.de,spiegel.de,welt.de,t-online.de#%#//scriptlet('abort-on-stack-trace', 'XMLHttpRequest', 'onreadystatechange')
@@ -101,6 +106,7 @@ nachtkritik.de#%#//scriptlet('set-cookie', 'the_cookie10470', 'true')
 web.de,gmx.net,gmx.ch,gmx.at#%#//scriptlet("set-constant", "ui.AdServiceConfig.enabled", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112598
 wetter.com#%#//scriptlet('set-constant', 'wcomAdFrameworkInit', 'undefined')
+wetter.com#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.setAttribute', 'wcomAdFrameworkInit')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/108788
 spielen.com#%#//scriptlet("set-constant", "idhb", "emptyObj")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/102180

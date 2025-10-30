@@ -9,8 +9,10 @@
 !-------JS----------
 !-------------------
 !
-! https://itest.bbspink.com/
-itest.bbspink.com#$#.footer-with-ad { padding-bottom: 10px !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/211472
+sports.tv.rakuten.co.jp#%#//scriptlet('json-prune', 'ads')
+sports.tv.rakuten.co.jp#%#//scriptlet('json-prune', 'result.ad_info')
+sports.tv.rakuten.co.jp#%#//scriptlet('json-prune', 'result.paths.[].ad_info')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180461
 akibablog.blog.jp#%#//scriptlet('abort-current-inline-script', 'document.write', 'sitejack')
 ! Leftover
@@ -60,8 +62,7 @@ anacap.doorblog.jp#%#//scriptlet('prevent-addEventListener', 'scroll', 'b.type')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144212
 anianierosuki.work#%#//scriptlet('prevent-addEventListener', 'click', 'event')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142720
-!+ NOT_PLATFORM(ext_ublock)
-trpger.us,mk.yopo.work,sushi.ski,warpday.net,zadankai.club,misskey.io#%#//scriptlet('json-prune', 'ads.[].imageUrl')
+ikaskey.bktsk.com,live-theater.net,misskey.art,misskey.resonite.love,misskeytsf.love,misskirara.net,p1.a9z.dev,takusuki.com,trpger.us,mk.yopo.work,sushi.ski,warpday.net,zadankai.club,misskey.io#%#//scriptlet('json-prune', 'ads.[].imageUrl')
 ! https://github.com/AdguardTeam/AdguardFilters/pull/136936
 agora-web.jp#%#//scriptlet('abort-current-inline-script', 'document.currentScript', 'insertAdjacentHTML')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136491
@@ -70,7 +71,7 @@ video.laxd.com#%#//scriptlet('remove-class', 'with-ad', 'section.main')
 shico.xyz#%#//scriptlet('abort-on-property-read', 'fanza_link')
 trendynailwraps.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133903
-2chblog.jp,yugioh-starlight.com,kijomatomelog.com,gundamlog.com,doorblog.jp,digital-thread.com,livedoor.blog,blog.jp,blog.livedoor.jp#%#//scriptlet('abort-current-inline-script', 'jQuery', 'floatingAd')
+nandemo-uketori.com,2chblog.jp,yugioh-starlight.com,kijomatomelog.com,gundamlog.com,doorblog.jp,digital-thread.com,livedoor.blog,blog.jp,blog.livedoor.jp#%#//scriptlet('abort-current-inline-script', 'jQuery', 'floatingAd')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/128599
 uraaka-joshi.com#%#//scriptlet('prevent-addEventListener', 'playing', 'VAST_TARGET')
 ! skip ad
@@ -142,6 +143,8 @@ cmnw.jp#%#//scriptlet("set-constant", "sec", "0")
 !-------CSS---------
 !-------------------
 !
+! https://itest.bbspink.com/
+itest.bbspink.com#$#.footer-with-ad { padding-bottom: 10px !important; }
 ! https://github.com/tofukko/filter/issues/96
 nlab.itmedia.co.jp#$##globalHeader { min-height: 0 !important; margin: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/112640
@@ -385,9 +388,6 @@ ameblo.jp#$##subAInner[style] { position: static !important;margin-top: auto !im
 ! placeholder
 figgy.jp#$#.adBillBoardPC { min-height: 0 !important }
 gamer.ne.jp,onlinegamer.jp#$#.adBillboard_pc { height: 0 !important; min-height: 0 !important; margin-bottom: 0 !important; }
-! interstitial ad
-uraaka.com#$#.gallery__interstitial { display: none !important; }
-uraaka.com#$#body[style="overflow-y: hidden;"] { overflow-y: auto !important; }
 ! occasinal interstitial ad leftover
 yamareco.com#$##ad01 { display: none!important; }
 yamareco.com#$#.modal-backdrop { display: none!important; }
@@ -425,7 +425,7 @@ buhidoh.net#$##center-left { height: auto !important; }
 ! fix blog sidebar
 nwknews.jp#$##extra { position: static !important; }
 gadget2ch.com#$##sidebar { position: static !important; }
-watarukiti.com,saikyo-jump.com#$#.right-container { position: static !important; }
+nandemo-uketori.com,watarukiti.com,saikyo-jump.com#$#.right-container { position: static !important; }
 kosoch.com#$##plugin2[style^="position: fixed"] { position: static !important; }
 [$path=/kinisoku]blog.livedoor.jp#$##aside[style] { position: static !important; }
 anige-sokuhouvip.com#$##scroll.fixed { position: static !important; }
@@ -441,8 +441,9 @@ otakomu.jp,blog.esuteru.com#$#.siteRanking-main { margin-left: 0!important; }
 otakomu.jp#$#.siteRanking-main { margin-left: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/26823
 hostlove.com#$##index_nav > h1 { padding-top: 30px!important; }
-!+ PLATFORM(ext_ublock)
+!#if (ext_ublock)
 jikayosha.jp##.wym-v2022__header.is-scroll-up ~ .wym-v2022__footer-fixed.is-pc-bottom:matches-media((min-width: 641px)):style(bottom: 0 !important;)
+!#endif
 !
 !-------------------
 !-------HTML--------

@@ -10,6 +10,9 @@
 ! ATTENTION: The rules in this section must be accompanied by a link of an issue, where the problem will be fixed
 ! or with clear description what to do next
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/215245
+! Reported to Liste AR
+$script,third-party,domain=wecima.show,badfilter
 ! pro.thestreet.com - broken player. Reported to EasyList
 @@||entitlements.jwplayer.com/*.json$domain=pro.thestreet.com
 @@||cdn.jwplayer.com/*/media/$domain=pro.thestreet.com
@@ -118,7 +121,60 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 !
 !
-!
+! clickndownload - countdown not counting
+@@||code.jquery.com^$domain=clickndownload.*|clicknupload.*
+! Redirector links blocked (e.g. on mobile on mydealz.de)
+@@||r.linksprf.com/*/redirect?
+! https://github.com/AdguardTeam/AdguardFilters/issues/216093
+! Website is broken when blocked scripts are removed from the page,
+! so as a workaround, "redirect-rule" is used.
+!+ PLATFORM(windows, mac, android)
+$script,redirect-rule=noopjs,domain=inflearn.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/216047
+interest.co.nz#@#a[href^="https://ad.doubleclick.net/"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/215569
+@@||assets.connatix.com/Elements/*/jwpc-player-init-plugin_v2.js$domain=nypost.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/215116
+@@||puzzles-games-api.gp-prod.conde.digital^$domain=newyorker.com
+! notion.so - unnecessary exclusion
+@@||notion.so^$generichide,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/214547
+@@||videobuster.de/js/video-js/nuevo.min.js$domain=videobuster.de
+! https://github.com/AdguardTeam/AdguardFilters/issues/214299
+@@||cmp.inmobi.com^$domain=glasgowlive.co.uk
+! https://github.com/AdguardTeam/AdguardFilters/issues/214071
+vnptioffice.vn#@#body[onbeforeunload="return myFunction()"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/213821
+@@||vms-players.minutemediaservices.com/voltax_player_embed_mount.js$domain=theplayerstribune.com
+@@||mp.mmvideocdn.com/mini-player/$domain=theplayerstribune.com
+@@||vms-videos.minutemediaservices.com^$xmlhttprequest,domain=theplayerstribune.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/213560
+dmax.de#%#//scriptlet('remove-class', 'block-user', '.block-user')
+!#if (adguard_ext_android_cb)
+@@||googletagmanager.com/gtm.js$domain=dmax.de
+@@||cdn.cookielaw.org/scripttemplates/otSDKStub.js$domain=dmax.de
+@@||cdn.cookielaw.org/consent/*.json$domain=dmax.de
+dmax.de#@##onetrust-consent-sdk
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/214411
+! https://github.com/AdguardTeam/AdguardFilters/issues/213267
+omuzaani.me,wavewalt.me#@#.Ad-Container:not(.adsbygoogle)
+! https://github.com/AdguardTeam/AdguardFilters/issues/212996
+! https://github.com/AdguardTeam/AdguardFilters/issues/209284
+lastampa.it#%#//scriptlet('prevent-element-src-loading', 'script', '/securepubads\.g\.doubleclick\.net|chartbeat\.com|googletagmanager\.com/')
+! TODO: remove rules with "TrustedScriptURL" when this issues will be fixed - https://github.com/AdguardTeam/Scriptlets/issues/514
+!+ PLATFORM(windows, mac, android)
+lastampa.it#%#(()=>{void 0===window.TrustedScriptURL&&(window.TrustedScriptURL=()=>{});})();
+!+ PLATFORM(ios, ext_android_cb)
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=lastampa.it
+! https://github.com/AdguardTeam/AdguardFilters/issues/212884
+euronews.com#@##connatix-container
+euronews.com#@#.connatix-container
+euronews.com#@#[data-ad-name]
+euronews.com#@#.cnx-player-wrapper
+@@||connatix.com^$domain=euronews.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/212574
+@@||c.amazon-adsystem.com/aax2/apstag.js$domain=independentespanol.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/212223
 polybuzz.ai#@#.sidebar-ad-wrapper
 polybuzz.ai#@#.sidebar-ad:not(.adsbygoogle)
@@ -146,9 +202,6 @@ bbc.com#%#//scriptlet('set-constant', 'dvtag.getTargeting', 'trueFunc')
 @@||connatix.com^$domain=accuweather.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209553
 @@||vague.style/wp-content/uploads/*.jpg$image,domain=vague.style
-! https://github.com/AdguardTeam/AdguardFilters/issues/208160
-!+ PLATFORM(windows, mac, android)
-@@||m.sktuniverse.co.kr/html/template/*.html$xmlhttprequest,elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208735
 @@||sts.wavewalt.me/scripts/v*/embedv*.min.js$domain=cricstreams.re
 ! https://www.thedailybeast.com/login - cannot login
@@ -207,8 +260,6 @@ britannica.com#%#//scriptlet('googletagservices-gpt')
 nareshalka.com#@##adModal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205390
 @@||wpnrtnmrewunrtok.xyz^$domain=camwhores.ru.com|camvideos.org
-! https://github.com/AdguardTeam/AdguardFilters/issues/204824
-shootingillustrated.com#@#.video-ad-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204537
 cercopes-z.com#@#ins.adsbygoogle[data-ad-slot]
 cercopes-z.com#@#ins.adsbygoogle[data-ad-client]
@@ -267,7 +318,6 @@ babycenter.com#@#.cnx-player-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198980
 @@||skiplinks.xyz/skipad.webp$domain=skiplinks.xyz|lewdsteam.com|adultcomixxx.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199018
-earth.com#@##ad-container
 earth.com#@#[class^="s2nPlayer"]
 @@||embed.sendtonews.com/player*.php$domain=earth.com
 @@||mp.mmvideocdn.com/mini-player/prod/voltax_mp.js$domain=earth.com
@@ -278,7 +328,7 @@ earth.com#@#[class^="s2nPlayer"]
 !+ PLATFORM(windows, mac, android)
 @@||tickets.nickelodeonadventure.co.uk^$xmlhttprequest,elemhide,jsinject,extension
 ! https://github.com/uBlockOrigin/uAssets/issues/27181
-9now.nine.com.au##+js(set, Adkit, noopFunc)
+9now.nine.com.au#%#//scriptlet('set-constant', 'Adkit', 'noopFunc')
 !+ PLATFORM(ios, ext_android_cb)
 @@||adkit.9pub.io/v2$script,domain=9now.nine.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/197365
@@ -364,8 +414,6 @@ plutomovies.com#@#.ad-slot
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187429
 sport-fm.gr,sport24.gr,variety.com#@#.cnx-player-wrapper
 @@||connatix.com^$domain=sport-fm.gr|sport24.gr|variety.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/186551
-nejm.org#@#.adplaceholder
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186985
 @@||go.redirectingat.com/*&url=$domain=forums.redflagdeals.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186934
@@ -414,7 +462,6 @@ lover937.net#%#//scriptlet('abort-current-inline-script', 'setTimeout', 'documen
 @@||tm.jsuol.com.br/modules/external/admanager/noticias_ads.js$domain=uol.com.br
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182893
 reviewjournal.com#@#.pbs__player
-reviewjournal.com#@##ad-container
 @@||player.ex.co^$domain=reviewjournal.com
 @@||cdn.ex.co/player/$domain=reviewjournal.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182753
@@ -427,10 +474,11 @@ interactive.libsyn.com#@#iframe[width="100%"][height="90"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181812
 @@app.arizonawildcats.com/preferences
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180746#issuecomment-2150672487
-makeuseof.com,howtogeek.com#@#.ad-zone:not(.textads)
-makeuseof.com,howtogeek.com#@#.adsninja-ad-zone
-makeuseof.com,howtogeek.com#@#.ad-current
-makeuseof.com,howtogeek.com#@#.ad-zone-container
+thegamer.com#@#.w-adsninja-video-player
+thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone:not(.textads)
+thegamer.com,makeuseof.com,howtogeek.com#@#.adsninja-ad-zone
+thegamer.com,makeuseof.com,howtogeek.com#@#.ad-current
+thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone-container
 ||googletagservices.com/tag/js/gpt.js$xmlhttprequest,script,redirect=googletagservices-gpt,important,domain=makeuseof.com|howtogeek.com
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=makeuseof.com|howtogeek.com
 @@||cdn.adsninja.ca/adsninja_client.js$domain=makeuseof.com|howtogeek.com
@@ -634,7 +682,6 @@ comicbookmovie.com#$#.ad { height: 1px !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168418
 ! #$# rule is required for Firefox extension
 humix.com,mistergadget.tech#$#body .ez-video-wrap { display: block !important; }
-humix.com#@#.ez-video-wrap
 @@||humix.com/beardeddragon/iguana.js
 @@||humix.com/beardeddragon/wyvern.js
 @@||go.ezodn.com/beardeddragon/basilisk.js$domain=humix.com
@@ -661,9 +708,6 @@ satdl.com#@#.advertizement
 @@||cmp.inmobi.com/choice/*/choice.js$domain=express.co.uk
 @@||cmp.inmobi.com/tcfv2/*.js$domain=express.co.uk
 @@||cmp.inmobi.com/*/vendor-list-*.json$domain=express.co.uk
-! https://github.com/AdguardTeam/AdguardFilters/issues/166014
-!+ PLATFORM(windows, mac, android)
-@@://www.atlassian.com^$elemhide,jsinject,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165932
 @@/clickn(download|upload)\.[a-z]{3,5}/$script,xmlhttprequest,domain=clickndownload.*|clicknupload.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165770
@@ -917,8 +961,6 @@ pbs.org#@#.banner-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147663
 @@||dashboard.tinypass.com/xbuilder/experience/$domain=cnbc.com
 @@||micro.rubiconproject.com/prebid/dynamic/*.js$domain=cnbc.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/147895
-coursekingdom.xyz#@#[href^="https://ad.admitad.com/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147504
 gearspace.com#@#a[onclick]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/147201
@@ -1016,8 +1058,6 @@ enate.io#@#iframe[width="100%"][height="90"]
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=zygomatic.arkadiumarena.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=zygomatic.arkadiumarena.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/141307
-wallpapers.com#@#.ad-enabled
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141275
 ||embed.sendtonews.com^$third-party,badfilter,domain=miamiherald.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141425
@@ -1089,8 +1129,6 @@ instagram.com#@?#article[class] > div[class]:-abp-has(span:-abp-contains(/Anzeig
 instagram.com#@?#article[role="presentation"] > div[style]:-abp-has(span:-abp-contains(/Anzeige|Gesponsert|Sponsored|Geborg|Sponzorováno|Sponsoreret|Χορηγούμενη|Publicidad|Sponsoroitu|Sponsorisé|Bersponsor|Sponsorizzato|広告|광고|Ditaja|Sponset|Gesponsord|Sponsorowane|Patrocinado|Реклама|Sponsrad|ได้รับการสนับสนุน|May Sponsor|Sponsorlu|赞助内容|贊助|প্রযোজিত|પ્રાયોજિત|स्पॉन्सर्ड|Sponzorirano|ಪ್ರಾಯೋಜಿತ|സ്‌പോൺസർ ചെയ്‌തത്|पुरस्‍कृत|प्रायोजित|ਪ੍ਰਾਯੋਜਿਤ|මුදල් ගෙවා ප්‍රචාරය කරන ලදි|Sponzorované|விளம்பரதாரர்கள்|స్పాన్సర్ చేసింది|Được tài trợ|Спонсорирано|Commandité|Sponsorizat|Спонзорисано/))
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137874
 instagram.com#@?#div[style="max-height: inherit; max-width: inherit;"]:-abp-has(span:-abp-contains(Paid partnership with ))
-! https://github.com/AdguardTeam/AdguardFilters/issues/137663
-@@||oasjs.kataweb.it/adsetup.real.js$domain=video.repubblica.it
 ! https://github.com/easylist/easylist/pull/14442
 @@||nakanohito.jp^*/bi.js$domain=myna.go.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/137106
@@ -1136,7 +1174,6 @@ share.weiyun.com#@#.page-ad
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||car-assets.bauersecure.com/dist/js/prebid/prebid-$domain=carmagazine.co.uk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133986
-@@||player.avplayer.com/script/*/avcplayer.js$domain=sportbible.com
 @@||player.avplayer.com/script/*/libs/hls.min.js$domain=sportbible.com
 ||c.amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,domain=sportbible.com
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -1370,8 +1407,6 @@ google.ad,google.ae,google.al,google.am,google.as,google.at,google.az,google.ba,
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119883
 bestcash2020.com#@#.banner-728x90
 bestcash2020.com#@#.banner-468x60
-! https://github.com/AdguardTeam/AdguardFilters/issues/119733
-rawstory.com#@#.full-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203942
 ! https://github.com/AdguardTeam/AdguardFilters/issues/119795
 pcgamer.com,tomshardware.com#@#.sponsored-article
@@ -1481,8 +1516,6 @@ learn.javascript.ru#@#img[width="240"][height="400"]
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=cubuffs.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107182
 @@||cdn.lsicloud.net/kendall/Images/AD/$domain=shop.kendallelectric.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/109802
-cadlinecommunity.co.uk#@#.sidebar_advert
 ! https://github.com/AdguardTeam/AdguardFilters/issues/109759
 @@||googleads.github.io/videojs-ima/node_modules/video.js/dist/video.min.js$domain=blu-ray.com
 @@||googleads.github.io/videojs-ima/node_modules/video.js/dist/video-js.min.css$domain=blu-ray.com
@@ -1968,8 +2001,6 @@ $image,script,stylesheet,subdocument,third-party,xmlhttprequest,domain=animepahe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69454
 !+ PLATFORM(windows, mac, android)
 @@||airbnb.com/book?$jsinject,elemhide,extension
-! https://github.com/AdguardTeam/AdguardFilters/issues/69412
-linkedin.com#@#.ad-banner-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/69116
 @@||api.adinplay.com/libs/aiptag/assets/loader-red.gif$domain=tetrads.io
 @@||api.adinplay.com/libs/aiptag/pub/WRK/tetrads.io/tag.min.js$domain=tetrads.io
@@ -4231,8 +4262,6 @@ idownloadblog.com#@#.header-ad
 @@||slimjet.com/translate.php^$document
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/1106
 asiaone.com#@#.main-ads
-! intellicast.com - broken forecast
-@@||images.intellicast.com/App_Scripts/ad.min.js
 ! http://forum.adguard.com/showthread.php?8183
 @@||partner.googleadservices.com/gpt/pubads_impl_$script,domain=muscleandfitness.com
 ! http://forum.adguard.com/showthread.php?8077
@@ -4298,8 +4327,6 @@ multiup.org#@#.ADBAR
 @@||techdays.ru/Banners/Redirect?bannerId=
 ! userscloud.com - unhide file name
 userscloud.com#@#a[href^="http://websitedhoome.com/"]
-! JsFiddle
-@@||jsfiddle.net^$generichide
 !
 xperiablog.net,burningangel.com#@#.header-ad
 ! http://forum.adguard.com/showthread.php?5703
@@ -4384,7 +4411,6 @@ ionomusic.com#@#object[width="300"][height="300"]
 @@||puma.112.2o7.net^
 @@||vitacost.122.2o7.net^
 ! Fixing ABPIndo (site hangs)
-@@||ad.admitad.com/goto/$domain=atavi.com
 detik.com#@#.banner_reg
 ! https://github.com/AdguardTeam/ExperimentalFilter/issues/71
 americannews.com#@#.wpInsertInPostAd

@@ -8,6 +8,18 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/212973
+helper-employer.com#%#//scriptlet('prevent-fetch', 'adsbygoogle.js')
+helper-employer.com#%#//scriptlet('prevent-element-src-loading', 'script', 'clarity.ms/tag/')
+helper-employer.com#%#//scriptlet('spoof-css', '.adsbygoogle', 'display', 'block')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+!#safari_cb_affinity(privacy)
+@@||clarity.ms/tag/$script,domain=helper-employer.com
+!#safari_cb_affinity
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=helper-employer.com
+helper-employer.com#@#ins.adsbygoogle[data-ad-slot]
+helper-employer.com#@#ins.adsbygoogle[data-ad-client]
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209673
 slashview.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -61,10 +73,6 @@ xchina.co#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'check')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191724
 @@/js/adview_*.adsbygoogle.js$~third-party,domain=letv8.cc|zhibo1.cc
 letv8.cc,zhibo1.cc#%#//scriptlet('trusted-set-constant', 'adsv', '"Y"')
-! https://github.com/AdguardTeam/AdguardFilters/issues/189087
-hmanga.world#%#//scriptlet('prevent-fetch', 'method:HEAD')
-!+ PLATFORM(ios, ext_android_cb)
-@@||hdbkell.com/xv8ip.js$domain=hmanga.world
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183017
 fsbot.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -163,9 +171,6 @@ xbeibeix.com#@#.google-ad
 xbeibeix.com#%#//scriptlet('prevent-setTimeout', '/\.height\(\) == 0|adsbygoogle/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/145101
 yunduanxin.xyz###adb-mask
-! https://github.com/AdguardTeam/AdguardFilters/issues/144287
-@@/adview_*_ads_300x250.js$domain=yaociyuan.bid
-yaociyuan.bid#%#//scriptlet('set-constant', 'killads', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/141600
 520cc.cc#%#//scriptlet('prevent-setTimeout', 'myModal')
 520cc.cc#%#//scriptlet('set-constant', 'all520dddaaa2022ccc', 'true')
@@ -377,8 +382,9 @@ slashlook.com#$#body.modal-open { padding-right: 0!important; overflow: visible!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21669
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21072
 ! https://github.com/AdguardTeam/AdguardFilters/issues/15480
+4gtv.tv#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||service.4gtv.tv/4gtv/Data/GetAD.ashx
-@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=4gtv.tv
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,important,domain=4gtv.tv
 ||vast.doublemax.net/adserver/vast.xml$script,xmlhttprequest,other,redirect=noopvast-2.0
 ||ads.adaptv.advertising.com/*roll&pageUrl=4gtv.tv$script,xmlhttprequest,other,redirect=noopvast-2.0
 ||facebook.com/*/instream/vast.xml?*&pageurl=http*.4gtv.tv$script,xmlhttprequest,other,redirect=noopvast-2.0
@@ -463,8 +469,9 @@ game735.com#$#div[id^="gklobl"] { height: 1px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43307
 @@||www.ruanyifeng.com^$csp=script-src 'self' * 'sha256-0McqMM66/wAVZmxF6zXpjNsb1UMbTl4LXBXdhqPKxws='
 ruanyifeng.com#@#a > img[src*="wangbase.com/blogimg/asset/"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/214685
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196593
-t66y.com#%#//scriptlet('prevent-setTimeout', '/(\s|\()tpc/')
+t66y.com#%#//scriptlet('prevent-setTimeout', 'html')
 !#if (adguard_app_ios || adguard_ext_android_cb)
 t66y.com#@#.tips
 t66y.com#@#.sptable_do_not_remove

@@ -6,6 +6,9 @@
 ! Bad: example.org###rek (should be in specific.txt)
 !
 !
+! Youtube
+!+ NOT_PLATFORM(ext_chromium_mv3)
+www.youtube.com#%#//scriptlet('prevent-xhr', '/\/api\/stats\/atr\?.+?&rt=\d+\.\d+.+?&volume=\d+&cbr=.+?&fexp=v1%[-%0-9C]{300,}&.+?&muted=\d(&vis=3)?&docid=/ method:POST')
 ! Ad-Shield
 ! Prevent Ad-Shield tracking script - Only tracking ad block traffic. NOT Ad-Shield advertisement or protection.
 slobodnadalmacija.hr,meconomynews.com,brandbrief.co.kr,motorgraph.com#%#//scriptlet('abort-current-inline-script', 'atob', 'eval(decodeURIComponent(escape(window.atob("KCgpPT5')
@@ -26,6 +29,14 @@ spletnik.ru#%#//scriptlet('set-local-storage-item', '/^_ym/', '$remove$')
 spletnik.ru#%#//scriptlet('set-local-storage-item', 'adrcid', '$remove$')
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/214045
+! https://github.com/AdguardTeam/FiltersCompiler/issues/260
+! For some reason filters compiler converts it to '""'
+! https://github.com/AdguardTeam/FiltersRegistry/commit/8324eca5002de69940c919e52f2c8b275f206f77#diff-320cdcaedbead8abe58ffbad0a822baa2b4d5942481e5456da88f5dfaf98cb4cR35-R36
+aceee.org#%#//scriptlet('prevent-canvas', '2d')
+! https://github.com/AdguardTeam/AdguardFilters/issues/212788
+delta.com#%#//scriptlet('set-constant', 'TrackJS', 'emptyObj')
+delta.com#%#//scriptlet('set-constant', 'TrackJS.install', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207145
 hoy.tv#%#(()=>{const i=function(){};window.__uid2=window.__uid2||{},window.__uid2.init=i,window.__uid2.setIdentityFromEmail=i,window.__uid2.callbacks=window.__uid2.callbacks||[],window.__uid2.callbacks.push=function(i){"function"==typeof i&&i("InitCompleted",{identity:null})}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205925
@@ -192,8 +203,6 @@ kbjfree.com#%#//scriptlet('set-constant', 'plausible', 'noopFunc')
 tieba.baidu.com#%#//scriptlet('set-constant', 'passFingerPrint', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/150486
 secure1.comed.com#%#//scriptlet('set-constant', 'setupGoogleAnalytics', 'noopFunc')
-! https://github.com/AdguardTeam/AdguardFilters/issues/149598
-repubblica.it#%#//scriptlet('prevent-element-src-loading', 'script', 'static.chartbeat.com/js/chartbeat_brightcove_plugin.js')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148618
 cerbahealthcare.it#%#//scriptlet('set-constant', 'pa', 'emptyObj')
 cerbahealthcare.it#%#//scriptlet('set-constant', 'pa.setConfigurations', 'noopFunc')

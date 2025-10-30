@@ -60,6 +60,7 @@ uol.com.br#%#//scriptlet('set-constant', 'URL_VAST_YOUTUBE', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159573
 uol.com.br#%#//scriptlet('set-constant', '__configuredDFPTags', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166619
+vix.com#%#//scriptlet('json-prune', 'vmap_ad_breaks interstitials')
 vix.com#%#//scriptlet('trusted-replace-xhr-response', '/"(interstitials)":|"(breaks)":/', '"no_ads":', '/\.m3u8|\.mpd/')
 vix.com#%#//scriptlet('m3u-prune', 'type=ad', '.m3u8')
 vix.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="AdaptationSet"][@contentType="video"]])', '', '.m3u8')
@@ -113,12 +114,12 @@ cuevana.*#%#//scriptlet('prevent-addEventListener', 'load', '_0x')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173473
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173197
 ! https://github.com/AdguardTeam/AdguardFilters/issues/142854
-pelispedia.life,cuevana3.*,gnula.*,poseidonhd2.co,cuevana2espanol.*,cuevana.*#%#//scriptlet('prevent-window-open')
-pelispedia.life,cuevana3.*,gnula.*,poseidonhd2.co,cuevana2espanol.*,cuevana.*#%#//scriptlet('abort-on-property-read', 'cJsEdge')
-xupalace.org,player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('adjust-setInterval', 'countdown', '*', '0.001')
-player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', 'start.onclick', 'try{loadRedirect()}catch(ex){};start.onclick')
-player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', '/vastPlayer\.runAds\(\);/g', 'vastPlayer.adsCompleted();')
-player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', 'vastPlayer.onCompletedCallback', 'try{loadRedirect()}catch(ex){};vastPlayer.onCompletedCallback')
+cuevana2.*,pelispedia.life,cuevana3.*,gnula.*,poseidonhd2.co,cuevana2espanol.*,cuevana.*#%#//scriptlet('prevent-window-open')
+cuevana2.*,pelispedia.life,cuevana3.*,gnula.*,poseidonhd2.co,cuevana2espanol.*,cuevana.*#%#//scriptlet('abort-on-property-read', 'cJsEdge')
+player.cuevana2.*,xupalace.org,player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('adjust-setInterval', 'countdown', '*', '0.001')
+player.cuevana2.*,player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', 'start.onclick', 'try{loadRedirect()}catch(ex){};start.onclick')
+player.cuevana2.*,player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', '/vastPlayer\.runAds\(\);/g', 'vastPlayer.adsCompleted();')
+player.cuevana2.*,player.cuevana3.*,player.gnula.*,player.poseidonhd2.co,player.cuevana2espanol.*,player.cuevana.*#%#//scriptlet('trusted-replace-node-text', 'script', 'loadRedirect', 'vastPlayer.onCompletedCallback', 'try{loadRedirect()}catch(ex){};vastPlayer.onCompletedCallback')
 xupalace.org#%#//scriptlet('trusted-replace-node-text', 'script', 'VASTVideoPlayer', 'startPlay', 'adsCompleted')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139850
 suaurl.com,reidoplacar.com#%#//scriptlet('set-constant', 'acdl', 'noopFunc')
@@ -335,6 +336,8 @@ modsimuladores.com,vejaideias.com.br,jogoscompleto.xyz#%#//scriptlet('adjust-set
 *#$##colunas #framed > #player.hided { display: block !important; }
 !#endif
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/214561
+ramenparados.com#$##sidebar-widget-wrap { position: static !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177517
 elmueble.com#$#header { top: 0 !important; }
 elmueble.com#$#.admobile { display: none !important; }
