@@ -221,6 +221,7 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
+japscan.*#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop":false}')
 japscan.*#%#//scriptlet('trusted-set-constant', 'pubadxtag', '{"divIds":[]}')
 japscan.*#$#body > div.full-container > div.full-container.text-center > div.mt-2[style="margin: 0px auto; display: block;"] > a.Aikoi.donate[target="_blank"][rel][href^="https://www.longosto.shop/?utm_source="] > img.img-fluid { content-visibility: hidden !important; }
 !#endif
@@ -231,6 +232,7 @@ japscan.*#@#.tangoai
 japscan.*#@#[class^="copine"]
 @@||japscan.$generichide
 !#if (adguard_ext_chromium_mv3)
+||platform.pubadx.one/pubadx-ad.js$script,redirect=noopjs,domain=japscan.lol|japscan.si|japscan.vip,important
 /^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol|japscan.si|japscan.vip
 @@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
 @@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
@@ -249,8 +251,9 @@ $script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol|japscan.si|japsca
 @@||i.ibb.co^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
 !#endif
 !#if (!ext_ublock)
+||platform.pubadx.one/pubadx-ad.js$script,redirect=noopjs,domain=japscan.*,important
 /^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.*
-@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.*
+@@||platform.pubadx.one/pubadx-ad.js$script,xmlhttprequest,domain=japscan.*
 @@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.*
 @@||acscdn.com^$script,third-party,domain=japscan.*
 @@.shop/*/invoke.js$script,third-party,domain=japscan.*,important
