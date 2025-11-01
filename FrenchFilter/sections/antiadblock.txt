@@ -223,6 +223,7 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
+japscan.*#%#//scriptlet('prevent-addEventListener', 'load', '/typeof aclib.+pubadx-ad\.js.+nawMA\(/')
 japscan.*#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
 japscan.*#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop":false}')
 japscan.*#%#//scriptlet('trusted-set-constant', 'pubadxtag', '{"divIds":[]}')
@@ -230,11 +231,13 @@ japscan.*#$#body > div.full-container > div.full-container.text-center > div.mt-
 !#endif
 japscan.*#@#div.container > [href]
 japscan.*#@##main > .card:has(a[href*="/manga/?type="][href*="&content="][target="_blank"])
+||network-loop.com/campaigns/banners/$domain=japscan.*,important
 @@||japscan.$image,xmlhttprequest,script,~third-party
 japscan.*#@#.tangoai
 japscan.*#@#[class^="copine"]
 @@||japscan.$generichide
 !#if (adguard_ext_chromium_mv3)
+||network-loop.com/campaigns/banners/$domain=japscan.lol|japscan.si|japscan.vip,important
 ||platform.pubadx.one/pubadx-ad.js$script,redirect=noopjs,domain=japscan.lol|japscan.si|japscan.vip,important
 /^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol|japscan.si|japscan.vip
 @@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
