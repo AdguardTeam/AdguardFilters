@@ -152,17 +152,28 @@ $removeparam=s-id,domain=item.rakuten.co.jp|www.rakuten.co.jp
 ||domclick.ru^$removeparam=from
 ! buydomains.com
 ||buydomains.com/lander/*?domain=$removeparam
+!
+! DuckDuckGo
 ! DuckDuckGo ads/shopping
 ||duckduckgo.com/y.js$removeparam=ad_provider
 ||duckduckgo.com/y.js$removeparam=ad_domain
 ||duckduckgo.com/y.js$removeparam=click_metadata
 ||duckduckgo.com/y.js$removeparam=vqd
 ||duckduckgo.com/y.js$removeparam=iurl
+||duckduckgo.com/y.js$removeparam=ad_type
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208130#issuecomment-3042351235
 ! Removing "bing_market" parameter causes that search results are not localized
 ! and results are displayed for "All regions"
 ! ||duckduckgo.com/d.js?q=$script,removeparam=bing_market
 ! ||duckduckgo.com/d.js?q=$script,removeparam=host_region
+! https://duckduckgo.github.io/duckduckgo-help-pages/privacy/atb/
+! breaks redirect when their Extension is installed - https://github.com/AdguardTeam/AdguardFilters/issues/161751
+! ||duckduckgo.com^$removeparam=atb
+||duckduckgo.com^$removeparam=from
+||duckduckgo.com^$removeparam=vis
+||duckduckgo.com^$removeparam=perf_id
+||duckduckgo.com^$removeparam=parent_perf_id
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208058
 ||olybet.lv^$removeparam=ref
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207414#issuecomment-2969009233
@@ -970,10 +981,6 @@ $removeparam=from,domain=doujinnomori.com|shinshi-manga.net|echiman.com|dojin-na
 ||rdrtr.com^$removeparam=aff_sub3
 ||rdrtr.com^$removeparam=aff_sub4
 ||rdrtr.com^$removeparam=aff_sub5
-! https://github.com/AdguardTeam/AdguardFilters/issues/168508#issuecomment-1872568599
-||duckduckgo.com/y.js$removeparam=ad_domain
-||duckduckgo.com/y.js$removeparam=ad_provider
-||duckduckgo.com/y.js$removeparam=ad_type
 ! https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-7975883
 ||indeed.com^$removeparam=from
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169365
@@ -1139,14 +1146,6 @@ $removeparam=i3_ord,domain=dmm.co.jp|dmm.com
 ! Naver Shopping - click an item at its search result webpage.
 $removeparam=frm,domain=msearch.shopping.naver.com|search.shopping.naver.com
 $removeparam=NaPm,domain=msearch.shopping.naver.com|search.shopping.naver.com
-! DuckDuckGo
-! https://duckduckgo.github.io/duckduckgo-help-pages/privacy/atb/
-! breaks redirect when their Extension is installed - https://github.com/AdguardTeam/AdguardFilters/issues/161751
-! ||duckduckgo.com^$removeparam=atb
-||duckduckgo.com^$removeparam=from
-||duckduckgo.com^$removeparam=vis
-||duckduckgo.com^$removeparam=perf_id
-||duckduckgo.com^$removeparam=parent_perf_id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/162037
 *$removeparam=t-src,domain=tutanota.com|tuta.com
 ! donga.com - click an article at its main homepage. https://www.donga.com/
