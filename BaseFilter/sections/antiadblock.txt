@@ -1196,6 +1196,27 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/216541
+snopes.com#%#//scriptlet('abort-on-property-write', 'gtl')
+snopes.com#$#.sidebar_ad { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#$#.outer_ad_container { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#$#.outer-ad-unit-wrapper { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#$#.advertise_text { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#$#.ad-caption { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#$#.home_ad_bottom { transform: rotateX(90deg) !important; height: 1px !important; }
+snopes.com#@#.sidebar_ad
+snopes.com#@#.outer_ad_container
+snopes.com#@#.outer-ad-unit-wrapper
+snopes.com#@#.advertise_text
+snopes.com#@#.ad-caption
+snopes.com#@#.home_ad_bottom
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+!#safari_cb_affinity(general,privacy)
+@@.js?fcd=true$domain=snopes.com
+@@||googletagmanager.com/gtag/js?id=$domain=snopes.com
+@@||google-analytics.com/analytics.js$domain=snopes.com
+!#safari_cb_affinity
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216783
 /^https:\/\/audiocircuit\.dk\/wp-content\/plugins\/[a-z][a-z][a-z][a-z][a-z][a-z][a-z]/[a-z][a-z][a-z][a-z][a-z][a-z][a-z]\.js\?ver=/$domain=audiocircuit.dk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216720
@@ -1297,8 +1318,8 @@ moctale.in##div.backdrop-blur-sm[class^="fixed inset-0 z-"][style^="user-select:
 moctale.in#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/215550
 ! https://github.com/AdguardTeam/AdguardFilters/issues/215333
-@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=play.aetv.com|play.mylifetime.com
-||dai.google.com/ondemand/hls/content/*/time-events.json$domain=play.aetv.com|play.mylifetime.com
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=aetv.com|mylifetime.com
+||dai.google.com/ondemand/hls/content/*/time-events.json$domain=aetv.com|mylifetime.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/215177
 temp-mail.lol#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb)
@@ -1935,8 +1956,6 @@ call-bomber.info#%#//scriptlet('adjust-setInterval', '', '*', '0.02')
 dotacoach.gg#%#//scriptlet('prevent-element-src-loading', 'img', '&adslot=')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||nitropay.com/*.gif?*&adslot=$image,domain=dotacoach.gg
-! https://github.com/AdguardTeam/AdguardFilters/issues/201585
-fiches-auto.fr##body > button#back-to-top ~ div[id][style="display: block;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201769
 datanaukri.com,moviemaniak.com#%#//scriptlet('abort-on-stack-trace', 'Array.prototype.includes', 'adblockTrigger')
 datanaukri.com,moviemaniak.com#%#//scriptlet('trusted-create-element', 'body', 'div', 'id="hustle_optin_adBlock_detector"')
@@ -2961,18 +2980,6 @@ tmail.io#%#//scriptlet('abort-on-property-write', 'detectAdblock')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179074
 everydaytechvams.com##.popSc
 everydaytechvams.com#%#//scriptlet('abort-on-property-write', 'checkAdsStatus')
-! https://github.com/AdguardTeam/AdguardFilters/issues/179123
-th.gl#%#//scriptlet('set-constant', 'nitroAds', 'emptyObj')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.loaded', 'true')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.siteId', '1487')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.queue', 'emptyArr')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.createAd', 'noopFunc')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.addUserToken', 'noopFunc')
-th.gl#%#//scriptlet('set-constant', 'nitroAds.clearUserTokens', 'noopFunc')
-th.gl#%#//scriptlet('trusted-set-constant', 'nitroAds.version', '"202501018 6d64f79"')
-th.gl#%#//scriptlet('prevent-element-src-loading', 'script', 'nitropay.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||s.nitropay.com/ads-*.js$domain=th.gl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178934
 abs-cbn.com#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/178841

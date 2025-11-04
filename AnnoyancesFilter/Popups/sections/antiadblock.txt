@@ -653,7 +653,10 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! SECTION: Anti-adblock - Regular rules
 ! Do not forget about '!#safari_cb_affinity' section for exclusions:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#general
+! The rules for content blockers only:
+! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+rg.ru#%#//scriptlet('set-local-storage-item', 'rekl_modal_shown', 'emptyObj')
 exceldestek.com#%#//scriptlet('set-constant', 'googletag', 'emptyObj')
 exceldestek.com#%#//scriptlet('set-constant', 'googletag._loaded_', 'true')
 exceldestek.com#%#//scriptlet('prevent-setTimeout', '()=>{o()}', '3000')
@@ -2111,6 +2114,12 @@ socialblade.com##div[style^="width: px; height: 250px;"]
 creativeuncut.com###abox-s_i
 creativeuncut.com###g_abox
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/179123
+th.gl#%#//scriptlet('prevent-element-src-loading', 'script', 'nitropay.com')
+!+ NOT_PLATFORM(ext_ff)
+th.gl#%#(()=>{const e=()=>{};window.nitroAds={loaded:!0,siteId:1487,queue:[],createAd:function be(e,d){},addUserToken:e,clearUserTokens:e,version:"202501018 6d64f79"}})();
+!+ PLATFORM(ext_ff)
+th.gl#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e=()=>{};window.nitroAds={loaded:!0,siteId:1487,queue:[],createAd:function be(e,d){},addUserToken:e,clearUserTokens:e,version:"202501018 6d64f79"}})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204525
 ||cdn.btmessage.com^$domain=medicalnewstoday.com
 medicalnewstoday.com#%#//scriptlet('set-constant', '__bt_intrnl.aaDetectionResults.ab', 'false')
@@ -2187,6 +2196,9 @@ goduke.com,uwaterloo.ca##div[aria-label="Ad Blocker Detected"]
 ! SECTION[id=general]: Anti-adblock - Common '!#safari_cb_affinity(general)' directive
 !#safari_cb_affinity(general)
 !
+@@||content.adriver.ru/AdRiverFPS.js$domain=rg.ru
+@@||yandex.ru/ads/system/context.js$domain=rg.ru
+@@||yandex.ru/ads/system/header-bidding.js$domain=rg.ru
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=birsenaltuntas.com
 @@||yandex.ru/ads/system/context.js$domain=rutube.ru
 @@||dreamies.de/rs/js/arcads.js
@@ -2220,9 +2232,7 @@ pushsquare.com#@#.masthead
 boingboing.net#@#.ad-unit:not(.textads)
 boingboing.net#@#.ad_unit
 @@||kickasssubtitles.com/js/fuckadblock.js
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||fussballtransfers.com/lib/prebid*.js
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||fussballtransfers.com/build/js/adManager.*.js
 morgenpost.de#@#.AdSense
 @@||morgenpost.de/static/*/admanager.js
@@ -2851,17 +2861,13 @@ guided.news#@#.ad-250
 @@||thehindu.com^$generichide
 !+ PLATFORM(ios, ext_android_cb)
 @@||trib.com^$generichide
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=germancarforum.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=kukuo.tw
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bizjournals.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||timvision.it^$generichide
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=t3n.de
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||a.realsrv.com/ad-provider.js$domain=buondua.com
 !+ PLATFORM(ios, ext_android_cb)
 @@||lite.liiingo.com^$generichide
@@ -3340,7 +3346,7 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 !
 !
 !
-! SECTION: Anti-adblock - The rules for content blockers only
+! SECTION[id=content_blockers]: Anti-adblock - The rules for content blockers only
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 @@||dongknows.com^$generichide

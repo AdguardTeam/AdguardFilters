@@ -7,6 +7,10 @@
 ! Good: @@/adblocker/detect.js$domain=example.org
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/201585
+@@||fiches-auto.fr/popup2.js$~third-party
+!+ NOT_OPTIMIZED
+fiches-auto.fr##body > button#back-to-top ~ div[id][style="display: block;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216731
 ||pmur.org/scripts/Slate_abChoice.js$domain=slate.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209760
@@ -224,7 +228,7 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
 japscan.*#%#//scriptlet('trusted-suppress-native-method', 'Document.prototype.getElementById', '/_/')
-japscan.*#%#//scriptlet('prevent-addEventListener', 'load', '/typeof aclib.+pubadx-ad\.js.+nawMA\(/')
+japscan.*#%#//scriptlet('prevent-addEventListener', 'load', '/nawMA/')
 japscan.*#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
 japscan.*#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop":false}')
 japscan.*#%#//scriptlet('trusted-set-constant', 'pubadxtag', '{"divIds":[]}')
