@@ -1196,6 +1196,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/217035
+tab-maker.com#%#//scriptlet('prevent-fetch', 'googletagmanager.com/gtag/js', 'length:450-500')
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
+!#safari_cb_affinity(general,privacy)
+@@||googletagmanager.com/gtag/js?id=$domain=tab-maker.com,xmlhttprequest
+!#safari_cb_affinity
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216541
 snopes.com#%#//scriptlet('abort-on-property-write', 'gtl')
 snopes.com#$#.sidebar_ad { transform: rotateX(90deg) !important; height: 1px !important; }
@@ -2828,8 +2835,13 @@ shojoscans.com,en-thunderscans.com#%#//scriptlet('prevent-fetch', '/(jubnaadserv
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144268
 @@||sportnews.to^$generichide
 @@||topsporter.net^$generichide
+@@||goalsport.info^$generichide
+||goalsport.info/fox/plugins/block1/dublocker.
 ||evaki.fun/block/$script
 ||thesciencetoday.com/block/$script
+goalsport.info#$#body { overflow: auto !important; }
+goalsport.info#$#.ad-modal { display: none !important; }
+goalsport.info#%#//scriptlet('prevent-setTimeout', 'keepChecking')
 evaki.fun,sportshub.to,sportnews.to##body > div[id]:has(> .keep-lightbox)
 evaki.fun,sportshub.to,sportnews.to##body > div[style*="position: fixed; top:"][style*="z-index:"]
 evaki.fun,sportshub.to,sportnews.to###adblock-overlay
