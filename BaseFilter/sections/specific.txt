@@ -78,6 +78,11 @@ weatherzone.com.au,lifehacker.jp#%#//scriptlet('remove-node-text', 'script', 'ht
 ||html-load.com^$script,redirect=noopjs,domain=lifehacker.jp
 !+ PLATFORM(ext_ff)
 weatherzone.com.au,lifehacker.jp#%#//scriptlet('trusted-replace-node-text', 'script', 'html-load.com', '/[\S\s]+html-load.com[\S\s]+/', '!function(){var e=Object.getOwnPropertyDescriptor(Element.prototype,"innerHTML").set;Object.defineProperty(Element.prototype,"innerHTML",{set:function(t){return t.includes("html-load.com")?e.call(this,""):e.call(this,t)}})}();')
+! ad-shield fallback servers
+! ex. https://lava.evenpatroller.com/loader.min.js
+! ex. https://d23obxyzbkncgu.cloudfront.net/loader.min.js
+/^https:\/\/[a-z]{3,4}\.[a-z]{10,13}\.com\/loader\.min\.js$/$script,third-party,match-case,header=etag:/^W\/"[0-9a-f]{32}-\d{13}"$/
+/^https:\/\/d[0-9a-z]{12,13}\.cloudfront\.net\/loader\.min\.js$/$script,third-party,match-case,header=etag:/^W\/"[0-9a-f]{32}"$/
 ! ad-shield.cc CNAME ex. https://www.47206262.xyz/script/jmty.jp.js
 /^https:\/\/www\.[0-9a-z-]{6,}\.com\/script\/(?=[0-9a-z]{0,29}[A-Z])[0-9A-Za-z]{10,30}\.js$/$script,third-party,match-case
 /^https:\/\/www\.[0-9a-z-]{6,}\.xyz\/script\/[-.0-9A-Za-z]+\.[A-Za-z-]{2,30}\.js$/$script,third-party,match-case
