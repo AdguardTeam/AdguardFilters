@@ -78,6 +78,11 @@ weatherzone.com.au,lifehacker.jp#%#//scriptlet('remove-node-text', 'script', 'ht
 ||html-load.com^$script,redirect=noopjs,domain=lifehacker.jp
 !+ PLATFORM(ext_ff)
 weatherzone.com.au,lifehacker.jp#%#//scriptlet('trusted-replace-node-text', 'script', 'html-load.com', '/[\S\s]+html-load.com[\S\s]+/', '!function(){var e=Object.getOwnPropertyDescriptor(Element.prototype,"innerHTML").set;Object.defineProperty(Element.prototype,"innerHTML",{set:function(t){return t.includes("html-load.com")?e.call(this,""):e.call(this,t)}})}();')
+! ad-shield fallback servers
+! ex. https://lava.evenpatroller.com/loader.min.js
+! ex. https://d23obxyzbkncgu.cloudfront.net/loader.min.js
+/^https:\/\/[a-z]{3,4}\.[a-z]{10,13}\.com\/loader\.min\.js$/$script,third-party,match-case,header=etag:/^W\/"[0-9a-f]{32}-\d{13}"$/
+/^https:\/\/d[0-9a-z]{12,13}\.cloudfront\.net\/loader\.min\.js$/$script,third-party,match-case,header=etag:/^W\/"[0-9a-f]{32}"$/
 ! ad-shield.cc CNAME ex. https://www.47206262.xyz/script/jmty.jp.js
 /^https:\/\/www\.[0-9a-z-]{6,}\.com\/script\/(?=[0-9a-z]{0,29}[A-Z])[0-9A-Za-z]{10,30}\.js$/$script,third-party,match-case
 /^https:\/\/www\.[0-9a-z-]{6,}\.xyz\/script\/[-.0-9A-Za-z]+\.[A-Za-z-]{2,30}\.js$/$script,third-party,match-case
@@ -95,14 +100,14 @@ weatherzone.com.au,lifehacker.jp#%#//scriptlet('trusted-replace-node-text', 'scr
 ||ad-shield.cc^
 !#if (adguard_ext_chromium || adguard_ext_chromium_mv3 || adguard_ext_firefox || adguard_ext_edge || adguard_ext_opera)
 ! TODO: remove "trusted-create-element" scriptlet when "trusted-replace-argument" is supported by all platforms
-sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const t={apply:(t,e,r)=>{try{const t=r[1];t?.includes?.("error-report")&&(r[1]="")}catch(t){console.trace(t)}return Reflect.apply(t,e,r)}};window.HTMLScriptElement.prototype.setAttribute=new Proxy(window.HTMLScriptElement.prototype.setAttribute,t)})();')
-sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#@%#//scriptlet('prevent-element-src-loading', 'script', 'html-load.com')
-sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#%#//scriptlet('trusted-replace-argument', 'HTMLScriptElement.prototype.setAttribute', '1', 'replace:/.+error-report.+//g')
+thelayoff.com,sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const t={apply:(t,e,r)=>{try{const t=r[1];t?.includes?.("error-report")&&(r[1]="")}catch(t){console.trace(t)}return Reflect.apply(t,e,r)}};window.HTMLScriptElement.prototype.setAttribute=new Proxy(window.HTMLScriptElement.prototype.setAttribute,t)})();')
+thelayoff.com,sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#@%#//scriptlet('prevent-element-src-loading', 'script', 'html-load.com')
+thelayoff.com,sourceforge.net,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp#%#//scriptlet('trusted-replace-argument', 'HTMLScriptElement.prototype.setAttribute', '1', 'replace:/.+error-report.+//g')
 ||html-load.com/loader.min.js$important,domain=oricon.co.jp|doviz.com|boardingarea.com|scribd.com|welt.de|sourceforge.net
 !#endif
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
-welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp$$script[src="html-load.com/loader.min.js"]
-welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp$$script:contains(if(await eval()
+thelayoff.com,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp$$script[src="html-load.com/loader.min.js"]
+thelayoff.com,welt.de,scribd.com,boardingarea.com,doviz.com,oricon.co.jp$$script:contains(async()=>{try{var e=e=>)
 !#endif
 !#if (!adguard_ext_android_cb && !ext_ublock)
 ! Don't add url blocking rules inside this directive, which break sites in iOS without Advanced Protection
@@ -804,7 +809,7 @@ vi-control.net,nullforums.net,landyzone.co.uk,nullcave.pro,woxmax.com,waskucity.
 !
 ! For URL shorteners or simple sites with frequently changed ad servers.
 ! Incorrectly blocked domains can be excluded using regex(synchronize this regexp in all filters)
-/^(?!.*(mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|(\/\/|\.)vk\.com|yandex.|yastatic.net|ytimg.com|zencdn.net|player|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|ko-fi.com|wsimg.com|sharethis.com|utteranc.es|cloudflareinsights.com|tailwindcss.com|capo6play.com|(\/\/|\.)x\.com)).*$/$third-party,script,_____,domain=fapfappy.com|onestream.xyz|123movieshd.*|sportsonline.*|dlhd.*|ducumon.click|klto9.com|f2movies.to|streamcenter.pro|xx0day.com|sextb.date|sextb.net|alexsports.site|xxxymovies.com|javhdo.net|daft.sex|tv.puresoul.live|veryfreeporn.com|linkebr.com|bitfly.io|exe.app|gplinks.co|miklpro.com|rexdlfile.com|downloadhub.ink|skidrowcodex.co|adcorto.xyz|cuturl.in|skidrowcodex.net|illink.net|300mbplus.*|shrinkme.in|iir.ai|stfly.me|bolssc.com|canyoublockit.com|aii.sh|oncehelp.com|kshow123.net|dlapk4all.com|putlocker.digital|pimpandhost.com|pornpapa.com|xxxfiles.com|pornone.com|rawdex.net|hiperdex.com|ask4movie.co|animekayo.com|xorgasmo.com|mitly.us|xtits.com|vjav.com|area51deportiva.com|mixdrop.to|allporncomic.com|animepahe.com|gosexpod.com|kropic.com|kaplog.com|homemoviestube.com|zeenite.com|clk.ink|push.bdnewsx.com|uptomega.me|tumanga.net|123moviesfree.*|123unblock.*|shieldmanga.*|ccurl.net|beinmatch.*|movie8k.*|sports24.*|downloadpirate.com|payskip.org|themoviesflix.co|hentaitube.online|link1s.*|exe.app|10convert.com|fc.lc|mypornstarbook.net|strims.*|cpmlink.net|bigtitslust.com|holymanga.net|links.mflixblog.xyz|skidrowreloaded.com|kissanimes.cc|anupama.*|kiryuu.co|forex-trnd.com|userupload.net|freeadultcomix.com|ruvideos.net|srsone.top|otakufr.co|jujmanga.com|amlijatt.in|123movies.*|lewdweb.net|flixtv.club|promo-visits.site|simplyfaucet.xyz|fzmovies.*|tny.so|1mlsbd.com|knaben.ru|streamtape.*|dramacool.*|123movies-hd.online|latestmanga.net|hexupload.net|sukidesuost.info|cocomanga.com|rawkuma.com|erogarga.com|mixdrop.sx|kabegamipuloh.web.app|japscan.ws|bluemediafiles.*|films5k.com|zetporn.com|watchmalcolminthemiddle.com|reddit.tube|outletpic.com|la123movies.com|streamingworld.club|gomo.to|yesmovies.sx|xtits.xxx|y2mate.com|weloma.art|pornvideos4k.com|4kpornmovs.com|theproxy.to|up-load.io|insuranceblog.xyz|leaknudes.com|beingtek.com|fmovies.app|hentaiblue.com|yifysubtitles.vip|anonymz.com|torrentgalaxy.to|fmoviesto.cc|mixdrop.*|go-stream.site|eztv.unblockedsites.net|crackdj.com|aileen-novel.online|porncomixonline.net|wuxiarealm.com|mangahub.io|dvdplay.*|readcomiconline.li|mangaraw.org|rawmanga.top|hacamchicac.com|streamadblockplus.com|silverpic.com|apkmody.io|imgsto.com|nikaraw.com|subdl.com|crackpoint.club|torrentgalaxy.to|javct.net|haho.moe|4anime.gg|sportssoccer.club|extrafreetv.com|1337x.unblockit.cat|yourporngod.com|watchjavonline.com|picyield.com|bluemediafile.*|pornrabbit.com|stream2watch.be|worldstreams.watch|worldstreams.click|milfzr.com|gameshdlive.xyz|gamerarcades.com|asiangaylove.com|yurineko.net|animepahe.ru|0123movie.site|ufcfight.online|biggamez.xyz|trannyteca.com|lilymanga.net|bestporncomix.com|zinchanmanga.com|yaoimangaonline.com|zoechip.cc|zoechip.com|oxy.st|backfirstwo.com|3dporndude.com|thepiratebay.zone|mmsbee24.com|dofusports.xyz|1tamilblasters.*|gaystream.pw|hog.mobi|pahe.me|rawinu.com|nicomanga.com|youtube4kdownloader.com|soccerinhd.com|eztvx.to|bunkr.*|bunkr.ci|bunkr.ph|indiangaysite.com|nativesurge.info|readcomiconline.li|luciferdonghua.in|hawtcelebs.com|file-zz40pd56-embed.com|bunkr-albums.io|pubjav.com|game3rb.com|boyfuck.me|mgeko.cc|9tsu.cc|nukibooks.com|porn4fans.com
+/^(?!.*(mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|(\/\/|\.)vk\.com|yandex.|yastatic.net|ytimg.com|zencdn.net|player|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|ko-fi.com|wsimg.com|sharethis.com|utteranc.es|cloudflareinsights.com|tailwindcss.com|capo6play.com|(\/\/|\.)x\.com)).*$/$third-party,script,_____,domain=fapfappy.com|onestream.xyz|123movieshd.*|sportsonline.*|dlhd.*|ducumon.click|klto9.com|f2movies.to|streamcenter.pro|xx0day.com|sextb.date|sextb.net|alexsports.site|xxxymovies.com|javhdo.net|daft.sex|tv.puresoul.live|veryfreeporn.com|linkebr.com|bitfly.io|exe.app|gplinks.co|miklpro.com|rexdlfile.com|downloadhub.ink|skidrowcodex.co|adcorto.xyz|cuturl.in|skidrowcodex.net|illink.net|300mbplus.*|shrinkme.in|iir.ai|stfly.me|bolssc.com|canyoublockit.com|aii.sh|oncehelp.com|kshow123.net|dlapk4all.com|putlocker.digital|pimpandhost.com|pornpapa.com|xxxfiles.com|pornone.com|rawdex.net|hiperdex.com|ask4movie.co|animekayo.com|xorgasmo.com|mitly.us|xtits.com|vjav.com|area51deportiva.com|mixdrop.to|allporncomic.com|animepahe.com|gosexpod.com|kropic.com|kaplog.com|homemoviestube.com|zeenite.com|clk.ink|push.bdnewsx.com|uptomega.me|tumanga.net|123moviesfree.*|123unblock.*|shieldmanga.*|ccurl.net|beinmatch.*|movie8k.*|sports24.*|downloadpirate.com|payskip.org|themoviesflix.co|hentaitube.online|link1s.*|exe.app|10convert.com|fc.lc|mypornstarbook.net|strims.*|cpmlink.net|bigtitslust.com|holymanga.net|links.mflixblog.xyz|skidrowreloaded.com|kissanimes.cc|anupama.*|kiryuu.co|forex-trnd.com|userupload.net|freeadultcomix.com|ruvideos.net|srsone.top|otakufr.co|jujmanga.com|amlijatt.in|123movies.*|lewdweb.net|flixtv.club|promo-visits.site|simplyfaucet.xyz|fzmovies.*|tny.so|1mlsbd.com|knaben.ru|streamtape.*|dramacool.*|123movies-hd.online|latestmanga.net|hexupload.net|sukidesuost.info|cocomanga.com|rawkuma.com|erogarga.com|mixdrop.sx|kabegamipuloh.web.app|japscan.ws|bluemediafiles.*|films5k.com|zetporn.com|watchmalcolminthemiddle.com|reddit.tube|outletpic.com|la123movies.com|streamingworld.club|gomo.to|yesmovies.sx|xtits.xxx|y2mate.com|weloma.art|pornvideos4k.com|4kpornmovs.com|theproxy.to|up-load.io|insuranceblog.xyz|leaknudes.com|beingtek.com|fmovies.app|hentaiblue.com|yifysubtitles.vip|anonymz.com|torrentgalaxy.to|fmoviesto.cc|mixdrop.*|go-stream.site|eztv.unblockedsites.net|crackdj.com|aileen-novel.online|porncomixonline.net|wuxiarealm.com|mangahub.io|dvdplay.*|readcomiconline.li|mangaraw.org|rawmanga.top|hacamchicac.com|streamadblockplus.com|silverpic.com|apkmody.io|imgsto.com|nikaraw.com|subdl.com|crackpoint.club|torrentgalaxy.to|javct.net|haho.moe|4anime.gg|sportssoccer.club|extrafreetv.com|1337x.unblockit.cat|yourporngod.com|watchjavonline.com|picyield.com|bluemediafile.*|pornrabbit.com|stream2watch.be|worldstreams.watch|worldstreams.click|milfzr.com|gameshdlive.xyz|gamerarcades.com|asiangaylove.com|yurineko.net|animepahe.ru|0123movie.site|ufcfight.online|biggamez.xyz|trannyteca.com|lilymanga.net|bestporncomix.com|zinchanmanga.com|yaoimangaonline.com|zoechip.cc|zoechip.com|oxy.st|backfirstwo.com|3dporndude.com|thepiratebay.zone|mmsbee24.com|dofusports.xyz|1tamilblasters.*|gaystream.pw|hog.mobi|pahe.me|rawinu.com|nicomanga.com|youtube4kdownloader.com|soccerinhd.com|eztvx.to|bunkr.*|bunkr.ci|bunkr.ph|indiangaysite.com|nativesurge.info|readcomiconline.li|luciferdonghua.in|hawtcelebs.com|file-zz40pd56-embed.com|bunkr-albums.io|pubjav.com|game3rb.com|boyfuck.me|mgeko.cc|9tsu.cc|nukibooks.com|porn4fans.com|pastemode.com
 ! Similar to regexp above, but using the denyallow modifier
 ! Be careful, if a site uses third-party resources (players etc.) and the rule applied in AdGuard for Safari/iOS
 ! TODO: remove "*" from the beginning of the rule when this issue - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/3002 is fixed
@@ -816,6 +821,8 @@ $third-party,script,domain=klto9.com|f2movies.to|hacamchicac.com|yourporngod.com
 !
 ! NOTE: Specific rules
 !
+autocarindia.com##.mx-auto.h-\[100px\].w-\[320px\]
+autocarindia.com##.mx-auto.h-\[250px\].w-\[300px\]
 pimpbunny.com##.pb-befor-similiar-carousel
 pornoxo.com##.wgt-container
 pornoxo.com##.navmenu > li:has(> a[href^="https://www.pornoxo.com/link/out/"])
@@ -4720,7 +4727,6 @@ fappeningbook.com##.left-dv > h2
 moviekhhd.biz###Ads + .tooltip
 moviekhhd.biz##a[target="_blank"] > img[src^="ads/"]
 sportskeeda.com##.primis-player-container
-luckymodapk.com##.popup-container
 scribd.com##div[data-testid="bottom-right-mrec"]
 scribd.com#$#div[data-testid="desktop-leaderboard"] { display: none !important; }
 scribd.com#$#.auto__doc_page_body_toolbar[style^="margin-top:"] { margin-top: 0 !important; }
@@ -13514,6 +13520,7 @@ pornxs.com##div[data-ad-index-parent]
 leechall.com###overly
 ||vidbob.com/player*/vast.js
 ||cdn.cloudfrale.com/Managed/*.mp4
+pornhub.com,pornhub.org,pornhub.net##header .reportUrl:has(> a#headerUpgradePremiumBtn[target="_blank"])
 pornhub.com,pornhub.org,pornhub.net##a[href^="https://weedmaps.com"]
 pornhub.com,pornhub.org,pornhub.net###hd-rightColVideoPage > .clearfix:first-child
 msn.com##div[aria-label="property by domain"]
@@ -20314,25 +20321,33 @@ telewizjada.top#%#//scriptlet('abort-on-stack-trace', 'Array', 'runInPagePush')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154277
 !+ NOT_PLATFORM(ext_ublock)
 ||c.amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,important,domain=independent.co.uk
-
+! https://github.com/uBlockOrigin/uAssets/issues/30545
+! Example: https://p.f8ifxkzif6p8bc.cfd/k8Ll2rWLt2X/vLjQV
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198311
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198021
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188920
 ! Example: https://ey.chinnedwithset.com/gOdNBNySYSVcjSr/40913
 ! Example: https://ta.alluviopurreic.com/rKtCq1ZqtiJJ/84527
 ! Example: https://daejyre.com/riInStepVNRaVlz/wvqMG
+/^https:\/\/(?:[0-9a-z]{1,30}\.){1,2}\.(?:cfd|rest)\/[a-z](?=[a-z]*[0-9A-Z])[0-9A-Za-z]{10,27}\/[A-Za-z]{5}$/$script,third-party,match-case
 /^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.com\/[a-z](?=[a-z]*[0-9A-Z])[0-9A-Za-z]{10,27}\/[A-Za-z]{5}$/$script,third-party,match-case
 !#if (adguard_ext_chromium_mv3)
-/^https:\/\/[a-z]{2}\.[a-z]{7,14}\.com\/r[0-9A-Za-z]{10,16}\/[A-Za-z]{5}$/$script,third-party
-/^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.[a-z]{3,7}\/[a-z][0-9A-Za-z]{10,16}\/\d{4,6}$/$script,third-party,match-case
+/^https:\/\/[0-9a-z]+\.[0-9a-z]+\.(cfd|rest)\/[a-z][0-9A-Za-z]{10,20}\/[A-Za-z]{5}$/$script,third-party,match-case
+/^https:\/\/[a-z]{2}\.[a-z]{7,14}\.com\/r[0-9A-Za-z]{10,16}\/[A-Za-z]{5}$/$script,third-party,match-case
 !#endif
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-/^https?:\/\/([a-z][a-z]\.)?[a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.[a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[0-9][0-9][0-9][0-9][0-9]?[0-9]?$/$script,third-party
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+/^https:\/\/[0-9a-z]*\.?[0-9a-z]+\.[cr][ef][ds]t?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]$/$script,third-party,match-case
+/^https?:\/\/[a-z]?[a-z]?\.?[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.com\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]$/$script,third-party,match-case
+!#endif
 ! https://github.com/easylist/easylist/issues/6476
 ! Example: https://curtisbarways.com/gZ1vfAd01DRoG/60809
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$subdocument,script,xmlhttprequest,third-party,match-case
 ! It seems that script and popup modifier doesn't work correctly used together, related to - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1992
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$popup,third-party,match-case
+!+ PLATFORM(ext_chromium_mv3)
+/^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.[a-z]{3,7}\/[a-z][0-9A-Za-z]{10,16}\/\d{4,6}$/$script,third-party,match-case
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+/^https?:\/\/[a-z]?[a-z]?\.?[a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.[a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[0-9][0-9][0-9][0-9][0-9]?[0-9]?$/$script,third-party,match-case
 ! Similar case like above but on some websites it's not blocked by apps due to "$third-party" modifier, so rules below should block it, and with header modifier it should be safe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208512
 ! Example: https://cs.rivierewhimsey.com/rbmgfFdvNwvJ3tZ/OmkmG
@@ -20846,7 +20861,7 @@ wired.com##div[data-testid="ContentFooterBottom"] > div[class^="RowWrapper-"]
 !+ NOT_OPTIMIZED
 wired.com##.ad-stickyhero
 !+ NOT_OPTIMIZED
-wired.co.uk,wired.com##.ad-height-hold
+cntraveller.com,wired.co.uk,wired.com##.ad-height-hold
 !+ NOT_OPTIMIZED
 chedrives.com##a.btn.btn-success
 !+ NOT_OPTIMIZED
