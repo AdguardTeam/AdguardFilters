@@ -20344,12 +20344,10 @@ telewizjada.top#%#//scriptlet('abort-on-stack-trace', 'Array', 'runInPagePush')
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$subdocument,script,xmlhttprequest,third-party,match-case
 ! It seems that script and popup modifier doesn't work correctly used together, related to - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1992
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$popup,third-party,match-case
-!#if (adguard_ext_chromium_mv3)
+!+ PLATFORM(ext_chromium_mv3)
 /^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.[a-z]{3,7}\/[a-z][0-9A-Za-z]{10,16}\/\d{4,6}$/$script,third-party,match-case
-!#endif
-!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
 /^https?:\/\/[a-z]?[a-z]?\.?[a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.[a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[0-9][0-9][0-9][0-9][0-9]?[0-9]?$/$script,third-party,match-case
-!#endif
 ! Similar case like above but on some websites it's not blocked by apps due to "$third-party" modifier, so rules below should block it, and with header modifier it should be safe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208512
 ! Example: https://cs.rivierewhimsey.com/rbmgfFdvNwvJ3tZ/OmkmG
