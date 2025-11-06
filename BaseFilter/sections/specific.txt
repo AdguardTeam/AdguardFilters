@@ -20321,25 +20321,35 @@ telewizjada.top#%#//scriptlet('abort-on-stack-trace', 'Array', 'runInPagePush')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154277
 !+ NOT_PLATFORM(ext_ublock)
 ||c.amazon-adsystem.com/aax2/apstag.js$script,redirect=amazon-apstag,important,domain=independent.co.uk
-
+! https://github.com/uBlockOrigin/uAssets/issues/30545
+! Example: https://p.f8ifxkzif6p8bc.cfd/k8Ll2rWLt2X/vLjQV
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198311
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198021
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188920
 ! Example: https://ey.chinnedwithset.com/gOdNBNySYSVcjSr/40913
 ! Example: https://ta.alluviopurreic.com/rKtCq1ZqtiJJ/84527
 ! Example: https://daejyre.com/riInStepVNRaVlz/wvqMG
+/^https:\/\/(?:[0-9a-z]{1,30}\.){1,2}\.(?:cfd|rest)\/[a-z](?=[a-z]*[0-9A-Z])[0-9A-Za-z]{10,27}\/[A-Za-z]{5}$/$script,third-party,match-case
 /^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.com\/[a-z](?=[a-z]*[0-9A-Z])[0-9A-Za-z]{10,27}\/[A-Za-z]{5}$/$script,third-party,match-case
 !#if (adguard_ext_chromium_mv3)
-/^https:\/\/[a-z]{2}\.[a-z]{7,14}\.com\/r[0-9A-Za-z]{10,16}\/[A-Za-z]{5}$/$script,third-party
-/^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.[a-z]{3,7}\/[a-z][0-9A-Za-z]{10,16}\/\d{4,6}$/$script,third-party,match-case
+/^https:\/\/[0-9a-z]+\.[0-9a-z]+\.(cfd|rest)\/[a-z][0-9A-Za-z]{10,20}\/[A-Za-z]{5}$/$script,third-party,match-case
+/^https:\/\/[a-z]{2}\.[a-z]{7,14}\.com\/r[0-9A-Za-z]{10,16}\/[A-Za-z]{5}$/$script,third-party,match-case
 !#endif
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-/^https?:\/\/([a-z][a-z]\.)?[a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.[a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[0-9][0-9][0-9][0-9][0-9]?[0-9]?$/$script,third-party
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+/^https:\/\/[0-9a-z]*\.?[0-9a-z]+\.[cr][ef][ds]t?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]$/$script,third-party,match-case
+/^https?:\/\/[a-z]?[a-z]?\.?[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.com\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]$/$script,third-party,match-case
+!#endif
 ! https://github.com/easylist/easylist/issues/6476
 ! Example: https://curtisbarways.com/gZ1vfAd01DRoG/60809
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$subdocument,script,xmlhttprequest,third-party,match-case
 ! It seems that script and popup modifier doesn't work correctly used together, related to - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/1992
 /^https?:\/\/(?:[a-z]{2}\.)?[0-9a-z]{5,16}\.[a-z]{3,7}\/[a-z](?=[a-z]{0,25}[0-9A-Z])[0-9a-zA-Z]{3,26}\/\d{4,6}(?:\?[_a-z]=[0-9a-z-]+)?$/$popup,third-party,match-case
+!#if (adguard_ext_chromium_mv3)
+/^https:\/\/(?:[a-z]{2}\.)?[a-z]{7,14}\.[a-z]{3,7}\/[a-z][0-9A-Za-z]{10,16}\/\d{4,6}$/$script,third-party,match-case
+!#endif
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+/^https?:\/\/[a-z]?[a-z]?\.?[a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.[a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?[0-9A-Za-z]?\/[0-9][0-9][0-9][0-9][0-9]?[0-9]?$/$script,third-party,match-case
+!#endif
 ! Similar case like above but on some websites it's not blocked by apps due to "$third-party" modifier, so rules below should block it, and with header modifier it should be safe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208512
 ! Example: https://cs.rivierewhimsey.com/rbmgfFdvNwvJ3tZ/OmkmG
