@@ -1196,6 +1196,16 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/217277
+tvappapk.com#$#body { overflow: auto !important; }
+tvappapk.com#$#body > div[id][style="display: block;"] { display: none !important; }
+tvappapk.com#$#body > div[id][style^="position:"]:empty { display: none !important; }
+tvappapk.com#$#body > div[id]:has(> div > div[style^="font-size:clamp("]) { display: none !important; }
+tvappapk.com#%#//scriptlet('prevent-addEventListener', 'load', 'pagead2.googlesyndication.com')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||tvappapk.com^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=tvappapk.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217035
 tab-maker.com#%#//scriptlet('prevent-fetch', 'googletagmanager.com/gtag/js', 'length:450-500')
 !#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
@@ -8816,7 +8826,6 @@ shrib.com#%#//scriptlet("prevent-setTimeout", "adblock", "6000")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53888
 newser.com#%#//scriptlet('abort-on-property-read', 'checkAds')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53850
-1shortlink.com#%#//scriptlet("abort-on-property-read", "showAlertRequireDisableAdblocker")
 ||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,redirect=noopjs,important,domain=1shortlink.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=1shortlink.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53787
@@ -10822,6 +10831,8 @@ magesy.blog#%#//scriptlet("prevent-setTimeout", "keepChecking")
 @@||majesy.com/advertisement.js
 ||magesy.blog/dublocker.js
 magesypro.com,magesy.blog,magesy.eu###adb
+magesypro.com,magesy.blog,magesy.eu###adBlockModal
+magesypro.com,magesy.blog,magesy.eu###adblock-overlay
 magesypro.com,magesy.blog,magesy.eu##div[id][class^="popup"][class$="wrap"][style]
 magesypro.com,magesy.blog,magesy.eu#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 magesypro.com,magesy.blog,magesy.eu#%#//scriptlet("abort-current-inline-script", "onload", ".offsetHeight<=0")
@@ -11951,4 +11962,3 @@ dirtstyle.tv##.lightbox
 bigbrothercanada.ca#%#//scriptlet('set-constant', 'video_player_config.players.0.adblock', 'false')
 !+ PLATFORM(ios, ext_android_cb)
 @@||bigbrothercanada.ca^$generichide
-
