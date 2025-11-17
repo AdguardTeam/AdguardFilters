@@ -43,6 +43,7 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 ! NOTE: Specific rules
 !
+eprice.com.hk##.main-section > .text-center[style^="min-height:"]:has(> div[class^="ad-"])
 ||nodejs.cn/_static/js/common.js
 ||img.jin10.com/event/*_
 ||lpl.qq.com/*/data/LOL_MATCH2_NEWS_RECOMMEND_*_INFO.js
@@ -341,7 +342,7 @@ ctinews.com##.show-in-md:has(> .ad-container)
 $script,third-party,denyallow=unpkg.zhihu.com,domain=52niuyan.cc
 sailtool.com##body > div[style^="position:fixed;right:0;top:"]
 aii.life###index-left-bn
-ddcar.com.tw##.popup-adv
+eprice.com.hk,ddcar.com.tw##.popup-adv
 ddcar.com.tw##div[id^="div-adsense-"]
 ddcar.com.tw##.section-page-articles > .text-center[style="min-width: 970px; min-height: 250px;"]
 runoob.com##.article-heading-ad
@@ -1948,9 +1949,9 @@ sports.qq.com,lpl.qq.com,v.qq.com#%#//scriptlet('set-constant', 'CreativePlayerw
 sports.qq.com,news.qq.com,www.qq.com,v.qq.com,new.qq.com#%#//scriptlet('json-prune', 'ads')
 ! "v.qq.com" creates an iframe to obtain native "JSON" method, so we need to "patch" it
 !+ NOT_PLATFORM(ext_ff)
-v.qq.com#%#(()=>{const e={apply:(e,n,t)=>{const o=Reflect.apply(e,n,t);try{o instanceof HTMLIFrameElement&&o.matches('iframe[style="display: none;"]:not([src], [id])')&&o.contentWindow&&(o.contentWindow.JSON=window.JSON)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e)})();
+v.qq.com#%#(()=>{const e={apply:(e,t,n)=>{const o=Reflect.apply(e,t,n);try{o instanceof HTMLIFrameElement&&o.matches('iframe[style="display: none;"]:not([src], [id])')&&o.contentWindow&&(o.contentWindow.JSON=window.JSON)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e),Element.prototype.insertAdjacentElement=new Proxy(Element.prototype.insertAdjacentElement,e)})();
 !+ PLATFORM(ext_ff)
-v.qq.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e={apply:(e,n,t)=>{const o=Reflect.apply(e,n,t);try{o instanceof HTMLIFrameElement&&o.matches(`iframe[style="display: none;"]:not([src], [id])`)&&o.contentWindow&&(o.contentWindow.JSON=window.JSON)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e)})();')
+v.qq.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e={apply:(e,t,n)=>{const o=Reflect.apply(e,t,n);try{o instanceof HTMLIFrameElement&&o.matches(`iframe[style="display: none;"]:not([src], [id])`)&&o.contentWindow&&(o.contentWindow.JSON=window.JSON)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e),Element.prototype.insertAdjacentElement=new Proxy(Element.prototype.insertAdjacentElement,e)})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/30701
 ~sports.qq.com,~work.weixin.qq.com,qq.com#%#//scriptlet('json-prune', 'ad')
 !
