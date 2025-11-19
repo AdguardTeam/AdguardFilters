@@ -77,7 +77,8 @@ mail.yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
 !
 ! Yandex.Search
 ! Main page under the search bar
-ya.ru##aside[class="informers3"] ~ div[class][style]:has(> div > div[style] > div[style^="background-image"] ~ a[target="_blank"])
+ya.ru##main[class="body__wrapper"] form ~ div[style^="--height-ratio:"]
+yandex.*##main[class="body__wrapper"] form ~ div > div[style^="--height-ratio:"]
 yandex.ru##.main__block-banner iframe[src]
 ! the ad is on the right side, which is mostly non-reproducible
 [$path=/search]ya.ru,yandex.*#%#//scriptlet('remove-node-text', 'script', '/^window\.Ya.*pcodeParams.*renderTo/')
@@ -656,6 +657,7 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+kio.ac#%#//scriptlet('prevent-element-src-loading', 'script', 'lib.wtg-ads.com/publisher/')
 omd.taiv.tv##.authContainer div.banner
 hftv.ca#%#//scriptlet('prevent-addEventListener', 'load', '.offsetHeight === 0')
 hftv.ca##body > div > div[class="fixed top-0 left-0 right-0 px-6 py-4 z-50"]:has(> .items-center > button[onclick="this.closest('div').parentElement.remove()"])
@@ -881,7 +883,8 @@ wochenblitz.com#$#body { overflow: auto !important; }
 wochenblitz.com#$##adblock-overlay { display: none !important; }
 wochenblitz.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'script.onerror')
 zertalious.xyz#%#//scriptlet('set-constant', 'detectAdblock', 'noopFunc')
-startpage.com#%#//scriptlet('prevent-element-src-loading', 'script', 'TotalAdBlockAdultWidget.js')
+startpage.com#%#//scriptlet('prevent-element-src-loading', 'script', '/TotalAdBlockAdultWidget\.js|\/ads-async\.js|\/adblock-detector\.min\.js|\/adblockdetect\.js|\/adserv\.js|\/arcads\.js|\/content-ads\.js|\/cpmbanners\.js|\/doubleclick\.min\.js|\/cms_ads\.js|\/footer_ad\.js|\/insertads\.js|\/slider_ad\.js|\/stickyads\.js|\/videojs\.sda\.js|\/js\/ad_common\.js|\/js\/adpopup\.js/')
+startpage.com###main > .support-banner
 startpage.com###main > .block-display:has(> div[class^="css-"] > div[class^="css-"] > a[href^="https://support.startpage.com/"][target="_blank"])
 heraldnet.com#%#//scriptlet('prevent-setTimeout', 'adBlockEnabled')
 ||heraldnet.com/wp-content/plugins/incognito_dectector/js/incognito-detector.js
@@ -3368,6 +3371,7 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 ! SECTION[id=content_blockers]: Anti-adblock - The rules for content blockers only
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
+@@||lib.wtg-ads.com/publisher/kio.ac/sb_interstitial_wtg.js$domain=kio.ac
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=talksport.com
 @@||securepubads.g.doubleclick.net/pagead/*/pubads_impl.js$domain=talksport.com
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=talksport.com
