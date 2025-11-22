@@ -9,6 +9,15 @@
 !------- JS rules ---------------------!
 !--------------------------------------!
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/217971
+! Fixes video player - required when DNS filtering is used
+! TODO: use scriptlet when it's available - https://github.com/AdguardTeam/Scriptlets/issues/173
+! "adjust-setInterval" is required to fix delay in video playback start
+tf1info.fr#%#//scriptlet('adjust-setInterval', 'defaultConsentString', '*', '0.001')
+!+ NOT_PLATFORM(ext_ff)
+tf1info.fr#%#(()=>{const e=function(){};window.tC={privacy:{getOptinCategories:e,cookieData:[]},addConsentChangeListener:e,removeConsentChangeListener:e,container:{reload:e}},window.tc_events_global=e})();
+!+ PLATFORM(ext_ff)
+tf1info.fr#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e=function(){};window.tC={privacy:{getOptinCategories:e,cookieData:[]},addConsentChangeListener:e,removeConsentChangeListener:e,container:{reload:e}},window.tc_events_global=e})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213146
 ! Fixes loading video player and delay in video playback start
 ! Apps cannot inject script into iframe with "about:blank" src, so a workaround is required

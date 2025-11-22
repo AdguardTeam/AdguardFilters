@@ -43,6 +43,11 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 ! NOTE: Specific rules
 !
+mysteel.com##[class*="-adv"]
+mysteel.com#$#body { background-image: none !important; }
+||mfs.mysteelcdn.com/group1/M00/1B/12/rBL632frP-KAHreoAAGnyljyVAg027.jpg
+||mfs.mysteelcdn.com/group1/M00/16/70/rBL632fjcHKAUKSeAAE6mtwnW2Y118.jpg
+eprice.com.hk##.main-section > .text-center[style^="min-height:"]:has(> div[class^="ad-"])
 ||nodejs.cn/_static/js/common.js
 ||img.jin10.com/event/*_
 ||lpl.qq.com/*/data/LOL_MATCH2_NEWS_RECOMMEND_*_INFO.js
@@ -247,10 +252,6 @@ biqgg.com##a[onclick="guangtui();"]
 ||biqgg.com/w.js?v=
 sixyin.com##.custom-html-widget > a[target="_blank"] > img
 sixyin.com#?#.widget_custom_html:has(> h3:contains(赞助))
-||banzhu*.com/js/cdn.js$~third-party
-||banzhu*.com/js/html*.js$~third-party
-||banzhu*.net/js/cdn.js$~third-party
-||banzhu*.net/js/html*.js$~third-party
 baike.baidu.com##div[class^="listWrap_"] > a[class*=" fengchaoContainer_"]
 1ppt.com##.lpadlist
 ||apppc.chinaz.com/statics/images/tuan
@@ -301,6 +302,9 @@ $script,third-party,denyallow=bsgslb.com|bytecdntp.com,domain=m.shuhaige.net
 ||topthink.com/uploads/assistant/$image,domain=doc.thinkphp.cn
 doc.thinkphp.cn#%#//scriptlet('inject-css-in-shadow-dom', 'a[href*="?utm_source="][target="_blank"] > img { display: none !important; }')
 ||cpu.baidu.com/block/wap/
+xchina.co#%#//scriptlet('abort-current-inline-script', '$', 'adModal')
+xchina.co##.content-box > .list > .item:not(.photo-image):has(> a[clickmode="cpt"])
+xchina.co##.content-box > .list > .item:not(.photo-image):has(> div > ins[data-zoneid])
 xchina.co##.photos > div.item:has(> div > a[target="_blank"])
 xchina.co##.photos > div.item:has(> div[class^="exoclick_"])
 xchina.co##div[class^="item photo zone"]
@@ -341,7 +345,7 @@ ctinews.com##.show-in-md:has(> .ad-container)
 $script,third-party,denyallow=unpkg.zhihu.com,domain=52niuyan.cc
 sailtool.com##body > div[style^="position:fixed;right:0;top:"]
 aii.life###index-left-bn
-ddcar.com.tw##.popup-adv
+eprice.com.hk,ddcar.com.tw##.popup-adv
 ddcar.com.tw##div[id^="div-adsense-"]
 ddcar.com.tw##.section-page-articles > .text-center[style="min-width: 970px; min-height: 250px;"]
 runoob.com##.article-heading-ad
@@ -1838,6 +1842,15 @@ csdn.net###footerRightAds
 ||c.mipcdn.com/static/*/mip-ad/mip-ad.js
 ||mycodes.net/js/*.js
 !
+! banzhu* - - frequently changed domains
+! https://github.com/AdguardTeam/AdguardFilters/issues/217907
+||banzhu*.com/js/cdn.js$~third-party
+||banzhu*.com/js/html*.js$~third-party
+||banzhu*.net/js/cdn.js$~third-party
+||banzhu*.net/js/html*.js$~third-party
+banzhu1111111.com,banzhu2222222.com,banzhu3333333.com,banzhu4444444.com,banzhu5555555.com,banzhu6666666.com,banzhu7777777.com,banzhu8888888.com,banzhu9999999.com#%#//scriptlet('abort-current-inline-script', 'document.getElementsByTagName', '_mtj')
+*$script,third-party,denyallow=mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|x.com|51.la|cloudflareinsights.com|tongjiniao.com|vp1shop.shop|lamparasde.net|hoopchina.com.cn|kankan2024.com|ovscdns.com,domain=banzhu1111111.com|banzhu2222222.com|banzhu3333333.com|banzhu4444444.com|banzhu5555555.com|banzhu6666666.com|banzhu7777777.com|banzhu8888888.com|banzhu9999999.com
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202277
 ! https://publicwww.com/websites/%22app_tj%22/
 ! Periodically updated, so placed in this filter
@@ -1879,6 +1892,10 @@ $$script:contains(?is_not=1&target=1&ty=2)
 /^https:\/\/([a-z]+\.){2}\w{2,3}\/\d{4}\/\d{2}\/\d{10,}\.txt$/$third-party,xmlhttprequest,match-case
 ~leynwell.top##body > [style^="display: block; width: 100%; height:"]:empty
 ~leynwell.top##body > [style^="display: block; width: 100%; height:"]:empty ~ :not(div)[style^="display: block; z-index: "]
+! https://github.com/AdguardTeam/AdguardFilters/issues/217901
+/^https:\/\/www\.xiguashuwu\.com\/[a-z]{15,20}\/[a-z]{15,20}\.js\?v=/$script,domain=xiguashuwu.com
+!+ PLATFORM(ext_safari, ios)
+/^https:\/\/www\.xiguashuwu\.com\/[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\.js\?v=/$script,domain=xiguashuwu.com
 ! Specific rules to avoid redirects on tap with very similar scripts
 enhuku.com#%#//scriptlet('set-constant', 'adObj', 'noopFunc')
 m.13xsw.com,wap.yushuwu.cloud#%#//scriptlet('prevent-addEventListener', 'touchend', 'clientheight')
@@ -2111,12 +2128,12 @@ m.xigua110.com##.ui-detail-info > div[style*="line-height:35px; text-align:cente
 !+ NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_chinese
 ! Detect of using AdGuard products
-!+ PLATFORM(windows, mac, android, ios) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli, ios) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_apps
-!+ NOT_PLATFORM(windows, mac, android, ios, ext_ublock) NOT_OPTIMIZED
+!+ NOT_PLATFORM(windows, mac, android, cli, ios, ext_ublock) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_ext
 ! Detect HTTPS filtering
-!+ PLATFORM(windows, mac, android) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli) NOT_OPTIMIZED
 ||https-filtering-check.adtidy.org^
 ! Detect Advanced Protection of AdGuard for iOS
 !+ PLATFORM(ios) NOT_OPTIMIZED

@@ -6,14 +6,42 @@
 ! Bad: ||example.org^$xmlhttprequest,redirect=noopvast-3.0 (for instance, should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/217915
+||chickencoopcompany.com/services/$removeparam=analytics_context
+||chickencoopcompany.com/services/$removeparam=analytics_trace_id
+||shop.app/accounts/$removeparam=analytics_trace_id
+! https://github.com/AdguardTeam/AdguardFilters/issues/218274
+||app.hireroo.io^$removeparam=yj_r
+||app.hireroo.io^$removeparam=_ly_c
+||app.hireroo.io^$removeparam=_ly_r
+! byn.kr - any product page via product listing page
+||byn.kr^$removeparam=rURL
+! https://github.com/AdguardTeam/AdguardFilters/issues/218031
+||smbc.co.jp^$removeparam=aff
+||smbc.co.jp^$removeparam=um
+||smbc.co.jp^$removeparam=us
+||smbc.co.jp^$removeparam=yclid
+||smbc.co.jp^$removeparam=yj_r
+||smbc.co.jp^$removeparam=_ly_c
+||smbc.co.jp^$removeparam=_ly_r
+! https://github.com/AdguardTeam/AdguardFilters/issues/218012
+||metlife.co.jp^$removeparam=BannerCode
+||metlife.co.jp^$removeparam=Page
+||metlife.co.jp^$removeparam=_ly_c
+||metlife.co.jp^$removeparam=_ly_r
+||metlife.co.jp^$removeparam=yj_r
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217875
 ||gu-global.com^$removeparam=path
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217874
 ||search.sbisec.co.jp^$removeparam=_ly_c
+! https://github.com/AdguardTeam/AdguardFilters/issues/218191
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217872
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217873
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217875
-*$removeparam=ldtag_cl,domain=jpcast.japanpost.jp|fsa.go.jp|gu-global.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/218273
+! https://github.com/AdguardTeam/AdguardFilters/issues/218272
+*$removeparam=ldtag_cl,domain=jpcast.japanpost.jp|fsa.go.jp|gu-global.com|fukushima-hook.jp|chiba-helmet.jp|k-ty.com
+*$removeparam=lt_r,domain=fukushima-hook.jp|chiba-helmet.jp|k-ty.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217834
 ||mel.fm^$removeparam=infNews
 ! https://github.com/AdguardTeam/AdguardFilters/issues/217346
@@ -55,7 +83,6 @@ $removeparam=promo,domain=vjav.com|vjav.tube
 ||cj.dotomi.com^$removeparam=/^\w=/
 ||emjcd.com^$removeparam=/^\w=/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216723
-||nextdns.io/?from=$removeparam=from
 ||fastmail.com^$removeparam=pscd
 ||fastmail.com^$removeparam=ps_partner_key
 ||fastmail.com^$removeparam=ps_xid
@@ -2272,6 +2299,8 @@ $removeparam=a_aid,domain=expressvpn.com|vpnarea.com|wook.pt|affiliate.privatevp
 ||infoq.com^$removeparam=/topicPageSponsorship|^itm_/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94722
 ||adshares.net^$removeparam=cid
+! https://github.com/AdguardTeam/AdguardFilters/issues/217813
+||adobe.com/download/$removeparam=trackingid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/130919
 ||creativecloud.adobe.com^$removeparam=trackingid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/94664
@@ -2790,12 +2819,12 @@ $removeparam=s,domain=twitter.com|x.com
 !+ NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_tracking_params
 ! Detect of using AdGuard products
-!+ PLATFORM(windows, mac, android, ios) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli, ios) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_apps
-!+ NOT_PLATFORM(windows, mac, android, ios, ext_ublock) NOT_OPTIMIZED
+!+ NOT_PLATFORM(windows, mac, android, cli, ios, ext_ublock) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_ext
 ! Detect HTTPS filtering
-!+ PLATFORM(windows, mac, android) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli) NOT_OPTIMIZED
 ||https-filtering-check.adtidy.org^
 ! Detect Advanced Protection of AdGuard for iOS
 !+ PLATFORM(ios) NOT_OPTIMIZED
