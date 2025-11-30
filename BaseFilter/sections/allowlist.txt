@@ -125,6 +125,25 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/218949
+@@||sendtonews.com/player*/$domain=fortune.com
+@@||mmvideocdn.com/mini-player/$domain=fortune.com
+@@||vms-videos.minutemediaservices.com^$xmlhttprequest,domain=fortune.com
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=fortune.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/218250
+! In EasyList there is rule like "@@||ad.doubleclick.net/ddm/clk/*http$popup" but for some reason it does not fix issue in MV3 extension,
+! so as a workaround a rule below is used
+!+ PLATFORM(ext_chromium_mv3)
+@@||ad.doubleclick.net/ddm/clk/*http$~script,~stylesheet,~image,~xmlhttprequest,~subdocument
+! amazon - "sponsored product hidden for bundled items 'buy this bundled with sponsored item'"
+amazon.*#@#.a-cardui[class*="_new-detail-faceout-box_"]:has(.dynamicSponsoredLabelClass)
+! https://github.com/AdguardTeam/AdguardFilters/issues/218667
+||myvidplay.com^$badfilter
+||cloudatacdn.com^$badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/218199
+||jwplayer.com^$domain=tennis.com,badfilter
 ! https://old.reddit.com/r/Adguard/comments/1oumwgf/why_i_have_adguard/
 sun-sentinel.com#@#.cnx-player-wrapper
 @@||connatix.com^$domain=sun-sentinel.com
@@ -488,18 +507,24 @@ youporn.com,you-porn.com#@#.right-aside
 interactive.libsyn.com#@#iframe[width="100%"][height="90"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181812
 @@app.arizonawildcats.com/preferences
+! https://github.com/AdguardTeam/AdguardFilters/issues/218777
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180746#issuecomment-2150672487
-thegamer.com#@#.w-adsninja-video-player
-thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone:not(.textads)
-thegamer.com,makeuseof.com,howtogeek.com#@#.adsninja-ad-zone
-thegamer.com,makeuseof.com,howtogeek.com#@#.ad-current
-thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone-container
+polygon.com,thegamer.com#@#.w-adsninja-video-player
+polygon.com,thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone:not(.textads)
+polygon.com,thegamer.com,makeuseof.com,howtogeek.com#@#.adsninja-ad-zone
+polygon.com,thegamer.com,makeuseof.com,howtogeek.com#@#.ad-current
+polygon.com,thegamer.com,makeuseof.com,howtogeek.com#@#.ad-zone-container
 ||googletagservices.com/tag/js/gpt.js$xmlhttprequest,script,redirect=googletagservices-gpt,important,domain=makeuseof.com|howtogeek.com
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=makeuseof.com|howtogeek.com
-@@||cdn.adsninja.ca/adsninja_client.js$domain=makeuseof.com|howtogeek.com
+@@||cdn.adsninja.ca/adsninja_client.js$domain=makeuseof.com|howtogeek.com|polygon.com
 @@||cdn.adsninja.ca/adsninja_worker.js$domain=makeuseof.com|howtogeek.com
 @@||cdn.adsninja.ca/adsninja_worker_caller.js$domain=makeuseof.com|howtogeek.com
-@@||cdn.adsninja.ca/adsninja_client_style.css$domain=makeuseof.com|howtogeek.com
+@@||cdn.adsninja.ca/adsninja_client_style.css$domain=makeuseof.com|howtogeek.com|polygon.com
+@@||cdn.adsninja.ca/an_sn.js$domain=polygon.com
+@@||cdn.adsninja.ca/ads_initiator.js$domain=polygon.com
+@@||cdn.adsninja.ca/ads_injector.js$domain=polygon.com
+@@||adsninja.ca/urlmap$domain=polygon.com
+@@||cdn.adsninja.ca/api/$domain=polygon.com
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
 @@||g.doubleclick.net/pagead/managed/js/gpt/$script,domain=makeuseof.com|howtogeek.com
 @@||googletagservices.com/tag/js/gpt.js$domain=makeuseof.com|howtogeek.com

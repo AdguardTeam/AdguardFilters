@@ -53,6 +53,8 @@ music.yandex.*##.notify > div.deco-tooltip_notify.notify_shown
 [$path=/pogoda]dzen.ru##.adv-ecom
 [$path=/pogoda|hava/]yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
 [$path=/pogoda|hava/]yandex.*#%#//scriptlet('json-prune', 'rtb')
+!+ PLATFORM(ios)
+yandex.*##article[class^="AppMoney_wrap_"]
 ! TODO: remove after releasing new AdGuard 2.0 for Safari
 ! Breaks Yandex Mail in Safari due to a bug
 !+ NOT_PLATFORM(ext_safari)
@@ -77,7 +79,8 @@ mail.yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
 !
 ! Yandex.Search
 ! Main page under the search bar
-ya.ru##aside[class="informers3"] ~ div[class][style]:has(> div > div[style] > div[style^="background-image"] ~ a[target="_blank"])
+ya.ru##main[class="body__wrapper"] form ~ div[style^="--height-ratio:"]
+yandex.*##main[class="body__wrapper"] form ~ div > div[style^="--height-ratio:"]
 yandex.ru##.main__block-banner iframe[src]
 ! the ad is on the right side, which is mostly non-reproducible
 [$path=/search]ya.ru,yandex.*#%#//scriptlet('remove-node-text', 'script', '/^window\.Ya.*pcodeParams.*renderTo/')
@@ -656,6 +659,15 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+abdpost.com##div[x-data="adblockBanner()"]
+daido-h-ict.com#%#//scriptlet('prevent-addEventListener', 'load', 'detectAdBlock')
+snopes.com#%#//scriptlet('prevent-setTimeout', '.offsetHeight===0')
+comicschau.de###detect-modal
+pikuco.ru##.adbnotification
+kio.ac#%#//scriptlet('prevent-element-src-loading', 'script', 'lib.wtg-ads.com/publisher/')
+omd.taiv.tv##.authContainer div.banner
+hftv.ca#%#//scriptlet('prevent-addEventListener', 'load', '.offsetHeight === 0')
+hftv.ca##body > div > div[class="fixed top-0 left-0 right-0 px-6 py-4 z-50"]:has(> .items-center > button[onclick="this.closest('div').parentElement.remove()"])
 talksport.com#$#body { overflow: auto !important; }
 talksport.com#$##ad-blocker-popup { display: none !important; }
 ||thedarkblues.co.uk/applications/adsense/interface/js/blocker.js
@@ -663,7 +675,7 @@ talksport.com#$##ad-blocker-popup { display: none !important; }
 ||alonsoaliaga.github.io/*/resources.js
 duetnightabyss.th.gl#%#//scriptlet('adjust-setTimeout')
 duetnightabyss.th.gl#%#//scriptlet('trusted-click-element', 'div[role="alertdialog"] button')
-systementcorp.com,myenglishlanguage.com###zdn-adblock-overlay
+meteyeverse.com,free-apps-android.com,norbbert4.hu,cuongquach.dev,missax.org,systementcorp.com,myenglishlanguage.com###zdn-adblock-overlay
 ||script.wikia.nocookie.net/fandom-ae-assets/odyssey/ad-engine/production/main.js
 rg.ru#%#//scriptlet('set-local-storage-item', 'rekl_modal_shown', 'emptyObj')
 exceldestek.com#%#//scriptlet('set-constant', 'googletag', 'emptyObj')
@@ -734,7 +746,6 @@ thedarkblues.co.uk##.adblockerBox
 blackwidof.org#$##load-modal { display: none !important; }
 blackwidof.org#$#.modal-backdrop { display: none !important; }
 blackwidof.org#$#body { overflow: auto !important; padding-right: 0 !important; }
-jsfiddle.net#%#//scriptlet('prevent-setTimeout', 'modal-whitelist')
 freefilesync.org##section > div[id]:has(> a[href="/donate#support"])
 freefilesync.org#%#//scriptlet('prevent-setTimeout', 'dataset.adStatus')
 diablo.trade#%#//scriptlet('prevent-fetch', 'nitropay.com')
@@ -765,7 +776,7 @@ online2pdf.com##.adbox_outer_container
 thewoodyshow.com##div[id^="aptivada-redirect-wrap-"]
 swedroid.se###hish
 bmamag.com,specialneedsjungle.com###modal-extended-adblocker
-bmamag.com,specialneedsjungle.com,hwbusters.com,voiceofdenton.com#%#//scriptlet('set-constant', 'advanced_ads_check_adblocker', 'noopFunc')
+overclock3d.net,bmamag.com,specialneedsjungle.com,hwbusters.com,voiceofdenton.com#%#//scriptlet('set-constant', 'advanced_ads_check_adblocker', 'noopFunc')
 staging-hoichoitv.viewlift.com##body > div[style^="position: fixed;"][style*="z-index: 9999;"]
 morosedog.gitlab.io##.navbar-interceptor
 trychatgpt.ru#%#//scriptlet('prevent-element-src-loading', 'script', 'statika.mpsuadv.ru')
@@ -878,7 +889,8 @@ wochenblitz.com#$#body { overflow: auto !important; }
 wochenblitz.com#$##adblock-overlay { display: none !important; }
 wochenblitz.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'script.onerror')
 zertalious.xyz#%#//scriptlet('set-constant', 'detectAdblock', 'noopFunc')
-startpage.com#%#//scriptlet('prevent-element-src-loading', 'script', 'TotalAdBlockAdultWidget.js')
+startpage.com#%#//scriptlet('prevent-element-src-loading', 'script', '/TotalAdBlockAdultWidget\.js|\/ads-async\.js|\/adblock-detector\.min\.js|\/adblockdetect\.js|\/adserv\.js|\/arcads\.js|\/content-ads\.js|\/cpmbanners\.js|\/doubleclick\.min\.js|\/cms_ads\.js|\/footer_ad\.js|\/insertads\.js|\/slider_ad\.js|\/stickyads\.js|\/videojs\.sda\.js|\/js\/ad_common\.js|\/js\/adpopup\.js/')
+startpage.com###main > .support-banner
 startpage.com###main > .block-display:has(> div[class^="css-"] > div[class^="css-"] > a[href^="https://support.startpage.com/"][target="_blank"])
 heraldnet.com#%#//scriptlet('prevent-setTimeout', 'adBlockEnabled')
 ||heraldnet.com/wp-content/plugins/incognito_dectector/js/incognito-detector.js
@@ -923,8 +935,6 @@ economictimes.indiatimes.com#%#//scriptlet('set-constant', 'objAdBlocker.init', 
 mediamarkt.nl##div:has(> [data-test="mms-search-consent-section"])
 lazyadmin.nl###lazy_note
 maxroll.gg#%#//scriptlet('trusted-set-local-storage-item', 'adBlockWarning', '{"value":true}')
-jsfiddle.net##body > #modal-body.unblockRequest
-jsfiddle.net#%#//scriptlet('set-constant', '_bsa', 'emptyObj')
 rutube.ru##.notification-container-module__infoNotifications
 watson.de#$##adBlockerTest { display: block !important; }
 watson.ch#$##adBlockerDetection { display: block !important; }
@@ -1496,7 +1506,6 @@ javur.com###alertAdblock
 jdoodle.com#?#.home-container > #codefund  > span.codfund-fallback:contains(This site is ad supported! Please consider disable Ad blocker!)
 jeshoots.com##.san_sticky_notice
 jeshoots.com,dniwolne.eu#%#//scriptlet("set-constant", "google_jobrunner", "noopFunc")
-jsfiddle.net###keep-us-running
 jungle.world###block-adblocker
 kamudanhaber.net,habervakti.com,medya28.com,milliirade.com,kanalmaras.com#$#div[data-advert=temedya][id]:not(#style_important) { display: block !important; }
 kanzenshuu.com##.advert
@@ -2245,8 +2254,8 @@ u.gg#@##ad-lead
 pushsquare.com#@#.insert
 pushsquare.com#@#.for-desktop
 pushsquare.com#@#.masthead
-boingboing.net#@#.ad-unit:not(.textads)
-boingboing.net#@#.ad_unit
+overclock3d.net,boingboing.net#@#.ad-unit:not(.textads)
+overclock3d.net,boingboing.net#@#.ad_unit
 @@||kickasssubtitles.com/js/fuckadblock.js
 @@||fussballtransfers.com/lib/prebid*.js
 @@||fussballtransfers.com/build/js/adManager.*.js
@@ -3365,6 +3374,9 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 ! SECTION[id=content_blockers]: Anti-adblock - The rules for content blockers only
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
+@@||googletagservices.com/dcm/dcmads.js$domain=snopes.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=snopes.com
+@@||lib.wtg-ads.com/publisher/kio.ac/sb_interstitial_wtg.js$domain=kio.ac
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=talksport.com
 @@||securepubads.g.doubleclick.net/pagead/*/pubads_impl.js$domain=talksport.com
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=talksport.com
