@@ -9,16 +9,37 @@ on:
       - master
     paths:
       - "**/*.txt"
-      - ".aglintrc.*"
-      - "package.json"
+
+      - "**/.aglintignore"
+
+      - "**/.aglintrc"
+      - "**/.aglintrc.json"
+      - "**/.aglintrc.yaml"
+      - "**/.aglintrc.yml"
+      - "**/aglint.config.json"
+      - "**/aglint.config.yaml"
+      - "**/aglint.config.yml"
+      - "**/package.json"
+
       - "package-lock.json"
+
   pull_request:
     branches:
       - master
     paths:
       - "**/*.txt"
-      - ".aglintrc.*"
-      - "package.json"
+
+      - "**/.aglintignore"
+
+      - "**/.aglintrc"
+      - "**/.aglintrc.json"
+      - "**/.aglintrc.yaml"
+      - "**/.aglintrc.yml"
+      - "**/aglint.config.json"
+      - "**/aglint.config.yaml"
+      - "**/aglint.config.yml"
+      - "**/package.json"
+
       - "package-lock.json"
 
 jobs:
@@ -37,6 +58,26 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: AGLint cache
+        uses: actions/cache@v4
+        with:
+          path: .aglintcache
+          key: >
+            ${{ runner.os }}-aglint-${{ hashFiles(
+              '**/.aglintignore',
+              '**/.aglintrc',
+              '**/.aglintrc.json',
+              '**/.aglintrc.yaml',
+              '**/.aglintrc.yml',
+              '**/aglint.config.json',
+              '**/aglint.config.yaml',
+              '**/aglint.config.yml',
+              '**/package.json',
+              'package-lock.json'
+            ) }}
+          restore-keys: |
+            ${{ runner.os }}-aglint-
 
       # If the linter found any errors, it will exit with a non-zero code, which will cause the job to fail
       - name: Run AGLint
