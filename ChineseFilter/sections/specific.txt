@@ -43,8 +43,6 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 ! NOTE: Specific rules
 !
-player.huavod.*#%#(()=>{window.addEventListener("DOMContentLoaded",()=>{try{ConFig["config"]["ads"]["user"]="VIP"}catch(e){}})})();
-||player.huavod.*/player/ec.php?$replace=/"ads":\{"user":"[^"]+"/"ads":{"user":"VIP"/
 ||wnimg1.ru/data/game/*/*-*x*.gif
 wnacg05.cc###control_block
 wnacg05.cc#%#//scriptlet('abort-current-inline-script', 'Math.floor', 'tips')
@@ -2010,13 +2008,16 @@ netfly.*,netfly.tv##.player-box > div.player-tt-rmm
 netfly.*,netfly.tv##.module-tg-box
 netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] > img
 netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
+! https://github.com/AdguardTeam/AdguardFilters/issues/219444
 ! https://github.com/AdguardTeam/AdguardFilters/issues/210237
-huaren.live#%#//scriptlet('set-constant', 'ConFig.config.ads', 'emptyObj')
+huavod.com,huaren.live#%#//scriptlet('set-constant', 'ConFig.config.ads', 'emptyObj')
 ! TODO: remove hints when this issue is resolved - https://github.com/AdguardTeam/Scriptlets/issues/517
 !+ NOT_PLATFORM(windows, mac, android)
-huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
-!+ PLATFORM(windows, mac, android)
+huavod.com,huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+||huavod.com/player/$replace=/let ConFig/var ConFig/,document
 ||huaren.live/player/$replace=/let ConFig/var ConFig/,document
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177520
 !+ PLATFORM(windows, mac, android)
 /gmu-download.oss-$image,redirect-rule=1x1-transparent.gif,domain=voflix.vip
