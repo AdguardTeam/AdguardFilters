@@ -79,9 +79,7 @@ prosieben.de#%#//scriptlet('set-constant', 'Object.prototype.checkAdProxyAvailab
 ! https://github.com/AdguardTeam/AdguardFilters/issues/148783
 data-load.*#%#//scriptlet('set-cookie', '_xflora', '1')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146229
-! TODO: use scriptlet "inject-css-in-shadow-dom" when it will be available in apps
-! gmx.net,gmx.at,web.de#%#//scriptlet('inject-css-in-shadow-dom', '.list-programmatic-ad-item--multi-line, .list-inbox-ad-item--multi-line { display: none !important; }')
-gmx.net,gmx.at,web.de#%#(()=>{const a=(a,b,c)=>{const d=Reflect.apply(a,b,c),e=".list-programmatic-ad-item--multi-line, .list-inbox-ad-item--multi-line { display: none !important; }";if("adoptedStyleSheets"in document){const a=new CSSStyleSheet;a.replaceSync(e),d.adoptedStyleSheets=[a]}else{const a=document.createElement("style");a.innerText=e,d.appendChild(a)}return d};window.Element.prototype.attachShadow=new Proxy(window.Element.prototype.attachShadow,{apply:a})})();
+gmx.net,gmx.at,web.de#%#//scriptlet('inject-css-in-shadow-dom', '.list-programmatic-ad-item--multi-line, .list-inbox-ad-item--multi-line, list-inbox-ad-item { display: none !important; }')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158944
 chip.de#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'DisplayAcceptableAdIfAdblocked')
 chip.de#%#//scriptlet('trusted-replace-node-text', 'style', '/a [\s\S]* padding-top[\s\S]*aspect-ratio/', '/.*(\..*?) [\s\S]*padding-top[\s\S]*aspect-ratio[\s\S]*/', '$1 { display: none !important; }')
