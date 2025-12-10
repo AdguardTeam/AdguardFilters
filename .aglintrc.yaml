@@ -1,32 +1,35 @@
-# Keep in mind that in regexp rules, dots may or may not be escaped.
-# So if you want to exclude a rule like:
-# `/example.(com|org)\/ads/`
-# You should replace the dot `.` with `(\.|\\\.)`, resulting in:
-# `\/example(\.|\\\.)\(com\|org\)\\\/ads\/`
-# This regexp will match and block both:
-# `/example.(com|org)\/ads/`
-# `/example\.(com|org)\/ads/`
-# See an example: https://regex101.com/r/L7CsOZ/1
-#
-# https://github.com/AdguardTeam/AGLint#configuration
+# AGLint config file
+# Documentation: https://github.com/AdguardTeam/AGLint/blob/master/docs/configuration.md
 root: true
 extends:
   - aglint:recommended
-syntax:
-  - AdGuard
+platforms:
+  - adg_any
 rules:
   no-excluded-rules:
     - error
-    - regexp-patterns:
+    - excludedRuleTexts: []
+    - excludedRegExpPatterns:
         # Do not forget to escape special regex characters
         #
+        # Keep in mind that in regexp rules, dots may or may not be escaped.
+        # So if you want to exclude a rule like:
+        # `/example.(com|org)\/ads/`
+        # You should replace the dot `.` with `(\.|\\\.)`, resulting in:
+        # `\/example(\.|\\\.)\(com\|org\)\\\/ads\/`
+        # This regexp will match and block both:
+        # `/example.(com|org)\/ads/`
+        # `/example\.(com|org)\/ads/`
+        # See an example: https://regex101.com/r/L7CsOZ/1
         #
+        # https://github.com/AdguardTeam/AdguardFilters/issues/219547
+        - \|\|adx\.promo\^
         # https://x.com/428rinsuki/status/1994048111082344631
         - \|\|stat\.i3\.dmm\.com
         # https://github.com/DandelionSprout/adfilt/discussions/163#discussioncomment-14989561
         - \|\|nextdns\.io.*\$removeparam=from$
         # https://github.com/easylist/easylist/issues/22562
-        - \|\|duplexer\.wix\.com\^$
+        - \|\|duplexer\.wix\.com\^
         # https://github.com/AdguardTeam/AdguardFilters/issues/212007#issuecomment-3426074352
         - \|\|lit\.link\/scripts\/geniee-ad-inline\.js
         # https://github.com/AdguardTeam/AdguardFilters/issues/215858
