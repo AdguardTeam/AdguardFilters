@@ -8,20 +8,58 @@ platforms:
 rules:
   no-excluded-rules:
     - error
-    - excludedRuleTexts: []
-    - excludedRegExpPatterns:
-        # Do not forget to escape special regex characters
-        #
-        # Keep in mind that in regexp rules, dots may or may not be escaped.
-        # So if you want to exclude a rule like:
-        # `/example.(com|org)\/ads/`
-        # You should replace the dot `.` with `(\.|\\\.)`, resulting in:
-        # `\/example(\.|\\\.)\(com\|org\)\\\/ads\/`
-        # This regexp will match and block both:
-        # `/example.(com|org)\/ads/`
-        # `/example\.(com|org)\/ads/`
-        # See an example: https://regex101.com/r/L7CsOZ/1
-        #
+    - # Exclude rules by their exact text
+      # Note: A rule is excluded ONLY if its text matches exactly.
+      # For example, adding '||example.com^' will NOT exclude
+      # '||example.com^$script'; it will exclude only '||example.com^'.
+      excludedRuleTexts:
+        # Breaks websites that use Intercom chat widget
+        - '||api-iam.intercom.io/messenger/web/ping'
+        # Breaks adding Yahoo account in email clients
+        - '||udc.yahoo.com^'
+        # https://github.com/AdguardTeam/AdguardFilters/issues/188783#issuecomment-2359649738
+        - '^||bilibili.com^$removeparam=mid'
+        # Breaks appconsent.io cookie consents
+        - '^||collector.appconsent.io^'
+
+      # Exclude rules using regular expression patterns
+      #
+      # IMPORTANT:
+      # - Patterns are tested against the FULL line text.
+      # - Matching applies to ALL lines, including comments (comments start with `!`).
+      # - Use this section only when excluding by exact text is not possible.
+      # - Be as specific as possible — overly broad patterns may exclude
+      #   unrelated rules and cause widespread breakage.
+      #
+      # NOTE for comments:
+      # - Matching applies to comment lines as well, so an unanchored regexp may match them.
+      #   Example: the pattern `\|\|foo\^` may exclude both `||foo^` and `! ||foo^`.
+      # - If you want to KEEP commented rules, ensure the pattern cannot start with `!`:
+      #   * Anchor to the start if you match from the beginning:
+      #       ^\|\|foo\^
+      #     (matches `||foo^`, but not `! ||foo^`)
+      #   * Or, if you want to match “anywhere in the rule”, prefix with:
+      #       ^(?!!).*foo
+      #     (matches `||foo^` or `||foo.example.com^`,
+      #      but not `! ||foo^` nor `! some text foo`)
+      #
+      # NOTE for regexp-rules (for excluding regexp rules written as /.../):
+      # - The escaping trick below is needed ONLY when the excluded rule
+      #   itself is a regexp rule (i.e. written as /.../).
+      # - In regexp rule text, dots (.) may appear escaped or unescaped.
+      #
+      # Example:
+      #   Excluded rule:
+      #     /example.(com|org)\/ads/
+      #   Pattern to match both forms:
+      #     \/example(\.|\\\.)\(com\|org\)\\\/ads\/
+      #
+      # This matches BOTH:
+      #   /example.(com|org)\/ads/
+      #   /example\.(com|org)\/ads/
+      #
+      # See example: https://regex101.com/r/L7CsOZ/1
+      excludedRegExpPatterns:
         # Dangerous, breaks many sites and apps
         - \|\|tags.tiqcdn.com\^$
         # https://github.com/AdguardTeam/AdguardFilters/issues/219547
@@ -50,14 +88,6 @@ rules:
         - datadog.pool.ntp.org\^$
         # https://github.com/AdguardTeam/AdguardFilters/issues/212409
         - \|\|pro-1w-dataaggregator.onelouder.com\^$
-        # Breaks websites that use Intercom chat widget
-        - ^\|\|api-iam\.intercom\.io\/messenger\/web\/ping$
-        # Breaks adding Yahoo account in email clients
-        - ^\|\|udc.yahoo.com\^$
-        # https://github.com/AdguardTeam/AdguardFilters/issues/188783#issuecomment-2359649738
-        - ^\|\|bilibili.com\^\$removeparam=mid$
-        # Breaks appconsent.io cookie consents
-        - ^\|\|collector\.appconsent\.io\^$
         # https://github.com/AdguardTeam/AdguardFilters/commit/3835ef566e40b6374717d39546663a19c2fa7716#r162211924
         - ^##a?\[href[^*]="(https?:\/\/)?lin\.ee\/?"\]\s$
         # It seems this sript also used by anti-bot protection.
@@ -159,7 +189,7 @@ rules:
         # https://github.com/AdguardTeam/AdguardFilters/commit/a64fb16a9c0ba926f980ca5091ca6d39eeb6ef40
         - ^tuma(douga)?\.jp##\.index_banner_space$
         - static-assets\.bamgrid\.com\/analytics
-        - staff-start\.com\/js\/track\/
+        - ^staff-start\.com\/js\/track\/
         - minkou.jp\/js\/tracking\.js
         - amazon.com\/1\/batch\/1\/OP\/
         - amazon.com\/1\/batch\/1\/OE\/
