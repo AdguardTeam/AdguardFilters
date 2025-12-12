@@ -25,12 +25,25 @@ rules:
       # Exclude rules using regular expression patterns
       #
       # IMPORTANT:
-      # - These patterns are matched against the FULL rule text.
-      # - Use this only when excluding by exact text is not possible.
-      # - Be as specific as possible — overly broad patterns may
-      #   exclude unrelated rules and cause widespread breakage.
+      # - Patterns are tested against the FULL line text.
+      # - Matching applies to ALL lines, including comments (comments start with `!`).
+      # - Use this section only when excluding by exact text is not possible.
+      # - Be as specific as possible — overly broad patterns may exclude
+      #   unrelated rules and cause widespread breakage.
       #
-      # Regex-specific note:
+      # NOTE for comments:
+      # - Matching applies to comment lines as well, so an unanchored regexp may match them.
+      #   Example: the pattern `\|\|foo\^` may exclude both `||foo^` and `! ||foo^`.
+      # - If you want to KEEP commented rules, ensure the pattern cannot start with `!`:
+      #   * Anchor to the start if you match from the beginning:
+      #       ^\|\|foo\^
+      #     (matches `||foo^`, but not `! ||foo^`)
+      #   * Or, if you want to match “anywhere in the rule”, prefix with:
+      #       ^(?!!).*foo
+      #     (matches `||foo^` or `||foo.example.com^`,
+      #      but not `! ||foo^` nor `! some text foo`)
+      #
+      # NOTE for regexp-rules (for excluding regexp rules written as /.../):
       # - The escaping trick below is needed ONLY when the excluded rule
       #   itself is a regexp rule (i.e. written as /.../).
       # - In regexp rule text, dots (.) may appear escaped or unescaped.
