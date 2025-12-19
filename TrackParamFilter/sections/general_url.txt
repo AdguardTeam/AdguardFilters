@@ -7,6 +7,7 @@
 ! Good: $removeparam=utm_id
 ! Bad:  $removeparam=utm_id,domain=example.org (for instance, should be in specific.txt)
 !
+! NOTE: Generic rules
 !
 ! Winfluencer
 $removeparam=winflncrtag
@@ -418,30 +419,34 @@ $removeparam=fb_comment_id
 $removeparam=fb_ref
 $removeparam=fb_source
 !
-!
-! NOTE: Generic rules with exclusions for the MV3 extensions
-! That's needed for the MV3 extensions - https://github.com/w3c/webextensions/issues/783
-! TODO: Remove this section and revert to the original rules if the task above is fixed
+! ###########################################################################################################################
+! ##################### Generic rules with exclusions for the MV3 extensions ################################################
+! ###########################################################################################################################
+! It's needed for the MV3 extensions - exceptions like `@@*$removeparam` do not work
+! TODO: Remove this section and revert to the original rules if this https://github.com/w3c/webextensions/issues/783 is fixed
+! SECTION: Generic rules with exclusions for the MV3 extensions
 !
 !#if (ext_chromium_mv3 || ext_ublock)
-$removeparam=cmpid,domain=~cleviationly.com
-$removeparam=adj_t,domain=~adj.st|~yandex.go.link
-$removeparam=from,domain=~passport.jlcpcb.com
-$removeparam=cuid,domain=~em.dynamicyield.com|~mootoon.co.kr
-$removeparam=a8,domain=~a8cv.amiami.jp
-$removeparam=utm_medium,domain=~meishi.meituan.com|~portal-portm.meituan.com|~rd.bizrate.com|~glavnoe.life|~mmcref.pl|~t.send.vt.edu|~app.plex.tv
-$removeparam=utm_campaign,domain=~rd.bizrate.com|~glavnoe.life|~google.*|~redirects.tradedoubler.com|~t.send.vt.edu
-$removeparam=utm_referrer,domain=~glavnoe.life
-$removeparam=utm_content,domain=~reddit.app.link|~glavnoe.life|~gaugau.futabanet.jp|~redirects.tradedoubler.com|~app.plex.tv
-$removeparam=utm_source,domain=~video-shoper.ru|~glavnoe.life|~uploadnow.*|~3dnews.ru|~transfernow.net|~carrefourpl.snrpage.com|~transfernow.net|~lanacion.com.ar|~t.send.vt.edu|~ofeminin.pl|~auto-swiat.pl|~komputerswiat.pl|~noizz.pl|~plejada.pl|~medonet.pl|~businessinsider.com.pl|~sendgb.com|~plex.tv|~insurancexblog.blogspot.com
-$removeparam=utm_term,domain=~glavnoe.life|~metabase.com
-$removeparam=irclickid,domain=~tix.axs.com
-$removeparam=vc_lpp,domain=~booklive.jp
-$removeparam=erid,domain=~lifehacker.ru|~forbes.ru|~kommersant.ru
-$removeparam=oly_enc_id,domain=~greenbuildingadvisor.com
-$removeparam=_ga,domain=~login.aliexpress.*
-$removeparam=tduid,domain=~tradedoubler.com
+$denyallow=cleviationly.com,removeparam=cmpid
+$denyallow=adj.st|yandex.go.link,removeparam=adj_t
+$denyallow=passport.jlcpcb.com,removeparam=from
+$denyallow=em.dynamicyield.com|mootoon.co.kr,removeparam=cuid
+$denyallow=a8cv.amiami.jp,removeparam=a8
+$denyallow=meishi.meituan.com|portal-portm.meituan.com|rd.bizrate.com|glavnoe.life|mmcref.pl|t.send.vt.edu|app.plex.tv,removeparam=utm_medium
+$denyallow=rd.bizrate.com|glavnoe.life|redirects.tradedoubler.com|t.send.vt.edu|google.ad|google.ae|google.al|google.am|google.as|google.at|google.az|google.ba|google.be|google.bf|google.bg|google.bi|google.bj|google.bs|google.bt|google.by|google.ca|google.cat|google.cd|google.cf|google.cg|google.ch|google.ci|google.cl|google.cm|google.cn|google.co.ao|google.co.bw|google.co.ck|google.co.cr|google.co.id|google.co.il|google.co.in|google.co.jp|google.co.ke|google.co.kr|google.co.ls|google.co.ma|google.co.mz|google.co.nz|google.co.th|google.co.tz|google.co.ug|google.co.uk|google.co.uz|google.co.ve|google.co.vi|google.co.za|google.co.zm|google.co.zw|google.com|google.com.af|google.com.ag|google.com.ai|google.com.ar|google.com.au|google.com.bd|google.com.bh|google.com.bn|google.com.bo|google.com.br|google.com.bz|google.com.co|google.com.cu|google.com.cy|google.com.do|google.com.ec|google.com.eg|google.com.et|google.com.fj|google.com.gh|google.com.gi|google.com.gt|google.com.hk|google.com.jm|google.com.kh|google.com.kw|google.com.lb|google.com.ly|google.com.mm|google.com.mt|google.com.mx|google.com.my|google.com.na|google.com.nf|google.com.ng|google.com.ni|google.com.np|google.com.om|google.com.pa|google.com.pe|google.com.pg|google.com.ph|google.com.pk|google.com.pr|google.com.py|google.com.qa|google.com.sa|google.com.sb|google.com.sg|google.com.sl|google.com.sv|google.com.tj|google.com.tr|google.com.tw|google.com.ua|google.com.uy|google.com.vc|google.com.vn|google.cv|google.cz|google.de|google.dj|google.dk|google.dm|google.dz|google.ee|google.es|google.fi|google.fm|google.fr|google.ga|google.ge|google.gg|google.gl|google.gm|google.gp|google.gr|google.gy|google.hn|google.hr|google.ht|google.hu|google.ie|google.im|google.iq|google.is|google.it|google.je|google.jo|google.kg|google.ki|google.kz|google.la|google.li|google.lk|google.lt|google.lu|google.lv|google.md|google.me|google.mg|google.mk|google.ml|google.mn|google.ms|google.mu|google.mv|google.mw|google.ne|google.nl|google.no|google.nr|google.nu|google.pl|google.pn|google.ps|google.pt|google.ro|google.rs|google.ru|google.rw|google.sc|google.se|google.sh|google.si|google.sk|google.sm|google.sn|google.so|google.sr|google.st|google.td|google.tg|google.tk|google.tl|google.tm|google.tn|google.to|google.tt|google.vg|google.vu|google.ws,removeparam=utm_campaign
+$denyallow=glavnoe.life,removeparam=utm_referrer
+$denyallow=reddit.app.link|glavnoe.life|gaugau.futabanet.jp|redirects.tradedoubler.com|app.plex.tv,removeparam=utm_content
+$denyallow=video-shoper.ru|glavnoe.life|uploadnow.io|3dnews.ru|transfernow.net|carrefourpl.snrpage.com|transfernow.net|lanacion.com.ar|t.send.vt.edu|ofeminin.pl|auto-swiat.pl|komputerswiat.pl|noizz.pl|plejada.pl|medonet.pl|businessinsider.com.pl|sendgb.com|plex.tv|insurancexblog.blogspot.com,removeparam=utm_source
+$denyallow=glavnoe.life|metabase.com,removeparam=utm_term
+$denyallow=tix.axs.com,removeparam=irclickid
+$denyallow=booklive.jp,removeparam=vc_lpp
+$denyallow=lifehacker.ru|forbes.ru|kommersant.ru,removeparam=erid
+$denyallow=greenbuildingadvisor.com,removeparam=oly_enc_id
+$denyallow=login.aliexpress.com,removeparam=_ga
+$denyallow=tradedoubler.com,removeparam=tduid
 !#endif
+!
+! Move original rules to this directive if you can confirm the problem
 !
 !#if (!adguard_ext_chromium_mv3 && !ext_ublock)
 $removeparam=cmpid
@@ -473,3 +478,6 @@ $removeparam=_ga
 ! https://dev.tradedoubler.com/tracking/advertiser/
 $removeparam=tduid
 !#endif
+! NOTE: Generic rules with exclusions for the MV3 extensions ⬆️
+! !SECTION: Generic rules with exclusions for the MV3 extensions
+!
