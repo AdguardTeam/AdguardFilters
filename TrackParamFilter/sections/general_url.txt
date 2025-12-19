@@ -7,6 +7,7 @@
 ! Good: $removeparam=utm_id
 ! Bad:  $removeparam=utm_id,domain=example.org (for instance, should be in specific.txt)
 !
+! NOTE: Generic rules
 !
 ! Winfluencer
 $removeparam=winflncrtag
@@ -418,10 +419,12 @@ $removeparam=fb_comment_id
 $removeparam=fb_ref
 $removeparam=fb_source
 !
-!
-! NOTE: Generic rules with exclusions for the MV3 extensions
-! That's needed for the MV3 extensions - https://github.com/w3c/webextensions/issues/783
-! TODO: Remove this section and revert to the original rules if the task above is fixed
+! ###########################################################################################################################
+! ##################### Generic rules with exclusions for the MV3 extensions ################################################
+! ###########################################################################################################################
+! It's needed for the MV3 extensions - exceptions like `@@*$removeparam` do not work
+! TODO: Remove this section and revert to the original rules if this https://github.com/w3c/webextensions/issues/783 is fixed
+! SECTION: Generic rules with exclusions for the MV3 extensions
 !
 !#if (ext_chromium_mv3 || ext_ublock)
 $denyallow=cleviationly.com,removeparam=cmpid
@@ -443,6 +446,7 @@ $denyallow=login.aliexpress.com,removeparam=_ga
 $denyallow=tradedoubler.com,removeparam=tduid
 !#endif
 !
+
 !#if (!adguard_ext_chromium_mv3 && !ext_ublock)
 $removeparam=cmpid
 ! adjust.com tracking
@@ -473,3 +477,6 @@ $removeparam=_ga
 ! https://dev.tradedoubler.com/tracking/advertiser/
 $removeparam=tduid
 !#endif
+! NOTE: Generic rules with exclusions for the MV3 extensions ⬆️
+! !SECTION: Generic rules with exclusions for the MV3 extensions
+!
