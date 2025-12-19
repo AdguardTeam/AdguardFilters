@@ -1209,6 +1209,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/220404
+ajdown.space#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|doubleclick\.net|adservice\.google\.com/')
+ajdown.space###adblock-overlay { display: none !important; }
+ajdown.space#$#body { overflow: auto !important; }
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=ajdown.space
+@@||adservice.google.com/adsid/integrator.js$domain=ajdown.space
+@@||securepubads.g.doubleclick.net/gpt/pubads_impl.js$domain=ajdown.space
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/220467
 fortnitetracker.com#%#//scriptlet('set-constant', 'nitroAds.abp', 'true')
 fortnitetracker.com##body > div[style^="background:"][style*="position: fixed; display: flex;"][style*="z-index:"]
