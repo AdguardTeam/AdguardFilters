@@ -8,6 +8,8 @@
 ! Bad:  $removeparam=utm_id,domain=example.org (for instance, should be in specific.txt)
 !
 !
+! Winfluencer
+$removeparam=winflncrtag
 ! FastFlow
 $removeparam=ftag
 ! https://5-fifth.com/products/detail?product_id=26125&janet=0qB9lV3s&a=1
@@ -76,8 +78,6 @@ $removeparam=bemobdata
 $removeparam=_bhlid
 ! Not identified. Popular on Japanese sites
 $removeparam=_bdadid
-! a8.net
-$removeparam=a8
 ! personaclick.com
 $removeparam=recommended_by
 $removeparam=recommended_code
@@ -148,7 +148,6 @@ $removeparam=iclid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158662
 $removeparam=user_email_address
 ! https://support.google.com/analytics/answer/10071811
-$removeparam=_ga
 $removeparam=_gl
 ! Coremetrics
 ! https://help.hcltechsw.com/commerce/8.0.0/coremetrics/refs/rmtusecmpcore.html
@@ -163,13 +162,9 @@ $removeparam=sscid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154659
 $removeparam=rtkcid
 rtkcid=*&clickid=$removeparam=clickid
-! https://github.com/AdguardTeam/AdguardFilters/issues/152387
-! Sovrn (VigLink) tracking
-$removeparam=cuid
 ! impact.com
 $removeparam=ir_campaignid
 $removeparam=ir_adid
-$removeparam=irclickid
 $removeparam=ir_partnerid
 ! IO Technologies
 ! Identify a period of time for which unique visitors use our website
@@ -181,9 +176,6 @@ $removeparam=asgtbndr
 ! https://help.zeydoo.com/en/articles/4362736-how-to-setup-zeydoo-s2s-conversion-tracking
 $removeparam=ymid
 ^z=*&var=$removeparam=var
-! Tradedoubler
-! https://dev.tradedoubler.com/tracking/advertiser/
-$removeparam=tduid
 ! GLAMI click id
 ! https://help.glami.info/pixel-2.0-release-all-you-need-to-know
 $removeparam=gci
@@ -198,8 +190,6 @@ click_id=*_branch_referrer=$removeparam
 $removeparam=famad_xuid
 ! https://tsunen.team-lab.com/?twclid=2-3bhrj1ny7p11v5r9pap3anqge
 $removeparam=twclid
-! https://interactivead.ru/wp-content/uploads/2022/08/arir22_rkn.pdf
-$removeparam=erid
 ! Cxense clickthrough tracking
 $removeparam=cx_click
 $removeparam=cx_recsOrder
@@ -306,18 +296,15 @@ $removeparam=utm_adgroup
 $removeparam=utm_ad
 $removeparam=utm_affiliate
 $removeparam=utm_brand
-$removeparam=utm_campaign
 $removeparam=utm_campaignid
 $removeparam=utm_channel
 $removeparam=utm_cid
-$removeparam=utm_content
 $removeparam=utm_creative
 $removeparam=utm_emcid
 $removeparam=utm_emmid
 $removeparam=utm_id
 $removeparam=utm_id_
 $removeparam=utm_keyword
-$removeparam=utm_medium
 $removeparam=utm_name
 $removeparam=utm_place
 $removeparam=utm_product
@@ -330,11 +317,9 @@ $removeparam=utm_session
 $removeparam=utm_siteid
 $removeparam=utm_social
 $removeparam=utm_social-type
-$removeparam=utm_source
 $removeparam=utm_source_platform
 $removeparam=utm_supplier
 $removeparam=utm_swu
-$removeparam=utm_term,domain=~metabase.com
 $removeparam=utm_umguk
 $removeparam=utm_userid
 $removeparam=utm_viz_id
@@ -362,7 +347,6 @@ $removeparam=admitad_uid
 ! adjust.com tracking
 $removeparam=adj_label
 $removeparam=adj_campaign
-$removeparam=adj_t
 $removeparam=adj_creative
 $removeparam=gps_adid
 $removeparam=unicorn_click_id
@@ -397,15 +381,12 @@ $removeparam=pk_source
 ! Branch.io ( https://stackoverflow.com/questions/37882810/what-is-meaning-of-branch-match-id )
 $removeparam=_branch_referrer
 $removeparam=_branch_match_id
-! Valuecommerce ( https://help.valuecommerce.ne.jp/mer/dl/ITP2.0_for_iTAG.pdf )
-$removeparam=vc_lpp
 ! https://github.com/brave/brave-browser/issues/17507
 $removeparam=ml_subscriber
 $removeparam=ml_subscriber_hash
 ! Olytics
 $removeparam=rb_clickid
 $removeparam=oly_anon_id
-$removeparam=oly_enc_id
 ! AD EBiS
 $removeparam=ebisAdID
 ! Wicked Reports click tracking
@@ -424,7 +405,6 @@ $removeparam=nb_expid_meta
 $removeparam=adfrom
 $removeparam=nx_source
 $removeparam=_zucks_suid
-$removeparam=cmpid
 $removeparam=guccounter
 $removeparam=guce_referrer
 $removeparam=guce_referrer_sig
@@ -438,3 +418,58 @@ $removeparam=fb_comment_id
 $removeparam=fb_ref
 $removeparam=fb_source
 !
+!
+! NOTE: Generic rules with exclusions for the MV3 extensions
+! That's needed for the MV3 extensions - https://github.com/w3c/webextensions/issues/783
+! TODO: Remove this section and revert to the original rules if the task above is fixed
+!
+!#if (ext_chromium_mv3 || ext_ublock)
+$removeparam=cmpid,domain=~cleviationly.com
+$removeparam=adj_t,domain=~adj.st|~yandex.go.link
+$removeparam=from,domain=~passport.jlcpcb.com
+$removeparam=cuid,domain=~em.dynamicyield.com|~mootoon.co.kr
+$removeparam=a8,domain=~a8cv.amiami.jp
+$removeparam=utm_medium,domain=~meishi.meituan.com|~portal-portm.meituan.com|~rd.bizrate.com|~glavnoe.life|~mmcref.pl|~t.send.vt.edu|~app.plex.tv
+$removeparam=utm_campaign,domain=~rd.bizrate.com|~glavnoe.life|~google.*|~redirects.tradedoubler.com|~t.send.vt.edu
+$removeparam=utm_referrer,domain=~glavnoe.life
+$removeparam=utm_content,domain=~reddit.app.link|~glavnoe.life|~gaugau.futabanet.jp|~redirects.tradedoubler.com|~app.plex.tv
+$removeparam=utm_source,domain=~video-shoper.ru|~glavnoe.life|~uploadnow.*|~3dnews.ru|~transfernow.net|~carrefourpl.snrpage.com|~transfernow.net|~lanacion.com.ar|~t.send.vt.edu|~ofeminin.pl|~auto-swiat.pl|~komputerswiat.pl|~noizz.pl|~plejada.pl|~medonet.pl|~businessinsider.com.pl|~sendgb.com|~plex.tv|~insurancexblog.blogspot.com
+$removeparam=utm_term,domain=~glavnoe.life|~metabase.com
+$removeparam=irclickid,domain=~tix.axs.com
+$removeparam=vc_lpp,domain=~booklive.jp
+$removeparam=erid,domain=~lifehacker.ru|~forbes.ru|~kommersant.ru
+$removeparam=oly_enc_id,domain=~greenbuildingadvisor.com
+$removeparam=_ga,domain=~login.aliexpress.*
+$removeparam=tduid,domain=~tradedoubler.com
+!#endif
+!
+!#if (!adguard_ext_chromium_mv3 && !ext_ublock)
+$removeparam=cmpid
+! adjust.com tracking
+$removeparam=adj_t
+! https://github.com/AdguardTeam/AdguardFilters/issues/152387
+! Sovrn (VigLink) tracking
+$removeparam=cuid
+! a8.net
+$removeparam=a8
+! UTM
+$removeparam=utm_medium
+$removeparam=utm_campaign
+$removeparam=utm_referrer
+$removeparam=utm_content
+$removeparam=utm_source
+$removeparam=utm_term
+! impact.com
+$removeparam=irclickid
+! Valuecommerce ( https://help.valuecommerce.ne.jp/mer/dl/ITP2.0_for_iTAG.pdf )
+$removeparam=vc_lpp
+! https://interactivead.ru/wp-content/uploads/2022/08/arir22_rkn.pdf
+$removeparam=erid
+! Olytics
+$removeparam=oly_enc_id
+! https://support.google.com/analytics/answer/10071811
+$removeparam=_ga
+! Tradedoubler
+! https://dev.tradedoubler.com/tracking/advertiser/
+$removeparam=tduid
+!#endif
