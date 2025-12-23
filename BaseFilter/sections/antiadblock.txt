@@ -1210,6 +1210,12 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/220894
+uwupad.me#%#//scriptlet('remove-node-text', 'script', 'checkAdBlock')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||uwupad.me/static/js/prebid.js
+@@||uwupad.me^$generichide
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/220792
 dropymail.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/220791
@@ -2872,9 +2878,10 @@ whatsafterthemovie.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196410
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191501
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185379
-luluvid.com,luluvdoo.com,savefiles.com,rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com##body > div[class][oncontextmenu][style="display: block;"]
 luluvid.com,luluvdoo.com,savefiles.com,rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com#%#//scriptlet('abort-on-property-read', 'showADBOverlay')
 luluvid.com,luluvdoo.com,savefiles.com,rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com#%#//scriptlet('abort-on-stack-trace', '$', 'showADBOverlay')
+!+ NOT_OPTIMIZED
+luluvid.com,luluvdoo.com,savefiles.com,rubyvidhub.com,streamruby.com,lulustream.com,luluvdo.com##body > div[class][oncontextmenu][style="display: block;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185133
 fullboys.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
