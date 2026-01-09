@@ -261,6 +261,11 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ! Common rules, which partially hide banners
 .com/players/*/-1/$script,third-party
 .com/players/*/-1/70/$xmlhttprequest
+.html-load.com/papi/$image,stylesheet,script,subdocument,xmlhttprequest
+.html-load.com/player/$script,stylesheet,subdocument,xmlhttprequest
+@@.html-load.com/papi/*/70/$image,script,subdocument,xmlhttprequest
+@@.html-load.com/player/*/70/$script,subdocument,xmlhttprequest
+||html-load.com^$image,~third-party,domain=html-load.com,important
 ~dogdrip.net,~smsonline.cloud##*:not(body) > a[href^="https://content-loader.com/player"]
 ~dogdrip.net,~smsonline.cloud##*:not(body) > a[href^="https://html-load.com/player"]
 ~dogdrip.net,~smsonline.cloud##*:not(body) > a[href^="https://07c225f3.online/player"]
@@ -275,15 +280,6 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ~dogdrip.net,~smsonline.cloud##img[height="   250"][width="   300"]
 ~dogdrip.net,~smsonline.cloud##img[height="   90"][width="   728"]
 ~dogdrip.net,~smsonline.cloud##ins[style$="height:    90px; width:    728px;"]
-! aglint-disable no-invalid-modifiers
-!+ NOT_VALIDATE PLATFORM(windows, mac, android)
-://content-loader.com/*.js$script,urltransform=/[.0-9A-Z_a-z-]+\.js/error.js/,domain=~dogdrip.net|~smsonline.cloud
-!+ NOT_VALIDATE PLATFORM(windows, mac, android)
-://html-load.com/*.js$script,urltransform=/[.0-9A-Z_a-z-]+\.js/error.js/,domain=~dogdrip.net|~smsonline.cloud
-!#if (!adguard_app_ios && !adguard_ext_android_cb && !adguard_ext_safari && !adguard_ext_chromium_mv3 && !adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli)
-://html-load.com/*.js$script,third-party,domain=~dogdrip.net|~smsonline.cloud|~slideshare.net
-://content-loader.com/*.js$script,third-party,domain=~dogdrip.net|~smsonline.cloud|~slideshare.net
-!#endif
 !
 !#if (adguard_ext_chromium)
 @@://html-load.com/loader.min.js$domain=dogdrip.net|smsonline.cloud
@@ -299,11 +295,6 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 /^https:\/\/loader\.[-0-9a-z]+\.[a-z][a-z][a-z]?\/script\/www\.[-0-9a-z]+\.js$/$script,~third-party,match-case
 !#endif
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari || adguard_ext_chromium_mv3)
-.html-load.com/papi/$image,stylesheet,script,subdocument,xmlhttprequest
-.html-load.com/player/$script,stylesheet,subdocument,xmlhttprequest
-@@.html-load.com/papi/*/70/$image,script,subdocument,xmlhttprequest
-@@.html-load.com/player/*/70/$script,subdocument,xmlhttprequest
-||html-load.com^$image,~third-party,domain=html-load.com,important
 ##a[target="_blank"][rel="noopener noreferrer"]:has(> div#container > div.img_container > img[src^="https://asset.ad-shield.cc"])
 ##body > a[href^="https://www.amazon."][href*="tag=adshield"][target="_blank"]
 ##body > a[href^="https://s.click.aliexpress.com"][target="_blank"][rel="noopener noreferrer"]
