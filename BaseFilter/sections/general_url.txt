@@ -86,10 +86,14 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192351
 ! Example: https://ucferqgpkc.xyz/
 /^https?:\/\/[a-z]{8,15}\.xyz\/$/$xmlhttprequest,third-party,method=head,to=xyz
+! https://github.com/AdguardTeam/AdguardFilters/issues/222475
 ! ex. https://jzjj.jeoawamjbbzjy.top/kljyjjeajazry/mevjvz?d=1
+/\.goplay\.su\/[a-z][0-9A-Za-z]{10,}\/\d{3,6}$/$xmlhttprequest,match-case
 /^https:\/\/[a-z]{3,5}\.[a-z]{10,14}\.top\/[a-z]{10,16}\/[a-z]{5,6}(?:\?d=\d)?$/$script,third-party,match-case
-!+ PLATFORM(ios, ext_safari)
+!#if (adguard_app_ios || adguard_ext_safari)
+/\.goplay\.su\/[a-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z][0-9A-Za-z]+\/[0-9][0-9][0-9][0-9]?[0-9]?[0-9]?$/$xmlhttprequest,match-case
 /^https:\/\/[a-z][a-z][a-z][a-z]?[a-z]?\.[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?\.top\/[a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z][a-z]?[a-z]?[a-z]?[a-z]?[a-z]?[a-z]?\/[a-z][a-z][a-z][a-z][a-z][a-z]?(\?d=[0-9])?$/$script,third-party,match-case
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182734
 /?siteId=*&performerName=*&subAffId=$all
 .click/?token=*&sessionUser=*&amzId=*&tilTime=*&s=|$all
