@@ -329,6 +329,12 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/222654
+! Automatically redirects to video player
+!+ NOT_PLATFORM(ext_ff)
+sulasokvid.net#%#(()=>{if(location.href.includes("/watch.php?id=")){const i=location.href.replace("watch.php","video.php");location.assign(i)}})();
+!+ PLATFORM(ext_ff)
+sulasokvid.net#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{if(location.href.includes("/watch.php?id=")){const i=location.href.replace("watch.php","video.php");location.assign(i)}})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/221402
 !+ NOT_PLATFORM(ext_ff)
 yiv.com#%#(()=>{document.addEventListener("DOMContentLoaded",(()=>{"function"==typeof showgame&&showgame()}));})();
