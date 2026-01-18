@@ -1221,6 +1221,9 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/222901
+newsofx2.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'eval')
+||newsofx2.com/wp-content/litespeed/js/$script
 ! https://github.com/AdguardTeam/AdguardFilters/issues/222789
 ibmmainframes.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
@@ -1860,9 +1863,10 @@ choralia.net#%#//scriptlet('trusted-set-constant', 'ads_stop', '"true"')
 uploadcloud.pro#%#//scriptlet('prevent-setTimeout', '.offsetHeight == 0')
 uploadcloud.pro###container > div[id][style*="display:"]:has(> div[class][style="z-index: 9999999;"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208587
-mmsbee42.com,mmsmasala.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+mmsmasala.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+[$domain=/mmsbee\d+\.com/]#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mmsbee42.com|mmsmasala.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=mmsmasala.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208457
 rjnovels.blogspot.com#%#//scriptlet('abort-on-property-read', 'detectBlockers')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
