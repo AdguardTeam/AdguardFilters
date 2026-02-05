@@ -606,10 +606,12 @@ sssinstagram.com#%#//scriptlet('prevent-window-open')
 sssinstagram.com#%#//scriptlet('set-constant', 'clickAds.init', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171445
 x-x-x.tube#%#//scriptlet('prevent-popads-net')
+! https://github.com/AdguardTeam/AdguardFilters/issues/223900
+! https://github.com/AdguardTeam/AdguardFilters/issues/182550
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171300
 pluto.tv#%#//scriptlet('json-prune', 'adBreaks.*')
 !+ NOT_PLATFORM(ext_ublock)
-!pluto.tv#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"_ad")]] | //*[@type="static"]//*[name()="Period"]/@start | //*[@type="static"]//*[name()="Period"]/@duration', '', '.mpd')
+pluto.tv#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][not(contains(@id,"subclip"))] | //*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"]/@start)', '', '/\/episode\/.+?\.mpd\?/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170495
 hentai-moon.com#%#//scriptlet('set-constant', 'flashvars.adv_pre_html', '')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170827
