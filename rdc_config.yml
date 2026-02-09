@@ -1,0 +1,64 @@
+# TrackDomains Configuration
+
+http:
+  timeout: 10000          # fallback timeout (used if specific timeouts are not provided)
+  retries: 2              # exponential backoff
+  resolveTimeout: 10000   # timeout for resolve (redirect) phase
+  heuristicTimeout: 10000 # timeout for heuristic phase
+  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+
+processing:
+  parallel: 10           # legacy/global fallback parallelism (rarely used)
+  resolveParallel: 20    # concurrent resolve checks (main phase)
+  heuristicParallel: 50  # concurrent heuristic checks (lightweight DNS+HTTP, can be high)
+  redirectDepth: 150     # max 3xx redirects before error (protect from infinite loops)
+
+dnsPreCheck:
+  enabled: true          # enable DNS pre-check before HTTP requests (both phases)
+  timeout: 3000          # DNS lookup timeout (ms)
+  retryOnce: true        # retry once on EAI_AGAIN (temporary DNS failure)
+
+contentProbe:
+  enabled: true          # global toggle; per-site probe_text overrides when present
+
+antibot:
+  detectCodes: [403, 409]         # potential antibot HTTP codes
+  detectUrlPattern: "__cf_chl_tk" # antibot URL pattern
+
+thresholds:
+  failedDaysWarning: 14  # log warning when site fails for 14+ days
+
+heuristic:
+  enabled: true          # enable domain[N].tld heuristic search
+  maxAttempts: 50        # increase to check more domains, if there are difficulties in finding working domains
+  skipOnAntibot: true    # skip heuristic if antibot detected
+  attemptParallel: 3     # max concurrent attempts per site (lower = less DNS load)
+  dnsParallel: 50        # max concurrent DNS lookups in batch pre-filter (lightweight, can be high)
+  forceHeuristicOnCodes: [403, 404, 500, 502, 503, 504]  # force heuristic for these HTTP status codes
+
+# Global skip_text — skip domains whose response body contains these phrases (parked/expired domains)
+skip_text:
+  - "is for sale"
+  - "Domain is parked"
+
+logging:
+  saveToFile: true       # save logs to file
+  incremental: true      # append to existing log file (false = overwrite)
+  filePath: "logs/rotating-domains-checker.log"
+
+git:
+  mode: "debug"           # "prod" = commit directly to master, "debug" = create PR
+  branch: "master"
+  prBranchPrefix: "domain-rotate"
+
+# Filters directory settings
+filtersdir:
+  repoPath: "ProdFilters"         # path to filters directory (for debugging, will be changed to ".." for production)
+  filterDirPattern: "*Filter"     # directories ending with "Filter"
+  filePattern: "*.txt"
+
+# Test filters directory settings
+filtersdir_test:
+  repoPath: "TestFilters"         # path to test filters directory
+  filterDirPattern: "TestFilter"  # directories ending with "Filter"
+  filePattern: "testfilter.txt"   # only this specific test file
