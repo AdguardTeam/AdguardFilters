@@ -1235,6 +1235,12 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/224527
+faucetcrypto.com#%#//scriptlet('prevent-xhr', '/cdn\.bmcdn3\.com|appsha-pnd\.ctengine\.io/')
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||cdn.bmcdn3.com/js/$domain=faucetcrypto.com
+@@||appsha-pnd.ctengine.io/js/script.js$domain=faucetcrypto.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224381
 tryigit.dev#%#//scriptlet('abort-on-stack-trace', 'console.log', 'checkAdBlockers')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -5891,9 +5897,6 @@ calibercorner.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com'
 ||googletagmanager.com/gtag/js$script,redirect=noopjs,important,domain=earnhub.net
 @@||cdn.bmcdn3.com/js/*aab.js$domain=earnhub.net
 @@||googletagmanager.com/gtag/js$domain=earnhub.net
-! https://github.com/AdguardTeam/AdguardFilters/issues/136612
-||coinzillatag.com/lib/fp.js$script,redirect=noopjs,domain=faucetcrypto.com,important
-@@||coinzillatag.com/lib/fp.js$domain=faucetcrypto.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/136812
 thehouseofportable.com#%#//scriptlet('prevent-setTimeout', 'openInNewTab')
 thehouseofportable.com#$##htp { display: none !important; }
@@ -5969,10 +5972,6 @@ jiocinema.com#$#body .ad-zone { display: block !important; height: 1px !importan
 @@||derstandard.at^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135812
 /nilesoft.org\/assets\/js\/lib\/[a-f0-9]+$/$domain=nilesoft.org
-! https://github.com/AdguardTeam/AdguardFilters/issues/135281
-faucetcrypto.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=faucetcrypto.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135305
 editpad.org#$#body #detect[class] { display: block !important; }
 editpad.org#%#//scriptlet('prevent-addEventListener', 'error', 'blockedUrl')
@@ -8840,8 +8839,6 @@ cracking.org#%#//scriptlet("abort-current-inline-script", "$", "/initDetection|!
 @@||chinapost-track.com/ads.txt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57870
 wallpapershome.com###welcome.adblock
-! https://github.com/AdguardTeam/AdguardFilters/issues/57756
-@@||faucetcrypto.com/ads^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57561
 @@||camarchive.tv/assets/ads.js
 camarchive.tv#%#//scriptlet("set-constant", "canads", "true")
