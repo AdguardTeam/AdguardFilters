@@ -750,6 +750,9 @@ www.youtube.com#%#(()=>{const e="movie_player",t="ytd-watch-flexy[player-unavail
 youtube.com#%#//scriptlet('json-prune', 'entries.[-].command.reelWatchEndpoint.adClientParams.isAd')
 !+ PLATFORM(ext_safari)
 m.youtube.com,www.youtube.com#%#(()=>{window.JSON.parse=new Proxy(JSON.parse,{apply(r,e,t){const n=Reflect.apply(r,e,t);if(!location.pathname.startsWith("/shorts/"))return n;const a=n?.entries;return a&&Array.isArray(a)&&(n.entries=n.entries.filter((r=>{if(!r?.command?.reelWatchEndpoint?.adClientParams?.isAd)return r}))),n}});})();
+! https://github.com/AdguardTeam/AdguardFilters/issues/203236#issuecomment-3914900001
+www.youtube.com#%#(()=>{const e={apply:(e,t,n)=>{const o=n[0];if("string"==typeof o?.value&&o.value.includes("playerResponse"))try{return o.value=o.value.replace(/"(adSlots|playerAds)":/g,'"no_ads":'),n[0]=o,Reflect.apply(e,t,n)}catch(e){}return Reflect.apply(e,t,n)}},t={apply:(t,n,o)=>{const p=o[0];return"function"==typeof p&&p.toString().includes(".next(")&&(o[0]=new Proxy(p,e)),Reflect.apply(t,n,o)}};window.Promise.prototype.then=new Proxy(window.Promise.prototype.then,t)})();
+www.youtube.com#%#(()=>{const e={apply:(e,t,o)=>{const n=Reflect.apply(e,t,o);if(n?.responseContext)try{delete n.adSlots,delete n.playerAds}catch(e){}return n}},t={apply:(t,o,n)=>{const p=n[0];return"function"==typeof p&&p.toString().includes("jspbResponseCtor")&&(n[0]=new Proxy(p,e)),Reflect.apply(t,o,n)}};window.Promise.prototype.then=new Proxy(window.Promise.prototype.then,t)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203236#issuecomment-3911413190
 www.youtube.com#%#//scriptlet('set-constant', 'ytcfg.data_.EXPERIMENT_FLAGS.web_streaming_watch', 'false')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203236#issuecomment-3902013966
