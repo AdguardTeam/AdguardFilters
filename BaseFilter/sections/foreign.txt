@@ -10148,9 +10148,13 @@ forum.alfaholicy.org##ol > li.restore > center
 forum.alfaholicy.org###sidebar #block_html_3
 forum.alfaholicy.org#?##sidebar > li > .block.smaller:has(> .blocksubhead > span.blocktitle:contains(/^Reklama$/))
 forum.alfaholicy.org#?##posts > .postcontainer:has(> .postdetails > #innovativeadspan)
-! pisupisu.pl - antiadblock
+! https://github.com/AdguardTeam/AdguardFilters/issues/225598
 @@||pisupisu.pl/*/adsbygoogle.js
-pisupisu.pl#%#//scriptlet("prevent-setTimeout", "adblock")
+pisupisu.pl#$#body > .adslot.ad-unit[style] { display: block !important; }
+pisupisu.pl#%#//scriptlet('prevent-setTimeout', 'adblock')
+pisupisu.pl#%#//scriptlet('prevent-setInterval', '.offsetParent === null')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pisupisu.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/126626
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54021
 purepc.pl##.artbox .content > p > a[href^="https://lp."][href*="&utm_campaign="] > img
