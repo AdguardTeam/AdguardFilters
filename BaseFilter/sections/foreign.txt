@@ -10563,13 +10563,6 @@ vorek.pl##body > div[style^="display: block; box-sizing: border-box; padding:"][
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33675
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||innpoland.pl^$generichide
-! wp.pl ads - iOS
-! TODO: remove when this issue will be fixed - https://github.com/AdguardTeam/AdguardForiOS/issues/1897
-!#if (adguard_app_ios)
-o2.pl,wp.pl#%#//scriptlet("abort-on-property-write", "Object.prototype.gaf_directOnly")
-o2.pl#?#div[class*=" "] > img[src^="https://www.o2.pl/"]:first-child + div:last-child:upward(1)
-wp.pl#?#div[class*=" "] > img[src^="https://v.wpimg.pl/"][alt]:first-child + div:last-child:upward(1)
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201570
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200970
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199719
@@ -10640,7 +10633,7 @@ autocentrum.pl#?#style + div[class]:has(> script:first-child + img[src^="https:/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82418
 kafeteria.pl,autokult.pl,fitness.wp.pl,komorkomania.pl,gadzetomania.pl,fotoblogia.pl#?#div[class*=" "] > div[class]:first-child + img[src^="https://i.wpimg.pl/100x0/"]:upward(1)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/133884
-dom.wp.pl#?#article > div[class] > div > div[class]:has(> div[class]:only-child > div[class]:only-child > span:first-child + span:last-child)
+dom.wp.pl##article > div[class] > div > div[class]:has(> div[class]:only-child > div[class]:only-child > span:first-child + span:last-child)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82378
 horoskop.wp.pl##.reklama
 horoskop.wp.pl##.placeholder
@@ -10794,7 +10787,7 @@ fitness.wp.pl,vibez.pl#%#//scriptlet("abort-on-property-read", "Object.prototype
 profil.wp.pl,echirurgia.pl,kafeteria.pl#%#//scriptlet("set-constant", "Object.prototype.advViewability", "undefined")
 profil.wp.pl,echirurgia.pl,kafeteria.pl,open.fm#%#//scriptlet("set-constant", "Object.prototype.gafSlot", "undefined")
 profil.wp.pl,echirurgia.pl,kafeteria.pl#%#//scriptlet("set-constant", "Object.prototype.rekids", "undefined")
-turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl,wiadomosci.wp.pl#?#div[class*="-"] > div[class*="-"][class*=" "]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
+turystyka.wp.pl,opinie.wp.pl,gry.wp.pl,moto.wp.pl,gwiazdy.wp.pl,tech.wp.pl,kobieta.wp.pl,wiadomosci.wp.pl##div[class*="-"] > div[class*="-"][class*=" "]:has(> img[src="https://i.wpimg.pl/O/56x45/i.wp.pl/a/i/stg/pkf/bg.png"])
 dom.wp.pl,facet.wp.pl,film.wp.pl,finanse.wp.pl,gry.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,kuchnia.wp.pl,moto.wp.pl,opinie.wp.pl,tech.wp.pl,teleshow.wp.pl,turystyka.wp.pl,wawalove.wp.pl,wiadomosci.wp.pl,wroclaw.wp.pl#?#td[data-reactid] > div[class] > div[class] > div[class*=" "] > div[class] > span:contains(/^TWOJE OKAZJE$/):upward(2)
 dobreprogramy.pl##iframe[id^="__bc_ifrm"]
 so-magazyn.pl,o2.pl,pudelek.pl,film.wp.pl,finanse.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,magazyn.wp.pl,moto.wp.pl,opinie.wp.pl,sportowefakty.wp.pl,tech.wp.pl,teleshow.wp.pl,wiadomosci.wp.pl#@#.pub_300x250
@@ -11049,8 +11042,8 @@ chomikuj.pl###InboxTable > tbody > tr > td.dataCell > p.spons
 chomikuj.pl###InboxTable > tbody > tr > td.dataCell + td > a[href*="/lp/"][href*="/?aid="][href*="&utm_campaign=default"]
 chomikuj.pl#?##InboxTable > tbody > tr:has(> td.dataCell > p.spons)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/24717
-tv.wp.pl#?#div[class*="grid-headers-boundary"] div[class*=" "]:has(> div[class*=" "][height] > div:only-child)
-tv.wp.pl#?#div[class*=" "][height]:has(> img[src^="https://v.wpimg.pl/"][src$="="]:not([alt]))
+tv.wp.pl##div[class*="grid-headers-boundary"] div[class*=" "]:has(> div[class*=" "][height] > div:only-child)
+tv.wp.pl##div[class*=" "][height]:has(> img[src^="https://v.wpimg.pl/"][src$="="]:not([alt]))
 tv.wp.pl#$#.AdUnit.adBanner.adsbox.adsinfo.mixadvert { display: block!important; }
 !+ PLATFORM(ext_android_cb)
 @@||tv.wp.pl^$generichide
@@ -11225,7 +11218,7 @@ animezone.pl#$?#.category-description > #episode > .embed-container:has(> a[href
 @@||shareinfo.pl^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/19903
 !+ NOT_PLATFORM(ext_ublock)
-~www.wp.pl,wp.pl#?#div[class^="_"] > div[class^="_"][class*="_"]:has(> img[src^="https://v.wpimg.pl/"][src$="=="][alt="WP"])
+~www.wp.pl,wp.pl##div[class^="_"] > div[class^="_"][class*="_"]:has(> img[src^="https://v.wpimg.pl/"][src$="=="][alt="WP"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11314
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11623
 ~www.wp.pl,wp.pl###aSlot3
@@ -11234,7 +11227,7 @@ www.wp.pl#?#[class*="AdvSlotWithPlaceholder__"]:has(>img[class^="AdvPlaceholder"
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
 ~www.wp.pl,wp.pl#?#[class^="_"] > [class^="_"][class*=" _"]:has(>[class^="_"] > [class*=" "] > [class]:first-child:contains(REKLAMA))
 !+ NOT_PLATFORM(windows, mac, android, ext_ublock)
-~www.wp.pl,wp.pl#?#[class^="_"] > [class^="_"][class*=" _"]:has(>[class^="_"] > [class*="_"] > a[href] > [style*="background-image: url("])
+~www.wp.pl,wp.pl##[class^="_"] > [class^="_"][class*=" _"]:has(>[class^="_"] > [class*="_"] > a[href] > [style*="background-image: url("])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/13103
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_ublock)
 @@||skmedix.pl^$generichide
@@ -11454,7 +11447,7 @@ wplatform.media,staszownews.pl,zdrowienews.pl,kurierostrowiecki.pl,ostrowiec24.i
 !+ PLATFORM(ext_chromium_mv3, ext_ff)
 wplatform.media,staszownews.pl,zdrowienews.pl,kurierostrowiecki.pl,ostrowiec24.info,kielce112.pl,lublinnews.pl,lovelifestyle.pl,telefan24.pl,marketing-zone.pl,panoramaplock.pl,ipolska24.pl,dzieckopoznan.pl,sportpoznan.pl,historiapoznania.pl,wirtualnemedia.pl,pcformat.pl,pudelek.pl,abczdrowie.pl,pysznosci.pl,o2.pl,autokult.pl,jastrzabpost.pl,genialne.pl,polygamia.pl,money.pl,wp.pl#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const t={apply:(t,e,o)=>{try{const t=e;t&&"object"==typeof t&&t.context?.bidRequestId&&(e={})}catch(t){}return Reflect.apply(t,e,o)}};window.Object.prototype.hasOwnProperty=new Proxy(window.Object.prototype.hasOwnProperty,t)})();')
 sportowefakty.wp.pl,open.fm,dom.wp.pl,facet.wp.pl,film.wp.pl,finanse.wp.pl,gry.wp.pl,gwiazdy.wp.pl,kobieta.wp.pl,ksiazki.wp.pl,kuchnia.wp.pl,moto.wp.pl,opinie.wp.pl,tech.wp.pl,teleshow.wp.pl,turystyka.wp.pl,wawalove.wp.pl,wiadomosci.wp.pl,wroclaw.wp.pl##div[class*=" "]:has(> div[class]:first-child:empty + img[src*="://v.wpimg.pl/"][alt]:empty)
-pilot.wp.pl#?#div[style*="min-height:"] > div[class*=" "] > section[class*=" "] > div[class*=" "]:has(> img[src="https://std.wpcdn.pl/images/adv/placeholder_wp.svg"])
+pilot.wp.pl##div[style*="min-height:"] > div[class*=" "] > section[class*=" "] > div[class*=" "]:has(> img[src="https://std.wpcdn.pl/images/adv/placeholder_wp.svg"])
 pilot.wp.pl##.wp-player > .adpause > .plchldr
 ||naanalle.pl/pb/bid
 ||i.wp.pl/a/i/stg/wpjslib-nojq.js$domain=dobreprogramy.pl
