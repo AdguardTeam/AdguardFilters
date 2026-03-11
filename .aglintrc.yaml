@@ -13,6 +13,11 @@ rules:
       # For example, adding '||example.com^' will NOT exclude
       # '||example.com^$script'; it will exclude only '||example.com^'.
       excludedRuleTexts:
+        # Completely blocks TikTok search
+        # https://github.com/AdguardTeam/AdguardFilters/issues/225737#issuecomment-4003971740
+        # https://www.tiktok.com/legal/page/global/tiktok-website-cookies-policy/en
+        # For example: https://www.tiktok.com/search?q=test
+        - '||tiktok.com^$cookie=ttwid'
         # Blocking pixapi.net causes issues
         - 'pixapi.net^'
         # https://github.com/AdguardTeam/AdguardFilters/issues/221086
@@ -69,7 +74,7 @@ rules:
       #   /example\.(com|org)\/ads/
       #
       # See example: https://regex101.com/r/L7CsOZ/1
-      excludedRegExpPatterns:      
+      excludedRegExpPatterns:
         # https://github.com/easylist/easylist/commit/c0ba1cec6d0f9b584f9c39f411b09753735d8a00
         - \|\|prodregistryv2\.org\^
         # https://github.com/AdguardTeam/AdGuardSDNSFilter/issues/2021
