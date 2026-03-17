@@ -6,6 +6,26 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/221531
+@@||i.daily.jp/Koukoku/Images/ds_noimage.jpg$domain=daily.co.jp
+! Fix ranking widget
+@@||js.mediams.mb.softbank.jp/t/$domain=www.ohk.co.jp
+@@||mediamsmbsoftbank.genieesspv.jp/yie/ld/nad$domain=www.ohk.co.jp
+@@||cdn.taxel.jp/*/rw.js$domain=www.ohk.co.jp
+@@||images.taxel.jp/img/$domain=www.ohk.co.jp
+@@||images.taxel.jp/images/$domain=www.ohk.co.jp
+@@||widgets.taxel.jp/article.json$domain=www.ohk.co.jp
+www.ohk.co.jp#%#//scriptlet('remove-attr', 'onmousedown', 'a[onmousedown^="this.href=\"//widgets.taxel.jp"]', 'stay')
+! https://nijie.info/ad_log.php
+!+ NOT_PLATFORM(ext_ublock)
+[$path=/ad_log.php]nijie.info#@#._banner_view
+! https://github.com/AdguardTeam/AdguardFilters/issues/218829
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=game.hiroba.dpoint.docomo.ne.jp|kantangame.com|game.pointmall.rakuten.net|chance.enjoy.point.auone.jp
+@@||pagead2.googlesyndication.com/pagead/managed/js/adsense/$script,domain=game.hiroba.dpoint.docomo.ne.jp|kantangame.com|game.pointmall.rakuten.net|chance.enjoy.point.auone.jp
+@@||g.doubleclick.net/pagead/ads?*&plat=$subdocument,domain=game.hiroba.dpoint.docomo.ne.jp|kantangame.com|game.pointmall.rakuten.net|chance.enjoy.point.auone.jp
+chance.enjoy.point.auone.jp,game.pointmall.rakuten.net,kantangame.com,game.hiroba.dpoint.docomo.ne.jp#@#.adsbygoogle-noablate
+! https://github.com/AdguardTeam/AdguardFilters/issues/217654
+okazurand.net,nihon-bijo-zukan.com#%#//scriptlet('href-sanitizer', 'a[href^="https://al.fanza.co.jp/?lurl="]', '?lurl')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213269
 drill-planet.kobun.co.jp#@#body[onbeforeunload="return myFunction()"]
 ! https://jp.nexon.com/ngm/?gm=talesweaver broken DL
@@ -33,7 +53,7 @@ kojodan.jp#%#//scriptlet('remove-attr', 'height', 'iframe[id^="google_ads_iframe
 @@||tpc.googlesyndication.com/pagead/imgad?$xmlhttprequest,domain=kojodan.jp
 safeframe.googlesyndication.com#%#//scriptlet('href-sanitizer', 'a[href^="https://adclick.g.doubleclick.net/"][href*="adurl="]', '?adurl')
 ! temporally hidden for GTM
-chugoku-np.co.jp,minato-yamaguchi.co.jp,kyoto-np.co.jp,raysee.jp,j-cast.com,medicalnote.jp,kurashi-to-oshare.jp,ar-mag.jp,ben54.jp#$#html[class*="loading"] { visibility: visible !important; }
+qa.weblio.jp,okinawatimes.co.jp,rank-king.jp,uwl.weblio.jp,chugoku-np.co.jp,minato-yamaguchi.co.jp,kyoto-np.co.jp,raysee.jp,j-cast.com,medicalnote.jp,kurashi-to-oshare.jp,ar-mag.jp,ben54.jp#$#html[class*="loading"] { visibility: visible !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208209
 mobilegadget.jp#@#.header-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208191
@@ -71,9 +91,6 @@ nogizaka46-matome.jp#@##headerafficode
 @@||goonews.jp/common/img/sub/right/g0121_goonet_ryutsu_bnr_h.jpg
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176181
 etude000.com#@#.top-ad
-! https://github.com/tofukko/filter/issues/98
-jprime.jp#%#!function(){const o={apply:(o,n,r)=>(new Error).stack.includes("refreshad")?0:Reflect.apply(o,n,r)};window.Math.floor=new Proxy(window.Math.floor,o)}();
-||jprime.ismcdn.jp/resources/jprime/js/pc/leafs.js$replace=/adjust = target === \'screen\' \? Math\.floor\(\(current\) \/ 4\) : Math\.floor\(\(current\) \/ 3\)/adjust = 0/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183263
 tennisclassic.jp#@#.ad-sp
 ! https://github.com/tofukko/filter/issues/97
@@ -271,13 +288,6 @@ otonary.net#@#.master-post-advert
 @@||azby.fmworld.net/ad/common/css/common.css
 ! https://kumin.news/adachi/articles/252668
 @@||kumin.news/assets/img/ad/$image,~third-party
-! https://jbbs.shitaraba.net/bbs/read.cgi/internet/25463/1652115193/447
-!#if (!adguard_ext_chromium && !adguard_ext_edge)
-@@||im.ov.yahoo.co.jp/tag/$script,domain=baseball.yahoo.co.jp|soccer.yahoo.co.jp
-@@||yads.yjtag.yahoo.co.jp/tag$script,domain=baseball.yahoo.co.jp|soccer.yahoo.co.jp
-||yads.c.yimg.jp/uadf/yads_vimps.js$script,redirect=noopjs,domain=baseball.yahoo.co.jp|soccer.yahoo.co.jp
-||yimg.jp/images/advertising/common/js/iicon.min.js$script,redirect=noopjs,domain=baseball.yahoo.co.jp|soccer.yahoo.co.jp
-!#endif
 ! unhide own links
 yama.minato-yamaguchi.co.jp#@##ad6
 yama.minato-yamaguchi.co.jp#@#.sidead
@@ -380,15 +390,6 @@ minpo.jp#@#.ads300
 maidonanews.jp#@#.module-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/55576
 webcartop.jp#@#.single-ads
-! https://github.com/AdguardTeam/AdguardFilters/issues/106875
-@@||m.one.impact-ad.jp/pix?p=$domain=www3.nissan.co.jp
-@@||img.ak.impact-ad.jp/sr/js/nissan_test_$script,domain=www3.nissan.co.jp
-@@||img.ak.impact-ad.jp/sr/js/nissan_VisitorAPI_main.js$domain=www3.nissan.co.jp
-@@||img.ak.impact-ad.jp/ut/$script,domain=www3.nissan.co.jp
-@@||penta.a.one.impact-ad.jp^$other,domain=www3.nissan.co.jp
-||googleadservices.com/pagead/conversion.js$script,redirect=noopjs,domain=nissan.co.jp
-||img.ak.impact-ad.jp/sr/js/nissan_VisitorAPI_main.js$script,redirect=noopjs,domain=nissan.co.jp
-||penta.a.one.impact-ad.jp^$script,redirect=noopjs,domain=nissan.co.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/107680
 @@||rmp.rakuten.co.jp/js/aa.js$domain=24.rakuten.co.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/105095
@@ -396,8 +397,6 @@ webcartop.jp#@#.single-ads
 @@||res.ads.nicovideo.jp/assets/js/ads2.js$domain=sp.seiga.nicovideo.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98787 fix related posts on mobile
 eromanga-school.com#@#.related-ad-area
-! https://github.com/AdguardTeam/AdguardFilters/issues/97511
-@@||thumbnail.thench.net/thumb/$image,domain=itest.5ch.net
 ! game.yomipo.yomiuri.co.jp - fixing quiz
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=game.yomipo.yomiuri.co.jp
 ! whole breakage

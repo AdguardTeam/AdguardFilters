@@ -143,7 +143,7 @@ search.ask.com#@##sponsoredTop
 ! ad in the tooltip when typing
 yandex.*#@#body:not([data-bem*="pogoda"]) .mini-suggest__popup-content > li[data-type="nav"]
 ! ads in the search results
-ya.ru,yandex.*#@##search-result > [class][data-cid]:has(> div.Organic > div a[href*="_crpd"][data-click])
+ya.ru,yandex.*#@##search-result > [class]:has(> div.Organic > div a[href*="_crpd"])
 yandex.*#@#.content__left > ul#search-result > li:has(> div.organic > div.OrganicTitle > a[href^="https://ya.ru/search/_crpd/"])
 ! Mobile
 ya.ru,yandex.*#@$?##search-result > li:has(span:contains(/[PРeеkклaаmмaа]{7}/)) { remove: true; }
@@ -151,6 +151,14 @@ ya.ru,yandex.*#@#div[class^="serp-list"] > div.serp-item:has(> div[data-bem*="or
 ! END: Yandex
 !
 ! Amazon
+amazon.*#@#div[data-card-metrics-id^="universal-hero-quick-promo_DetailPage_"]
+amazon.*#@##mobile-dp-ilm_feature_div_01
+amazon.*#@#.a-section:has(> div[cel_widget_id^="adplacements:"]:last-child)
+amazon.*#@#div[cel_widget_id^="adplacements:"]
+amazon.*#@#.a-section:has(> .a-section:only-child > div[cel_widget_id^="sp-pop-mobile-"])
+amazon.*#@#div[cel_widget_id^="sp-pop-mobile-"]
+amazon.*#@#div[data-idt="AXIOM"]
+amazon.*#@#div[cel_widget_id^="sb-themed-collection-v2-mobile_loom-mobile"]
 amazon.*#@#div[id^="dp-ads-"]
 amazon.*#@##px-profile_feature_div
 amazon.*#@#div[data-cel-widget="softlines-btf-substitute-zone-container-T3_feature_div"]
@@ -212,6 +220,11 @@ amazon.*#@#.sbv-ad-content-container
 amazon.*#@?#div[data-display-at]:has(> div[data-csa-c-painter="ad-topper-desktop-card"]:first-child + div[style="display: none !important;"]:last-child)
 amazon.*#@##desktop-dp-ilm_feature_div_01
 amazon.*#@#.s-main-slot > div.s-result-item:has(> .sg-col-inner:only-child > div[class*="widget=loom-"][class*="FEATURED"])
+!#if (adguard_app_android || adguard_app_ios || adguard_ext_android_cb)
+amazon.*#@##softlines-mobile-btf-discovery-zone-T3_feature_div
+amazon.*#@##softlines-btf-substitute-zone-container-3_feature_div
+amazon.*#@#div[id^="sims-simsContainer_feature_div_"]:has(.sp_info_link)
+!#endif
 !
 ! m.yelp.com
 m.yelp.com#@#div[data-testid="suggested-search-bar"] ~ div[class*="border-color-"] > ol > li:has(> div[class*="sponsored-icon_"])
@@ -234,8 +247,6 @@ search.brave.com#@#div[data-advertiser-id]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/117527
 buscape.com.br#@#div[class^="Hits_SponsoredWrapper__"]
 !
-! developer.mozilla.org - self-promo in documentation (the rule is from EasyList)
-@@||developer.mozilla.org/pong/
 ! Startpage
 @@||startpage.com/adsense/search/async-ads.js$domain=startpage.com
 !+ PLATFORM(windows, mac, android)
@@ -336,6 +347,9 @@ consultant.ru#@#img[width="468"][height="60"]
 ! alibaba.com - promoted items in search results
 alibaba.com#@?#div[data-content="abox-ProductNormalList"] > div.J-offer-wrapper:has(> div > i.search-ad-icon)
 !-------------------------------------------------------------------------------!
+! baidu.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/220212
+baidu.com#@#.result-op[m-name^="aladdin-san/app/b2b_prod/"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/138396
 ipv6.baidu.com,www.baidu.com,www1.baidu.com,xueshu.baidu.com#@##content_left > div:not([class]) > div[data-placeid]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/33697
@@ -359,12 +373,12 @@ walmart.com#@?#.flex > div[class]:has(> div[class][style*="contain-intrinsic-siz
 !+ NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_usefulads
 ! Detect of using AdGuard products
-!+ PLATFORM(windows, mac, android, ios) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli, ios) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_apps
-!+ NOT_PLATFORM(windows, mac, android, ios, ext_ublock) NOT_OPTIMIZED
+!+ NOT_PLATFORM(windows, mac, android, cli, ios, ext_ublock) NOT_OPTIMIZED
 adguard.info,adguard.com,adguard.app##.hello_from_adguard_ext
 ! Detect HTTPS filtering
-!+ PLATFORM(windows, mac, android) NOT_OPTIMIZED
+!+ PLATFORM(windows, mac, android, cli) NOT_OPTIMIZED
 ||https-filtering-check.adtidy.org^
 ! Detect Advanced Protection of AdGuard for iOS
 !+ PLATFORM(ios) NOT_OPTIMIZED

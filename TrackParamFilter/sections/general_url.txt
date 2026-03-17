@@ -7,15 +7,47 @@
 ! Good: $removeparam=utm_id
 ! Bad:  $removeparam=utm_id,domain=example.org (for instance, should be in specific.txt)
 !
+! NOTE: Generic rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/224235
+! https://github.com/AdguardTeam/AdguardFilters/issues/217915
+$removeparam=analytics_context
+$removeparam=analytics_trace_id
+! Bance
+$removeparam=bance_xuid
+! Oracle Eloqua
+$removeparam=elqTrackId
+$removeparam=elq
+$removeparam=elqaid
+$removeparam=elqat
+$removeparam=elqCampaignId
+$removeparam=elqak
+! Winfluencer
+$removeparam=winflncrtag
+! FastFlow
+$removeparam=ftag
+! https://5-fifth.com/products/detail?product_id=26125&janet=0qB9lV3s&a=1
+$removeparam=janet
+! https://github.com/AdguardTeam/AdguardFilters/issues/217620
+$removeparam=vs_campaign_id
 ! Adsterra
 $removeparam=adsterra_clid
 $removeparam=adsterra_placement_id
 ! LOGLY
 ! https://cancam.jp/special_2507_blendberry?from=logly&loclid=C0gjn999xa9fLuhhGNaVi0gpDDc
 $removeparam=loclid
+! LINE Ad click ID
+! https://help.linebiz.com/lineadshelp/s/article/L000054791?
+$removeparam=ldtag_cl
+$removeparam=lt_r
+$removeparam=srclt
 ! Yahoo JP
+! https://ads-developers.yahoo.co.jp/en/conversion-api/post/30590575.html
+! https://ads-help.yahoo-net.jp/s/article/H000054776?language=en_US
 ! https://ads-help.yahoo-net.jp/s/article/H000055044
+$removeparam=_ly_c
+$removeparam=_ly_r
+$removeparam=yj_r
 $removeparam=line_uid
 ! MyTracker
 $removeparam=mt_click_id
@@ -60,8 +92,6 @@ $removeparam=bemobdata
 $removeparam=_bhlid
 ! Not identified. Popular on Japanese sites
 $removeparam=_bdadid
-! a8.net
-$removeparam=a8
 ! personaclick.com
 $removeparam=recommended_by
 $removeparam=recommended_code
@@ -132,7 +162,6 @@ $removeparam=iclid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158662
 $removeparam=user_email_address
 ! https://support.google.com/analytics/answer/10071811
-$removeparam=_ga
 $removeparam=_gl
 ! Coremetrics
 ! https://help.hcltechsw.com/commerce/8.0.0/coremetrics/refs/rmtusecmpcore.html
@@ -147,13 +176,9 @@ $removeparam=sscid
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154659
 $removeparam=rtkcid
 rtkcid=*&clickid=$removeparam=clickid
-! https://github.com/AdguardTeam/AdguardFilters/issues/152387
-! Sovrn (VigLink) tracking
-$removeparam=cuid
 ! impact.com
 $removeparam=ir_campaignid
 $removeparam=ir_adid
-$removeparam=irclickid
 $removeparam=ir_partnerid
 ! IO Technologies
 ! Identify a period of time for which unique visitors use our website
@@ -165,9 +190,6 @@ $removeparam=asgtbndr
 ! https://help.zeydoo.com/en/articles/4362736-how-to-setup-zeydoo-s2s-conversion-tracking
 $removeparam=ymid
 ^z=*&var=$removeparam=var
-! Tradedoubler
-! https://dev.tradedoubler.com/tracking/advertiser/
-$removeparam=tduid
 ! GLAMI click id
 ! https://help.glami.info/pixel-2.0-release-all-you-need-to-know
 $removeparam=gci
@@ -182,8 +204,6 @@ click_id=*_branch_referrer=$removeparam
 $removeparam=famad_xuid
 ! https://tsunen.team-lab.com/?twclid=2-3bhrj1ny7p11v5r9pap3anqge
 $removeparam=twclid
-! https://interactivead.ru/wp-content/uploads/2022/08/arir22_rkn.pdf
-$removeparam=erid
 ! Cxense clickthrough tracking
 $removeparam=cx_click
 $removeparam=cx_recsOrder
@@ -192,8 +212,6 @@ $removeparam=cx_recsWidget
 $removeparam=mkt_tok
 ! Mindbox email tracking
 $removeparam=mindbox-message-key
-! Klaviyo onsite tracking
-$removeparam=_kx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123544
 ! ad click tracking
 ?uclick=*&uclickhash=$removeparam
@@ -281,24 +299,26 @@ $removeparam=itm_campaign
 $removeparam=itm_content
 $removeparam=itm_term
 ! UTM
+$removeparam=utm_wave
+$removeparam=utm_lob
+$removeparam=utm_emailid
+$removeparam=utm_email
+$removeparam=utm_newsletterid
 $removeparam=utm_tag
 $removeparam=utm_adset
 $removeparam=utm_adgroup
 $removeparam=utm_ad
 $removeparam=utm_affiliate
 $removeparam=utm_brand
-$removeparam=utm_campaign
 $removeparam=utm_campaignid
 $removeparam=utm_channel
 $removeparam=utm_cid
-$removeparam=utm_content
 $removeparam=utm_creative
 $removeparam=utm_emcid
 $removeparam=utm_emmid
 $removeparam=utm_id
 $removeparam=utm_id_
 $removeparam=utm_keyword
-$removeparam=utm_medium
 $removeparam=utm_name
 $removeparam=utm_place
 $removeparam=utm_product
@@ -311,11 +331,9 @@ $removeparam=utm_session
 $removeparam=utm_siteid
 $removeparam=utm_social
 $removeparam=utm_social-type
-$removeparam=utm_source
 $removeparam=utm_source_platform
 $removeparam=utm_supplier
 $removeparam=utm_swu
-$removeparam=utm_term
 $removeparam=utm_umguk
 $removeparam=utm_userid
 $removeparam=utm_viz_id
@@ -323,6 +341,7 @@ $removeparam=utm_source_code
 $removeparam=utm_campaign_name
 $removeparam=utm_journey_id
 ! https://support.google.com/google-ads/answer/13327296
+$removeparam=gad_campaignid
 $removeparam=gad_source
 ! Google ads/analytics
 $removeparam=gbraid
@@ -342,7 +361,6 @@ $removeparam=admitad_uid
 ! adjust.com tracking
 $removeparam=adj_label
 $removeparam=adj_campaign
-$removeparam=adj_t
 $removeparam=adj_creative
 $removeparam=gps_adid
 $removeparam=unicorn_click_id
@@ -377,15 +395,12 @@ $removeparam=pk_source
 ! Branch.io ( https://stackoverflow.com/questions/37882810/what-is-meaning-of-branch-match-id )
 $removeparam=_branch_referrer
 $removeparam=_branch_match_id
-! Valuecommerce ( https://help.valuecommerce.ne.jp/mer/dl/ITP2.0_for_iTAG.pdf )
-$removeparam=vc_lpp
 ! https://github.com/brave/brave-browser/issues/17507
 $removeparam=ml_subscriber
 $removeparam=ml_subscriber_hash
 ! Olytics
 $removeparam=rb_clickid
 $removeparam=oly_anon_id
-$removeparam=oly_enc_id
 ! AD EBiS
 $removeparam=ebisAdID
 ! Wicked Reports click tracking
@@ -404,7 +419,6 @@ $removeparam=nb_expid_meta
 $removeparam=adfrom
 $removeparam=nx_source
 $removeparam=_zucks_suid
-$removeparam=cmpid
 $removeparam=guccounter
 $removeparam=guce_referrer
 $removeparam=guce_referrer_sig
@@ -417,4 +431,65 @@ $removeparam=fb_action_types
 $removeparam=fb_comment_id
 $removeparam=fb_ref
 $removeparam=fb_source
+!
+! ###########################################################################################################################
+! ##################### Generic rules with exclusions for the MV3 extensions ################################################
+! ###########################################################################################################################
+! It's needed for the MV3 extensions - exceptions like `@@*$removeparam` do not work
+! TODO: Remove this section and revert to the original rules if this https://github.com/w3c/webextensions/issues/783 is fixed
+! SECTION: Generic rules with exclusions for the MV3 extensions
+!
+!#if (adguard_ext_chromium_mv3 || ext_ublock)
+$denyallow=cleviationly.com,removeparam=cmpid
+$denyallow=adj.st|yandex.go.link,removeparam=adj_t
+$denyallow=em.dynamicyield.com|mootoon.co.kr|iforms.americanexpress.com,removeparam=cuid
+$denyallow=a8cv.amiami.jp,removeparam=a8
+$denyallow=meishi.meituan.com|portal-portm.meituan.com|rd.bizrate.com|glavnoe.life|mmcref.pl|t.send.vt.edu|app.plex.tv,removeparam=utm_medium
+$denyallow=usprobioticguide.com|rd.bizrate.com|glavnoe.life|redirects.tradedoubler.com|t.send.vt.edu|google.ad|google.ae|google.al|google.am|google.as|google.at|google.az|google.ba|google.be|google.bf|google.bg|google.bi|google.bj|google.bs|google.bt|google.by|google.ca|google.cat|google.cd|google.cf|google.cg|google.ch|google.ci|google.cl|google.cm|google.cn|google.co.ao|google.co.bw|google.co.ck|google.co.cr|google.co.id|google.co.il|google.co.in|google.co.jp|google.co.ke|google.co.kr|google.co.ls|google.co.ma|google.co.mz|google.co.nz|google.co.th|google.co.tz|google.co.ug|google.co.uk|google.co.uz|google.co.ve|google.co.vi|google.co.za|google.co.zm|google.co.zw|google.com|google.com.af|google.com.ag|google.com.ai|google.com.ar|google.com.au|google.com.bd|google.com.bh|google.com.bn|google.com.bo|google.com.br|google.com.bz|google.com.co|google.com.cu|google.com.cy|google.com.do|google.com.ec|google.com.eg|google.com.et|google.com.fj|google.com.gh|google.com.gi|google.com.gt|google.com.hk|google.com.jm|google.com.kh|google.com.kw|google.com.lb|google.com.ly|google.com.mm|google.com.mt|google.com.mx|google.com.my|google.com.na|google.com.nf|google.com.ng|google.com.ni|google.com.np|google.com.om|google.com.pa|google.com.pe|google.com.pg|google.com.ph|google.com.pk|google.com.pr|google.com.py|google.com.qa|google.com.sa|google.com.sb|google.com.sg|google.com.sl|google.com.sv|google.com.tj|google.com.tr|google.com.tw|google.com.ua|google.com.uy|google.com.vc|google.com.vn|google.cv|google.cz|google.de|google.dj|google.dk|google.dm|google.dz|google.ee|google.es|google.fi|google.fm|google.fr|google.ga|google.ge|google.gg|google.gl|google.gm|google.gp|google.gr|google.gy|google.hn|google.hr|google.ht|google.hu|google.ie|google.im|google.iq|google.is|google.it|google.je|google.jo|google.kg|google.ki|google.kz|google.la|google.li|google.lk|google.lt|google.lu|google.lv|google.md|google.me|google.mg|google.mk|google.ml|google.mn|google.ms|google.mu|google.mv|google.mw|google.ne|google.nl|google.no|google.nr|google.nu|google.pl|google.pn|google.ps|google.pt|google.ro|google.rs|google.ru|google.rw|google.sc|google.se|google.sh|google.si|google.sk|google.sm|google.sn|google.so|google.sr|google.st|google.td|google.tg|google.tk|google.tl|google.tm|google.tn|google.to|google.tt|google.vg|google.vu|google.ws,removeparam=utm_campaign
+$denyallow=glavnoe.life,removeparam=utm_referrer
+$denyallow=reddit.app.link|glavnoe.life|gaugau.futabanet.jp|redirects.tradedoubler.com|app.plex.tv,removeparam=utm_content
+$denyallow=canadacompanyregistry.com|video-shoper.ru|glavnoe.life|uploadnow.io|3dnews.ru|transfernow.net|carrefourpl.snrpage.com|transfernow.net|lanacion.com.ar|t.send.vt.edu|ofeminin.pl|auto-swiat.pl|komputerswiat.pl|noizz.pl|plejada.pl|medonet.pl|businessinsider.com.pl|sendgb.com|plex.tv|insurancexblog.blogspot.com,removeparam=utm_source
+$denyallow=glavnoe.life|metabase.com,removeparam=utm_term
+$denyallow=tix.axs.com,removeparam=irclickid
+$denyallow=booklive.jp,removeparam=vc_lpp
+$denyallow=lifehacker.ru|forbes.ru|kommersant.ru,removeparam=erid
+$denyallow=greenbuildingadvisor.com,removeparam=oly_enc_id
+$denyallow=login.aliexpress.com,removeparam=_ga
+$denyallow=tradedoubler.com,removeparam=tduid
+!#endif
+!
+! Move original rules to this directive if you can confirm the problem
+!
+!#if (!adguard_ext_chromium_mv3 && !ext_ublock)
+$removeparam=cmpid
+! adjust.com tracking
+$removeparam=adj_t
+! https://github.com/AdguardTeam/AdguardFilters/issues/152387
+! Sovrn (VigLink) tracking
+$removeparam=cuid
+! a8.net
+$removeparam=a8
+! UTM
+$removeparam=utm_medium
+$removeparam=utm_campaign
+$removeparam=utm_referrer
+$removeparam=utm_content
+$removeparam=utm_source
+$removeparam=utm_term
+! impact.com
+$removeparam=irclickid
+! Valuecommerce ( https://help.valuecommerce.ne.jp/mer/dl/ITP2.0_for_iTAG.pdf )
+$removeparam=vc_lpp
+! https://interactivead.ru/wp-content/uploads/2022/08/arir22_rkn.pdf
+$removeparam=erid
+! Olytics
+$removeparam=oly_enc_id
+! https://support.google.com/analytics/answer/10071811
+$removeparam=_ga
+! Tradedoubler
+! https://dev.tradedoubler.com/tracking/advertiser/
+$removeparam=tduid
+!#endif
+! NOTE: Generic rules with exclusions for the MV3 extensions ⬆️
+! !SECTION: Generic rules with exclusions for the MV3 extensions
 !

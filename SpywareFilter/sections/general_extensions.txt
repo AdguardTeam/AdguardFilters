@@ -29,14 +29,18 @@ spletnik.ru#%#//scriptlet('set-local-storage-item', '/^_ym/', '$remove$')
 spletnik.ru#%#//scriptlet('set-local-storage-item', 'adrcid', '$remove$')
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/222154
+muylinux.com$$script:contains(isAmpDevMode)
+muylinux.com#%#//scriptlet('abort-current-inline-script', 'sessionStorage', 'isAmpDevMode')
+! https://github.com/AdguardTeam/AdguardFilters/issues/218234
+southpark.*,southparkstudios.*#%#//scriptlet('set-constant', 'vtg', 'emptyObj')
+! https://github.com/AdguardTeam/AdguardFilters/issues/216735
+coupang.com#%#//scriptlet('json-prune-xhr-response', 'tracking', 'feeds', 'n-api/recommend/feeds')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/214045
 ! https://github.com/AdguardTeam/FiltersCompiler/issues/260
 ! For some reason filters compiler converts it to '""'
 ! https://github.com/AdguardTeam/FiltersRegistry/commit/8324eca5002de69940c919e52f2c8b275f206f77#diff-320cdcaedbead8abe58ffbad0a822baa2b4d5942481e5456da88f5dfaf98cb4cR35-R36
 aceee.org#%#//scriptlet('prevent-canvas', '2d')
-! https://github.com/AdguardTeam/AdguardFilters/issues/212788
-delta.com#%#//scriptlet('set-constant', 'TrackJS', 'emptyObj')
-delta.com#%#//scriptlet('set-constant', 'TrackJS.install', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/207145
 hoy.tv#%#(()=>{const i=function(){};window.__uid2=window.__uid2||{},window.__uid2.init=i,window.__uid2.setIdentityFromEmail=i,window.__uid2.callbacks=window.__uid2.callbacks||[],window.__uid2.callbacks.push=function(i){"function"==typeof i&&i("InitCompleted",{identity:null})}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205925
@@ -417,13 +421,12 @@ accountkiller.com#%#window.ga = function(){var a = arguments[5];a&&a.hitCallback
 !#if (!ext_ublock)
 ! Suppressing both Google's Topics API and Topics API using Permissions policy
 ! AGLint temporarily disabled for this rule due to https://github.com/AdguardTeam/AGLint/issues/191
+! TODO: 01.04.2026 check if Google removed these APIs from Permissions policy
+!       https://github.com/AdguardTeam/AdguardFilters/issues/221135
 ! TODO: Enable it back when AGLint is fixed.
 ! TODO: remove document modifier when this issue is fixed - https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2954
-! aglint-disable-next-line
 /.*/$permissions=join-ad-interest-group=(),document
-! aglint-disable-next-line
 /.*/$permissions=run-ad-auction=(),document
-! aglint-disable-next-line
 /.*/$permissions=browsing-topics=(),document
 !
 ! Suppressing Private State Token API

@@ -10,6 +10,11 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/225801
+||gametorrent.org/templates/gametorrent/js/ablock.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/225890
+||magnit.ru/scripts/prebid.js$domain=magnit.ru,redirect=noopjs,important
+@@||magnit.ru/scripts/prebid.js$domain=magnit.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/215200
 pervyi-tv.online#%#//scriptlet('prevent-setTimeout', '?.clientHeight')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -119,7 +124,8 @@ positiverecords.ru#@#.ad-google
 pikabu.ru#%#//scriptlet('abort-on-property-write', 'Ya')
 pikabu.ru$$script:contains(/\.getPropertyPriority.*=requestAnimationFrame/)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
-pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/xhr\.setRequestHeader\([a-zA-Z0-9_]{0,4}[a-zA-Z0-9]{0,6}[hHxX]?[a-zA-Z0-9_]{1,2}[a-zA-Z0-9_]{1,3}_?[a-zA-Z0-9]?[a-zA-Z0-9_]?[RrpP]/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/xhr\.setRequestHeader\([a-zA-Z0-9_є»·°іРѕІ]{0,18}/')
+pikabu.ru#%#//scriptlet('remove-node-text', 'script', '/xhr\.setRequestHeader\([a-zA-Z0-9_]{0,7}[a-zA-Z0-9]{0,6}[hHxX]?[a-zA-Z0-9_]{1,2}[a-zA-Z0-9_]{1,3}_?[a-zA-Z0-9]?[a-zA-Z0-9_]?[RrpP]/')
 !#endif
 ! sports.ru
 sports.ru#%#//scriptlet('json-prune', 'direct rtbAuctionInfo')
@@ -159,6 +165,7 @@ reshuolymp.ru#%#//scriptlet('adjust-setTimeout', 'function(){return', '20000', '
 @@||yandex.ru/ads/system/context.js$domain=reshuolymp.ru
 ! sdamgia.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192803
+sdamgia.ru#%#//scriptlet('set-cookie', 'aabtesting', '1')
 ||an.yandex.ru/resource/spacer.gif$image,redirect=1x1-transparent.gif,domain=sdamgia.ru,important
 @@||an.yandex.ru/resource/spacer.gif$domain=sdamgia.ru
 @@||sdamgia.ru^$generichide
@@ -417,12 +424,6 @@ yapx.ru#%#//scriptlet('remove-cookie', 'adblock_state')
 ||yapx.ru^$cookie=adblock_state
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43430
 @@.js|$domain=knigilub.ru,~third-party
-! https://github.com/AdguardTeam/AdguardFilters/issues/44835
-anitokyo.tv#@#.sb-ad
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=anitokyo.tv
-anitokyo.tv#$#.adsbox.ads.new-ads.sb-ad { height: 1px!important; }
-!+ NOT_PLATFORM(windows, mac, android)
-anitokyo.tv#%#//scriptlet("set-constant", "Object.prototype.adblockDetector", "falseFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/37527
 sebeadmin.ru#%#//scriptlet("abort-current-inline-script", "document.createElement", "AdBlock")
 !+ PLATFORM(ext_ff, ext_opera, ios, ext_android_cb, ext_safari)
@@ -902,6 +903,7 @@ dzen.ru##.news-app__content div[class*="__column_myTarget mg-grid__item"] div[cl
 [$path=/pogoda]dzen.ru##.adv_type_rtb
 !
 ! Ad in Dzen articles
+dzen.ru##div[class^="content--mascot-banner__"]
 dzen.ru##div[class^="content--dzen-pro-article-banner"]
 [$path]dzen.ru##.feed__item article[class*="_is"]:not([class*="__card"]):not(:has(> div.short-video-carousel-view))
 dzen.ru##body:not(.page_article-editor) div[class^="article"][class*="holder"]
@@ -1002,7 +1004,7 @@ ok.ru##.anonym_login_w+div.prl_txt
 !
 ! ads in the feed
 ok.ru#%#//scriptlet('set-constant', 'Object.prototype.obfuscateParams', 'undefined')
-ok.ru#?#.feed-list > div.feed-w:has(> div.feed div.feed-info-label:contains(Реклама))
+ok.ru#?#.feed-list > div.feed-w:has(> div.feed div.feed-info-label:contains(/[Рр]еклама/))
 !
 ok.ru###hook_Block_AnonymMainRightColumnAd
 ok.ru##.browser-banner
@@ -1062,6 +1064,7 @@ overclockers.ru#@#.material-other-feed
 ! rustorka.com
 game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$script:contains(/function ads_|_0x.*'write'/)
 game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top$$body > div:contains(/color: #333.*margin: auto; position:relative; text-align: left;/)
+game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top###gogfilmsfuck
 game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top##div[id^="jetta"]
 game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top###chess2day
 game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,naylo.top,zannn.top,innal.top###as2_script
@@ -1100,10 +1103,19 @@ game4you.top,monna2.top,apad2.top,rustorka.com,rustorka.net,rustorkacom.lib,nayl
 @@/SidebarAds.js$~third-party,domain=game4you.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
 @@/report_ad.js$~third-party,domain=game4you.top|rustorka.com|rustorka.net|rustorkacom.lib|naylo.top|monna2.top|zannn.top|innal.top|apad2.top
 !
+rustorka.com#%#//scriptlet('set-constant', 'document.write', 'undefined')
 rustorka.com$$div[id="outchilss"]
-rustorka.com$$script[tag-content="outchilss"]
+rustorka.com$$script:contains(kot.png)
+rustorka.com#%#//scriptlet('prevent-setTimeout', 'detectAdBlock')
 rustorka.com#%#//scriptlet('prevent-setTimeout', ';console[')
 rustorka.com#%#//scriptlet('prevent-setTimeout', 'tick')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+rustorka.com#@#.ads
+rustorka.com#@#.ad-banner
+rustorka.com#@#.advert
+rustorka.com#@#.baner
+rustorka.com#@#.ad_box:not(.text-ad)
+!#endif
 !$cookie=/^u_count|^st\d+|adblock|gophp/,domain=naylo.top|rustorka.com|rustorka.net|rustorkacom.lib|tapochek.net
 ! tapochek.net - fixing first click
 tapochek.net#%#//scriptlet("set-constant", "window.b0", "null")
@@ -1171,12 +1183,6 @@ jeder.ru###nono
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=math.semestr.ru
 ! http://forum.adguard.com/showthread.php?9751
 @@||donforum.net^$generichide
-! http://forum.adguard.com/showthread.php?9744
-project.dovidnyk.info#%#window.google_jobrunner = function() {};
-! http://forum.adguard.com/showthread.php?9752
-dentaltechnic.info#%#window.google_jobrunner = function() {};
-! http://forum.adguard.com/showthread.php?9727
-juwelir.info#%#window.google_jobrunner = function() {};
 ! http://forum.adguard.com/showthread.php?9705
 @@||donbassforum.net^$generichide
 ! http://forum.adguard.com/showthread.php?9692
@@ -1329,7 +1335,7 @@ otzovik.com$$script[wildcard="*function*blockId*"][min-length="1000"][max-length
 !
 !
 ! Add Yandex owned sites to `jsonprune` rule
-$script,xmlhttprequest,domain=ya.ru|yandex.*|shedevrum.ai,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "renderLinkTail"\, "seatbid"]
+$script,xmlhttprequest,domain=ya.ru|yandex.*|shedevrum.ai,jsonprune=\$..[direct\, "rtbAuctionInfo"\, "blockId"\, "linkTail"\, "seatbid"]
 yandex.*#%#//scriptlet('remove-cookie', '/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/')
 $cookie=/blcrm|bltsr|zmFQeXtI|JPIqApiY|computer/,domain=yandex.*
 ! ad on chrome://newtab
@@ -1346,11 +1352,15 @@ yandex.*##.SerpListFeature div.Skeleton_type_ad_search
 ya.ru,yandex.*##.DirectFeature
 ya.ru##div[data-hydration-id] > style + div[style^="--image-aspect-ratio:"]
 ||yandex.ru/search/_crpd/*/*/*_$script,replace=/\.?directBannerType//
+yandex.kz##.body__view > div[style^="--height-ratio:"]
+yandex.by##div[class^="body__"] > div[style^="--height-ratio:"]
 ya.ru,yandex.*##.services-feed > div[style^="--height-ratio:"]
 ya.ru,yandex.*##.services-feed_banner_yes
 ya.ru##.Skeleton_type_ad_search
 [$path=/search]ya.ru,yandex.*##.AdvMedia
 yandex.*##body:not([data-bem*="pogoda"]) .mini-suggest__popup-content > li[data-type="nav"]
+! ad in the search results
+[$path=/search]ya.ru,yandex.*##.content__left li.serp-item:has(> div[class] div.AdvLabel)
 ! ad in a search proposal
 ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="http://yabs."][href*="/count/"]
 ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="https://yabs."][href*="/count/"]
@@ -1358,7 +1368,7 @@ ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="http://yandex"][href*="/clck/
 ! In search results - not context ads
 ya.ru,yandex.*###search-result > li:has(> div.Bno_isPromoSnippet)
 ! inline search ads
-ya.ru,yandex.*###search-result > [class][data-cid]:has(> div.Organic > div a[href*="_crpd"][data-click])
+ya.ru,yandex.*###search-result > [class]:has(> div.Organic > div a[href*="_crpd"])
 ! the ad is on the right side, which is mostly non-reproducible
 [$path=/search]ya.ru,yandex.*##.content__right div[class][data-bem]:has(> div[class] div[class] > button[data-maukl*="advertiser"])
 [$path=/search]ya.ru,yandex.*##.content__right div[class][data-cid]:has(> div[data-vnl*='"renderTo"'])
@@ -1367,10 +1377,12 @@ ya.ru,yandex.*###search-result > [class][data-cid]:has(> div.Organic > div a[hre
 ! in the dropdown list of the search suggestions
 ya.ru##form[role="search"] div[id^="suggest-list-"] > div[class*="__group "]:has(> div[data-suggest-counter] [data-clps-id] > div[class$="__item-warning_disclaimer"])
 ! In the search suggestions when typing
+ya.ru,yandex.*##.mini-suggest__popup-content > li > a[target="_blank"]
 ya.ru##.mini-suggest__popup-content > div.mini-suggest__group_layout_separated:has(> div > a[target="_blank"])
 ! Right side, where usually shown useful content
 ! The rule must be checked also another with search requests to not break the page
 ! For example, pills, specific electrinics, searcf for definition of a word
+ya.ru,yandex.*###search-result-aside div[id^="Adv_media__"] img
 ya.ru,yandex.*###search-result-aside > div[class*="_right_yes"] > div[data-cid] div[data-vnl*="R-I-"]
 ya.ru,yandex.*###search-result-aside > div[class*="_right_yes"]:not([aria-label]) > div[data-cid] > div.Root_lazy > div[class$="-Slot"]
 ! Breaks useful content
@@ -1387,6 +1399,7 @@ ya.ru,yandex.*##.serp-list > div.incut
 ya.ru,yandex.*##.DirectInline
 !
 ! Yandex.Maps
+[$path=/maps]yandex.*##div[class^="masstransit-"][class*="-panel-view_"] ~ div[style^="padding: 16px 0px;"][style*="position: relative;"]
 yandex.*##.map-controls__additional-button > a.promo-button
 [$path=/maps]yandex.*##.search-business-snippet-view__content > div.search-business-snippet-view__badge:has(span[data-nosnippet="true"] > span[class$="_advert-text"])
 [$path=/web-maps]yandex.*##div[data-chunk="promo-chunk"]
@@ -1416,12 +1429,19 @@ yandex.*#?#.business-card-title-view__actions > div.business-card-title-view__ad
 [$path=/maps]yandex.ru#%#//scriptlet('json-prune', 'config.errorBooster.sendMetrics')
 !
 ! Yandex.Pogoda
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
+[$path=/pogoda|hava/]yandex.*##div[class^="MainPage_topBlockWithMoney_"]
+[$path=/pogoda|hava/]yandex.*##li[class^="AppForecastMoney_wrap_"]
+[$path=/pogoda|hava/]yandex.*##article[class^="AppMoney_wrap_"]
+!#endif
 ||yandex-pogoda.static-storage.net/*/*/*$script,replace=/adblock//
 !
 ! Yandex.Market
-market.yandex.*##div[data-apiary-widget-name="@light/RecomMediaAdv"]
+market.yandex.*##div[data-apiary-widget-name="@monetize/CreativeBanner"]
+market.yandex.*##div[data-apiary-widget-name="@monetize/MadvHeaderPromoStreamer"]
+market.yandex.*##div[data-apiary-widget-name="@marketfront/CreativeBanner"]
+market.yandex.*##div[data-apiary-widget-name="@monetize/RecomMediaAdv"]
 market.yandex.*##div[data-apiary-widget-name="@monetize/HeroBannerCarouselLazyCreator"]
-market.yandex.*##div[data-zone-name="headerPromo"]
 market.yandex.*###banner-streamer
 !
 ! Yandex.Video
@@ -1431,12 +1451,13 @@ market.yandex.*###banner-streamer
 ! Video ad
 ||strm.yandex.ru/get/$xmlhttprequest,replace=/(<VAST[\s\S]*?>)[\s\S]*<\/VAST>/\$1<\/VAST>/,important
 ! ads near the player
+[$path=/video]ya.ru,yandex.*##div[class*="_placement_video-list"]
 [$path=/video]ya.ru,yandex.*##.Viewer > div[style^="height:"]
-[$path=/video]ya.ru,yandex.*##.Viewer-ScrollContainer > div[class$="Block"] > div[class*="_placement_"]
 [$path=/video]ya.ru,yandex.*##.DirectStripe
 !
 ! Yandex.Afisha
 ||yandex-afisha.naydex.net/*/*/*_$script,replace=/eval\(decodeURIComponent\(.*//
+afisha.yandex.*##div[data-test-id="layout.root"] > div[class] > div[class*=" "]:has(> div.adfox)
 afisha.yandex.*##.adfox_type_branding
 afisha.yandex.*##div[style^="width:100%;height:250px;display:block"]
 afisha.yandex.*##div[style^="width:100%;height:240px;display:block"]
@@ -1455,10 +1476,11 @@ music.yandex.*##section[class^="SideAdvertBanner_root__"]
 music.yandex.*##.audio-advert__block
 music.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.videoAdvertPopup')
 music.yandex.*##div[class^="d-overhead"]
-music.yandex.*##.audio-advert__block
 music.yandex.*##.sidebar__placeholder .teaser ~ div
 !
 ! Yandex.Disk
+disk.yandex.*#%#//scriptlet('remove-class', 'has-right-direct', '#app > .public__root.has-right-direct')
+disk.yandex.*##.top-direct-line
 disk.yandex.*##.direct-public__right-direct-wrapper
 disk.yandex.*##.direct
 ||docviewer.yandex.*/sw.js
@@ -1467,9 +1489,13 @@ disk.yandex.*##.direct
 docviewer.yandex.*#%#//scriptlet('json-prune', 'seatbid rtbAuctionInfo')
 docviewer.yandex.*##div[class^="pages_"] > div[class][id]:has(> div[class] + div[style="position: absolute; display: none; visibility: hidden; width: 0px; height: 0px;"])
 !
+! Yandex.Maps
+||yandex.*/maps/_crpd/$xmlhttprequest,jsonprune=\$..[direct\, "rtb"]
+!
 ! Yandex.Mail
-||mail.yandex.$replace=/"(RIGHT_COLUMN_SCROLLER|DIRECT_LINE_CLASS)":"[A-Za-z0-9_]+"\,//
+||mail.yandex.$replace=/"(RIGHT_COLUMN_SCROLLER|DIRECT_LINE_CLASS|SYSTEM_CONTEXT_LINK|YANDEX_CONTEXT_ASYNC_CALLBACKS|JS_MAIN_RTB|BANNERS_CONTAINER_CLASS|JS_MESSAGES_DIRECT)":"((?:[^"\\]|\\.)*)"\,//
 ||mail.yandex.*/*/*/*/*$replace=/.*"adIds":.*"imptrackers":.*//,xmlhttprequest,domain=mail.yandex.*
+mail.yandex.*##div[data-testid="content-header_container"] > div[class]:has(> div:only-child:empty)
 mail.yandex.*###js-layout-inner ~ div[class^="Loading-m__root--"]
 mail.yandex.*##.ComposeDoneScreen-Ads
 mail.yandex.*##div[class*="disableAdsContainer"]
@@ -1487,6 +1513,7 @@ rasp.yandex.*##.SearchSegmentsDirect
 ||yandex-*.naydex.net/*/*/*_$script,replace=/adblock//,domain=tv.yandex.*|afisha.yandex.*|realty.ya.*
 tv.yandex.*##div[class*="is-top"] > div[class^="grid"][class*=" "]:has(> div[class*="__"] > div.channel_dbca)
 tv.yandex.*##div[class] > div[class^="grid"][class*=" "]:has(> div.channel_dbca)
+tv.yandex.*##.grid-chunk > div.grid-chunk__column-box:has(> div.grid-chunk__adv-column)
 !
 ! Yandex.Travel
 travel.yandex.ru##noindex[id^="adfox_"]
@@ -1498,6 +1525,7 @@ realty.ya.ru##.OffersSerpPromoItem
 ! Yandex.Travel
 !
 ! Yandex.Translate
+translate.yandex.*###sidebar-direct
 translate.yandex.*###dstCarouselSection:has(> div > a[target="_blank"])
 !
 ! Turbopages
@@ -1514,6 +1542,9 @@ yandex.*##body[data-bem*="turbo"] div[data-name="advert"]
 !
 ! Yandex.Games
 ||yandex.*/games/app$replace=/"advEnabledByPartner":true/"advEnabledByPartner":false/
+yandex.net###embed-html
+[$path=/games]yandex.*#$#.play-game-header_with-adv { width: 100% !important; }
+[$path=/games]yandex.*#$#.game-root { width: 100% !important; height: 100% !important; }
 [$path=/games]yandex.*##div[class$="-wrapper_with-disable-ad-button"]
 [$path=/games]yandex.*#$#div[style^="width: calc(100% - "] { width: 100% !important; }
 [$path=/games]yandex.*#%#//scriptlet('trusted-click-element', 'div[data-testid="adv-fullscreen-container"] div[data-testid="adv-fullscreen-closeButton"]', '', '5000')
@@ -1542,6 +1573,9 @@ yandex.*##.stack > div[class^="sticky-"]
 ! Yandex.Internet
 yandex.*##.layout__banner
 yandex.*#?#div[class^="layout__top"] > div[class^="layout_"]:has(> div[style] > div[id^="R-I-"])
+!
+! Yandex.Uslugi
+uslugi.yandex.ru##.WebBanner
 !
 ! Yandex Browser start page
 ||yandex.ru/portal/ntp/banner$redirect=nooptext

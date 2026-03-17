@@ -7,6 +7,28 @@
 ! Good: @@/adblocker/detect.js$domain=example.org
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/224127
+lematin.ch#$#body { overflow: visible !important; }
+lematin.ch#$#body div.fc-ab-root:not(#style_important) { display: none !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/223523
+coupdepouce.com#%#//scriptlet('set-constant', '__NEXT_DATA__.runtimeConfig._qub_sdk.qubConfig.ad.adBlockerDetectorEnabled', 'false')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=coupdepouce.com
+@@||micro.rubiconproject.com/prebid/dynamic/*.js$domain=coupdepouce.com
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/220854
+monlatuque.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=monlatuque.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/218498
+planhub.ca###popupAdBlockerDetected
+planhub.ca#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+! https://github.com/AdguardTeam/AdguardFilters/issues/201585
+@@||fiches-auto.fr/popup2.js$~third-party
+!+ NOT_OPTIMIZED
+fiches-auto.fr##body > button#back-to-top ~ div[id][style="display: block;"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/216731
+||pmur.org/scripts/Slate_abChoice.js$domain=slate.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209760
 cinefil.com#@#ins.adsbygoogle[data-ad-slot]
 cinefil.com#@#ins.adsbygoogle[data-ad-client]
@@ -58,7 +80,6 @@ lecrabeinfo.net#%#//scriptlet('set-constant', 'LCI.adNetwork', 'undefined')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||ads.sportslocalmedia.com/slm.prebid.lecrabeinfo.js$domain=lecrabeinfo.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196696
-magazine-avantages.fr#@#.AdsBox
 magazine-avantages.fr#$#body { overflow: auto !important; }
 magazine-avantages.fr#$##overlay { display: none !important; }
 magazine-avantages.fr#$#.qiota_onboard:has(> div.AdBlockModal) { display: none !important; }
@@ -70,13 +91,11 @@ petitfute.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.go
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191116
 ||minenode.fr/dashboard/function/js/AzurHOSTS/pubs.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191055
-marieclaire.fr#@#.AdsBox
 marieclaire.fr#$#body { overflow: auto !important; }
 marieclaire.fr#$##overlay { display: none !important; }
 marieclaire.fr#$?#.qiota_onboard:has(> div.AdBlockModal) { display: none !important; }
 ||static.qiota.com/assets/getQiota.js$domain=marieclaire.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190815
-larvf.com#@#.AdsBox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188979
 sekai.one###adblock-modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186309
@@ -203,7 +222,6 @@ empire-anime.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 empire-anime.com,empire-streamz.fr,empire-streaming.*,empire-stream.net#%#//scriptlet('set-constant', 'navigator.brave', 'undefined')
 @@||e-player-stream.app/player/assets/js/ads.js?$~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153700
-cosmopolitan.fr#@#.AdsBox
 ! https://github.com/uBlockOrigin/uAssets/issues/18431
 ||parlons-basket.com/wp-content/themes/parlons-basket/js/detector.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151986
@@ -221,36 +239,48 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
-japscan.*#%#//scriptlet('trusted-set-constant', 'pubadxtag', '{"divIds":["bg-ssp-11335-293463248855","bg-ssp-11334-1480900913438"]}')
+japscan.*#%#//scriptlet("remove-node-text", "script", "/pubadx-ad|runBanner|threshold|getBoundingClientRect|'nextElementSi|TagName'|\+'play|'debu|'gge'|\.constructor\(|\/gif;base64|'runInte|nterstitial'/")
+japscan.*#%#//scriptlet('abort-current-inline-script', 'MessageChannel', '0x')
+japscan.*#%#//scriptlet('prevent-requestAnimationFrame', '/(\s*)\s*=>/')
+japscan.*#%#//scriptlet('trusted-suppress-native-method', 'Array.prototype.join', '""', 'prevent', 'inlineScript')
+japscan.*#%#//scriptlet('prevent-addEventListener', '/DOMContentLoaded|load/', '/aclib|Gk_/')
+japscan.*#%#//scriptlet('set-constant', 'aclib.runPop', 'throwFunc')
+japscan.*#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
+japscan.*#%#//scriptlet('trusted-set-constant', 'aclib', '{"isShowingPop":false}')
+japscan.*#%#//scriptlet('trusted-set-constant', 'pubadxtag', '{"divIds":[]}')
 japscan.*#$#body > div.full-container > div.full-container.text-center > div.mt-2[style="margin: 0px auto; display: block;"] > a.Aikoi.donate[target="_blank"][rel][href^="https://www.longosto.shop/?utm_source="] > img.img-fluid { content-visibility: hidden !important; }
 !#endif
 japscan.*#@#div.container > [href]
 japscan.*#@##main > .card:has(a[href*="/manga/?type="][href*="&content="][target="_blank"])
+||network-loop.com/campaigns/banners/$domain=japscan.*,important
 @@||japscan.$image,xmlhttprequest,script,~third-party
 japscan.*#@#.tangoai
 japscan.*#@#[class^="copine"]
 @@||japscan.$generichide
 !#if (adguard_ext_chromium_mv3)
-/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol|japscan.si|japscan.vip
-@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||acscdn.com^$script,third-party,domain=japscan.lol|japscan.si|japscan.vip
-@@.shop/*/invoke.js$script,third-party,domain=japscan.lol|japscan.si|japscan.vip,important
-$script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol|japscan.si|japscan.vip
-@@$image,domain=japscan.lol|japscan.si|japscan.vip
-@@||googletagmanager.com/gtag/js$domain=japscan.lol|japscan.si|japscan.vip
-@@||githack.com^$script,domain=japscan.lol|japscan.si|japscan.vip
-@@||statically.io^$script,domain=japscan.lol|japscan.si|japscan.vip
-@@||netlify.app^$script,domain=japscan.lol|japscan.si|japscan.vip
-@@||iili.io^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||imageshack.com^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||drive.google.com^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||postimg.cc^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
-@@||i.ibb.co^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip
+||network-loop.com/campaigns/banners/$domain=japscan.lol|japscan.si|japscan.vip|japscan.foo,important
+||platform.pubadx.one/pubadx-ad.js$script,redirect=noopjs,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo,important
+/^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||acscdn.com^$script,third-party,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@.shop/*/invoke.js$script,third-party,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo,important
+$script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@$image,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||googletagmanager.com/gtag/js$domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||githack.com^$script,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||statically.io^$script,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||netlify.app^$script,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||iili.io^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||imageshack.com^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||drive.google.com^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||postimg.cc^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
+@@||i.ibb.co^$xmlhttprequest,domain=japscan.lol|japscan.si|japscan.vip|japscan.foo
 !#endif
 !#if (!ext_ublock)
+||platform.pubadx.one/pubadx-ad.js$script,redirect=noopjs,domain=japscan.*,important
 /^https:\/\/acscdn\.com\/script\/(?:aclib|atg|compatibility|ippg|suv4|ut)\.js(\?cb=\d{13})?$/$script,third-party,match-case,important,domain=japscan.*
-@@||platform.pubadx.one/pubadx-ad.js$xmlhttprequest,domain=japscan.*
+@@||platform.pubadx.one/pubadx-ad.js$script,xmlhttprequest,domain=japscan.*
 @@||static.cloudflareinsights.com/beacon.min.js$xmlhttprequest,domain=japscan.*
 @@||acscdn.com^$script,third-party,domain=japscan.*
 @@.shop/*/invoke.js$script,third-party,domain=japscan.*,important
@@ -580,8 +610,6 @@ journaldugeek.com#%#window.google_tag_manager = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11545
 !+ PLATFORM(ios, ext_android_cb)
 @@||eurosport.fr^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/9961
-nrj-play.fr#@#.ad-zone
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7013
 ultimate-catch.eu##.special-message-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6773
