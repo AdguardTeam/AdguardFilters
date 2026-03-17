@@ -132,7 +132,7 @@ primevideo.com,amazon.co.uk,amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('xml
 ! aglint-disable no-invalid-modifiers
 !+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 .mpd$xmlprune=//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start[boolean(//*[@value="Ad"])],xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android )
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 /GetVodPlaybackResources?$jsonprune=\$.vodPlaybackUrls.result.playbackUrls.cuepoints,xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
 /GetVodPlaybackResources?$jsonprune=\$.cuepointPlaylist,xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
 /GetPlaybackResources?$jsonprune=\$.vodPlaybackUrls.result.playbackUrls.cuepoints,all,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
@@ -383,11 +383,11 @@ photopea.com#%#//scriptlet('set-constant', '___osw', 'undefined')
 photopea.com#%#(()=>{const e=new Event("resize");window.addEventListener("load",(()=>{const t=document.querySelector(".flexrow.app > div");(0===localStorage.length||void 0===JSON.parse(localStorage._ppp)["0_uid"])&&t&&t.clientWidth<window.innerWidth&&(Object.defineProperty(window,"innerWidth",{get:()=>document.documentElement.offsetWidth+315}),window.dispatchEvent(e))}))})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211922
 ! TODO: remove hints when this issue is resolved and new scriptlets library is added for apps - https://github.com/AdguardTeam/Scriptlets/issues/517
-!#if (adguard_app_windows || adguard_app_android || adguard_app_mac || adguard_ext_firefox)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli || adguard_ext_firefox)
 ||workora.space^$replace=/let seconds = \d+;/let seconds = 0;/,document
 ||workora.space^$replace=/(function playContent\(\) \{[\s\S]*?adMessage[\s\S]*?\})/\$1;playContent();/,document
 !#endif
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_firefox)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli && !adguard_ext_firefox)
 workora.space#%#//scriptlet('trusted-replace-node-text', 'script', 'playContent', '/let seconds = \d+;/', 'let seconds = 0;')
 workora.space#%#//scriptlet('trusted-replace-node-text', 'script', 'playContent', '/(function playContent\(\) \{[\s\S]*?adMessage[\s\S]*?\})/', '$1;playContent();')
 !#endif
@@ -446,7 +446,7 @@ chromeactions.com#%#(()=>{const e={apply:(e,n,t)=>{const i=t[1];return i&&"addEv
 addictinggames.com#%#(()=>{window.Bolt={on:(o,n,i)=>{"precontent_ad_video"===o&&"AD_COMPLETE"===n&&"function"==typeof i&&i()},BOLT_AD_COMPLETE:"AD_COMPLETE",BOLT_AD_ERROR:"AD_ERROR"},window.ramp=window.ramp||{},window.ramp.addUnits=()=>Promise.resolve(),window.ramp.displayUnits=()=>{setTimeout((()=>{"function"==typeof window.ramp.onPlayerReady&&window.ramp.onPlayerReady()}),1)};})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189322
 ! A fix for issue with constantly loading website, it's required when DNS filtering is enabled
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_opera)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli || adguard_ext_chromium || adguard_ext_opera)
 wsj.com#%#//scriptlet('google-ima3')
 wsj.com#%#//scriptlet('prevent-element-src-loading', 'script', '/static\.adsafeprotected\.com|imasdk\.googleapis\.com\/js\/sdkloader\/ima3\.js/')
 wsj.com#%#(()=>{window.googleImaVansAdapter={init(){},dispose(){}};})();
@@ -553,7 +553,7 @@ veev.to#%#//scriptlet('trusted-click-element', '.wwc-play-button > .bc-content >
 ! https://github.com/AdguardTeam/AdguardFilters/issues/174871
 ! filemoon, often changed
 ! TODO: remove "NOT_VALIDATE" hint when this issue is fixed - https://github.com/AdguardTeam/FiltersCompiler/issues/237
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_chromium || adguard_ext_opera || adguard_ext_firefox || adguard_ext_chromium || adguard_ext_chromium_mv3)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli || adguard_ext_chromium || adguard_ext_opera || adguard_ext_firefox || adguard_ext_chromium || adguard_ext_chromium_mv3)
 !+ NOT_VALIDATE
 [$url=/^https:\/\/[0-9a-z]{5}[0-9a-z]?[0-9a-z]?[0-9a-z]?\.[a-z]{2}[a-z]?[a-z]?[a-z]?\/[0-9a-z-]+\/[0-9A-Za-z]{12}[0-9A-Za-z]*\?ref(erer)?=/]#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', 'delete window')
 !+ NOT_VALIDATE
@@ -2041,7 +2041,7 @@ oncehelp.com#%#//scriptlet("prevent-window-open")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/77193
 nbaup.live,goalup.live#%#//scriptlet("abort-on-property-read", "popup")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76395
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_ext_firefox)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli || adguard_ext_firefox)
 bing.com#%#//scriptlet('prevent-setInterval', 'logQueue', '10000')
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76952
