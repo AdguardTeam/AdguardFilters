@@ -130,7 +130,7 @@ primevideo.com,amazon.co.uk,amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('xml
 primevideo.com,amazon.co.uk,amazon.de,amazon.co.jp,amazon.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[@value="Ad"]] | /*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"]/@start)', '[value="Ad"]', '.mpd')
 !#endif
 ! aglint-disable no-invalid-modifiers
-!+ NOT_VALIDATE PLATFORM(windows, mac, android)
+!+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 .mpd$xmlprune=//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start[boolean(//*[@value="Ad"])],xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
 !#if (adguard_app_windows || adguard_app_mac || adguard_app_android )
 /GetVodPlaybackResources?$jsonprune=\$.vodPlaybackUrls.result.playbackUrls.cuepoints,xmlhttprequest,domain=amazon.com|amazon.co.jp|amazon.de|amazon.co.uk|primevideo.com
@@ -1228,9 +1228,9 @@ hentaiworld.tv#%#//scriptlet("prevent-window-open", "hyenadata")
 turbovid.vip,turbocloud.xyz,turbovidhls.com,trailerhg.xyz,turboplayers.xyz,javggvideo.xyz,turtleviplay.xyz,findjav.com,stbturbo.xyz,emturbovid.com#%#//scriptlet('prevent-setTimeout', 'window.open')
 turbovid.vip,turbocloud.xyz,turbovidhls.com,trailerhg.xyz,turboplayers.xyz,javggvideo.xyz,turtleviplay.xyz,findjav.com,stbturbo.xyz,emturbovid.com#%#//scriptlet('set-constant', 'premium', 'undefined')
 ! TODO: remove hints when this issue is resolved - https://github.com/AdguardTeam/Scriptlets/issues/517
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 turbovid.vip,trailerhg.xyz,turboplayers.xyz,javggvideo.xyz,turtleviplay.xyz,findjav.com,stbturbo.xyz,emturbovid.com#%#//scriptlet('trusted-replace-node-text', 'script', 'openNewTab', '/openNewTab[(]".*?"[)]/g', 'null')
-!+ NOT_VALIDATE PLATFORM(windows, mac, android)
+!+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 $replace=/openNewTab\(".*?".{0\,10}\)/null/,document,subdocument,to=turbovidhls.com|trailerhg.xyz|turboplayers.xyz|javggvideo.xyz|turtleviplay.xyz|findjav.com|stbturbo.xyz|emturbovid.com|turbovid.vip
 ! https://github.com/AdguardTeam/AdguardFilters/issues/135902
 mega4upload.com#%#//scriptlet('remove-attr', 'onclick', '#direct_link > a[onclick]')
@@ -2672,7 +2672,7 @@ pixroute.com#%#//scriptlet("set-constant", "proclayer", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/45272
 rekkerd.org#%#//scriptlet('set-constant', 'td_ad_background_click_link', 'undefined')
 ! streamcdn.to - popups
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 streamcdn.to#%#//scriptlet("prevent-addEventListener", "click", "dtnoppu")
 !+ PLATFORM(windows, mac, android, cli)
 streamcdn.to#%#(function(){var c=document.addEventListener;document.addEventListener=function(a,b,d,e){"click"!=a&&-1==b.toString().indexOf('"dtnoppu"')&&c(a,b,d,e)}.bind(document);})();
@@ -2699,7 +2699,7 @@ filecrypt.cc#%#//scriptlet("set-constant", "FBPOP", "noopFunc")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43700
 fuqer.com#%#//scriptlet("abort-on-property-read", "fUnder")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/43415
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 xsexvideos.pro,mature-tube.sexy#%#//scriptlet('prevent-setTimeout', '/window\.location\.href = ("\/sell\.php"|popURL)/')
 !+ PLATFORM(windows, mac, android, cli)
 xsexvideos.pro,mature-tube.sexy#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/window\.location\.href = ("\/sell\.php"|popURL)/.test(a.toString()))return b(a,c)};})();
@@ -2725,7 +2725,7 @@ m1xdrop.bz,m1xdrop.com,m1xdrop.net,mixdrop23.net,md3b0j6hj.com,mixdrop21.net,mix
 [$domain=/mi?\d?xdrop\d{0,2}\.(net|com)/]#%#//scriptlet("abort-current-inline-script", "document.createElement", "dtnoppu")
 [$domain=/mi?\d?xdrop\d{0,2}\.(net|com)/]#%#//scriptlet("prevent-addEventListener", "click", "dtnoppu")
 ! typingtestnow.com - ads
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 typingtestnow.com#%#//scriptlet("prevent-setTimeout", "replace_blank_adsense_ads")
 !+ PLATFORM(windows, mac, android, cli)
 typingtestnow.com#%#(function(){var b=window.setTimeout;window.setTimeout=function(a,c){if(!/replace_blank_adsense_ads/.test(a.toString()))return b(a,c)};})();
@@ -3933,9 +3933,9 @@ readwhere.com#$#.adunit { margin-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20013
 toucharcade.com#$#header > #header { padding-top: 0!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/20098
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 msn.com#$#li[data--ac*="adblockMediumCardContainer"] { position: absolute!important; left: -3000px!important; }
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 msn.com#$#[id^="-"] { position: absolute!important; left: -3000px!important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/22485
 ! https://forum.adguard.com/index.php?threads/29078/
