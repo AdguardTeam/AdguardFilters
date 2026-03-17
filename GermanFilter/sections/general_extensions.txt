@@ -34,7 +34,7 @@ player.motorsport-magazin.com#%#//scriptlet('trusted-create-element', 'head', 's
 ! if it's available, it redirects to the video content
 filstalwelle.de#$##mejsplayer:has(> video > source[src^="/video/content/a/"]) { display: none !important; }
 filstalwelle.de#%#//scriptlet('trusted-replace-node-text', 'div', 'WERBUNG', 'WERBUNG', 'Trying to skip ads...')
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 ||filstalwelle.de/video/video$replace=/PHPSESSID=.*?'/PHPSESSID=1'/,document
 filstalwelle.de#%#(()=>{if(!location.pathname.includes("/video/video"))return;let e=0;const t=async o=>{const c=await fetch(o);!(await c.text()).includes('src="content/')||document.querySelector('.mejs__video video > source[src^="content/"]')?e<=2&&(e++,setTimeout(t,1e4,o)):location.replace(o)};window.addEventListener("load",(()=>{const e=document.querySelector("body > :is(.mejs__video, #mejsplayer) ~ script:not([type], [src])"),o=e?.textContent.match(/\$\('#bodyTarget'\)\.load\('(.+?)'.+?\);/)?.[1];if(o){let e=location.href.replace(/videoin\.php\?video=.*/,o);e=e.replace(/PHPSESSID=.*/,"PHPSESSID=1");const c=document.querySelector('.mejs__video video:has(> source[src^="/video/content/a/"])');c&&(c.muted=!0),t(e)}else console.debug("Required part not found in the script.")}))})();
 !#endif
@@ -210,7 +210,7 @@ ratgeber.bunte.de#$##G32 { --topbanner-height-min: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159998
 ! https://github.com/AdguardTeam/CoreLibs/issues/1800
 ! TODO: remove when/if it will be fixed in CoreLibs
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 android-hilfe.de#$#.message-main { height: auto !important; }
 android-hilfe.de#$#.p-body-sidebar .block-container { height: auto !important; }
 !#endif
