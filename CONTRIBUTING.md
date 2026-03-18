@@ -43,7 +43,10 @@ After you have installed the necessary tools, you need to set up the repository.
    `fix/123` where `123` is the issue number you're working on.
 1. Make your changes, test them and put them in the proper file or section of the file.
    - You can learn how to write filtering rules in the [How to write filter rules][how-to-write-filters] section.
-   - Before creating any rules, please read and understand the current [AdGuard filters policy](https://adguard.com/kb/general/ad-filtering/filter-policy/). By contributing, you confirm your agreement to follow this policy and create rules in accordance with it.
+   - Before creating any rules, please read and understand the current
+  [AdGuard filters policy](https://adguard.com/kb/general/ad-filtering/filter-policy/).
+  By contributing, you confirm your agreement to follow this policy and
+  create rules in accordance with it.
    - One of its most important points is the [quality requirements][qualityrequirements].
    - When you're done with creating rules, please take a look at the similar ones in the filters.
      This may help you to make a better version of the rule.
