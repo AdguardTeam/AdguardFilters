@@ -63,8 +63,6 @@ After you have installed the necessary tools, you need to set up the repository.
    If AGLint passes, your PR will be reviewed by a maintainer.
 1. If the review is successful, your changes will be merged into the `master` branch.
 
-[policy]: https://adguard.com/kb/general/ad-filtering/filter-policy/
-
 ### Skipping checks
 
 If you need to skip running checks, you can do it in the following ways.
