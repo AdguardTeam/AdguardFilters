@@ -100,7 +100,7 @@ scriptsrbx.com,3dzip.info#%#//scriptlet('abort-on-stack-trace', 'Object.entries'
 ! It should be possible to use stack trace and exclude "/cdn-cgi/challenge-platform/", but it does not work correctly - https://github.com/AdguardTeam/Scriptlets/issues/496
 ! Also using "|" does not work correctly - https://github.com/AdguardTeam/Scriptlets/issues/473
 ! #%#//scriptlet('trusted-suppress-native-method', 'DOMTokenList.prototype.add', '/^(?!.*(n2))(?!.*(container))(?!.*(age))(?!.*(spacer))(?!.*(zone))(?!.*(footer))(?!.*(diagnostic))(?!.*(ray))(?!.*(text)).*-(?!.*(favicon))(?!.*(msg))(?!.*(ring))(?!.*(lang))(?!.*(hover))(?!.*(loaded)).*/')
-mtgphil.org,niganpro.com,trafficexwire.com,sezium.com,nasdaqfutures.org,freepatternsarea.com,hiraethtranslation.com,sampledrive.org,arigl.com,hanopatch4u.com,magicgameworld.com,bluedollar.net,taurus.topmanhuas.org,mangacrab.org,arigl.online,medicalstudyzone.com,asia2tv.com,arabshentai.com,s0ft4pc.com,boyfuck.me,freereadnovel.online,idlixvip.asia,cybermania.ws,gaypornhot.com,asianboy.fans#%#//scriptlet('trusted-suppress-native-method', 'DOMTokenList.prototype.add', '/^(?!.*(n2))(?!.*(container))(?!.*(age))(?!.*(spacer))(?!.*(zone))(?!.*(footer))(?!.*(diagnostic))(?!.*(ray))(?!.*(text)).*-(?!.*(favicon))(?!.*(msg))(?!.*(ring))(?!.*(lang))(?!.*(hover))(?!.*(loaded)).*/')
+mtgphil.org,niganpro.com,trafficexwire.com,sezium.com,nasdaqfutures.org,freepatternsarea.com,hiraethtranslation.com,sampledrive.org,arigl.com,hanopatch4u.com,magicgameworld.com,bluedollar.net,taurus.topmanhuas.org,mangacrab.org,arigl.online,medicalstudyzone.com,asia2tv.com,arabshentai.com,s0ft4pc.com,boyfuck.me,freereadnovel.online,idlixvip.asia,cybermania.ws,asianboy.fans#%#//scriptlet('trusted-suppress-native-method', 'DOMTokenList.prototype.add', '/^(?!.*(n2))(?!.*(container))(?!.*(age))(?!.*(spacer))(?!.*(zone))(?!.*(footer))(?!.*(diagnostic))(?!.*(ray))(?!.*(text)).*-(?!.*(favicon))(?!.*(msg))(?!.*(ring))(?!.*(lang))(?!.*(hover))(?!.*(loaded)).*/')
 ! #%#//scriptlet('abort-current-inline-script', 'eval', 'split')
 nulljungle.com,freemagazines.top,web1s.asia,mizugigurabia.com,pornleaks.in,insideeducation.co.za,tirumalatirupatiyatra.in,geekering.com,banfaucet.com,trigonevo.com,nullpk.com,onemarksolution.com,oportaln10.com.br,adslide.io,meteoregioneabruzzo.it,descargaseriestv.com,animexin.vip,camcam.cc,shineads.org,azoranov.com,nsw2u.*,unofficialtwrp.com,pinsystem.co.uk,173.249.8.3,torrentmac.net#%#//scriptlet('abort-current-inline-script', 'eval', 'split')
 ! $$script[wildcard="*split*eval(function(h,u,n,t,e,r)*"][min-length="70000"][max-length="210000"]
@@ -1255,8 +1255,14 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/229045
+elamigosgamez.net$$script:contains(checkAdblockUser)
+elamigosgamez.net#%#//scriptlet('remove-node-text', 'script', 'checkAdblockUser')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||i.ibb.co/*-728x90.jpg$domain=elamigosgamez.net
+elamigosgamez.net#@#.iframeDiv
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228898
-@@||pagead2.googlesyndication.com/pagead/$domain=dicoall.com
 ||fundingchoicesmessages.google.com/$script,domain=dicoall.com
 dicoall.com#@##AdHeader
 dicoall.com#@##AD_Top
@@ -9688,6 +9694,7 @@ bing.com#$#body .b_adLastChild { display: block !important; position: absolute !
 bing.com#$#.b_ad { display: block !important; position: absolute !important; top: -9999px !important; }
 bing.com#$?#.b_restorableLink { remove: true; }
 ||bing.com^$cookie=ABDEF
+bing.com#%#(()=>{const t={apply:(t,r,e)=>{try{const t=e[0];t?.matches?.('[class^="b_ad"]')&&(e[0]=document.querySelector("#b_results .b_algo"))}catch(t){}return Reflect.apply(t,r,e)}};window.Array.prototype.push=new Proxy(window.Array.prototype.push,t)})();
 bing.com#%#!function(){const e={apply:(e,l,t)=>{const o=t[0];return o?.includes(".b_ad,")?t[0]="#b_results":o?.includes(".b_restorableLink")&&(t[0]=".b_algo"),Reflect.apply(e,l,t)}};window.Element.prototype.querySelectorAll=new Proxy(window.Element.prototype.querySelectorAll,e)}();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/44634
 @@||androiddownload.net/themes/*/js/advertisement.js
