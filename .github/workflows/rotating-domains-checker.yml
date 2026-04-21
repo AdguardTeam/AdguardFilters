@@ -1,0 +1,36 @@
+name: Rotating Domains Checker
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: false
+        default: 'prod_dry'
+        type: choice
+        options:
+          - ''
+          - 'prod_live'
+          - 'prod_dry'
+          - 'test_live'
+          - 'test_dry'
+
+jobs:
+  check-domains:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure git user
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - uses: Alex-302/RotatingDomainsChecker@master
+        with:
+          mode: ${{ github.event.inputs.mode || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
