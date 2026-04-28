@@ -67,6 +67,22 @@ After you have installed the necessary tools, you need to set up the repository.
    If AGLint passes, your PR will be reviewed by a maintainer.
 1. If the review is successful, your changes will be merged into the `master` branch.
 
+### Commit message format
+
+When closing an issue with a commit:
+
+```text
+Fix #ISSUE_NUMBER example.org optional description
+```
+
+When updating without closing (e.g. asking the user to verify):
+
+```text
+Upd #ISSUE_NUMBER example.org description
+```
+
+When using `Upd`, also mark the issue as `A: Waiting for data`.
+
 ### Skipping checks
 
 If you need to skip running checks, you can do it in the following ways.
