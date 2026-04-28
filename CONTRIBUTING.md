@@ -67,6 +67,46 @@ After you have installed the necessary tools, you need to set up the repository.
    If AGLint passes, your PR will be reviewed by a maintainer.
 1. If the review is successful, your changes will be merged into the `master` branch.
 
+### Rule placement
+
+- New rules go at the **top of the relevant section** in the filter file.
+
+  ```diff
+  !NOTE: Regular rules
+
+  + example.org##.banner-ads
+  ||example.com/ads/*
+  ```
+
+- If the new rule shares the same domain as an existing group of rules,
+  insert it within that group in ascending order, rather than at the top of the section.
+
+  ```diff
+  ||example.org/images/ads/*
+  + ||example.org/scripts/tracking.js
+  example.org##.example-ads
+  ```
+
+- For groups of mixed-type rules sharing the same domains,
+  add the new domain either at the **beginning or at the end**.
+  This makes it easy to visually compare the lists if they become out of sync.
+
+  For element hiding rules – at the beginning of the rule:
+
+  ```diff
+  - example.com,example.org###ads
+  + test.com,example.com,example.org###ads
+  ```
+
+  In general, for rules with `|` separator, add a new domain at the end:
+
+  ```diff
+  - adserver$domain=example.com|example.org
+  + adserver$domain=example.com|example.org|test.com
+  ```
+
+  **Avoid:** inserting the domain at a random position in the middle of the list.
+
 ### Commit message format
 
 When closing an issue with a commit:
