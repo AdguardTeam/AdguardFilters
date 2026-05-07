@@ -33,6 +33,10 @@
 ! Reduce lifetime for a cookie that is used to store persistent user ID
 $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
+! Yandex.Metrika
+mexc.com,2gis.*,spletnik.ru#%#//scriptlet('set-local-storage-item', '/^_ym/', '$remove$')
+mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
+!
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/3973
 ! Probably caused by overriding "dataLayer.push" function
 ||google-analytics.com/analytics.js$script,redirect=google-analytics,domain=~olx.*|~banki.ru|~bigc.co.th|~sonos.com|~hepsiburada.com
@@ -47,7 +51,7 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 ! fix https://golf.com/news/tour-confidential-match-play-concession-augusta-womens-am/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152328
 !+ NOT_OPTIMIZED
-||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=~golf.com|~today.line.me|~inmuebles24.com|~inside.com.tw|~investing.com|~olx.com.eg|~eksisozluk.com|~heycar.co.uk|~gizmodo.jp|~dexerto.com|~makorrishon.co.il
+||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=~golf.com|~today.line.me|~inmuebles24.com|~inside.com.tw|~investing.com|~olx.com.eg|~eksisozluk.com|~heycar.co.uk|~gizmodo.jp|~dexerto.com|~makorrishon.co.il|~mensjournal.com
 ! When Base filter breaks website and an exclusion has to be added to Base
 !+ NOT_OPTIMIZED
 ||securepubads.g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,important,domain=turbo.pt
@@ -83,6 +87,24 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||global.one.yomiuri.co.jp/ssc-ym-client.v*.js
+||247wallst.com/b66d/|$script
+||247wallst.com/wp-content/plugins/fwp-247-analytics-old/js/dist/fwp-analytics-main.js
+||player.kinoton.cc/api/events
+||podiums.link/event
+nhnieuws.nl#%#//scriptlet('set-local-storage-item', 'udid', '$remove$')
+nhnieuws.nl#%#//scriptlet('set-local-storage-item', 'cs_fpid', '$remove$')
+||regfiles.net/0/|$script
+||static.mocortech.com/mx-fingerprintjs/
+||static.mocortech.com/mx-remote-packages/mxc-web-remote-script/lib/tag_ww.js
+||static.mocortech.com/mx-remote-packages/mxc-web-remote-script/lib/ytag.js
+||mexc.com/staticjs/tag.js
+mexc.com#%#//scriptlet('set-local-storage-item', 'mexc_local_fingerprint_visitorId', '$remove$')
+mexc.com#%#//scriptlet('set-local-storage-item', 'mexc_local_fingerprint', '$remove$')
+mexc.com#%#//scriptlet('set-local-storage-item', 'mexc_local_fingerprint_sys_info', '$remove$')
+mexc.com#%#//scriptlet('set-local-storage-item', 'mexc_fingerprint_all_config_init_time', '$remove$')
+mexc.com#%#//scriptlet('set-local-storage-item', '__watchman_anonymous_id$$_', '$remove$')
+||static.fd.nl/assets/fdmg-tag-manager/
 ||pd5sngsre3.net/g/hn.js
 ||m.media-amazon.com/images/I/*/BotCXMetricsCollectionJSAsset
 ||media-amazon.com/images/*/metrics.jpg
@@ -1481,7 +1503,6 @@ hindustantimes.com#%#//scriptlet('set-local-storage-item', 'ht_cdp', '$remove$')
 ||assets.aliexpress-media.com/g/??alilog/aplus_plugin_aefront/index.js,alilog/mlog/aplus_int.js
 ||assets.aliexpress-media.com/g/lzd_sec/epssw/*/epssw.js
 ||assets.aliexpress-media.com/g/AWSC/uab/*/collina.js
-||assets.alicdn.com/g/lzd_sec/epssw/*/epssw.js
 ||assets.alicdn.com/g/alilog/
 ||app.tag-plus.com/ja/api/v1/unison_planet/heat_map
 ||admin.microsoft.com/api/instrument/logclient
@@ -1821,7 +1842,6 @@ arstechnica.com###story-recommendations
 ||ieq-systems.de/includes/piwikQ.js
 ||player.ivideosmart.com/ivsplayer/*/moat-tracker.js
 ||nexon.com/nxlog-collect/
-2gis.*#%#//scriptlet('set-local-storage-item', '/_ym/', '$remove$')
 ||tags.stepstone.com/utag/*/prod/utag.js
 ||static.posta.com.tr/scripts/tracking/dailymotion-event.min.js
 ||afkgaming.com/scooby/api/v1/log/event|
@@ -4469,8 +4489,8 @@ abp?type=js&session$domain=prosieben.de|sat1.de|kabeleins.de|sixx.de|prosiebenma
 ||scripts.hepsiburada.net/assets/analytics/analytics.*.js
 ||airbnb.*/tracking/
 ||googleadservices.com/pagead/conversion_async.js
-||analytics.twitter.com/i/adsct?
-||t.co/i/adsct?
+||analytics.twitter.com/*/adsct?
+||t.co/*/adsct?
 ||linkedin.com/*/rum-track?
 ||media.licdn.com/cdo/rum/id?
 ||sendsay.ru/js/target/tracking.js
@@ -5547,6 +5567,8 @@ dreamprogs.net##td[width="88"][height="31"]
 ||ztat.net/*/webtrekk.min.js^
 ||google.com/log?$redirect=nooptext
 ||yandex.ru/clck/click|
+! AdRiver
+spletnik.ru#%#//scriptlet('set-local-storage-item', 'adrcid', '$remove$')
 !
 !#if (!ext_ublock)
 !#if (!adguard_ext_chromium && !adguard_ext_opera && !adguard_ext_firefox && !adguard_ext_chromium && !adguard_ext_chromium_mv3)
