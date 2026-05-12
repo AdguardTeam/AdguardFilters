@@ -1252,6 +1252,10 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/26327
+midiplayer.ehubsoft.net#%#//scriptlet('prevent-element-src-loading', 'script', 'googlesyndication.com/pagead/show_ads.js')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||pagead2.googlesyndication.com/pagead/show_ads.js$script,domain=midiplayer.ehubsoft.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/230953
 area.waffi.cloud#@#.adzone
 area.waffi.cloud#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '.offsetHeight === 0')
@@ -11874,16 +11878,6 @@ gktoday.in#@#.sponsored
 ! https://github.com/AdguardTeam/AdguardFilters/issues/5469
 !+ PLATFORM(ext_android_cb, ios)
 @@||freetutorials.us^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/28761
-! https://github.com/AdguardTeam/AdguardFilters/issues/26327
-! https://forum.adguard.com/index.php?threads/flacplayer-ehubsoft-net-anti-ad-block-ubo-on-chrome.23131/
-ehubsoft.net#%#//scriptlet("set-constant", "gadb", "false")
-!+ NOT_PLATFORM(ios, ext_android_cb)
-||pagead2.googlesyndication.com/pagead/show_ads.js$script,redirect=noopjs,important,domain=ehubsoft.net
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/show_ads.js^$domain=ehubsoft.net
-!+ PLATFORM(ext_ublock)
-||pagead2.googlesyndication.com/pagead/show_ads.js$script,domain=ehubsoft.net,redirect=noopjs
 !
 ! https://forum.adguard.com/index.php?threads/smsreceiveonline-com-anti-ad-block-ubo.23093/
 !+ PLATFORM(ios, ext_android_cb, ext_ublock)
