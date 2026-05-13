@@ -97,7 +97,14 @@ After you have installed the necessary tools, you need to set up the repository.
 
 - For groups of mixed-type rules sharing the same domains,
   add the new domain either at the **beginning** or **at the end**.
-  This makes it easy to visually compare the lists if they become out of sync.
+  This makes it easy to visually compare the lists if they become out of sync:
+
+  ```diff
+  - example.com,example.org###ads
+  + test.com,example.com,example.org###ads
+  - adserver.com$domain=example.com|example.org
+  + adserver.com$domain=example.com|example.org|test.com
+  ```
 
   For element hiding rules – at the beginning of the rule:
 
@@ -109,8 +116,8 @@ After you have installed the necessary tools, you need to set up the repository.
   In general, for rules with `|` separator, add a new domain at the end:
 
   ```diff
-  - adserver$domain=example.com|example.org
-  + adserver$domain=example.com|example.org|test.com
+  - adserver.com$domain=example.com|example.org
+  + adserver.com$domain=example.com|example.org|test.com
   ```
 
   **Avoid:** inserting the domain at a random position in the middle of the list.
