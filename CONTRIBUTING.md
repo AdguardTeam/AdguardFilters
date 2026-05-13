@@ -89,6 +89,7 @@ After you have installed the necessary tools, you need to set up the repository.
   insert it **within that group** in ascending order by domain name, rather than at the top of the section.
 
   ```diff
+  ! Example group
   ||example.org/images/ads/*
   + ||example.org/scripts/tracking.js
   example.org##.example-ads
