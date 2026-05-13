@@ -136,8 +136,6 @@ When updating without closing (e.g. asking the user to verify):
 Upd #ISSUE_NUMBER example.org description
 ```
 
-When using `Upd`, also mark the issue as `A: Waiting for data`.
-
 ### Skipping checks
 
 If you need to skip running checks, you can do it in the following ways.
