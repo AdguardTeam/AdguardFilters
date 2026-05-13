@@ -98,7 +98,8 @@ After you have installed the necessary tools, you need to set up the repository.
   ```
 
 - For rules that share the same rule expression,
-  add the new domain either at the **beginning** or **at the end**.
+  add the new domain to the existing expression — either at the **beginning** or **at the end**,
+  rather than creating a new rule on a separate line.
   This makes it easy to add a new domain consistently, treating them as a single rule.
 
   For element hiding rules – at the beginning of the rule:
