@@ -95,16 +95,9 @@ After you have installed the necessary tools, you need to set up the repository.
   example.org##.example-ads
   ```
 
-- For groups of mixed-type rules sharing the same domains,
+- For rules that share the same rule expression,
   add the new domain either at the **beginning** or **at the end**.
-  This makes it easy to visually compare the lists if they become out of sync:
-
-  ```diff
-  - example.com,example.org###ads
-  + test.com,example.com,example.org###ads
-  - adserver.com$domain=example.com|example.org
-  + adserver.com$domain=example.com|example.org|test.com
-  ```
+  This makes it easy to add a new domain consistently, treating them as a single rule.
 
   For element hiding rules – at the beginning of the rule:
 
@@ -118,6 +111,20 @@ After you have installed the necessary tools, you need to set up the repository.
   ```diff
   - adserver.com$domain=example.com|example.org
   + adserver.com$domain=example.com|example.org|test.com
+  ```
+
+  When the group contains both types, keep domain order consistent across all rules.
+
+  This is because only the separator differs (`,` vs `|`) —
+  consistent ordering makes it immediately clear that no domains are missing.
+
+  ```diff
+  -example.com,example.org###ads
+  +example.com,example.org,test.com###ads
+  -||example.com^$domain=example.com|example.org
+  +||example.com^$domain=example.com|example.org|test.com
+  -||ads.com^$domain=example.com|example.org
+  +||ads.com^$domain=example.com|example.org|test.com
   ```
 
   **Avoid:** inserting the domain at a random position in the middle of the list.
