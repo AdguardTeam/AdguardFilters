@@ -96,7 +96,7 @@ After you have installed the necessary tools, you need to set up the repository.
   ```
 
 - For groups of mixed-type rules sharing the same domains,
-  add the new domain either at the **beginning or at the end**.
+  add the new domain either at the **beginning** or **at the end**.
   This makes it easy to visually compare the lists if they become out of sync.
 
   For element hiding rules – at the beginning of the rule:
