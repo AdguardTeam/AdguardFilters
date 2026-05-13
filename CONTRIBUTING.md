@@ -76,7 +76,7 @@ After you have installed the necessary tools, you need to set up the repository.
 
 ### Rule placement
 
-- New rules go at the **top of the relevant section** in the filter file.
+- By default, new rules should be placed at the top of the relevant section in the filter file.
 
   ```diff
   !NOTE: Regular rules
