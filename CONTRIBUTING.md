@@ -44,7 +44,9 @@ After you have installed the necessary tools, you need to set up the repository.
    - `{prefix}/{issue-number}-{description}`
    - `{prefix}/{third-party-repo-prefix}-{issue-number}-{description}`
 
-   Where `{prefix}` is `fix` for breakage/unblocking fixes or `upd` for filter updates/additions.
+   Where `{prefix}` is:
+   - `fix` — complete fixes or rule additions
+   - `upd` — minor improvements or follow-ups (e.g. a missing change from a prior commit, minor doc edits)
 
    Examples:
    - `fix/12345`
