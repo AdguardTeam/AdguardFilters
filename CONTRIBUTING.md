@@ -40,10 +40,17 @@ After you have installed the necessary tools, you need to set up the repository.
 ## Workflow for submitting changes
 
 1. Create a new branch for your changes. Please use the following naming convention:
-   - `fix-#{issue-number}-{website-domain}` — for breakage or unblocking fixes
-   - `upd-#{issue-number}-{website-domain}` — for filter updates or additions
+   - `{prefix}/{description}`
+   - `{prefix}/{issue-number}-{description}`
+   - `{prefix}/{third-party-repo-prefix}-{issue-number}-{description}`
 
-   Example: `fix-#12345-example.com`
+   Where `{prefix}` is `fix` for breakage/unblocking fixes or `upd` for filter updates/additions.
+
+   Examples:
+   - `fix/12345`
+   - `fix/12345-example.com`
+   - `fix/ubo-12345-example.com`
+   - `upd/12345`
 
 1. Make your changes, test them and put them in the proper file or section of the file.
    - You can learn how to write filtering rules in the [How to write filter rules][how-to-write-filters] section.
