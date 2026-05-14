@@ -100,6 +100,8 @@ After you have installed the necessary tools, you need to set up the repository.
   add the new domain to the existing expression — either at the **beginning** or **at the end**,
   rather than creating a new rule on a separate line.
   This makes it easy to add a new domain consistently, treating them as a single rule.
+  
+  **Important:** Don't insert a new domain at a random position in the middle of the list.
 
   * For cosmetic rules – at the beginning of the rule:
 
