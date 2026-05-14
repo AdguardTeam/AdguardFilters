@@ -139,7 +139,7 @@ After you have installed the necessary tools, you need to set up the repository.
 Fix #ISSUE_NUMBER example.org optional description
 ```
 
-When updating without closing (e.g. asking the user to verify):
+- For updates that do not require closing the issue (e.g. problematic issue, an issue with multiple reports, making changes while solving the problem together with the user)
 
 ```text
 Upd #ISSUE_NUMBER example.org description
