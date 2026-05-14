@@ -87,8 +87,7 @@ After you have installed the necessary tools, you need to set up the repository.
   ||example.com/ads/*
   ```
 
-- If the new rule shares the same domain with an existing group of rules,
-  insert it **within that group** in ascending order by domain name, rather than at the top of the section.
+- If the rule applies to a site for which a rules group exists, insert it **within that group**, rather than at the top of the section.
 
   ```diff
   ! Example group
