@@ -46,7 +46,7 @@ After you have installed the necessary tools, you need to set up the repository.
 
    Where `{prefix}` is:
    - `fix` — complete fixes or rule additions
-   - `upd` — minor improvements or follow-ups (e.g. a missing change from a prior commit, minor doc edits)
+   - `upd` — minor improvements (e.g. addressing omissions from previous fix commit or making small documentation or comment edits)
 
    Examples:
    - `fix/12345`
