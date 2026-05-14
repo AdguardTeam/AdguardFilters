@@ -115,7 +115,7 @@ After you have installed the necessary tools, you need to set up the repository.
   + adserver.com$domain=example.com|example.org|test.com
   ```
 
-  When the group contains both types, keep domain order consistent across all rules.
+  * When the group contains both types, keep domain order consistent across all rules.
 
   This is because only the separator differs (`,` vs `|`) —
   consistent ordering makes it immediately clear that no domains are missing.
