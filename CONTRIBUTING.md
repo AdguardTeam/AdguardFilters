@@ -117,8 +117,8 @@ After you have installed the necessary tools, you need to set up the repository.
 
   * When the group contains both types, keep domain order consistent across all rules.
 
-  This is because only the separator differs (`,` vs `|`) —
-  consistent ordering makes it immediately clear that no domains are missing.
+    This is because only the separator differs (`,` vs `|`) —
+    consistent ordering makes it immediately clear that no domains are missing.
 
   ```diff
   -example.com,example.org###ads
