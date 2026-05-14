@@ -96,7 +96,7 @@ After you have installed the necessary tools, you need to set up the repository.
   example.org##.example-ads
   ```
 
-- For rules that share the same rule expression,
+- For rules that share the same rule expression, depending on the type of rule,
   add the new domain to the existing expression — either at the **beginning** or **at the end**,
   rather than creating a new rule on a separate line.
   This makes it easy to add a new domain consistently, treating them as a single rule.
