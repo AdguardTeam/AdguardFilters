@@ -129,8 +129,6 @@ After you have installed the necessary tools, you need to set up the repository.
   +||ads.com^$domain=example.com|example.org|test.com
   ```
 
-  **Avoid:** inserting the domain at a random position in the middle of the list.
-
 ### Commit message format
 
 When closing an issue with a commit:
