@@ -133,7 +133,7 @@ After you have installed the necessary tools, you need to set up the repository.
 
 ### Commit message format
 
-When closing an issue with a commit:
+- To close an associated issue, use:
 
 ```text
 Fix #ISSUE_NUMBER example.org optional description
