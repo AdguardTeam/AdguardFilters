@@ -108,7 +108,7 @@ After you have installed the necessary tools, you need to set up the repository.
   + test.com,example.com,example.org###ads
   ```
 
-  In general, for rules with `|` separator, add a new domain at the end:
+  * In general, for rules with `|` domains separator, add a new domain at the end:
 
   ```diff
   - adserver.com$domain=example.com|example.org
