@@ -1,0 +1,15 @@
+!
+! This section contains rules targeting tracking pixels from specific domains and email services.
+! Note that || prefix cannot be used because mail tracking pixels are often proxied by mail providers.
+! It is problematic that due to how Gmail proxy work, these domains aren't even exposed on the network level.
+! Fortunately, extensions can see them (Gmail puts the real URL in the location.hash part of the src).
+! To block tracking pixels in some email clients, percent-encoding is required. Therefore, both variants
+! must be added - the original and the encoded version.
+!
+! Good: link.example.org$image
+!       newegg.com/mr/*.gif?r=
+!       newegg.com%2Fmr%2F*.gif%3Fr%3D
+! Bad: ||example.org^$script (treated it as regular analytics and block it in the Tracking Protection filter,
+!      if a script in not proxied)
+!
+
