@@ -145,6 +145,8 @@ Fix #ISSUE_NUMBER example.org optional description
 Upd #ISSUE_NUMBER example.org description
 ```
 
+If a commit is associated with an issue that has more than one report, a link to the comment can be used as the description.
+
 ### Skipping checks
 
 If you need to skip running checks, you can do it in the following ways.
