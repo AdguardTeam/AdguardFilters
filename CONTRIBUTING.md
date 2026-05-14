@@ -101,7 +101,7 @@ After you have installed the necessary tools, you need to set up the repository.
   rather than creating a new rule on a separate line.
   This makes it easy to add a new domain consistently, treating them as a single rule.
 
-  For element hiding rules – at the beginning of the rule:
+  * For cosmetic rules – at the beginning of the rule:
 
   ```diff
   - example.com,example.org###ads
