@@ -40,7 +40,20 @@ After you have installed the necessary tools, you need to set up the repository.
 ## Workflow for submitting changes
 
 1. Create a new branch for your changes. Please use the following naming convention:
-   `fix/123` where `123` is the issue number you're working on.
+   - `{prefix}/{description}`
+   - `{prefix}/{issue-number}-{description}`
+   - `{prefix}/{third-party-repo-prefix}-{issue-number}-{description}`
+
+   Where `{prefix}` is:
+   - `fix` — complete fixes or rule additions
+   - `upd` — minor improvements (e.g. addressing omissions from previous commit, small documentation or comment edits)
+
+   Examples:
+   - `fix/12345`
+   - `fix/12345-example.com`
+   - `fix/ubo-12345-example.com`
+   - `upd/12345`
+
 1. Make your changes, test them and put them in the proper file or section of the file.
    - You can learn how to write filtering rules in the [How to write filter rules][how-to-write-filters] section.
    - Before creating any rules, please read and understand the current
@@ -62,6 +75,79 @@ After you have installed the necessary tools, you need to set up the repository.
    If there are any errors, fix them and push your changes to your fork.
    If AGLint passes, your PR will be reviewed by a maintainer.
 1. If the review is successful, your changes will be merged into the `master` branch.
+
+### Rule placement
+
+- By default, new rules should be placed at the top of the relevant section in the filter file.
+
+  ```diff
+  !NOTE: Regular rules
+
+  + example.org##.banner-ads
+  ||example.com/ads/*
+  ```
+
+- If the rule applies to a site for which a rules group exists, insert it **within that group**, rather than at the top
+  of the section.
+
+  ```diff
+  ! Example group
+  ||example.org/images/ads/*
+  + ||example.org/scripts/tracking.js
+  example.org##.example-ads
+  ```
+
+- For rules that share the same rule expression, depending on the type of rule,
+  add the new domain to the existing expression — either at the **beginning** or **at the end**,
+  rather than creating a new rule on a separate line.
+  This makes it easy to add a new domain consistently, treating them as a single rule.
+
+  **Important:** Don't insert a new domain at a random position in the middle of the list.
+
+  - For cosmetic rules – at the beginning of the rule:
+
+  ```diff
+  - example.com,example.org###ads
+  + test.com,example.com,example.org###ads
+  ```
+
+  - In general, for rules with `|` domains separator, add a new domain at the end:
+
+  ```diff
+  - adserver.com$domain=example.com|example.org
+  + adserver.com$domain=example.com|example.org|test.com
+  ```
+
+  - When the group contains both types, keep domain order consistent across all rules.
+
+    This is because only the separator differs (`,` vs `|`) —
+    consistent ordering makes it immediately clear that no domains are missing.
+
+  ```diff
+  -example.com,example.org###ads
+  +example.com,example.org,test.com###ads
+  -||example.com^$domain=example.com|example.org
+  +||example.com^$domain=example.com|example.org|test.com
+  -||ads.com^$domain=example.com|example.org
+  +||ads.com^$domain=example.com|example.org|test.com
+  ```
+
+### Commit message format
+
+- To close an associated issue, use:
+
+```text
+Fix #ISSUE_NUMBER example.org optional description
+```
+
+- For updates that do not require closing the issue (e.g. problematic issue, an issue with multiple reports, making
+  changes while solving the problem together with the user)
+
+```text
+Upd #ISSUE_NUMBER example.org description
+```
+
+If a commit is associated with an issue that has several reports, a link to the comment can be used as the description.
 
 ### Skipping checks
 

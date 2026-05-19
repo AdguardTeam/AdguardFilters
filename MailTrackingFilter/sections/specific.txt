@@ -1,0 +1,694 @@
+!
+! This section contains rules targeting tracking pixels from specific domains and email services.
+! Note that || prefix cannot be used because mail tracking pixels are often proxied by mail providers.
+! It is problematic that due to how Gmail proxy work, these domains aren't even exposed on the network level.
+! Fortunately, extensions can see them (Gmail puts the real URL in the location.hash part of the src).
+! To block tracking pixels in some email clients, percent-encoding is required. Therefore, both variants
+! must be added - the original and the encoded version.
+!
+! Good: link.example.org$image
+!       newegg.com/mr/*.gif?r=
+!       newegg.com%2Fmr%2F*.gif%3Fr%3D
+! Bad: ||example.org^$script (treated it as regular analytics and block it in the Tracking Protection filter,
+!      if a script in not proxied)
+!
+! conquerclub.com subscriptions
+conquerclub.com/stat.php?type=$image
+conquerclub.com%2Fstat.php%3Ftype%3D$image
+! https://github.com/easylist/easylist/issues/23743
+hm-f.jp/ho.php?t=
+hm-f.jp%2Fho.php%3Ft=
+! newegg.com
+newegg.com/mr/*.gif?r=
+newegg.com%2Fmr%2F*.gif%3Fr%3D
+! digital-eliteboard.com
+digital-eliteboard.com/b/image.gif?p=
+digital-eliteboard.com%2Fb%2Fimage.gif%3Fp%3D
+! mail.naver.com
+track-mmp.navercorp.com/received/*.gif$image
+track-mmp.navercorp.com%2Freceived%2F*.gif$image
+! telegraph.co.uk
+mailer.eip.telegraph.co.uk$image
+! Shopee
+tracking.mail.shopee.$image
+! Google Analytics
+google-analytics.com%2Fcollect
+! sendsay.ru
+read.sendsay.ru$image
+! https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html
+.awstrack.me$image
+! https://github.com/easylist/easylist/issues/22377
+mail.ferret-one.com/beacon$image
+mail.ferret-one.com%2Fbeacon$image
+! healio.com
+healio.com/medialibrary/pixel.png?tp=
+healio.com%2Fmedialibrary%2Fpixel.png%3Ftp%3D
+e.healio.com/*.php?ID=$image
+e.healio.com%2F*.php%3FID%3D$image
+! it-recht-kanzlei.de
+it-recht-kanzlei.de/logo/Copyright-Logo.png?i=
+it-recht-kanzlei.de%2Flogo%2FCopyright-Logo.png%3Fi%3D
+! https://github.com/easylist/easylist/issues/22758
+mail01.monex.co.jp/bin/checker?$image
+mail01.monex.co.jp%2Fbin%2Fchecker%3F$image
+! deepl.com
+deepl.qualtrics.com/subscription/watermark.gif?
+deepl.qualtrics.com%2Fsubscription%2Fwatermark.gif%3F
+! https://github.com/easylist/easylist/issues/22715
+onelink.soundcloud.com/v1/emailopen$image
+onelink.soundcloud.com%2Fv1%2Femailopen$image
+! https://github.com/easylist/easylist/issues/22594
+%3A%2F%2Fline.karte.io%2FCI0%2F$image
+://line.karte.io/CI0/$image
+! PayPal
+://t.paypal.com/ts?v=$image
+%3A%2F%2Ft.paypal.com%2Fts%3Fv%3D$image
+! https://github.com/easylist/easylist/issues/20669
+emailtracking.cashstar.com$image
+! https://ridibooks.com/
+mailgun-tracking.ridi.com$image
+client-data.knak.io$image
+! https://github.com/easylist/easylist/issues/22630
+b.k3r.jp/?a=$image
+b.k3r.jp%2F%3Fa=$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/215466
+github.com%2Fnotifications%2Fbeacon%3D*.gif$image
+github.com/notifications/beacon=*.gif$image
+! seasungames.com
+dm-sg.aliyuncs.com/trace/*/report$image
+dm-sg.aliyuncs.com%2Ftrace%2F*%2Freport$image
+tk.seasungame.com$image
+! https://github.com/easylist/easylist/issues/22395
+openedlog.smart-bdash.com/opened?aid=$image
+openedlog.smart-bdash.com%2Fopened%3Faid%3D$image
+! https://github.com/easylist/easylist/issues/22378
+willap.jp/t?r=$image
+willap.jp%2Ft%3Fr=$image
+! https://github.com/easylist/easylist/issues/22356
+mailmag.hhcross.hankyu-hanshin.jp/c/*.gif$image
+mailmag.hhcross.hankyu-hanshin.jp%2Fc%2F*.gif$image
+! Nvidia
+production.k-trk.com$image
+! Dominos
+dominos.*/o/o.gif$image
+dominos.*%2Fo%2Fo.gif$image
+! Sendinblue
+.sendibm1.com/mk/op/$image
+.sendibm1.com%2Fmk%2Fop%2F$image
+! shopify
+cdn.shopify.com/shopifycloud/shopify/assets/themes_support/notifications/spacer-$image
+cdn.shopify.com%2Fshopifycloud%2Fshopify%2Fassets%2Fthemes_support%2Fnotifications%2Fspacer-$image
+! AdGuard
+email-link.adtidy.org/open/$image
+email-link.adtidy.org%2Fopen%2F$image
+! https://github.com/uBlockOrigin/uAssets/issues/29466
+line.my.salesforce.com/servlet/servlet.ImageServer?oid=*&esid=$image
+line.my.salesforce.com%2Fservlet%2Fservlet.ImageServer%3Foid=*%26esid=$image
+! nextdoor.com
+flask.us.nextdoor.com$image
+! c.groovehq.com
+i.groovehq.com/*@groovehq.com.gif$image
+i.groovehq.com%2F*%40groovehq.com.gif$image
+c.groovehq.com/*.gif$image
+c.groovehq.com%2F*.gif$image
+! Yandex
+click.sender.yandex.ru/px/$image
+click.sender.yandex.ru%2Fpx%2F$image
+feedback.send.yandex.ru/px/$image
+feedback.send.yandex.ru%2Fpx%2F$image
+! sp.yandex.ru
+api.peeper.plus.yandex.net/v1/p/$image
+api.peeper.plus.yandex.net%2Fv1%2Fp%2F$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/209977
+cl.mos.jp/q/$image
+cl.mos.jp%2Fq%2F$image
+! makeup.com.ua
+makeup.com.ua/amazon/opened/$image
+makeup.com.ua%2Famazon%2Fopened%2F$image
+! gutefrage.net
+tracking.srv2.de$image
+! hh.ru
+i.hh.ru/mailing/$image
+i.hh.ru%2Fmailing%2F$image
+! Western Digital
+support-*.wd.com/rd/*.gif$image
+support-*.wd.com%2Frd%2F*.gif$image
+support-*.sandisk.com/rd/*.gif$image
+support-*.sandisk.com%2Frd%2F*.gif$image
+! sahibinden.com
+sahibinden.com/mail/readStatistics/$image
+sahibinden.com/trace/email/read/$image
+sahibinden.com%2Fmail%2FreadStatistics%2F$image
+sahibinden.com%2Ftrace%2Femail%2Fread%2F$image
+! Plex
+sp.plex.tv/q/$image
+sp.plex.tv%2Fq%2F$image
+! Optimizely
+img.srv2.de/assets/bm/imh/*.gif?utm_$image
+img.srv2.de%2Fassets%2Fbm%2Fimh%2F*.gif%3Futm_$image
+! theathletic.com
+sp.e2.theathletic.com/q/$image
+sp.e2.theathletic.com%2Fq%2F$image
+! EmailLabs
+emaillabs.info.pl/open/?ot=$image
+emaillabs.info.pl%2Fopen%2F%3Fot%3D$image
+! https://github.com/easylist/easylist/issues/22173
+! https://github.com/AdguardTeam/AdguardFilters/issues/203888
+.cuenote.jp/c/*.gif$image
+.cuenote.jp%2Fc%2F*.gif$image
+! Medallia
+medallia.*/?*&invite-opened=yes$image
+medallia.*%2F%3F*%26invite-opened%3Dyes$image
+! jeuxvideo.com
+liens.newsletters.jeuxvideo.com/m/opening/$image
+liens.newsletters.jeuxvideo.com%2Fm%2Fopening%2F$image
+! netbk.co.jp
+cnt.mail.netbk.co.jp$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/203693
+marketing.1password.co/trk?t$image
+marketing.1password.co%2Ftrk%3Ft$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/203695
+s-pt.jp/mail/info/*/img/_.gif$image
+s-pt.jp%2Fmail%2Finfo%2F*%2Fimg%2F_.gif$image
+! rakuten.co.jp
+r.rakuten.co.jp/*.gif?mpe=
+r.rakuten.co.jp%2F*.gif%3Fmpe%3D
+! https://github.com/AdguardTeam/AdguardFilters/issues/203680
+shop.yushakobo.jp/_t/open/$image
+shop.yushakobo.jp%2F_t%2Fopen%2F$image
+! solarstaff.com
+unisender.solar-staff.com/*/go1_read_tracker/$image
+unisender.solar-staff.com%2F*%2Fgo1_read_tracker%2F$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/203283
+preview.ab0.jp/static/starbucks/ma/*/rewards_img/*scenario*img-*.gif$image
+preview.ab0.jp%2Fstatic%2Fstarbucks%2Fma%2F*%2Frewards_img%2F*scenario*img-*.gif$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/202325
+google.com/appserve/mkt/proof/img/*.gif
+google.com%2Fappserve%2Fmkt%2Fproof%2Fimg%2F*.gif
+notifications.googleapis.com/email/t/*/a.gif
+notifications.googleapis.com%2Femail%2Ft%2F*%2Fa.gif
+notifications.google.com/g/img/*.gif
+notifications.google.com%2Fg%2Fimg%2F*.gif
+! https://github.com/AdguardTeam/AdguardFilters/issues/202326
+images.harmony.epsilon.com/ContentHandler/images?id=$image
+images.harmony.epsilon.com%2FContentHandler%2Fimages%3Fid%3D$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/202327
+link.mail.beehiiv.com/ss/*.gif$image
+link.mail.beehiiv.com%2Fss%2F*.gif$image
+! salesforce.com
+yahoocs.my.salesforce.com/s.gif$image
+yahoocs.my.salesforce.com%2Fs.gif$image
+! support.yahoo-net.jp
+support.yahoo-net.jp/formly/servlet/servlet.ImageServer$image
+support.yahoo-net.jp%2Fformly%2Fservlet%2Fservlet.ImageServer$image
+! Atlassian
+atlassian-trk.prd.msg.ss-inf.net$image
+! wise.com
+api.transferwise.com/v1/notification-flow/$image
+api.transferwise.com%2Fv1%2Fnotification-flow%2F$image
+! dhgate.com
+e.dhgate.com/a/*/spacer.gif$image
+e.dhgate.com%2Fa%2F*%2Fspacer.gif$image
+! i.groovehq.com
+i.groovehq.com/*.comment*@groovehq.com.gif$image
+i.groovehq.com%2F*.comment*%40groovehq.com.gif$image
+! ebay.com
+ebayadservices.com/marketingtracking/v1/impression?$image
+ebayadservices.com%2Fmarketingtracking%2Fv1%2Fimpression%3F$image
+! pinterest.com
+pinterest.com/email/open/$image
+pinterest.com%2Femail%2Fopen%2F$image
+pinterest.com/email/tracking.gif$image
+pinterest.com%2Femail%2Ftracking.gif$image
+post.pinterestmail.com/o/$image
+post.pinterestmail.com%2Fo%2F$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/200346
+info.kansaimiraibank.co.jp%2Fc%*.gif$image
+info.kansaimiraibank.co.jp/c/*.gif$image
+! Progress Software
+app.businessmaking.progress.net/e/*?elq=$image
+app.businessmaking.progress.net%2Fe%2F*%3Felq%3D$image
+! Frequenltly used by various companies
+/open.aspx$image
+%2Fopen.aspx$image
+! gutefrage.net
+t.gutefrage.net/op/$image
+t.gutefrage.net%2Fop%2F$image
+! AliExpress
+ae.mmstat.com/ae.edm.edm_open?$image
+ae.mmstat.com%2Fae.edm.edm_open%3F$image
+! Eloqua
+/e/FooterImages/*$image
+%2Fe%2FFooterImages%2F$image
+/e3t/Cto/*$image
+%2Fe3t%2FCto%2F$image
+! infomaniak.com
+click.official.infomaniak.com%2Fo%2F
+click.official.infomaniak.com/o/$image
+! everestengagement.com
+.everestengagement.com/ea/$image
+.everestengagement.com%2Fea%2F$image
+! fiverr.com
+.fiverr.com/js_event_tracking/v1/track_email_open/$image
+.fiverr.com%2Fjs_event_tracking%2Fv1%2Ftrack_email_open%2F$image
+! epicgames.com, fab.com
+://e.*/open?$image
+%3A%2F%2Fe.*%2Fopen%3F$image
+! mercari.jp
+bmo.mercari.jp/?s$image
+! aozorabank.co.jp
+aozorabank.co.jp/r/*/open/$image
+aozorabank.co.jp%2Fr%2F*%2Fopen%2F$image
+! c.crm-em.com
+c.crm-em.com$image
+! $image
+click.email.ancestry.com$image
+! cnn.com
+e.mail.cnn.com$image
+! esputnik.com
+esputnik.com$image
+! Adobe Campaign
+/r/?id=$image
+%2Fr%2F%3Fid%3D$image
+sbs-mkt-stage1-res.adobe-campaign.com$image
+! demdex.net
+demdex.net/event?d_src=$image
+demdex.net%2Fevent%3Fd_src%3D$image
+demdex.net/event?d_event=$image
+demdex.net%2Fevent%3Fd_event%3D$image
+! sbs.com.au
+://t1.*.sbs.com.au/r/$image
+! clickdimensions.com
+elink.clickdimensions.com$image
+! https://github.com/easylist/easylist/issues/20623
+mpse.jp/*/rw/beacon_$image
+mpse.jp%2F*%2Frw%2Fbeacon_$image
+! Zendesk
+surveys.zendesk.com/subscription/watermark.gif$image
+surveys.zendesk.com%2Fsubscription%2Fwatermark.gif$image
+! melonbooks.co.jp
+cl.melonbooks.co.jp$image
+! mailgun.org
+click.contact.kamalaharris.com$image
+email.win.donaldjtrump.com$image
+! node.bolt.eu
+node.bolt.eu*pixel$image
+! instahyre.com
+click.instahyre.com$image
+! disqus.com
+referrer.disqus.com$image
+! files.fm
+files.fm/l/email-pix$image
+files.fm%2Fl%2Femail-pix$image
+! rockstargames.com
+emailcontent.rockstargames.com$image
+! vimeo.com
+click.email.vimeo.com$image
+! forsta tracker
+emea.focusvision.com/tracker/$image
+emea.focusvision.com%2Ftracker%2F$image
+! Revolut
+click.revolut.com$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/182885
+mail-count.matsui.co.jp$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/182866
+email.bitbank.cc$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/174488
+click.email.deadline.com$image
+! liadm.com
+! https://sli.bloomberg.com/imp?s=*&li=*&m=*&p=*&stpe=default&li_coord=mobile&collapse_width=550&
+sli.*.com%2Fimp%3Fs%3D$image
+sli.*.com/imp?s=$image
+p.liadm.com/imp?s=$image
+%2F%2Fp.liadm.com%2Fimp%3Fs%3D$image
+! turing.com
+manage.turing.pe/analytics/open/$image
+manage.turing.pe%2Fanalytics%2Fopen%2F$image
+! http://links1.message.bloomberg.com/q/*~~/*~/*~
+%2F%2Flinks1.*.com%2Fq%2F*$image
+links1.*.com/q/*$image
+! !https://links.clickup.com/e/eo?_t=*&_m=*&_e=
+%2F%2Flinks.*.com%2Fe%2Feo%3F_t%3D$image
+links.*.com/e/eo?_t=$image
+! GitHub
+github.com/notifications/beacon/$image
+github.com%2Fnotifications%2Fbeacon%2F$image
+! edisonmail.com
+cp.edison.tech/api/mailer/m/img/$image
+cp.edison.tech%2Fapi%2Fmailer%2Fm%2Fimg%2F$image
+! dissh.com
+link.dissh.com/mo/$image
+link.dissh.com%2Fmo%2F$image
+! r.mailin.fr
+r.ml.reverso.net/tr/op$image
+r.ml.reverso.net%2Ftr%2Fop$image
+! superhuman.com
+r.superhuman.com$image
+! Washington Post
+s2.washingtonpost.com/beacon/$image
+! WizRocket
+wizrocketmail.net$image
+! meetup.com
+clicks.meetup.com$image
+! Stripо.email
+tlr.stripocdn.email$image
+! mjt.lu
+mjt.lu$image
+! frontapp.com
+app.frontapp.com/api/1/noauth/companies/alternstiveto/seen/msg_$image
+app.frontapp.com%2Fapi%2F1%2Fnoauth%2Fcompanies%2Falternstiveto%2Fseen%2Fmsg_$image
+! Patreon
+email.updates.patreon.com$image
+! exponea.com
+.exponea.com/*/open$image
+.exponea.com%2F*%2Fopen$image
+public-cis.exponea.com$image
+! lanet.click
+go.lanet.click$image
+! 33mail.com
+33mail.com%2Fpage%2Fopened$image
+33mail.com/page/opened$image
+! Zalando
+probe.zalando.com$image
+! omeda.com
+omeclk.com$image
+! Flodesk
+fdske.com/eo/$image
+fdske.com%2Feo%2F$image
+! Bzzgroup (China)
+.bzzgroup.cn$image
+! Binance
+spmailtechnol.com$image
+log.bntrace.com$image
+! cnbc.com
+link.cnbc.com$image
+! https://github.com/AdguardTeam/AdguardFilters/issues/160470
+.com/_t/open/$image
+.com%2F_t%2Fopen%2F$image
+! Growave
+app.growave.io*statimg$image
+! bedwettingstore.com
+e-bedwettingstore.com$image
+! thebell.io
+thebell.io/admin/images/email/blank.gif$image
+thebell.io%2Fadmin%2Fimages%2Femail%2Fblank.gif$image
+! mailgun.patreon.com
+email.mailgun.patreon.com$image
+! Discord
+click.discord.com$image
+discord.com/api/science/*.gif?properties=$image
+discord.com%2Fapi%2Fscience%2F*.gif%3Fproperties%3D$image
+! channel4.com
+ablink.hi.channel4.com$image
+! Linkedin
+linkedin.com*emimp$image
+! Maileon
+.e-mailnews.de/i/$image
+.e-mailnews.de%2Fi%2F$image
+! Budovideos
+email.budovideos.com$image
+! Tripadvisor
+t1.mp1.tripadvisor.com$image
+t.mp*.tripadvisor.com$image
+tripadvisor.com%2FMptUrl%3Fp%3D$image
+tripadvisor.com/MptUrl?p=$image
+tripadvisor.com/img/cdsi/partner/transparent_pixel$image
+tripadvisor.com%2Fimg%2Fcdsi%2Fpartner%2Ftransparent_pixel$image
+! skillbox.ru
+links.skillbox.ru/o/$image
+links.skillbox.ru%2Fo%2F$image
+! Alibaba
+gm.mmstat.com$image
+! HubSpot
+hubspotlinks.com$image
+! Brevo
+egbgaig.r.*.d.sendibt$image
+! SocketLabs
+aa.agkn.com$image
+! Nationalgeographic
+mail.nationalgeographic.com$image
+! 123formbuilder.com
+email.123formbuilder.com$image
+! ontraport.net
+sealfit.ontraport.net/o?$image
+sealfit.ontraport.net%2Fo%3F$image
+! sendfox.com
+sendfox.com/trk/open/$image
+sendfox.com%2Ftrk%2Fopen%2F$image
+! Jotform
+events.jotform.com*email$image
+! Mailersend
+click.mailersend.net$image
+! Mailerlite
+clicks.mlsend2.com$image
+! aliyana.in
+email.send.aliyana.in$image
+! kahoot.com
+links.kahoot.com$image
+track.team.kahoot.com$image
+! signup.com
+signup.com/imp?$image
+signup.com%2Fimp%3F$image
+! Sable
+email.cloud2.secureclick.net$image
+! omnisend.com
+nyb.soundestlink.com*track$image
+! link.thirdlove.com
+link.thirdlove.com$image
+! Google pixel in emails
+ad.doubleclick.net*trackimp$image
+! Yahoo
+email.aol.net$image
+! geteml.com
+geteml.com$image
+! Selzy
+link.posteml.com$image
+! Reddit Mail
+click.redditmail.com$image
+! Samsung News
+news.samsung.com/us/?noti=$image
+news.samsung.com%2Fus%2F%3Fnoti%3D$image
+! Amazon
+.awstrack.me$image
+! Esputnik
+esputnik.com%2Frepository%2Fapplications%2Fcommons%2Fhidden.png
+esputnik.com/repository/applications/commons/hidden.png
+! SmartrMail
+email.mail2.smartrmail.co$image
+! Klaviyo
+email.*.com/o/$image
+email.*.com%2Fo%2F$image
+trk.*.com/o/$image
+trk.*.com%2Fo%2F$image
+ctrk.klclick*.com/o/$image
+ctrk.klclick*.com%2Fo%2F$image
+ct.klclick.com$image
+! Privatbank
+socauth.privatbank.ua*pixel.php$image
+mailing.pbank.com.ua$image
+! azurareborn.com
+email.azurareborn.com$image
+! 30menu.com
+30menu.com/_t/$image
+! Omnisend
+nnw.soundestlink.com$image
+omni.soundestlink.com$image
+! wetransfer.com
+email.wetransfer.com$image
+! philips.com
+click.*.mc.philips.com$image
+! theskimm.com
+links.theskimm.com$image
+link.theskimm.com$image
+! Canva
+track.canva.com$image
+! rei.com
+notices.rei.com$image
+! Squarespace
+email.mgtp01.squarespace-mail.com$image
+! Convertkit
+open.convertkit-mail*.com$image
+! Feedrabbit
+email.feedrabbit.com$image
+! Smartinsights
+go.smartinsights.com*gif$image
+! MailerLite
+clicks.mlsend.com$image
+! thedailybeast.com
+sli.thedailybeast.com$image
+! Bloomberg
+app.c.bloomberg.com$image
+! pcloud.com
+u.pcloud.com*trackmail$image
+! filetransfer.io
+filetransfer.io*pixel$image
+! substack.com
+eotrx.substackcdn.com$image
+email.mg-d1.substack.com$image
+! Cordial
+trcksp.cordial.io$image
+! Forbes.com
+e.email.forbes.com$image
+! Seguno: Shopify Email Marketing
+link.seguno-mail.com$image
+! link.theverge.com
+link.theverge.com$image
+! Groupe M6
+tracking.newsletter.m6.fr$image
+! Hungryroot
+clicks.hungryroot.com$image
+! Bloomberg
+link.mail.bloombergbusiness.com$image
+! PayPal
+click.emails.paypal.com$image
+! The Atlantic
+link.theatlantic.com$image
+data-cdn.theatlantic.com/email.gif
+! Thinkst Applied Research
+whiteclouddrive.com$image
+! Vox
+rs-stripe.vox.com$image
+link.vox.com$image
+! goodgoodgood.co
+newsletter.goodgoodgood.co$image
+! Tangle
+outpostemail.notify.readtangle.com$image
+! Wattpad
+wattpad.com/et?c=$image
+! Nirandfar
+email.nirandfar.com$image
+! promio-connect.com
+img.promio-connect.com$image
+! buffer.com
+email-links.buffer.com$image
+! bolt.im
+bolt.im/t/$image
+! site123.com
+site123.com*openedMessages.php$image
+app.site123.com$image
+! Tildacdn
+mx11.tildacdn.com^*img/pixel/$image
+! Digg
+links.email.digg.com$image
+! Fortune
+track.msg.fortune.com$image
+links.newsletter.fortune.com$image
+sli.fortune.com$image
+! Huffpost
+e.emails.huffpost.com/o/p/$image
+! Refinery29
+jump.refinery29.com$image
+! TucsonTopia
+tucsontopia.com/?mailpoet_router$image
+! AWeber
+openrate.aweber.com$image
+! Sendpulse
+sendpul.se*image$image
+sendpul.se*8080$image
+.pulse-stat.com$image
+! change.org
+click.e.change.org$image
+! Stackcommerce
+track.email.stackcommerce.com/q/$image
+! MailTrack
+mailtrack.io/trace/$image
+mltrk.io/pixel$image
+! HubSpot (getsidekick.com)
+t.sidekickopen$image
+t.sigopn$image
+t.senal$image
+t.signaux$image
+t.hubspotemail.net/e2t/o$image
+t.hsms06.com$image
+! Boomerang (boomeranggmail.com)
+mailstat.us/tr$image
+! Cirrus Inisght
+tracking.cirrusinsight.com$image
+! Customer.io
+e.customeriomail.com$image
+track.customer.io$image
+! Yesware
+t.yesware.com
+! SalesforceIQ
+salesforceiq.com/t.png$image
+! RelateIQ
+app.relateiq.com/t.png$image
+! Streak
+mailfoogae.appspot.com$image
+! LaunchBit
+launchbit.com/taz-pixel$image
+! MailChimp
+mailchimp.com/mctx/opens$image
+mailchimp.com%2Fmctx%2Fopens$image
+list-manage.com*track$image
+%2Ftrack%2Fopen.php%3Fu%3D$image
+/track/open.php?u=$image
+! Postmark
+cmail1.com%2Ft$image
+cmail1.com/t$image
+pstmrk.it%2Fopen$image
+pstmrk.it/open$image
+! iContact
+click.icptrack.com/icp/$image
+! Infusionsoft
+infusionsoft.com/app/emailOpened$image
+! Intercom
+via.intercom.io/o$image
+intercom-mail-100.com/o$image
+intercom-mail.com/q/$image
+intercom-mail.com/via/o?$image
+! Mandrill
+mandrillapp.com/track$image
+! RJ Metrics
+go.rjmetrics.com$image
+! Mixpanel
+api.mixpanel.com/track$image
+! Front App
+web.frontapp.com/api$image
+! ToutApp
+go.toutapp.com$image
+! Outreach
+app.outreach.io$image
+outrch.com/api/mailings/opened$image
+! Mixmax
+track.mixmax.com/api$image
+email.mixmax.com/e/o$image
+! SendGrid, Robinhood
+ct.sendgrid.net$image
+/wf/open?upn=$image
+%2Fwf%2Fopen%3Fupn%3D$image
+! Litmus
+emltrk.com$image
+! dotmailer
+trackedlink.net$image
+! Drip
+dripemail2$image
+! Bananatag
+bl-1.com$image
+! TinyLetter
+tinyletterapp.com$image
+! ContactMonkey
+contactmonkey.com/api/v1/tracker$image
+! Polymail
+welovepg.polymail.io$image
+polymail.io/v2/z$image
+! YAMM
+yamm-track.appspot$image
+! GetResponse
+/open.html?x=$image
+! Close.io
+close.io/email_opened$image
+! Return Path
+pixel.monitor*.returnpath.net$image
+! NetHunt
+nethunt.com/api/v1/track/email/$image
+! JiveOn tracking
+/mpss/o/*$image
+! Marketo tracking (see https://docs.marketo.com/display/public/DOCS/Configure+Protocols+for+Marketo)
+||mkto-*.com^$third-party
+! Rule for detecting hidden trackers when the main domain cannot be blocked.
+|mailgun.org^$third-party
+|esv2.com^$third-party
+! x.com
+twitter.com/scribe/ibis?t=$image
+twitter.com%2Fscribe%2Fibis%3Ft%3D$image
