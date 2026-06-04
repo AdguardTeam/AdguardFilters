@@ -672,15 +672,18 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#general
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
+!
+dumpert.nl#%#//scriptlet('set-cookie', 'adblock-modal-declined', 'true')
 peacocktv.com##div[role="alert"][data-testid="notification-PlaybackAdBlocker"]
 fuucdayo.com#$#.fuuc-adblock-overlay { display: none !important; }
 fuucdayo.com#$#.fuuc-adblock-overlay-open { overflow: auto !important; }
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub$domain=fuucdayo.com
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fuucdayo.com
 fuucdayo.com#@#ins.adsbygoogle[data-ad-slot]
 fuucdayo.com#@#ins.adsbygoogle[data-ad-client]
-!
+!#endif
+thesun.co.uk#%#//scriptlet('remove-node-text', 'script', 'ncuAb')
 crimsondesert.th.gl##.bg-card.shadow
 enternity.gr#%#//scriptlet('abort-current-inline-script', 'document.getElementById', '/adblock|Blocking Ads/')
 moddroid.com#%#//scriptlet('set-local-storage-item', 'dns_warn_skip', 'true')
@@ -1460,7 +1463,6 @@ dragcave.net#?##middle > div[class]:has(> ins.adsbygoogle)
 drawnstories.ru,info-kibersant.ru,kinda.media,tiver.ru###mdl_adb
 dressupmix.com###adblock_popup
 creatur.io,drnasserelbatal.com,file.fm,files.fm,gamehag.com,onlinehashcrack.com,timebucks.com,uderent.com#%#//scriptlet("set-constant", "canRunAds", "true")
-dumpert.nl#%#//scriptlet('prevent-setTimeout', 'AdBlockerCheck')
 dzone.com,amgreatness.com###adtoniq-msgr-bar
 wydaily.com,ebookbb.com##.special-message-wrapper
 ebookdz.com###adblock_div
@@ -2038,7 +2040,7 @@ zelka.org##.blocker-form
 zelka.org##div[onclick^="$('.blocker-form')"]
 zerohedge.com###abd-banner
 zhangxinxu.com#?#body > *:not(div):not(script):matches-css(width:336px)
-zhihu.com##.AdblockBanner
+metatft.com,zhihu.com##.AdblockBanner
 zinzinzibidi.com##.xl-rklm-container
 zkillboard.com###adsensetop
 ||abcya.com/client/main-*.js$script,replace=/\,n.src=s.ri.adDetect//
@@ -2461,7 +2463,6 @@ digitaltrends.com#@#.ad_container
 disableadblock.com#@#.adBar
 dmax.de#@#.container > .ads
 dmax.de#@#.showads
-dumpert.nl#@#.ads_box
 express.co.uk,androidpolice.com#@#.div-gpt-ad
 fr.de,innsalzach24.de,bgland24.de#@#div[id^="traffective-ad-"]
 game-debate.com#@#.sponsored-ad
@@ -3477,6 +3478,9 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 ! SECTION[id=content_blockers]: Anti-adblock - The rules for content blockers only
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
+!
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=dumpert.nl
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=dumpert.nl
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=d3f6gjnauy613m.cloudfront.net|studyflix.de
 @@||a.pemsrv.com/ad-provider.js$domain=xvideos.es
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=thegamer.com,xmlhttprequest
