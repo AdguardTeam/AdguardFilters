@@ -21,6 +21,9 @@
 ! On many Yandex services
 meteum.ai,ya.ru,yandex.*#%#//scriptlet('abort-on-property-write', '__pcodeAllActiveTestIds')
 !
+! Main page
+yandex.kz##.main-home-banner
+yandex.kz##ul[data-id="content-feed-list"] > li[class^="feed__row"]:has(> div[class^="advert-card-"])
 ! Yandex.Images
 [$path=/images]ya.ru,yandex.*##div[style="max-width: 100%; max-height: 300px; height: 300px;"]
 [$path=/images]ya.ru,yandex.*#%#//scriptlet('json-prune', 'seatbid rtb direct')
@@ -215,7 +218,7 @@ razlozhi.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.initTime')
 drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.yaContextCb')
 drive2.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.AdChosen')
 drive2.ru##.js-page > div[class*=" "] > div[data-track]
-drive2.ru##.js-page > div[class*=" "] > div[itemscope] ~ div[class]:not([id], [data-role], :last-child):has(div:empty + script)
+! drive2.ru##.js-page > div[class*=" "] > div[itemscope] ~ div[class]:not([id], [data-role], :last-child):has(div:empty + script)
 drive2.ru#?#.js-page > div > div[class="x-box x-box--mh o-f"]:has(> script)
 ! cont.ws
 ||cont.ws/*?target-ref=
@@ -673,8 +676,11 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+||seattletimes.com/wp-content/plugins/st-advertising/
 dumpert.nl#%#//scriptlet('set-cookie', 'adblock-modal-declined', 'true')
-peacocktv.com##div[role="alert"][data-testid="notification-PlaybackAdBlocker"]
+peacocktv.com#@#.adsbox
+peacocktv.com#%#//scriptlet('trusted-replace-argument', 'Promise', '0', 'noopPromiseResolve', '/\|\|0===.\.offsetHeight|freewheel\.tv\/static\/creatives\/fw-ad/')
+||vi.freewheel.tv/static/creatives/fw-ad-300x250.jpg$image,redirect=2x2-transparent.png,domain=peacocktv.com
 fuucdayo.com#$#.fuuc-adblock-overlay { display: none !important; }
 fuucdayo.com#$#.fuuc-adblock-overlay-open { overflow: auto !important; }
 !#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
@@ -2209,7 +2215,6 @@ zkillboard.com###adsensetop
 ||ura-inform.com/img/ludynaroky2018.gif
 ||venea.net/js/ab.js
 ||venea.net/web/ab_message
-||vi.freewheel.tv/static/creatives/fw-ad-300x250.jpg$image,redirect=1x1-transparent.gif,domain=peacocktv.com
 ||vili.io/img/adblock-banner.gif
 ||vsthouse.ru/adregain-anti.js
 ||web.cofp.ru/templates/webcofp_new/js/cookie_check.min.js
@@ -3479,6 +3484,7 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 !
+@@||vi.freewheel.tv/static/creatives/fw-ad-300x250.jpg$domain=peacocktv.com
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=dumpert.nl
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=dumpert.nl
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=d3f6gjnauy613m.cloudfront.net|studyflix.de
