@@ -2164,10 +2164,14 @@ netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
 huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('set-constant', 'ConFig.ad_duration_ms', '0')
 huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('trusted-set-constant', 'mac_player_info.from', 'ARTVIPA')
 huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('trusted-set-constant', 'ConFig.config.ads', '{"pause":{"state":{}}}')
-!+ NOT_PLATFORM(ext_chromium_mv3, ext_ff)
+!#if (!adguard_ext_chromium_mv3 && !adguard_ext_firefox)
 huavod.cc#%#(()=>{if(!location.href.includes("://huavod.cc/player/index.php"))return;const e=()=>{const e=document.querySelector("body > center > h1");e?.textContent?.includes("404 Not Found")&&(()=>{const e=top.document.querySelector('#playleft > iframe[src^="https://newplayer.huaren.live/player/index.php"]');e&&(e.src=e.src.replace("huaren.live","huavod.top"))})()};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()})();
-!+ PLATFORM(ext_chromium_mv3, ext_ff)
+huavod.net#%#(()=>{const e=()=>{const e=document.querySelector('iframe[src^="https://newplayer.huavod.net/player/index.php?code="]');if(e){const n=e.src.replace("://newplayer.huavod.net/","://newplayer.huaren.live/");e.src=n}};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()})();
+!#endif
+!#if (adguard_ext_chromium_mv3 || adguard_ext_firefox)
 huavod.cc#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{if(!location.href.includes("://huavod.cc/player/index.php"))return;const e=()=>{const e=document.querySelector("body > center > h1");e?.textContent?.includes("404 Not Found")&&(()=>{const e=top.document.querySelector(\'#playleft > iframe[src^="https://newplayer.huaren.live/player/index.php"]\');e&&(e.src=e.src.replace("huaren.live","huavod.top"))})()};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()})();')
+huavod.net#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e=()=>{const e=document.querySelector(\'iframe[src^="https://newplayer.huavod.net/player/index.php?code="]\');if(e){const n=e.src.replace("://newplayer.huavod.net/","://newplayer.huaren.live/");e.src=n}};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()})();')
+!#endif
 ! TODO: remove hints when this issue is resolved - https://github.com/AdguardTeam/Scriptlets/issues/517
 !+ NOT_PLATFORM(windows, mac, android, cli)
 huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
