@@ -8,6 +8,11 @@
 !
 ! Hulu video ads when opening new video
 ||dynamic-manifest.hulustream.com/hulu*playlist.m3u8$replace=/#EXT-X-DATERANGE:ID=".*?ad".*?\n[\s\S]*?(?=#EXT-X-DATERANGE:ID=)//,domain=hulu.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/233449
+! https://github.com/AdguardTeam/CoreLibs/issues/2083
+! TODO: remove when issue in CoreLibs is fixed
+!+ PLATFORM(windows, mac, android, cli)
+||saracroche.org/|$replace=/(<!doctype html><html><head><meta content="0; url=https:\/\/.+" http-equiv=refresh>)\$/\$1<\/head><\/html>/,document
 ! https://github.com/AdguardTeam/CoreLibs/issues/1720
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186870
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176738
