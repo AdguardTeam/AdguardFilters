@@ -63,11 +63,13 @@ uol.com.br#%#//scriptlet('set-constant', '__configuredDFPTags', 'emptyObj')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224774
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166619
 ||mp.lura.live/vod/vast.info/
+||mp.lura.live/live/vast.meta
+vix.com#%#//scriptlet('json-prune', '*', 'vast_meta_url')
 vix.com#%#//scriptlet('json-prune', 'ads', 'ads.policy.skipMode')
 vix.com#%#//scriptlet('json-prune', 'vmap_ad_breaks interstitials')
 vix.com#%#//scriptlet('trusted-replace-xhr-response', '/"(interstitials)":|"(breaks)":/', '"no_ads":', '/\.m3u8|\.mpd/')
 vix.com#%#//scriptlet('m3u-prune', 'type=ad', '.m3u8')
-vix.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),".mp.lura.live/prod/")]] | //*[name()="MPD"]/@mediaPresentationDuration)', '', '.mpd')
+vix.com#%#//scriptlet('xml-prune', 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),".mp.lura.live/prod/")]] | //*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"][.//SegmentList[@presentationTimeOffset="0"]])', '', '.mpd')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165935
 infohojeonline.blogspot.com#%#//scriptlet('adjust-setInterval', 'getid', '*', '0.001')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165940
