@@ -351,7 +351,9 @@ smsonline.cloud#$?#html[data-theme][lang] [id^="img_"][style]:has(iframe[framebo
 ! Common rules, which partially hide banners
 ||html-load.com/l/$xmlhttprequest
 ||html-load.com^$image,~third-party,domain=html-load.com,important
-~dogdrip.net,~smsonline.clou##ins[id][style*="--gn-ov-ad-height"]
+!+ NOT_PLATFORM(ios, ext_android_cb, ext_safari)
+~dogdrip.net,~smsonline.cloud#$#iframe[id][height^="  "] { visibility: hidden !important; }
+~dogdrip.net,~smsonline.cloud##ins[id][style*="--gn-ov-ad-height"]
 ~dogdrip.net,~smsonline.cloud##div[id][class][style^="display"][style*="hidden"][style*="width:   "]
 ~dogdrip.net,~smsonline.cloud##div[id^="img_"][style^="width: 100%;height: 90px;position: fixed;bottom: 0px;left: 0px;z-index:"]
 ~dogdrip.net,~smsonline.cloud##div[id^="img_"] > button.gCloseButton
@@ -388,12 +390,14 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 !#endif
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari || adguard_ext_chromium_mv3)
 ##.is-sp[data-ad]
+##.kyuujinbox_recurit
 ##adfm-ad
 ##amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + amp-pixel + amp-pixel)
 ##amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + amp-pixel + div[style^="bottom:0;right:0;width"])
 ##amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + div[style^="bottom:0;right:0;width"])
 ##amp-img[class^="img_"][style="width:300px;height:250px;"]
 ##amp-img[class^="img_"][style="width:336px;height:280px;"]
+##amp-img[height^="   "]
 ##browsispot[style^="width:    100%;"]
 ##a[href*="html-load.com/"] > amp-img[src^="https://tpc.googlesyndication.com/"]
 ##a[href*="html-load.com/"]:has(+ amp-pixel + div[aria-hidden="true"]) > amp-img.aspw
@@ -430,6 +434,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##body[class^="img_"][style$="running none;"]
 ##body[class^="img_"][style^="background-color"]
 ##body[class^="img_"][style^="opacity: 1;"]
+##body[marginwidth="0"][marginheight="0"][style="background:transparent;line-height:0"] > div[id][class][style="overflow:hidden;position:absolute"]
 ##body[onclick="ExitApi.exit();"][style="cursor:pointer"] > a[href="javascript:(function(){open(window.clickTag)})()"]
 ##body[style$="transform-origin: left top;"] > div[id^="img_"]
 ##button[id^="img_"][onclick^="window.open"]
@@ -450,6 +455,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##div[class^="img_"][style^="width: 410px"] > div[class^="img_"] > lima-video
 ##div[class^="img_"][id^="img_"][active_view_class_name]
 ##div[class][id][style="width:    100%; height:    280px; overflow: hidden;"]
+##div[class][style="min-height:180px;"]:empty
 ##div[class][style="min-height:250px;margin:0 0 10px;"]
 ##div[class][style^="display: block; width:    100%;"][started]
 ##div[data-google-av-itpl]
@@ -502,6 +508,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##div[id^="img_"][x-frame-width="336"][x-frame-height="336"]
 ##div[id][align="center"][style="width: 100% !important; height: auto !important;"]
 ##div[id][class][style="display: block; right: 20px; bottom: 20px;"]:has(> iframe[id][srcdoc])
+##div[id][spottype="dynamic_mc"]
 ##div[id][style$="height:    90px; overflow: hidden;"]
 ##div[id][style$="width:    300px; height:    250px;"]
 ##div[id][style$="width:    300px; height:    600px;"]
@@ -510,6 +517,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##div[id][style$="width:    970px; height:    250px;"]
 ##div[id][style$="width:    970px; height:    90px;"]
 ##div[id][style$="width:336px; max-width:100%; min-height:250px; background-color:transparent;"]
+##div[id][style^="left:0px;top:0px;width:   100%;height:   100%"]
 ##div[id][style^="margin-top: 30px; text-align: center; width: 375px !important; max-width: 375px !important;"]
 ##div[id][style^="min-width: 300px; min-height: 250px"]
 ##div[id][style^="min-width: 728px; min-height: 90px"]
@@ -519,6 +527,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##div[id][style^="width:    375px; margin-left: 0px !important; height:    "]
 ##div[id][style^="width:   "][style$="overflow:hidden"]
 ##div[id][style^="width:   "][style$="overflow: hidden;"]
+##div[id][style="border: 0pt; max-height: none !important; max-width: 375px !important; padding: 0px !important; width: 375px !important;"]
 ##div[id][style="max-height: 180px; text-align: center; margin: 0px auto; display: block;"]
 ##div[id][style="width:    auto;"]
 ##div[id][style="width: 375px; height: 667px; background-color: transparent;"]
@@ -547,6 +556,7 @@ content-loader.com,css-load.com,html-load.com,img-load.com#$?#html:not(:has(> he
 ##gwd-google-ad
 ##head:has(> meta[name="as-inventory-frame-listener-added"]) + body[marginwidth="0"][marginheight="0"] > a[target="_blank"][rel="noopener noreferrer"][href*=".html-load.com/"]
 ##head:has(> meta[name="as-tester-handler-added"]) + body > a[target="_blank"][rel="noopener noreferrer"][href*=".html-load.com/"]
+##html[amp4ads=""][amp-version="2605071401000"]
 ##html[lang*="-"] > body[style="width:100%;height:100%;margin:0;"] > div[class^="img_"][style="width:100%; height:100%;"]
 ##iframe[src*="html-load.com/"] + div[id^="img_"]:empty
 ##iframe[src*="content-loader.com/"] + style + div
