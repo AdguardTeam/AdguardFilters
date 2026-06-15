@@ -10,6 +10,15 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/233664
+rr4farmtrof.com#%#//scriptlet('remove-node-text', 'script', '__skipAdwall')
+rr4farmtrof.com$$script:contains(skipAdwall)
+!#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
+@@||rr4farmtrof.com^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/$domain=rr4farmtrof.com
+@@||securepubads.g.doubleclick.net/tag/js/$domain=rr4farmtrof.com
+@@||yandex.ru/ads/system/context.js$domain=rr4farmtrof.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233134
 evilmod.ru#@##reklama
 ! https://github.com/AdguardTeam/AdguardFilters/issues/230714
