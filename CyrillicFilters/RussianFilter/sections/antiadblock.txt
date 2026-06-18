@@ -78,10 +78,13 @@ s3.gamepush.com#@##text_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204523
 volley.ru##pjsdiv[style*="opacity: 1; font-size: 14px; line-height: 1em; pointer-events: none; display: block; visibility: visible;"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199584
+ritsatv.ru#%#//scriptlet('prevent-addEventListener', 'load', 'initAdblockCheck')
 ritsatv.ru$$script:contains(script.onerror)
 ritsatv.ru#%#//scriptlet('remove-node-text', 'script', 'script.onerror')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||ritsatv.ru^$generichide
 @@||yandex.ru/ads/system/context.js$domain=ritsatv.ru
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196802
 howdyho.net#$##nevermind { display: block !important; }
 howdyho.net#$##rustrover { display: none !important; }
