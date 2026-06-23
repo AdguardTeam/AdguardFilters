@@ -1259,6 +1259,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/233875
+cinehd.app#%#//scriptlet('prevent-fetch', '/doubleclick|ads-twitter.com|google-analytics.com|adsbygoogle/')
+@@||cinehd.app^$generichide
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cinehd.app
+@@||google-analytics.com/analytics.js$domain=cinehd.app
+@@||static.ads-twitter.com/ads.js$domain=cinehd.app
+@@||googleads.g.doubleclick.net/pagead/ads$domain=cinehd.app
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233959
 luciferdonghua.in#%#//scriptlet('abort-current-inline-script', 'document.getElementById', 'afu')
 luciferdonghua.in###afu-ab
