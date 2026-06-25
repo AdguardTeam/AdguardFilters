@@ -343,6 +343,13 @@ kat.*,kickass.*,kickass2.*,kickasstorrents.*,kat2.*,kattracker.*,thekat.*,thekic
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234274
+! Fixes loading comments widget
+! The problem is that some scripts (like script related to cookie notice) are loaded from ad scripts, so it should fixes the problem without necessity to unblock them
+!+ NOT_PLATFORM(ext_ff)
+gocomics.com#%#(()=>{const e={cmpConsentVendors:",s2657,",event:"cmpEvent"},n=()=>{setTimeout((()=>{"function"==typeof window.dataLayer?.push&&window.dataLayer.push(e)}),1e3)};"loading"===document.readyState?window.addEventListener("load",n):n()})();
+!+ PLATFORM(ext_ff)
+gocomics.com#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{const e={cmpConsentVendors:",s2657,",event:"cmpEvent"},n=()=>{setTimeout((()=>{"function"==typeof window.dataLayer?.push&&window.dataLayer.push(e)}),1e3)};"loading"===document.readyState?window.addEventListener("load",n):n()})();')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233166
 ! Website creates iframe with blank source so AdGuard app does not inject content script into it
 ! This rule overrides the src property of HTMLScriptElement in the iframe and replace it using property from the top window which is overridden by AdGuard
