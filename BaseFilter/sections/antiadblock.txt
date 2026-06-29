@@ -1260,6 +1260,14 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234582
+flacdownloader.com$$script:contains(baits)
+flacdownloader.com#%#//scriptlet('remove-node-text', 'script', 'baits')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||static.doubleclick.net/instream/ad_status.js$domain=flacdownloader.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=flacdownloader.com
+flacdownloader.com#@#.adsbygoogle-noablate
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234532
 pornhex.com#%#//scriptlet('prevent-setTimeout', 'Adblock')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
