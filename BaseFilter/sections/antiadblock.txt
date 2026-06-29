@@ -1563,9 +1563,12 @@ smksports.live#%#//scriptlet('prevent-addEventListener', 'load', 'checkAdBlock')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 smksports.live#@#.ad-unit:not(.textads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229890
+app.khaddavi.net#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 app.khaddavi.net#%#//scriptlet('prevent-element-src-loading', 'script', 'https://safelinku.com/admanager.js')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=app.khaddavi.net
 @@||safelinku.com/admanager.js$script,domain=app.khaddavi.net
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229773
 rule34hentai.net#@#.ad-unit:not(.textads)
 rule34hentai.net#$##adblock-overlay { display: none !important; }
