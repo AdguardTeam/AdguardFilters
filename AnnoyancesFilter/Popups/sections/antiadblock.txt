@@ -86,11 +86,14 @@ mail.yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
 !
 ! Yandex.Search
 ! Main page under the search bar
+ya.ru##.search3__wrapper ~ div[class^="body__"]:has(> div > div > div > a[aria-labelledby="ad-mark__mark"])
 ya.ru##main[class="body__wrapper"] form ~ div[style^="--height-ratio:"]
 yandex.*##main[class="body__wrapper"] form ~ div > div[style^="--height-ratio:"]
 yandex.ru##.main__block-banner iframe[src]
 ! the ad is on the right side, which is mostly non-reproducible
 [$path=/search]ya.ru,yandex.*#%#//scriptlet('remove-node-text', 'script', '/^window\.Ya.*pcodeParams.*renderTo/')
+! In the feed
+ya.ru##.feed > div > ul > li.feed__item:has(div[id*="R-I-"])
 !
 ! Yandex.TV
 tv.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
@@ -681,9 +684,9 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+jetpunk.com#%#//scriptlet('prevent-setTimeout', 'isAdblocker')
 ricardocuisine.com#%#//scriptlet('set-cookie', 'adblock-modal.ads', '1')
-vaughn.live#$#.wrapper_content ~ .vs_modal_v9 { opacity: 0 !important; }
-vaughn.live##.wrapper_content ~ .vs_modal_v9_background
+vaughn.live#%#//scriptlet('trusted-set-local-storage-item', 'vs_notice_last_shown2', '99999999999999')
 thestar.com.my##.widgettop
 sport-express.ru##.se-bn2-notice
 gsmarena.com#$#html > body { overflow: auto !important; }
@@ -2355,6 +2358,7 @@ goduke.com,uwaterloo.ca##div[aria-label="Ad Blocker Detected"]
 ! SECTION[id=general]: Anti-adblock - Common '!#safari_cb_affinity(general)' directive
 !#safari_cb_affinity(general)
 !
+jetpunk.com#@#.ad-unit-2
 @@||ss.sport-express.ru/ads/system/context.js
 @@||usersdrive.com/aclib.js
 fotpforums.com#@#ins.adsbygoogle[data-ad-slot]
@@ -3124,10 +3128,10 @@ chzzk.naver.com#@#.banner_ad_wrapper
 @@||nam.veta.naver.com/vas|$xmlhttprequest,domain=chzzk.naver.com
 @@||nam.veta.naver.com/gfp$xmlhttprequest,domain=chzzk.naver.com
 @@||nam.veta.naver.com/call|$xmlhttprequest,domain=chzzk.naver.com
-!#else 
+!#else
 chzzk.naver.com#%#//scriptlet('spoof-css', '.banner_ad_wrapper', 'display', 'block')
 chzzk.naver.com#%#//scriptlet('trusted-json-set-xhr-response', 'content.playerAdDisplayResponse', 'json:{"preRoll":false,"midRoll":false}', 'content.playerAdDisplayResponse.preRoll', '/ad/display-status')
-chzzk.naver.com#%#//scriptlet('prevent-xhr', '/veta.naver.com\/vas|veta.naver.com\/gfp|veta.naver.com\/call/ method:OPTIONS')
+chzzk.naver.com#%#//scriptlet('prevent-xhr', '/(veta.naver.com\/vas|veta.naver.com\/gfp|veta.naver.com\/call)/ method:OPTIONS')
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/185974
 grabify.link#%#//scriptlet('set-cookie', 'ckstp', '1')
