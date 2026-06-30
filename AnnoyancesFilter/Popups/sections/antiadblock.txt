@@ -86,11 +86,14 @@ mail.yandex.*#%#//scriptlet('json-prune', 'seatbid rtb')
 !
 ! Yandex.Search
 ! Main page under the search bar
+ya.ru##.search3__wrapper ~ div[class^="body__"]:has(> div > div > div > a[aria-labelledby="ad-mark__mark"])
 ya.ru##main[class="body__wrapper"] form ~ div[style^="--height-ratio:"]
 yandex.*##main[class="body__wrapper"] form ~ div > div[style^="--height-ratio:"]
 yandex.ru##.main__block-banner iframe[src]
 ! the ad is on the right side, which is mostly non-reproducible
 [$path=/search]ya.ru,yandex.*#%#//scriptlet('remove-node-text', 'script', '/^window\.Ya.*pcodeParams.*renderTo/')
+! In the feed
+ya.ru##.feed > div > ul > li.feed__item:has(div[id*="R-I-"])
 !
 ! Yandex.TV
 tv.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
