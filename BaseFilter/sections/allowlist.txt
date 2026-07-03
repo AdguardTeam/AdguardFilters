@@ -147,6 +147,12 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234817
+jamf.com#@#div.rendered[id][class*=" "]:not([id*="captcha"])
+! https://github.com/AdguardTeam/AdguardFilters/issues/234825
+! It looks like a website issue. Injecting any stylesheet (even if not via an ad blocker)
+! containing "[style]" inside ":has()" causes the website to freeze when the copy button is clicked
+gemini.google.com#@#div[data-id="mosaic"] > div > div > div[class]:has(> div:not([data-attrid]) > div[style="height:100%"] a[href^="/aclk?sa="])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234462
 howtogeek.com#@#.w-adsninja-video-player
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234523
@@ -389,9 +395,6 @@ dmax.de#%#//scriptlet('remove-class', 'block-user', '.block-user')
 @@||cdn.cookielaw.org/consent/*.json$domain=dmax.de
 dmax.de#@##onetrust-consent-sdk
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/214411
-! https://github.com/AdguardTeam/AdguardFilters/issues/213267
-wavewalt.me#@#.Ad-Container:not(.adsbygoogle)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/212996
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209284
 lastampa.it#%#//scriptlet('prevent-element-src-loading', 'script', '/securepubads\.g\.doubleclick\.net|chartbeat\.com|googletagmanager\.com/')
@@ -433,8 +436,6 @@ bbc.com#%#//scriptlet('set-constant', 'dvtag.getTargeting', 'trueFunc')
 @@||adguardpartner.com^$generichide,genericblock
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209553
 @@||vague.style/wp-content/uploads/*.jpg$image,domain=vague.style
-! https://github.com/AdguardTeam/AdguardFilters/issues/208735
-@@||sts.wavewalt.me/scripts/v*/embedv*.min.js$domain=cricstreams.re
 ! https://www.thedailybeast.com/login - cannot login
 @@||c.amazon-adsystem.com/aax2/apstag.js$domain=thedailybeast.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208059

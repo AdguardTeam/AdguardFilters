@@ -812,6 +812,15 @@ schnittmuster-datenbank.de#%#//scriptlet("abort-on-property-read", "adsBlocked")
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234818
+chatgptdeutsch.info#%#//scriptlet('prevent-setTimeout', '[native code]', '1200')
+chatgptdeutsch.info#%#//scriptlet('prevent-fetch', 'adsbygoogle')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+chatgptdeutsch.info#@#.ad-unit:not(.textads)
+chatgptdeutsch.info#@#ins.adsbygoogle[data-ad-slot]
+chatgptdeutsch.info#@#ins.adsbygoogle[data-ad-client]
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=chatgptdeutsch.info
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231701
 plus.rtl.de#%#//scriptlet('prevent-xhr', 'ad-ipd.sxp.smartclip.net')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
