@@ -1671,7 +1671,8 @@ torupload.com#%#//scriptlet('prevent-element-src-loading', 'img', 'googlesyndica
 ! Video player with [class^="adblock-notice-"]
 nzn3.org,bysevepoin.com,arbitrarydecisions.com#%#//scriptlet('json-prune', 'adblock_detection force_disable_adblock')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228712
-cloudfam.io#%#(()=>{const e={apply:(e,t,n)=>{const o=Reflect.apply(e,t,n);try{o instanceof HTMLIFrameElement&&""===o.src&&o.contentWindow&&(o.contentWindow.fetch=window.fetch,o.contentWindow.getComputedStyle=window.getComputedStyle)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e)})();
+!cloudfam.io#%#(()=>{const e={apply:(e,t,n)=>{const o=Reflect.apply(e,t,n);try{o instanceof HTMLIFrameElement&&""===o.src&&o.contentWindow&&(o.contentWindow.fetch=window.fetch,o.contentWindow.getComputedStyle=window.getComputedStyle)}catch(e){}return o}};Node.prototype.appendChild=new Proxy(Node.prototype.appendChild,e)})();
+cloudfam.io#%#(()=>{Blob=new Proxy(Blob,{construct:(t,a)=>new t(Array.isArray(a[0])?a[0].map(s=>typeof s=="string"?s.replace("fetch(e.data.url, e.data.options)","fetch(e.data.url.includes('jsc.adskeeper.com')?'https://cloudfam.io':e.data.url,e.data.options)"):s):a[0],a[1])})})();
 cloudfam.io#%#//scriptlet('trusted-replace-argument', 'Blob', '0', 'emptyArr', '/fetch\(.+\.data\.url/')
 cloudfam.io#%#//scriptlet('abort-on-stack-trace', 'document.createElement', '/openAdWithFallback|getNativeApis/')
 cloudfam.io#%#//scriptlet('prevent-fetch', 'method:HEAD')
@@ -1682,8 +1683,13 @@ cloudfam.io#%#//scriptlet('prevent-fetch', '/pagead|adserve|adsbygoogle/')
 @@||cloudfam.io/assets/ads/gpt-publisher.js
 @@||cloudfam.io/assets/ads/adnetwork-sync.js
 @@||cloudfam.io/assets/ads/prebid.js
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+!#safari_cb_affinity
+@@||cloudfam.io/*/pixel.gif
+!#safari_cb_affinity(privacy)
+!#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
+@@||jsc.adskeeper.com/site/1091589.js$domain=cloudfam.io
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cloudfam.io
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228716
 hentaitoon.tv#%#//scriptlet('prevent-setTimeout', 'container.remove')
 !+ PLATFORM(ios, ext_android_cb)
