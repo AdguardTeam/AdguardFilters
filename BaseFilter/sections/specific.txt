@@ -324,6 +324,22 @@ buienalarm.be,weerplaza.nl,weerslag.nl,sat24.com,niederschlagsradar.de,meteox.co
 !#endif
 !#endif
 !
+! App-Mind
+!#if (!ext_ublock)
+||html-load.com^$script,xmlhttprequest,domain=fmradiofree.com|internetradio-horen.de|radio-norge.org|radio-danmark.dk|radio-hrvatska.com|radio-australia.org|radio-osterreich.at
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com#%#//scriptlet('trusted-replace-argument', 'Element.prototype.setAttribute', '1', '', '/error-report|new Promise|;await new|:\[?window|&&window,|void 0\]|location\.href|void 0\|\|window|,window,|void 0,window|\[0,window\]|\)\.join\(String\.fromCharCode/')
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com#%#//scriptlet('trusted-replace-argument', 'Element.prototype.setAttribute', '1', 'replace:/.+(error-report|new Promise|:window|&&window,|\|\|window,|void 0\]|html-load\.com[\s\S]*_onerror).+//g')
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli || adguard_ext_firefox)
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com$$script[src*="html-load.com"]
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com$$script[data-cfasync="false"][nowprocket]
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com$$script:has(/\)\.join\(String\.fromCharCode|html-load\.com/)
+!#else
+radio-osterreich.at,radio-australia.org,radio-hrvatska.com,radio-danmark.dk,radio-norge.org,internetradio-horen.de,fmradiofree.com#%#//scriptlet('remove-node-text', 'script', '/\)\.join\(String\.fromCharCode|html-load\.com/')
+!#endif
+!#endif
+
+!
+!
 ! iOS/Safari compatible rules
 !#if (!adguard_ext_android_cb && !ext_ublock)
 ! Common leftovers on forums
@@ -1097,6 +1113,16 @@ $third-party,script,domain=klto9.com|f2movies.to|hacamchicac.com|yourporngod.com
 !
 ! NOTE: Specific rules
 !
+linkshash.com##div[class^="ad-box"]
+linkshash.com#%#//scriptlet('prevent-addEventListener', 'click', '.click();')
+complex.com##div.border-b.overflow-visible:has(.mwd-inline-loaded)
+newarab.com##.ad-gpt-pro
+tweaktown.com##.tt-deals
+movieboxonline.net###detail-page > .mt-4 > .mt-4:has(> a.group.block[href^="https://gamixo.org/"])
+siliconrepublic.com##li:has(> div.sideads)
+gophersports.com###global-top-ad
+||assets.gnwcdn.com/prebid*.js
+||eurogamer.net/static/*/js/commercial.min.js
 ||flixtrz.com/api/ads|
 esquire.com##.article-body-content > div.inline-content-module:has(div[class^="feature-version-"] .cx-flex-module)
 pornhub.org##.innerContainer
@@ -1113,7 +1139,7 @@ troypoint.com##.tp-vpn-banner
 mobidea.com##div[id^="mobid-"]
 doniaweb.com##div[data-ips-ad]
 ||nudify.now/resources/js/p6.js
-allinonerebornvip.blogspot.com#%#//scriptlet('prevent-window-open', '_blank', '2')
+allinoneblog.duckdns.org,allinonerebornvip.blogspot.com#%#//scriptlet('prevent-window-open', '_blank', '2')
 allinonerebornvip.blogspot.com#%#//scriptlet('adjust-setInterval', 'countdownValue')
 ||com/*?key=$subdocument,third-party,domain=allinonerebornvip.blogspot.com
 imgbox.com#%#//scriptlet('remove-attr', 'href', 'a[href^="https://adv.clickadu.net/"][onclick]', 'stay')
@@ -2139,7 +2165,7 @@ hotcleaner.com##div:empty
 psa.wf##a[href^="https://fileserve.com/"]
 uploadg.com##div.backdrop-blur-sm > div.relative > div.flex.rounded-xl
 uploadg.com##.ad-host
-cloudfam.io##.cf-body > .cf-ad-box
+cloudfam.io##.cf-ad-box
 cloudfam.io#%#//scriptlet('abort-current-inline-script', 'EventTarget.prototype.addEventListener', '/delete window|window\.open/')
 arigl.com,cloudfam.io#%#//scriptlet('prevent-eval-if', 'l.parentNode.insertBefore(s')
 ||fapnado.com/ads/$media
@@ -2654,7 +2680,7 @@ bscscan.com##.search-panel-ads
 solscan.io#?#div.items-stretch.shrink-0 > .box-border:has(> div.dark\:shadow-mDark > div.flex:contains(Sponsored))
 solscan.io#?##top-tx-overview > div.gap-y-0.items-stretch:has(> div > div.flex-wrap.justify-start:contains(Sponsored))
 etherscan.io,basescan.org#?#div.dropdown > div.dropdown-menu:contains(Sponsored)
-vidmatrixa.com,vidchampions.com,vidavaca.cc,xheti.net,verhentai.io,krx18.com,sht-link.com,viduro.top,vindaz.shop,xca.cymru,uiil.ink,pornwex.tv,manhuarmtl.com,vidara.to,vidara.so,krakenfiles.com,streamix.so,livecamrips.*#%#//scriptlet('prevent-addEventListener', 'click', 'window.open')
+movienig.ht,vidmatrixa.com,vidchampions.com,vidavaca.cc,xheti.net,verhentai.io,krx18.com,sht-link.com,viduro.top,vindaz.shop,xca.cymru,uiil.ink,pornwex.tv,manhuarmtl.com,vidara.to,vidara.so,krakenfiles.com,streamix.so,livecamrips.*#%#//scriptlet('prevent-addEventListener', 'click', 'window.open')
 rxbabu.com##.flotiads
 link.snipcash.com$$script:contains(urlPC)
 link.snipcash.com#%#//scriptlet('remove-node-text', 'script', 'urlPC')
@@ -3636,7 +3662,7 @@ cricfy.net#%#//scriptlet('abort-current-inline-script', 'googletag', '')
 windowsonarm.org##div[aria-labelledby="fui-ra"] + div table tbody > tr:has(ins.adsbygoogle)
 windowsonarm.org##.sm\:px-6.lg\:px-8 > .py-8 > div:has(ins.adsbygoogle)
 venturebeat.com##.article-body > div[class]:has(> div[id*="-"]:only-child:empty)
-555fap.com,vixcloud.co,vidmatrixa.com,vidchampions.com,vidavaca.cc,8kporner.com,filester.me,goonbox.cr,luottruyen12.com,vidavaca.net,hentainexus.com,xfans.st,mangakakalot.gg,26img.com,javbee.co,vindaz.shop,xca.cymru,shavetape.cash,vidsonic.net,bigshare.io,herexxx.com,avdbapi.com,rule34vault.com,speedporn.net,taboodude.com,pornxp.ph,cdn.loadvid.com,vidara.so,vidara.to,pornwatch.ws,rpmplay.online,embedseek.online,pandamovies.org,hepidrive.online,hentaicop.com,livecamrips.*,asianporn.li,vik1ngfile.site,mangago.me,klmanga.ec,chochox.com,comick.art,qmh.sex,cap3.sex,hindilinks4u.*,doujindesu.tv,easyvidplayer.com,camwhores.*,player4me.*,faselhds.biz,severeporn.com,rule34video.com,niyaniya.moe,pornxp.net,upns.online,seekplayer.vip#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
+kicknosub.com,555fap.com,vixcloud.co,vidmatrixa.com,vidchampions.com,vidavaca.cc,8kporner.com,filester.me,goonbox.cr,luottruyen12.com,vidavaca.net,hentainexus.com,xfans.st,mangakakalot.gg,26img.com,javbee.co,vindaz.shop,xca.cymru,shavetape.cash,vidsonic.net,bigshare.io,herexxx.com,avdbapi.com,rule34vault.com,speedporn.net,taboodude.com,pornxp.ph,cdn.loadvid.com,vidara.so,vidara.to,pornwatch.ws,rpmplay.online,embedseek.online,pandamovies.org,hepidrive.online,hentaicop.com,livecamrips.*,asianporn.li,vik1ngfile.site,mangago.me,klmanga.ec,chochox.com,comick.art,qmh.sex,cap3.sex,hindilinks4u.*,doujindesu.tv,easyvidplayer.com,camwhores.*,player4me.*,faselhds.biz,severeporn.com,rule34video.com,niyaniya.moe,pornxp.net,upns.online,seekplayer.vip#%#//scriptlet('abort-current-inline-script', 'WebAssembly', 'atob')
 jojo-news.com###cb-row--footer-main:has(#bottombanner)
 24porn.com##.b-head-6
 umatechnology.org###rk-exit-modal-bg
@@ -6364,8 +6390,8 @@ foxprn.com,foxnxx.com##div[style^="height:100px;max-width:300px;"]
 foxprn.com,foxnxx.com##div[style="margin-top:5px;text-align:center;"]
 memedroid.com##div[id^="aside-ad-container"]
 memedroid.com###aside-affix-container > div[style] > a[target="_blank"] > img
-5masterzzz.*,everydayporn.co,bussyhunter.com#%#//scriptlet('prevent-window-open')
-5masterzzz.*,everydayporn.co,bussyhunter.com##div[style^="position: absolute; inset: 0px;"]
+nomorflix.cc,5masterzzz.*,everydayporn.co,bussyhunter.com#%#//scriptlet('prevent-window-open')
+nomorflix.cc,5masterzzz.*,everydayporn.co,bussyhunter.com##div[style^="position: absolute; inset: 0px;"]
 gamersmaze.com##.content-inner > center:has(> button.button-red)
 himovies.bz,moviesjoyhd.to##img[style="max-width: 728px; width: 100%"]
 ||elamigosedition.com/templates/games/js/p*per.js
@@ -6862,7 +6888,7 @@ rahim-soft.com##.theiaStickySidebar > .widget_text:has(> .textwidget > p > .adsb
 allegiantair.com##a[data-hook="header-merchandise-banner_link"]
 convertio.co##.softobar-container
 vidsrc2.*##body > div[style*="position: absolute;"][style*="inset:"][style*="z-index:"]
-pns.pro,4meplayer.pro,seekplays.com,dlsrv.online,nomorflix.icu,vidnest.fun,yeptube.*,vids.st,area.waffi.cloud,nutripulse.one,vercel.app,zdrive.to,1moviesz.to,apksum.com,xvideos-full.com,freemanga.me,funlove.info,javsubidn.tv,streamvid.dev,vidnest.live,vidnest.io,familyporn.tv,5play.app,bingespree.net,spencerdevs.xyz,easyvidplayer.com,cloudhostingz.com,sharedwebs.com,fitnessplanss.com,porn4days.blue,embedplayer.site,animahd.com,exposestrat.com,embedsports.top,vidplayer.live,vik1ngfile.site,fbol.top,sterham.net,embed4me.com,megatukmax.xyz,primewire.tf,ytapi.cc,mygomp3.com,imagebam.com,ezplayer.me,datavaults.co,clickapi.net,y2down.cc,themezon.net,serverguidez.com,streamup.ws,vidlink.pro,cdn.hentaianimezone.com,themezon.net,galaxyporn.net,teknoasian.com,downloadyoutubesubtitles.com,alex71.com,kecapku.com,vidfast.pro,pornharlot.net,meong.club,hianimez.*,travelironguide.com,kreditexperte.online,shortnest.com,vikingf1le.us.to,mixzdrive.com,get.linkbulks.com,play.upns.live,dropzy.io,dayuploads.com,filespayouts.com,ranoz.gg,zovo.ink,manhwahentai.me,1movielinkbd.com,ytmp3.la,swiftuploads.com,techbloogs.com,oii.la,englismovies.pro,tpi.li,go.cloutgist.com,brbeast.com,vidsrc2.*,tutwuri.id,lokerwfh.net,insmyst.com,iir.la,tvi.la,cosplay18.pics,hianime.*,mobiletvshows.site,movies4u.*,x-x-x.tube,pornx.to,4khd.com,dlhd.*,kissanime.*,vidsrc.*,pahe.*#%#//scriptlet('prevent-window-open')
+pns.pro,4meplayer.pro,seekplays.com,dlsrv.online,vidnest.fun,yeptube.*,vids.st,area.waffi.cloud,nutripulse.one,vercel.app,zdrive.to,1moviesz.to,apksum.com,xvideos-full.com,freemanga.me,funlove.info,javsubidn.tv,streamvid.dev,vidnest.live,vidnest.io,familyporn.tv,5play.app,bingespree.net,spencerdevs.xyz,easyvidplayer.com,cloudhostingz.com,sharedwebs.com,fitnessplanss.com,porn4days.blue,embedplayer.site,animahd.com,exposestrat.com,embedsports.top,vidplayer.live,vik1ngfile.site,fbol.top,sterham.net,embed4me.com,megatukmax.xyz,primewire.tf,ytapi.cc,mygomp3.com,imagebam.com,ezplayer.me,datavaults.co,clickapi.net,y2down.cc,themezon.net,serverguidez.com,streamup.ws,vidlink.pro,cdn.hentaianimezone.com,themezon.net,galaxyporn.net,teknoasian.com,downloadyoutubesubtitles.com,alex71.com,kecapku.com,vidfast.pro,pornharlot.net,meong.club,hianimez.*,travelironguide.com,kreditexperte.online,shortnest.com,vikingf1le.us.to,mixzdrive.com,get.linkbulks.com,play.upns.live,dropzy.io,dayuploads.com,filespayouts.com,ranoz.gg,zovo.ink,manhwahentai.me,1movielinkbd.com,ytmp3.la,swiftuploads.com,techbloogs.com,oii.la,englismovies.pro,tpi.li,go.cloutgist.com,brbeast.com,vidsrc2.*,tutwuri.id,lokerwfh.net,insmyst.com,iir.la,tvi.la,cosplay18.pics,hianime.*,mobiletvshows.site,movies4u.*,x-x-x.tube,pornx.to,4khd.com,dlhd.*,kissanime.*,vidsrc.*,pahe.*#%#//scriptlet('prevent-window-open')
 hogwarts.cafe#$#body[class*="adthrive-"]:not(.home) .site-footer-wrap { margin-bottom: 0 !important; }
 retromania.gg##.banner > *
 [$path=/search]startpage.com#?##main > div[class^="css-"]:has(> div[class^="css-"] > p[class^="css-"]:contains(/Annoncer|Anzeigen|Ads|Anuncios|Publicités|Advertenties|Annonser|Reklamy|Anúncios/))
@@ -10576,7 +10602,6 @@ bittorrent.com###prodnews-cyberghost-tower-ad
 ||app.audiopulsar.com/*/embed/
 readm.org###podium-spot
 ||media-cdn.synkd.life/fenix.js$domain=worldofbuzz.com
-||searchresults.cc/system.js
 ||app.wiki.gg/public/CCM_MREC_Ads_
 wiki.gg##div[class^="sidebar-showcase"]
 wiki.gg##div[class^="games-showcase"]
@@ -17816,7 +17841,7 @@ mmorpg.com##.home > .panelFirst
 mmorpg.com##a[href^="http://www.mmorpg.com/adServer"]
 mmorpg.com##.gvconblock .newsItem > .news_newspost + div[align="center"] > .head
 calgarysun.com###content > .l-content > .l-top-content
-cryptofans.news,ad-doge.com,cryptomininggame.com,club,getdogecoins.com,100count.net,faucetcrypto.com,freebitcoin.win##ins[class^="bmadblock-"]
+cryptofans.news,ad-doge.com,cryptomininggame.com,club,getdogecoins.com,faucetcrypto.com,freebitcoin.win##ins[class^="bmadblock-"]
 freebitcoin.win##a[href^="https://coinad.com"]
 pictoa.com##.contentsp > #player > .subtitle_wrapper
 porn.com##div[class*="-zone"]
@@ -23549,6 +23574,10 @@ terashare.co#%#(()=>{const e={apply:(e,t,n)=>{try{const[e,r]=n,a=r?.toString();i
 ! generichide rule are not applied in Firefox — https://github.com/AdguardTeam/AdguardBrowserExtension/issues/2757
 !+ PLATFORM(ext_ff)
 forbes.com#$#body .current-page.ads-loaded { display: block !important; }
+! https://github.com/AdguardTeam/AdguardFilters/issues/235617
+! Rule $referrerpolicy is required for apps, because source of some third party requests is not detected
+! and due to this it's not blocked
+||eurogamer.net^$referrerpolicy=origin
 ! https://github.com/AdguardTeam/AdguardFilters/issues/232211
 ! Rule $referrerpolicy is required for apps, because source of vast.js is not detected and due to this it's not blocked
 ||javbest.cc^$referrerpolicy=origin
