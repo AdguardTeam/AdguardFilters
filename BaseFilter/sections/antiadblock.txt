@@ -1265,6 +1265,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/235721
+net77.cc#%#//scriptlet('prevent-addEventListener', 'load', 'showAdblockMessage')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+net77.cc#@#.ad-unit:not(.textads)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=net77.cc
+@@||publishers.monetag.com/assets/favicon-16x16.png$domain=net77.cc
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235753
 7daystodie-servers.com#@##ad-banner-top
 7daystodie-servers.com#@#.ad-container
@@ -1282,7 +1289,7 @@ indratranslations.com#@#.ad_banner
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?ts=$script,domain=indratranslations.com
 !#endif
 ! "ANTI-ADBLOCK SYSTEM" / window.__AAB_CONFIG__
-/assets/js/anti-adblock.js$domain=555fap.com|fc2ppv.*|4up.pics|rimworldbase.com|anime-jav.com|javtele.net|javball.com
+/assets/js/anti-adblock.js|$script,first-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235647
 allinoneblog.duckdns.org#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 allinoneblog.duckdns.org#%#//scriptlet('prevent-setTimeout', 'offsetHeight')
@@ -1337,7 +1344,8 @@ firestream.to#%#//scriptlet('prevent-element-src-loading', 'script', 'googleapis
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=firestream.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234808
-sportsbite.lol#%#//scriptlet('prevent-fetch', '/adsbygoogle|divorceabetpiano\.com/')
+sportsbite.org,sportsbite.*,sportsbite.lol#%#//scriptlet('prevent-fetch', '/adsbygoogle|divorceabetpiano\.com/')
+sportsbite.org,sportsbite.*#@#.ad_unit
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234736
 unicorn.asso.eu.org#%#//scriptlet('prevent-fetch', 'method:HEAD')
 unicorn.asso.eu.org#%#//scriptlet('set-constant', 'document.hidden', 'true')
@@ -1557,7 +1565,8 @@ vlxy.org#%#//scriptlet('prevent-fetch', 'magsrv.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||a.magsrv.com/ad-provider.js$xmlhttprequest,domain=vlxy.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231829
-hidencloud.com#%#//scriptlet('prevent-fetch', 'adsboosters')
+hidencloud.com#%#//scriptlet('prevent-fetch', '/adsboosters|pagead2\.googlesyndication\.com/')
+hidencloud.com#%#//scriptlet('abort-current-inline-script', 'setTimeout', '/\.offsetHeight\s*===\s*0|pagead2\.googlesyndication\.com/')
 hidencloud.com#%#//scriptlet('prevent-element-src-loading', 'script', 'adsboosters')
 @@||hidencloud.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231811
@@ -8743,8 +8752,6 @@ linkpoi.me#%#//scriptlet("set-constant", "disableItToContinue", "noopFunc")
 ||prod-adops-proxy.dnitv.net^$redirect=nooptext,domain=discoveryplus.*
 !END: discoveryplus
 !
-! https://github.com/AdguardTeam/AdguardFilters/issues/73553
-||cdn.jsdelivr.net/gh/dandyraka/jnck-adblock/jnck.adblock.min.js$domain=jnckmedia.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/73068
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 ||cdn.tinypass.com^$domain=futurism.com
