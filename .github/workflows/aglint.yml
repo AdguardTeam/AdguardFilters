@@ -100,11 +100,36 @@ jobs:
         )
       }}
     steps:
-      - uses: 8398a7/action-slack@v3
+      - uses: slackapi/slack-github-action@v3
         with:
-          status: failure
-          fields: workflow, repo, message, commit, author, eventName, ref, job
-          job_name: Run AGLint
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: "❌ AGLint failed"
+            attachments:
+              - color: "danger"
+                fields:
+                  - title: "Workflow"
+                    value: "${{ github.workflow }}"
+                    short: true
+                  - title: "Repo"
+                    value: "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>"
+                    short: true
+                  - title: "Message"
+                    value: "${{ github.event.head_commit.message }}"
+                    short: false
+                  - title: "Commit"
+                    value: "<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.sha }}>"
+                    short: true
+                  - title: "Author"
+                    value: "${{ github.actor }}"
+                    short: true
+                  - title: "Event"
+                    value: "${{ github.event_name }}"
+                    short: true
+                  - title: "Ref"
+                    value: "${{ github.ref }}"
+                    short: true
+                  - title: "Job"
+                    value: "aglint"
+                    short: true

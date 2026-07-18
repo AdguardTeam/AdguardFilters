@@ -7,6 +7,21 @@
 ! Good: @@/adblocker/detect.js$domain=example.org
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
+! https://github.com/uBlockOrigin/uAssets/issues/17909
+@@||ads.videoadex.com/jw/advertisement.js$domain=rtl.be|ultimedia.com
+! https://github.com/uBlockOrigin/uAssets/issues/33539
+chatnow.fr#%#//scriptlet('prevent-setTimeout', 'getComputedStyle')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||jnbhi.com/tag.min.js$xmlhttprequest,domain=chatnow.fr
+@@||chatnow.fr/ads/ads.js$~third-party
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/233537
+journalduweb.org#@#.ad-slot
+journalduweb.org#@#.ads-banner
+journalduweb.org#%#//scriptlet('prevent-setTimeout', '/siteAccessNotification|checkBaitElement/')
+! https://github.com/AdguardTeam/AdguardFilters/issues/227890
+nicematin.com#%#//scriptlet("prevent-setTimeout", "rhoostatus", "100")
+nicematin.com#@#.ads-box
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224127
 lematin.ch#$#body { overflow: visible !important; }
 lematin.ch#$#body div.fc-ab-root:not(#style_important) { display: none !important; }
@@ -80,7 +95,6 @@ lecrabeinfo.net#%#//scriptlet('set-constant', 'LCI.adNetwork', 'undefined')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||ads.sportslocalmedia.com/slm.prebid.lecrabeinfo.js$domain=lecrabeinfo.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196696
-magazine-avantages.fr#@#.AdsBox
 magazine-avantages.fr#$#body { overflow: auto !important; }
 magazine-avantages.fr#$##overlay { display: none !important; }
 magazine-avantages.fr#$#.qiota_onboard:has(> div.AdBlockModal) { display: none !important; }
@@ -92,13 +106,11 @@ petitfute.com#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.go
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191116
 ||minenode.fr/dashboard/function/js/AzurHOSTS/pubs.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191055
-marieclaire.fr#@#.AdsBox
 marieclaire.fr#$#body { overflow: auto !important; }
 marieclaire.fr#$##overlay { display: none !important; }
 marieclaire.fr#$?#.qiota_onboard:has(> div.AdBlockModal) { display: none !important; }
 ||static.qiota.com/assets/getQiota.js$domain=marieclaire.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190815
-larvf.com#@#.AdsBox
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188979
 sekai.one###adblock-modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186309
@@ -161,13 +173,17 @@ cyclismactu.net#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'i
 cyclismactu.net#%#//scriptlet('prevent-addEventListener', 'load', 'isAdblock')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=cyclismactu.net
+! https://github.com/AdguardTeam/AdguardFilters/issues/234430
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168555
-rmcbfmplay.com#%#//scriptlet('prevent-fetch', '/www3\.doubleclick\.net|tagger\.opecloud\.com|fwmrm\.net/', 'emptyArr')
+rmcbfmplay.com#@##adsbox
+rmcbfmplay.com#%#//scriptlet('prevent-setTimeout', '.offsetParent||0===')
+rmcbfmplay.com#%#//scriptlet('prevent-fetch', '/www3\.doubleclick\.net|tagger\.opecloud\.com|fwmrm\.net|imasdk\.googleapis\.com/', 'emptyArr')
 !#safari_cb_affinity(general,privacy)
 @@||js.estat.com/js/mu-7.0.min.js$domain=rmcbfmplay.com
 @@||mssl.fwmrm.net/libs/adm/*/AdManager.js$domain=rmcbfmplay.com
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||nextms.tagger.opecloud.com/nextms/v2/pixel.gif$domain=rmcbfmplay.com
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$xmlhttprequest,domain=rmcbfmplay.com
 !#endif
 !#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/168112
@@ -225,7 +241,6 @@ empire-anime.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 empire-anime.com,empire-streamz.fr,empire-streaming.*,empire-stream.net#%#//scriptlet('set-constant', 'navigator.brave', 'undefined')
 @@||e-player-stream.app/player/assets/js/ads.js?$~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/153700
-cosmopolitan.fr#@#.AdsBox
 ! https://github.com/uBlockOrigin/uAssets/issues/18431
 ||parlons-basket.com/wp-content/themes/parlons-basket/js/detector.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/151986
@@ -243,10 +258,9 @@ monumentum.fr#%#//scriptlet('abort-current-inline-script', 'document.getElementB
 ! https://github.com/AdguardTeam/AdguardFilters/issues/179837
 ! https://github.com/AdguardTeam/AdguardFilters/issues/1478420
 !#if (!ext_ublock)
-japscan.*#%#//scriptlet("remove-node-text", "script", "/pubadx-ad|runBanner|threshold|getBoundingClientRect|nextElementSibling|TagName'|splay'|debu'|gger'/")
+japscan.*#%#//scriptlet("remove-node-text", "script", "/head\.insertBefore|\+['\"`]Element|==\s*undefined['\"`]|((['\"`]\+['\"`])*[0-9A-Za-z]){36}\+\/=|jso\$|[.'\"`]removeC|\[\s*d-z=|['\"`]\/007|Interstitial|alphabet=/")
 japscan.*#%#//scriptlet('abort-current-inline-script', 'MessageChannel', '0x')
 japscan.*#%#//scriptlet('prevent-requestAnimationFrame', '/(\s*)\s*=>/')
-japscan.*#%#//scriptlet('trusted-suppress-native-method', 'Array.prototype.join', '""', 'prevent', 'inlineScript')
 japscan.*#%#//scriptlet('prevent-addEventListener', '/DOMContentLoaded|load/', '/aclib|Gk_/')
 japscan.*#%#//scriptlet('set-constant', 'aclib.runPop', 'throwFunc')
 japscan.*#%#//scriptlet('set-constant', 'aclib.runInPagePush', 'noopFunc')
@@ -304,7 +318,7 @@ $script,xmlhttprequest,redirect-rule=noopjs,domain=japscan.*
 trustmyscience.com##.adb-border
 ! https://github.com/AdguardTeam/AdguardFilters/issues/146165
 ! https://github.com/AdguardTeam/Scriptlets/issues/300
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 geo.fr,capital.fr#%#(()=>{const a=function(){};window.apstag={fetchBids(c,a){"function"==typeof a&&a([])},init:a,setDisplayBids:a,targetingKeys:a}})();
 ! https://github.com/uBlockOrigin/uAssets/issues/12288#issuecomment-1374805715
 @@||dcode.fr/static/ads/ad_service.js
@@ -614,8 +628,6 @@ journaldugeek.com#%#window.google_tag_manager = function() {};
 ! https://github.com/AdguardTeam/AdguardFilters/issues/11545
 !+ PLATFORM(ios, ext_android_cb)
 @@||eurosport.fr^$generichide
-! https://github.com/AdguardTeam/AdguardFilters/issues/9961
-nrj-play.fr#@#.ad-zone:not(.textads):not(.adsbygoogle)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/7013
 ultimate-catch.eu##.special-message-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6773

@@ -8,6 +8,47 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234769
+soft8ware.com#%#//scriptlet('prevent-setTimeout', 'triggerAdBlockModal')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=soft8ware.com
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/233129
+laosu.tech#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'detectAdBlocker')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+laosu.tech#@##carbonads
+laosu.tech#@#.ad-block
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/230872
+freedidi.com#%#//scriptlet('abort-on-property-read', 'SPM_CONFIG.adblockOnly')
+||freedidi.com/wp-content/plugins/abn-wall/assets/abn-wall.
+! https://github.com/AdguardTeam/AdguardFilters/issues/230535
+wxredian.com#%#//scriptlet('set-constant', 'checkAdScript', 'noopFunc')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||quge5.com/88/tag.min.js$domain=wxredian.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/229384
+jav224.shop,ttp229.shop,clp126.shop,hsq233.shop#@#.ad-unit:not(.textads)
+jav224.shop,ttp229.shop,clp126.shop,hsq233.shop#%#//scriptlet('prevent-setTimeout', '](getComputedStyle,')
+! https://github.com/AdguardTeam/AdguardFilters/issues/228610
+! https://github.com/AdguardTeam/AdguardFilters/issues/228606
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live###hr-notice-box
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live##body > div[class^="hr-t-"]
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('trusted-replace-argument', 'Document.prototype.querySelectorAll', '0', 'no_ads', 'a.item[title="体育"]')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.attachShadow', 'Object.Score')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('trusted-replace-argument', 'Document.prototype.getElementById', '0', 'no_player-vip', 'player-vip')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('abort-on-stack-trace', 'document.querySelector', 'isAdblocked')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('abort-current-inline-script', 'MutationObserver', 'isAdblocked')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('prevent-setTimeout', '/bait\.offsetHeight===0|isAdblocked|requestAnimationFrame\(|AdBlock|AdGuard/')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'showModal')
+huavod.cc,huavod.top,huavod.net,huavod.com,huaren.live##div[id^="anti-adblock-"]
+huaren.live,huavod.com#@#.ad_unit
+||static.okokserver.com/js/anti/adblocker.js
+!+ PLATFORM(ios, ext_android_cb)
+@@||okokserver.com/uploads/lesi/*.mp4$domain=huavod.net|huavod.com|huaren.live|huavod.top|huavod.cc
+! https://github.com/AdguardTeam/AdguardFilters/issues/228259
+verb.tw#$#.adsbygoogle.ad-slot.ad-banner.textads.banner-ads { display: block !important; }
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||verb.tw^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224352
 tstrs.me#%#//scriptlet('prevent-setTimeout', 'offsetHeight === 0')
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
@@ -93,7 +134,6 @@ fsbot.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fsbot.xyz
 ! https://github.com/AdguardTeam/AdguardFilters/issues/182114
-ftchinese.com#@#.AdsBox
 ftchinese.com#%#//scriptlet('prevent-setTimeout', '.offsetHeight')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180010
 sports.qq.com#@#.txp_ad_center
@@ -112,11 +152,13 @@ colamanga.com#$#div[class^="layui-layer-"]:not(#color) { display: none !importan
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||colamanga.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177065
-bilinovel.com#%#//scriptlet('set-constant', 'checkAndHandleAdBlock', 'undefined')
-bilinovel.com#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'pagead2.googlesyndication.com')
+bilinovel.com#%#//scriptlet('prevent-setTimeout', 'offsetHeig\'+\'ht\']')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bilinovel.com
 !#if (adguard_app_ios || adguard_app_android)
+@@||pagead2.googlesyndication.com/pagead/js/lidar.js$domain=bilinovel.com
+@@||googleads.g.doubleclick.net/pagead/ads?client=ca-pub-$domain=bilinovel.com
+@@||pagead2.googlesyndication.com/pagead/*.js?fcd=true$domain=bilinovel.com
 bilinovel.com#@#.adsbygoogle-noablate
 bilinovel.com#@#ins.adsbygoogle[data-ad-slot]
 bilinovel.com#@#ins.adsbygoogle[data-ad-client]
@@ -237,9 +279,9 @@ rjno1.com#%#function preventError(d){window.addEventListener("error",function(a)
 @@||img3.126.net/ntesrich/*/adControl-indexx-$script,domain=rjno1.com
 ||cpro.baidu.com/cpro/ui/rt.js$script,redirect=noopjs,domain=rjno1.com
 ||googleads.g.doubleclick.net/pagead/ads$subdocument,redirect=noopframe,domain=rjno1.com,important
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 ||126.net^$script,redirect=noopjs,domain=rjno1.com
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli && !adguard_ext_chromium && !adguard_ext_opera)
 rjno1.com#@#ins.adsbygoogle[data-ad-client]
 rjno1.com#@#ins.adsbygoogle[data-ad-slot]
 @@||hm.baidu.com/hm.js$domain=rjno1.com
@@ -491,7 +533,7 @@ t66y.com#%#//scriptlet('prevent-setTimeout', 'html')
 t66y.com#@#.tips
 t66y.com#@#.sptable_do_not_remove
 !#endif
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_edge)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_chromium, ext_edge)
 t66y.com#$?#.sptable_do_not_remove { display: block !important; visibility: hidden !important; }
 ||alicdn.com^$domain=t66y.com
 ||sinaimg.cn^$domain=t66y.com

@@ -34,11 +34,11 @@ player.motorsport-magazin.com#%#//scriptlet('trusted-create-element', 'head', 's
 ! if it's available, it redirects to the video content
 filstalwelle.de#$##mejsplayer:has(> video > source[src^="/video/content/a/"]) { display: none !important; }
 filstalwelle.de#%#//scriptlet('trusted-replace-node-text', 'div', 'WERBUNG', 'WERBUNG', 'Trying to skip ads...')
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 ||filstalwelle.de/video/video$replace=/PHPSESSID=.*?'/PHPSESSID=1'/,document
 filstalwelle.de#%#(()=>{if(!location.pathname.includes("/video/video"))return;let e=0;const t=async o=>{const c=await fetch(o);!(await c.text()).includes('src="content/')||document.querySelector('.mejs__video video > source[src^="content/"]')?e<=2&&(e++,setTimeout(t,1e4,o)):location.replace(o)};window.addEventListener("load",(()=>{const e=document.querySelector("body > :is(.mejs__video, #mejsplayer) ~ script:not([type], [src])"),o=e?.textContent.match(/\$\('#bodyTarget'\)\.load\('(.+?)'.+?\);/)?.[1];if(o){let e=location.href.replace(/videoin\.php\?video=.*/,o);e=e.replace(/PHPSESSID=.*/,"PHPSESSID=1");const c=document.querySelector('.mejs__video video:has(> source[src^="/video/content/a/"])');c&&(c.muted=!0),t(e)}else console.debug("Required part not found in the script.")}))})();
 !#endif
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli)
 filstalwelle.de#%#//scriptlet("trusted-replace-node-text", "script", "doPostRoll", "/\?PHPSESSID=.*?'/", "?PHPSESSID=1'")
 filstalwelle.de#%#//scriptlet("trusted-create-element", "head", "script", "", "(()=>{if(!location.pathname.includes('/video/video'))return;let e=0;const t=async o=>{const c=await fetch(o);!(await c.text()).match(/src=.content\//)||document.querySelector('.mejs__video video > source[src^=\"content/\"]')?e<=2&&(e++,setTimeout(t,1e4,o)):location.replace(o)};window.addEventListener('load',(()=>{const e=document.querySelector('body > :is(.mejs__video, #mejsplayer) ~ script:not([type], [src])'),o=e?.textContent.match(/\$\('#bodyTarget'\)\.load\('(.+?)'.+?\);/)?.[1];if(o){let e=location.href.replace(/videoin\.php\?video=.*/,o);e=e.replace(/PHPSESSID=.*/,'PHPSESSID=1');const c=document.querySelector('.mejs__video video:has(> source[src^=\"/video/content/a/\"])');c&&(c.muted=!0),t(e)}else console.debug('Required part not found in the script.')}))})();")
 !#endif
@@ -59,6 +59,7 @@ tvspielfilm.de,tvtoday.de,chip.de,focus.de#%#//scriptlet('abort-on-stack-trace',
 ! stern.de#%#(()=>{Object.defineProperty=new Proxy(Object.defineProperty,{apply:(a,b,c)=>{const[d,e,f]=c;return"createAdPlayer"===e&&"function"==typeof c[2]?.get&&(c[2].get=()=>{}),Reflect.apply(a,b,c)}})})();
 ! damoh ads
 n-tv.de,rtl.de,brigitte.de,geo.de,stern.de#%#//scriptlet('set-constant', 'foundation.adPlayer.bitmovin', 'emptyArr')
+n-tv.de,rtl.de,brigitte.de,geo.de,stern.de#%#//scriptlet('trusted-replace-argument', 'Promise.prototype.then', '0', 'noopFunc', 'AdReinsertion')
 ! https://github.com/uBlockOrigin/uAssets/issues/22883
 alpin.de#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'DisplayAcceptableAdIfAdblocked')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/171888
@@ -131,7 +132,7 @@ blasensex.com#%#//scriptlet("abort-on-property-read", "jsUnda")
 rtl.de#%#//scriptlet('abort-on-stack-trace', 'Array.prototype.find', 'checkAndStartAdSlotAtOffset')
 wetter.de#%#//scriptlet("set-constant", "cbcAdvertisingAdapter.smartClientCoreFacade.config.adReinsertion.homad.enabled", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/89311
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_ff)
 focus.de#%#//scriptlet("json-prune", "enabled", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204506
 ! https://github.com/AdguardTeam/AdguardFilters/issues/111225
@@ -154,15 +155,15 @@ computerbase.de#%#//scriptlet("prevent-addEventListener", "load", "/service-work
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54376
 bs.to#%#//scriptlet("abort-current-inline-script", "parseInt", "bsduid")
 ! stern.de video vast ads
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_ff)
 stern.de#%#//scriptlet("json-prune", "enabled", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/31070
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_ff)
 chip.de#%#//scriptlet("json-prune", "enabled", "force_disabled")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53011
 gload.to#%#//scriptlet("abort-on-property-write", "bullads")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/52959
-!+ NOT_PLATFORM(windows, mac, android, ext_ff)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_ff)
 tele5.de#%#//scriptlet("json-prune", "testhide")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/53012
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51634
@@ -210,7 +211,7 @@ ratgeber.bunte.de#$##G32 { --topbanner-height-min: 0 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/159998
 ! https://github.com/AdguardTeam/CoreLibs/issues/1800
 ! TODO: remove when/if it will be fixed in CoreLibs
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 android-hilfe.de#$#.message-main { height: auto !important; }
 android-hilfe.de#$#.p-body-sidebar .block-container { height: auto !important; }
 !#endif

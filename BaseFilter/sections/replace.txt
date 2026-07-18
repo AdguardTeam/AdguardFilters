@@ -8,24 +8,29 @@
 !
 ! Hulu video ads when opening new video
 ||dynamic-manifest.hulustream.com/hulu*playlist.m3u8$replace=/#EXT-X-DATERANGE:ID=".*?ad".*?\n[\s\S]*?(?=#EXT-X-DATERANGE:ID=)//,domain=hulu.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/233449
+! https://github.com/AdguardTeam/CoreLibs/issues/2083
+! TODO: remove when issue in CoreLibs is fixed
+!+ PLATFORM(windows, mac, android, cli)
+||saracroche.org/|$replace=/(<!doctype html><html><head><meta content="0; url=https:\/\/.+" http-equiv=refresh>)\$/\$1<\/head><\/html>/,document
 ! https://github.com/AdguardTeam/CoreLibs/issues/1720
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186870
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176738
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140053
-!+ NOT_VALIDATE PLATFORM(windows, mac, android)
+!+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 $replace=/head>/head><meta charset="utf-8">/,document,to=podhale24.pl|copycenter.online|nec-solutioninnovators.co.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/188594
 ||marketjs.cdn.start.gg/*/v*/game.js$replace=/this\['rewardedVideoResult'\]\(!0x1\);/this['rewardedVideoResult'](!0x0);/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/186249
 ! Website is sometimes malformed and if it happens then content script is not injected, rule below should fixes it
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||4khd.com/content/$replace=/^((?!<style>)[\s\S])*<\/style>\n<style/<style/,document
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184328
 ! Generic fix for disqus_recommendations leftovers
 ||disqus.com/recommendations.js$replace=/\.width="calc\(100% - 310px\)":/.width="100%":/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202114
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180648
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 ||giphy.com^$replace=/"htlAds\\":\[\\".{1\,5}\\".*?\]/"htlAds\\":\[\]/,document
 ||giphy.com^$replace=/"hasTopLeaderboardAd\\":true/"hasTopLeaderboardAd\\":false/,document
 !#endif
@@ -74,12 +79,12 @@ $replace=/head>/head><meta charset="utf-8">/,document,to=podhale24.pl|copycenter
 ! Website is broken if https://imasdk.googleapis.com/js/sdkloader/ima3.js is blocked
 ! and exception (@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=sonyliv.com) doesn't work with apps
 ! because it seems that there is no referrer, probably related to this bug - https://github.com/AdguardTeam/CoreLibs/issues/1523
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||sonyliv.com/App.*.chunk.js$replace=/\,\{url:"https:\/\/imasdk\.googleapis\.com\/js\/sdkloader\/ima3\.js"\,type:"script"\}//
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99009
 ||popcornflix-prod.cloud.seachange.com/playback/popcornflix/playback/ticket$replace=/"adEnabled":true/"adEnabled":false/
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/3846
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||dnf.qq.com/*/js/act_nav.js$replace=/var _style=document\.getElementsByTagName\("style"\)\[0\];/var _style=document.querySelector("head > style:not([nonce])");/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82415
 ||chinesepod.com/home/js/app.*.js$replace=/(showAds:function\(\)\{return)"free"===this\.userInfo\.access\}/\$1 false}/

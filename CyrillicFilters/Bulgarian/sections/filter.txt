@@ -13,13 +13,15 @@
 ! NOTE: Allow-list
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/51510
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||mail.bg/message/$jsinject,elemhide,extension
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||mail.bg/message/$xmlhttprequest,other
 !
 ! NOTE: Anti-adblock
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/229499
+||filmifen.com/templates/filmi/js/adb.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216027
 @@||seir-sanduk.com/*.js$~third-party
 @@||ads.poshtata.online/*.js$domain=seir-sanduk.com
@@ -44,14 +46,18 @@ topsport.bg#%#//scriptlet('remove-node-text', 'script', 'baitTest')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191545
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190807
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187565
+@@||www.btv.bg^$elemhide,badfilter
+@@||btv.bg^$generichide
+btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('set-constant', 'branDetective.detected', 'noopFunc')
+@@/js/admanager/ads.js$domain=businessnovinite.bg|btv.bg|btvsport.bg|btvplus.bg|btvnovinite.bg
 btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-control-bar { z-index: 1; }
 btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#.vjs-continue-watching-bar { display: none !important; }
 btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$?#div[id^="leading_video_player_autoplay_wrapper"] { remove: true; }
 btvnovinite.bg,businessnovinite.bg,btv.bg,btvsport.bg#$#div[id^="leading_video_player_autoplay_"][id*="_main_wrapper"] { display: block !important; }
-btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('abort-on-property-read', 'branDetective')
-btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('abort-current-inline-script', 'atob', '/YnJhbkRldGVjdGl2ZQ|\[ins\]/')
 btvnovinite.bg,btvplus.bg,businessnovinite.bg,btv.bg,btvsport.bg#%#//scriptlet('set-constant', 'isEnhancedContentAvailable', 'undefined')
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=businessnovinite.bg|btv.bg|btvsport.bg|btvplus.bg|btvnovinite.bg
+!+ PLATFORM(ios, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=btv.bg
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213815
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204147
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190638
@@ -106,6 +112,10 @@ blitz.bg#$#div[id^="div-gpt-ad"] { position: absolute!important; left: -3000px!i
 !
 ! NOTE: Specific
 !
+bulnews.bg###inbet_sticky_small
+bulnews.bg###inbet_sticky_big
+||bulnews.bg/images.inbet/
+||kaldata.com/img/banners/banners.js
 fakti.bg##video-banner[ad-tag-url]
 seir-sanduk.com#?##program > p:contains(Реклама:)
 seir-sanduk.com###program > center

@@ -4,6 +4,20 @@
 ! Good: example.org#@#.ad
 ! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
+! https://github.com/AdguardTeam/AdGuardExtra/issues/661
+! aglint-disable-next-line
+@@||lenta.ru^$extension='AdGuard Extra'|'AdGuard Extra (Beta)'
+! https://github.com/AdguardTeam/AdguardFilters/issues/230051
+artuzel.com#@#.bannerBlock
+! https://github.com/AdguardTeam/AdguardFilters/issues/229198
+@@||mospraz.ru/image/cache/catalog/categories/den-pobedy/icons/bannery-
+! https://github.com/AdguardTeam/AdguardFilters/issues/228354
+@@||yastatic.net/pcode/adfox/loader.js$domain=umagazine.ru
+@@||yandex.ru/ads/system/context.js$domain=umagazine.ru
+! https://github.com/AdguardTeam/AdguardFilters/issues/225157
+||yandex.ru/ads/system/context.js$script,redirect=noopjs,domain=5.viptorpro.com
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||yandex.ru/ads/system/context.js$domain=5.viptorpro.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/223132
 @@||video-cdn1.moe.video/videos/*/master.m3u8$domain=karaopa2.ru
 @@||video-cdn1.moe.video/videos/*/index-*.m3u8$domain=karaopa2.ru
@@ -43,8 +57,9 @@ mirror.co.uk#@#.affiliate
 @@||amur.life/upload/ads/c9742537734826b5d04e73f8f86823d9.jpg
 ! https://github.com/AdguardTeam/AdguardFilters/issues/193152
 @@||fizi.ua/cdn/shop/files/baner_site_mob_web_ukr_*.png
+! https://github.com/AdguardTeam/AdguardFilters/issues/227603
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172368
-@@||ads.vk.com^$~image,domain=ads.vk.com
+@@||ads.vk.*^$~image,domain=ads.vk.com|ads.vk.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/189493
 @@||ssp.rambler.ru/capirs_async.js$domain=championat.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187103
@@ -246,7 +261,7 @@ biblio.com#@#.affiliate
 ! https://github.com/AdguardTeam/AdguardFilters/issues/67678
 @@||dzyannica.by/sites/default/files/files/files/Reclama/$image
 ! https://github.com/AdguardTeam/AdguardFilters/issues/66843
-!+ NOT_OPTIMIZED PLATFORM(windows, mac, android)
+!+ NOT_OPTIMIZED PLATFORM(windows, mac, android, cli)
 @@||ssp.rambler.ru^|$domain=rambler.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/65736
 @@||yastatic.net/pcode/adfox/loader.js$domain=vseinstrumenti.ru
@@ -384,7 +399,7 @@ club.foto.ru#@#.adv_link
 ! https://forum.adguard.com/index.php?threads/pingfarm-com-incorrect-blocking.29297/
 @@||pingfarm.com/ping.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21421
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||anketa.vtb.ru^$jsinject,elemhide,extension
 ! https://forum.adguard.com/index.php?threads/24242/
 !@@||reklama*.ngs.ru/ap-js/?pid=
@@ -457,7 +472,7 @@ altapress.ru#@##banner-top
 ! gsmvezde.ru - broken by Adguard injections
 @@||gsmvezde.ru/imgs|$document
 ! goodgame.ru - broken auth
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 @@||goodgame.ru/ajax/*$domain=goodgame.ru
 ! https://github.com/AdguardTeam/AdguardFilters/issues/6137
 @@||parlament.ch/_layouts/*/Branding/
@@ -1061,7 +1076,7 @@ gnezdogluharya.ru#@#.banners
 @@||galaxy2.mobstudio.ru$document
 @@||pm.mobstudio.ru/services/$document
 ! Плеер не работает без этого правила
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||trinixy.ru/vid.php$content,elemhide,jsinject
 ! Боковая панель Яндекса для Opera
 @@||op.yandex.ru$document

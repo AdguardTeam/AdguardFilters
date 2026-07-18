@@ -6,6 +6,36 @@
 !
 !
 !
+! Error with "ページにアクセスできません"
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=sp.nicovideo.jp
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=sp.nicovideo.jp
+! broken and adwall
+solispia.com#@##adModal
+solispia.com#@#.ad-title
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||googlesyndication.com/safeframe/$domain=solispia.com
+@@||g.doubleclick.net/tag/js/gpt.js$domain=solispia.com
+@@||g.doubleclick.net/pagead/managed/js/gpt/*/pubads_impl.js$domain=solispia.com
+@@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=solispia.com
+!#endif
+! https://x.com/Kdroidwin1/status/2065423011742941504
+news.mynavi.jp#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'registration_guide_modal')
+! https://github.com/AdguardTeam/AdguardFilters/issues/231290
+pc.moppy.jp#@#img[width="468"][height="60"]
+!+ PLATFORM(ext_chromium, ext_edge, ext_opera)
+@@||click.linksynergy.com/fs-bin/$domain=pc.moppy.jp
+! https://github.com/AdguardTeam/AdguardFilters/issues/231168
+@@||faq-widget.nakanohito.jp/faqwidget.js$domain=keio-passport.co.jp
+@@||support-beacon.nakanohito.jp/widget/faqview$domain=keio-passport.co.jp
+! https://x.com/kina_ko_m_ochi_/status/2045398697102688702
+@@||a8.net/ad/ad.js$domain=ba-goods-search.com
+! /fanza/ is dedicated for ads
+!#if (adguard)
+[$path=/fanza/]chichi-pui.com#@#section:has(> div.c-section-title-button > a[href^="/fanza/"])
+[$path=/fanza/]chichi-pui.com#@#section:has(> .c-section-title-button + .p-fanza-item-cards)
+[$path=/fanza/]chichi-pui.com#@#.p-image-cards__item:has(> a.gtm-event-click)
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/221531
 @@||i.daily.jp/Koukoku/Images/ds_noimage.jpg$domain=daily.co.jp
 ! Fix ranking widget
@@ -53,7 +83,7 @@ kojodan.jp#%#//scriptlet('remove-attr', 'height', 'iframe[id^="google_ads_iframe
 @@||tpc.googlesyndication.com/pagead/imgad?$xmlhttprequest,domain=kojodan.jp
 safeframe.googlesyndication.com#%#//scriptlet('href-sanitizer', 'a[href^="https://adclick.g.doubleclick.net/"][href*="adurl="]', '?adurl')
 ! temporally hidden for GTM
-okinawatimes.co.jp,rank-king.jp,uwl.weblio.jp,chugoku-np.co.jp,minato-yamaguchi.co.jp,kyoto-np.co.jp,raysee.jp,j-cast.com,medicalnote.jp,kurashi-to-oshare.jp,ar-mag.jp,ben54.jp#$#html[class*="loading"] { visibility: visible !important; }
+car-me.jp,paiza.jp,qa.weblio.jp,okinawatimes.co.jp,rank-king.jp,uwl.weblio.jp,chugoku-np.co.jp,minato-yamaguchi.co.jp,kyoto-np.co.jp,raysee.jp,j-cast.com,medicalnote.jp,kurashi-to-oshare.jp,ar-mag.jp,ben54.jp,anikore.jp#$#html[class*="loading"] { visibility: visible !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208209
 mobilegadget.jp#@#.header-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/208191
@@ -62,7 +92,7 @@ h1g.jp#$#.mainbody > div[style="width:800px; height:400px; margin-top:30px;"] { 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202622
 ! Website is broken when blocked scripts are removed from the page,
 ! so as a workaround, "redirect-rule" is used.
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 $script,redirect-rule=noopjs,domain=azukiazusa.dev
 ! fix download
 @@||g.doubleclick.net/gampad/ads?$xmlhttprequest,domain=video-ac.com
@@ -82,6 +112,7 @@ nogizaka46-matome.jp#@##headerafficode
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190666#issuecomment-2408330385
 ||taboola.com^$domain=pashplus.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184080
+tver.jp#%#//scriptlet('google-ima3')
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=tver.jp,important
 ! https://gd.gesoten.com/m/ap-ecnavi-games/mypage
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=gd.gesoten.com
@@ -153,7 +184,13 @@ ameblo.jp#@#img[width="240"][height="400"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155404
 @@||tuma.jp/gazou/assets/ads/member.jpg$image,~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/155149
+vk.sportsbull.jp#%#//scriptlet('remove-class', 'hidden-by-ima', '#vid1_html5_api')
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=vk.sportsbull.jp,important
 @@||koshien-live.net/*/adtag.xml$xmlhttprequest,domain=vk.sportsbull.jp
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+vk.sportsbull.jp#%#//scriptlet('json-prune', 'data.adData')
+@@||pubads.g.doubleclick.net/gampad/ads?*&url=https%3A%2F%2Fvk.sportsbull.jp$domain=imasdk.googleapis.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154639
 ||g.doubleclick.net/tag/js/gpt.js$script,redirect=googletagservices-gpt,domain=oricon.co.jp
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -397,8 +434,6 @@ webcartop.jp#@#.single-ads
 @@||res.ads.nicovideo.jp/assets/js/ads2.js$domain=sp.seiga.nicovideo.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/98787 fix related posts on mobile
 eromanga-school.com#@#.related-ad-area
-! https://github.com/AdguardTeam/AdguardFilters/issues/97511
-@@||thumbnail.thench.net/thumb/$image,domain=itest.5ch.net
 ! game.yomipo.yomiuri.co.jp - fixing quiz
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=game.yomipo.yomiuri.co.jp
 ! whole breakage
