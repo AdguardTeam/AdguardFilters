@@ -329,11 +329,6 @@ motorpage.ru#%#//scriptlet('remove-class', 'noscroll', 'body.noscroll')
 @@||videoroll.net/js/vid_vpaut_script.js$domain=online-fix.me
 ! https://forum.adguard.com/index.php?threads/https-iptv-team.42948/
 @@||googleads.g.doubleclick.net^$xmlhttprequest,other,domain=channels247.net|iptv.team
-! https://github.com/AdguardTeam/AdguardFilters/issues/74593
-reshebnik.com#@##AdHeader
-reshebnik.com#@##AD_Top
-reshebnik.com#@##homead
-reshebnik.com#@##ad-lead
 ! 'flashvars.protect_block'
 smaxim.*,seksaed.com,meb.weaeko2es.com,private-records.com,seksoeb.com,russkoe21.com,camsclips.biz,bessporno.me,privat-zapisi.video,pornobomba.org,720video.me,720video.tv,bessporno.tv,ebalovo.*,lenkino.*,porno-tour.*,pornomoll.*,ru-xvideos.me#%#//scriptlet('set-constant', 'flashvars.protect_block', '')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -1371,8 +1366,7 @@ ya.ru##.i-mini-bem:has(> div[data-hydration-id] > div > div.direct-close-block)
 ya.ru##.main-home-banner
 !
 ! Yandex.Search
-ya.ru##[id^="search-"] > [data-fast="2"]
-ya.ru##ul[id^="search-"] > li[class*="Organic"]:has(> div.Root div[class*="-HeaderAd"] > span)
+ya.ru,yandex.*###search-result-aside div[style="width:240px"]
 yandex.*##.SerpListFeature div.Skeleton_type_ad_search
 ya.ru,yandex.*##.DirectFeature
 ya.ru##div[data-hydration-id] > style + div[style^="--image-aspect-ratio:"]
@@ -1385,8 +1379,15 @@ ya.ru##.Skeleton_type_ad_search
 [$path=/search]ya.ru,yandex.*##.AdvMedia
 yandex.*##body:not([data-bem*="pogoda"]) .mini-suggest__popup-content > li[data-type="nav"]
 ! ad in the search results
-[$path=/search]ya.ru,yandex.*##.content__left li.serp-item:not(.serp-item__futuris-snippet):has(> div[class] div.AdvLabel)
+ya.ru,yandex.*##ul[id^="search-"] > li:has(> div.Organic > div.Organic-ContentWrapper ~ div[class*=" Organic"] > span[class$="-Text"])
+ya.ru,yandex.*##ul[id^="search-"] > li:has(> div.Organic > div.Organic-Subtitle > div.Organic-Path ~ div[class*=" Organic"] > span[class$="-Text"])
+ya.ru,yandex.*##ul[id^="search-"] > li[class*="Organic"]:has(> div.Root a[href*="_crpd"] > div.Organic-OfferThumbWrap)
+ya.ru##ul[id^="search-"] > li[class*="Organic"]:has(> div.Root div[class*="-HeaderAd"] > span)
+ya.ru##[id^="search-"] > [data-fast="2"]
+ya.ru,yandex.*##.RsyaOrganic
+ya.ru,yandex.*##.content__left li.serp-item:not(.serp-item__futuris-snippet):has(> div[class] div.AdvLabel)
 ! ad in a search proposal
+ya.ru,yandex.*##.mini-suggest__popup > ul > li[data-suggest-counter] > a[target="_blank"]
 ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="http://yabs."][href*="/count/"]
 ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="https://yabs."][href*="/count/"]
 ya.ru,yandex.*##div[id^="suggest-item"] > a[href^="http://yandex"][href*="/clck/"]
@@ -1465,12 +1466,15 @@ eda.yandex.ru##main > div[style^="margin-bottom:"]:has(> div > div > button + di
 ||yandex-pogoda.static-storage.net/*/*/*$script,replace=/adblock//
 !
 ! Yandex.Market
+market.yandex.ru##div[data-apiary-widget-name="@marketfront/RecomAdv"]
+market.yandex.ru##div[data-apiary-widget-name="@monetize/AdvStreamer"]
+market.yandex.ru#$##MainHeaderDesktop { margin-top: auto !important; }
+market.yandex.ru##div[data-apiary-widget-name^="@monetize/HeroBannerCarousel"]
 market.yandex.*##div[data-apiary-widget-name^="@monetize/UrbanAds"]
 market.yandex.*##div[data-apiary-widget-name="@monetize/CreativeBanner"]
 market.yandex.*##div[data-apiary-widget-name="@monetize/MadvHeaderPromoStreamer"]
 market.yandex.*##div[data-apiary-widget-name="@marketfront/CreativeBanner"]
 market.yandex.*##div[data-apiary-widget-name="@monetize/RecomMediaAdv"]
-market.yandex.*##div[data-apiary-widget-name="@monetize/HeroBannerCarouselLazyCreator"]
 market.yandex.*###banner-streamer
 !
 ! Yandex.Video
@@ -1551,8 +1555,10 @@ tv.yandex.*##.grid-chunk > div.grid-chunk__column-box:has(> div.grid-chunk__adv-
 travel.yandex.ru##noindex[id^="adfox_"]
 !
 ! Yandex.Realty
-realty.ya.*##div[class*="PostBlocks__ad"]
-realty.ya.ru##.OffersSerpPromoItem
+yandex.ru##.RealtyListing-AdfoxBanner
+yandex.ru##.AdvPremium-List
+yandex.ru##.RealtyListing-AdvItem_listingType_offer
+yandex.ru##.NewbuildingsPromo
 !
 ! Yandex.Travel
 !
