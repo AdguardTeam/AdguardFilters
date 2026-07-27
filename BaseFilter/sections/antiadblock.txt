@@ -1271,6 +1271,16 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/236751
+smart.siendu.com#%#//scriptlet('prevent-setTimeout', '/ad ?block/i')
+smart.siendu.com#%#//scriptlet('prevent-setInterval', '/ad ?block/i')
+smart.siendu.com#%#//scriptlet('prevent-addEventListener', '', '/ad ?block/i')
+smart.siendu.com#%#//scriptlet('prevent-addEventListener', 'visibilitychange', 'document.visibilityState')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=smart.siendu.com
+@@||static.doubleclick.net/instream/ad_status.js$domain=smart.siendu.com
+@@||googletagservices.com/tag/js/gpt.js$domain=smart.siendu.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/236554
 multishows.top#$?#body { overflow: auto !important; }
 multishows.top#$?##adBlockModal { display: none !important; }
