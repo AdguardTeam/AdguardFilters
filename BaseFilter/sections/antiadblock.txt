@@ -1268,6 +1268,13 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/236794
+vh1.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com/js/sdkloader/ima3_dai.js')
+vh1.com#%#//scriptlet('prevent-fetch', 'imasdk.googleapis.com/js/core/dai_iframe')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||imasdk.googleapis.com/js/core/dai_iframe*.html$xmlhttprequest,domain=vh1.com
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=vh1.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/236751
 smart.siendu.com#%#//scriptlet('prevent-setTimeout', '/ad ?block/i')
 smart.siendu.com#%#//scriptlet('prevent-setInterval', '/ad ?block/i')
