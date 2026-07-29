@@ -85,8 +85,21 @@ mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
 ||google-analytics.com^$object,redirect=noopjs
 ||googletagmanager.com/gtag/$third-party,object,redirect=noopjs
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/234682#issuecomment-4887914109
+naver.com#%#//scriptlet('trusted-json-set', 'JSON.stringify', '$.env.device_sr', '3840x2160', '$.evts[*].nlog_id', 'args', '', 'jsonpath')
+naver.com#%#//scriptlet('trusted-json-set', 'JSON.stringify', '$.env.br_sr', '3840x2160', '$.evts[*].nlog_id', 'args', '', 'jsonpath')
+@@||nlog.naver.com/n|$domain=search.naver.com|www.naver.com
+!
 ! NOTE: Specific rules
 !
+||static.danawa.com/globaljs/static/logger_trackEvent.js
+||hentaihd.net/wp-content/plugins/animehub-insights/assets/js/track.js
+itmedia.co.jp#%#//scriptlet('set-local-storage-item', 's_ubid', '$remove$')
+online.tokyu-dept.co.jp#%#//scriptlet('set-constant', 'addProductClickEventToTemplate', '', '', 'asFunction')
+online.tokyu-dept.co.jp#%#//scriptlet('set-constant', 'triggerGAEvent', 'noopFunc')
+||online.tokyu-dept.co.jp/assets/common/js/googleAnalyticsEvent.js
+||show.revico.jp/providejs/tagmanager.js
+||rbc.ru/info-service/api/v*/ev/?
 ||bnesim.com/js/trackers.js
 /e/*^ip=$domain=heygen.com
 ||api2.heygen.com/v1/movio.batch_track
@@ -152,12 +165,6 @@ candytm.pl,biznesenter.pl#%#//scriptlet('abort-current-inline-script', 'document
 compo.de#%#//scriptlet('set-local-storage-item', 'rid', '$remove$')
 ||tengrinews.kz/build/assets/analytic-
 ||cdn.eu.amplitude.com/libs/analytics-browser-
-! https://github.com/AdguardTeam/AdguardFilters/issues/234682#issuecomment-4887914109
-search.naver.com#%#//scriptlet('set-cookie-reload', 'NNB', '1', '/', '.naver.com')
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||ntm.pstatic.net/scripts/ntm_*.js$domain=search.naver.com
-@@||nlog.naver.com/n|$domain=search.naver.com
-!#endif
 ||trip.com/*/monitor/log
 ||tripcdn.com/modules/ibu/xtracker/
 ||emule-security.org/tracker.js
@@ -1242,7 +1249,7 @@ saiganak.com#%#//scriptlet('prevent-element-src-loading', 'script', 'clarity.ms'
 ||kebhana.com/cont/common/js/tag_hana.js
 ||sstatic-rmcnmv.pstatic.net/resources/log/media-capable-log.js
 ||ssl.pstatic.net/static/coreplayer/mclog/media-capable-log.js
-||ntm.pstatic.net/scripts/ntm_*.js$domain=~smartstore.naver.com|~brand.naver.com|~flight.naver.com
+||ntm.pstatic.net/scripts/ntm_*.js$domain=~smartstore.naver.com|~brand.naver.com|~flight.naver.com|~search.naver.com|~www.naver.com
 ||chatgpt.com/ces/*/b|$xmlhttprequest
 /facebook-pixel.js$domain=lit.link
 ||justwatch.com/appassets/js/sp-*.lite.min.js
