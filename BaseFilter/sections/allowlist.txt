@@ -10,6 +10,12 @@
 ! ATTENTION: The rules in this section must be accompanied by a link of an issue, where the problem will be fixed
 ! or with clear description what to do next
 !
+! Non ad site is blocked
+! Reported to EasyList
+||bmtmicro.com^$popup,badfilter
+! https://github.com/AdguardTeam/AdguardFilters/issues/237249
+! aglint-disable-next-line
+@@||usanetwork.com^$extension='AdGuard Assistant'
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234345
 ! https://github.com/AdguardTeam/PopupBlocker/issues/347
 ! TODO: remove it after the issue above has been fixed
@@ -147,6 +153,12 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/pull/237015
+@@||app.slickstream.com^$domain=bakerita.com|letthemeatgfcake.com
+@@||c.slickstream.com/app/*/boot-loader.js$domain=bakerita.com|letthemeatgfcake.com
+@@||c.slickstream.com/app/*/app.js$domain=bakerita.com|letthemeatgfcake.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/235828
+lichess.org#@#div.rendered[id][class*=" "]:not([id*="captcha"]):not(.cell-container)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235878
 @@||ehgt.org/*.jpg|$image,domain=e-hentai.org
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235466
@@ -161,9 +173,11 @@ collider.com#@#.ad-zone-container
 !+ PLATFORM(mac)
 @@||tanstack.com^$elemhide
 ! Ad-Shield generic rules problems
+! https://github.com/AdguardTeam/AdguardFilters/issues/237209
+! https://github.com/AdguardTeam/AdguardFilters/issues/236826
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234817
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235352
-learngerman.dw.com,jamf.com#@#div.rendered[id][class*=" "]:not([id*="captcha"])
+windguru.cz,nordicsemi.com,learngerman.dw.com,jamf.com#@#div.rendered[id][class*=" "]:not([id*="captcha"]):not(.cell-container)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234825
 ! It looks like a website issue. Injecting any stylesheet (even if not via an ad blocker)
 ! containing "[style]" inside ":has()" causes the website to freeze when the copy button is clicked
@@ -398,10 +412,14 @@ interest.co.nz#@#a[href^="https://ad.doubleclick.net/"]
 @@||cmp.inmobi.com^$domain=glasgowlive.co.uk
 ! https://github.com/AdguardTeam/AdguardFilters/issues/214071
 vnptioffice.vn#@#body[onbeforeunload="return myFunction()"]
+! https://github.com/AdguardTeam/AdguardFilters/issues/237011
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213821
 @@||vms-players.minutemediaservices.com/voltax_player_embed_mount.js$domain=theplayerstribune.com
-@@||mp.mmvideocdn.com/mini-player/$domain=theplayerstribune.com
-@@||vms-videos.minutemediaservices.com^$xmlhttprequest,domain=theplayerstribune.com
+@@||mp.mmvideocdn.com/mini-player/prod/voltax_$domain=theplayerstribune.com
+@@||vms-videos.minutemediaservices.com^$xmlhttprequest,media,domain=theplayerstribune.com
+||imasdk.googleapis.com/js/sdkloader/ima3.js$redirect=google-ima3,domain=theplayerstribune.com
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=theplayerstribune.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213560
 dmax.de#%#//scriptlet('remove-class', 'block-user', '.block-user')
 !#if (adguard_ext_android_cb)

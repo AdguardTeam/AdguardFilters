@@ -41,6 +41,9 @@ ya.ru,yandex.*#$?#div[class^="ImagesViewer-"][style^="height:"] { remove: true; 
 !#endif
 !
 ! Yandex.Maps
+yandex.*##.map-container ~ div.app div.business-card-overview-tab-view__content ._type_middle > div:not(._hidden)
+yandex.*##.map-container ~ div.app div.business-card-overview-tab-view__shrink > div._type_bottom > div:not(._hidden)
+yandex.*##.map-container ~ div.app div.business-card-view__main-wrapper > div._type_upper > div:not(._hidden)
 ya.ru,yandex.*##.sidebar-container div[id*="R-I-"]
 [$path=/\/(maps|navi|web-maps)/]ya.ru,yandex.*#%#//scriptlet('set-constant', 'Object.prototype.isStickyAd', 'undefined')
 !
@@ -685,22 +688,13 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
-! archon.gg - site placeholder asking to disable AdBlock
+civitai.com,civitai.red##main div.flex[style] > div[style*="contain-intrinsic-size"]:has(a[href="/pricing"] img)
+civitai.com,civitai.red##a[href="/pricing"]:has(img)
+civitai.com,civitai.red##div[style="min-height:90px"]
+ledemondujeu.com##.avertissement
 archon.gg##span[class^="Article_stickyFooterAd"]
 archon.gg##div[class^="Advertisements"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/236551
 mtgcardsmith.com#%#//scriptlet('prevent-setTimeout', 'show(')
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/$domain=mtgcardsmith.com
-mtgcardsmith.com#@#ins.adsbygoogle[data-ad-slot]
-mtgcardsmith.com#@#ins.adsbygoogle[data-ad-client]
-mtgcardsmith.com#@#ins[data-adsbygoogle-status]
-mtgcardsmith.com#@#.adsbygoogle-noablate
-mtgcardsmith.com#@#.textAds
-mtgcardsmith.com#@#[id^="aswift_"]
-mtgcardsmith.com#@#.ads-box
-mtgcardsmith.com#@#.Textads
-!#endif
 citynews.ca#$##master-leaderboard-wrapper { display: none !important; }
 citynews.ca#$#.sticky-top { top: 0 !important; }
 citynews.ca##div[data-slot-type="_AD_BIGBOX"]
@@ -912,10 +906,6 @@ blackwidof.org#$#body { overflow: auto !important; padding-right: 0 !important; 
 freefilesync.org##section > div[id]:has(> a[href="/donate#support"])
 freefilesync.org#%#//scriptlet('prevent-setTimeout', 'dataset.adStatus')
 diablo.trade#%#//scriptlet('prevent-fetch', 'nitropay.com')
-retail.ru##.markup__commercial
-retail.ru##.p2-info
-retail.ru##.further__aside > div.places
-retail.ru##div[class^="markup__info-"]
 overtake.gg,truetrophies.com,truesteamachievements.com,trueachievements.com###ta-ab-overlay
 overtake.gg,truetrophies.com,truesteamachievements.com,trueachievements.com#%#//scriptlet('prevent-element-src-loading', 'script', '/hb\.vntsm\.com|kumo\.network-n\.com/')
 plantmaps.com#%#//scriptlet('prevent-setTimeout', '.offsetWidth&&0==')
@@ -1269,7 +1259,7 @@ hellomagazine.com#$#.afs_ads.ad-placement[style="width: 1px; height: 1px; positi
 filmix.ac#?##player pjsdiv[style^="position: absolute;"] > pjsdiv[style^="position: absolute;"]:has(> pjsdiv:contains(AdBlock))
 turk5series.com##div[style*="background-color"][style*="position: fixed;"][style*="z-index: 2147483650;"]
 designalive.pl###cover
-femmeactuelle.fr###bt-softwall
+metacritic.com,femmeactuelle.fr###bt-softwall
 greenville.com,steamcollector.com##.adblock-detected
 steamcollector.com#%#//scriptlet('abort-current-inline-script', 'getComputedStyle', 'adsbygoogle')
 techymedies.com###SpiderBlogginAdblocker
@@ -2285,6 +2275,11 @@ socialblade.com##div[style^="width: px; height: 250px;"]
 creativeuncut.com###abox-s_i
 creativeuncut.com###g_abox
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/237040
+toolskitpro.net#%#//scriptlet('prevent-setTimeout', 'ad_blocker')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=toolskitpro.net
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235514
 nypost.com#%#//scriptlet('abort-current-inline-script', 'atob', 'parentNode.removeChild')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -2348,6 +2343,14 @@ iqiyi.com##.black-screen[data-cupid="adblock-blackscreen"]
 @@||t7z.cupid.iqiyi.com/show2?e$domain=m.iqiyi.com
 !#safari_cb_affinity
 !
+!+ NOT_OPTIMIZED
+retail.ru##.markup__commercial
+!+ NOT_OPTIMIZED
+retail.ru##.p2-info
+!+ NOT_OPTIMIZED
+retail.ru##.further__aside > div.places
+!+ NOT_OPTIMIZED
+retail.ru##div[class^="markup__info-"]
 !+ NOT_OPTIMIZED
 asobicreate.net##div[class^="popup"][class$="wrap"]
 !+ NOT_OPTIMIZED
@@ -3541,6 +3544,15 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 !
+@@||pagead2.googlesyndication.com/pagead/$domain=mtgcardsmith.com
+mtgcardsmith.com#@#ins.adsbygoogle[data-ad-slot]
+mtgcardsmith.com#@#ins.adsbygoogle[data-ad-client]
+mtgcardsmith.com#@#ins[data-adsbygoogle-status]
+mtgcardsmith.com#@#.adsbygoogle-noablate
+mtgcardsmith.com#@#.textAds
+mtgcardsmith.com#@#[id^="aswift_"]
+mtgcardsmith.com#@#.ads-box
+mtgcardsmith.com#@#.Textads
 @@||vi.freewheel.tv/static/creatives/fw-ad-300x250.jpg$domain=peacocktv.com
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=dumpert.nl
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=dumpert.nl
