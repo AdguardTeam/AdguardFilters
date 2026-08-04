@@ -4644,13 +4644,17 @@ pomofocus.io#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com', 'true
 nishankhatri.xyz##.adblock-wrapper
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170240
 billingsmix.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
+! https://github.com/AdguardTeam/AdguardFilters/issues/237238
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172601
 ! https://github.com/AdguardTeam/AdguardFilters/issues/172272
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170175
-cc.com,nickjr.com,nick.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com')
+cc.com#%#//scriptlet('prevent-fetch', 'imasdk.googleapis.com')
+nickjr.com,nick.com#%#//scriptlet('prevent-element-src-loading', 'script', 'imasdk.googleapis.com')
 ||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$script,redirect=noopjs,domain=nick.com|nickjr.com|cc.com
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=nick.com|nickjr.com|cc.com
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||imasdk.googleapis.com/js/core/dai_iframe3$domain=cc.com
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=nick.com|nickjr.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/170126
 ||tubereader.me/build/assets/app-*.js
 tubereader.me#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'showAdblock')
