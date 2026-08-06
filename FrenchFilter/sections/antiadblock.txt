@@ -7,6 +7,24 @@
 ! Good: @@/adblocker/detect.js$domain=example.org
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/237640
+sushiscan.st#$#.ad-wrap { display: none !important; }
+sushiscan.st#%#//scriptlet('abort-on-property-read', '__vpx')
+sushiscan.st#%#//scriptlet('abort-current-inline-script', 'Array.prototype.forEach', '/bloqueur|amazon-adsystem\.com/')
+sushiscan.st#%#//scriptlet('prevent-setTimeout', '/walled|adsbygoogle|new Image\(\)\.src|\)return;if\(_/')
+sushiscan.st$$script:contains(host.attachShadow?host.attachShadow)
+||sushiscan.st/js/g/v.js
+||sushiscan.st/js/g/m.js
+||sushiscan.st/js/g/t.js
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||acdn.adnxs.com/ast/ast.js$domain=sushiscan.st
+@@||secure.quantserve.com/quant.js$domain=sushiscan.st
+@@||sb.scorecardresearch.com/beacon.js$domain=sushiscan.st
+@@||c.amazon-adsystem.com/aax2/apstag.js$domain=sushiscan.st
+@@||airconditionstrodefist.com/*/invoke.js$domain=sushiscan.st
+@@||static.criteo.net/js/ld/publishertag.js^$domain=sushiscan.st
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=sushiscan.st
+!#endif
 ! https://github.com/uBlockOrigin/uAssets/issues/17909
 @@||ads.videoadex.com/jw/advertisement.js$domain=rtl.be|ultimedia.com
 ! https://github.com/uBlockOrigin/uAssets/issues/33539
