@@ -10,11 +10,15 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/237330
+mintmanga.com#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/$domain=mintmanga.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234715
 ||sochi.camera/adblock-detector.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233664
-rr4farmtrof.com#%#//scriptlet('remove-node-text', 'script', '__skipAdwall')
-rr4farmtrof.com$$script:contains(skipAdwall)
+rr4farmtrof.com#%#//scriptlet('remove-node-text', 'script', 'adwall')
+rr4farmtrof.com$$script:contains(adwall)
 !#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
 @@||rr4farmtrof.com^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/$domain=rr4farmtrof.com
@@ -1380,13 +1384,13 @@ ya.ru##.Skeleton_type_ad_search
 [$path=/search]ya.ru,yandex.*##.AdvMedia
 yandex.*##body:not([data-bem*="pogoda"]) .mini-suggest__popup-content > li[data-type="nav"]
 ! ad in the search results
-ya.ru,yandex.*##ul[id^="search-"] > li:has(> div.Organic > div.Organic-ContentWrapper ~ div[class*=" Organic"] > span[class$="-Text"])
-ya.ru,yandex.*##ul[id^="search-"] > li:has(> div.Organic > div.Organic-Subtitle > div.Organic-Path ~ div[class*=" Organic"] > span[class$="-Text"])
-ya.ru,yandex.*##ul[id^="search-"] > li[class*="Organic"]:has(> div.Root a[href*="_crpd"] > div.Organic-OfferThumbWrap)
-ya.ru##ul[id^="search-"] > li[class*="Organic"]:has(> div.Root div[class*="-HeaderAd"] > span)
+ya.ru,yandex.*##ul[id] > li:has(> div.Organic > div.Organic-ContentWrapper ~ div[class*=" Organic"] > span[class$="-Text"])
+ya.ru,yandex.*##ul[id] > li:has(> div.Organic > div.Organic-Subtitle > div.Organic-Path ~ div[class*=" Organic"] > span[class$="-Text"])
+ya.ru,yandex.*##ul[id] > li[class*="Organic"]:has(> div.Root a[href*="_crpd"] > div.Organic-OfferThumbWrap)
+ya.ru##ul[id] > li[class*="Organic"]:has(> div.Root div[class*="-HeaderAd"] > span)
 ya.ru##[id^="search-"] > [data-fast="2"]
 ya.ru,yandex.*##.RsyaOrganic
-ya.ru,yandex.*##ul[id^="search-"] > li:has(> div.Root_inited > div[class*="Organic"] > div[class$="-Header"] > h2 + div > span)
+ya.ru,yandex.*##ul[id] > li:has(> div.Root_inited > div[class*="Organic"] > div[class$="-Header"] > h2 + div > span)
 ya.ru,yandex.*##.content__left li.serp-item:not(.serp-item__futuris-snippet):has(> div[class] div.AdvLabel)
 ! ad in a search proposal
 ya.ru,yandex.*##.mini-suggest__popup > ul > li[data-suggest-counter] > a[target="_blank"]
@@ -1469,6 +1473,7 @@ eda.yandex.ru##main > div[style^="margin-bottom:"]:has(> div > div > button + di
 ||yandex-pogoda.static-storage.net/*/*/*$script,replace=/adblock//
 !
 ! Yandex.Market
+market.yandex.ru##div[data-zone-name="heroBannerCarousel"]
 market.yandex.ru##div[data-apiary-widget-name="@marketfront/RecomAdv"]
 market.yandex.ru##div[data-apiary-widget-name="@monetize/AdvStreamer"]
 market.yandex.ru#$##MainHeaderDesktop { margin-top: auto !important; }
@@ -1555,6 +1560,7 @@ tv.yandex.*##div[class] > div[class^="grid"][class*=" "]:has(> div.channel_dbca)
 tv.yandex.*##.grid-chunk > div.grid-chunk__column-box:has(> div.grid-chunk__adv-column)
 !
 ! Yandex.Travel
+travel.yandex.ru##div > ul > li[class]:not([class*=" "]):has(> div[id^=":"])
 travel.yandex.ru##noindex[id^="adfox_"]
 !
 ! Yandex.Realty
