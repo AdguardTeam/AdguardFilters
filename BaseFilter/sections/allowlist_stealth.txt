@@ -30,6 +30,28 @@
 !
 ! NOTE: Specific rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/237700
+@@||content-push.googleapis.com/upload/$xmlhttprequest,stealth=3p-auth
+! https://github.com/AdguardTeam/AdguardFilters/issues/237911
+@@/movie?id=*&mode=$xmlhttprequest,stealth=referrer,domain=cinezo.live
+@@/api?url=$xmlhttprequest,media,stealth=referrer,domain=cinezo.live
+@@/subtitles/*$xmlhttprequest,stealth=referrer,domain=cinezo.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/237766
+@@/play/*$subdocument,stealth=referrer,domain=animeav1.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/237746
+@@||video*.yxhhdl.com^$media,stealth=referrer,domain=video.5054399.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/237738
+@@/upload/*/master.m3u8|$media,xmlhttprequest,stealth=referrer,domain=anikuro.ru|anikuro.to
+@@/upload/*.txt|$xmlhttprequest,stealth=referrer,domain=anikuro.ru|anikuro.to
+! https://github.com/AdguardTeam/AdguardFilters/issues/237568
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
+@@||dev.microsofttranslator.com/apps/endpoint?api-version=$stealth=referrer
+@@||westeurope.tts.speech.microsoft.com/cognitiveservices/$stealth=3p-auth
+!#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/237714
+@@/stream/*.m3u8$stealth=referrer,domain=livosports30.live
+! https://github.com/AdguardTeam/AdguardFilters/issues/237415
+@@||phncdn.com/$media,stealth=referrer,domain=pornhub.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/237503
 @@||api.viduki.net/embed_providers?$stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/237484
@@ -128,6 +150,7 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234878
 @@||swiftstream.top/proxy/$xmlhttprequest,image,stealth=referrer,domain=animetsu.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234872
+@@/videos/*$media,stealth=referrer,domain=allanime.day
 @@||wp.youtube-anime.com^$image,stealth=referrer,domain=allmanga.to|mkissa.to
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234807
 @@.m3u8$xmlhttprequest,stealth=referrer,domain=roxiestreams.*
@@ -213,9 +236,7 @@
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231683
 @@||cdncmk.com^$stealth=referrer,domain=comickfan.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231465
-@@||lostproject.club/*/subtitles/$stealth=referrer
 @@||cinewave2.site^$xmlhttprequest,stealth=referrer
-@@/anime$xmlhttprequest,stealth=referrer,domain=vidwish.live|megaplay.buzz
 @@/stream$xmlhttprequest,stealth=referrer,domain=kwik.cx
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231033
 @@||deals.neowin.net^$stealth=flash|java
@@ -306,7 +327,7 @@
 @@/\/[a-z0-9]{8}\/[a-zA-Z0-9_-]{200,900}/$xmlhttprequest,third-party,match-case,stealth=referrer,domain=player.videasy.*|cineby.*|cineplay.to|fmovies.*|vidup.to|vidfast.vc|www.fmovies.gd|vidking.net|111movies.net|vidcore.net
 @@/sources-with-title?title=*&mediaType=$third-party,xmlhttprequest,stealth=referrer
 @@/*/*=|$third-party,xmlhttprequest,media,stealth=referrer,domain=player.videasy.*|cineby.*|cineplay.to|fmovies.*|www.fmovies.gd|vidking.net
-@@.m3u8$third-party,xmlhttprequest,stealth=referrer,domain=player.videasy.*|cineby.*|cineplay.to|fmovies.*|vidfast.vc|www.fmovies.gd|vidking.net
+@@.m3u8$third-party,xmlhttprequest,stealth=referrer,domain=player.videasy.*|cineby.*|cineplay.to|fmovies.*|vidfast.vc|www.fmovies.gd|vidking.net|vidup.to
 @@q=$xmlhttprequest,stealth=referrer,domain=player.videasy.*|cineby.*|cineplay.to|fmovies.*|vidup.to|vidfast.vc|www.fmovies.gd|vidking.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228086
 @@||setplay.shop/player/$subdocument,stealth=referrer,domain=hdfilmcehennemi.now
@@ -529,8 +550,6 @@
 @@||app.netatmo.net/syncapi/$stealth=3p-auth
 ! https://github.com/AdguardTeam/AdguardFilters/issues/219316
 @@||lestore.lenovo.com^$stealth=referrer
-! https://github.com/AdguardTeam/AdguardFilters/issues/219345
-@@||playcloud1.asia^$stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/219283
 @@||mofl.pro^$stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/219264
@@ -815,7 +834,11 @@
 @@||jfimv2.xyz^$domain=klz9.com,stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204721
 @@||imgslib.link^$image,xmlhttprequest,stealth=referrer
+! https://github.com/AdguardTeam/AdguardFilters/issues/237756
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204791
+@@.m3u8|$xmlhttprequest,stealth=referrer,domain=megaplay.*
+@@||lostproject.club/*/subtitles/$stealth=referrer
+@@/anime$xmlhttprequest,stealth=referrer,domain=vidwish.live|megaplay.*
 @@||megaplay.*/stream/$subdocument,stealth=referrer
 @@||cdn.dotstream.buzz^$stealth=referrer,domain=megaplay.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/205375
