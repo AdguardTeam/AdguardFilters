@@ -1270,6 +1270,17 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/239044
+@@||tradingref.com^$generichide
+tradingref.com#%#//scriptlet('prevent-fetch', 'method:HEAD')
+tradingref.com#%#//scriptlet('prevent-element-src-loading', 'script', '/googlesyndication\.com|doubleclick\.net|ads-twitter\.com|facebook\.net/')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||prebid.smilewanted.com^$domain=tradingref.com
+@@||googleads.g.doubleclick.net/pagead/html/zrt_lookup.html$domain=tradingref.com
+@@||adservice.google.com/adsid/integrator.js$domain=tradingref.com
+@@||static.ads-twitter.com/uwt.js$domain=tradingref.com
+@@||connect.facebook.net/en_US/fbevents.js$domain=tradingref.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238996
 @@||claimlite.club/static/js/noadblock.js$domain=claimlite.club
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238454
