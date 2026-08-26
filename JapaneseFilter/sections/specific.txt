@@ -10,7 +10,7 @@
 ! Incorrectly blocked domains can be excluded using regex(synchronize this regexp in all filters)
 /^(?!.*(mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|(\/\/|\.)vk\.com|yandex.|yastatic.net|ytimg.com|zencdn.net|player|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|alicdn.com|(\/\/|\.)x\.com)).*$/$third-party,script,_____,domain=viki.ja-jp.nina.az|uraaka-joshi.com
 ! Similar to regexp above, but using the denyallow modifier
-*$script,third-party,denyallow=mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|x.com|alicdn.com,_____,domain=viki.ja-jp.nina.az|uraaka-joshi.com|rawkuma.net|rawjx.net|rawmiu.net|rawkuro.net|momon-ga.com
+*$script,third-party,denyallow=mega.co.nz|mega.nz|libs.baidu.com|ilfcdn.li|bytecdntp.com|doodcdn.io|intensedebate.com|vixcloud.co|cdn.plyr.io|rsc.cdn77.org|linkvertise.com|fastly.net|statically.io|sharecast.ws|b-cdn.net|bunnycdn.ru|bootstrapcdn.com|cdn.ampproject.org|cloudflare.com|cdn.staticfile.org|disqus.com|disquscdn.com|dmca.com|ebacdn.com|facebook.net|fastlylb.net|fbcdn.net|fluidplayer.com|fontawesome.com|github.io|google.com|googleapis.com|googletagmanager.com|gstatic.com|jquery.com|jsdelivr.net|jwpcdn.com|jwplatform.com|recaptcha.net|shrink.pe|twitter.com|ulogin.ru|unpkg.com|userapi.com|vidazoo.com|vk.com|yastatic.net|ytimg.com|zencdn.net|youtube.com|cackle.me|googleoptimize.com|vuukle.com|chatango.com|twimg.com|google-analytics.com|hcaptcha.com|media-imdb.com|blogger.com|hwcdn.net|instagram.com|wp.com|fastcomments.com|plyr.io|imgsmail.ru|cloudflare.net|rabbitstream.net|x.com|alicdn.com|zeala.link,_____,domain=viki.ja-jp.nina.az|uraaka-joshi.com|rawkuma.net|rawjx.net|rawmiu.net|rawkuro.net|momon-ga.com
 !
 ! ###banner
 town.inawashiro.fukushima.jp,city.buzen.lg.jp,nanbbs.jp,eroita.net,city.hirosaki.aomori.jp,iyasiya.com,adacomi.com,pref.shimane.lg.jp,pref.osaka.lg.jp,illust-ai.com,nan-net.com,radiolife.com,keimei.ne.jp,bbspink.com,crank-in.net###banner
@@ -60,8 +60,17 @@ gundamlog.com###more > iframe[src^="https://richlink.blogsys.jp"]
 !
 ! NOTE: Specific rules
 !
-togetter.com##.amazon_bulk_box
-news.yahoo.co.jp#%#//scriptlet('href-sanitizer', 'a[href^="https://www.j-cast.com/"]', '[href]', 'removeParam')
+matomeantennahub.com###banner_popup
+doshinsports.com##.sidebar__ads-box
+jacom.or.jp#%#//scriptlet('json-prune', 'props.allAds')
+jacom.or.jp##div.block > div.w-full > section:has(> div.border-dashed > .gap-banner-gap > div[data-banner-slug])
+jacom.or.jp##div[data-banner-slug]
+qiita.com##div[id^="TagAdvertisement-"]
+bengo4.com##div[class^="p-static-banner-area"]
+||bengo4.com/img/topics/article/banner/static-banner-ads/
+javmix.tv###main > div.pop--excl > div[style*="margin: 0 auto 50px auto;"]
+momon-ga.com,javmix.tv##.pop--excl:has(div[id^="bnc_ad"])
+posfie.com,togetter.com##.amazon_bulk_box
 pdftoshokan.com##.post[style="margin-bottom: 1rem; opacity: 1; transition: opacity 0.5s ease-in;"]
 hanasone.mainichi.jp##.p-article-trend-lists
 ai-ssr.com##.grid > div:has(> a[href^="https://al.fanza.co.jp"][target="_blank"])
@@ -3145,7 +3154,7 @@ fob.jp###sidebar > div.widget_custom_html:has(+ div#fix_sidebar)
 city.kamisu.ibaraki.jp###topsadbg
 saku-city.mamafre.jp###bottomBanner
 ||city.saku.nagano.jp/banner/
-jmanga.land##div[style^="max-width:700px"]
+jmanga.help##div[style^="max-width:700px"]
 gihyo.jp##.m-listitem--ad
 musicman.co.jp##.bannerBox
 ||tool2.nan-net.com/doujin/depression1.jpg
@@ -3381,7 +3390,7 @@ winchesterhouse.jp##.post_content > table[border="0"]
 blog.hatenablog.com##.entry-social-top-ad
 kahoku.news,financial-field.com##div[style^="min-width: 300px; min-height: 250px"]
 financial-field.com##div[style^="width: 100%; height: 280px"]
-achikochi-data.com,spread-sports.jp,mwed.jp,mi-mollet.com,financial-field.com##div[style^="min-height: 250px;"]
+inakadaisuki.com,achikochi-data.com,spread-sports.jp,mwed.jp,mi-mollet.com,financial-field.com##div[style^="min-height: 250px;"]
 gift-for-loved-one.tokyo##.entry-content > div.widget_text
 gift-for-loved-one.tokyo##.post > center > a[href^="https://t.afi-b.com/visit.php"]
 ||3bitter.com/*-prebid.js
@@ -4687,6 +4696,7 @@ city.iwaki.lg.jp##div.slide_link + div.wrap > div.aside
 ear-phone-review.com###entry-footer-primary-modules
 impress.co.jp##.ad-wrapper-in-content
 netshop.impress.co.jp##.node-body-content > div[style="background-color:#FFFBD6; margin:3em 2em; padding:10px 5px"]
+nikkan-gendai.com#$#style:not(#browsi_adWrapper_ai_200_ati_1_rc_0):not(#browsi_adWrapper_ai_600_ati_1_rc_0) + div.relation-link-area.mt18 { margin-top: 18px !important; }
 nikkan-gendai.com##.recommend_box:has(> div#taboola-below-article-thumbnails-mg)
 nikkan-gendai.com##iframe[id^="gmossp-ad"]
 nikkan-gendai.com#$#footer { padding-bottom: 10px !important; }
@@ -8238,7 +8248,6 @@ news.mynavi.jp##.articleBnr_ydn
 news.mynavi.jp##.c-sideBanner_articleBottom
 news.mynavi.jp##.headerBillboard
 news.mynavi.jp##.c-sidePickup
-momon-ga.com,javmix.tv##.pop--excl
 javmix.tv##div[style^="width: 728px; height: 90px"]
 tv-asahi.co.jp###rectangle-desktop
 tv-asahi.co.jp###superbanner-desktop
@@ -10002,7 +10011,7 @@ imas-cg.net##.plugin-memo:has(.ad-center)
 matometatta-news.net#?#.entry[data-type=space] script[src^="https://img.ad-nex.com/"]:upward(.entry)
 !
 ! popIn ads
-bisweb.jp#$#._popIn_infinite_page > li:has(> a[class*="_popIn_recommend_article_ad"]) { display: none !important; }
+lmaga.jp,bisweb.jp#$#._popIn_infinite_page > li:has(> a[class*="_popIn_recommend_article_ad"]) { display: none !important; }
 bisweb.jp#$##_popIn_recommend_div ul._popIn_infinite_page:has(a[class*="_popIn_recommend_article_ad"]) > li { width: 25% !important; }
 bisweb.jp#$##_popIn_recommend_div:has(a[class*="_popIn_recommend_article_ad"]) ._popIn_recommend_art_img { width: auto !important; }
 enfant.media##._popIn_infinite_page:has(> li > a[class*="_popIn_recommend_article_ad"])
