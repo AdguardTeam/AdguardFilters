@@ -817,9 +817,19 @@ wowtv.de#%#//scriptlet('set-constant', 'window.CONFIGURATION.features.enableAdBl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238226
 stadt-bremerhaven.de###cb-adblock-overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238166
+*$script,3p,redirect=noopjs,domain=ligainsider.de
+@@||ligainsider.de^$generichide
+ligainsider.de#%#//scriptlet('prevent-element-src-loading', 'script', '/googlesyndication\.com|doubleclick\.net|bing\.com|taboola\.com/')
+ligainsider.de#%#//scriptlet('abort-on-property-read', 'LIDetector')
 ||ligainsider.de/public/*/js/li-probe-base.js
 ||ligainsider.de/li-probe.js
 ||ligainsider.de/public/*/js/li-wall.js
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js^$domain=ligainsider.de
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js^$domain=ligainsider.de
+@@||bat.bing.com/bat.js$domain=ligainsider.de
+@@||cdn.taboola.com/libtrc/network/loader.js^$domain=ligainsider.de
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/236444
 adhs-zentrum.de#%#//scriptlet('prevent-navigation', 'werbeblocker')
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
