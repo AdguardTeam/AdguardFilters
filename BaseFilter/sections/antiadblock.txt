@@ -1271,6 +1271,10 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/240004
+smallseotools.co.uk###adBlockerOverlay
+! https://github.com/AdguardTeam/AdguardFilters/issues/240201
+seturl.in###blocker-overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/240108
 indexsubtitle.cc##body > div#app-runtime-cover
 ! https://github.com/AdguardTeam/AdguardFilters/issues/239993
@@ -1283,8 +1287,16 @@ indexsubtitle.cc##body > div#app-runtime-cover
 adslink.pw#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=adslink.pw
+! AntiAdBlock Core
 ! https://github.com/AdguardTeam/AdguardFilters/issues/239607
-||intercelestial.com/_ac/
+/s/*.js|$script,domain=pahe.plus|aii.sh|intercelestial.com|tpi.li|oii.la
+tpi.li,intercelestial.com,pahe.plus,aii.sh,oii.la,oko.sh,tii.la#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|amazon-adsystem\.com|doubleclick\.net|googleadservices\.com/')
+$xmlhttprequest,redirect-rule=nooptext,domain=pahe.plus|intercelestial.com
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||intercelestial.com^$generichide
+@@.js|$xmlhttprequest,domain=pahe.plus|aii.sh|intercelestial.com|tpi.li|oii.la
+@@||pahe.plus^$generichide
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/239240
 pitube.net#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'detectAdBlock')
 pitube.net#@#.ad-unit:not(.textads)
@@ -1524,9 +1536,10 @@ flyfile.app#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 aruble.net#%#//scriptlet('prevent-fetch', 'cdn.bmcdn6.com')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/235721
 net77.cc#%#//scriptlet('prevent-setTimeout', '/\.removeClass/', '5000')
-net77.cc#%#//scriptlet('prevent-addEventListener', 'load', 'showAdblockMessage')
-!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+net77.cc#%#//scriptlet('prevent-element-src-loading', 'img', 'publishers.monetag.com')
+net77.cc#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
 net77.cc#@#.ad-unit:not(.textads)
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=net77.cc
 @@||publishers.monetag.com/assets/favicon-16x16.png$domain=net77.cc
 !#endif
@@ -1608,13 +1621,14 @@ sportsbite.org,sportsbite.*#@#.ad_unit
 unicorn.asso.eu.org#%#//scriptlet('prevent-fetch', 'method:HEAD')
 unicorn.asso.eu.org#%#//scriptlet('set-constant', 'document.hidden', 'true')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234624
+leeapk.com#%#//scriptlet('remove-node-text', 'script', 'baitCheck')
 leeapk.com#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
-leeapk.com#%#//scriptlet('prevent-setTimeout', 'bait')
 ||leeapk.com/wp-content/plugins/leeapk-adblock-detector/
 leeapk.com###abd-overlay
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=leeapk.com
-leeapk.com#@#.ad-banner
+@@||leeapk.com^$generichide
+@@||googleads.g.doubleclick.net/pagead/id?r=$domain=leeapk.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234582
 flacdownloader.com$$script:contains(baits)
 flacdownloader.com#%#//scriptlet('remove-node-text', 'script', 'baits')
@@ -2371,10 +2385,10 @@ walitex.com#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 katfile.online#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
 katfile.online###adb-overlay
 ! checkAdsStatus / LinkShortX
-dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.popup
-dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.overlay
-dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.popSc
-dailycaptchawork.com,famasocial.site,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz#%#//scriptlet('abort-on-property-write', 'checkAdsStatus')
+livebiz.in,tvserialnews.in,gadii.in,dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.popup
+livebiz.in,tvserialnews.in,gadii.in,dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.overlay
+livebiz.in,tvserialnews.in,gadii.in,dailycaptchawork.com,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz##.popSc
+livebiz.in,tvserialnews.in,gadii.in,dailycaptchawork.com,famasocial.site,rlx32.com,primepropertynow.com,kdvqi.xyz,ehinditimes.com,rlx7.com,almafhm.online,androidonepro.com,bosejk.in,cinema-3d.xyz,everydaytechvams.com,gfx-station.com,gold-24.net,hindisink.com,innateblogger.com,mobiranking.com,movies4u.*,princetechzone.in,rlxoff.com,rlxtech24h.com,stream2watch.*,to-travel.net,treasl.com,yjiur.xyz#%#//scriptlet('abort-on-property-write', 'checkAdsStatus')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=kdvqi.xyz|famasocial.site
 primepropertynow.com,kdvqi.xyz#@#div[id^="div-gpt-"]
@@ -4400,9 +4414,9 @@ sonixgvn.net#%#//scriptlet('trusted-suppress-native-method', 'DOMTokenList.proto
 @@||static.doubleclick.net/instream/ad_status.js$domain=sonixgvn.net
 ! URL shorteners used on sonixgvn.net
 ! fly.inc
+biosjourney.com,esladvice.com,postalcode.com.pk,bispehsaasprogram.com,poetryinurdu.pk,resultlogin.com.bd,redboxtvapks.com,dailyictpost.com,multiplayercarparking.com#%#//scriptlet('trusted-suppress-native-method', 'Storage.prototype.getItem', '/[0-9]/', 'prevent')
 [$path=/rinku/land/]#$#form[id][method="post"][style^="display:"]:has(> center > div[style^="margin: 10px 0 10px 0;"]) { display: block !important; }
 /^https:\/\/[0-9a-z]+\.xyz\/rinku\/land/$document,~third-party,match-case,replace=/const proxyStatus = "Y";/const proxyStatus = "N";/
-###delulu-overlay
 djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.com,9sblog.com,newselab.com,glowandglamcorner.com,dadinthemaking.com,listofthis.com,phineypet.com,beautifulfashionnailart.com,americanstylo.com##.card center > .container:has(> .ad)
 djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.com,9sblog.com,newselab.com,glowandglamcorner.com,dadinthemaking.com,listofthis.com,phineypet.com,beautifulfashionnailart.com,americanstylo.com#%#//scriptlet("trusted-replace-node-text", "script", "innerHTML", "/== ?'IFRAME'/", "== 'BODY'")
 djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.com,9sblog.com,newselab.com,glowandglamcorner.com,dadinthemaking.com,listofthis.com,phineypet.com,beautifulfashionnailart.com,americanstylo.com#%#//scriptlet("trusted-replace-node-text", "script", "innerHTML", "!document.hasFocus()", "document.hasFocus()")
@@ -4414,6 +4428,9 @@ djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.co
 djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.com,adxcel.io#%#//scriptlet('prevent-element-src-loading', 'script', '/detectIncognito.min.js')
 !+ PLATFORM(ext_ff)
 djbassking.club,uaeboy.ae,csyildizi.com,mealold.com,pasflav.online,nidbdcheck.com,adxcel.io#%#//scriptlet('trusted-create-element', 'head', 'script', '', '(()=>{document.currentScript.remove();window.detectIncognito=()=>new Promise((e=>e({isPrivate:!0})));})();')
+! https://github.com/AdguardTeam/AdguardFilters/issues/221891
+!+ NOT_OPTIMIZED
+###delulu-overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/176403
 ! linkjust.com
 lelmak.com,elbadr.xyz,abda3.xyz,wisw.online,gooltok.com,loiz.store,businessnews-nigeria.com,day4news.com,net4you.xyz#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
@@ -5961,8 +5978,6 @@ mealcold.com###adb
 ! oko.sh,tii.la#$#.banner-inner > * { visibility: hidden !important; }
 ! oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'document.querySelector', 'adb_detected')
 ! oko.sh,tii.la$$script[tag-content="adb_detected"]
-/s/*.js|$script,domain=pahe.plus|aii.sh|oii.la
-||fakcb.tpi.li/
 aii.sh,lnbz.la,oii.la,tpi.li$$script:contains(/checkAdblockUser|AdBlockCheck|\.offsetHeight/)
 aii.sh,lnbz.la,oii.la,tpi.li#%#//scriptlet('remove-node-text', 'script', '/checkAdblockUser|AdBlockCheck|\.offsetHeight/')
 oko.sh,tii.la#%#//scriptlet('prevent-xhr', '/^(?!.*(oko\.sh|tii\.la)).*/ method:GET')
@@ -5972,18 +5987,16 @@ oko.sh,tii.la#$#.myads > a { visibility: hidden !important; }
 oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'XMLHttpRequest', '.innerHTML')
 oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'document.addEventListener', 'innerHTML')
 oko.sh,tii.la#%#//scriptlet('abort-current-inline-script', 'document.createElement', '/\.innerHTML|break;case \$\./')
-aii.sh,pahe.plus,aii.sh,oii.la,oko.sh,tii.la#%#//scriptlet('prevent-fetch', '/pagead2\.googlesyndication\.com|inklinkor\.com|amazon-adsystem\.com|doubleclick\.net|googleadservices\.com/')
 oii.la,tpi.li,tvi.la,oko.sh#%#//scriptlet('set-constant', 'app_vars.force_disable_adblock', 'undefined')
 oii.la,tpi.li,tvi.la,aii.sh#%#//scriptlet('prevent-xhr', '/pagead2\.googlesyndication\.com|inklinkor\.com/')
-$xmlhttprequest,redirect-rule=nooptext,domain=oko.sh|tii.la|pahe.plus|aii.sh|oii.la
+$xmlhttprequest,redirect-rule=nooptext,domain=oko.sh|tii.la|aii.sh|tpi.li|oii.la
 $script,redirect-rule=noopjs,domain=oko.sh|tii.la
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 ! @@/cloud_theme/ads/load.js$~third-party,xmlhttprequest,domain=oko.sh|tii.la
 ! @@||shrinkearn.com/modern_theme/img/$domain=tii.la
 ! tii.la,oko.sh#@#a[href^="https://taghaugh.com/"]
 @@||oii.la^$generichide
-@@.js|$xmlhttprequest,domain=pahe.plus|aii.sh|oii.la
-@@||pahe.plus^$generichide
+@@||tpi.li^$generichide
 @@||aii.sh^$generichide
 @@||tii.la^$generichide
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=aii.sh|tii.la|oko.sh|tpi.li|oii.la
