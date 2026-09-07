@@ -218,13 +218,13 @@ infomatricula.pt#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 infomatricula.pt#%#//scriptlet('prevent-setTimeout', '/=window\.setInterval\([\s\S]*?\.push\(/')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/220472
 darkmahou.io#%#//scriptlet('abort-on-stack-trace', 'document.getElementById', 'showAdblockAlert')
-! https://github.com/AdguardTeam/AdguardFilters/issues/229248
-3xyaoi.com#%#//scriptlet('prevent-setTimeout', 'bait')
-3xyaoi.com##div[id$="adblock-layer"]
-! https://github.com/uBlockOrigin/uAssets/issues/22957#issuecomment-3628711511
-3xyaoi.com#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=3xyaoi.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/240699
+3xyaoi.com$$script:contains(/_adBlockDetectorExecuted|checkForbiddenBrowsers/)
+3xyaoi.com#%#//scriptlet('remove-node-text', 'script', '/_adBlockDetectorExecuted|checkForbiddenBrowsers/')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||3xyaoi.com^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=3xyaoi.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/219700
 ||app.doramas.org/js/adb_plus.o.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/219399
