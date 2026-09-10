@@ -10,6 +10,12 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/240854
+ritsatv.ru#%#//scriptlet('prevent-setTimeout', 'checkAds')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||cdn.adfinity.pro/code/ritsatv.ru/adfinity.js$domain=ritsatv.ru
+@@||cdn.digitalcaramel.com/caramel.js$domain=ritsatv.ru
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/237818
 redheadsound.studio#%#//scriptlet('google-ima3')
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -91,14 +97,6 @@ s3.gamepush.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 
 s3.gamepush.com#@##text_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204523
 volley.ru##pjsdiv[style*="opacity: 1; font-size: 14px; line-height: 1em; pointer-events: none; display: block; visibility: visible;"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/199584
-ritsatv.ru#%#//scriptlet('prevent-addEventListener', 'load', 'initAdblockCheck')
-ritsatv.ru$$script:contains(script.onerror)
-ritsatv.ru#%#//scriptlet('remove-node-text', 'script', 'script.onerror')
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||ritsatv.ru^$generichide
-@@||yandex.ru/ads/system/context.js$domain=ritsatv.ru
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196802
 howdyho.net#$##nevermind { display: block !important; }
 howdyho.net#$##rustrover { display: none !important; }
