@@ -61,8 +61,17 @@ music.yandex.*##.notify > div.deco-tooltip_notify.notify_shown
 [$path=/pogoda]dzen.ru##.adv-ecom
 [$path=/pogoda|hava/]yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
 [$path=/pogoda|hava/]yandex.*#%#//scriptlet('json-prune', 'rtb')
-!+ PLATFORM(ios)
+!#if (adguard_app_ios || adguard_ext_safari)
+yandex.*##div[class^="MainPage_topBlockWithMoney_"]
+yandex.*##li[class^="AppForecastMoney_wrap_"]
 yandex.*##article[class^="AppMoney_wrap_"]
+yandex.*#%#//scriptlet('abort-on-property-write', 'ctxScript')
+dzen.ru###money-ecom
+dzen.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderData')
+dzen.ru##.adv-ecom
+yandex.*#%#//scriptlet('prevent-eval-if', 'Id":"R-I')
+yandex.*#%#//scriptlet('json-prune', 'rtb')
+!#endif
 ! TODO: remove after releasing new AdGuard 2.0 for Safari
 ! Breaks Yandex Mail in Safari due to a bug
 !+ NOT_PLATFORM(ext_safari)
@@ -114,6 +123,10 @@ ya.ru##.feed > div > ul > li.feed__item:has(div[id*="R-I-"])
 tv.yandex.*#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 tv.yandex.*#%#//scriptlet('json-prune', 'rtb')
 !
+! Yandex.Translate
+!+ PLATFORM(ext_safari)
+translate.yandex.*##.page > div.side-block:has(> div[id] > div[class] div[id*="R-I-"][class])
+!
 ! Yandex.Realty
 realty.yandex.ru#%#//scriptlet('json-prune', 'rtb direct')
 !
@@ -147,6 +160,7 @@ auto.ru#%#//scriptlet('json-prune', 'ads')
 auto.ru#%#//scriptlet('abort-on-property-read', 'Object.prototype.RenderMarks')
 !
 ! shedevrum.ai
+shedevrum.ai#%#//scriptlet('abort-on-property-read', 'Object.prototype.renderDirect')
 shedevrum.ai#%#//scriptlet('set-constant', 'Object.prototype.isStickyAd', 'undefined')
 shedevrum.ai###app > div.z-\[12\].bg-white
 @@||shedevrum.ai^$generichide
@@ -258,7 +272,6 @@ mail.ru##div[slot="main-column"] > div.stripe-wrapper
 ! e.mail.ru
 e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', 'autoupdate', '100')
 e.mail.ru,octavius.mail.ru#%#//scriptlet('prevent-setTimeout', 'adman_')
-news.mail.ru,e.mail.ru,octavius.mail.ru#%#//scriptlet('abort-on-stack-trace', 'Promise', 'onSlotRender')
 e.mail.ru,octavius.mail.ru#%#//scriptlet('remove-class', 'scrollable_top-line-adv-2pane|scrollable_top-line-adv-2pane_high-block|scrollable_top-line-adv-2pane_pony-mode', '.scrollable')
 e.mail.ru,octavius.mail.ru#%#//scriptlet('remove-class', 'letter-list_top-line-adv-2pane|letter-list_top-line-adv-2pane_pony-mode|letter-list_topline-touch-adv|letter-list_top-line-adv-2pane_high-block', '.letter-list')
 mail.ru#?#body > div > style + div:has(> div > div.description:contains(/До[баба]вьт[ее] Mail в исключения/))
@@ -673,6 +686,7 @@ scitechdaily.com,thewindowsclub.com#@#.ad-space
 !
 ! NOTE: Generic anti-adblock rules
 !#safari_cb_affinity(general)
+###delulu-overlay
 /wp-content/plugins/incognito_dectector/*/incognito-detector.
 /plugins/ad-blocking-advisor/*
 /wp-content/*/an-temp/*
@@ -699,6 +713,13 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
+pagesix.com,nypost.com#%#//scriptlet('abort-current-inline-script', 'atob', 'parentNode.removeChild')
+clashfox.com#%#//scriptlet('prevent-setTimeout', 'offsetHeight')
+uploadvr.com#$#body { position: initial !important; }
+uploadvr.com#$#div[id^="supportPrompt"] { display: none !important; }
+uploadvr.com#%#//scriptlet('prevent-setTimeout', 'displayAdPlaceholders')
+uploadvr.com#%#//scriptlet('set-constant', 'freestar.newAdSlots', 'noopFunc')
+uploadvr.com#%#//scriptlet('set-constant', 'freestar.initCallbackCalled', 'true')
 statlocker.gg##.profile-slot-frame
 statlocker.gg#%#//scriptlet('prevent-element-src-loading', 'script', 'cdn.intergient.com')
 vodafone.de###adbl
@@ -756,12 +777,6 @@ peacocktv.com#%#//scriptlet('trusted-replace-argument', 'Promise', '0', 'noopPro
 ||vi.freewheel.tv/static/creatives/fw-ad-300x250.jpg$image,redirect=2x2-transparent.png,domain=peacocktv.com
 fuucdayo.com#$#.fuuc-adblock-overlay { display: none !important; }
 fuucdayo.com#$#.fuuc-adblock-overlay-open { overflow: auto !important; }
-!#if (adguard_ext_android_cb || adguard_app_ios || adguard_ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub$domain=fuucdayo.com
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fuucdayo.com
-fuucdayo.com#@#ins.adsbygoogle[data-ad-slot]
-fuucdayo.com#@#ins.adsbygoogle[data-ad-client]
-!#endif
 thesun.co.uk#%#//scriptlet('remove-node-text', 'script', 'ncuAb')
 crimsondesert.th.gl##.bg-card.shadow
 enternity.gr#%#//scriptlet('abort-current-inline-script', 'document.getElementById', '/adblock|Blocking Ads/')
@@ -1545,8 +1560,8 @@ eldiario.es##.adblock-banner
 elhow.ru##.b-info
 emuparadise.me##.col_12 > #ad728 + .box
 epicbundle.com##.sidebar > .mediumTagArea
-epidemia-koronawirus.pl###sgpb-popup-dialog-main-div-wrapper
-epidemia-koronawirus.pl##.sgpb-popup-overlay
+franciacortakartingtrack.com,epidemia-koronawirus.pl###sgpb-popup-dialog-main-div-wrapper
+franciacortakartingtrack.com,epidemia-koronawirus.pl##.sgpb-popup-overlay
 equestriadaily.com##.top-banner-section
 era-igr.ru#$##adsense2.adsense { display: block!important; }
 erfahrungen.com,howjsay.com,reviewmeta.com#%#//scriptlet("prevent-setTimeout", "adsbygoogle")
@@ -2303,11 +2318,6 @@ creativeuncut.com###g_abox
 toolskitpro.net#%#//scriptlet('prevent-setTimeout', 'ad_blocker')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=toolskitpro.net
-!
-! https://github.com/AdguardTeam/AdguardFilters/issues/235514
-nypost.com#%#//scriptlet('abort-current-inline-script', 'atob', 'parentNode.removeChild')
-!+ PLATFORM(ios, ext_safari, ext_android_cb)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=nypost.com
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167683
 ! https://github.com/AdguardTeam/AdguardFilters/issues/169924
@@ -3384,7 +3394,9 @@ polzadom.ru#%#//scriptlet("abort-current-inline-script", "document.getElementByI
 !#safari_cb_affinity(general)
 @@||d2ujtyf7wfmq6y.cloudfront.net/ads/ads.html$domain=reisefrage.net|motorradfrage.net|autofrage.net|sportlerfrage.net|gesundheitsfrage.net|finanzfrage.net|computerfrage.net|gutefrage.net
 ! #@#.full_AD
-ka-news.de,insideevs.de,de.motor1.com,rlptoday.de,news.de,mainpost.de,aufderbuehne.de,trainingsworld.com,zaubertopf.de,maclife.de,kuechengoetter.de,survivethis.news,prad.de,infranken.de,nachrichten.at,moviejones.de,np-coburg.de,frankenpost.de,insuedthueringen.de,augsburger-allgemeine.de,4fansites.de,general-anzeiger-bonn.de,kurier.de,knuddels.de,fumsmagazin.de,reisefrage.net,motorradfrage.net,autofrage.net,sportlerfrage.net,gesundheitsfrage.net,finanzfrage.net,wer-weiss-was.de,spielfilm.de,jappy.com,serienjunkies.de,woxikon.de,wize.life,computerfrage.net,gutefrage.net,teckbote.de,ligainsider.de,woxikon.de,rp-online.de,frag-mutti.de,ksta.de,sol.de,noz.de,mopo.de,express.de,berliner-kurier.de,berliner-zeitung.de#@#.full_AD
+echo-online.de,ka-news.de,insideevs.de,de.motor1.com,rlptoday.de,news.de,mainpost.de,aufderbuehne.de,trainingsworld.com,zaubertopf.de,maclife.de,kuechengoetter.de,survivethis.news,prad.de,infranken.de,nachrichten.at,moviejones.de,np-coburg.de,frankenpost.de,insuedthueringen.de,augsburger-allgemeine.de,4fansites.de,general-anzeiger-bonn.de,kurier.de,knuddels.de,fumsmagazin.de,reisefrage.net,motorradfrage.net,autofrage.net,sportlerfrage.net,gesundheitsfrage.net,finanzfrage.net,wer-weiss-was.de,spielfilm.de,jappy.com,serienjunkies.de,woxikon.de,wize.life,computerfrage.net,gutefrage.net,teckbote.de,ligainsider.de,woxikon.de,rp-online.de,frag-mutti.de,ksta.de,sol.de,noz.de,mopo.de,express.de,berliner-kurier.de,berliner-zeitung.de#@#.full_AD
+! #@#.banner_ad_full
+echo-online.de#@#.banner_ad_full
 ! #@#.full_ad
 ! #@#.banner_ad
 !#safari_cb_affinity
@@ -3558,6 +3570,14 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 !
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=pagesix.com
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=pagesix.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=nypost.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub$domain=fuucdayo.com
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=fuucdayo.com
+fuucdayo.com#@#ins.adsbygoogle[data-ad-slot]
+fuucdayo.com#@#ins.adsbygoogle[data-ad-client]
+clashfox.com#@#.ad-unit:not(.textads)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=xenvn.com
 xenvn.com#@#ins.adsbygoogle[data-ad-slot]
 xenvn.com#@#ins.adsbygoogle[data-ad-client]
