@@ -10,6 +10,12 @@
 ! NOTE: UA rules copied to Ukrainian filter
 ! TODO: Remove not multi lang rules with .ua tld after splitting the filter (look at the end of file)
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/240854
+ritsatv.ru#%#//scriptlet('prevent-setTimeout', 'checkAds')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||cdn.adfinity.pro/code/ritsatv.ru/adfinity.js$domain=ritsatv.ru
+@@||cdn.digitalcaramel.com/caramel.js$domain=ritsatv.ru
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/237818
 redheadsound.studio#%#//scriptlet('google-ima3')
 !#if (adguard_app_ios || adguard_ext_android_cb)
@@ -25,14 +31,15 @@ mintmanga.com#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogl
 ||sochi.camera/adblock-detector.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238710
 ||rr4farmtrof.com/api/log_adwall
-||rr4farmtrof.com/assets/js/ft-ad-proof-
 rr4farmtrof.com#%#//scriptlet('prevent-navigation', '?ft_client_block=1')
-!#if (adguard_app_ios || adguard_ext_android_cb || ext_safari)
-@@||yandex.ru/ads/system/context.js$domain=rr4farmtrof.com
 @@||rr4farmtrof.com^$generichide
-@@||pagead2.googlesyndication.com/pagead/js/$domain=rr4farmtrof.com
-@@||securepubads.g.doubleclick.net/tag/js/$domain=rr4farmtrof.com
-!#endif
+||strm.yandex.ru/vh-canvas-converted/$domain=rr4farmtrof.com
+@@||yandex.ru/ads/system/context.js$domain=rr4farmtrof.com
+@@||yandex.ru/ads/system/ap-loader.js$domain=rr4farmtrof.com
+!#safari_cb_affinity(privacy)
+@@||mc.yandex.ru/metrika/tag.js$domain=rr4farmtrof.com
+@@||mc.yandex.com/watch/*?wmode=*&page-url=
+!#safari_cb_affinity
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233134
 evilmod.ru#@##reklama
 ! https://github.com/AdguardTeam/AdguardFilters/issues/230714
@@ -91,14 +98,6 @@ s3.gamepush.com#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 
 s3.gamepush.com#@##text_ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204523
 volley.ru##pjsdiv[style*="opacity: 1; font-size: 14px; line-height: 1em; pointer-events: none; display: block; visibility: visible;"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/199584
-ritsatv.ru#%#//scriptlet('prevent-addEventListener', 'load', 'initAdblockCheck')
-ritsatv.ru$$script:contains(script.onerror)
-ritsatv.ru#%#//scriptlet('remove-node-text', 'script', 'script.onerror')
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||ritsatv.ru^$generichide
-@@||yandex.ru/ads/system/context.js$domain=ritsatv.ru
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/196802
 howdyho.net#$##nevermind { display: block !important; }
 howdyho.net#$##rustrover { display: none !important; }
@@ -965,6 +964,7 @@ dzen.ru##.viewer-layout__sidebar div[class*="__content"] > div[class*="__feed"] 
 @@||ad.mail.ru/static/admanhtml/rbadman-html5.min.js$domain=dzen.ru
 !
 ! mail.ru
+news.mail.ru,e.mail.ru,octavius.mail.ru#%#//scriptlet('abort-on-stack-trace', 'Promise', 'onSlotRender')
 [$path]mail.ru#%#//scriptlet('abort-on-stack-trace', 'document.createElement', 'getSlotByMimic')
 [$path]mail.ru#%#//scriptlet("prevent-window-open", "help.mail.ru/mail/faq/adblock")
 mail.ru##.box_double
