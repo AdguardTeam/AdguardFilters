@@ -812,12 +812,20 @@ schnittmuster-datenbank.de#%#//scriptlet("abort-on-property-read", "adsBlocked")
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/241691
+||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=dailyme.de
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=dailyme.de
 ! https://github.com/uBlockOrigin/uAssets/issues/34187
+igorslab.de#?#div[class]:matches-attr("/^data-[0-9a-z]{3,}-[0-9a-z]{3,}/"="/[0-9A-Za-z]{27}\.[0-9A-Za-z]{32}$/")
+igorslab.de#?#.ilgha-scale-frame:contains(/Similar products|Ähnliche Artikel|相似产品/)
+igorslab.de##[aria-label="Advertisement" i] + svg
+igorslab.de##[aria-label="Werbung" i] + svg
+igorslab.de##[aria-label="广告"] + svg
+igorslab.de##div[style*="width:100%;max-width:980px"]
+igorslab.de##a[href^="/"][href$="/"][style][rel][target]
 ||igorslab.de/wp-content/plugins/igorslab-ads-suite/
-igorslab.de#?#a[href^="https://www.igorslab.de/"][style][rel]:matches-attr(href="/^https:\/\/www\.igorslab\.de\/(?:[0-9a-z-]{7,32}\/)+$/")
-igorslab.de#?#span[class]:contains(/^\s*(Advertisement|Werbung|广告)\s*$/)
-igorslab.de##span[style]:has(svg path)
-/^https:\/\/www\.igorslab\.de\/wp-content\/uploads\/202\d\/\d{2}\/(?=[a-z]*\d)(?=\d*[a-z])[0-9a-z]{7,15}\.(?:pn|jp)g$/$image,~third-party,match-case
+/^https:\/\/www\.igorslab\.de\/wp-content\/uploads\/202\d\/\d{2}\/(?=[a-z]*\d)(?=\d*[a-z])[0-9a-z]{7,15}\.(?:pn|jp)g(?:\?[0-9a-z-]{7,16}=[0-9a-z-]{7,16})?$/$image,~third-party,match-case
 /^https:\/\/www\.igorslab\.de\/[0-9a-z]{7,}\/A[\/0-9A-Z_a-z-]{100,}$/$image,~third-party,match-case
 igorslab.de$$script[id="advanced-ads"]
 igorslab.de$$script[id="advads"]
