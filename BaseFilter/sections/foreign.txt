@@ -11,6 +11,10 @@
 !
 ! NOTE: Albanian
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/241628
+gazetaexpress.com##.banner
+gazetaexpress.com##.banner ~ div.mb-4:has(> div.mandeta-ad)
+gazetaexpress.com##div.others:has(> div#mgid_ads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/233991
 koha.net##body > div.container:has(> div.d-flex > div.reklame_live)
 koha.net##.reklama_holder
@@ -762,6 +766,7 @@ valyuta.com##.center-iaz
 ||cbcsport.az/wp-content/uploads/2026/02/kap.mp4
 bakues.az##a[href="https://bakues.az"] > img[src^="https://20nws.upturnlab.com/"]
 publika.az###mvp-main-nav-top + div[style]
+publika.az###mvp-post-content > div[style]:has(> ins[data-revive-zoneid])
 ||trend.az/templates/adv/
 trend.az##div[class^="adv-wrapper-"]
 modern.az##.header_top
@@ -1486,8 +1491,8 @@ mob.hr##.side_banner
 !
 ! NOTE: Czech and Slovakian
 !
-svetserialu.to##.alert_premiumExpired
-svetserialu.to##body > .loader ~ div[class][style*="z-index"]:not([id])
+svetserialu.io,svetserialu.to,svetserialu.*##.alert_premiumExpired
+svetserialu.io,svetserialu.to,svetserialu.*##body > .loader ~ div[class][style*="z-index"]:not([id])
 infotbal.cz##div[data-elementor-type="wp-page"] > .elementor-section[data-settings*="background_background"]:has(.reklama-wrapper)
 hnonline.sk##.container div[class]:has(> div.ad--align)
 ||sector.sk/default-*.aspx
@@ -1589,11 +1594,12 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 akcniceny.cz,autojournal.cz,idos.cz,impuls.cz,lidovky.cz,idnes.cz,expres.cz,antiyoutuber.cz##body .r-main
+! https://github.com/AdguardTeam/AdguardFilters/issues/241227
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241026
-svetserialu.to#@##ads-banner
-svetserialu.to#@##google-ads
-||svetserialu.to/assets/js/popads.js
-||svetserialu.to/assets/js/ads.js
+svetserialu.io,svetserialu.to,svetserialu.*#@##ads-banner
+svetserialu.io,svetserialu.to,svetserialu.*#@##google-ads
+||svetserialu.*/assets/js/popads.js
+||svetserialu.*/assets/js/ads.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231189
 ||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=cnews.cz
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
@@ -5264,11 +5270,16 @@ movie76.com##img[alt="ads"]
 !------------------------------ Italian ------------------------------
 !---------------------------------------------------------------------
 !
+! NOTE: Will be moved to the separate filter.
+!       Track status of https://github.com/AdguardTeam/FiltersRegistry/issues/1249
+!
 ! NOTE: Italian
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/222857
 @@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=m2o.it
 !
+spaziogames.it##.customads__container
+||adm.3labs.it^
 corriere.it##.sponsor-strip
 gazzetta.it###rcsad_Bacheca1
 ||assets.fanpage.it/ciaoprebid-js/*/adstack/sdk/doPrebid.js
@@ -7175,6 +7186,9 @@ joujizz.com##.video-top-wrap > .sb
 !------------------------------ Polish -------------------------------
 !---------------------------------------------------------------------
 !
+! NOTE: Will be moved to the separate filter.
+!       Track status of https://github.com/AdguardTeam/FiltersRegistry/issues/1250
+!
 ! NOTE: Polish
 !
 ! FuckAdBlock Polish
@@ -7208,6 +7222,19 @@ roweroweporady.pl#@#.ad_container
 @@||lib.wtg-ads.com/prebid/prebid_*.js$domain=tvn.pl
 !
 !
+nowawarszawa.pl##.vc_single_image > a[target="_blank"]
+nowawarszawa.pl##.wpb_column > .wpb_wrapper > a[target="blank"]
+24zaglebie.pl,zabrzenews.pl,glivice.pl,24kato.pl,bytomski.pl,nowinytyskie.pl,ngs24.pl,rudzianin.pl,chorzowski.pl,slazag.pl##.doubleAdWrapper
+kr24.pl##.elementor-element > .elementor-widget-container > .elementor-shortcode:has(a.gofollow[data-track])
+kr24.pl#?#.elementor-element > .elementor-widget-container > p:contains(Reklama)
+zgorzelec.info##.l-zgad
+zgorzelec.info##[ng-if="ctrl.variant=='home_promotion'"]
+||zgorzelec.info/api/1/ads/
+||zgorzelec.info/api/1/smalladds/
+lubin.pl##a.gofollow[data-track]
+lubin.pl##.textwidget > div.addblock
+wiemy.to##.wt-one
+vider.pl###video_reklamy
 kolekcjonerki.com##.sidebar > .mb-3:has(> .small + div > .adsbygoogle)
 kolekcjonerki.com##.sidebar > .small:has(+ div[id^="ceneoaffcontainer"])
 krakowportal.pl##div[style="margin: 20px 0; text-align: center;"] > a[target="_blank"]
@@ -7549,6 +7576,11 @@ bieganie.pl#?#.biega-nb-paris > DIV[style^="text-align:"]:contains(Reklama)
 gospodarkamorska.pl##.Home_categories_box > div.polecamy-slider > div[class*="poster-dnone-"]
 onet.pl##a[href^="https://milionymonet.onet.pl/"]
 pograne.eu###custom_html-8
+! https://github.com/AdguardTeam/AdguardFilters/issues/242081
+walbrzyszek.com#@#.advertisement-box
+walbrzyszek.com#@#.ad-banner-300x250
+walbrzyszek.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'showGate')
+walbrzyszek.com#%#//scriptlet('abort-on-stack-trace', 'Promise', 'checkDisplayAvailability')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/239746
 !+ NOT_OPTIMIZED
 cdaction.pl##.start-prm
@@ -7895,10 +7927,14 @@ poszkole.pl#%#//scriptlet('prevent-xhr', 'redefine.hit.stat24.com')
 !#safari_cb_affinity
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/184088
+fxmag.pl##div[class^="ArticleContent-"] > div > p[style="text-align: center;"]:has(+ p[style="text-align: center;"] > a[href^="https://buy.paybis.com/"])
+fxmag.pl##div[class^="ArticleContent-"] > div > p[style="text-align: center;"] + p[style="text-align: center;"]:has(> a[href^="https://buy.paybis.com/"])
+fxmag.pl##div[class^="ArticleContent-"] > div > p[style="text-align: center;"] + p[style="text-align: center;"]:has(> a[href^="https://buy.paybis.com/"]) + hr
 fxmag.pl#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
 fxmag.pl#%#//scriptlet('prevent-element-src-loading', 'script', 'pagead2.googlesyndication.com')
+fxmag.pl#%#(()=>{const t={construct:(t,c,n)=>{try{const t=c[0],n=(new Error).stack;t&&"function"==typeof t&&t.toString().includes(")):void")&&n.includes("detectAnyAdblocker")&&(c[0]=()=>{})}catch(t){}return Reflect.construct(t,c,n)}};window.Promise=new Proxy(window.Promise,t)})();
 !+ NOT_OPTIMIZED
-fxmag.pl##div[class^="AdBlockDetect_container"]
+fxmag.pl##div[class^="AdBlockDetect"]
 !+ NOT_OPTIMIZED
 fxmag.pl##div[class*="Container_header_ad_"] > div[style^="min-height:90px;min-width:1px"]
 !+ NOT_OPTIMIZED
@@ -9174,7 +9210,7 @@ gazetaprawna.pl#@#.ad-slot
 gazetaprawna.pl#@#.ads-container
 gazetaprawna.pl#$#body > .ad.ads { display: block !important; }
 gazetaprawna.pl#%#//scriptlet('prevent-setTimeout', '.display||"hidden"===')
-gazetaprawna.pl##div[data-widget^="AdSlot"]
+forsal.pl,dziennik.pl,gazetaprawna.pl##div[data-widget^="AdSlot"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123886
 gazetaprawna.pl##.infor-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/123904
@@ -10120,10 +10156,12 @@ gifyagusi.pl#%#//scriptlet("set-constant", "adsbygoogle.loaded", "true")
 !+ PLATFORM(ios, ext_android_cb)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=gifyagusi.pl
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83763
-!+ NOT_OPTIMIZED
-gsmmaniak.pl###topMenu > #topMenu-wrapper[style^="width:"][style*="min-height:"]
 mobimaniak.pl,gsmmaniak.pl##.rsidebar > div[style="margin:0 auto 20px auto; text-align:center;"]
 mobimaniak.pl,gsmmaniak.pl##.rsidebar > div[style="margin:0 auto 10px auto; text-align:center; font-size:6px;"]
+mobimaniak.pl,gsmmaniak.pl##div[style="margin:auto auto; text-align:center;min-height:100px;background:#ccc;"]
+mobimaniak.pl,gsmmaniak.pl##div[style="margin:10px auto 2px auto; text-align:center; font-size:8px;color:#aaa;"]
+!+ NOT_OPTIMIZED
+gsmmaniak.pl###topMenu > #topMenu-wrapper[style^="width:"][style*="min-height:"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83653
 film.org.pl##.pubs
 ! https://github.com/AdguardTeam/AdguardFilters/issues/83885
@@ -10210,6 +10248,7 @@ kursjs.pl#%#//scriptlet("set-constant", "canRunAds", "true")
 ! variatkowo.pl - antiadblock
 @@||variatkowo.pl/wp-content/*/dh-anti-adblocker/assets/js/prebid-ads-*.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/76989
+businessinsider.com.pl##ad-default
 businessinsider.com.pl##.onet-ad
 businessinsider.com.pl##.adsContainer
 businessinsider.com.pl##.adSlotWidget
@@ -10532,6 +10571,8 @@ audiostereo.pl##.baner_display
 audiostereo.pl##iframe[src*="/www/delivery/"]
 audiostereo.pl##.adds:has(a[href*="advertisement"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/57609
+tibiopedia.pl##.com_leaderboard
+tibiopedia.pl###rightUserBar > .ad_panel_right
 tibiopedia.pl#%#//scriptlet("set-constant", "adBlockEnabled", "false")
 ! https://github.com/AdguardTeam/AdguardFilters/issues/56790
 dorzeczy.pl##.box-list-item-ad
@@ -11419,6 +11460,9 @@ spottedskarzysko.pl##p[align="center"] > a[target="_blank"][rel="noopener norefe
 ! https://github.com/AdguardTeam/AdguardFilters/issues/28035
 forsal.pl#%#//scriptlet('set-constant', 'canRunAds', 'true')
 @@||static.forsal.pl/js/adverts.js
+! https://github.com/AdguardTeam/AdguardFilters/issues/241518
+skapiec.pl###financing
+skapiec.pl##.product-tab__list > a[href="#financing"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/25773
 skapiec.pl#?##content > .content-wrapper > h2.before-popularshops:has(> .advertisement)
 skapiec.pl#?##content > .content-wrapper > h2.before-popularshops:has(> .advertisement) + div[class="slider-module-container slim no-background"]
@@ -13762,6 +13806,11 @@ asilmedia.org###banner
 !
 ! NOTE: Vietnamese
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/241935
+motchille.ws#%#//scriptlet('set-constant', 'HTMLAnchorElement.prototype.click', 'noopFunc')
+motchille.ws##div.fixed.inset-0
+! https://github.com/AdguardTeam/AdguardFilters/issues/241853
+damconuong.uno#%#//scriptlet('prevent-window-open', '_blank')
 ||vietadx.net^
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234173
 vnjpclub.com##.vnjp-ad-slot
