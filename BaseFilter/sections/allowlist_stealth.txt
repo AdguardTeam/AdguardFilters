@@ -9,6 +9,13 @@
 !
 !############### TEMPORARY ###############
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/242052
+! Probably a bug
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
+@@||ticketlink.co.kr^$stealth=location|useragent|push|webrtc|1p-cookie|donottrack
+! aglint-disable-next-line
+@@||ticketlink.co.kr^$extension='AdGuard Popup Blocker'|'AdGuard Popup Blocker (Beta)'
+!#endif
 ! BUG: https://github.com/AdguardTeam/CoreLibs/issues/1970 (any/no option)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200850
 @@||beinconnect.com.tr^$stealth
@@ -25,8 +32,12 @@
 !
 ! NOTE: Specific rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/241968
+@@||indazn.com^$stealth=3p-auth|referrer,domain=binge.com.au
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241592
 @@||market.yandex.ru/api/$stealth=referrer
+! https://github.com/AdguardTeam/AdguardFilters/issues/242110
+@@||v.kr.kollus.com/s?jwt=$subdocument,stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241674
 @@||gayporntube.net/embed/$stealth=referrer
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241390
