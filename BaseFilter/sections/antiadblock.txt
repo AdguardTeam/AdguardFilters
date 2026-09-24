@@ -1284,13 +1284,6 @@ walftech.com#%#//scriptlet('prevent-element-src-loading', 'script', '/pagead2.go
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241993
 get4all.org#%#//scriptlet('trusted-replace-node-text', 'script', 'networkAdBlocked', 'if (isBaitBlocked()) return true', 'if (isBaitBlocked()) return false')
 get4all.org#%#//scriptlet('trusted-replace-node-text', 'script', 'networkAdBlocked', 'if (networkAdBlocked()) return true', 'if (networkAdBlocked()) return false')
-! Stly / shrtfly.com
-stly.link#%#//scriptlet('abort-on-property-write', '__sfbAdWall')
-!#if (adguard_app_ios || adguard_ext_android_cb)
-@@||stly.link^$generichide
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=stly.link
-@@||static.doubleclick.net/instream/ad_status.js$domain=stly.link
-!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241720
 ff14-tools.com$$script:contains(__ninjaAdMaxAbdLoaded)
 !#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli)
@@ -2576,8 +2569,6 @@ uptopacks.com#@#.AdSense
 ! https://github.com/AdguardTeam/AdguardFilters/issues/221949
 spigotunlocked.com##body > div[class*=" "][style^="background:"]
 spigotunlocked.com##.swal2-container
-! https://github.com/AdguardTeam/AdguardFilters/issues/222016
-yrtourguide.com,technons.com,tournguide.com,digiztechno.com,shrtslug.biz#%#//scriptlet('prevent-xhr', 'adsbygoogle')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/221404
 h5.4j.com#%#//scriptlet('google-ima3')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -4296,6 +4287,16 @@ live.golato.io#@#.ad-placeholder:not(#filter_ads_by_classname):not(#detect_ad_em
 decompiler.com#%#//scriptlet('set-constant', 'ethicalads', 'emptyObj')
 decompiler.com#%#//scriptlet('set-constant', 'ethicalads.wait', 'true', '', 'asResolved')
 decompiler.com#%#//scriptlet('abort-current-inline-script', 'document.createElement', '/disabled-link[\s\S]*?advertisement/')
+!
+! Stly / shrtfly.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/222016
+yrtourguide.com,technons.com,tournguide.com,digiztechno.com,shrtslug.biz#%#//scriptlet('prevent-xhr', 'adsbygoogle')
+tournguide.com,stly.link#%#//scriptlet('abort-on-property-write', '__sfbAdWall')
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||stly.link^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=tournguide.com|stly.link
+@@||static.doubleclick.net/instream/ad_status.js$domain=tournguide.com|stly.link
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/180134
 ! shrtfly
 airevue.net,veroan.com,amalot.net,carribo.net,stfly.biz,stfly.cc#%#//scriptlet('abort-on-property-read', 'abwn')
@@ -4305,6 +4306,7 @@ airevue.net,veroan.com,amalot.net,carribo.net,stfly.biz,stfly.cc#%#//scriptlet('
 @@||cdn.runative-syndicate.com/sdk/v*/bi.js$domain=stfly.cc
 @@||tsyndicate.com/iframes*/$domain=stfly.cc
 !#endif
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181267
 ! https://github.com/AdguardTeam/AdguardFilters/issues/181189
 magicpsd.com,yourimageshare.com,ovabee.com#%#//scriptlet('abort-on-property-write', 'detectAdBlock')
