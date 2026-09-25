@@ -1381,6 +1381,9 @@ fuqqt.com,tubesafari.com,pornkai.com#%#//scriptlet("abort-on-property-read", "lj
 btvsports.lol#%#//scriptlet('remove-attr', 'href', '.page-header a[href^="mailto:"]')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/132285
 watchjavonline.com#%#//scriptlet("prevent-window-open")
+! https://github.com/AdguardTeam/AdguardFilters/issues/242087
+! TODO: Remove when "inject-css-in-shadow-dom" is improved and available in apps
+msn.com#%#(()=>{const t="#displayAdCard { display: none !important; }";let e=null;const o=new WeakMap,n=n=>{if((t=>"adoptedStyleSheets"in t&&"function"==typeof CSSStyleSheet&&"function"==typeof CSSStyleSheet.prototype.replaceSync)(n))try{return void(o=>{if(!e){const o=new CSSStyleSheet;o.replaceSync(t),e=o}const n=o.adoptedStyleSheets;n.includes(e)||(o.adoptedStyleSheets=[...n,e])})(n)}catch{}try{(e=>{if(o.get(e)?.parentNode===e)return;const n=(e.ownerDocument??document).createElement("style");n.textContent=t,e.appendChild(n),o.set(e,n)})(n)}catch{}},a={apply:(t,e,o)=>{const a=Reflect.apply(t,e,o);try{const t=e.getRootNode();t instanceof ShadowRoot&&n(t)}catch{}return a}},c=window.Element.prototype;"function"==typeof c.attachShadow&&(c.attachShadow=new Proxy(c.attachShadow,a))})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/234892
 ! https://github.com/AdguardTeam/AdguardFilters/issues/173054
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167668
