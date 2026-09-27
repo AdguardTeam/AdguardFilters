@@ -172,6 +172,13 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/242392
+! Sibling :has() rules freeze the page for ~10 seconds in iOS 27 Safari
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari || adguard_ext_chromium_mv3)
+dir.bg#@#amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + amp-pixel + amp-pixel)
+dir.bg#@#amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + amp-pixel + div[style^="bottom:0;right:0;width"])
+dir.bg#@#amp-ad-exit + div[class*=" "]:has(+ div[aria-hidden="true"] + div[style^="bottom:0;right:0;width"])
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241987
 @@||embed.sendtonews.com/player3/$domain=bluebirdbanter.com
 @@||mp.mmvideocdn.com/mini-player/$domain=bluebirdbanter.com
