@@ -1276,6 +1276,8 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/243237
+traingon.top#%#//scriptlet('prevent-setTimeout', 'bait')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/243282
 iphonechecker.herokuapp.com#@#.ad-unit:not(.textads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/243285
@@ -1420,15 +1422,19 @@ adslink.pw#%#//scriptlet('prevent-fetch', 'adsbygoogle')
 .srnky.com^
 .clksz.com^
 .aii.sh^
+lnbz.la,clksz.com,aii.sh,srnky.com#%#//scriptlet('abort-on-property-read', 'atob')
 @@||intercelestial.com^$generichide
-@@&_=1$domain=intercelestial.com
-/^(?!.*(\/cdn-cgi\/|\.js\?ver)).*$/$~third-party,script,domain=aii.sh|srnky.com|clksz.com|lnbz.la
+@@/^https:\/\/intercelestial\.com\/[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]\//$domain=intercelestial.com
+/^(?!(https:\/\/[a-z]{3,5}\.[a-z]{2,3}\/cdn-cgi\/|https:\/\/[a-z]{3,5}\.[a-z]{2,3}\/cloud_theme\/build\/js\/script\.min\.js)).*$/$~third-party,script,domain=aii.sh|srnky.com|clksz.com|lnbz.la
 srnky.com,lnbz.la,clksz.com,aii.sh,intercelestial.com#%#//scriptlet('prevent-fetch', 'googlesyndication')
-intercelestial.com,srnky.com,lnbz.la,clksz.com,aii.sh#$#body > script + div:not([class]) { display: none !important; }
+srnky.com,lnbz.la,clksz.com,aii.sh#$#iframe + [style]:not([class]) { display: none !important; }
+srnky.com,lnbz.la,clksz.com,aii.sh#$#slot + div:not([class]) { display: none !important; }
 intercelestial.com,srnky.com,lnbz.la,clksz.com,aii.sh#$#html { overflow: auto !important; }
 $xmlhttprequest,redirect-rule=nooptext,domain=oko.sha|aii.sh|pahe.plus|intercelestial.com|linegee.net|clksz.com|srnky.com|lnbz.la
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari || adguard_ext_chromium_mv3)
-/^https:\/\/[a-z][a-z][a-z]+\.[a-z][a-z]+\/[a-z0-9][a-z0-9][a-z0-9][a-z0-9]+\/[a-z][a-z][a-z]+\.[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9\.]+$/$domain=aii.sh|srnky.com|clksz.com|lnbz.la
+/^https:\/\/[a-z][a-z][a-z]+\.[a-z][a-z]+\/[a-z0-9][a-z0-9][a-z0-9][a-z0-9]+\//$script,domain=aii.sh|srnky.com|clksz.com|lnbz.la
+@@/^https:\/\/[a-z]{3,5}\.[a-z]{2,3}\/cdn-cgi\//$script,domain=aii.sh|srnky.com|clksz.com|lnbz.la
+@@/^https:\/\/[a-z]{3,5}\.[a-z]{2,3}\/cloud_theme\/build\/js\/script\.min\.js/$domain=aii.sh|srnky.com|clksz.com|lnbz.la
 @@||lnbz.la^$generichide
 @@||srnky.com^$generichide
 @@||clksz.com^$generichide
@@ -1460,6 +1466,8 @@ tradingref.com#%#//scriptlet('prevent-element-src-loading', 'script', '/googlesy
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238996
 @@||claimlite.club/static/js/noadblock.js$domain=claimlite.club
+! https://github.com/AdguardTeam/AdguardFilters/issues/243364
+||streamcash.to/js/rtc.js
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238454
 ||streamcash.to/js/detect.js
 streamcash.to#%#//scriptlet('prevent-xhr', 'pagead2.googlesyndication.com')
