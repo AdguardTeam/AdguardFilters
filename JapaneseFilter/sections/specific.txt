@@ -194,17 +194,18 @@ bengo4.com##div[class^="p-static-banner-area"]
 javmix.tv###main > div.pop--excl > div[style*="margin: 0 auto 50px auto;"]
 momon-ga.com,javmix.tv##.pop--excl:has(div[id^="bnc_ad"])
 posfie.com,togetter.com##.amazon_bulk_box
-||pdftoshokan.com^$script,replace=/if\s*\(\s*Math\.abs\s*\([\$-0-9A-Z_a-z]+-[\$-0-9A-Z_a-z]+\)\s*>\s*[\$-0-9A-Z_a-z]+\s*\*\s*\d+(e\d)?\)/if(0)/
+||pdftoshokan.com^$script,replace=/if\s*\(\s*[-\$0-9A-Z_a-z]+-[-\$0-9A-Z_a-z]+\s*>\s*[-\$0-9A-Z_a-z]+\s*\*\d+(e\d)?\s*\)/if(0)/
 ! aglint-disable no-invalid-modifiers
 !+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 ||pdftoshokan.com/window.location.href$urltransform=/window\.location\.href//
 !+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
 ||pdftoshokan.com/manga/window.location.href$urltransform=/manga\/window\.location\.href//
 ! aglint-enable no-invalid-modifiers
-pdftoshokan.com#%#//scriptlet('trusted-replace-argument', 'Math.abs', '0', '120000', '/^179\d{10}$/')
+pdftoshokan.com#%#//scriptlet('trusted-replace-argument', 'Number', '0', '1800000000000', '/^179\d{10}$/')
+pdftoshokan.com#%#//scriptlet('trusted-replace-argument', 'parseInt', '0', '1800000000000', '/^(179\d{10}|null)$/')
 pdftoshokan.com#%#//scriptlet('trusted-replace-outbound-text', 'atob', '/^https:\/\/s\.pemsrv\.com.+/', 'window.location.href')
 pdftoshokan.com#%#//scriptlet('set-constant', 'doAdRedirect', 'noopFunc')
-pdftoshokan.com#%#//scriptlet('prevent-window-open', '/ok_|pemsrv\.com/')
+pdftoshokan.com#%#//scriptlet('prevent-window-open', '/ok_|pemsrv\.com|window\.location\.href/')
 pdftoshokan.com##.post[style="margin-bottom:1rem;"]:has(> #myIframe2)
 pdftoshokan.com###ad-containerx
 hanasone.mainichi.jp##.p-article-trend-lists
@@ -254,7 +255,6 @@ x-shadowban-checker.fia-s.com##div[style="font-size: 13px;"]
 ||socialxup.com/api/sale-accounts
 finance.biggo.jp##div[class^="AdSlot_"]
 ||open.open2ch.net/test/ad.cgi/
-bokete.jp##div[style="width: 100%; height: 90px; display: flex; justify-content: center; align-items: center;"]
 andgirl.jp##.kyujin-box-wrap
 anglers.jp##.custom_campaign_pr
 juno-beauty-pe.com##.js-coupon-modal
@@ -296,13 +296,23 @@ fo76db.com#$##fo-ad-modal { display: none !important; }
 fo76db.com#$#body.swiper { overflow: auto !important; position: static !important; }
 fo76db.com#%#//scriptlet('trusted-replace-node-text', 'script', 'ads', '/ ads\.map[\S\s\n]+?join\(\'\'\)/', '')
 fo76db.com##body > div#toast ~ *:not(div, link, script)
+! aglint-disable no-invalid-modifiers
+!+ NOT_VALIDATE PLATFORM(windows, mac, android, cli)
+/?catalog_visit=$urltransform=/\?catalog_visit=.+//,domain=genshin-soku.com|monhan-soku.com|xn--gckdevd5myivf.site|yamiisoku.com
+! aglint-enable no-invalid-modifiers
+/admin-ajax.php?$domain=genshin-soku.com|monhan-soku.com|xn--gckdevd5myivf.site|yamiisoku.com
 /yamiisoku-product-link/*$domain=genshin-soku.com|monhan-soku.com|xn--gckdevd5myivf.site|yamiisoku.com
 /wp-json/*$domain=genshin-soku.com|monhan-soku.com|xn--gckdevd5myivf.site|yamiisoku.com
-genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##.pdx-catalog-widget
-genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##.rkx-catalog-sections
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##.catalog-content
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[class*="pdx-"]
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com#?#a:not(.yrss-list__a):matches-attr("href"="/^.{100,}/")
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com#?#a:matches-attr("/^data-/")
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##a[rel*="sponsored"]:not(.aedr-form__purchase[href="https://amzn.to/4g4yOhg"])
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[href*="aHR0"]
 genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[href*="amazon.co.jp" i]
 genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[href*="amzn.to" i]:not(.aedr-form__purchase[href="https://amzn.to/4g4yOhg"])
 genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[href*="link.amazon" i]
+genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[id*="-remote"]
 genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site,yamiisoku.com##[class*="-remote"]
 genshin-soku.com,monhan-soku.com,xn--gckdevd5myivf.site##.promo-box
 monhan-soku.com###ymsa-full-zucks
@@ -5048,7 +5058,7 @@ seijiyama.jp##.koukoku1
 seijiyama.jp##.koukoku2
 seijiyama.jp##.ranking_prbox
 aprico-media.com##.u-ta-center:not(.u-mt-10):not(#new_comment > .u-ta-center)
-cgworld.jp,bokete.jp,friday.kodansha.co.jp,mx-timeline.nan-net.jp,er-animal.jp,kumanichi.com,rkb.jp##div[style$="min-height: 250px;"]
+cgworld.jp,friday.kodansha.co.jp,mx-timeline.nan-net.jp,er-animal.jp,kumanichi.com,rkb.jp##div[style$="min-height: 250px;"]
 qoly.jp##div[style="height:90px; width:728px;"]
 er-animal.jp###pc_article_right_1
 ecodb.net##.hd2
@@ -5664,7 +5674,7 @@ bizspa.jp###innerAdsense
 bizspa.jp##.page-ad-wrap
 appllio.com##.ad-appllio-Bottom
 appllio.com##.ad-appllio-Title
-vague.style,bokete.jp,eroita.net,adacomi.com,mwed.jp,e-nenpi.com,egolf.jp##div[style^="min-height:250px"]
+vague.style,eroita.net,adacomi.com,mwed.jp,e-nenpi.com,egolf.jp##div[style^="min-height:250px"]
 merkmal-biz.jp##.box[style="min-height:900px"]
 lasisa.net##aside.box
 lasisa.net#$?#li.swiper-slide-job-offer { remove: true; }
@@ -7640,20 +7650,12 @@ fx-koryaku.com##.textwidget > center > a[target="_blank"]
 ||dmm.co.jp^$popup,domain=exploader.net
 [$path=/(^\\/$|\\/free|\\/search|\\/preview|\\/tag)/]exploader.net##a[target="_blank"][style*="display"] img
 [$path=/(^\\/$|\\/free|\\/search|\\/preview|\\/tag)/]exploader.net##a[href^="https://al.dmm.co.jp"]
-exploader.net###fanza_top_sale_1
-exploader.net###fanza_top_sale_2
-exploader.net##article > div:not([class]):not([id]):not([style]) > div[style*="305px"][div*="750px"]
+exploader.net#%#//scriptlet('trusted-set-attr', '#firstpop', 'style', 'top: -3000px;')
+exploader.net##div[style^="display: flex;min-height: 232px;align-items: center;"]
+exploader.net##aside > div > div[style="margin-bottom: 5px;min-height: 305px;border: 2px solid rgb(133, 50, 18);"]
 exploader.net##article > div[style="display: flex; align-items: center; margin-bottom: 5px;"]
-exploader.net###preview_images > div[style^="max-width: 560px; position: relative; height: "] > div.h_items[style="margin-bottom: 10px;"]
-exploader.net###preview_images > span[class^="tracking_"]
-exploader.net###newfiles > ul.list > li[style*="height: 120px;"]
-exploader.net###wrapper > div[data-style][style*="fixed"]
-exploader.net##a[link*="al.dmm.co.jp"]
-exploader.net##article > div[style*="305px"][style*="align-items:"]
-exploader.net##body ul.list > li[style="clear: left;width: calc(100% + 3px) !important;margin-right: -1px;height: 120px;margin-left: -2px;float: none;display: block !important;"]
-exploader.net##.tag + div[class]
-hobonichierog.com,coromoo.com##div[class$="-ad"]
-news.denfaminicogamer.jp,coromoo.com##.amazon-link
+hobonichierog.com##div[class$="-ad"]
+news.denfaminicogamer.jp##.amazon-link
 ||spox.com/daznpic/$subdocument,domain=full-count.jp
 zokugo-dict.com###goomid
 zokugo-dict.com###shop td
@@ -8252,7 +8254,7 @@ yamagata-np.jp##div[class^="ad_superbanner_"]
 ken-g.com###ggl-wrapper
 ken-g.com###ggl-wrapper + hr
 ken-g.com##.ggl03
-bokete.jp,eigaland.com,javfan.one,nyahentai.*,shikotch.in,happycampus.co.jp,h1g.jp,javmix.*,momon-ga.com##div[style^="width: 300px; height: 250px"]
+eigaland.com,javfan.one,nyahentai.*,shikotch.in,happycampus.co.jp,h1g.jp,javmix.*,momon-ga.com##div[style^="width: 300px; height: 250px"]
 rurubu.jp##.p-article-slider > ul.p-article-group__list
 negisoku.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'Fixed')
 negisoku.com##div[style="position:fixed;bottom:0;right:0;z-index:9999;"]
