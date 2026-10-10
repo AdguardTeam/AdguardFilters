@@ -4,11 +4,17 @@
 <p align="center">
     <img width="275" alt="AdGuard Filters logo" src="https://cdn.adtidy.org/website/github.com/AdguardFilters/viking.svg" />
 </p>
-
 <h1 align="center">AdGuard Filters</h1>
-<h3 align="center">The place where ad trackers are actually blocked</h3>
+<p align="center">
+    The place where ad trackers are actually blocked.
+</p>
 
 <p align="center">
+    <a href="https://adguard.com/">Website</a> |
+    <a href="https://reddit.com/r/Adguard">Reddit</a> |
+    <a href="https://x.com/AdGuard">X</a> |
+    <a href="https://t.me/adguard_en">Telegram</a>
+    <br /><br />
     <a href="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml" target="_blank"><img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/aglint.yml/badge.svg?branch=master" alt="AGLint status"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/pages/pages-build-deployment" target="_blank"><img src="https://github.com/AdguardTeam/AdguardFilters/actions/workflows/pages/pages-build-deployment/badge.svg?branch=master" alt="GitHub Pages deployment"></a>
 </p>
@@ -19,7 +25,7 @@
     <a href="https://github.com/AdguardTeam/AdguardFilters/graphs/commit-activity" target="_blank"><img src="https://img.shields.io/github/commit-activity/m/AdguardTeam/AdguardFilters" alt="GitHub commit activity"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/issues" target="_blank"><img src="https://img.shields.io/github/issues/AdguardTeam/AdguardFilters" alt="GitHub issues"></a>
     <a href="https://github.com/AdguardTeam/AdguardFilters/issues?q=is%3Aissue+is%3Aclosed" target="_blank"><img src="https://img.shields.io/github/issues-closed/AdguardTeam/AdguardFilters" alt="GitHub closed issues"></a>
-</p>
+</p><br />
 <!-- markdownlint-restore -->
 
 This is the place where we create filters for [AdGuard][adguard] and other
@@ -34,10 +40,25 @@ Our filters are constantly updated. This repository allows anyone to bring our
 attention to anything from overlooked ads to false positives, helping us refine
 our filters, improve them, and keep them current.
 
-We are proud of the fact that AdGuard Filters are among the most actively
+We are proud of the fact that AdGuard filters are among the most actively
 developed content-blocking filter lists available, if not the most.
 
 [adguard]: https://adguard.com/
+
+<!-- markdownlint-disable -->
+<br />
+
+* [AdGuard Filters Policy](#filterspolicy)
+* [Contribution](#contribution)
+  * [How to report an issue](#issue)
+  * [Suggest filtering rules](#suggest)
+  * [Translating AdGuard](#contribution-translating)
+  * [Other options](#contribution-other)
+
+<br />
+<!-- markdownlint-restore -->
+
+<a id="filterspolicy"></a>
 
 ## AdGuard Filters Policy
 
@@ -45,7 +66,9 @@ Our filter policy is available [here][policy].
 
 [policy]: https://adguard.com/kb/general/ad-filtering/filter-policy/
 
-## Contributing to AdGuard
+<a id="contribution"></a>
+
+## Contribution
 
 We are blessed to have a community that does not only love AdGuard, but also
 gives back. A lot of people volunteer in various ways to make other users'
@@ -53,13 +76,22 @@ experience with AdGuard better, and you can join them! We, on our part, can
 only be happy to reward the most active members of the community.
 So, what can you do?
 
-### Report Issues
+<a id="issue"></a>
 
-To submit a report, please use this [reporting tool][report].
+### How to report an issue
 
-[report]: https://agrd.io/report
+GitHub can be used to report a bug or to submit a feature request. To do so,
+go to [this page][issues] and click the *New issue* button.
 
-### Suggest Filtering Rules
+>**Note:** for the filter-related issues (missed ads, false positives etc.)
+>use our [reporting tool][tool].
+
+[issues]: https://github.com/AdguardTeam/AdguardFilters/issues
+[tool]: https://link.adtidy.org/forward.html?action=report&app=home&from=github
+
+<a id="suggest"></a>
+
+### Suggest filtering rules
 
 You will find a lot of open issues, each one referencing a problem with some
 website — a missed ad, a false positive etc. — choose any one and suggest your
@@ -72,9 +104,19 @@ filtering rules.
 
 [documentation]: https://adguard.com/kb/general/ad-filtering/create-own-filters/
 
-### Other ways to contribute
+<a id="contribution-translating"></a>
 
-Here is [a dedicated page][contribute] for people willing to contribute to
-AdGuard.
+### Translating AdGuard
 
-[contribute]: https://adguard.com/contribute.html
+If you want to help with AdGuard translations, please learn more about
+translating our products [here][translate].
+
+[translate]: https://adguard.com/kb/miscellaneous/contribute/translate/program/
+
+<a id="contribution-other"></a>
+
+### Other options
+
+Here is a [dedicated page][other] for those who are willing to contribute.
+
+[other]: https://adguard.com/contribute.html
