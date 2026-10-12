@@ -1038,6 +1038,8 @@ www.youtube.com#%#//scriptlet('json-prune', 'ytInitialData.contents.twoColumnBro
 www.youtube.com#%#(()=>{let t=!1;const i={apply:(i,n,a)=>{try{!t&&window.ytInitialData&&(window.ytInitialData=JSON.parse(JSON.stringify(window.ytInitialData)),t=!0)}catch(t){}return Reflect.apply(i,n,a)}};window.Promise.prototype.then=new Proxy(window.Promise.prototype.then,i)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203236#issuecomment-3911413190
 www.youtube.com#%#//scriptlet('set-constant', 'ytcfg.data_.EXPERIMENT_FLAGS.web_streaming_watch', 'false')
+! Fixes muting videos when `web_streaming_watch` is set to `true`
+www.youtube.com#%#//scriptlet('json-prune', '$.playerResponse[?(@.cards&&!@.playabilityStatus.miniplayer)].playerConfig.audioConfig.muteOnStart')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/203236#issuecomment-3902013966
 ! https://github.com/AdguardTeam/AdguardFilters/issues/239516#issuecomment-5747844181
 ! Viewer count and other elements are not updating automatically when rule below is applied
