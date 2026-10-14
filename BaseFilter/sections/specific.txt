@@ -24449,6 +24449,11 @@ giantfreakinrobot.com##.pw-leaderboard-btf-container
 ! https://github.com/AdguardTeam/AdguardFilters/issues/91687
 !+ NOT_OPTIMIZED
 siasat.com##.stream-item-in-post
+! https://github.com/AdguardTeam/AdguardFilters/issues/244243
+! Required to fix loading AdGuard content script
+! Website uses service worker and AdGuard content script is not loaded correctly without this rule
+!+ PLATFORM(windows, mac, android, cli)
+||nesninja.com/sw.js$replace=/(const url = new URL\(event\.request\.url\);)/\$1 if(url.origin!==self.location.origin)return;/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/152773
 ! It's necessary to block service worker, otherwise element hiding and javascript rules do not work
 !+ PLATFORM(windows, mac, android, cli)
