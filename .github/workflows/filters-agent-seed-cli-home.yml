@@ -1,0 +1,28 @@
+# Activates the AdGuard licence once and saves the activated AdGuard CLI home to the Actions cache.
+# Every filters-agent run restores it and shares its one licence device.
+#
+# Run it by hand when filters-agent runs log "seeded licence not active", after an AdGuard CLI
+# release bump, or after the cache was evicted (seven days without a run). Each seed binds one more
+# licence device: unlink the replaced one in the AdGuard account.
+#
+# Fork pull request workflows can read this cache, so they must require a maintainer's approval
+# (Settings → Actions → "Require approval for all external contributors").
+name: filters-agent seed CLI home
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Activate the licence once and save the seed
+        uses: AdguardTeam/FiltersAgent/adguard-cli@v1
+        env:
+          ADGUARD_LICENSE_KEY: ${{ secrets.ADGUARD_LICENSE_KEY }}
+        with:
+          seedHome: 'true'
