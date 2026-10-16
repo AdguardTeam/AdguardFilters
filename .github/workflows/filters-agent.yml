@@ -1,0 +1,56 @@
+# Runs FiltersAgent (https://github.com/AdguardTeam/FiltersAgent) on an issue when a maintainer adds
+# the `filters-agent` label. The agent reproduces the report in a browser with AdGuard Browser
+# Extension, checks a candidate rule and posts its report as an issue comment. It commits nothing.
+name: filters-agent
+
+on:
+  # Every run is a paid LLM call, so a run starts only on the label a maintainer adds. GitHub
+  # cannot filter `labeled` by label name, so the job checks it.
+  issues:
+    types:
+      - labeled
+
+# Read-only contents: the agent gets no write access to the filters. Screenshots stay in the run
+# artifacts.
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  analyze:
+    if: ${{ github.event.label.name == 'filters-agent' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Keeps the token out of .git/config in the workspace the agent works in.
+          persist-credentials: false
+
+      - name: Analyze the issue
+        id: agent
+        uses: AdguardTeam/FiltersAgent@v1
+        with:
+          githubToken: ${{ github.token }}
+          llmBaseUrl: ${{ secrets.FILTERS_AGENT_LLM_BASE_URL }}
+          llmApiKey: ${{ secrets.FILTERS_AGENT_LLM_API_KEY }}
+          llmModel: ${{ vars.FILTERS_AGENT_LLM_MODEL }}
+          llmVisionModel: gemini-3.7-flash
+          llmContextWindowTokens: '1048576'
+          llmMaxOutputTokens: '384000'
+          llmVisionMaxOutputTokens: '65536'
+          llmRequestMaxAttempts: '3'
+          # The label is a maintainer's request: report even when a maintainer is already on the
+          # issue.
+          force: 'true'
+          excludedLabels: NSFW
+          inProgressLabels: 'A: In progress'
+          reportBots: adguard-bot
+          issueNumber: ${{ github.event.issue.number }}
+
+      - name: Upload run artifacts
+        if: ${{ !cancelled() && steps.agent.outputs.artifacts-dir != '' }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: filters-agent-artifacts-${{ github.run_number }}
+          path: ${{ steps.agent.outputs.artifacts-dir }}
