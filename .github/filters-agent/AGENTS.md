@@ -30,8 +30,8 @@ needed; a maintainer checks it and decides.
   or popup that detects the ad blocker and asks to disable it or to allowlist the site. A page in
   German is not enough, and the reporter's choice of "anti-adblock" as the problem type is not
   evidence: check what the page itself shows.
-- Any other anti-adblock wall: write a rule only after the network log shows the detector script;
-  without it, hand the report to a maintainer.
+- Any other anti-adblock wall: write a rule only once the page's requests the agent captured show
+  the detector script; without it, hand the report to a maintainer.
 - Not anti-adblock at all: scam, phishing, fake virus or tech-support pages, malware downloads.
   None of the rules above applies; handle the report like any other, for example with a rule
   that blocks the dangerous page.
@@ -42,21 +42,20 @@ How this repository's maintainers write rules. These rules come on top of the do
 take precedence over the agent's own judgement of which rule is best. Maintainers add a rule here
 whenever they keep fixing the agent's proposals the same way.
 
-### Anti-adblock popups: disable the detector, do not hide the popup
+### Anti-adblock popups: hide the popup when that is enough
 
-When a site shows an anti-adblock popup or wall, do not propose a cosmetic rule that hides the
-popup: the detector keeps running, so the site can still lock content or show the popup in another
-layout. Find the script that detects the blocker and neutralize it with a scriptlet, usually
-`set-constant` or `abort-on-property-read` on the detector's property.
+A cosmetic rule that hides the popup is fine when the page then works: the content is unlocked,
+scrolling works and the popup does not come back. Neutralize the detector with a scriptlet
+(usually `set-constant` or `abort-on-property-read`) only when hiding is not enough.
 
-Many sites share one detector, and `BaseFilter/sections/antiadblock.txt` groups its rules by the
-detector: a comment naming it, then one rule listing every site. When the detector is already
-there, add the reported domain to that rule instead of writing a new one.
+### Shared rules: extend them, but not the ones grouped by project
 
-Example, AdguardTeam/AdguardFilters#243463 (wzielonej.pl, anti-adblock popup):
+Many rules in every filter are shared by several sites: one rule listing every domain, often under
+a comment naming the script or service it targets. When the fix fits an existing shared rule, add
+the reported domain to that rule instead of writing a new one. Do not add a domain to a group of
+rules kept for one project: those belong to that project's sites only.
 
-- Agent's rule, hides the popup only: `wzielonej.pl###tie-popup-adblock`
-- Maintainer's fix: `wzielonej.pl` added to the shared rule under
-  `! 'tie.ad_blocker_detector' (tie-popup-adblock)`, which is
-  `#%#//scriptlet("set-constant", "tie.ad_blocker_detector", "")`
-
+Example, AdguardTeam/AdguardFilters#243463 (wzielonej.pl, anti-adblock popup): the site runs a
+detector that `BaseFilter/sections/antiadblock.txt` already handles, so the fix is `wzielonej.pl`
+added to the shared rule under `! 'tie.ad_blocker_detector' (tie-popup-adblock)`, which is
+`#%#//scriptlet("set-constant", "tie.ad_blocker_detector", "")`.
