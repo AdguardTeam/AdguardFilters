@@ -47,7 +47,9 @@ jobs:
           llmModel: deepseek-flash
           llmVisionModel: gemini-3.7-flash
           llmContextWindowTokens: '1048576'
-          llmMaxOutputTokens: '384000'
+          # A cap well above the heaviest real turn (~18k tokens with reasoning): a model that loops
+          # stops in minutes instead of running until the gateway cuts the stream.
+          llmMaxOutputTokens: '65536'
           llmVisionMaxOutputTokens: '65536'
           llmRequestMaxAttempts: '3'
           blockerModules: ${{ steps.adguard-cli.outputs.manifest }}
