@@ -1,0 +1,70 @@
+# Runs FiltersAgent (https://github.com/AdguardTeam/FiltersAgent) on an issue when a maintainer adds
+# the `filters-agent` label. The agent reproduces the report in a browser with AdGuard Browser
+# Extension or AdGuard CLI, checks a candidate rule and posts its report as an issue comment. It
+# commits nothing.
+name: filters-agent
+
+on:
+  # Every run is a paid LLM call, so a run starts only on the label a maintainer adds. GitHub
+  # cannot filter `labeled` by label name, so the job checks it.
+  issues:
+    types:
+      - labeled
+
+# The report comment posts from the workflow token. `contents: write` lets the run commit the before
+# and after screenshots of a verified rule to the `filters-agent-screenshots` branch, which the
+# comment shows them from.
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  analyze:
+    if: ${{ github.event.label.name == 'filters-agent' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Keeps the token out of .git/config in the workspace the agent works in.
+          persist-credentials: false
+
+      # AdGuard CLI for reports from desktop and mobile apps, plus the activated CLI home seeded by
+      # filters-agent-seed-cli-home.yml.
+      - name: Install the AdGuard CLI module
+        id: adguard-cli
+        uses: AdguardTeam/FiltersAgent/adguard-cli@v1
+
+      - name: Analyze the issue
+        id: agent
+        uses: AdguardTeam/FiltersAgent@v1
+        env:
+          ADGUARD_LICENSE_KEY: ${{ secrets.ADGUARD_LICENSE_KEY }}
+        with:
+          githubToken: ${{ github.token }}
+          llmBaseUrl: ${{ secrets.FILTERS_AGENT_LLM_BASE_URL }}
+          llmApiKey: ${{ secrets.FILTERS_AGENT_LLM_API_KEY }}
+          llmModel: deepseek-flash
+          llmVisionModel: gemini-3.7-flash
+          llmContextWindowTokens: '1048576'
+          # A cap well above the heaviest real turn (~18k tokens with reasoning): a model that loops
+          # stops in minutes instead of running until the gateway cuts the stream.
+          llmMaxOutputTokens: '65536'
+          llmVisionMaxOutputTokens: '65536'
+          llmRequestMaxAttempts: '3'
+          blockerModules: ${{ steps.adguard-cli.outputs.manifest }}
+          executors: browser_extension,adguard_cli
+          # The label is a maintainer's request: report even when a maintainer is already on the
+          # issue.
+          force: 'true'
+          excludedLabels: NSFW
+          inProgressLabels: 'A: In progress'
+          reportBots: adguard-bot
+          issueNumber: ${{ github.event.issue.number }}
+
+      - name: Upload run artifacts
+        if: ${{ !cancelled() && steps.agent.outputs.artifacts-dir != '' }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: filters-agent-artifacts-${{ github.run_number }}
+          path: ${{ steps.agent.outputs.artifacts-dir }}
