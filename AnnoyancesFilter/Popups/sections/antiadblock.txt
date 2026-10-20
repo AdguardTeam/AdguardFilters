@@ -115,6 +115,7 @@ ya.ru,yandex.*##ul[id] > li:has(> div.Organic > div.Organic-Subtitle > div.Organ
 ya.ru,yandex.*##ul[id] > li[class*="Organic"]:has(> div.Root a[href*="_crpd"] > div.Organic-OfferThumbWrap)
 ya.ru,yandex.*##ul[id] > li:has(> div.Root_inited > div[class*="Organic"] > div[class$="-Header"] > h2 + div > span)
 ! the ad is on the right side, which is mostly non-reproducible
+ya.ru,yandex.*##div[id^="advRsyaReact_"]
 [$path=/search]ya.ru,yandex.*#%#//scriptlet('remove-node-text', 'script', '/^window\.Ya.*pcodeParams.*renderTo/')
 ! In the feed
 ya.ru##.feed > div > ul > li.feed__item:has(div[id*="R-I-"])
@@ -721,8 +722,11 @@ armidaleexpress.com.au,bendigoadvertiser.com.au,canberratimes.com.au,centralwest
 ! The rules for content blockers only:
 ! LINK: AnnoyancesFilter/Popups/sections/antiadblock.txt#content_blockers
 !
-prozed.com###xdBox
-prozed.com##.modal-backdrop
+lofi-nopixel.com#%#//scriptlet('abort-on-property-read', 'nitroAds')
+||mangatek.com/_astro/AdblockDetector.
+||urlrating.com/rainbow/master-js
+galactictec.com,seomaking.com,h-supertools.us,theseotools.net,seotoolslite.com,seosystem.net,seospro.com,seoboxpro.com,webto.in,hashdigitaltools.com,prozed.com,prozed.com###xdBox
+galactictec.com,seomaking.com,h-supertools.us,theseotools.net,seotoolslite.com,seosystem.net,seospro.com,seoboxpro.com,webto.in,hashdigitaltools.com,prozed.com,prozed.com##.modal-backdrop
 bolognatoday.it#%#//scriptlet('prevent-setTimeout', 'adblock')
 igorslab.de##.ilab-adblocker-notice
 komiku.org#$##ab-overlay { display: none !important; }
@@ -2344,6 +2348,11 @@ socialblade.com##div[style^="width: px; height: 250px;"]
 creativeuncut.com###abox-s_i
 creativeuncut.com###g_abox
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/244734
+fenixplay.xyz#%#//scriptlet('set-constant', 'FENIX_ADBLOCK_MODE', 'undefined')
+!+ PLATFORM(ios, ext_safari, ext_android_cb)
+@@||fenixplay.xyz/player/*.js?cb=$domain=fenixplay.xyz|anitube.in.ua
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/237040
 toolskitpro.net#%#//scriptlet('prevent-setTimeout', 'ad_blocker')
 !+ PLATFORM(ios, ext_safari, ext_android_cb)
@@ -3608,6 +3617,7 @@ aol.com#$#.ad__tile { height: 10px!important; position: absolute!important; left
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 !#safari_cb_affinity(general)
 !
+@@||s.nitropay.com/*.gif?*&adslot=$domain=lofi-nopixel.com
 bolognatoday.it#@#.ad-unit:not(.textads)
 bolognatoday.it#@##ad_banner
 bolognatoday.it#@#div[id^="div-gpt-"]
