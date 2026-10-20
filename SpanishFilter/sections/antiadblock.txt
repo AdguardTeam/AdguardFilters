@@ -9,6 +9,13 @@
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/244705
+novelaocs.top#%#//scriptlet('prevent-setTimeout', 'revisarPublicidad')
+novelaocs.top#%#//scriptlet('abort-on-stack-trace', 'Element.prototype.removeAttribute', 'Publicidad')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||novelaocs.top^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=novelaocs.top
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/244498
 www2.clubvideostv.com$$script:contains(lockScreen)
 www2.clubvideostv.com#%#//scriptlet('remove-node-text', 'script', 'lockScreen')
@@ -77,6 +84,10 @@ hardwarepremium.com#@#.sponsored-ad
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238502
 otakufilmes.org#$#body { overflow: auto !important; }
 otakufilmes.org#$##adblock-overlay { display: none !important; }
+otakufilmes.org#%#//scriptlet('remove-attr', 'inert', 'body > [inert]')
+otakufilmes.org#%#//scriptlet('trusted-set-constant', 'otakuAdsState', 'clear')
+otakufilmes.org#%#//scriptlet('prevent-fetch', '/(?:a-ads|freitarriver)\.com/')
+otakufilmes.org#%#//scriptlet('trusted-replace-argument', 'Document.prototype.querySelector', '0', 'body', '#frame-top iframe')
 otakufilmes.org#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'adblock')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=otakufilmes.org
