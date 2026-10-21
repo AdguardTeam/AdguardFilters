@@ -6,6 +6,30 @@
 ! Bad: /banner.jpg (should be in general_url.txt)
 ! Bad: host rules with partial blocking (for example $domain, content type and redirect modifiers)
 !
+! https://github.com/AdguardTeam/cname-trackers/issues/30
+! TODO: remove once the issue is resolved
+||tagman.britishairways.com^
+!#if (!adguard_ext_safari && !adguard_app_ios && !adguard_ext_android_cb)
+! https://github.com/AdguardTeam/AdguardFilters/issues/25467
+||ct.pinterest.com^
+!#endif
+!
+! This rule breaks Australian sites
+!+ NOT_PLATFORM(ios, ext_safari, ext_android_cb)
+||tags.news.com.au^$~script
+!
+! countly.com
+||countly.
+||countly-
+! https://github.com/AdguardTeam/AdGuardSDNSFilter/issues/344
+! Disabled in DNS filter
+!+ PLATFORM(windows, mac, android, cli)
+||incoming.telemetry.mozilla.org^
+! Blocking piwik analytics subdomain(for DNS filtering)
+|piwik.
+!
+! NOTE: Specific rules
+!
 ||199.teieparm.tv^
 ||analytics.corretoranadja.com.br^
 ||analytics.dunlio.com^
@@ -973,28 +997,6 @@
 ||z.repackify.com^
 ||zaehler.ratsrunde.de^
 ||zahlen.tours-finder.com^
-! https://github.com/AdguardTeam/cname-trackers/issues/30
-! TODO: remove once the issue is resolved
-||tagman.britishairways.com^
-!#if (!adguard_ext_safari && !adguard_app_ios && !adguard_ext_android_cb)
-! https://github.com/AdguardTeam/AdguardFilters/issues/25467
-||ct.pinterest.com^
-!#endif
-!
-! This rule breaks Australian sites
-!+ NOT_PLATFORM(ios, ext_safari, ext_android_cb)
-||tags.news.com.au^$~script
-!
-! countly.com
-||countly.
-||countly-
-! https://github.com/AdguardTeam/AdGuardSDNSFilter/issues/344
-! Disabled in DNS filter
-!+ PLATFORM(windows, mac, android, cli)
-||incoming.telemetry.mozilla.org^
-! Blocking piwik analytics subdomain(for DNS filtering)
-|piwik.
-!
 ||tracks.hackmd.io^
 ||bigdata-scfx-push.kucoin.plus^
 ||config.trackingplan.com^
