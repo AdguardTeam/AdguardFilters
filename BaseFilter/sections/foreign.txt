@@ -14019,10 +14019,16 @@ cliphotnews.*##a[href="javascript:x_catfish();"]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/221196
 lxmanga.*#%#//scriptlet('set-constant', 'skipAdblockCheck', 'true')
 lxmanga.*#%#//scriptlet('trusted-set-constant', 'domain', '["https://lxmanga.my/js/read.js"]')
+! https://github.com/AdguardTeam/AdguardFilters/issues/245037
 ! https://github.com/AdguardTeam/AdguardFilters/issues/192655
-||imasdk.googleapis.com/js/sdkloader/ima3.js$script,redirect=google-ima3,domain=danet.vn
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
+danet.vn#%#//scriptlet('trusted-replace-argument', 'String.prototype.includes', '0', '""', 'imasdk.googleapis.com/js/sdkloader/ima3')
+danet.vn#%#//scriptlet('prevent-fetch', '.js?_=')
+danet.vn#%#//scriptlet('google-ima3')
+||danet.vn/_next/static/chunks/*.js$script,replace=/return!!t\.length/return false/
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=danet.vn
+@@.js?_=$xmlhttprequest,domain=danet.vn
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/191689
 sign.codevn.net#%#//scriptlet('prevent-element-src-loading', 'script', 'adsbygoogle')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/190278
