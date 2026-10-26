@@ -1,14 +1,15 @@
-# Runs FiltersAgent (https://github.com/AdguardTeam/FiltersAgent) on an issue when a maintainer adds
-# the `filters-agent` label. The agent reproduces the report in a browser with AdGuard Browser
-# Extension or AdGuard CLI, checks a candidate rule and posts its report as an issue comment. It
-# commits nothing.
+# Runs FiltersAgent (https://github.com/AdguardTeam/FiltersAgent) on every new issue, and on an
+# issue a maintainer adds the `filters-agent` label to. The agent reproduces the report in a browser
+# with AdGuard Browser Extension or AdGuard CLI, checks a candidate rule and posts its report as an
+# issue comment. It commits nothing.
 name: filters-agent
 
 on:
-  # Every run is a paid LLM call, so a run starts only on the label a maintainer adds. GitHub
-  # cannot filter `labeled` by label name, so the job checks it.
+  # `opened` covers every new issue, `labeled` is a maintainer's manual trigger. GitHub cannot
+  # filter `labeled` by label name, so the job checks it.
   issues:
     types:
+      - opened
       - labeled
 
 # The report comment posts from the workflow token. `contents: write` lets the run commit the before
@@ -20,7 +21,11 @@ permissions:
 
 jobs:
   analyze:
-    if: ${{ github.event.label.name == 'filters-agent' }}
+    if: ${{ github.event.action == 'opened' || github.event.label.name == 'filters-agent' }}
+    # An issue opened with the label, or labeled while its run is going, starts a second run. It
+    # waits for the first one instead of investigating the issue in parallel.
+    concurrency:
+      group: filters-agent-${{ github.event.issue.number }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -44,19 +49,19 @@ jobs:
           githubToken: ${{ github.token }}
           llmBaseUrl: ${{ secrets.FILTERS_AGENT_LLM_BASE_URL }}
           llmApiKey: ${{ secrets.FILTERS_AGENT_LLM_API_KEY }}
+          # Reads the screenshots too: the workflow sets no separate vision model.
           llmModel: deepseek-flash
-          llmVisionModel: gemini-3.7-flash
           llmContextWindowTokens: '1048576'
           # A cap well above the heaviest real turn (~18k tokens with reasoning): a model that loops
           # stops in minutes instead of running until the gateway cuts the stream.
           llmMaxOutputTokens: '65536'
-          llmVisionMaxOutputTokens: '65536'
           llmRequestMaxAttempts: '3'
           blockerModules: ${{ steps.adguard-cli.outputs.manifest }}
           executors: browser_extension,adguard_cli
           # The label is a maintainer's request: report even when a maintainer is already on the
-          # issue.
-          force: 'true'
+          # issue, and post a notice when the run fails. A run on a new issue stays silent in both
+          # cases.
+          force: ${{ github.event.action == 'labeled' }}
           excludedLabels: NSFW
           inProgressLabels: 'A: In progress'
           reportBots: adguard-bot
