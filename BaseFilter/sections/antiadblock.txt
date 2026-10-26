@@ -1277,6 +1277,11 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/245401
+!+ NOT_PLATFORM(ext_chromium_mv3, ext_ff)
+content.st#%#Object.defineProperty(window,"BlockCheck",{get:()=>({check:()=>Promise.resolve("")}),set:e=>{}});
+!+ PLATFORM(ext_chromium_mv3, ext_ff)
+content.st#%#//scriptlet('trusted-create-element', 'head', 'script', '', 'Object.defineProperty(window,"BlockCheck",{get:()=>({check:()=>Promise.resolve("")}),set:e=>{}});')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/245449
 app.tobari.moe#%#//scriptlet('prevent-setTimeout', 'show')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/244659
