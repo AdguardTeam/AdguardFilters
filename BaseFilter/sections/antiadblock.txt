@@ -1277,6 +1277,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/245535
+ecropper.in#%#//scriptlet('trusted-suppress-native-method', 'Node.prototype.appendChild', '{"nodeName":"DIV","className":"adsbox"}', 'abort')
+ecropper.in#$#body { overflow: auto !important; }
+ecropper.in#$#div[aria-labelledby="adblock-modal-title"] { display: none !important; }
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||ecropper.in^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=ecropper.in
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$xmlhttprequest,domain=ecropper.in
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/245401
 !+ NOT_PLATFORM(ext_chromium_mv3, ext_ff)
 content.st#%#Object.defineProperty(window,"BlockCheck",{get:()=>({check:()=>Promise.resolve("")}),set:e=>{}});
