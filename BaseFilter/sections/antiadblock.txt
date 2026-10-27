@@ -1277,6 +1277,15 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/245535
+ecropper.in#%#//scriptlet('trusted-suppress-native-method', 'Node.prototype.appendChild', '{"nodeName":"DIV","className":"adsbox"}', 'abort')
+ecropper.in#$#body { overflow: auto !important; }
+ecropper.in#$#div[aria-labelledby="adblock-modal-title"] { display: none !important; }
+!#if (adguard_app_ios || adguard_ext_android_cb)
+@@||ecropper.in^$generichide
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$xmlhttprequest,domain=ecropper.in
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$xmlhttprequest,domain=ecropper.in
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/245401
 !+ NOT_PLATFORM(ext_chromium_mv3, ext_ff)
 content.st#%#Object.defineProperty(window,"BlockCheck",{get:()=>({check:()=>Promise.resolve("")}),set:e=>{}});
@@ -2564,12 +2573,13 @@ vidnest.fun,vidnest.live,vidnest.io,pornhoarder.io###adb-overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229188
 ! https://github.com/AdguardTeam/AdguardFilters/issues/226383
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224406
+! https://github.com/AdguardTeam/AdguardFilters/issues/245309
 ||ssl.p.jwpcdn.com/player/v/*/googima.js$script,third-party,redirect-rule=noopjs
-gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('prevent-setTimeout', 'document.getElementsByTagName')
-gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'onerror')
-gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('prevent-element-src-loading', 'script', 'googima.js')
+gasobni.com,gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('prevent-setTimeout', 'document.getElementsByTagName')
+gasobni.com,gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'onerror')
+gasobni.com,gaqghe.com,viderea.site,vidwara.*,vidwara.fit,vidwara.cc,vidarae.live,calyro.biz,vidmatrixa.com,vidchampions.com,vidavaca.cc,vindaz.shop,xca.cymru,vidara.to,vidara.so#%#//scriptlet('prevent-element-src-loading', 'script', 'googima.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||ssl.p.jwpcdn.com/player/v/8.36.2/googima.js$script,domain=vidara.to|vidara.so|xca.cymru|vindaz.shop|vidmatrixa.com|vidchampions.com|vidavaca.cc|calyro.biz|vidarae.live|vidwara.cc|vidwara.fit|viderea.site|gaqghe.com
+@@||ssl.p.jwpcdn.com/player/v/8.36.2/googima.js$script,domain=vidara.to|vidara.so|xca.cymru|vindaz.shop|vidmatrixa.com|vidchampions.com|vidavaca.cc|calyro.biz|vidarae.live|vidwara.cc|vidwara.fit|viderea.site|gaqghe.com|gasobni.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224952
 talksport.com#%#//scriptlet('prevent-element-src-loading', 'script', 'doubleclick')
 talksport.com#%#//scriptlet('prevent-fetch', 'adsbygoogle')
@@ -2903,11 +2913,10 @@ tab-maker.com#%#//scriptlet('prevent-fetch', 'googletagmanager.com/gtag/js', 'le
 @@||googletagmanager.com/gtag/js?id=$domain=tab-maker.com,xmlhttprequest
 !#safari_cb_affinity
 !#endif
+! https://github.com/AdguardTeam/AdguardFilters/issues/245271
 ! https://github.com/AdguardTeam/AdguardFilters/issues/216541
 snopes.com$$script:contains(adblock_notice)
-snopes.com#%#//scriptlet('prevent-setTimeout', '.offsetHeight===0')
-snopes.com#%#//scriptlet('prevent-setTimeout', '.offsetHeight === 0')
-snopes.com#%#//scriptlet('prevent-setTimeout', '=>')
+snopes.com#%#//scriptlet('prevent-setTimeout', '=', '100')
 snopes.com#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', 'setTimeout(()')
 snopes.com#%#//scriptlet('prevent-element-src-loading', 'script', '/adsbygoogle|doubleclick|googletagservices|bigcrunch/')
 snopes.com#$#.sidebar_ad { transform: rotateX(90deg) !important; height: 1px !important; }
@@ -3234,10 +3243,6 @@ tcheats.com#$#ins.adsbygoogle[data-ad-slot] { position: absolute !important; lef
 tcheats.com#@#ins.adsbygoogle[data-ad-slot]
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=tcheats.com
 !#endif
-! https://github.com/AdguardTeam/AdguardFilters/issues/209734
-chaturflix.cam#%#//scriptlet('prevent-setTimeout', 'googlesyndication.com')
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=chaturflix.cam
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209631
 hacksnation.com#@#.ad-unit:not(.textads)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/209668
@@ -6661,11 +6666,16 @@ techacrobat.com#%#//scriptlet('prevent-fetch', 'https://ads-api.twitter.com')
 sitelike.org#%#//scriptlet('prevent-fetch', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=sitelike.org,xmlhttprequest
+! https://github.com/AdguardTeam/AdguardFilters/issues/209734
 ! https://github.com/AdguardTeam/AdguardFilters/issues/144137
-chaturflix.cam#%#//scriptlet('prevent-setTimeout', '"none"===getComputedStyle')
+chaturflix.cam#%#//scriptlet('prevent-setTimeout', '??')
 chaturflix.cam#$#.adsbox.doubleclick.ad-placement { display: block !important; }
-!+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||chaturflix.cam^$generichide
+chaturflix.cam#@#.sponsored-ad
+!#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=chaturflix.cam
+@@||securepubads.g.doubleclick.net/tag/js/gpt.js$domain=chaturflix.cam
+@@||static.doubleclick.net/instream/ad_status.js$domain=chaturflix.cam
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/143171
 playok.com#%#//scriptlet('abort-on-property-read', 'abask')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/215358
