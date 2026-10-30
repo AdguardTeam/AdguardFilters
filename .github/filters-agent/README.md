@@ -6,7 +6,7 @@ CLI, tries to write a rule that fixes the problem, and posts what it found as on
 issue. It never commits a rule and never closes an issue: a maintainer reads the report and decides.
 
 This guide is for filter maintainers. It explains how to read a report and how to change what the
-agent does.
+agent does. What the agent proposes depends on what maintainers write for it.
 
 ## When a report appears
 
@@ -81,8 +81,10 @@ Rarer results explain themselves, for example *Fixed in the filter source, pendi
 
 ## Change the agent
 
-If you keep fixing the agent's proposals the same way, write that down for it. You do not need to
-touch its code: two things in this folder steer it.
+The agent improves mostly through you. It does not learn from how you fix its proposals: every run
+starts from the filter lists and from what is written in this folder. When you keep fixing its
+proposals the same way, write that down, and later runs will follow it. You do not need to touch
+its code: two things in this folder steer it.
 
 - [AGENTS.md](AGENTS.md) goes into every run. Use it for rules that apply to many issues.
 - A skill is read only when an issue needs it. Use it for a narrow procedure, such as how to handle
