@@ -1277,6 +1277,10 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/246845
+! To reproduce the anti-adblock message, it is necessary to click on a specific element, for example the search button
+sextb.net#%#//scriptlet('set-attr', 'html', 'data-adfree', 'true')
+f4scdn.com,f4stream.com#%#//scriptlet('remove-attr', 'data-block-adblock', '.player-wrap', 'asap stay')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/246834
 @@||uploadg.com^$generichide
 uploadg.com#%#(()=>{const t=Function.prototype.toString,e=["ad_banner","adsbygoogle","google_ads_iframe","getComputedStyle","offsetHeight","offsetWidth","clientHeight"],o=t=>t(!1);window.Promise=new Proxy(window.Promise,{construct(n,c,i){try{const n=c[0];if("function"==typeof n){const i=Reflect.apply(t,n,[]);e.every((t=>i.includes(t)))&&(c[0]=o)}}catch{}return Reflect.construct(n,c,i)}})})();
@@ -5326,18 +5330,6 @@ gocmod.com#%#//scriptlet('prevent-fetch', 'pagead2.googlesyndication.com')
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=live.hitsports.bond
 ! https://github.com/AdguardTeam/AdguardFilters/issues/245659
 ||sextb.*/js/brs.js
-! https://github.com/AdguardTeam/AdguardFilters/issues/165486
-! To reproduce the anti-adblock message, it is necessary to click on a specific element, for example the search button
-@@||sextb.net^$generichide
-@@||sextb.date^$generichide
-sextb.date,sextb.net#%#//scriptlet('set-constant', 'Check_ADBL', 'falseFunc')
-sextb.date,sextb.net#%#//scriptlet('spoof-css', 'body .sextb_700', 'display', 'block')
-sextb.date,sextb.net#%#//scriptlet('spoof-css', '.sextb_300', 'display', 'block')
-sextb.date,sextb.net#$#.sextb_300 { display: none !important; }
-sextb.date,sextb.net#$#body .sextb_700 { display: none !important; }
-sextb.date,sextb.net#$#body .sextb_728 { display: block !important; }
-sextb.date,sextb.net#$#body .sextb_728:not([id]) { position: absolute !important; left: -9999px !important; }
-/js/sextb.js$domain=sextb.date|sextb.net,replace=/if\(checkads\(\)==false\)/if(!0)/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167445
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165730
 mangoai.co#%#//scriptlet('prevent-fetch', 'www3.doubleclick.net')
