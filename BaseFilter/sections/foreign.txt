@@ -191,6 +191,9 @@ dlfox.com##p > a[target="_blank"] > img
 dlfox.com##div:not(.product_image) > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200321
 anime3rb.com#%#//scriptlet('prevent-setTimeout', '/open-modal|AdscoreInit/')
+anime3rb.com#%#//scriptlet('json-prune', '[?(@.i && @.b && @.u[0]=="https://llvpn.com/tag.min.js")]$.e')
+anime3rb.com#%#//scriptlet('trusted-suppress-native-method', 'Document.prototype.querySelector', '/^\[data-q\]$/', 'prevent')
+||anime3rb.com/build/assets/kw-*.js
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||cloudfront.net/*/*.min.js$domain=anime3rb.com
 @@||c.adsco.re^|$script,domain=anime3rb.com
@@ -535,6 +538,9 @@ arabseed.*##a[href^="https://bit.ly/"] > img
 ||cdn.statically.io/img/arabseed.onl/*/wp-content/uploads/2020/12/*.gif$domain=arabseed.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75931
 animesanka.*###slot-ads-top-article
+! https://github.com/AdguardTeam/AdguardFilters/issues/246827
+||akwam.*/files/terra.js
+akwam.*#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74388
 @@||p.jwpcdn.com/player/*.js$domain=akwam.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95403
@@ -1531,7 +1537,7 @@ fxstreet.cz##.ad-top-wrap
 fxstreet.cz##.adsplaceholder
 mediaguru.cz##.row-main div > p.tw-mb-0.tw-border-solid.tw-rounded:has(> a[target="_blank"][rel="noopener noreferrer"])
 cas.sk##div[class^="withBlankSpaceReklamnyBox_"]
-novinky.cz##.ogm-branding-advert + div:has(> div > div > .js-ad)
+novinky.cz##div[class^="ogm-branding"][class*="advert"] + div[class]:has(> div[class] > div[class] > div.js-ad)
 ||cdn.telekomunikace.cz/banners
 telekomunikace.cz##section[data-static-section="head-banners"]
 telekomunikace.cz##section.mx-auto:has(> .grid:only-child > a[target="_blank"] > img)
@@ -1566,8 +1572,6 @@ aktuality.sk##div:has(> .rs-advertisement:only-child)
 idnes.cz##.s_halfpagead_lazyload
 idnes.cz##.r-art:has(> div[id^="r-hypertext"])
 ||1gr.cz/u/idn4/reklama
-cestovinky.cz,diit.cz,cdr.cz##div[id^="revive-ad-"]
-cestovinky.cz,diit.cz,cdr.cz##iframe[src^="https://openads.aira.cz/"]
 denik.cz##body .ad:not(#style_important)
 denik.cz,koktejl.cz##.content-box-wrap:has(> .content-box-wrap__inner--placeholder:only-child)
 zbozi.cz##div[class^="ResultsRedesigned_ads"]
@@ -1619,6 +1623,10 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 akcniceny.cz,autojournal.cz,idos.cz,impuls.cz,lidovky.cz,idnes.cz,expres.cz,antiyoutuber.cz##body .r-main
+!+ NOT_OPTIMIZED
+cestovinky.cz,diit.cz,cdr.cz##div[id^="revive-ad-"]
+!+ NOT_OPTIMIZED
+cestovinky.cz,diit.cz,cdr.cz##iframe[src^="https://openads.aira.cz/"]
 !+ NOT_OPTIMIZED
 kosicak.sk##div[style^="width:100%;min-height:"]
 !+ NOT_OPTIMIZED
@@ -3536,6 +3544,10 @@ gom.ge##a[href="http://topkinoebi.com/"]
 !
 ! NOTE: Hebrew
 !
+walla.co.il##div[class^="page_promotionSection"]
+walla.co.il##li[class*="OnlyAd__"]
+walla.co.il##li[class*="Outbrain"]
+walla.co.il##div[class*="AdInserter"]
 n12.co.il##div[class^="AdComponent_"]
 n12.co.il##div[class^="Ad_root"]
 ||taboola.com^$domain=1fichier.com|espn.com|gamespot.com|popsci.com|themarker.com
@@ -4315,6 +4327,7 @@ bb.is$$div[class="banner"]
 airtelxstream.in#%#//scriptlet('google-ima3-dai')
 airtelxstream.in#$#.vdo-player__wrapper { display: block !important; }
 !
+prothomalo.com##.qt-image-dynamic + div[class]:has(> div[class] > div.dfp-ad-unit)
 bd-bulletin.com##div.text-center > a[href="#"] > img[src^="/templates/bulletine-web/"]
 bd-bulletin.com#?#div.text-center > div[style]:has(> a[href="#"]:contains(Advertisement))
 ||bd-bulletin.com/templates/bulletine-web/images/ad_space.png$image
@@ -13749,7 +13762,7 @@ doofree88.com##.go-hard
 dufree4k.com#%#//scriptlet("abort-on-property-read", "player_0")
 dufree4k.com#$##player_ads_0 { display: none !important; }
 dufree4k.com#$##player_movie { display: block !important; }
- https://github.com/AdguardTeam/AdguardFilters/issues/51221
+! https://github.com/AdguardTeam/AdguardFilters/issues/51221
 ||doomovie-hd.com/assets/img/banner-new/
 doomovie-hd.com##.floating_ads_bt-mid_container
 doomovie-hd.com##.horizontal-ad-bar
@@ -13879,7 +13892,7 @@ asilmedia.org###banner
 ! NOTE: Vietnamese
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/242457
-cobephim.fun##.sspp-area
+cobephim.my##.sspp-area
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241935
 motchille.ws#%#//scriptlet('set-constant', 'HTMLAnchorElement.prototype.click', 'noopFunc')
 motchille.ws##div.fixed.inset-0

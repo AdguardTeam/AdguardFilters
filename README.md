@@ -70,7 +70,12 @@ Here is the [official documentation][documentation] on AdGuard filtering rules
 syntax. You'll need to read it before you'll be able to create your own
 filtering rules.
 
+An automated agent comments on new issues too: it tries to reproduce the problem
+and suggests a rule. Filter engineers review its suggestions the same way.
+Here is [how it works][filters-agent].
+
 [documentation]: https://adguard.com/kb/general/ad-filtering/create-own-filters/
+[filters-agent]: .github/filters-agent/README.md
 
 ### Other ways to contribute
 
