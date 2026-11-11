@@ -1276,6 +1276,16 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! checktls.com perform https://www.checktls.com/TestReceiver test for email server configuration
+checktls.com#%#//scriptlet('set-constant', 'adsbygoogle', 'emptyObj')
+checktls.com#%#//scriptlet('set-constant', 'google_tag_manager', 'emptyObj')
+checktls.com#%#//scriptlet('set-constant', 'adsbygoogle.loaded', 'true')
+!#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
+@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$script,domain=checktls.com
+!#safari_cb_affinity(privacy)
+@@||googletagmanager.com/gtag/js$script,domain=checktls.com
+!#safari_cb_affinity
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/246845
 ! To reproduce the anti-adblock message, it is necessary to click on a specific element, for example the search button
 sextb.net#%#//scriptlet('set-attr', 'html', 'data-adfree', 'true')
