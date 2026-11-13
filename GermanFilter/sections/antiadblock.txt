@@ -812,6 +812,10 @@ schnittmuster-datenbank.de#%#//scriptlet("abort-on-property-read", "adsBlocked")
 ! NOTE: Regular rules
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/246731
+mein-berlin.net#%#//scriptlet('prevent-setTimeout', 'adBlocked')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||mein-berlin.net^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/245432
 tarnkappe.info###anti-adblock-modal
 ! https://github.com/AdguardTeam/AdguardFilters/issues/243943
@@ -840,7 +844,9 @@ wowtv.de#%#//scriptlet('set-constant', 'window.CONFIGURATION.features.enableAdBl
 stadt-bremerhaven.de###cb-adblock-overlay
 ! https://github.com/AdguardTeam/AdguardFilters/issues/238166
 *$script,3p,redirect=noopjs,domain=ligainsider.de
+||ligainsider.de/js/*.js$script
 @@||ligainsider.de^$generichide
+ligainsider.de#%#//scriptlet('remove-node-text', 'script', '__abSelfBlocked')
 ligainsider.de#%#//scriptlet('prevent-element-src-loading', 'script', '/googlesyndication\.com|doubleclick\.net|bing\.com|taboola\.com/')
 ligainsider.de#%#//scriptlet('abort-on-property-read', 'LIDetector')
 ||ligainsider.de/public/*/js/li-probe-base.js

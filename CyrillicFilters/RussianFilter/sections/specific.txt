@@ -14,6 +14,16 @@ sport-express.ru,gorod24.online,vedomosti.ru,kommersant.ru,rg.ru,glavbukh.ru,che
 !
 ! NOTE: Specific rules
 !
+androidinsider.ru##p > a.post-action-accent[href^="https://fas.st/"]
+androidinsider.ru#%#//scriptlet('remove-attr', 'href', 'p > a[href^="https://fas.st/"]:not(.post-action-accent)')
+androidinsider.ru#$#p > a[rel*="sponsored"]:not(.post-action-accent) { color: inherit !important; border-bottom: 0 !important; cursor: auto !important; }
+||gc.onliner.by/js/growthbook-
+marvel-online.ru,kadikama.com#%#//scriptlet('json-prune', 'ads.vast.prerolls.* ads.vast.pauserolls.* vast.prerolls.* vast.pauserolls.*')
+||ya.ru/adfox/
+allsoft.ru##div[class^="b-banner_fluid"]
+||byrutgame.org/templates/byrut_upd/modules/game-window/
+freetp.org##.ftp-dl-page > noindex
+ogolosha.ua##.sqr-bnr-box
 sersoap.ru,zseek.ru#$#body { background-image: none !important; }
 sersoap.ru,zseek.ru#%#//scriptlet('remove-node-text', 'style', 'background-position')
 sersoap.ru,zseek.ru#%#//scriptlet('abort-current-inline-script', '$', 'adOnClick')
@@ -289,6 +299,7 @@ kto-zvonili.com##.sticky-container
 kto-zvonili.com#?#h5:contains(Индивидуальные подборки:)
 callfilter.app##.vpn-banner-shell
 ||mloads.com/sm/script5.js
+mloads.com##a[href^="https://1progsdl.ru/"]
 mloads.com##a[href^="https://get1soft.ru/"]
 ex-fs.net#%#//scriptlet("abort-current-inline-script", "document.createElement", "'script'")
 russeeders.top##a[href*="https://download.cdn.yandex.net/"]
@@ -11128,46 +11139,26 @@ youla.ru##.product_item--ad
 vfokuse.mail.ru##a[class^="rb-"][class*="branding"]
 !
 ! VK
+||api.vk.*/method/newsfeed.getFeed$jsonprune=\$.response.items[?(key-eq 'type' 'ads')]
+||api.vk.*/method/newsfeed.getFeed$jsonprune=\$.response.items[?(key-eq 'post_type' 'post_ads')]
+vk.com,vk.ru##div[role="feed"] > article:has(span[data-testid="post-header-subtitle"][data-role="label"] > span:empty + span:empty):has(a[data-post-click-type="post_owner_img"])
+vk.com,vk.ru#%#//scriptlet('json-prune-fetch-response', 'response.items.[-].type.[=].ads response.items.[-].type.[=].post_ads response.items.[-].post_type.[=].post_ads items.[-].type.[=].ads items.[-].type.[=].post_ads items.[-].post_type.[=].post_ads', '', 'newsfeed.get')
+vk.com,vk.ru##div[role="feed"] > article:has(> div[style] div._mk_vkFeed_iconWrap > img)
 vk.com,vk.ru###l_invite_menu_promo
-vk.com,vk.ru##div[role="feed"] > article:has(> div[data-testid^="post"] div[id^="subtitle-"] > div.vkuiFlex__host > div.vkuiRootComponent__host > div.vkuiFlex__host > div.vkuiRootComponent__host > span:not([aria-label]):not([data-testid="post-header-subtitle-geo"]))
-vk.com,vk.ru##.ConvoList__scrollbar-content > div[style]
-vk.com,vk.ru#?#body > div.vkuiRootComponent__host:has(> div[aria-describedby="onboarding_tooltip_content"]):contains(Яндекс Браузер)
+vk.com,vk.ru##.ConvoList__scrollbar-content > section.ConversationsBar--default
 vk.com,vk.ru###l_invite_promo
-vk.com,vk.ru##.vkuiBanner__host
-vk.com,vk.ru##div[role="feed"] > article:has(span[aria-label="Реклама"])
-vk.com,vk.ru##div[role="feed"] > article:has(span[class^="AdBlockProtector__noVisible--"])
-vk.com,vk.ru##div[role="feed"] > article:has(div.vkuiRootComponent__host > span.vkuiCaption__sizeYCompact > span)
-vk.com,vk.ru##section[class^="ImageBanner-module_"]
-vk.com,vk.ru#?##feed_rows > div[class="feed_row "]:has(.PostHeaderSubtitle__item:contains(Реклама в сообществе))
-vk.com,vk.ru###feed_rows > div[class="feed_row "]:has(div[class^="PostHeaderTitle "] > div.PostHeaderTitle__authorBlock span.PostHeaderTitle__authorName)
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div[class*="ads_block_data"])
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div.page_block > div._post_content div.ads_ad_snippet)
-vk.com,vk.ru###feed_rows > div[class^="feed_row"]:has(> div.page_block > div._post_content span.ads_ad_avatar)
-vk.com,vk.ru#?##feed_rows > div[class="feed_row "] > div.page_block > div._post_content div.ads_wall_text:upward(#feed_rows > div[class="feed_row "])
-vk.com,vk.ru#?##feed_rows > div[class="feed_row "] > div.page_block > div._post_content > div.ads_light_container:upward(#feed_rows > div[class="feed_row "])
 vk.com,vk.ru###ads_left
 vk.com,vk.ru###apps_ads_wrap
 vk.com,vk.ru###system_msg
 vk.com,vk.ru##div#left_ads
 vk.com,vk.ru##div[data-ad]
+! YB above the feed
+vk.com,vk.ru##div[data-testid="feed_main_container"] > div > section[data-feed-fpc-exclude]
 ! https://github.com/AdguardTeam/AdguardFilters/issues/198603#issuecomment-2683352478
-! Вероятно проблемное
-! vk.com,vk.ru#?##feed_rows > div[class^="feed_row"]:has(> div[class] .PostHeaderSubtitle:contains(/[Реклама]/))
 !+ PLATFORM(windows, mac, android, cli)
 feed$domain=vk.com|vk.ru,xmlhttprequest,replace=/banner:/bann_er:/
-vk.com,vk.ru#%#//scriptlet('trusted-replace-xhr-response', '/banner:/g', '_banner:', 'feed')
 vk.com,vk.ru##.post_marked_as_ads
 vk.com,vk.ru##._ads_promoted_post
-! vk.com,vk.ru###feed_rows > div[class="feed_row "] > div[class^="feed_repost-"]:has(div[class="wall_marked_as_ads"])
-! vk.com,vk.ru##[class^="ads_ad_"]
-! vk.com,vk.ru##div[id^="postadsite_"]
-! vk.com,vk.ru###ads_special_promo_wrap
-! vk.com,vk.ru##div[data-ad-view]
-! vk.com,vk.ru##.post[data-ad]
-! vk.com,vk.ru##.ads_ads_news_wrap
-! vk.com,vk.ru##.wall_marked_as_ads
-! vk.com,vk.ru##.wall_marked_as_ads + div.published_sec_quote
-! vk.com,vk.ru##._ads_block_data_w
 !
 ! END: mail.ru
 !
