@@ -191,6 +191,9 @@ dlfox.com##p > a[target="_blank"] > img
 dlfox.com##div:not(.product_image) > a[target="_blank"] > img
 ! https://github.com/AdguardTeam/AdguardFilters/issues/200321
 anime3rb.com#%#//scriptlet('prevent-setTimeout', '/open-modal|AdscoreInit/')
+anime3rb.com#%#//scriptlet('json-prune', '[?(@.i && @.b && @.u[0]=="https://llvpn.com/tag.min.js")]$.e')
+anime3rb.com#%#//scriptlet('trusted-suppress-native-method', 'Document.prototype.querySelector', '/^\[data-q\]$/', 'prevent')
+||anime3rb.com/build/assets/kw-*.js
 !#if (adguard_app_ios || adguard_ext_android_cb || adguard_ext_safari)
 @@||cloudfront.net/*/*.min.js$domain=anime3rb.com
 @@||c.adsco.re^|$script,domain=anime3rb.com
@@ -535,6 +538,9 @@ arabseed.*##a[href^="https://bit.ly/"] > img
 ||cdn.statically.io/img/arabseed.onl/*/wp-content/uploads/2020/12/*.gif$domain=arabseed.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/75931
 animesanka.*###slot-ads-top-article
+! https://github.com/AdguardTeam/AdguardFilters/issues/246827
+||akwam.*/files/terra.js
+akwam.*#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/74388
 @@||p.jwpcdn.com/player/*.js$domain=akwam.*
 ! https://github.com/AdguardTeam/AdguardFilters/issues/95403
@@ -1515,6 +1521,9 @@ mob.hr##.side_banner
 !
 ! NOTE: Czech and Slovakian
 !
+autoviny.sk##.bm-group
+autoviny.sk##.mtx
+sector.sk###newsload > div[style*="text-align:"]:has(> a[onmouseover])
 sector.sk##.liggallery > div.pt10:has(> center > a[href^="https://www.biosector.sk/"])
 pravda.sk##.banner
 eurozpravy.cz##.main__bg__wrapper
@@ -1566,8 +1575,6 @@ aktuality.sk##div:has(> .rs-advertisement:only-child)
 idnes.cz##.s_halfpagead_lazyload
 idnes.cz##.r-art:has(> div[id^="r-hypertext"])
 ||1gr.cz/u/idn4/reklama
-cestovinky.cz,diit.cz,cdr.cz##div[id^="revive-ad-"]
-cestovinky.cz,diit.cz,cdr.cz##iframe[src^="https://openads.aira.cz/"]
 denik.cz##body .ad:not(#style_important)
 denik.cz,koktejl.cz##.content-box-wrap:has(> .content-box-wrap__inner--placeholder:only-child)
 zbozi.cz##div[class^="ResultsRedesigned_ads"]
@@ -1619,6 +1626,10 @@ extra.cz##[data-advert-container]
 rychlost.cz##.t-ban
 olympijskytym.cz##div.bg-texture:has(> div[class^="ad-"])
 akcniceny.cz,autojournal.cz,idos.cz,impuls.cz,lidovky.cz,idnes.cz,expres.cz,antiyoutuber.cz##body .r-main
+!+ NOT_OPTIMIZED
+cestovinky.cz,diit.cz,cdr.cz##div[id^="revive-ad-"]
+!+ NOT_OPTIMIZED
+cestovinky.cz,diit.cz,cdr.cz##iframe[src^="https://openads.aira.cz/"]
 !+ NOT_OPTIMIZED
 kosicak.sk##div[style^="width:100%;min-height:"]
 !+ NOT_OPTIMIZED
@@ -2992,6 +3003,7 @@ pakkotoisto.com##.notice-content:has(> a[target="_blank"])
 !+ NOT_OPTIMIZED
 kaaoszine.fi##.adnm-html-topscroll-frame-wrapper
 !
+vinted.fi##div[data-testid="slot-container"]
 nettiauto.com##.huge-banner__wrapper
 huutokaupat.com##div[data-test="entry-list-container"] > article:not([data-test]):has(a[data-external="true"][variant="primary"])
 ! https://github.com/AdguardTeam/AdguardFilters/issues/199220
@@ -4319,6 +4331,10 @@ bb.is$$div[class="banner"]
 airtelxstream.in#%#//scriptlet('google-ima3-dai')
 airtelxstream.in#$#.vdo-player__wrapper { display: block !important; }
 !
+economictimes.com##.atf-wrapper
+iamgujarat.com##.top-atf-wrapper
+economictimes.com,samayam.com,indiatimes.com,vijaykarnataka.com,maharashtratimes.com##.alaskamasthead
+iamgujarat.com,indiatimes.com,samayam.com,vijaykarnataka.com##div[class^="mrec"]
 prothomalo.com##.qt-image-dynamic + div[class]:has(> div[class] > div.dfp-ad-unit)
 bd-bulletin.com##div.text-center > a[href="#"] > img[src^="/templates/bulletine-web/"]
 bd-bulletin.com#?#div.text-center > div[style]:has(> a[href="#"]:contains(Advertisement))
@@ -5346,7 +5362,7 @@ spaziogames.it##.customads__container
 corriere.it##.sponsor-strip
 gazzetta.it###rcsad_Bacheca1
 ||assets.fanpage.it/ciaoprebid-js/*/adstack/sdk/doPrebid.js
-fanpage.it##.adv-wrapper
+fanpage.it,geopop.it,cookist.it##.adv-wrapper
 cdt.ch##div.wnh__banner
 tuttoandroid.net##.post-content > div.box_read_also:has(> div > strong > a[href^="https://www.ebay.it/"])
 vocegiallorossa.it##div.centra > div.center[style]:has(> .tcc-banner #div-gpt-ad-MaxTicker)
@@ -6865,10 +6881,11 @@ smlpc.lt##.sidebar > div.widget:has(> div.textwidget > div.stpdSidebarAd)
 smlpc.lt##div[style]:has(> div:is([id^="smlpc_lt_"], [id^="stpd-"]))
 smlpc.lt##div[id^="smlpc_lt_"]
 smlpc.lt##div[id^="stpd-"]
-! https://github.com/AdguardTeam/AdguardFilters/issues/221266
-go.lnk.lt#%#//scriptlet('prevent-fetch', 'adsbygoogle')
+! https://github.com/AdguardTeam/AdguardFilters/issues/247304
+! aglint-disable-next-line
+||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$script,redirect=google-ima3-dai,domain=go.lnk.lt
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
-@@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=go.lnk.lt
+@@||imasdk.googleapis.com/js/sdkloader/ima3_dai.js$domain=go.lnk.lt
 ! https://github.com/AdguardTeam/AdguardFilters/issues/201373
 kaipkada.lt###footer-slideup
 kaipkada.lt#%#//scriptlet('prevent-fetch', 'adsbygoogle')
@@ -7236,7 +7253,8 @@ p30download.ir##.fpad
 p30download.ir###sidebar > center
 p30download.ir##a[href^="https://p30download.ir/page/id/"] img
 zoomit.ir##.w-full:has(> div[role="progressbar"])
-||biz-cdn.varzesh3.com/banners
+||biz-cdn.varzesh3.*/banners/
+varzesh3.com,varzesh3.ir##div[data-zone]
 varzesh3.com##[data-ad]
 ||zoomit.ir/ads/
 iranianuk.com##div[data-actirise-slot]:not(#style_important)
@@ -13211,6 +13229,9 @@ vatantat.ru##a[href="https://pobeda.onf.ru/"]
 ##.right-menu > div.adhl
 !
 !
+thairath.co.th##body > div[class^="css-"]:not([aria-label]):has(> div[class^="css-"] > .slot-loaded)
+thairath.co.th##div[class^="css-"]:not([aria-label]):has(> .slot-loaded)
+thairath.co.th##.ads-style
 embed.nana2play.com#$?#.vast-ad-overlay { remove: true; }
 thisisgamethailand.com##.header-banner
 thisisgamethailand.com##.tigth-ads
@@ -13884,7 +13905,7 @@ asilmedia.org###banner
 ! NOTE: Vietnamese
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/242457
-cobephim.my##.sspp-area
+cobephim.ink##.sspp-area
 ! https://github.com/AdguardTeam/AdguardFilters/issues/241935
 motchille.ws#%#//scriptlet('set-constant', 'HTMLAnchorElement.prototype.click', 'noopFunc')
 motchille.ws##div.fixed.inset-0
@@ -13982,6 +14003,10 @@ animevietsub.*##.video-ad-layer
 animevietsub.*##center > a[target="_blank"] > img
 animevietsub.*#%#//scriptlet('set-cookie', 'popupOpened', 'true')
 !
+||lauxanh.*/vast.js^
+||lauxanh.*/js/popunder.js^
+||quoracdn.net/main-qimg-$domain=lauxanh.*|lauxanh.cv
+lauxanh.cv,lauxanh.*##body .ad
 ||traingon.top/static/content-access.js
 nangcuc.cv,nangcuc.*##div[id^="nc-"][id*="-ad"]
 nangcuc.cv,nangcuc.*##.nc-ad-container
