@@ -101,3 +101,16 @@ to Google's preferred source page. The fix is `gamepro.de` added to
 `##a[href^="https://www.google.com/preferences/source?q="]` in
 `AnnoyancesFilter/Popups/sections/subscriptions_specific.txt`, not `gamepro.de##.seo-preference` in
 `GermanFilter/sections/specific.txt`.
+
+### Ads opened in a new tab on click: stop what opens them
+
+When a click on the page opens an ad in a new tab or window, find what opens it and stop that:
+block the ad script or the request that loads the ad's settings, or remove the click handler, for
+example with `remove-attr` on an `onclick` attribute. `prevent-window-open` stops only the new tab,
+while the ad code keeps running. Propose `prevent-window-open` only when you cannot find what opens
+the tab.
+
+Example, AdguardTeam/AdguardFilters#245402 (startseite.to): an `onclick` attribute on `body` opens
+ddownload.com on every click, so the fix is
+`startseite.to#%#//scriptlet('remove-attr', 'onclick', 'body[onclick]')`, not
+`startseite.to#%#//scriptlet('prevent-window-open', 'ddownload.com')`.
