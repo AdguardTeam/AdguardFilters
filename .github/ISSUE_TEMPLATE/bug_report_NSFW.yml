@@ -1,27 +1,34 @@
-name: Bug report (NSFW)
-description: Report an issue with filters (NSFW)
+name: 🔞 Bug report (NSFW)
+description: If you found something with AdGuard filters that we should know about (NSFW)
 labels: ["Unsorted", "NSFW"]
 body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report!
+
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: |
-        It is highly recommended to use our [Web Reporting Tool](https://adguard.com/kb/guides/report-website/#report) instead of creating an issue on GitHub.
+        It is highly recommended to use our [Web Reporting Tool](https://link.adtidy.org/forward.html?action=report&app=home&from=github) instead of creating an issue on GitHub.
         To avoid invalid reports, please check and confirm following checkboxes.
-
       options:
+        - label: This site contains sexually explicit material, otherwise use our [regular form](./new?template=bug_report.yml);
+          required: true
         - label: Filters were updated before reproducing an issue;
           required: true
         - label: AdGuard product version is up-to-date;
           required: true
         - label: Browser version is up-to-date;
           required: true
-        - label: If the site or app is broken, disabling AdGuard protection resolves an issue.
+        - label: If the site or app is broken, disabling AdGuard protection resolves the issue.
           required: true
+
   - type: dropdown
     id: adguards
     attributes:
-      label: What product do you use?
+      label: AdGuard Product
+      description: What product do you use?
       multiple: true
       options:
         - AdGuard Browser Extension
@@ -29,10 +36,11 @@ body:
         - AdGuard CLI for Linux
         - AdGuard DNS
         - AdGuard for Android
+        - AdGuard Mini for Android
         - AdGuard for iOS
-        - AdGuard for Mac
-        - AdGuard for Safari
         - AdGuard for Windows
+        - AdGuard for Mac
+        - AdGuard Mini for Mac
         - Other ad blocker
     validations:
       required: true
@@ -40,17 +48,17 @@ body:
   - type: input
     id: version
     attributes:
-      label: AdGuard version
+      label: AdGuard Version
       description: What version of our software are you running?
-      placeholder: for example, 7.7.2, 2.6.1.1060 nightly, 3.6.14 beta
+      placeholder: For example, 8.1.0, 4.14.2 Beta 2, 2.20 Nightly 8
     validations:
       required: true
 
   - type: dropdown
     id: what-happened
     attributes:
-      label: What type of problem have you encountered?
-      description: If the problem does not fall under any category that is listed here, please contact our tech support - support@adguard.com
+      label: Problem Type
+      description: What type of problem have you encountered? If the problem does not fall under any category that is listed here, please email support@adguard.com
       multiple: true
       options:
         - Missed ads or ad leftovers
@@ -66,25 +74,27 @@ body:
   - type: dropdown
     id: browsers
     attributes:
-      label: Which browser(s) do you use?
+      label: Browser
+      description: Which browser(s) do you use?
       multiple: true
       options:
         - Firefox
         - Chrome
         - Safari
-        - Microsoft Edge
+        - Edge
         - Opera
         - Yandex Browser
         - Brave
-        - other (specify in comment below)
-        - the problem is with app, not a site
+        - Other (specify in comment below)
+        - Problem is app-related, not site-related
     validations:
       required: true
 
   - type: dropdown
     id: browsers_type
     attributes:
-      label: Which device do you use?
+      label: Device
+      description: Which device do you use?
       multiple: false
       options:
         - Desktop
@@ -97,7 +107,7 @@ body:
     attributes:
       label: Where is the problem encountered?
       description: Enter the web address or affected application link.
-      placeholder: ex. https://example.com/
+      placeholder: For example, https://example.com/
     validations:
       required: true
 
@@ -113,7 +123,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Select enabled filters from the list or enter URLs of any custom filters in the comment field below.
+        Select enabled filters from the list, or enter URLs of any custom filters in the comment field below.
 
   - type: dropdown
     id: filters_adblock
@@ -125,7 +135,7 @@ body:
         - AdGuard Mobile Ads filter
         - EasyList
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: filters_privacy
@@ -133,21 +143,20 @@ body:
       label: Privacy
       multiple: true
       options:
-        - AdGuard URL Tracking filter
         - AdGuard Tracking Protection filter
+        - AdGuard Mail Tracking Protection filter
+        - AdGuard URL Tracking filter
         - EasyPrivacy
         - Legitimate URL Shortener
-        - Fanboy's Enhanced Tracking List
         - Peter Lowe's Blocklist
         - Fanboy's Anti-Facebook List
-        - Fanboy's Anti-thirdparty Fonts
     validations:
       required: false
 
   - type: dropdown
     id: filters_social
     attributes:
-      label: Social Widgets
+      label: Social
       multiple: true
       options:
         - AdGuard Social Media filter
@@ -161,7 +170,6 @@ body:
       label: Annoyances
       multiple: true
       options:
-        - AdGuard Annoyances filter
         - AdGuard Cookie Notices filter
         - AdGuard Popups filter
         - AdGuard Mobile App Banners filter
@@ -170,9 +178,9 @@ body:
         - Adblock Warning Removal List
         - Fanboy's Annoyances
         - Web Annoyances Ultralist
-        - I don't care about cookies
         - EasyList Cookie List
         - Dandelion Sprout's Annoyances List
+        - Stevo's AI Blocklist
     validations:
       required: false
 
@@ -186,6 +194,7 @@ body:
         - Phishing URL Blocklist
         - Scam Blocklist by DurableNapkin
         - uBlock Origin – Badware risks
+        - Dandelion Sprout's Anti-Malware List
     validations:
       required: false
 
@@ -197,6 +206,7 @@ body:
       options:
         - Filter unblocking search ads and self-promotion
         - AdGuard Experimental filter
+        - Fanboy's Anti-thirdparty Fonts
     validations:
       required: false
 
@@ -209,32 +219,26 @@ body:
         - AdGuard DNS filter
     validations:
       required: false
-
+      
   - type: dropdown
     id: filters_regional
     attributes:
       label: Language-specific
       multiple: true
       options:
-        - AdGuard Chinese filter
-        - AdGuard Dutch filter
-        - AdGuard French filter
-        - AdGuard German filter
-        - AdGuard Italian filter
-        - AdGuard Japanese filter
-        - AdGuard Polish filter
         - AdGuard Russian filter
+        - AdGuard German filter
+        - AdGuard Japanese filter
+        - AdGuard Dutch filter
         - AdGuard Spanish/Portuguese filter
         - AdGuard Turkish filter
+        - AdGuard French filter
         - AdGuard Ukrainian filter
+        - AdGuard Italian filter
+        - AdGuard Polish filter
+        - AdGuard Chinese filter
         - ABPindo
-        - ABPVN List
-        - Adblock List for Finland
-        - AdBlockID
         - Bulgarian list
-        - CJX's Annoyances List
-        - Dandelion Sprout's Nordic Filters
-        - Dandelion Sprout's Serbo-Croatian List
         - EasyList China
         - EasyList Czech and Slovak
         - EasyList Dutch
@@ -242,36 +246,42 @@ body:
         - EasyList Hebrew
         - EasyList Italy
         - EasyList Lithuania
-        - EasyList Polish
-        - EasyList Portuguese
-        - EasyList Spanish
-        - EasyList Thailand
-        - Estonian List
-        - Frellwit's Swedish Filter
-        - Greek AdBlock Filter
-        - Hungarian filter
-        - Icelandic ABP List
-        - IndianList
-        - KAD - Anti-Scam
         - Latvian List
-        - List-KR
         - Liste AR
         - Liste FR
-        - Macedonian adBlock Filters
+        - ROList
+        - Icelandic ABP List
+        - AdBlockID
+        - Greek AdBlock Filter
+        - EasyList Portuguese
+        - EasyList Thailand
+        - Hungarian filter
+        - Xfiles
+        - "RU AdList: Counters"
+        - ABPVN List
         - Official Polish filters for AdBlock, uBlock Origin & AdGuard
+        - Polish GDPR-Cookies Filters
+        - Estonian List
+        - CJX's Annoyances List
+        - Polish Social Filters
+        - filterslist-KO Classic filter list
+        - xinggsf
+        - EasyList Spanish
+        - KAD - Anti-Scam
+        - Adblock List for Finland
+        - ROLIST2
         - Persian Blocker
+        - road-block
         - Polish Annoyances Filters
         - Polish Anti Adblock Filters
-        - Polish Anti-Annoying Special Supplement
-        - Polish GDPR-Cookies Filters
-        - Polish Social Filters
-        - road-block light
-        - ROList
-        - ROLIST2
-        - RU AdList - Counters
-        - Xfiles
-        - xinggsf
+        - Frellwit's Swedish Filter
         - YousList
+        - EasyList Polish
+        - Polish Anti-Annoying Special Supplement
+        - Dandelion Sprout's Serbo-Croatian List
+        - IndianList
+        - Macedonian adBlock Filters
+        - Dandelion Sprout's Nordic Filters
     validations:
       required: false
 
@@ -279,7 +289,6 @@ body:
     attributes:
       value: |
         ‎‎‎‎‎‎‎‎
-
   - type: dropdown
     id: stealth
     attributes:
@@ -287,56 +296,60 @@ body:
       description: Select any of these options if you have them enabled in Stealth Mode
       multiple: true
       options:
+        - Block trackers
+        - Remove tracking parameters
         - Hide your search queries
         - Send Do-Not-Track signals
         - Self-destruction of third-party cookies
         - Self-destruction of first-party cookies
         - Disable cache for third-party requests
-        - Block third-party Authorization header
+        - Block the third-party Authorization header
         - Block WebRTC
         - Block Push API
         - Block Location API
-        - Hide Referrer from third-parties (specify in comment below, if used custom value)
-        - Hide your User-Agent (specify in comment below, if used custom value)
-        - Mask your IP address (specify in comment below, if used custom value)
-        - Remove X-Client-Data header from HTTP requests
+        - Hide your Referrer from third-parties (specify in comment below if a custom value is used)
+        - Hide your User-Agent (specify in comment below if a custom value is used)
+        - Mask your IP address (specify in comment below if a custom value is used)
+        - Remove X-client-Data header from HTTP request
         - Protect from DPI
 
   - type: textarea
     id: comments
     attributes:
-      label: Add your comment and screenshots
+      label: Comments
       description: |
-        0. DO NOT upload screenshots with sexually explicit material on GitHub directly. Instead, upload it to third-party image hosting and post URL here;
-        1. Add screenshots of the problem. You can drag and drop images or paste them from clipboard;
-          Use `<details> </details>` tag to hide screenshots under the spoiler;
-        2. Describe the issue extensively unless it is absolutely clear from the screenshot what the problem is;
-          You can also indicate any other information that you think the developers should know.
-
-        Warning: Please remove personal information before uploading screenshots!
-      value: |
-          1. <comment>
-
-          2. Screenshots
-          <details><summary>Screenshot 1:</summary>
-
-          <!-- paste screenshot here -->
-
-          </details>
-
-          <details><summary>Screenshot N:</summary>
-
-          <!-- paste screenshot here -->
-
-          </details>
+        Describe the issue extensively unless it is absolutely clear from the screenshot what the problem is;
+        You can also indicate any other information that you think the developers should know.
     validations:
       required: true
+
+  - type: textarea
+    id: screens
+    attributes:
+      label: Screenshots
+      description: |
+        If applicable, add screenshots explaining your problem.
+        DO NOT upload screenshots with sexually explicit material on GitHub directly.
+        Instead, upload it to a third-party image host and paste the URL below.
+        Use `<details> </details>` tag to hide screenshots under the spoiler.
+      placeholder: If applicable, add screenshots explaining your problem.
+      value: |
+          <details><summary>Screenshot 1</summary>
+          <!-- Paste screenshot below. -->
+          
+          
+          
+          </details>
+    validations:
+      required: false
 
   - type: checkboxes
     id: terms
     attributes:
-      label: Privacy
-      description: By submitting this issue, you agree that report does not contain private info
+      label: Terms
+      description: By submitting this issue, you agree that...
       options:
-        - label: I agree to follow this condition
+        - label: This report does not contain private info
+          required: true
+        - label: I DID NOT upload screenshots with sexually explicit material on GitHub directly
           required: true
