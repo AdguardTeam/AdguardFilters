@@ -59,3 +59,58 @@ Example, AdguardTeam/AdguardFilters#243463 (wzielonej.pl, anti-adblock popup): t
 detector that `BaseFilter/sections/antiadblock.txt` already handles, so the fix is `wzielonej.pl`
 added to the shared rule under `! 'tie.ad_blocker_detector' (tie-popup-adblock)`, which is
 `#%#//scriptlet("set-constant", "tie.ad_blocker_detector", "")`.
+
+### Cookie banners of a consent platform: use the platform's shared rule
+
+Many cookie banners come from a consent platform, such as iubenda, Real Cookie Banner or the
+Shopware cookie notice, that `AnnoyancesFilter/Cookies/sections/cookies_specific.txt` already
+handles for other sites. Larger platforms have a group in the `Cookies - Popular rules` section at
+the top of the file, under a comment that names the platform, its attribute or its script; others
+have one rule listing their sites further down. Search the file for the platform's markers: its
+script host, the attribute or class on its banner, the cookie or storage key it sets.
+
+When the platform has a shared rule, add the reported domain to it, even if it works differently
+from the rule you would write: it may set the consent cookie or storage item, click a button on the
+banner, block the platform's script or hide the banner. Read the comments inside the group: they
+often say which rule fits which banner. When both a rule that hides the banner and one that sets
+the consent, clicks a button or blocks the script would work, use the second. Banners without such
+a platform rule are still usually hidden.
+
+Example, AdguardTeam/AdguardFilters#245366 (antispyshop.de, iubenda): the group under
+`! START: iubenda CMP` hides the banner with `##body #iubenda-cs-banner` and blocks the platform's
+script with `||cs.iubenda.com^$domain=<sites>`. The fix is `antispyshop.de` added to the blocking
+rule, not to the hiding one.
+
+### Google "preferred source" buttons: add the domain to the shared rule
+
+Many news sites show a button that asks the reader to add the site as a preferred source on Google.
+It links to `https://www.google.com/preferences/source?q=<site>` or
+`https://google.com/preferences/source?q=<site>`, and
+`AnnoyancesFilter/Popups/sections/subscriptions_specific.txt` hides each of the two links on many
+sites with one shared rule in the `Subscriptions - Popular rules` section at the top of the file:
+`##a[href^="https://www.google.com/preferences/source?q="]` and
+`##a[href^="https://google.com/preferences/source?q="]`. Add the reported domain to the rule for
+the link the button uses instead of writing a selector of the site's own for the button or the
+block around it. Other Google buttons have shared rules in the same file too, such as
+"Follow on Google" (`https://profile.google.com/cp/`) and Google News
+(`https://news.google.com/publications/`): search the file for the button's link before writing a
+new rule.
+
+Example, AdguardTeam/AdguardFilters#245674 (gamepro.de): the button is the link `a.seo-preference`
+to Google's preferred source page. The fix is `gamepro.de` added to
+`##a[href^="https://www.google.com/preferences/source?q="]` in
+`AnnoyancesFilter/Popups/sections/subscriptions_specific.txt`, not `gamepro.de##.seo-preference` in
+`GermanFilter/sections/specific.txt`.
+
+### Ads opened in a new tab on click: stop what opens them
+
+When a click on the page opens an ad in a new tab or window, find what opens it and stop that:
+block the ad script or the request that loads the ad's settings, or remove the click handler, for
+example with `remove-attr` on an `onclick` attribute. `prevent-window-open` stops only the new tab,
+while the ad code keeps running. Propose `prevent-window-open` only when you cannot find what opens
+the tab.
+
+Example, AdguardTeam/AdguardFilters#245402 (startseite.to): an `onclick` attribute on `body` opens
+ddownload.com on every click, so the fix is
+`startseite.to#%#//scriptlet('remove-attr', 'onclick', 'body[onclick]')`, not
+`startseite.to#%#//scriptlet('prevent-window-open', 'ddownload.com')`.
