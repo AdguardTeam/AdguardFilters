@@ -24,14 +24,21 @@ file that holds the reported site's rules, otherwise the one that holds rules of
 The agent never closes an issue. "Recommend closing" below means the report says no rule is
 needed; a maintainer checks it and decides.
 
-- The site's own advertising (first-party ads): no rule; recommend closing.
+- Ads for other companies get a rule like any other ad, wherever the site serves them from. That
+  includes ads the site sells itself and serves from its own host, API, CDN or ad server:
+  direct-sold banners, sponsored placements, gambling banners.
+- The site's own advertising, as the AdGuard filter policy uses the term, is self-promotion: banners
+  and other page elements in which the site promotes its own products and services, with no third
+  party paying for it. Propose a rule for `AnnoyancesFilter/Other/sections/self-promo.txt`; whether
+  it is annoying enough to block is the maintainer's call. Self-promotion that takes the place of a
+  blocked ad or plays as a video ad before the content is an ad and gets a rule like any other ad.
 - Paywalls: no rule; recommend closing.
-- German anti-adblock walls: no rule; recommend closing. This covers only a German site's wall
-  or popup that detects the ad blocker and asks to disable it or to allowlist the site. A page in
-  German is not enough, and the reporter's choice of "anti-adblock" as the problem type is not
-  evidence: check what the page itself shows.
-- Any other anti-adblock wall: write a rule only once the page's requests the agent captured show
-  the detector script; without it, hand the report to a maintainer.
+- Anti-adblock walls: write a rule only once the page's requests the agent captured show the
+  detector script; without it, hand the report to a maintainer. This covers a wall or popup that
+  detects the ad blocker and asks to disable it or to allowlist the site. The reporter's choice of
+  "anti-adblock" as the problem type is not evidence: check what the page itself shows. A notice
+  that the ad blocker breaks the site's consent banner is a cookie-consent problem, not an
+  anti-adblock wall.
 - Not anti-adblock at all: scam, phishing, fake virus or tech-support pages, malware downloads.
   None of the rules above applies; handle the report like any other, for example with a rule
   that blocks the dangerous page.
