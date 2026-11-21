@@ -179,6 +179,8 @@ $popup,third-party,domain=dood.ws,badfilter
 !
 ! NOTE: Regular rules
 !
+! unbreak videos at https://www.zee24taas.com/videos & https://www.zeenews.com/videos
+zeenews.com,zee24taas.com#%#(()=>{const noop=()=>{},callbacks=[];let player,ready=false,head=0;const invoke=callback=>{try{callback([]);}catch{}};const flush=()=>{ready=true;while(head<callbacks.length)invoke(callbacks[head++]);callbacks.length=0;head=0;};const requestBids=(_,callback)=>{if(typeof callback!=="function")return;if(ready||player){ready=true;invoke(callback);}else callbacks.push(callback);};try{Object.defineProperty(window,"PWT",{configurable:true,get:()=>({requestBids,generateConfForGPT:noop,addKeyValuePairsToGPTSlots:noop,generateDFPURL:noop}),set:noop});}catch{}try{Object.defineProperty(window,"KalturaPlayer",{configurable:true,get:()=>player,set:value=>{player=value;if(value)flush();}});}catch{}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/247017
 foxsports.com.au#%#//scriptlet('google-ima3')
 !#if (adguard_app_ios || adguard_ext_android_cb)
