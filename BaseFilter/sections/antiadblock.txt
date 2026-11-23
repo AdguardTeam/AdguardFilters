@@ -1276,6 +1276,14 @@ youporn.com$$script:contains(/window\.[\s\S]*?_zone_[\s\S]*?{"zone_id":/)
 !
 ! NOTE: Regular rules
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/247894
+peeplayer.com#%#//scriptlet('abort-current-inline-script', '__psAb', '__psAb')
+!#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
+@@||peeplayer.com^$generichide
+@@||peeplayer.com/psz/ad_$script
+@@||peeplayer.com/psz/ad$image
+@@$xmlhttprequest,domain=peeplayer.com
+!#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/247507
 zeta-ai.io#%#//scriptlet('prevent-fetch', 'tpc.googlesyndication.com/sodar/sodar2.js')
 zeta-ai.io#%#//scriptlet('prevent-element-src-loading', 'script', 'securepubads.g.doubleclick.net/tag/js/gpt.js')
