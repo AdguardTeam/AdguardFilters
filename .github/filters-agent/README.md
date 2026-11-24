@@ -72,7 +72,8 @@ Rarer results explain themselves, for example *Fixed in the filter source, pendi
   that its instructions do not cover, as in
   [#245307](https://github.com/AdguardTeam/AdguardFilters/issues/245307#issuecomment-6391155248).
   The second kind is a reason to [change the agent](#change-the-agent).
-- **Screenshots.** The page without and with the rule. They are stored in the
+- **Screenshots.** The page without and with the rule, attached to the comment. Reports posted
+  before the agent ran under the `filters-bot` account keep theirs in the
   `filters-agent-screenshots` branch, so keep that branch.
 - **Executor and version.** The AdGuard Browser Extension build the run used. The section is missing
   when the run did not use the extension, for example when it used AdGuard CLI.
