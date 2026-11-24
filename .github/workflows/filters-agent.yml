@@ -12,12 +12,11 @@ on:
       - opened
       - labeled
 
-# The report comment posts from the workflow token. `contents: write` lets the run commit the before
-# and after screenshots of a verified rule to the `filters-agent-screenshots` branch, which the
-# comment shows them from.
+# The run works under the filters-bot account: GitHub attaches an image to a comment for a user
+# account only, so the report carries the before and after screenshots of a verified rule as
+# attachments. The workflow token only checks the repository out.
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 jobs:
   analyze:
@@ -46,7 +45,7 @@ jobs:
         env:
           ADGUARD_LICENSE_KEY: ${{ secrets.ADGUARD_LICENSE_KEY }}
         with:
-          githubToken: ${{ github.token }}
+          githubUserToken: ${{ secrets.FILTERS_AGENT_USER_TOKEN }}
           llmBaseUrl: ${{ secrets.FILTERS_AGENT_LLM_BASE_URL }}
           llmApiKey: ${{ secrets.FILTERS_AGENT_LLM_API_KEY }}
           # Reads the screenshots too: the workflow sets no separate vision model.
