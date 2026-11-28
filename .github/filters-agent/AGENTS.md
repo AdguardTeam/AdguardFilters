@@ -66,3 +66,59 @@ Example, AdguardTeam/AdguardFilters#243463 (wzielonej.pl, anti-adblock popup): t
 detector that `BaseFilter/sections/antiadblock.txt` already handles, so the fix is `wzielonej.pl`
 added to the shared rule under `! 'tie.ad_blocker_detector' (tie-popup-adblock)`, which is
 `#%#//scriptlet("set-constant", "tie.ad_blocker_detector", "")`.
+
+### Cookie banners of a consent platform: use the platform's shared rule
+
+Many cookie banners come from a consent platform, such as iubenda, Real Cookie Banner or the
+Shopware cookie notice, that `AnnoyancesFilter/Cookies/sections/cookies_specific.txt` already
+handles for other sites. Larger platforms have a group in the `Cookies - Popular rules` section at
+the top of the file, under a comment that names the platform, its attribute or its script; others
+have a rule or a few rules listing their sites further down. Find the platform's rules with
+`search_rules`: search its script host as a URL pattern, written as the rules write it
+(`||cs.iubenda.com^`), and the banner's selector. A cookie or storage key cannot be searched. Then
+read the lines around a rule you found (`search_rules` with `filePath` and `line`): the platform's
+other rules are next to it, with the comments that say which rule fits which banner.
+
+When the platform has a shared rule, add the reported domain to it, even if it works differently
+from the rule you would write: it may set the consent cookie or storage item, click a button on the
+banner, block the platform's script or hide the banner. When the group has both a rule that hides
+the banner and one that blocks the platform's script, and both work, use the blocking one. Use a
+rule that clicks a button or sets the consent when the comments point to it, or when hiding and
+blocking leave the page unusable. Banners without such a platform rule are still usually hidden.
+
+Example, AdguardTeam/AdguardFilters#245366 (antispyshop.de, iubenda): the group under
+`! START: iubenda CMP` hides the banner with `##body #iubenda-cs-banner` and blocks the platform's
+script with `||cs.iubenda.com^$domain=<sites>`. The fix is `antispyshop.de` added to the blocking
+rule, not to the hiding one.
+
+### Google "preferred source" buttons: hide what is left around the link
+
+Many news sites show a button that asks the reader to add the site as a preferred source on Google.
+It links to `https://www.google.com/preferences/source?q=<site>` or
+`https://google.com/preferences/source?q=<site>`. Generic rules in
+`AnnoyancesFilter/Popups/sections/subscriptions_general.txt` hide both links on every site, so the
+link needs no rule for the reported site. When text, an icon or an empty box stays around the
+hidden link, hide the smallest block that holds only the button, for example with `:has()` on the
+link, in `AnnoyancesFilter/Popups/sections/subscriptions_specific.txt`. When the link itself is
+still visible, because generic hiding is off for the site or the link has another form, write a
+rule for that link with the site's domain in the same file. Other Google buttons, such as
+"Follow on Google" (`https://profile.google.com/cp/`) and Google News
+(`https://news.google.com/publications/`), have shared rules that list their sites in that file:
+add the reported domain to the rule for the button's link.
+
+Example, AdguardTeam/AdguardFilters#246399 (prothomalo.com): the fix for the button is
+`prothomalo.com##.story-content > div:has(> span + a[href^="https://www.google.com/preferences/source?q="])`
+in `AnnoyancesFilter/Popups/sections/subscriptions_specific.txt`.
+
+### Ads opened in a new tab on click: stop what opens them
+
+When a click on the page opens an ad in a new tab or window, find what opens it and stop that:
+block the ad script or the request that loads the ad's settings, or remove the click handler, for
+example with `remove-attr` on an `onclick` attribute. `prevent-window-open` stops only the new tab,
+while the ad code keeps running. Propose `prevent-window-open` only when you cannot find what opens
+the tab.
+
+Example, AdguardTeam/AdguardFilters#245402 (startseite.to): an `onclick` attribute on `body` opens
+ddownload.com on every click, so the fix is
+`startseite.to#%#//scriptlet('remove-attr', 'onclick', 'body[onclick]')`, not
+`startseite.to#%#//scriptlet('prevent-window-open', 'ddownload.com')`.
